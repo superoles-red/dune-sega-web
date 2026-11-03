@@ -4311,9 +4311,9 @@
       "sha256": "99af71b3e444d91b38820630a79417f831351433298828c04b41e550d7dc3b09"
     },
     "tools/test_publication.py": {
-      "bytes": 5039,
+      "bytes": 6663,
       "mode": "0o644",
-      "sha256": "59ec0ca525171c31ef4a346a9e5250a943609373390071ecd74dd9cf7bf9ce47"
+      "sha256": "9ba7014ee584b7dd739fd41f06c6fec0ca1fc861fd4a4eae182909369fe8da0d"
     },
     "tools/test_tutorial_training.mjs": {
       "bytes": 5734,
@@ -4336,9 +4336,9 @@
       "sha256": "7a510b206256213d61b8a6751fb827830505d07abb4e6fb82aae54b357cfb2a5"
     },
     "tools/verify_publication.py": {
-      "bytes": 2033,
+      "bytes": 2703,
       "mode": "0o644",
-      "sha256": "89d233236e0c22d1d5fb6f21bf9b35c993990564ec1e3e8ba5630945ca0d4121"
+      "sha256": "fde603f1141abec7a1391c9392de81a6f84cdbea9ac7fe7ac87afdc67f43660f"
     },
     "tools/verify_starport_chrome.py": {
       "bytes": 4836,

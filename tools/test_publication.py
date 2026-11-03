@@ -8,6 +8,7 @@ import stat
 import tempfile
 import threading
 import unittest
+import urllib.error
 
 from build_publication import ROOT, build_site, collect, validate_payload
 from verify_publication import verify
@@ -68,6 +69,36 @@ class PublicationTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 build_site(target)
             self.assertEqual((target / 'precious.txt').read_text(), 'preserve')
+
+    def test_remote_hidden_control_404_is_explicit_but_missing_game_asset_fails(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            release = build_site(Path(tmp) / 'dune-sega-web')
+            class Handler(http.server.SimpleHTTPRequestHandler):
+                denied = {'/dune-sega-web/.nojekyll'}
+                def log_message(self, *_):
+                    pass
+                def do_GET(self):
+                    if self.path in self.denied:
+                        self.send_error(404)
+                    else:
+                        super().do_GET()
+            server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(Handler, directory=tmp))
+            thread = threading.Thread(target=server.serve_forever, daemon=True)
+            thread.start()
+            base = f'http://127.0.0.1:{server.server_port}/dune-sega-web/'
+            try:
+                result = verify(base)
+                self.assertEqual(result['filesVerified'], len(release['files']) - 1)
+                self.assertEqual(result['unservedControls'], [{'path': '.nojekyll', 'httpStatus': 404, 'artifactHashVerified': False}])
+                Handler.denied.add('/dune-sega-web/frontend.state.bin')
+                with self.assertRaises(urllib.error.HTTPError) as failed:
+                    verify(base)
+                self.assertEqual(failed.exception.code, 404)
+                self.assertTrue(failed.exception.url.endswith('/frontend.state.bin'))
+            finally:
+                server.shutdown()
+                server.server_close()
+                thread.join()
 
     def test_source_export_preserves_executable_script_and_own_git_directory(self):
         with tempfile.TemporaryDirectory() as tmp:
