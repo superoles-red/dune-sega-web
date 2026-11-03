@@ -1,4 +1,4 @@
-import {UI_RU,ACCESSIBLE_EN} from './locale-ui-ru.mjs?v=20261103-pwa3';
+import {UI_RU,ACCESSIBLE_EN} from './locale-ui-ru.mjs?v=20261103-pwa4';
 
 export const LANGUAGE_KEY='dune-sega-language-v1';
 export const LANGUAGES=[{code:'en',label:'English'},{code:'ru',label:'Русский'}];

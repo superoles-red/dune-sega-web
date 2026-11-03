@@ -8,6 +8,8 @@ const CACHE_PREFIX = 'dune-sega-offline:' + SCOPE.pathname + ':';
 const CACHE_NAME = CACHE_PREFIX + VERSION;
 const ASSETS = new Map(PRECACHE.map(asset => [new URL(asset.path, SCOPE).pathname, asset]));
 const TOTAL_BYTES = PRECACHE.reduce((sum, asset) => sum + asset.bytes, 0);
+const MAX_DOWNLOAD_ATTEMPTS = 3;
+const DOWNLOAD_TIMEOUT_MS = 30000;
 const canonical = path => new URL(path, SCOPE).href;
 const READY_URL = canonical('__offline_ready__');
 const summary = (status, extra = {}) => ({type: 'DUNE_OFFLINE_PROGRESS', status, version: VERSION,
@@ -19,6 +21,40 @@ async function broadcast(message) {
 async function digest(bytes) {
   const hash = await crypto.subtle.digest('SHA-256', bytes);
   return Array.from(new Uint8Array(hash), byte => byte.toString(16).padStart(2, '0')).join('');
+}
+async function downloadVerified(asset) {
+  let lastError;
+  for (let attempt = 0; attempt < MAX_DOWNLOAD_ATTEMPTS; ++attempt) {
+    const url = new URL(asset.path, SCOPE);
+    // A retry must not get stuck behind a stale browser/CDN/VPN cache entry.
+    // The verified response is still stored under the canonical resource URL.
+    if (attempt) {
+      url.searchParams.set('__dune_asset', asset.sha256);
+      url.searchParams.set('__dune_retry', String(attempt));
+    }
+    const controller = typeof AbortController === 'function' ? new AbortController() : null;
+    let timeout;
+    try {
+      const operation = (async () => {
+        const response = await fetch(url.href, {cache: 'reload', credentials: 'same-origin', ...(controller ? {signal: controller.signal} : {})});
+        if (!response.ok || response.type === 'opaque') throw Error('HTTP ' + response.status + '/' + response.type + ': ' + asset.path);
+        const data = await response.clone().arrayBuffer();
+        if (data.byteLength !== asset.bytes || await digest(data) !== asset.sha256) {
+          throw Error('Integrity check failed: ' + asset.path);
+        }
+        return response;
+      })();
+      const deadline = new Promise((_, reject) => {
+        timeout = setTimeout(() => {
+          controller?.abort();
+          reject(Error('Download timed out: ' + asset.path));
+        }, DOWNLOAD_TIMEOUT_MS);
+      });
+      return await Promise.race([operation, deadline]);
+    } catch (error) { controller?.abort(); lastError = error; }
+    finally { clearTimeout(timeout); }
+  }
+  throw Error('Offline download failed after ' + MAX_DOWNLOAD_ATTEMPTS + ' attempts: ' + asset.path + ' (' + (lastError?.message || String(lastError)) + ')');
 }
 let installErrorReported = false;
 async function reportInstallFailure(error, extra = {}) {
@@ -40,14 +76,9 @@ async function installPackage() {
   const download = async () => {
     while (!failure && next < PRECACHE.length) {
      try {
-      const asset = PRECACHE[next++], url = canonical(asset.path);
-      const response = await fetch(url, {cache: 'reload', credentials: 'same-origin'});
-      if (!response.ok || response.type === 'opaque') throw Error('Offline download failed: ' + asset.path);
-      const data = await response.clone().arrayBuffer();
-      if (data.byteLength !== asset.bytes || await digest(data) !== asset.sha256) {
-        throw Error('Offline integrity check failed: ' + asset.path);
-      }
-      await cache.put(url, response);
+      const asset = PRECACHE[next++];
+      const response = await downloadVerified(asset);
+      await cache.put(canonical(asset.path), response);
       ++loaded; bytes += asset.bytes;
       await broadcast(summary('downloading', {loaded, bytes}));
      } catch (error) { failure = error; throw error; }

@@ -1,14 +1,14 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261103-pwa3';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261103-pwa3';
+import {BuildingInterface} from './building-ui.mjs?v=20261103-pwa4';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261103-pwa4';
 import {ScreenTransition} from './screen-transition.mjs';
-import {NativeConfirmation} from './confirm-dialog.mjs?v=20261103-pwa3';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261103-pwa4';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261103-pwa3';
+import {LANGUAGES} from './i18n.mjs?v=20261103-pwa4';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
 import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs';
-import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261103-pwa3';
+import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261103-pwa4';
 
 const STORY=new Set(['house_briefing','briefing','victory','defeat']);
 const SEQUENCE=new Set([...STORY,'tutorial','loading','campaign','victory_movie','defeat_movie','results','ending','credits']);

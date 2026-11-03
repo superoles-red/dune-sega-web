@@ -10,8 +10,8 @@ const template=await readFile(new URL('../web/service-worker.js',import.meta.url
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const fixtures=new Map([['index.html','<html>game</html>'],['shell.js','game();'],['engine/dune_web.wasm','wasm'],['native-audio-worklet.js','audio();']]);
 const entries=[...fixtures].map(([path,data])=>({path,bytes:Buffer.byteLength(data),sha256:hash(data)}));
-function host({version='new',corrupt=null,fail=null,old=true}={}){
- const listeners={},messages=[],network=[],data=new Map(),scope='https://example.test/dune-sega-web/';
+function host({version='new',corrupt=null,fail=null,old=true,transient=null,timeoutPath=null,noAbortController=false}={}){
+ const listeners={},messages=[],network=[],data=new Map(),attempts=new Map(),scope='https://example.test/dune-sega-web/';
  const prefix='dune-sega-offline:/dune-sega-web/:';
  if(old)data.set(prefix+'old',new Map([['preserved',new Response('old')]]));
  data.set('unrelated-site-cache',new Map());
@@ -21,17 +21,26 @@ function host({version='new',corrupt=null,fail=null,old=true}={}){
  const fetch=async (request,options)=>{
   const url=typeof request==='string'?request:request.url;network.push({url,options});
   const path=new URL(url).pathname.replace('/dune-sega-web/','');
-  if(path===fail)throw Error('offline');
+  const count=(attempts.get(path)||0)+1;attempts.set(path,count);
+  if(path===timeoutPath)return new Promise((_,reject)=>options.signal?.addEventListener('abort',()=>reject(Error('aborted')),{once:true}));
+  if(transient?.path===path&&count<=transient.count){
+   if(transient.kind==='network')throw TypeError('Load failed');
+   if(transient.kind==='http')return new Response('try again',{status:500});
+   if(transient.kind==='corrupt')return new Response('stale cached bytes');
+  }
+  if(path===fail)throw TypeError('Load failed');
   if(!fixtures.has(path))throw Error('not allowed '+path);
   return new Response(path===corrupt?'tampered':fixtures.get(path));
  };
  const script=template.replace('__DUNE_CACHE_VERSION__',version).replace('/*__DUNE_PRECACHE__*/ []',JSON.stringify(entries));
- runInNewContext(script,{self,caches,fetch,crypto:webcrypto,URL,Response,Uint8Array,console});
+ runInNewContext(script,{self,caches,fetch,crypto:webcrypto,URL,Response,Uint8Array,console,
+  AbortController:noAbortController?undefined:AbortController,
+  setTimeout:timeoutPath?(fn,ms)=>setTimeout(fn,Math.min(ms,1)):setTimeout,clearTimeout});
  const event=async(name,values={})=>{
   let promise;listeners[name]({...values,waitUntil:p=>promise=p,respondWith:p=>promise=p});
   return promise?await promise:undefined;
  };
- return {event,data,messages,network,scope,prefix,cacheName:prefix+version};
+ return {event,data,messages,network,attempts,scope,prefix,cacheName:prefix+version};
 }
 
 test('complete verified package installs without replacing a running worker',async()=>{
@@ -61,6 +70,34 @@ test('early CacheStorage errors report their detail before any download and stil
   assert.equal(h.messages.at(-1).status,'error');assert.equal(h.messages.at(-1).loaded,0);
   assert.equal(h.messages.at(-1).total,entries.length);
   assert.equal(h.messages.at(-1).message,'Error: '+message);
+ }
+});
+
+test('transient network/HTTP/integrity failures retry cache-busted URLs and store only verified canonical bytes',async()=>{
+ for(const kind of ['network','http','corrupt']){
+  const h=host({transient:{path:'shell.js',kind,count:1}});await h.event('install');
+  const calls=h.network.filter(x=>new URL(x.url).pathname.endsWith('/shell.js'));
+  assert.equal(calls.length,2);assert.equal(new URL(calls[0].url).search,'');
+  assert.equal(new URL(calls[1].url).searchParams.get('__dune_asset'),hash(fixtures.get('shell.js')));
+  assert.equal(new URL(calls[1].url).searchParams.get('__dune_retry'),'1');
+  assert.equal(await h.data.get(h.cacheName).get(h.scope+'shell.js').clone().text(),fixtures.get('shell.js'));
+  assert.ok(![...h.data.get(h.cacheName).keys()].some(key=>key.includes('__dune_retry')));
+  assert.equal(h.messages.at(-1).status,'ready');
+ }
+});
+
+test('permanent HTTP/network/corrupt failures are bounded at three attempts and preserve previous offline cache',async()=>{
+ for(const options of [{transient:{path:'shell.js',kind:'http',count:99}},{fail:'shell.js'},{corrupt:'shell.js'}]){
+  const h=host(options);await assert.rejects(()=>h.event('install'),/after 3 attempts: shell.js/);
+  assert.equal(h.attempts.get('shell.js'),3);assert.ok(h.data.has(h.prefix+'old'));assert.ok(!h.data.has(h.cacheName));
+  assert.equal(h.messages.at(-1).status,'error');assert.match(h.messages.at(-1).message,/shell.js/);
+ }
+});
+
+test('hung fetches have a finite deadline and three attempts with or without AbortController',async()=>{
+ for(const noAbortController of [false,true]){
+  const h=host({timeoutPath:'shell.js',noAbortController});await assert.rejects(()=>h.event('install'),/after 3 attempts: shell.js/);
+  assert.equal(h.attempts.get('shell.js'),3);assert.ok(h.data.has(h.prefix+'old'));assert.ok(!h.data.has(h.cacheName));
  }
 });
 
