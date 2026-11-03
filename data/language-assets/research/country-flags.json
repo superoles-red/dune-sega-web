@@ -1,0 +1,9 @@
+{
+  "nativeCountryFlagsFound": false,
+  "searchScope": [
+    "All37 named native resource-index entries in each supplied ROM: no language/flag/country resource names.",
+    "Existing full native Main/Options/house-picker source-art inventory has no country-language selector; three faction banners are house emblems, not country flags."
+  ],
+  "limitation": "This is a bounded resource/UI inventory, not semantic identification of every opaque graphics byte. It does not prove an arbitrary unused bitmap could never resemble a flag.",
+  "shipping": "No native country flags are exported or claimed. Any English/Russian picker flag must be an explicitly authored matching-style interface symbol."
+}

@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-03",
+  "scope": "Only explicit clean frontend screen/mission request skips decorative boot/title holds; actual initialization, loaders, native fade/audio calls and instruction clock remain original",
+  "campaignHeaderSha256": "6591c91bd62a5958910901fad5f35c84131a7574cb1caa52fd21d5975c969741",
+  "testSha256": "6de9a92a611864d20095b135c20da378302ac4038f1f10c8c2b5c25b4c98bb1f",
+  "tests": {
+    "test": "tools/test_em_web_cold_route.c",
+    "logs": [
+      "cold-route-logs/native-muted.log",
+      "cold-route-logs/native-audio-on.log"
+    ],
+    "continuousColdResetVector": true,
+    "snapshotTransplant": false,
+    "realYMFM": true,
+    "originalControlOptionsFrames": 1048,
+    "explicitOptionsFrames": 263,
+    "warmOptionsFrames": 58,
+    "coldMissionHouse": 1,
+    "coldMission": 1,
+    "coldMissionManualStage4Frame": 354,
+    "originalBootLogoVBlanks": 198,
+    "explicitBootLogoVBlanks": 1,
+    "ordinaryNoRequestMainReadyFrame": 2173,
+    "midIntroRoutes": [
+      {
+        "requestFrame": 350,
+        "elapsedFrames": 110
+      },
+      {
+        "requestFrame": 550,
+        "elapsedFrames": 189
+      },
+      {
+        "requestFrame": 750,
+        "elapsedFrames": 148
+      },
+      {
+        "requestFrame": 950,
+        "elapsedFrames": 102
+      }
+    ],
+    "wholeOriginalCampaignCPUComparedFrames": 60,
+    "wholeOriginalCampaignCPUComparedEveryInstruction": true,
+    "ordinaryCampaignFixture": ".local/campaign-fixtures/house1-mission09.cpu.bin",
+    "activeWorldGlobalRouteRejectedCPUImmutable": true,
+    "coincidentPCInsideWorldDoesNotMutateRegisters": true,
+    "audioBank": "Original Main CF970 remains valid through clean Options",
+    "fault": 0
+  },
+  "implementation": {
+    "requestGuard": "global route0..2 or campaign pending stage1..3; no armed run, no native world pointer/context, no borrowed call",
+    "bootGuard": "Only PC1898/189A, exact original caller17EE at SP+16; retain one real VBlank. This routine runs before house=-1 initialization.",
+    "mainGuard": "house=-1, same no-world guard; original warm/noIntro argument A3 at17424/174D2",
+    "midIntroCounters": [
+      "174F4 D3=200",
+      "1752E D3=300",
+      "177D2 D3=200"
+    ],
+    "noExplicitRequest": "Complete original boot/title sequence remains",
+    "noROMOrInstructionHandlerChanges": true
+  },
+  "negativeControlBeforeFix": {
+    "defaultAMaskColdOptionsFrames": 1051,
+    "startMaskColdOptionsFrames": 1051,
+    "nativeSharedPoll": "4724 ANDI.W #F0 accepts bothA10 andStart80; changing pad mask cannot shorten uninterruptible loops",
+    "logs": [
+      "cold-route-logs/before-A.log",
+      "cold-route-logs/before-START.log"
+    ]
+  },
+  "boundaries": [
+    "263 native frames are approximately4.39s at native NTSC cadence, not a promise of instant loading or1.5s.",
+    "Actual native initialization, asset loading and palette fades remain; browser download and rendering costs add wall time.",
+    "This short guard regression is not a rerun or relabelling of historical105824-frame/18000-frame campaign fidelity records.",
+    "Native test result is separate from root integrated-browser latency/audio and physical-device QA."
+  ]
+}

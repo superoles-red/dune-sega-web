@@ -1,0 +1,139 @@
+/* Layout only. Original canvas artwork supplies every visible panel/button. */
+[hidden]{display:none!important}
+.native-screen,.building-screen{position:fixed;inset:0;box-sizing:border-box;min-width:0;min-height:0;background:#000;overflow:hidden;color:#ddd;isolation:isolate;overscroll-behavior:none}
+.native-screen{z-index:30}
+.building-screen{z-index:40;background:#000 url('./ui-assets/shop-layout-kit/chrome/steel-light.png') repeat}
+.building-screen[data-menu="starport"]{background:#000}
+.native-screen *,.building-screen *{box-sizing:border-box}
+.native-screen canvas,.building-screen canvas,.native-button canvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges}
+
+/* These overrides also replace the former generic game-control button skin. */
+button.native-button,button.building-cell{appearance:none;-webkit-appearance:none;position:relative;display:block;min-width:44px;min-height:44px;margin:0;padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:#000!important;color:inherit;overflow:hidden;cursor:pointer;touch-action:manipulation;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+button.native-button:hover,button.native-button:active,button.building-cell:hover,button.building-cell:active{background:#000!important}
+button.native-button:focus-visible,button.building-cell:focus-visible{outline:2px solid #fff;outline-offset:2px;z-index:5}
+.native-button>canvas,.building-cell>canvas{display:block;width:100%;height:100%;pointer-events:none}
+.native-button>svg{display:none}
+
+/* Map controls retain their existing native input functions and placement. */
+#native-menu.native-button{width:96px;height:48px;min-width:96px;min-height:48px;padding:0!important}
+#context-actions{max-width:calc(100% - max(10px,env(safe-area-inset-left)) - max(10px,env(safe-area-inset-right)));flex-wrap:wrap;align-items:flex-end}
+#context-actions .native-button{display:block;width:clamp(112px,35vw,160px);min-width:112px;max-width:160px;height:56px;min-height:56px;padding:0!important;gap:0}
+#context-actions #native-action.native-button{width:clamp(112px,35vw,160px);min-width:112px!important;max-width:160px}
+#context-actions .native-button .action-label,#context-actions .native-button svg{display:none}
+
+/* Building geometry preserves each native catalogue's own occupied rows. */
+.building-viewport{position:absolute;top:env(safe-area-inset-top,0px);right:env(safe-area-inset-right,0px);bottom:env(safe-area-inset-bottom,0px);left:env(safe-area-inset-left,0px);overflow:hidden;background:#000;min-width:0;min-height:0}
+.building-background,.building-border{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none}
+.building-background{z-index:1}
+.building-border{z-index:3}
+.building-scroll{position:absolute;z-index:2;min-width:0;min-height:0;margin:0;padding:0;overflow-x:hidden;overflow-y:auto;touch-action:pan-y;overscroll-behavior:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.building-scroll::-webkit-scrollbar{display:none}
+.building-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-content:start;align-items:stretch;justify-items:stretch;width:100%;min-width:0;margin:0;padding:0;background:#000}
+.building-cell{display:block;width:100%;height:100%;min-width:0;min-height:44px;margin:0;padding:0;border:0;background:#000;overflow:hidden}
+.building-cell.empty-cell{pointer-events:none;background:#000}
+
+/* Scene screens: top artwork, readable middle, real actions near the hand. */
+.scene-backdrop{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.scene-shell{position:relative;z-index:1;display:grid;grid-template-areas:"head" "hero" "message" "actions" "footer";grid-template-columns:minmax(0,1fr);grid-template-rows:44px minmax(80px,.8fr) minmax(0,1fr) minmax(0,auto) auto;gap:8px;width:100%;height:100%;min-width:0;min-height:0;margin:0;padding:calc(8px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right)) 0 max(12px,env(safe-area-inset-left));overflow:hidden}
+.scene-head{grid-area:head;display:flex;justify-content:center;align-items:center;min-width:0;min-height:0;overflow:hidden}
+.scene-caption{width:100%;height:100%;max-width:720px;object-fit:contain}
+.scene-hero{grid-area:hero;display:flex;align-items:center;justify-content:center;min-width:0;min-height:0;overflow:hidden}
+.scene-art{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}
+.scene-message{grid-area:message;min-width:0;min-height:0;max-width:100%;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch;background:#000}
+.scene-text{display:block;width:100%;height:auto;min-width:0;object-fit:contain;object-position:top left}
+.scene-actions{grid-area:actions;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:10px;min-width:0;min-height:0;max-height:48dvh;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch;padding:2px}
+.scene-actions>.native-button{width:100%;height:56px;min-height:56px;flex:0 0 56px}
+.scene-footer{grid-area:footer;display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:10px;min-width:0;min-height:68px;margin:0;padding:6px 0 calc(6px + env(safe-area-inset-bottom,0px));background:#000}
+.scene-footer .native-button{width:144px;min-width:128px;height:56px;min-height:56px;flex:0 0 auto}
+.native-screen[data-has-message="false"] .scene-message,.native-screen[data-has-message="0"] .scene-message{display:none}
+.native-screen[data-has-message="false"] .scene-shell,.native-screen[data-has-message="0"] .scene-shell{grid-template-rows:44px minmax(80px,1fr) 0 minmax(0,auto) auto}
+
+.native-screen[data-view="home"] .scene-actions,.native-screen[data-view="houses"] .scene-actions,.native-screen[data-view="missions"] .scene-actions,.native-screen[data-view="replay"] .scene-actions{max-height:55dvh}
+.scene-actions.mission-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(52px,auto));grid-auto-rows:minmax(52px,auto);gap:8px;align-content:start}
+.scene-actions.mission-grid>.native-button{width:100%;height:100%;min-width:44px;min-height:52px}
+.scene-actions.house-grid{display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:minmax(64px,auto);gap:10px;align-content:start}
+.scene-actions.house-grid>.native-button{width:100%;height:100%;min-height:64px}
+.option-pair{display:grid;grid-template-columns:minmax(0,1fr) 80px;gap:8px;min-width:0;min-height:56px;flex:0 0 auto}
+.option-pair>.native-button{width:100%;height:56px;min-height:56px;min-width:44px}
+.native-screen[data-view="loading"] .scene-shell{grid-template-rows:44px minmax(80px,1fr) minmax(0,auto) minmax(0,auto) auto}
+
+@media (orientation:landscape) and (min-width:560px){
+ .scene-shell{grid-template-areas:"head head" "hero message" "hero actions" "footer footer";grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:40px minmax(0,1fr) minmax(0,auto) auto;column-gap:16px;row-gap:6px}
+ .native-screen[data-has-message="false"] .scene-shell,.native-screen[data-has-message="0"] .scene-shell{grid-template-rows:40px minmax(0,1fr) minmax(0,auto) auto}
+ .scene-actions{max-height:52dvh}
+ .scene-footer{min-height:62px;padding-top:3px;padding-bottom:calc(3px + env(safe-area-inset-bottom,0px))}
+ .native-screen[data-view="houses"] .scene-shell{grid-template-areas:"head head" "hero message" "actions actions" "footer footer";grid-template-rows:40px minmax(32px,1fr) minmax(0,auto) auto}
+ .scene-actions.house-grid{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:minmax(72px,auto);grid-auto-rows:minmax(72px,auto);max-height:34dvh}
+ .scene-actions.house-grid>.native-button{min-height:72px}
+ .native-screen[data-view="native"][data-scene*="option"] .scene-shell,.native-screen[data-view="native"][data-scene="pause"] .scene-shell{grid-template-areas:"head head" "hero actions" "footer footer";grid-template-rows:40px minmax(0,1fr) auto}
+ .native-screen[data-view="native"][data-scene*="option"] .scene-message,.native-screen[data-view="native"][data-scene="pause"] .scene-message{display:none}
+ .native-screen[data-view="native"][data-scene*="option"] .scene-actions,.native-screen[data-view="native"][data-scene="pause"] .scene-actions{height:100%;max-height:none}
+}
+@media (max-width:359px){
+ .scene-shell{padding-right:max(8px,env(safe-area-inset-right));padding-left:max(8px,env(safe-area-inset-left));gap:6px}
+ .scene-actions{gap:8px}
+ .scene-actions.mission-grid{gap:6px}
+ .option-pair{grid-template-columns:minmax(0,1fr) 64px;gap:6px}
+ .scene-footer .native-button{min-width:128px;width:128px}
+}
+@media (max-height:519px){
+ .scene-shell{grid-template-rows:40px minmax(40px,.6fr) minmax(0,1fr) minmax(0,auto) auto;gap:4px;padding-top:calc(4px + env(safe-area-inset-top,0px))}
+ .native-screen[data-has-message="false"] .scene-shell,.native-screen[data-has-message="0"] .scene-shell{grid-template-rows:40px minmax(40px,1fr) 0 minmax(0,auto) auto}
+ .scene-actions{max-height:44dvh;gap:6px}
+ .native-screen[data-view="home"] .scene-actions,.native-screen[data-view="houses"] .scene-actions,.native-screen[data-view="missions"] .scene-actions,.native-screen[data-view="replay"] .scene-actions{max-height:48dvh}
+ .scene-actions>.native-button{height:48px;min-height:48px;flex-basis:48px}
+ .scene-footer{min-height:60px;padding-top:2px;padding-bottom:calc(2px + env(safe-area-inset-bottom,0px))}
+ .scene-footer .native-button{height:56px;min-height:56px}
+ .option-pair,.option-pair>.native-button{min-height:48px;height:48px}
+}
+@media (orientation:landscape) and (min-width:560px) and (max-height:519px){
+ .scene-shell,.native-screen[data-has-message="false"] .scene-shell,.native-screen[data-has-message="0"] .scene-shell{grid-template-rows:32px minmax(0,1fr) minmax(0,auto) auto}
+ .scene-actions{max-height:46dvh}
+ .native-screen[data-view="houses"] .scene-shell{grid-template-rows:32px minmax(24px,1fr) minmax(0,auto) auto}
+ .native-screen[data-view="houses"] .scene-actions{max-height:30dvh}
+ .native-screen[data-view="native"][data-scene*="option"] .scene-shell,.native-screen[data-view="native"][data-scene="pause"] .scene-shell{grid-template-rows:32px minmax(0,1fr) auto}
+ .native-screen[data-view="native"][data-scene*="option"] .scene-actions,.native-screen[data-view="native"][data-scene="pause"] .scene-actions{height:100%;max-height:none}
+}
+/* Catalogue views allocate room to their real targets, rather than letting a
+ * large poster turn the nine mission choices into a narrow strip. */
+.native-screen[data-view="missions"] .scene-shell{grid-template-areas:"head" "hero" "actions" "footer";grid-template-columns:minmax(0,1fr);grid-template-rows:44px clamp(80px,22dvh,220px) minmax(0,1fr) auto}
+.native-screen[data-view="missions"] .scene-message{display:none}
+.native-screen[data-view="missions"] .scene-actions.mission-grid{height:100%;max-height:none;min-height:0;grid-template-rows:repeat(3,minmax(72px,1fr));grid-auto-rows:minmax(72px,1fr);align-content:stretch}
+.native-screen[data-view="missions"] .mission-grid>.native-button{height:100%;min-height:72px;flex:initial}
+.native-screen[data-view="houses"] .scene-shell{grid-template-areas:"head" "hero" "actions" "footer";grid-template-columns:minmax(0,1fr);grid-template-rows:44px minmax(40px,1fr) minmax(0,auto) auto}
+.native-screen[data-view="houses"] .scene-message{display:none}
+.native-screen[data-view="houses"] .scene-actions.house-grid{height:auto;max-height:62dvh;min-height:0;grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(3,clamp(104px,15dvh,128px));grid-auto-rows:clamp(104px,15dvh,128px);align-content:start}
+.native-screen[data-view="houses"] .house-grid>.native-button{height:100%;min-height:104px;flex:initial}
+
+/* The original title logo is the visible home heading. Keep the generic
+ * heading available to assistive technology without drawing a second DUNE. */
+.native-screen[data-view="home"] .scene-head{position:absolute;width:1px;height:1px;min-width:0;min-height:0;overflow:hidden;clip-path:inset(50%)}
+.native-screen[data-view="home"] .scene-message,.native-screen[data-view="home"] .scene-footer{display:none}
+.native-screen[data-view="home"] .scene-shell{grid-template-areas:"hero" "actions";grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,auto);padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+.native-screen[data-view="home"] .scene-actions{max-height:58dvh}
+.native-screen[data-view="home"] .scene-actions>.native-button{height:64px;min-height:56px;flex-basis:64px}
+
+@media (orientation:landscape) and (min-width:560px){
+ .native-screen[data-view="missions"] .scene-shell{grid-template-areas:"head head" "hero actions" "footer footer";grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr);grid-template-rows:40px minmax(0,1fr) auto}
+ .native-screen[data-view="missions"] .scene-actions.mission-grid{height:100%;max-height:none}
+ .native-screen[data-view="houses"] .scene-shell{grid-template-areas:"head head" "hero hero" "actions actions" "footer footer";grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:40px minmax(0,1fr) minmax(0,auto) auto}
+ .native-screen[data-view="houses"] .scene-actions.house-grid{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:clamp(104px,30dvh,160px);grid-auto-rows:clamp(104px,30dvh,160px);max-height:calc(100dvh - 152px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))}
+ .native-screen[data-view="home"] .scene-shell{grid-template-areas:"hero actions";grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr);align-items:center}
+ .native-screen[data-view="home"] .scene-hero{height:100%}
+ .native-screen[data-view="home"] .scene-actions{max-height:calc(100dvh - 32px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))}
+}
+@media (max-height:519px){
+ .native-screen[data-view="missions"] .scene-shell{grid-template-rows:40px clamp(48px,20dvh,104px) minmax(0,1fr) auto}
+ .native-screen[data-view="houses"] .scene-shell{grid-template-rows:40px minmax(24px,1fr) minmax(0,auto) auto}
+ .native-screen[data-view="home"] .scene-actions>.native-button{height:56px;min-height:56px;flex-basis:56px}
+}
+@media (orientation:landscape) and (min-width:560px) and (max-height:519px){
+ .native-screen[data-view="missions"] .scene-shell{grid-template-rows:32px minmax(0,1fr) auto}
+ .native-screen[data-view="houses"] .scene-shell{grid-template-rows:32px minmax(0,1fr) minmax(0,auto) auto}
+ .native-screen[data-view="home"] .scene-shell{grid-template-rows:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){.building-scroll,.scene-message,.scene-actions{scroll-behavior:auto}}
+/* Pair related settings so all common pause actions fit a portrait phone. */
+.native-screen[data-view="native"][data-scene="pause"] .scene-actions,.native-screen[data-view="native"][data-scene="options"] .scene-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:56px;align-content:start}
+.native-screen[data-view="native"][data-scene="pause"] .scene-actions>#option-2,.native-screen[data-view="native"][data-scene="options"] .scene-actions>#option-2,.native-screen[data-view="native"][data-scene="pause"] .option-pair,.native-screen[data-view="native"][data-scene="options"] .option-pair{grid-column:1/-1}
+@media(max-height:519px){.native-screen[data-view="native"][data-scene="pause"] .scene-actions,.native-screen[data-view="native"][data-scene="options"] .scene-actions{grid-auto-rows:48px}}

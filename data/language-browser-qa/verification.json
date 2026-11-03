@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "date": "2026-11-03",
+  "engineSha256": "4f3a8c75663e87b0f7dbcad2aff11ee36fa434d9d0a82d87a74318700ee64c22",
+  "browser": "Codex in-app Chromium",
+  "physicalDevice": false,
+  "viewports": [
+    [
+      390,
+      844
+    ],
+    [
+      844,
+      390
+    ],
+    [
+      1280,
+      720
+    ]
+  ],
+  "languageChecks": [
+    "fresh English default",
+    "English to Russian without engine restart",
+    "Russian remembered after reload",
+    "Options and Pause language picker",
+    "native Russian EXIT/FIX/STOP graphics",
+    "original Russian guide with corrected MCV text",
+    "canonical USA campaign briefing rendered in Russian",
+    "native results counters with Russian labels",
+    "corner-only minimap marker after panning"
+  ],
+  "buildingCases": {
+    "regularCampaign": "Harkonnen mission 1 original start, Construction Yard: first Windtrap tap shows info; credits remain 990",
+    "offlineVisualFixture": "Harkonnen native Starport fixture; fixture is not an earned campaign progression"
+  },
+  "ordinaryCampaignAudio": {
+    "nativeFrames": 2835,
+    "nativeSampleFrames": 2270650,
+    "ymRegisterWrites": 251733,
+    "nativeDropped": 0,
+    "workletUnderrunEvents": 0,
+    "workletOverflowEvents": 0,
+    "maximumObservedProducerGapMs": 60.375,
+    "outputSampleRate": 44100,
+    "sourceSampleRate": 48000,
+    "scope": "Includes entering Construction Yard, selecting an item, pointer interactions and map panning; counters verify buffer continuity, not a listening or physical iPhone test."
+  },
+  "limitations": [
+    "No physical iPhone/Safari test yet",
+    "No claim that every future long producer stall is covered",
+    "Demo audio restored from genuine AUDIO_ON native capture; native v2 loader proof is recorded separately."
+  ],
+  "hostSourceSha256": {
+    "web/i18n.mjs": "c62779b4bc0584c4d275587325577fb0104ecbdbe8185ef3684f4ebe089e0dab",
+    "web/locale-ui-ru.mjs": "c98491fab8bc17f49b686e93035681fa22f79e4a4b8164627c09cfad7ceb4634",
+    "web/locale-story-ru.json": "f587061fa9a5366c7e73ab954d54b83e497a77db63ca65c65a570c78b8821494",
+    "web/native-ui.mjs": "1f38c1847ecfe0f423dc50bf2a92e3d05afd2d6ca430928850186c2e18361b64",
+    "web/building-ui.mjs": "39781e0d6be1779ce5955968a9ae4082ca48dd416ed46131f6a206e8f9fa9877",
+    "web/tutorial.mjs": "b192f5b08a7cccc0f773dc20e64f9cfbef49825bf94d775a9342b53dfc8b224d",
+    "web/game-ui.mjs": "7e2684277f449a63d49e6d800d2338081dd6150e9dc985ba0379a6923185a9d8",
+    "web/native-audio.mjs": "bca9922f1f9de41a3e1f02fe7daab2bed389f671536223e717842c2c74b269e9",
+    "web/native-audio-worklet.js": "4d1255a80f755a58a24d0f99028db466d3833e6225f54212c530b7b939332731",
+    "web/localized-results.mjs": "89497186d8237913302241df49a44de8de6f03e276b3390f5440669a31b164e4",
+    "web/shell.js": "07eb5f6838b1c639b9e2707924083ae74540b5f23c262588a565b64f9bae143e",
+    "web/scene-flow.css": "38fba985bacbcc3b2ca538540b1408b4a6c8993dd872e27c1c11ad80c2e1c857"
+  },
+  "demoAudioAfterRepair": {
+    "payloadSha256": "8ec715f0b5cc08574dbe3668a15f2d3c4cf30b01cbcea7a6cc26f2651e4bf244",
+    "nativeFrames": 2358,
+    "ymRegisterWrites": 230426,
+    "nativeDropped": 0,
+    "workletUnderrunEvents": 0,
+    "workletOverflowEvents": 0,
+    "maximumObservedProducerGapMs": 37.78500002622605,
+    "outputSampleRate": 44100,
+    "scope": "New full-YM red demo loaded in real IAB; original Launcher attack order on a building and panning both axes; browser buffer counters and native YM register writes, not auditory/device certification."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "pass": true,
+  "originalInitializer": "0x161CE..0x161E8",
+  "nativeConsumer": "0x238E6 skip sentinelFFFF",
+  "ramStart": "0xFFC0A2",
+  "records": 16,
+  "stride": 10,
+  "changedFields": "unitID word+0 only; remaining8bytes perrecord byte-identical",
+  "activeBefore": 11,
+  "activeAfter": 0,
+  "beforeSha256": "c4a95253084846aeafdedc9dabfc393c37778d7a8f5fd4fb7b4a05ebfa4cad02",
+  "afterSha256": "def783972abd193f06bdbb2b6f22301f25e2e657c9262ad53e87936cf6f96a1b",
+  "teamReset": "Original0x2DE30(long0),6teams\u21920",
+  "scope": "Offline authored training only; no runtime gameplay patch; normal campaign/red-demo unchanged"
+}

@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-03",
+  "scope": "Offline demo audio source and full portable chip-state replacement only; no runtime/WASM/audio-bank/gameplay-mechanic code change",
+  "wasmUnchanged": "4f3a8c75663e87b0f7dbcad2aff11ee36fa434d9d0a82d87a74318700ee64c22",
+  "rootCause": {
+    "previousSourceAudioMode": "AUDIO_MUTE",
+    "previousPayloadYMBytes": 0,
+    "nativeZ80WaitPC": [
+      "02BB",
+      "02BD"
+    ],
+    "HL": "4000 (YM status)",
+    "instruction": "BIT0,(HL);JPZ02BB",
+    "stubReadReturns": 0,
+    "realTimerControlMissingAfterOldV2Reset": true,
+    "notWorldFreeze": "sceneGameFrame is the scene-entry marker; native sample/master clocks continued normally"
+  },
+  "fix": "Capture each genuine mission9 from full-AUDIO_ON frontend through original campaign/briefing/scenario path; author the same city using original helpers; serialize matching Z80+PSG+actual YMFM continuation together. No runtime register repair or driver reboot.",
+  "payloads": [
+    {
+      "house": 0,
+      "path": "web/demo-harkonnen.state.bin",
+      "sha256": "8ec715f0b5cc08574dbe3668a15f2d3c4cf30b01cbcea7a6cc26f2651e4bf244",
+      "bytes": 140921,
+      "ymBytes": 865,
+      "oldPayloadSHA256": "49f962f1e03b34c169577b7d27fb4a07b1782ddf5619088ca2f0a3b4871a788d",
+      "acceptedAuthoredTypeTileListIdentical": true,
+      "bank": 5000,
+      "power": [
+        600,
+        380
+      ],
+      "enemyBuildings": 32,
+      "nativeInteriors": 15,
+      "native30sec": {
+        "audioMode": 3,
+        "ymBytes": 865,
+        "frames": 1800,
+        "ymWriteDelta": 26136,
+        "pcmFrames": 1441857,
+        "nonzeroPCMFrames": 1439943,
+        "nativeDropped": 0,
+        "fault": 0
+      },
+      "oldPayloadIdentitySource": "Initial red manifest audited before replacement; native builder asserted accepted city list before publishing"
+    },
+    {
+      "house": 1,
+      "path": "web/demo.state.bin",
+      "sha256": "c246c131d801fcaf5a127f3eb8738635065b73fc9467ba6253dddc2fcdaeabc4",
+      "bytes": 140921,
+      "ymBytes": 865,
+      "oldPayloadSHA256": "a2e2387a15b1f424dbec018ae8abcce2b3d56a4d6e536d0c5778174ecedec720",
+      "acceptedAuthoredTypeTileListIdentical": true,
+      "bank": 5000,
+      "power": [
+        600,
+        380
+      ],
+      "enemyBuildings": 32,
+      "nativeInteriors": 15,
+      "native30sec": {
+        "audioMode": 3,
+        "ymBytes": 865,
+        "frames": 1800,
+        "ymWriteDelta": 27876,
+        "pcmFrames": 1441857,
+        "nonzeroPCMFrames": 1440843,
+        "nativeDropped": 0,
+        "fault": 0
+      }
+    }
+  ],
+  "frontend": {
+    "path": "web/frontend.state.bin",
+    "sha256": "6bfd6cb318ba28ced014c1a318a430ee5899025fdc2975d98a880e4abd2d7955",
+    "ymBytes": 865,
+    "unchanged": true
+  },
+  "tools": {
+    "tools/capture_demo_audio_source_native.c": "0765ba90d21b903fb220f6f3e1d749c1d9616212497dcdb57f0d1ee51702a1c1",
+    "tools/build_demo_fixture_native.c": "058ec5c684baeef634f3c9d1d08ca9a795d012480b581aaeadca34681a396a66",
+    "tools/build_demo_fixture.py": "a7a1475cda5509e8c2ed7f1b55c4260c40b9abcb54f865c5d4f8835843710d64",
+    "tools/test_demo_audio_load.c": "132009ea00d3e0ea5a51cdbfccea7604677c7541d4874ed6596fb8cd1092e369"
+  },
+  "originalCoreSHA256": "e3055a76cd0eeb151591984a2c12312dcea49754afa0edee9f84889814ad1578",
+  "audioBackendSHA256": "d6bed632f7cc905e9edb091a507d3824695a065400fa91116e8837d6ba3297d3",
+  "loaderProof": "v2-load.log",
+  "browserRedProof": "browser-red.json",
+  "boundaries": [
+    "Accepted authored building/feature types and tiles, original scenario/map seed,5000 bank,power/storage and original enemy-building count are retained.",
+    "This is a fresh ordinary AUDIO_ON scenario continuation: global frame/audio/AI progression need not byte-match the former silent fixture. It is not a migration of a played save.",
+    "Archive/visual QA mute fixtures retain historical identities and are not claimed as playable audio snapshots.",
+    "Root tested integrated red demo at44100Hz:2358 native frames,YMwrites+230426,0nativeDrops/underruns/overflows; physical phones/listening outside that sample are not claimed."
+  ]
+}

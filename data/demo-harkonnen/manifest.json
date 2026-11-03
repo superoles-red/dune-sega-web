@@ -1,0 +1,315 @@
+{
+  "version": 1,
+  "purpose": "Temporary isolated demonstration, not a normal campaign start or earned progression",
+  "source": {
+    "romSha256": "b1bbe73186e0902fa8b2db0f227bf306e3d6a80fe592f927d1aa9d60c0f335ba",
+    "generatedSourceSha256": "e3055a76cd0eeb151591984a2c12312dcea49754afa0edee9f84889814ad1578",
+    "baseRepository": "https://github.com/andvolodko/dune2-sega-web",
+    "baseRevision": "56c6a6da10",
+    "baseOrigin": "existing inspected local checkout; ROM bytes equal operator-supplied file",
+    "runtime": "Original machine instructions translated ahead of time to C / WebAssembly; browser host scheduling patches only"
+  },
+  "house": 0,
+  "houseName": "Harkonnen",
+  "mission": 9,
+  "originalScenario": "SCENH009.INI",
+  "mapSeed": 17,
+  "payload": {
+    "path": "demo.state.bin",
+    "webPath": "demo-harkonnen.state.bin",
+    "magic": "DSAV",
+    "version": 2,
+    "ymSize": 865,
+    "bytes": 140921,
+    "sha256": "8ec715f0b5cc08574dbe3668a15f2d3c4cf30b01cbcea7a6cc26f2651e4bf244",
+    "serializer": "Exact current original browser dune_save_state_to_buffer copied at build time",
+    "serializerSha256": "b22932e7ceea5d2d901de0ed49bdc9ea7085b40fd78cdf4775bae5c7d6871acf"
+  },
+  "provenance": {
+    "sourceFixture": ".local/demo-audio-source/house0-mission09/source.cpu.bin",
+    "sourceFixtureSha256": "23638ee6981fb8a82ac8908eed03eea63c595b1c5019461252062162139ee9dc",
+    "sourceFixtureGeneration": "tools/capture_demo_audio_source_native.c: actual AUDIO_ON original house/briefing/scenario loader, no synthetic map",
+    "sourceYmSha256": "6fbc7fa5b7c7f7624b470f4ef5ea6f44495bc29a42234eae11a80b3beccb46f2",
+    "sourceYmBytes": 865,
+    "sourceCaptureBuilderSha256": "0765ba90d21b903fb220f6f3e1d749c1d9616212497dcdb57f0d1ee51702a1c1",
+    "builder": "tools/build_demo_fixture_native.c",
+    "builderSha256": "058ec5c684baeef634f3c9d1d08ca9a795d012480b581aaeadca34681a396a66",
+    "driver": "tools/build_demo_fixture.py",
+    "driverSha256": "a7a1475cda5509e8c2ed7f1b55c4260c40b9abcb54f865c5d4f8835843710d64"
+  },
+  "nativeHelpers": {
+    "buildingCreate": "0x00E584",
+    "powerAndStorageRecount": "0x010490",
+    "buildingFogReveal": "0x010870",
+    "terrainClass": "0x0057EA",
+    "initialBankDisplayRefresh": "0x011F38, original forced-refresh mode1"
+  },
+  "setup": {
+    "house": 0,
+    "mission": 9,
+    "campaignIndex": 8,
+    "mapContext": 1,
+    "credits": 5000,
+    "nativeSpiceCapacity": 5005,
+    "nativePowerProduction": 600,
+    "nativePowerUsage": 380,
+    "ownActiveBuildings": 23,
+    "originalEnemyBuildings": 32,
+    "sourceEnemyBuildings": 32,
+    "sourceYardTile": 1869,
+    "originalHelperCalls": 4459,
+    "camera": [
+      295,
+      839
+    ],
+    "created": [
+      {
+        "type": 0,
+        "pointer": 0,
+        "tile": 1805
+      },
+      {
+        "type": 1,
+        "pointer": 0,
+        "tile": 1871
+      },
+      {
+        "type": 2,
+        "pointer": 16735066,
+        "tile": 2061
+      },
+      {
+        "type": 3,
+        "pointer": 16735164,
+        "tile": 1801
+      },
+      {
+        "type": 4,
+        "pointer": 16735262,
+        "tile": 1611
+      },
+      {
+        "type": 5,
+        "pointer": 16735360,
+        "tile": 1994
+      },
+      {
+        "type": 7,
+        "pointer": 16735458,
+        "tile": 1681
+      },
+      {
+        "type": 9,
+        "pointer": 16735556,
+        "tile": 1874
+      },
+      {
+        "type": 10,
+        "pointer": 16735654,
+        "tile": 2065
+      },
+      {
+        "type": 11,
+        "pointer": 16735752,
+        "tile": 2317
+      },
+      {
+        "type": 12,
+        "pointer": 16735850,
+        "tile": 2185
+      },
+      {
+        "type": 13,
+        "pointer": 16735948,
+        "tile": 2257
+      },
+      {
+        "type": 14,
+        "pointer": 0,
+        "tile": 1673
+      },
+      {
+        "type": 15,
+        "pointer": 16736046,
+        "tile": 1551
+      },
+      {
+        "type": 16,
+        "pointer": 16736144,
+        "tile": 1992
+      },
+      {
+        "type": 17,
+        "pointer": 16736242,
+        "tile": 1798
+      },
+      {
+        "type": 18,
+        "pointer": 16736340,
+        "tile": 1684
+      },
+      {
+        "type": 9,
+        "pointer": 16736438,
+        "tile": 2068
+      },
+      {
+        "type": 9,
+        "pointer": 16736536,
+        "tile": 2118
+      },
+      {
+        "type": 9,
+        "pointer": 16736634,
+        "tile": 1859
+      },
+      {
+        "type": 9,
+        "pointer": 16736732,
+        "tile": 2375
+      },
+      {
+        "type": 9,
+        "pointer": 16736830,
+        "tile": 2007
+      },
+      {
+        "type": 17,
+        "pointer": 16736928,
+        "tile": 1667
+      },
+      {
+        "type": 17,
+        "pointer": 16737026,
+        "tile": 1687
+      },
+      {
+        "type": 17,
+        "pointer": 16737124,
+        "tile": 2051
+      }
+    ],
+    "fault": 0
+  },
+  "interiors": [
+    {
+      "type": 2,
+      "nativeContext": 2,
+      "sourceJsonSha256": "b760e35b5d03f0b5f5896b96b7b8d373e72b376e7471a0914aea9a13cb5c059c"
+    },
+    {
+      "type": 3,
+      "nativeContext": 2,
+      "sourceJsonSha256": "f8845eb889afac569831bebd3941b2a205c9378cbae92c71263e18418b8558a7"
+    },
+    {
+      "type": 4,
+      "nativeContext": 2,
+      "sourceJsonSha256": "c87165dee88510b62d058e3e00f9e5079c09e921a11a31062940c8c65cacbcdf"
+    },
+    {
+      "type": 5,
+      "nativeContext": 2,
+      "sourceJsonSha256": "6d89b341eb5624e4906bb91c41eefe3780a77bd5b51c50e427d12d76f227e05b"
+    },
+    {
+      "type": 7,
+      "nativeContext": 2,
+      "sourceJsonSha256": "455f9b04bfb39695ef3d659fb585abc0ecdbfcc18b96c7666cf54cfe73644c33"
+    },
+    {
+      "type": 8,
+      "nativeContext": 2,
+      "sourceJsonSha256": "563f7f8c509dd334824e580ed29ba53ddd9e32fc4beefe0a2e32dd0adc80dde7"
+    },
+    {
+      "type": 9,
+      "nativeContext": 2,
+      "sourceJsonSha256": "b14a53ce4e86d162b1ade1b29bdd2c06fd788e92fe8404f665a67d4569e8eb10"
+    },
+    {
+      "type": 10,
+      "nativeContext": 2,
+      "sourceJsonSha256": "8c8f1d0ab9c60852e44245b0f5af522763a108cbe234dbdee68a438ee18b3039"
+    },
+    {
+      "type": 11,
+      "nativeContext": 3,
+      "sourceJsonSha256": "b9291ab3688c5bba90f48155bf2190c06fa90f122e2f0753ccbc84e21c9cf802"
+    },
+    {
+      "type": 12,
+      "nativeContext": 2,
+      "sourceJsonSha256": "d8fb7e742f5d822ce7ab176f0d626c613fc366e1be2ff5c3aa32997da451a07e"
+    },
+    {
+      "type": 13,
+      "nativeContext": 2,
+      "sourceJsonSha256": "b9c660d75955e521aae716390e54a4e13fbb338564e6fbc740e6cca6fba16c36"
+    },
+    {
+      "type": 15,
+      "nativeContext": 2,
+      "sourceJsonSha256": "50649ac3d9ffb77967956b2cad90a9e2da35c82b7d1fd7c659caf74f56d5d247"
+    },
+    {
+      "type": 16,
+      "nativeContext": 2,
+      "sourceJsonSha256": "716e513707ec81774482431db64cac9f00a6b7cd75bee4686ec28b408dc23d5b"
+    },
+    {
+      "type": 17,
+      "nativeContext": 2,
+      "sourceJsonSha256": "7db162312b81dfbadb76422e0af98ad3594e2fd28a8a7485eca5bed585686f6c"
+    },
+    {
+      "type": 18,
+      "nativeContext": 2,
+      "sourceJsonSha256": "4aa6afe70edf979ce42306d93689b6cbef4a99a7b76f60209152510661618c44"
+    }
+  ],
+  "rules": [
+    "Authored offline preplaced scenario extras only; no cheat function is installed in the browser.",
+    "All original enemy buildings, units, AI, victory flags and terrain are retained. New concrete/slabs/wall and buildings are placed by original native routines.",
+    "Native scenario-init mode is scoped to offline placement and restored before serialization.",
+    "5000credits and its original displayed counter are initial demo values. Native spice capacity and power come from actual buildings.",
+    "Host must isolate demo from normal save storage and campaign progress; payload itself contains no host demo flag.",
+    "No balance or normal mission is modified; original AI and victory/defeat remain active during the demo.",
+    "Genuine AUDIO_ON CPU/Z80/PSG and portable YMFM state are captured together; no reset-chip/midstream-Z80 combination is published."
+  ],
+  "coverage": {
+    "nativeInteriors": 15,
+    "persistentTypes": "2..18 except unused IX6 and map-feature Wall14",
+    "terrainFeatures": [
+      0,
+      1,
+      14
+    ],
+    "noInputNativeFrames": 1800,
+    "instantWinOrLoss": false,
+    "nativeFaults": 0,
+    "audio": {
+      "audioMode": 3,
+      "ymBytes": 865,
+      "frames": 1800,
+      "ymWriteDelta": 26136,
+      "pcmFrames": 1441857,
+      "nonzeroPCMFrames": 1439943,
+      "nativeDropped": 0,
+      "fault": 0
+    },
+    "acceptedCityTileListUnchanged": true
+  },
+  "excludedOriginalDefinitions": [
+    {
+      "type": 6,
+      "key": "ix",
+      "reason": "Unused Sega placeholder: original availableHouseMask0 and explicit Yard skip at$00FF2E..$00FF3A. Has no original interactive interior; no IX is created."
+    }
+  ],
+  "limitations": [
+    "Original slab/wall placement frees its temporary record: those are native map features, not persistent active building slots.",
+    "The original enemy AI remains running; this is a demonstration city, not an endless invulnerable sandbox.",
+    "No physical-device or browser validation is claimed by this offline builder."
+  ]
+}

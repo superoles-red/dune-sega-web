@@ -1,0 +1,2917 @@
+{
+  "schemaVersion": 1,
+  "originalGeneratedSourceSha256": "e3055a76cd0eeb151591984a2c12312dcea49754afa0edee9f84889814ad1578",
+  "nativeOptions": {
+    "musicTest": {
+      "table": 556868,
+      "values": [
+        {
+          "index": 0,
+          "text": "cyrils council ",
+          "romOffset": 133236,
+          "nativeId": 0
+        },
+        {
+          "index": 1,
+          "text": "ammons advice  ",
+          "romOffset": 133252,
+          "nativeId": 8
+        },
+        {
+          "index": 2,
+          "text": "radnors scheme ",
+          "romOffset": 133268,
+          "nativeId": 6
+        },
+        {
+          "index": 3,
+          "text": "the lego tune  ",
+          "romOffset": 133284,
+          "nativeId": 4
+        },
+        {
+          "index": 4,
+          "text": "turbulence     ",
+          "romOffset": 133300,
+          "nativeId": 10
+        },
+        {
+          "index": 5,
+          "text": "spice trip     ",
+          "romOffset": 133316,
+          "nativeId": 1
+        },
+        {
+          "index": 6,
+          "text": "command post   ",
+          "romOffset": 133332,
+          "nativeId": 3
+        },
+        {
+          "index": 7,
+          "text": "trenching      ",
+          "romOffset": 133348,
+          "nativeId": 2
+        },
+        {
+          "index": 8,
+          "text": "starport       ",
+          "romOffset": 133364,
+          "nativeId": 5
+        },
+        {
+          "index": 9,
+          "text": "evasive action ",
+          "romOffset": 133380,
+          "nativeId": 7
+        },
+        {
+          "index": 10,
+          "text": "chosen destiny ",
+          "romOffset": 133396,
+          "nativeId": 9
+        },
+        {
+          "index": 11,
+          "text": "conquest       ",
+          "romOffset": 133412,
+          "nativeId": 11
+        },
+        {
+          "index": 12,
+          "text": "slitherin      ",
+          "romOffset": 133428,
+          "nativeId": 13
+        },
+        {
+          "index": 13,
+          "text": "harkonnen rules",
+          "romOffset": 133444,
+          "nativeId": 12
+        },
+        {
+          "index": 14,
+          "text": "atredies dirge ",
+          "romOffset": 133460,
+          "nativeId": 14
+        },
+        {
+          "index": 15,
+          "text": "ordos dirge    ",
+          "romOffset": 133476,
+          "nativeId": 16
+        },
+        {
+          "index": 16,
+          "text": "harkonnen dirge",
+          "romOffset": 133492,
+          "nativeId": 15
+        },
+        {
+          "index": 17,
+          "text": "finale         ",
+          "romOffset": 133508,
+          "nativeId": 17
+        }
+      ]
+    },
+    "soundTest": {
+      "table": 557020,
+      "values": [
+        {
+          "index": 0,
+          "text": "target         ",
+          "romOffset": 133524,
+          "nativeId": 23
+        },
+        {
+          "index": 1,
+          "text": "menu select    ",
+          "romOffset": 133540,
+          "nativeId": 25
+        },
+        {
+          "index": 2,
+          "text": "positive select",
+          "romOffset": 133556,
+          "nativeId": 40
+        },
+        {
+          "index": 3,
+          "text": "invalid select ",
+          "romOffset": 133572,
+          "nativeId": 26
+        },
+        {
+          "index": 4,
+          "text": "building       ",
+          "romOffset": 133588,
+          "nativeId": 82
+        },
+        {
+          "index": 5,
+          "text": "placement      ",
+          "romOffset": 133604,
+          "nativeId": 70
+        },
+        {
+          "index": 6,
+          "text": "countdown      ",
+          "romOffset": 133620,
+          "nativeId": 28
+        },
+        {
+          "index": 7,
+          "text": "credit down    ",
+          "romOffset": 133636,
+          "nativeId": 21
+        },
+        {
+          "index": 8,
+          "text": "credit up      ",
+          "romOffset": 133652,
+          "nativeId": 27
+        },
+        {
+          "index": 9,
+          "text": "rifle (fx)     ",
+          "romOffset": 133668,
+          "nativeId": 22
+        },
+        {
+          "index": 10,
+          "text": "rifle          ",
+          "romOffset": 133684,
+          "nativeId": 72
+        },
+        {
+          "index": 11,
+          "text": "machinegun (fx)",
+          "romOffset": 133700,
+          "nativeId": 20
+        },
+        {
+          "index": 12,
+          "text": "machinegun     ",
+          "romOffset": 133716,
+          "nativeId": 73
+        },
+        {
+          "index": 13,
+          "text": "cannon (fx)    ",
+          "romOffset": 133732,
+          "nativeId": 37
+        },
+        {
+          "index": 14,
+          "text": "cannon         ",
+          "romOffset": 133748,
+          "nativeId": 69
+        },
+        {
+          "index": 15,
+          "text": "rocket launch  ",
+          "romOffset": 133764,
+          "nativeId": 33
+        },
+        {
+          "index": 16,
+          "text": "sonic blast    ",
+          "romOffset": 133780,
+          "nativeId": 34
+        },
+        {
+          "index": 17,
+          "text": "missile        ",
+          "romOffset": 133796,
+          "nativeId": 74
+        },
+        {
+          "index": 18,
+          "text": "heavy drop     ",
+          "romOffset": 133812,
+          "nativeId": 30
+        },
+        {
+          "index": 19,
+          "text": "gas hit        ",
+          "romOffset": 133828,
+          "nativeId": 35
+        },
+        {
+          "index": 20,
+          "text": "worm eats (fx) ",
+          "romOffset": 133844,
+          "nativeId": 32
+        },
+        {
+          "index": 21,
+          "text": "worm eats      ",
+          "romOffset": 133860,
+          "nativeId": 77
+        },
+        {
+          "index": 22,
+          "text": "explosion 1    ",
+          "romOffset": 133876,
+          "nativeId": 38
+        },
+        {
+          "index": 23,
+          "text": "explosion 2    ",
+          "romOffset": 133892,
+          "nativeId": 39
+        },
+        {
+          "index": 24,
+          "text": "explosion 3    ",
+          "romOffset": 133908,
+          "nativeId": 71
+        },
+        {
+          "index": 25,
+          "text": "multi explosion",
+          "romOffset": 133924,
+          "nativeId": 81
+        },
+        {
+          "index": 26,
+          "text": "dud explosion  ",
+          "romOffset": 133940,
+          "nativeId": 36
+        },
+        {
+          "index": 27,
+          "text": "scream         ",
+          "romOffset": 133956,
+          "nativeId": 76
+        },
+        {
+          "index": 28,
+          "text": "squish         ",
+          "romOffset": 133972,
+          "nativeId": 78
+        },
+        {
+          "index": 29,
+          "text": "static (fx)    ",
+          "romOffset": 133988,
+          "nativeId": 31
+        },
+        {
+          "index": 30,
+          "text": "static         ",
+          "romOffset": 134004,
+          "nativeId": 75
+        },
+        {
+          "index": 31,
+          "text": "const. complete",
+          "romOffset": 134020,
+          "nativeId": 65
+        },
+        {
+          "index": 32,
+          "text": "unit approach  ",
+          "romOffset": 134036,
+          "nativeId": 64
+        },
+        {
+          "index": 33,
+          "text": "under attack   ",
+          "romOffset": 134052,
+          "nativeId": 66
+        },
+        {
+          "index": 34,
+          "text": "death hand     ",
+          "romOffset": 134068,
+          "nativeId": 83
+        },
+        {
+          "index": 35,
+          "text": "yes sir        ",
+          "romOffset": 134084,
+          "nativeId": 67
+        },
+        {
+          "index": 36,
+          "text": "acknowledged   ",
+          "romOffset": 134100,
+          "nativeId": 68
+        },
+        {
+          "index": 37,
+          "text": "moving out     ",
+          "romOffset": 134116,
+          "nativeId": 80
+        },
+        {
+          "index": 38,
+          "text": "reporting      ",
+          "romOffset": 134132,
+          "nativeId": 79
+        },
+        {
+          "index": 39,
+          "text": "planet shimmer ",
+          "romOffset": 134148,
+          "nativeId": 24
+        }
+      ]
+    }
+  },
+  "romSha256": "b1bbe73186e0902fa8b2db0f227bf306e3d6a80fe592f927d1aa9d60c0f335ba",
+  "source": "Original Sega Genesis USA ROM; no DOS campaign data",
+  "houses": [
+    {
+      "id": 0,
+      "key": "harkonnen",
+      "name": "Harkonnen",
+      "introText": {
+        "romOffset": 111336,
+        "text": "From the dark world of Giedi Prime the savage House Harkonnen has spread across the universe.A cruel people, we Harkonnen are ruthless towards both friend and foe in our fanatical pursuit of power.Do you wish to join House Harkonnen?",
+        "encoding": "literal original ASCII, NUL terminated"
+      },
+      "nameRomPointerEntry": 444250,
+      "missionCount": 9,
+      "missions": [
+        {
+          "mission": 1,
+          "campaignIndex": 0,
+          "name": "Mission 1",
+          "nameSource": "UI ordinal: no native password exists for first mission",
+          "password": null,
+          "sourceFile": "SCENH001.INI",
+          "region": 1,
+          "regionTableEntry": 614408,
+          "briefingTextPointers": {
+            "briefing": 122933,
+            "victory": 123151,
+            "defeat": 123242,
+            "hints": 123337
+          },
+          "scenario": {
+            "romOffset": 369528,
+            "bytes": 374,
+            "sha256": "512481f614c469416948d473d29d10450ea08e62d5668cd54805b09b72c88d43",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN1.WSA",
+              "briefMovie": "HARVEST.WSA",
+              "timeout": 0,
+              "mapScale": 1,
+              "cursorPacked": 592,
+              "tacticalPacked": 592,
+              "winFlags": 4,
+              "finishFlags": 6,
+              "mapSeed": 19
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 1000,
+                "credits": 990,
+                "brain": 72,
+                "maxUnits": 25
+              },
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 0,
+                "brain": 67,
+                "maxUnits": 25
+              }
+            ],
+            "unitDefinitionCount": 18,
+            "buildingDefinitionCount": 1
+          },
+          "initialPlayer": {
+            "houseId": 0,
+            "quota": 1000,
+            "credits": 990,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          "texts": {
+            "briefing": {
+              "text": "I am the Mentat, Radnor.For your first test you will be expected to produce 1000 credits, and not a granule less.You may earn credits by harvesting spice, and will need to build a refinery to convert spice to credits.",
+              "romOffset": 122933,
+              "sha256": "ee408e35bde568798511b27722c9968be9c3110fdbbe33616be2da24db7e7ea7",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "You have pleased me.Continue to serve me well, and I will see to it that you are rewarded.",
+              "romOffset": 123151,
+              "sha256": "2d9c6125134f3ef993e6971fb2ecaba36ad6dca9c7d5b608ad1f3bdd37524b40",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "You are beneath my contempt.Do you know what happens to those who have failed House Harkonnen?",
+              "romOffset": 123242,
+              "sha256": "377ce8c3d6e49e6f3b7a55bd5c529204f341451f0f5e0945bdd911c5a5776eb3",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "First build concrete slabs, and then build a Windtrap and place it upon the concrete.Do the same for a refinery so that you can reach your quota of 1000 credits.",
+              "romOffset": 123337,
+              "sha256": "95ed23879b0b71d8219544d2c511da692d67a0e1d4d07b956e28c1f2773b1f43",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 2,
+          "campaignIndex": 1,
+          "name": "DEMOLITION",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "DEMOLITION",
+            "romOffset": 134164,
+            "tableEntry": 557348,
+            "houseId": 0,
+            "mission": 2
+          },
+          "sourceFile": "SCENH002.INI",
+          "region": 2,
+          "regionTableEntry": 614416,
+          "briefingTextPointers": {
+            "briefing": 123499,
+            "victory": 123715,
+            "defeat": 123847,
+            "hints": 123982
+          },
+          "scenario": {
+            "romOffset": 369902,
+            "bytes": 604,
+            "sha256": "6e130bda81b6a256a92ec4b80a3e3b8a5c1c7c08efd4463f6ba818c66f3cec52",
+            "settings": {
+              "loseMovie": "LOSTVEHC.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "HEADQRTS.WSA",
+              "timeout": 0,
+              "mapScale": 1,
+              "cursorPacked": 531,
+              "tacticalPacked": 531,
+              "winFlags": 5,
+              "finishFlags": 23,
+              "mapSeed": 20
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 2700,
+                "credits": 1200,
+                "brain": 72,
+                "maxUnits": 12
+              },
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 1000,
+                "brain": 67,
+                "maxUnits": 17
+              }
+            ],
+            "unitDefinitionCount": 18,
+            "buildingDefinitionCount": 19
+          },
+          "initialPlayer": {
+            "houseId": 0,
+            "quota": 2700,
+            "credits": 1200,
+            "brain": 72,
+            "maxUnits": 12
+          },
+          "texts": {
+            "briefing": {
+              "text": "House Harkonnen will now allow you to take command in a more dangerous area.You will encounter the worthless Atreides in this region.Whether you eliminate them or accumulate 2700 credits in spice, that is up to you.",
+              "romOffset": 123499,
+              "sha256": "2d6a13dc80c8caffa58335a3312de5bcbdcbfefa85dc6d57f4c09074ca4f3931",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Again you have pleased me.You remind me of myself in my youth.You may indeed have true Harkonnen blood coursing through your veins!",
+              "romOffset": 123715,
+              "sha256": "23cf5b6b2229009f587d967958b33c04eb6a3ad889facbaea3d957d59bc783b1",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "I cannot believe that you were incapable of accumulating your quota.It was a simple task.I suggest you do not try my patience further.",
+              "romOffset": 123847,
+              "sha256": "98b11ab7db87b464528955b525516fd9013dba49e4af9071322886af5f883c1f",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "Once you have an Outpost, you will be able to build a Barracks which produces our elite Troopers.I would do so to provide a greater defense for your harvesting operation.",
+              "romOffset": 123982,
+              "sha256": "bebda9abb8e5aab03ab229c8748ae5063abd30cbc58aabafaeca108bc319d521",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 3,
+          "campaignIndex": 2,
+          "name": "SPICESATYR",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "SPICESATYR",
+            "romOffset": 134197,
+            "tableEntry": 557372,
+            "houseId": 0,
+            "mission": 3
+          },
+          "sourceFile": "SCENH003.INI",
+          "region": 4,
+          "regionTableEntry": 614424,
+          "briefingTextPointers": {
+            "briefing": 124153,
+            "victory": 124351,
+            "defeat": 124510,
+            "hints": 124634
+          },
+          "scenario": {
+            "romOffset": 370506,
+            "bytes": 766,
+            "sha256": "a1e2bfe7178ceadc86b4f7affddfd0c67a48adf972a405005cb1e9c10ad64175",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "QUAD.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 817,
+              "tacticalPacked": 817,
+              "winFlags": 1,
+              "finishFlags": 19,
+              "mapSeed": 21
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 1500,
+                "brain": 72,
+                "maxUnits": 14
+              },
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 1500,
+                "brain": 67,
+                "maxUnits": 19
+              }
+            ],
+            "unitDefinitionCount": 23,
+            "buildingDefinitionCount": 30
+          },
+          "initialPlayer": {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 14
+          },
+          "texts": {
+            "briefing": {
+              "text": "The despised Ordos in this region are harvesting spice that rightfully belongs to the House Harkonnen.Destroy the Ordos installations in this area and assert control in the name of House Harkonnen.",
+              "romOffset": 124153,
+              "sha256": "d3a559a432185c75cd6bdc72679a58337d7581f05785ebf2bd6d41b06e664d21",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Congratulations.You are making progress.Several of my associates have expressed pessimism concerning your abilities.I am glad that you have proved them wrong.",
+              "romOffset": 124351,
+              "sha256": "0c6c78667e728a28bb4321d6a8ba1df116888d2b4b3feec9c598a13e144c3de3",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "I knew it!Several of my associates had expressed confidence, but I knew that you were too weak to be a Harkonnen commander!",
+              "romOffset": 124510,
+              "sha256": "260ff785ba9545bc5134a48519699871d6747a013261e9aa8b88c6df6c956392",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "You need to build a Vehicle Factory to produce the weapons necessary to complete your mission.",
+              "romOffset": 124634,
+              "sha256": "9046c99c952e2539aaaaed1b05c58109d785051da31b2f6937d1dd7fb9d2dbb9",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 4,
+          "campaignIndex": 3,
+          "name": "BURNINGSUN",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "BURNINGSUN",
+            "romOffset": 134230,
+            "tableEntry": 557396,
+            "houseId": 0,
+            "mission": 4
+          },
+          "sourceFile": "SCENH004.INI",
+          "region": 3,
+          "regionTableEntry": 614432,
+          "briefingTextPointers": {
+            "briefing": 124729,
+            "victory": 124897,
+            "defeat": 125040,
+            "hints": 125212
+          },
+          "scenario": {
+            "romOffset": 371272,
+            "bytes": 1230,
+            "sha256": "e57ef3e8f56a0b393b01f6cbfc1ee76959327b52fb6e1b4138bd219865930246",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "LTANK.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 2123,
+              "tacticalPacked": 2123,
+              "winFlags": 1,
+              "finishFlags": 19,
+              "mapSeed": 22
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 1500,
+                "brain": 72,
+                "maxUnits": 16
+              },
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 2500,
+                "brain": 67,
+                "maxUnits": 21
+              }
+            ],
+            "unitDefinitionCount": 23,
+            "buildingDefinitionCount": 82
+          },
+          "initialPlayer": {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 16
+          },
+          "texts": {
+            "briefing": {
+              "text": "One small victory does not win the war.Another region has the misfortune to be infested with vermin from House Ordos, and now you must face the disgusting Ordos again.",
+              "romOffset": 124729,
+              "sha256": "658f6311540ef28002756567c832479108674668b1b47fc951d1ceea556043e0",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Well done.The Ordos dogs make amusing noises when they die, do they not?Indeed, what good is our life if we cannot enjoy the simple pleasures?",
+              "romOffset": 124897,
+              "sha256": "c7db48d0cf812300768513ce153cd5780dda236732fa0a130f064a8121cc0c64",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "Is this the way you repay my faith in you?Such a serious loss could only have been deliberate!You are unfit to clean our latrines, much less command our glorious Troopers!",
+              "romOffset": 125040,
+              "sha256": "3f8be698550ac8586646a634225da1c93b5161521acf5450cf08a34847a96012",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "The addition of tanks to your forces is essential to your victory in this region.",
+              "romOffset": 125212,
+              "sha256": "3e35a0fc2e4606f2bb1ac041af42f492d4d9855436eb33e5e0457d46c90cf759",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 5,
+          "campaignIndex": 4,
+          "name": "DARKHUNTER",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "DARKHUNTER",
+            "romOffset": 134263,
+            "tableEntry": 557420,
+            "houseId": 0,
+            "mission": 5
+          },
+          "sourceFile": "SCENH005.INI",
+          "region": 6,
+          "regionTableEntry": 614440,
+          "briefingTextPointers": {
+            "briefing": 125294,
+            "victory": 125507,
+            "defeat": 125669,
+            "hints": 125810
+          },
+          "scenario": {
+            "romOffset": 372502,
+            "bytes": 1554,
+            "sha256": "9938d49e2fab4980d8bf0491b2bbf34da6c4bcf1796ce44eea69caa4035da767",
+            "settings": {
+              "loseMovie": "LOSTVEHC.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "REPAIR.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 785,
+              "tacticalPacked": 785,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 23
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 1500,
+                "brain": 72,
+                "maxUnits": 18
+              },
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 2700,
+                "brain": 67,
+                "maxUnits": 25
+              }
+            ],
+            "unitDefinitionCount": 23,
+            "buildingDefinitionCount": 116
+          },
+          "initialPlayer": {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 18
+          },
+          "texts": {
+            "briefing": {
+              "text": "So, the Emperor was helping the Ordos in your last mission.Nevertheless, House Atreides has grown stronger due to our negligence, and must now be taught a lesson.You will remove all the Atreides from this region.",
+              "romOffset": 125294,
+              "sha256": "dac40737b93cbf1ac77aa8092a1301132124701211ae1e25405045015ea50ddb",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "In appreciation for your recent performance, I will now allow you to resume the struggle with the Ordos.At least they will put up a fight worthy of our Troopers.",
+              "romOffset": 125507,
+              "sha256": "f53738e366058b86654dd2a3d2746b398cd2a81e472497792f5ab9ed4d11ae72",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "Perhaps you miss your mother?I am worried about you and cannot let you progress further until you have proved yourself against the Atreides.",
+              "romOffset": 125669,
+              "sha256": "910358ff6da56a6288306ae65573f24456520b875511af17e12cce1a656f1a51",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "The production of Carryalls will greatly speed up your harvesting operations.",
+              "romOffset": 125810,
+              "sha256": "85f8962084c6376508731d8d35b13243abcbbcadbd1f1776005e9212da44edd2",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 6,
+          "campaignIndex": 5,
+          "name": "EVILMENTAT",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "EVILMENTAT",
+            "romOffset": 134296,
+            "tableEntry": 557444,
+            "houseId": 0,
+            "mission": 6
+          },
+          "sourceFile": "SCENH006.INI",
+          "region": 5,
+          "regionTableEntry": 614448,
+          "briefingTextPointers": {
+            "briefing": 125888,
+            "victory": 126088,
+            "defeat": 126185,
+            "hints": 126277
+          },
+          "scenario": {
+            "romOffset": 374056,
+            "bytes": 1656,
+            "sha256": "b92e76592fd34c53b3fccdd954db33c62d8538aa634b058a8d3b5ec5137c0cfc",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN1.WSA",
+              "briefMovie": "HVYFTRY.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 2534,
+              "tacticalPacked": 2534,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 24
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 1700,
+                "brain": 72,
+                "maxUnits": 20
+              },
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 3000,
+                "brain": 67,
+                "maxUnits": 29
+              }
+            ],
+            "unitDefinitionCount": 24,
+            "buildingDefinitionCount": 114
+          },
+          "initialPlayer": {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1700,
+            "brain": 72,
+            "maxUnits": 20
+          },
+          "texts": {
+            "briefing": {
+              "text": "You are to proceed into yet another region dominated by those pesky Ordos.I expect you to overcome this troublesome group.We have established a good reputation on this planet.Do not embarrass me now!",
+              "romOffset": 125888,
+              "sha256": "a8351b0434f07643883dd1310974521d008c025bddb8ca58ea45950085b8fbd0",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "The victor`s laurels fit you well my son!I may even refer other aspirants to study your tactics.",
+              "romOffset": 126088,
+              "sha256": "353fb581cebd9bedee407721c8d284833664832fad761929ead47c44a48c5b98",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "How could you manage such a defeat?I may have to slit your throat myself just to calm down!",
+              "romOffset": 126185,
+              "sha256": "d349fe5b50f277bf88479a4de88b3ba44be5b5c7874aeb83a971c8c429e01330",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "I advise you to produce and then place Rocket Turrets at strategic defensive positions around your installation.",
+              "romOffset": 126277,
+              "sha256": "8bbdde2bf7ef846d64471434566464a89b6204ffca2446caa813c3792209c207",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 7,
+          "campaignIndex": 6,
+          "name": "ITSJOEBWAN",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "ITSJOEBWAN",
+            "romOffset": 134329,
+            "tableEntry": 557468,
+            "houseId": 0,
+            "mission": 7
+          },
+          "sourceFile": "SCENH007.INI",
+          "region": 7,
+          "regionTableEntry": 614456,
+          "briefingTextPointers": {
+            "briefing": 126390,
+            "victory": 126582,
+            "defeat": 126664,
+            "hints": 126741
+          },
+          "scenario": {
+            "romOffset": 375712,
+            "bytes": 2414,
+            "sha256": "473d47efdb73c53c1a0acf53b78871eebc44738447926a7eda49d864da246ab2",
+            "settings": {
+              "loseMovie": "LOSTVEHC.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "HARKTANK.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 2359,
+              "tacticalPacked": 2359,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 25
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 1800,
+                "brain": 72,
+                "maxUnits": 22
+              },
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 3500,
+                "brain": 67,
+                "maxUnits": 32
+              }
+            ],
+            "unitDefinitionCount": 25,
+            "buildingDefinitionCount": 203
+          },
+          "initialPlayer": {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1800,
+            "brain": 72,
+            "maxUnits": 22
+          },
+          "texts": {
+            "briefing": {
+              "text": "Reports of new Atreides activity require that I send you immediately back to the front line.You do not seem to enjoy rest and relaxation anyway.I think you would prefer to crush the Atreides.",
+              "romOffset": 126390,
+              "sha256": "be81cdf277fd3174430cfb9bd7e22c8e924afc992bdb5924d153f682be1ef373",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Congratulations.It is a pleasure to see the weak Atreides dealt with so severely!",
+              "romOffset": 126582,
+              "sha256": "2aa52975f63e8a63756da19d10f72f6cc5d8e4ccd79188c5474feeaee881d6fb",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "Your failure has caused me no end of embarrassment.It will not happen again!",
+              "romOffset": 126664,
+              "sha256": "0ea7ca8be5e1987b4dc178849cab06cc6968985a035eaf713194b25b7e59e869",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "The Devastator is a powerful ally against enemy forces.",
+              "romOffset": 126741,
+              "sha256": "2b13072d1df5bcf6ca582695c037db6701e07b7918488127d9cf506dfccba6db",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 8,
+          "campaignIndex": 7,
+          "name": "DEVASTATOR",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "DEVASTATOR",
+            "romOffset": 134362,
+            "tableEntry": 557492,
+            "houseId": 0,
+            "mission": 8
+          },
+          "sourceFile": "SCENH008.INI",
+          "region": 9,
+          "regionTableEntry": 614464,
+          "briefingTextPointers": {
+            "briefing": 126797,
+            "victory": 126995,
+            "defeat": 127101,
+            "hints": 127207
+          },
+          "scenario": {
+            "romOffset": 378126,
+            "bytes": 2814,
+            "sha256": "d65db8f595b665815e1e4e89e4cb7f2a0551b9f79c278fd8b97168d0c3ca2bd4",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN1.WSA",
+              "briefMovie": "PALACE.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 2795,
+              "tacticalPacked": 2795,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 27
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 2000,
+                "brain": 72,
+                "maxUnits": 24
+              },
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 2000,
+                "brain": 67,
+                "maxUnits": 18
+              },
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 2000,
+                "brain": 67,
+                "maxUnits": 18
+              }
+            ],
+            "unitDefinitionCount": 28,
+            "buildingDefinitionCount": 237
+          },
+          "initialPlayer": {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 24
+          },
+          "texts": {
+            "briefing": {
+              "text": "A commander of your status may require relaxation occasionally, but I expect an even greater efficiency on your part.Both Atreides and Ordos forces exist in this region, and all must be eliminated!",
+              "romOffset": 126797,
+              "sha256": "bdfcd901064cdda2853251b7f2d039b3ef5ac7fc2c4fdfc8364e6d41ef3a1eaa",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Although praise may be due, serving House Harkonnen is reward enough!We will speak fondly of you forever!",
+              "romOffset": 126995,
+              "sha256": "4f93ac32b97373a7aeb2accf7aec40714f2255ff280febadc40c2e46a14011f8",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "Guards!How did this weakling get in here?If this happens again, I will personally dissect several of you!",
+              "romOffset": 127101,
+              "sha256": "b76dbb9636ab4fea6d26e2e8e5340c5a1abc6c2583c7901cefde468ed2563e99",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "Utilize Rocket turrets as a defense against Ornithopters.",
+              "romOffset": 127207,
+              "sha256": "d0827e76ee359423dc4f875f2534fdef9648e03fa187b72ca269234f9d5dd977",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 9,
+          "campaignIndex": 8,
+          "name": "DEATHRULER",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "DEATHRULER",
+            "romOffset": 134395,
+            "tableEntry": 557516,
+            "houseId": 0,
+            "mission": 9
+          },
+          "sourceFile": "SCENH009.INI",
+          "region": 8,
+          "regionTableEntry": 614472,
+          "briefingTextPointers": {
+            "briefing": 127265,
+            "victory": 127431,
+            "defeat": 127599,
+            "hints": 127713
+          },
+          "scenario": {
+            "romOffset": 380940,
+            "bytes": 2848,
+            "sha256": "1f64092a6ecc6e161690b9246bc0690286d7b30ac92675cf0551f81ebb237883",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "SARDUKAR.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 1869,
+              "tacticalPacked": 1869,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 17
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 2500,
+                "brain": 72,
+                "maxUnits": 25
+              },
+              {
+                "houseId": 4,
+                "quota": 0,
+                "credits": 15500,
+                "brain": 67,
+                "maxUnits": 38
+              }
+            ],
+            "unitDefinitionCount": 27,
+            "buildingDefinitionCount": 252
+          },
+          "initialPlayer": {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 2500,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          "texts": {
+            "briefing": {
+              "text": "We have been deceived!All have conspired against us, and so all must die!Destroy all of the Emperor`s forces.He has treated us poorly, and must not live another day!",
+              "romOffset": 127265,
+              "sha256": "e274db5136803c3e513b1b1a3efeb8a06b51901c59692d8bdeb63bc7515169fd",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "You have served me, I mean House Harkonnen, well.Not only have you won a great victory, but you have made our enemies suffer!Rejoice, for Dune is finally ours forever!",
+              "romOffset": 127431,
+              "sha256": "bbb84a269c535b1bd123ebde7808f9132b9e414a08c21c65e478a1903053c462",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "Your defects must have been inherited.Nobody could possibly learn the colossal stupidity that you have displayed.",
+              "romOffset": 127599,
+              "sha256": "ac1cc31d06e8429c0b05727d4677fbdbc0fea34d0f2dcb5ff33e2a70ef1d0415",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "Utilize your Palace`s special option whenever possible, for it costs nothing and it will recharge.",
+              "romOffset": 127713,
+              "sha256": "e8f0058c264814e13b5ab7da93ca77fac44ed97cc9a0e099089e3496a7b268cf",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "key": "atreides",
+      "name": "Atreides",
+      "introText": {
+        "romOffset": 111570,
+        "text": "House Atreides has a long tradition of being fair and just administrators.Our people are loyal, hard working, and peaceable.Do you wish to join House Atreides?",
+        "encoding": "literal original ASCII, NUL terminated"
+      },
+      "nameRomPointerEntry": 444280,
+      "missionCount": 9,
+      "missions": [
+        {
+          "mission": 1,
+          "campaignIndex": 0,
+          "name": "Mission 1",
+          "nameSource": "UI ordinal: no native password exists for first mission",
+          "password": null,
+          "sourceFile": "SCENA001.INI",
+          "region": 5,
+          "regionTableEntry": 614264,
+          "briefingTextPointers": {
+            "briefing": 111901,
+            "victory": 112124,
+            "defeat": 112257,
+            "hints": 112350
+          },
+          "scenario": {
+            "romOffset": 356270,
+            "bytes": 406,
+            "sha256": "6452500bbfc87785d6e1cf4490b3f01f39008decd48253eafd5ed37f05f3d9e2",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN1.WSA",
+              "briefMovie": "HARVEST.WSA",
+              "timeout": 0,
+              "mapScale": 1,
+              "cursorPacked": 1224,
+              "tacticalPacked": 1224,
+              "winFlags": 4,
+              "finishFlags": 6,
+              "mapSeed": 1
+            },
+            "houses": [
+              {
+                "houseId": 1,
+                "quota": 1000,
+                "credits": 990,
+                "brain": 72,
+                "maxUnits": 25
+              },
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 0,
+                "brain": 67,
+                "maxUnits": 16
+              }
+            ],
+            "unitDefinitionCount": 18,
+            "buildingDefinitionCount": 1
+          },
+          "initialPlayer": {
+            "houseId": 1,
+            "quota": 1000,
+            "credits": 990,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          "texts": {
+            "briefing": {
+              "text": "Greetings, I am your Mentat Cyril.Together we will purge this planet of the foulness of the other Houses.The High Command wishes you to produce 1000 credits.You may earn credits by building a refinery and harvesting spice.",
+              "romOffset": 111901,
+              "sha256": "3d2d5983227d919dd07c2281b027ceed37bf0e276e554105478ebc37f072f683",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Congratulations!I knew that you would achieve your goal with very little trouble.I look forward to assisting you in future missions.",
+              "romOffset": 112124,
+              "sha256": "f0681986980548a4c4c4b3ac69a52b15063cc7447bbf32f8bf91b6e7e6dc0c8e",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "This is very disappointing.We had such high hopes for you.We must insist that you try again.",
+              "romOffset": 112257,
+              "sha256": "78a717bc50b504f4100e8b04e979f0843ddc473aa4f5f09571e8596c74d63178",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "First build concrete slabs, and then build a Windtrap and place it upon the concrete.Do the same for a refinery so that you can reach your quota of 1000 credits.",
+              "romOffset": 112350,
+              "sha256": "95ed23879b0b71d8219544d2c511da692d67a0e1d4d07b956e28c1f2773b1f43",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 2,
+          "campaignIndex": 1,
+          "name": "DIPLOMATIC",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "DIPLOMATIC",
+            "romOffset": 134175,
+            "tableEntry": 557356,
+            "houseId": 1,
+            "mission": 2
+          },
+          "sourceFile": "SCENA002.INI",
+          "region": 9,
+          "regionTableEntry": 614272,
+          "briefingTextPointers": {
+            "briefing": 112512,
+            "victory": 112681,
+            "defeat": 112835,
+            "hints": 112991
+          },
+          "scenario": {
+            "romOffset": 356676,
+            "bytes": 564,
+            "sha256": "2b8fd6136c167139e410d7f2bd8d9777d3c4235bba81d65da1af41e67fc9a20d",
+            "settings": {
+              "loseMovie": "LOSTVEHC.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "HEADQRTS.WSA",
+              "timeout": 0,
+              "mapScale": 1,
+              "cursorPacked": 1360,
+              "tacticalPacked": 1360,
+              "winFlags": 5,
+              "finishFlags": 7,
+              "mapSeed": 2
+            },
+            "houses": [
+              {
+                "houseId": 1,
+                "quota": 2700,
+                "credits": 1200,
+                "brain": 72,
+                "maxUnits": 12
+              },
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 200,
+                "brain": 67,
+                "maxUnits": 16
+              }
+            ],
+            "unitDefinitionCount": 17,
+            "buildingDefinitionCount": 16
+          },
+          "initialPlayer": {
+            "houseId": 1,
+            "quota": 2700,
+            "credits": 1200,
+            "brain": 72,
+            "maxUnits": 12
+          },
+          "texts": {
+            "briefing": {
+              "text": "Greetings, I am honored to see you again.You are now required to either produce 2700 credits in a new harvesting area or remove the Ordos base in this region.Good luck!",
+              "romOffset": 112512,
+              "sha256": "963c052400ab524c74cfbd8c13adcc4622ada74f37dc24ee2cf8736a9e4bbc85",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Well done!Our effort to maintain fair play on this planet is opposed by both the Ordos and the Harkonnen.This region will help us greatly in our efforts.",
+              "romOffset": 112681,
+              "sha256": "1a6ffb53a3c7fce7d2d9768488f3086a999a149b80301a896f559840279091b3",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "The loss of this region to the Ordos will hurt House Atreides greatly.Please try harder next time.The seriousness of your mission cannot be overemphasized!",
+              "romOffset": 112835,
+              "sha256": "f9316295157806dde5f77ba09b51cf726e32b9d5f259a823ca4e9fd92ee0327f",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "If you have an Outpost, build a Barracks in order to produce soldiers.I would do so to provide a greater defense for your harvesting operation.",
+              "romOffset": 112991,
+              "sha256": "43bacae0b0577337b63eaeea8580981d9bf99fe7af8303b0121e9c9b83ee517a",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 3,
+          "campaignIndex": 2,
+          "name": "SPICEDANCE",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "SPICEDANCE",
+            "romOffset": 134208,
+            "tableEntry": 557380,
+            "houseId": 1,
+            "mission": 3
+          },
+          "sourceFile": "SCENA003.INI",
+          "region": 4,
+          "regionTableEntry": 614280,
+          "briefingTextPointers": {
+            "briefing": 113135,
+            "victory": 113383,
+            "defeat": 113543,
+            "hints": 113701
+          },
+          "scenario": {
+            "romOffset": 357240,
+            "bytes": 620,
+            "sha256": "b5826b9e97531697f0c7972170291b8f3402ce2dd0618335195807eab1e1bcab",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN1.WSA",
+              "briefMovie": "QUAD.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 2513,
+              "tacticalPacked": 2513,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 3
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 300,
+                "brain": 67,
+                "maxUnits": 18
+              },
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 1500,
+                "brain": 72,
+                "maxUnits": 14
+              }
+            ],
+            "unitDefinitionCount": 20,
+            "buildingDefinitionCount": 17
+          },
+          "initialPlayer": {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 14
+          },
+          "texts": {
+            "briefing": {
+              "text": "The battle with the other Houses has intensified, and we are now forced to engage in some selected offensive maneuvers.The Harkonnen are being extremely troublesome in your next region, and we must ask that you remove their presence from the area.",
+              "romOffset": 113135,
+              "sha256": "f9b86c15e2a252c76b5bf93f273372528a66173cc288df5d7d70393da89e14b9",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Hurrah!Although I prefer defense, a fine offensive against such a deserving foe as the Harkonnen is a joy to behold.House Atreides thanks you for your efforts!",
+              "romOffset": 113383,
+              "sha256": "fef00e7d3f50b24d9367d7d1a7ca60a0cb1ae3ec57d3afb5490c0ed8c0fc74f3",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "It is a cruel world, is it not?I`m not sure if I was expecting divine intervention, but as I watched your defeat I could not help thinking how unfair it was!",
+              "romOffset": 113543,
+              "sha256": "61fc6b6a529cf82805872261901f48c74d1c900e4d555648e0858b6bfbbbdd96",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "You need to build a Vehicle Factory to produce the weapons necessary to complete your mission.",
+              "romOffset": 113701,
+              "sha256": "9046c99c952e2539aaaaed1b05c58109d785051da31b2f6937d1dd7fb9d2dbb9",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 4,
+          "campaignIndex": 3,
+          "name": "ETERNALSUN",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "ETERNALSUN",
+            "romOffset": 134241,
+            "tableEntry": 557404,
+            "houseId": 1,
+            "mission": 4
+          },
+          "sourceFile": "SCENA004.INI",
+          "region": 1,
+          "regionTableEntry": 614288,
+          "briefingTextPointers": {
+            "briefing": 113796,
+            "victory": 114006,
+            "defeat": 114122,
+            "hints": 114297
+          },
+          "scenario": {
+            "romOffset": 357860,
+            "bytes": 1202,
+            "sha256": "65a9237ba000ecb9ff433adff06e0151766c27464ee81376b298c099fa6dfbc0",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "LTANK.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 733,
+              "tacticalPacked": 733,
+              "winFlags": 1,
+              "finishFlags": 19,
+              "mapSeed": 4
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 800,
+                "brain": 67,
+                "maxUnits": 20
+              },
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 1500,
+                "brain": 72,
+                "maxUnits": 16
+              }
+            ],
+            "unitDefinitionCount": 26,
+            "buildingDefinitionCount": 74
+          },
+          "initialPlayer": {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 16
+          },
+          "texts": {
+            "briefing": {
+              "text": "Your demonstration of military skills now forces us to assign you to another offensive campaign against House Harkonnen.They have continued to attack our peaceful harvesters, and must be removed from the area!",
+              "romOffset": 113796,
+              "sha256": "b2051bdaa9f386e4cb8c38e53116ba85deba80aa629b2707f3c991dfea1ec249",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Well done!No task seems too difficult for you.The Harkonnen will think twice before attacking our harvesters again!",
+              "romOffset": 114006,
+              "sha256": "1468522e665dad8dd5881d9dfde6ef953347ad8c9e7ada4eb9b25a7c8571b452",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "Although I understand the problems confronting you, I will confess that I am disappointed by your defeat.I am not sure what went wrong, but please do not let it happen again!",
+              "romOffset": 114122,
+              "sha256": "a801ce691b7dd27701202b1bab3567033ae129a2e687683e8254c722ee0bd833",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "The addition of tanks in your forces is essential to your victory in this region.",
+              "romOffset": 114297,
+              "sha256": "f8dfe83daf5033be59d5eeb450f3b30893215b3df1d41d5bbe51996545cc2d2d",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 5,
+          "campaignIndex": 4,
+          "name": "DEFTHUNTER",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "DEFTHUNTER",
+            "romOffset": 134274,
+            "tableEntry": 557428,
+            "houseId": 1,
+            "mission": 5
+          },
+          "sourceFile": "SCENA005.INI",
+          "region": 3,
+          "regionTableEntry": 614296,
+          "briefingTextPointers": {
+            "briefing": 114379,
+            "victory": 114604,
+            "defeat": 114764,
+            "hints": 114878
+          },
+          "scenario": {
+            "romOffset": 359062,
+            "bytes": 1454,
+            "sha256": "3e32dce8221df3af4da9f93111b61cda929544a1b9c27d91145eac015f08c432",
+            "settings": {
+              "loseMovie": "LOSTVEHC.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "REPAIR.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 1011,
+              "tacticalPacked": 1011,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 5
+            },
+            "houses": [
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 1500,
+                "brain": 72,
+                "maxUnits": 18
+              },
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 1000,
+                "brain": 67,
+                "maxUnits": 23
+              }
+            ],
+            "unitDefinitionCount": 24,
+            "buildingDefinitionCount": 104
+          },
+          "initialPlayer": {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 18
+          },
+          "texts": {
+            "briefing": {
+              "text": "The rules seem to have changed.The Emperor himself has been aiding the efforts of our competitors!As a part of our new strategy, we must ask that you eliminate the treacherous Ordos forces that presently control this region.",
+              "romOffset": 114379,
+              "sha256": "3e708e0ceff517c8d213004b68d390db99bbfae9759ee05a6741f8648585bed7",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Congratulations again!There seems to be no limit to your talents.I have to think that some divine force motivated your decision to serve within House Atreides.",
+              "romOffset": 114604,
+              "sha256": "7e5fbe9e2a5c6b6a9c32da7a5d8acef10d036ef94723c55dbceecbf8d4c42ab0",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "This defeat of yours will not look good in my reports.I am not sure how much longer we can afford to support you.",
+              "romOffset": 114764,
+              "sha256": "6bf11762c7025ffcf42865deaaedc0923e1898fd614c5850c56ec28c502f6b87",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "The production of Carryalls will greatly speed up your harvesting operations.",
+              "romOffset": 114878,
+              "sha256": "85f8962084c6376508731d8d35b13243abcbbcadbd1f1776005e9212da44edd2",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 6,
+          "campaignIndex": 5,
+          "name": "FAIRMENTAT",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "FAIRMENTAT",
+            "romOffset": 134307,
+            "tableEntry": 557452,
+            "houseId": 1,
+            "mission": 6
+          },
+          "sourceFile": "SCENA006.INI",
+          "region": 0,
+          "regionTableEntry": 614304,
+          "briefingTextPointers": {
+            "briefing": 114956,
+            "victory": 115166,
+            "defeat": 115349,
+            "hints": 115483
+          },
+          "scenario": {
+            "romOffset": 360516,
+            "bytes": 1552,
+            "sha256": "fda56d10455bf7966367c12adf958639974c911813edb4a4fa778ffb1bead7e2",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN1.WSA",
+              "briefMovie": "HVYFTRY.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 2130,
+              "tacticalPacked": 2130,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 6
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 1825,
+                "brain": 67,
+                "maxUnits": 25
+              },
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 1700,
+                "brain": 72,
+                "maxUnits": 20
+              }
+            ],
+            "unitDefinitionCount": 25,
+            "buildingDefinitionCount": 102
+          },
+          "initialPlayer": {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1700,
+            "brain": 72,
+            "maxUnits": 20
+          },
+          "texts": {
+            "briefing": {
+              "text": "As the battle for this planet intensifies, all efforts must be taken to ensure our success.Once again, we must call upon you to destroy our enemies in a troubled sector.House Harkonnen must be taught a lesson.",
+              "romOffset": 114956,
+              "sha256": "66f319018850aa0d43e26ba5633dbc3e21add68cb5f4c902275b205a7902f490",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Hurrah!We have them on the run now, and it`s all because of you.Your successes have been remarkable!Are you sure you didn`t graduate from one of the intergalactic military academies?",
+              "romOffset": 115166,
+              "sha256": "32ea274ca3ea9963ba79dc1b0ac61e2e07067be61056602054d9ac4979e63f7a",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "There is a time for excuses, but this is not it!You have no choice but to apply yourself more diligently during your next assignment.",
+              "romOffset": 115349,
+              "sha256": "c8930ca1c39b22e0161b3048abc87332cc29a39c93553074e627c4a7f3e38d87",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "I advise you to produce and then place Rocket Turrets at strategic defensive positions around your installation.",
+              "romOffset": 115483,
+              "sha256": "8bbdde2bf7ef846d64471434566464a89b6204ffca2446caa813c3792209c207",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 7,
+          "campaignIndex": 6,
+          "name": "ASHLIKENNY",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "ASHLIKENNY",
+            "romOffset": 134340,
+            "tableEntry": 557476,
+            "houseId": 1,
+            "mission": 7
+          },
+          "sourceFile": "SCENA007.INI",
+          "region": 8,
+          "regionTableEntry": 614312,
+          "briefingTextPointers": {
+            "briefing": 115596,
+            "victory": 115754,
+            "defeat": 115904,
+            "hints": 116027
+          },
+          "scenario": {
+            "romOffset": 362068,
+            "bytes": 1918,
+            "sha256": "b609cdb1930cf2279c720a58cd767485de528597d2c08757faba4be82951fbd4",
+            "settings": {
+              "loseMovie": "LOSTVEHC.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "STANK.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 1264,
+              "tacticalPacked": 1264,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 7
+            },
+            "houses": [
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 2000,
+                "brain": 72,
+                "maxUnits": 22
+              },
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 2000,
+                "brain": 67,
+                "maxUnits": 30
+              }
+            ],
+            "unitDefinitionCount": 28,
+            "buildingDefinitionCount": 136
+          },
+          "initialPlayer": {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 22
+          },
+          "texts": {
+            "briefing": {
+              "text": "The battle goes well, but there is no time to relax.We have an urgent need for you to subdue all Ordos forces in this region promptly.We are counting on you.",
+              "romOffset": 115596,
+              "sha256": "b8b6c9e3a8d22bd77e1b5d766e0b60be31d88a581319cec4ebff3f12e20a8060",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Excellent!Your skill seems to improve with each assignment, and your exploits give great confidence to those on the home front.Keep up the good work!",
+              "romOffset": 115754,
+              "sha256": "6b1e8bd2118be4baa8b7e09e102e7be0ef9dd8492208cc439e03c7bc3b3a5b5f",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "My goodness, what an awful defeat!If you fail at your next assignment we will have to seriously consider sending you home!",
+              "romOffset": 115904,
+              "sha256": "a171c74ec48e34a34f2af66125651a3cbf258180d7ee01220744b153da0d02a1",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "The Sonic Tank is a powerful ally against enemy troops and structures.",
+              "romOffset": 116027,
+              "sha256": "b3f5bd7f1cf4eb01a295713a9c0839b455a3368444fe6042915576e5bcbccc8e",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 8,
+          "campaignIndex": 7,
+          "name": "SONICBLAST",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "SONICBLAST",
+            "romOffset": 134373,
+            "tableEntry": 557500,
+            "houseId": 1,
+            "mission": 8
+          },
+          "sourceFile": "SCENA008.INI",
+          "region": 7,
+          "regionTableEntry": 614320,
+          "briefingTextPointers": {
+            "briefing": 116098,
+            "victory": 116310,
+            "defeat": 116501,
+            "hints": 116667
+          },
+          "scenario": {
+            "romOffset": 363986,
+            "bytes": 2792,
+            "sha256": "d9d7b7fbf4bb38e1b4af8424282fe93e7aa20fe92717244dfe515df21abfc7ba",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN1.WSA",
+              "briefMovie": "PALACE.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 2710,
+              "tacticalPacked": 2710,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 8
+            },
+            "houses": [
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 2000,
+                "brain": 72,
+                "maxUnits": 24
+              },
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 1000,
+                "brain": 67,
+                "maxUnits": 17
+              },
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 1000,
+                "brain": 67,
+                "maxUnits": 17
+              }
+            ],
+            "unitDefinitionCount": 28,
+            "buildingDefinitionCount": 233
+          },
+          "initialPlayer": {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 24
+          },
+          "texts": {
+            "briefing": {
+              "text": "Although you have earned a well deserved rest, I`m afraid we need to send you back into the field immediately.Both Ordos and Harkonnen forces have been spotted in this region, and now must be removed completely.",
+              "romOffset": 116098,
+              "sha256": "df402a5ba13858a631b81659d575bc9d14e8db42efaa57650549a27a892b3c16",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "A masterful victory!Frankly, we would not be able to remain on Dune without your military guidance.We have come to rely completely on you sir, and cannot imagine further success without you!",
+              "romOffset": 116310,
+              "sha256": "c06281c355af83ccf39c9c06c4f7c044d4b3089b55bee5ffc2d45f1f9910b232",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "A defeat is never welcome, but this loss is particularly devastating!All of our efforts may soon prove futile unless you can provide a victory in your next campaign!",
+              "romOffset": 116501,
+              "sha256": "60c17363f3a02e7304e148abc3558234b857aa78beb204d99e317c091f0a1990",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "Utilize Rocket turrets as a defense against Ornithopters.",
+              "romOffset": 116667,
+              "sha256": "d0827e76ee359423dc4f875f2534fdef9648e03fa187b72ca269234f9d5dd977",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 9,
+          "campaignIndex": 8,
+          "name": "DUNERUNNER",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "DUNERUNNER",
+            "romOffset": 134406,
+            "tableEntry": 557524,
+            "houseId": 1,
+            "mission": 9
+          },
+          "sourceFile": "SCENA009.INI",
+          "region": 6,
+          "regionTableEntry": 614328,
+          "briefingTextPointers": {
+            "briefing": 116725,
+            "victory": 116997,
+            "defeat": 117196,
+            "hints": 117310
+          },
+          "scenario": {
+            "romOffset": 366778,
+            "bytes": 2750,
+            "sha256": "627a2179cd2f6e6f1afbd0a97e805b610d7391ede42f628a90c9d25d8c656134",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "SARDUKAR.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 2795,
+              "tacticalPacked": 2795,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 27
+            },
+            "houses": [
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 2500,
+                "brain": 72,
+                "maxUnits": 25
+              },
+              {
+                "houseId": 4,
+                "quota": 0,
+                "credits": 9000,
+                "brain": 67,
+                "maxUnits": 35
+              }
+            ],
+            "unitDefinitionCount": 28,
+            "buildingDefinitionCount": 236
+          },
+          "initialPlayer": {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2500,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          "texts": {
+            "briefing": {
+              "text": "Your next assignment will determine the entire outcome of our efforts here on Dune.You are instructed to subdue Emperor Frederick`s forces.All of our hopes and dreams are riding with you, and we humbly beg of you to provide one final victory for our noble House Atreides.",
+              "romOffset": 116725,
+              "sha256": "94daa96465ac0883d8f419652031a0a952a788806748dc3bafe0da1bc6d46f83",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Good Morning, your lordship, and congratulations!You showed great compassion in dealing with a distasteful task.Together we have succeeded in purging this planet of the foulness of the other Houses.",
+              "romOffset": 116997,
+              "sha256": "3ef04624cdefdc79f03c12bb75d9f2294fb16a60ae989c270031bd9df1db668f",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "Your defects must have been inherited.Nobody could possibly learn the colossal stupidity that you have displayed.",
+              "romOffset": 117196,
+              "sha256": "ac1cc31d06e8429c0b05727d4677fbdbc0fea34d0f2dcb5ff33e2a70ef1d0415",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "Utilize your Palace`s special option whenever possible, for it costs nothing and it will recharge.",
+              "romOffset": 117310,
+              "sha256": "e8f0058c264814e13b5ab7da93ca77fac44ed97cc9a0e099089e3496a7b268cf",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "key": "ordos",
+      "name": "Ordos",
+      "introText": {
+        "romOffset": 111730,
+        "text": "House Ordos represents a cartel of wealthy families.We have little conscience and gain strength through our use of sabotage and terrorism.Do you wish to join House Ordos?",
+        "encoding": "literal original ASCII, NUL terminated"
+      },
+      "nameRomPointerEntry": 444310,
+      "missionCount": 9,
+      "missions": [
+        {
+          "mission": 1,
+          "campaignIndex": 0,
+          "name": "Mission 1",
+          "nameSource": "UI ordinal: no native password exists for first mission",
+          "password": null,
+          "sourceFile": "SCENO001.INI",
+          "region": 7,
+          "regionTableEntry": 614336,
+          "briefingTextPointers": {
+            "briefing": 117409,
+            "victory": 117609,
+            "defeat": 117740,
+            "hints": 117929
+          },
+          "scenario": {
+            "romOffset": 383788,
+            "bytes": 374,
+            "sha256": "eb73421dc6651202e9839230e40fc4f74a972d537fedc888117ddadc71e5000a",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN1.WSA",
+              "briefMovie": "HARVEST.WSA",
+              "timeout": 0,
+              "mapScale": 1,
+              "cursorPacked": 1491,
+              "tacticalPacked": 1491,
+              "winFlags": 4,
+              "finishFlags": 6,
+              "mapSeed": 10
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 0,
+                "brain": 67,
+                "maxUnits": 25
+              },
+              {
+                "houseId": 2,
+                "quota": 1000,
+                "credits": 990,
+                "brain": 72,
+                "maxUnits": 25
+              }
+            ],
+            "unitDefinitionCount": 18,
+            "buildingDefinitionCount": 1
+          },
+          "initialPlayer": {
+            "houseId": 2,
+            "quota": 1000,
+            "credits": 990,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          "texts": {
+            "briefing": {
+              "text": "I am your Mentat, and you may call me Ammon.To be of any value to the Cartel, you must provide us with a quota of 1000 credits.Build a refinery to harvest the spice in the area to achieve your quota.",
+              "romOffset": 117409,
+              "sha256": "0059de48e480679d58b095500544683f1c8e52bfcc1f22ac88f33679829f4d11",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "You show potential.If you continue to display good management skills we may find a permanent position for you in our organization.",
+              "romOffset": 117609,
+              "sha256": "ab988f4537bf95b2c8b8c629c3cfbe6a2d0326f6cd7a4a69ff601cee9263f045",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "It is beyond me how you were able to fail such an easy task.Because you come so highly recommended, we may be able to overlook this episode if you are successful with your next assignment.",
+              "romOffset": 117740,
+              "sha256": "29f0ca1b0e1b0a53a8de58371f989508f6289ff2f721fcee9d814acdbc38c050",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "First build concrete slabs, and then build a Windtrap and place it upon the concrete.Do the same for a refinery so that you can reach your quota of 1000 credits.",
+              "romOffset": 117929,
+              "sha256": "95ed23879b0b71d8219544d2c511da692d67a0e1d4d07b956e28c1f2773b1f43",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 2,
+          "campaignIndex": 1,
+          "name": "DOMINATION",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "DOMINATION",
+            "romOffset": 134186,
+            "tableEntry": 557364,
+            "houseId": 2,
+            "mission": 2
+          },
+          "sourceFile": "SCENO002.INI",
+          "region": 6,
+          "regionTableEntry": 614344,
+          "briefingTextPointers": {
+            "briefing": 118091,
+            "victory": 118287,
+            "defeat": 118426,
+            "hints": 118611
+          },
+          "scenario": {
+            "romOffset": 384162,
+            "bytes": 586,
+            "sha256": "b2f313071943fc8d2f82aa6f96e45b7b9e8ec5cc026f642020a6da4acb5b7214",
+            "settings": {
+              "loseMovie": "LOSTVEHC.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "HEADQRTS.WSA",
+              "timeout": 0,
+              "mapScale": 1,
+              "cursorPacked": 407,
+              "tacticalPacked": 407,
+              "winFlags": 5,
+              "finishFlags": 23,
+              "mapSeed": 11
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 600,
+                "brain": 67,
+                "maxUnits": 16
+              },
+              {
+                "houseId": 2,
+                "quota": 2700,
+                "credits": 1200,
+                "brain": 72,
+                "maxUnits": 12
+              }
+            ],
+            "unitDefinitionCount": 19,
+            "buildingDefinitionCount": 15
+          },
+          "initialPlayer": {
+            "houseId": 2,
+            "quota": 2700,
+            "credits": 1200,
+            "brain": 72,
+            "maxUnits": 12
+          },
+          "texts": {
+            "briefing": {
+              "text": "Your quota is now 2700 credits, or you may decide to destroy the Harkonnen forces in the area.Which ever task you choose, remember that we do not like competition, especially from the Harkonnens.",
+              "romOffset": 118091,
+              "sha256": "8dc68d1fbf14a2ca182fe7bc5ab5ad4d396c407218378258a3c92011fdd8801c",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Congratulations.The Cartel is beginning to notice you.I think you will definitely have a future with us if you can continue on this track.",
+              "romOffset": 118287,
+              "sha256": "457a908b7f54c7ce69de0b38a95de0517967baee2309e852e0449ad8ef6cbad5",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "Apparently, I was mistaken about your potential.It will cost us a great deal to retake this region.Only complete success with your next assignment could possibly resurrect your career.",
+              "romOffset": 118426,
+              "sha256": "b75f857836108b59618fabbc2ce95632815ee742b5698ce6d08e4bbb5116abd8",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "If you have an Outpost, build a Barracks in order to produce soldiers.I would do so to provide a greater defense for your harvesting operation.",
+              "romOffset": 118611,
+              "sha256": "43bacae0b0577337b63eaeea8580981d9bf99fe7af8303b0121e9c9b83ee517a",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 3,
+          "campaignIndex": 2,
+          "name": "SPICESABRE",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "SPICESABRE",
+            "romOffset": 134219,
+            "tableEntry": 557388,
+            "houseId": 2,
+            "mission": 3
+          },
+          "sourceFile": "SCENO003.INI",
+          "region": 3,
+          "regionTableEntry": 614352,
+          "briefingTextPointers": {
+            "briefing": 118755,
+            "victory": 118925,
+            "defeat": 119090,
+            "hints": 119240
+          },
+          "scenario": {
+            "romOffset": 384748,
+            "bytes": 1152,
+            "sha256": "9d09e420f8b3c389ce241af6d89becf5e5855e24f2972d062fd36359a0199d2d",
+            "settings": {
+              "loseMovie": "LOSTVEHC.WSA",
+              "winMovie": "WIN1.WSA",
+              "briefMovie": "QUAD.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 3436,
+              "tacticalPacked": 3436,
+              "winFlags": 1,
+              "finishFlags": 19,
+              "mapSeed": 12
+            },
+            "houses": [
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 800,
+                "brain": 67,
+                "maxUnits": 19
+              },
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 1500,
+                "brain": 72,
+                "maxUnits": 14
+              }
+            ],
+            "unitDefinitionCount": 24,
+            "buildingDefinitionCount": 73
+          },
+          "initialPlayer": {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 14
+          },
+          "texts": {
+            "briefing": {
+              "text": "We find the activities of Atreides troops in this region inconvenient.Please remove this obstacle.We cannot allow the mythical value of fair play to impede our progress.",
+              "romOffset": 118755,
+              "sha256": "8f826ed688c50fc2dfc19fcaf27338d6572bbbf40476f11a5fe0e62c9627cdf9",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Excellent!There were rumors that some sort of moral objections would hinder your effectiveness.I am glad to see that you have risen above these petty sensitivities.",
+              "romOffset": 118925,
+              "sha256": "5a9baa794f9cfff5571d52d78096454bc17cda095a412a82c0759e0903abc4d9",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "Your clumsy management has cost us dearly!I suggest you rid yourself of all outside interests and devote yourself completely to your next assignment!",
+              "romOffset": 119090,
+              "sha256": "a9a87a1151d33e9676ae841b9ac3e14e4fe36d3ac51f83c55f2de6db8f319889",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "You need to build a Vehicle Factory to produce the weapons necessary to complete your mission.",
+              "romOffset": 119240,
+              "sha256": "9046c99c952e2539aaaaed1b05c58109d785051da31b2f6937d1dd7fb9d2dbb9",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 4,
+          "campaignIndex": 3,
+          "name": "ARRAKISSUN",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "ARRAKISSUN",
+            "romOffset": 134252,
+            "tableEntry": 557412,
+            "houseId": 2,
+            "mission": 4
+          },
+          "sourceFile": "SCENO004.INI",
+          "region": 4,
+          "regionTableEntry": 614360,
+          "briefingTextPointers": {
+            "briefing": 119335,
+            "victory": 119491,
+            "defeat": 119649,
+            "hints": 119813
+          },
+          "scenario": {
+            "romOffset": 385900,
+            "bytes": 1136,
+            "sha256": "8e001866cc150fd7b98860a4e4790226d3f102e7c0dbcaba32b7d3240d854b4f",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "LTANK.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 1130,
+              "tacticalPacked": 1130,
+              "winFlags": 1,
+              "finishFlags": 19,
+              "mapSeed": 13
+            },
+            "houses": [
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 1000,
+                "brain": 67,
+                "maxUnits": 21
+              },
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 1500,
+                "brain": 72,
+                "maxUnits": 16
+              }
+            ],
+            "unitDefinitionCount": 23,
+            "buildingDefinitionCount": 69
+          },
+          "initialPlayer": {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 16
+          },
+          "texts": {
+            "briefing": {
+              "text": "The Atreides forces in this area must be eliminated.As always, we appreciate your capture of any enemy silos or other structures that might be salvageable.",
+              "romOffset": 119335,
+              "sha256": "592c879b100ed4a8747241eb41acd63b76a8ad8d145af7a50b90f17213d42907",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "A masterful victory, but be cautious!Your reputation will now precede you in future engagements, and you may find your foes better prepared for your tactics.",
+              "romOffset": 119491,
+              "sha256": "9dd94d165fab63b31a4f935eb36cc3cdbf7bd8d7d5c1b303f913cc862ca06dc5",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "How could you possibly fail so quickly?My grandmother could command more efficiently than you!Get back out there and show some initiative, or stop wasting my time!",
+              "romOffset": 119649,
+              "sha256": "8252bc71fab248f99420ed65a5e5280ed51e6b49b9e692c91841f9fcf45adffd",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "The addition of tanks to your forces is essential to your victory in this region.",
+              "romOffset": 119813,
+              "sha256": "3e35a0fc2e4606f2bb1ac041af42f492d4d9855436eb33e5e0457d46c90cf759",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 5,
+          "campaignIndex": 4,
+          "name": "COLDHUNTER",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "COLDHUNTER",
+            "romOffset": 134285,
+            "tableEntry": 557436,
+            "houseId": 2,
+            "mission": 5
+          },
+          "sourceFile": "SCENO005.INI",
+          "region": 9,
+          "regionTableEntry": 614368,
+          "briefingTextPointers": {
+            "briefing": 119895,
+            "victory": 120149,
+            "defeat": 120317,
+            "hints": 120457
+          },
+          "scenario": {
+            "romOffset": 387036,
+            "bytes": 1066,
+            "sha256": "df2f99cb3446947f463b922469386e3c15a7c4cdfbc6889f84106cedad4f4df6",
+            "settings": {
+              "loseMovie": "LOSTVEHC.WSA",
+              "winMovie": "WIN1.WSA",
+              "briefMovie": "REPAIR.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 2763,
+              "tacticalPacked": 2763,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 14
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 1500,
+                "brain": 67,
+                "maxUnits": 24
+              },
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 1500,
+                "brain": 72,
+                "maxUnits": 18
+              }
+            ],
+            "unitDefinitionCount": 22,
+            "buildingDefinitionCount": 61
+          },
+          "initialPlayer": {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 18
+          },
+          "texts": {
+            "briefing": {
+              "text": "What?The Sarduakar were aiding our enemies during your last mission?I will need to look into this.Although the Harkonnen commanders are laughably stupid, their military strength is a threat to us in this area.They must be eliminated as soon as possible.",
+              "romOffset": 119895,
+              "sha256": "595c022f566a7a3699e0109b403d830a5b07ddd6db7d8417f5b0745442683a39",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Congratulations would be in order, but we expect these results when you are in charge.Your continued success brings honor to your family, and all of us in House Ordos.",
+              "romOffset": 120149,
+              "sha256": "87c083a1188a23b97d8ebfc731b595113805f62ba5148ac13b087a1a31826ea9",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "You bungling fool!Did you expect your enemies to run away at the mere sight of you?Remember: your brain will win the war, not your bullets!",
+              "romOffset": 120317,
+              "sha256": "d666388cddefd889f8d3e01d705c03e92aa3f1be95d0980345815a388e1ea1d6",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "The production of Carryalls will greatly speed up your harvesting operations.",
+              "romOffset": 120457,
+              "sha256": "85f8962084c6376508731d8d35b13243abcbbcadbd1f1776005e9212da44edd2",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 6,
+          "campaignIndex": 5,
+          "name": "WILYMENTAT",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "WILYMENTAT",
+            "romOffset": 134318,
+            "tableEntry": 557460,
+            "houseId": 2,
+            "mission": 6
+          },
+          "sourceFile": "SCENO006.INI",
+          "region": 0,
+          "regionTableEntry": 614376,
+          "briefingTextPointers": {
+            "briefing": 120535,
+            "victory": 120740,
+            "defeat": 120892,
+            "hints": 121078
+          },
+          "scenario": {
+            "romOffset": 388102,
+            "bytes": 1628,
+            "sha256": "acdc6dec635f42694874de27115e2a52401e96ed626ce0f79bc3508b097ac525",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN1.WSA",
+              "briefMovie": "HVYFTRY.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 2778,
+              "tacticalPacked": 2778,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 15
+            },
+            "houses": [
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 1800,
+                "brain": 67,
+                "maxUnits": 26
+              },
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 1700,
+                "brain": 72,
+                "maxUnits": 20
+              }
+            ],
+            "unitDefinitionCount": 26,
+            "buildingDefinitionCount": 106
+          },
+          "initialPlayer": {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1700,
+            "brain": 72,
+            "maxUnits": 20
+          },
+          "texts": {
+            "briefing": {
+              "text": "The Atreides have become far too vocal in this sector, and whine constantly about their rights.We Ordos do not have the leisure of pointless conversation, and must ask that you eliminate this distraction.",
+              "romOffset": 120535,
+              "sha256": "05a784503c29c90414ac4683d162a7430d29891f5be4226a425544e6a101e471",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Well done!Your successful military campaigns have created a political atmosphere well suited to our particular bargaining skills.Keep up the good work!",
+              "romOffset": 120740,
+              "sha256": "8c0296af56cc8f4fc414998cd8b3cdd99148011ff89d95f3a0ed24df66e20307",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "Do you instruct your troops to fire randomly into the air?Is there any plan to your idiotic maneuvers?I suggest that you no longer allow your dog to assist in managing your assignments!",
+              "romOffset": 120892,
+              "sha256": "be3529c860a3ed773b1b88815ee0bafcad486fb6b06d046c68d5e26f6b7a31f3",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "I advise you to produce and then place Rocket Turrets at strategic defensive positions around your installation.",
+              "romOffset": 121078,
+              "sha256": "8bbdde2bf7ef846d64471434566464a89b6204ffca2446caa813c3792209c207",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 7,
+          "campaignIndex": 6,
+          "name": "SLYMELANIE",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "SLYMELANIE",
+            "romOffset": 134351,
+            "tableEntry": 557484,
+            "houseId": 2,
+            "mission": 7
+          },
+          "sourceFile": "SCENO007.INI",
+          "region": 5,
+          "regionTableEntry": 614384,
+          "briefingTextPointers": {
+            "briefing": 121191,
+            "victory": 121368,
+            "defeat": 121502,
+            "hints": 121649
+          },
+          "scenario": {
+            "romOffset": 389730,
+            "bytes": 1554,
+            "sha256": "fb3cd90dd466abbbcfa8b3ce59d781f1759bc50c53bdf82c0fe56ac4808010c8",
+            "settings": {
+              "loseMovie": "LOSTVEHC.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "ORDRTANK.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 2523,
+              "tacticalPacked": 2523,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 16
+            },
+            "houses": [
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 2000,
+                "brain": 72,
+                "maxUnits": 22
+              },
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 2000,
+                "brain": 67,
+                "maxUnits": 28
+              }
+            ],
+            "unitDefinitionCount": 24,
+            "buildingDefinitionCount": 98
+          },
+          "initialPlayer": {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 22
+          },
+          "texts": {
+            "briefing": {
+              "text": "Harkonnen forces continue to thwart our efforts in this region, and must be removed completely.Crush their beloved troopers and they will run crying back to their ugly mothers!",
+              "romOffset": 121191,
+              "sha256": "f2eac96bdee0721f6d93b3ec0d3536c2d8a3bc9e83680f878f13da4cbf408366",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "Excellent!You have won a great victory for House Ordos.Doesn`t inflicting such a humiliating defeat make your breakfast taste better?",
+              "romOffset": 121368,
+              "sha256": "e7de5a6b6f56159247f22761aafda741c1db44d5a2880b22eef4f753bdfec1a1",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "Your failure could not have been timed more poorly!What status and bargaining power can we maintain when you display such ineptitude in the field?",
+              "romOffset": 121502,
+              "sha256": "82472802780e39c5e7c05cd1a59ac7061be17b4e87c5670c2875b0bf742c9ff0",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "The Deviator is a powerful ally against enemy forces.",
+              "romOffset": 121649,
+              "sha256": "de96f651a3c6b409e50a1fe3cbb3ebaffa0fe54132573125752b1ded5add2240",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 8,
+          "campaignIndex": 7,
+          "name": "STEALTHWAR",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "STEALTHWAR",
+            "romOffset": 134384,
+            "tableEntry": 557508,
+            "houseId": 2,
+            "mission": 8
+          },
+          "sourceFile": "SCENO008.INI",
+          "region": 2,
+          "regionTableEntry": 614392,
+          "briefingTextPointers": {
+            "briefing": 121703,
+            "victory": 121903,
+            "defeat": 122099,
+            "hints": 122220
+          },
+          "scenario": {
+            "romOffset": 391284,
+            "bytes": 2930,
+            "sha256": "f3ee2e4b37f89c1d6fbc16109fdb5cc7cb7971e2ecce3e9f746aec7d8d21ad4b",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN1.WSA",
+              "briefMovie": "PALACE.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 1869,
+              "tacticalPacked": 1869,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 17
+            },
+            "houses": [
+              {
+                "houseId": 0,
+                "quota": 0,
+                "credits": 1500,
+                "brain": 67,
+                "maxUnits": 17
+              },
+              {
+                "houseId": 1,
+                "quota": 0,
+                "credits": 1500,
+                "brain": 67,
+                "maxUnits": 18
+              },
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 2000,
+                "brain": 72,
+                "maxUnits": 24
+              }
+            ],
+            "unitDefinitionCount": 27,
+            "buildingDefinitionCount": 252
+          },
+          "initialPlayer": {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 24
+          },
+          "texts": {
+            "briefing": {
+              "text": "Both Atreides and Harkonnen forces oppose our control of this area and must therefore be destroyed.The time for cooperation and compromise has past, and all enemies of House Ordos must be eliminated!",
+              "romOffset": 121703,
+              "sha256": "5d726d39859fe9b0ede8371b6b6dcc9a44e9c3a5af65eff139e1e4c695c82745",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "I just received the wonderful news of your stunning victory!I am very pleased, and look forward to telling my grandchildren that it was I who served as Mentat to such a brilliant Ordos commander.",
+              "romOffset": 121903,
+              "sha256": "e0b88fcdca76aad751e4343fafc73f0a43d68efe79c52f8b865823dabbed901c",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "You do not exist in a vacuum!Your ineptitude has endangered everything House Ordos has worked to create here on Arrakis!",
+              "romOffset": 122099,
+              "sha256": "db112da3f822b6666bb961455d165f1e339a730d492aa87eb41c66ff1469633a",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "Utilize Rocket turrets as a defense against Ornithopters.",
+              "romOffset": 122220,
+              "sha256": "d0827e76ee359423dc4f875f2534fdef9648e03fa187b72ca269234f9d5dd977",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        },
+        {
+          "mission": 9,
+          "campaignIndex": 8,
+          "name": "POWERCRUSH",
+          "nameSource": "native canonical password",
+          "password": {
+            "text": "POWERCRUSH",
+            "romOffset": 134417,
+            "tableEntry": 557532,
+            "houseId": 2,
+            "mission": 9
+          },
+          "sourceFile": "SCENO009.INI",
+          "region": 1,
+          "regionTableEntry": 614400,
+          "briefingTextPointers": {
+            "briefing": 122278,
+            "victory": 122510,
+            "defeat": 122720,
+            "hints": 122834
+          },
+          "scenario": {
+            "romOffset": 394214,
+            "bytes": 2726,
+            "sha256": "43b1b8b050511b3e186c6ce2b46f46d20bebcca898ee82aed212efc90d316308",
+            "settings": {
+              "loseMovie": "LOSTBILD.WSA",
+              "winMovie": "WIN2.WSA",
+              "briefMovie": "SARDUKAR.WSA",
+              "timeout": 0,
+              "mapScale": 0,
+              "cursorPacked": 2710,
+              "tacticalPacked": 2710,
+              "winFlags": 1,
+              "finishFlags": 3,
+              "mapSeed": 8
+            },
+            "houses": [
+              {
+                "houseId": 2,
+                "quota": 0,
+                "credits": 2000,
+                "brain": 72,
+                "maxUnits": 25
+              },
+              {
+                "houseId": 4,
+                "quota": 0,
+                "credits": 10500,
+                "brain": 67,
+                "maxUnits": 37
+              }
+            ],
+            "unitDefinitionCount": 28,
+            "buildingDefinitionCount": 233
+          },
+          "initialPlayer": {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          "texts": {
+            "briefing": {
+              "text": "Emperor Frederick has joined the list of Ordos enemies, and must be punished.We expect you to destroy all of what remains of his forces.We have risked everything on this final battle, and cannot tolerate less than your best effort.",
+              "romOffset": 122278,
+              "sha256": "8599d19c9ab398ed5fa911ee17fbdae33ea0918918c591598711b169d250ddc2",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "victory": {
+              "text": "You have served House Ordos well.The cartel is pleased that you have kept our casualties at an acceptable, efficient level.Our business is so much more efficient when we have no competition left on the planet.",
+              "romOffset": 122510,
+              "sha256": "3fa63ff15a345a1badf163bde8d3acf2f3f32f9d5bf4ab9007f021a9a85e5a4e",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "defeat": {
+              "text": "Your defects must have been inherited.Nobody could possibly learn the colossal stupidity that you have displayed.",
+              "romOffset": 122720,
+              "sha256": "ac1cc31d06e8429c0b05727d4677fbdbc0fea34d0f2dcb5ff33e2a70ef1d0415",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            },
+            "hints": {
+              "text": "Utilize your Palace`s special option whenever possible, for it costs nothing and it will recharge.",
+              "romOffset": 122834,
+              "sha256": "e8f0058c264814e13b5ab7da93ca77fac44ed97cc9a0e099089e3496a7b268cf",
+              "encoding": "literal original ASCII, NUL terminated; no translation or rewritten punctuation"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "missionCountPerHouse": 9,
+  "totalScenarioCount": 27,
+  "passwordTable": 557348,
+  "excludedCheats": [
+    {
+      "text": "DUNEFINALE",
+      "romOffset": 134428,
+      "tableEntry": 557540,
+      "houseId": 3,
+      "mission": 0
+    },
+    {
+      "text": "LOOKAROUND",
+      "romOffset": 134439,
+      "tableEntry": 557548,
+      "houseId": 6,
+      "mission": 0
+    },
+    {
+      "text": "SPLURGEOLA",
+      "romOffset": 134450,
+      "tableEntry": 557556,
+      "houseId": 7,
+      "mission": 0
+    },
+    {
+      "text": "PLAYTESTER",
+      "romOffset": 134461,
+      "tableEntry": 557564,
+      "houseId": 9,
+      "mission": 0
+    },
+    {
+      "text": "VERSIONNUM",
+      "romOffset": 134472,
+      "tableEntry": 557572,
+      "houseId": 10,
+      "mission": 0
+    }
+  ],
+  "regionChoice": false,
+  "regionEvidence": {
+    "table": 614480,
+    "consumer": "$25FA8..25FC2 maps (house,mission) to one fixed territory identifier; $264F8 calls one canonical scenario, no branch variant argument",
+    "briefingChoice": "Native PROCEED/ADVICE selects mission instructions or original hints, not a different scenario/map. No DOS region graph is substituted."
+  },
+  "nativeFlow": {
+    "safeMainLoopCheckpoint": 75070,
+    "nativeNewHouseStateAddress": 16761164,
+    "nativeNewHouseStateValue": 2,
+    "housePicker": 158602,
+    "passwordValidator": 137474,
+    "missionStartWithBriefing": 156920,
+    "scenarioLoader": 156992,
+    "scenarioParser": 90268,
+    "victoryCondition": 141868,
+    "scenarioFinishedCondition": 141752,
+    "victoryEdge": 142076,
+    "defeatEdge": 142302,
+    "missionIncrementAfterResults": 142228,
+    "endingAfterNinthVictory": 75572,
+    "credits": 71608
+  },
+  "progressContract": {
+    "owner": "Browser storage managed separately by host",
+    "unlock": "Only one verified original victory edge for an armed played mission; boot, loading, scene changes, password validation and defeat never unlock",
+    "replay": "Host may request any previously unlocked mission; original loader creates its scenario state. Browser save slot is not erased by this adapter.",
+    "missionOne": "No invented password. Uses ordinary native new-house flow."
+  },
+  "limitations": [
+    "Native start regression covers all27 scenario starts; it is not a full campaign playthrough.",
+    "Mission outcome fixtures may deliberately satisfy native win/lose conditions offline; they do not claim user-earned completion.",
+    "ROM and translated instruction bytes remain unchanged; only native menu intent and campaign selector entry points are adapted."
+  ]
+}

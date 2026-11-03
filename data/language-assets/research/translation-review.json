@@ -1,0 +1,48 @@
+{
+  "status": "Source extraction is not certification of fan translation fidelity.",
+  "campaignRecords": 111,
+  "canonicalMeaningSource": "Pinned USA English111 texts. A separate authored faithful Russian story can replace these fan strings in the host presentation only.",
+  "cyrilNote": "МОЕ ИМЯ КИРИЛЛ translates the original Mentat Cyril greeting; it is not a translator credit.",
+  "detectedNumericalDifferences": [
+    {
+      "key": "campaign.harkonnen.1.hints",
+      "reason": "Numeric story/hint content differs; preserve canonical English mission meaning in an authored faithful translation.",
+      "englishNumbers": [
+        "1000"
+      ],
+      "fanRussianNumbers": [],
+      "english": "First build concrete slabs, and then build a Windtrap and place it upon the concrete.Do the same for a refinery so that you can reach your quota of 1000 credits.",
+      "fanRussian": "ПОЛОЖИ ФУНДАМЕНТ, ПОТОМ ПОСТРОЙ НА НЕМ ЭЛЕКТРОСТАНЦИЮ И ЗАВОД ПО ОЧИСТКЕ СПАЙСА.ПОКА ХАРВЕСТЕРЫ БУДУТ СОБИРАТЬ ЕГО, ТЫ МОЖЕШЬ ЗАНЯТЬСЯ УНИЧТОЖЕНИЕМ ВРАЖЕСКОЙ ПЕХОТЫ."
+    },
+    {
+      "key": "campaign.atreides.7.briefing",
+      "reason": "Numeric story/hint content differs; preserve canonical English mission meaning in an authored faithful translation.",
+      "englishNumbers": [],
+      "fanRussianNumbers": [
+        "7"
+      ],
+      "english": "The battle goes well, but there is no time to relax.We have an urgent need for you to subdue all Ordos forces in this region promptly.We are counting on you.",
+      "fanRussian": "ПОКА УДАЧА НА НАШЕЙ СТОРОНЕ, НО ЭТО ОТНЮДЬ НЕ ПОВОД РАССЛАБЛЯТЬСЯ.НЕОБХОДИМО ПОДАВИТЬ СОПРОТИВЛЕНИЕ ОРДОСОВ В СЕКТОРЕ 7.МЫ РАССЧИТЫВАЕМ НА ТЕБЯ."
+    },
+    {
+      "key": "campaign.ordos.1.hints",
+      "reason": "Numeric story/hint content differs; preserve canonical English mission meaning in an authored faithful translation.",
+      "englishNumbers": [
+        "1000"
+      ],
+      "fanRussianNumbers": [],
+      "english": "First build concrete slabs, and then build a Windtrap and place it upon the concrete.Do the same for a refinery so that you can reach your quota of 1000 credits.",
+      "fanRussian": "ПОСТРОЙ ФУНДАМЕНТ, ЗАТЕМ ЭЛЕКТРОСТАНЦИЮ.ПОСЛЕ ЭТОГО, ВОЗВЕДЯ ЗАВОД ПО ОЧИСТКЕ, ТЫ СМОЖЕШЬ ЗАРАБОТАТЬ НАШИ ДЕНЬГИ."
+    }
+  ],
+  "concreteSemanticNotes": {
+    "campaign.harkonnen.1.hints": "Fan text omits the original1000-credit hint and adds destroying enemy infantry; that additional advice is not in the canonical source.",
+    "campaign.ordos.1.hints": "Fan text omits the explicit original1000-credit quota.",
+    "campaign.atreides.7.briefing": "Fan text adds sector7 where the original only says this region.",
+    "statistics.rank.5": "Outpost Commander is freely translated as Начальник связи (communications chief).",
+    "statistics.rank.8": "Ruler of Arrakis is freely translated as Лучший из лучших (best of the best).",
+    "shop.damage": "Original Dmg means damage. Fan ЖЗН suggests life/HP and is an inaccurate label; a faithful host label should use УРОН.",
+    "shop.sendOrder": "This fan-ROM inline caption remains English; use an explicitly authored Russian UI label rather than falsely calling it a native Russian string."
+  },
+  "scope": "Automated numeric comparison plus bounded manual examples; no claim that all111 fan texts were semantically reviewed. Raw extracted strings are never silently rewritten."
+}

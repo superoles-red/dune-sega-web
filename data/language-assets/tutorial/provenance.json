@@ -1,0 +1,366 @@
+{
+  "version": 1,
+  "sourceRom": "rus",
+  "sourceRomSha256": "4d93c48957cc81fc49a6edff6353787e5d32eb5e2c86963182fba918a45e906a",
+  "pinnedOriginalCodeSha256": "e3055a76cd0eeb151591984a2c12312dcea49754afa0edee9f84889814ad1578",
+  "originalFrontendFixtureSha256": "050a86d239caca42e6e01be28f26183f876acf27d5e4910f65f3533673203d4d",
+  "captureTool": "tools/capture_language_tutorial_native.c",
+  "captureToolSha256": "da58526b199edcbb2234c32384b1ff783b669ccaa415b1d0819a2f8a9599d1b7",
+  "captureIndexSha256": "01364cec263d8d9c004e3fb00b833b075de8af2b64aca389d9dd75360133e4e9",
+  "method": "Offline pinned-USA translated original resource renderer runs original Main→Tutorial flow with supplied Russian ROM data. No Russian68K machine-code patches are executed, no map/gameplay is simulated, and shipping USA runtime ROM/code is never replaced. All resulting card pixels come from the supplied resource data and original renderer.",
+  "limitation": "Resource composition proof, not a claim of complete execution-equivalence for the Russian hacked program. Descriptive text is preserved inside actual native bitmap cards; it is not falsely reported as a decoded plaintext table.",
+  "runtime": {
+    "path": "tutorial/ru-native-descriptions.png",
+    "width": 320,
+    "height": 224,
+    "sheetWidth": 1280,
+    "sheetHeight": 2016,
+    "columns": 4,
+    "frames": 33,
+    "manualFrames": true,
+    "frameIndexPolicy": "Same33 card IDs/order and320x224 source geometry. Literal source atlas is preserved in data; the runtime correction variant is separately declared."
+  },
+  "atlasPixelSha256": "71d6bfa0c1a3df497e525e6cfd2d8319c9ed3c2f3a0736dabb3ff1cc5e048316",
+  "atlasPngSha256": "a16e7a9eb64f15af72c239b72f65334ff58f85288e4b7dcfd1d8a9090d3870a7",
+  "frames": [
+    {
+      "index": 0,
+      "id": "sand",
+      "chapter": "terrain",
+      "sourceRgbSha256": "9c54d3c026dbdcc4eb9dbba34d6c99ae133ccb9dc937af7b6dd876a8f776b722",
+      "relativeFrame": 300,
+      "nativeFrame": 2590,
+      "nativePc": 4062,
+      "scriptPointer": 269162
+    },
+    {
+      "index": 1,
+      "id": "spice",
+      "chapter": "terrain",
+      "sourceRgbSha256": "a049b7b18e7cba7593155e209dedbc8be21d77e2c12c30cd95f28bd7e8ea7572",
+      "relativeFrame": 600,
+      "nativeFrame": 2890,
+      "nativePc": 4062,
+      "scriptPointer": 269162
+    },
+    {
+      "index": 2,
+      "id": "dunes",
+      "chapter": "terrain",
+      "sourceRgbSha256": "545836001f165eaac2901373a80c8354b377833933da985a5d41e894b26c1cdf",
+      "relativeFrame": 1200,
+      "nativeFrame": 3490,
+      "nativePc": 4062,
+      "scriptPointer": 269162
+    },
+    {
+      "index": 3,
+      "id": "rock",
+      "chapter": "terrain",
+      "sourceRgbSha256": "c9cc6798e6384e6d604c4a19897e7f7d3dbbc18befe0b3b65f31d2e03d9802cd",
+      "relativeFrame": 1500,
+      "nativeFrame": 3790,
+      "nativePc": 4058,
+      "scriptPointer": 269162
+    },
+    {
+      "index": 4,
+      "id": "mountains",
+      "chapter": "terrain",
+      "sourceRgbSha256": "7a72bee5c59fcc33027d0adfac67e1bc9d408dadda4f2b7adf4081d6462aa397",
+      "relativeFrame": 1800,
+      "nativeFrame": 4090,
+      "nativePc": 4062,
+      "scriptPointer": 269162
+    },
+    {
+      "index": 5,
+      "id": "harvester",
+      "chapter": "units",
+      "sourceRgbSha256": "fd9edc5dde6360d27567f727f5e5531f45dfb29836bdd0685cb1f5d6793f4244",
+      "relativeFrame": 2700,
+      "nativeFrame": 4990,
+      "nativePc": 4062,
+      "scriptPointer": 269180
+    },
+    {
+      "index": 6,
+      "id": "mcv",
+      "chapter": "units",
+      "sourceRgbSha256": "6da6262d14604e927321e9e82b162f39ba0d9dff59f9519d87397a9979ae03c4",
+      "relativeFrame": 3000,
+      "nativeFrame": 5290,
+      "nativePc": 4058,
+      "scriptPointer": 269180
+    },
+    {
+      "index": 7,
+      "id": "infantry",
+      "chapter": "units",
+      "sourceRgbSha256": "3302a324f06cb606648dc5ef1b2f866930b8aad3a6122cad59b51718802eb950",
+      "relativeFrame": 3600,
+      "nativeFrame": 5890,
+      "nativePc": 4058,
+      "scriptPointer": 269180
+    },
+    {
+      "index": 8,
+      "id": "trooper",
+      "chapter": "units",
+      "sourceRgbSha256": "8e14d9520b9fe77d5aff890ad2af0e097b19c74b1a7455c7bbeb6f76ee777b62",
+      "relativeFrame": 3900,
+      "nativeFrame": 6190,
+      "nativePc": 4062,
+      "scriptPointer": 269180
+    },
+    {
+      "index": 9,
+      "id": "trike",
+      "chapter": "units",
+      "sourceRgbSha256": "2c8a51171ab43ac8122a2eea508bd684703819c4196d53362a14186480032217",
+      "relativeFrame": 4200,
+      "nativeFrame": 6490,
+      "nativePc": 4062,
+      "scriptPointer": 269180
+    },
+    {
+      "index": 10,
+      "id": "quad",
+      "chapter": "units",
+      "sourceRgbSha256": "16d2ae33b44ff6f2d8b52d9ec9daeda95d490eaff59a18dd6fd205e22271be7f",
+      "relativeFrame": 4800,
+      "nativeFrame": 7090,
+      "nativePc": 4058,
+      "scriptPointer": 269180
+    },
+    {
+      "index": 11,
+      "id": "missile-tank",
+      "chapter": "units",
+      "sourceRgbSha256": "c2f5081a9f6b3e5efeb93e6ec1c036017e5eda7f052aeb6cb621beb1dd5f4ba0",
+      "relativeFrame": 5100,
+      "nativeFrame": 7390,
+      "nativePc": 4058,
+      "scriptPointer": 269180
+    },
+    {
+      "index": 12,
+      "id": "combat-tank",
+      "chapter": "units",
+      "sourceRgbSha256": "ff38ddcf41b0f77fd1ccfe6d9346a6459a3d08e02b0aab5d4080cd0021fcb4c4",
+      "relativeFrame": 5400,
+      "nativeFrame": 7690,
+      "nativePc": 4058,
+      "scriptPointer": 269180
+    },
+    {
+      "index": 13,
+      "id": "siege-tank",
+      "chapter": "units",
+      "sourceRgbSha256": "e7fe123442fb1d8c56cbe4e95cf3611e764db781e87f99090e6099eb44d4d753",
+      "relativeFrame": 6000,
+      "nativeFrame": 8290,
+      "nativePc": 4058,
+      "scriptPointer": 269180
+    },
+    {
+      "index": 14,
+      "id": "carryall",
+      "chapter": "units",
+      "sourceRgbSha256": "aba51f032dac48021c9cc279ea9ae1751663dc9fbaea17494987c62a3240b885",
+      "relativeFrame": 6300,
+      "nativeFrame": 8590,
+      "nativePc": 4062,
+      "scriptPointer": 269180
+    },
+    {
+      "index": 15,
+      "id": "ornithopter",
+      "chapter": "units",
+      "sourceRgbSha256": "c58969e32b1e1e6f6dbaccae188bd38a746f9f1cb495fc46699c3e33df504e9f",
+      "relativeFrame": 6600,
+      "nativeFrame": 8890,
+      "nativePc": 4058,
+      "scriptPointer": 269180
+    },
+    {
+      "index": 16,
+      "id": "sonic-tank",
+      "chapter": "units",
+      "sourceRgbSha256": "ab18a98b98e4e543034939dd39809da06c8a159322f0ee7afd633f0cd9e02f5f",
+      "relativeFrame": 7200,
+      "nativeFrame": 9490,
+      "nativePc": 4058,
+      "scriptPointer": 269180
+    },
+    {
+      "index": 17,
+      "id": "death-hand",
+      "chapter": "units",
+      "sourceRgbSha256": "ea2905a0ff2627abf396ccc7036a33f9eba3ca69f0a492dd7c816147f2f98b57",
+      "relativeFrame": 7500,
+      "nativeFrame": 9790,
+      "nativePc": 4058,
+      "scriptPointer": 269180
+    },
+    {
+      "index": 18,
+      "id": "devastator",
+      "chapter": "units",
+      "sourceRgbSha256": "8569f71ebfe1411855cb4577dc6797b724b49a7387f51b197aab25dd6610e8ef",
+      "relativeFrame": 7800,
+      "nativeFrame": 10090,
+      "nativePc": 4062,
+      "scriptPointer": 269180
+    },
+    {
+      "index": 19,
+      "id": "yard",
+      "chapter": "buildings",
+      "sourceRgbSha256": "f0fb3d7196c4e7cd6bc0337f2e12f5d868c4338cd48d852a280c9760c6f9587b",
+      "relativeFrame": 8700,
+      "nativeFrame": 10990,
+      "nativePc": 4062,
+      "scriptPointer": 269236
+    },
+    {
+      "index": 20,
+      "id": "windtrap",
+      "chapter": "buildings",
+      "sourceRgbSha256": "9d7f74fc7a9eff1896cf778b048735dbf2e0c7dfb194590d9a457929d77b3f27",
+      "relativeFrame": 9300,
+      "nativeFrame": 11590,
+      "nativePc": 4062,
+      "scriptPointer": 269236
+    },
+    {
+      "index": 21,
+      "id": "outpost",
+      "chapter": "buildings",
+      "sourceRgbSha256": "54b26bc14fd9b60ff82088a2bcfa41ba0b37304b2ef4e35a2799f9ab96dfcbc3",
+      "relativeFrame": 9600,
+      "nativeFrame": 11890,
+      "nativePc": 4062,
+      "scriptPointer": 269236
+    },
+    {
+      "index": 22,
+      "id": "barracks",
+      "chapter": "buildings",
+      "sourceRgbSha256": "40001fd33c0812f9bcece51e53707e5aede97175ecbfa1be62b46ab5730fa41c",
+      "relativeFrame": 9900,
+      "nativeFrame": 12190,
+      "nativePc": 4062,
+      "scriptPointer": 269236
+    },
+    {
+      "index": 23,
+      "id": "refinery",
+      "chapter": "buildings",
+      "sourceRgbSha256": "0188c0e442c6dc352e63b9625a754d8529a994adc0f7424dc1454a27d5b2dce8",
+      "relativeFrame": 10500,
+      "nativeFrame": 12790,
+      "nativePc": 4062,
+      "scriptPointer": 269236
+    },
+    {
+      "index": 24,
+      "id": "silos",
+      "chapter": "buildings",
+      "sourceRgbSha256": "536be257347c100a8f9c63d7e99787a0d49d8f33020178e6b1dec600d5a31679",
+      "relativeFrame": 10800,
+      "nativeFrame": 13090,
+      "nativePc": 4058,
+      "scriptPointer": 269236
+    },
+    {
+      "index": 25,
+      "id": "vehicle-factory",
+      "chapter": "buildings",
+      "sourceRgbSha256": "fedfbcbe90794c9decb216b0bcf1094f3f16fae6145df335ddf90951bef48cec",
+      "relativeFrame": 11100,
+      "nativeFrame": 13390,
+      "nativePc": 4058,
+      "scriptPointer": 269236
+    },
+    {
+      "index": 26,
+      "id": "repair",
+      "chapter": "buildings",
+      "sourceRgbSha256": "bdbcf691f5082975d589047af123137b996311961f97025956ce61f79c254a69",
+      "relativeFrame": 11700,
+      "nativeFrame": 13990,
+      "nativePc": 4062,
+      "scriptPointer": 269236
+    },
+    {
+      "index": 27,
+      "id": "high-tech",
+      "chapter": "buildings",
+      "sourceRgbSha256": "47e00109b253503e1bb8d0121c14113fb06468e588121b692d1522dcfd9da9a0",
+      "relativeFrame": 12000,
+      "nativeFrame": 14290,
+      "nativePc": 4058,
+      "scriptPointer": 269236
+    },
+    {
+      "index": 28,
+      "id": "turret",
+      "chapter": "buildings",
+      "sourceRgbSha256": "acb1009c098bffa10b9744cd5397697f474d6bd5438492d27baba7ab15c41e97",
+      "relativeFrame": 12300,
+      "nativeFrame": 14590,
+      "nativePc": 4058,
+      "scriptPointer": 269236
+    },
+    {
+      "index": 29,
+      "id": "rocket-turret",
+      "chapter": "buildings",
+      "sourceRgbSha256": "fc0802bca28f5bceacc2b78601e5ef35beae22541c62e1a6e1f0217f19652ffa",
+      "relativeFrame": 12900,
+      "nativeFrame": 15190,
+      "nativePc": 4058,
+      "scriptPointer": 269236
+    },
+    {
+      "index": 30,
+      "id": "starport",
+      "chapter": "buildings",
+      "sourceRgbSha256": "845dd2024c8d57e258345e3b87679f6bc1169eb85fee886f642c470f76234b03",
+      "relativeFrame": 13200,
+      "nativeFrame": 15490,
+      "nativePc": 4062,
+      "scriptPointer": 269236
+    },
+    {
+      "index": 31,
+      "id": "palace",
+      "chapter": "buildings",
+      "sourceRgbSha256": "afb4e48d59c4f67e1fc6155422f90dace39935da4e58cdbdde2213afa247cdfd",
+      "relativeFrame": 13500,
+      "nativeFrame": 15790,
+      "nativePc": 4062,
+      "scriptPointer": 269236
+    },
+    {
+      "index": 32,
+      "id": "wall",
+      "chapter": "buildings",
+      "sourceRgbSha256": "d9b1635a9c0b3510cec7d80071b80290ca2c9d8d2cb2aa6070395f3e322363c8",
+      "relativeFrame": 13980,
+      "nativeFrame": 16270,
+      "nativePc": 4058,
+      "scriptPointer": 269260
+    }
+  ],
+  "review": {
+    "nativePngs": "research/tutorial-review/card-*.png",
+    "contactSheets": "research/tutorial-review/sheet-00.png through sheet-05.png",
+    "sheetGeometry": "6 cards per sheet,2 columns×3rows, exact2x pixel repetition, no interpolation. Last sheet has3 cards.",
+    "manualTranscription": "tutorial/transcription-ru.json",
+    "manualAnnotationSource": "tools/language_tutorial_annotations_ru.json",
+    "manualAnnotationSha256": "dae4475d756446f769b4ff7024d4c903ae703f39fc3daf62e15a8bdcd438047a",
+    "sourceSpellingPolicy": "All33 cards visually reviewed; source term variants/house spelling and the original A-button wording are explicitly noted. Original pixels stay unchanged."
+  }
+}

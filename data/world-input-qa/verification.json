@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "scope": "Targeted original Palace world-A dispatch regression on the actual red demo fixture. This is an authored demo input check, not another ordinary-campaign long run.",
+  "fixture": ".local/demo-fixture-harkonnen/demo.cpu.bin",
+  "fixtureSha256": "066b963773db571390eb5032a4ae8f8193b5803a28edd3b73d28f0d70a4737a0",
+  "test": "tools/test_em_web_generic_world_intent.c",
+  "testSha256": "f74babfb6af302dea21e72fe9023797396f233d9052b815cadb5983b1f278b81",
+  "headersSha256": {
+    "tools/em_web_world_intent.h": "e9b3b4b6d2eefc1c1577ece2fd2510f5578b5217efefda81e4e4ce3e36044304",
+    "tools/em_web_selection.h": "a3590d1c29279781f84284d42cc58b5805721c562dc2f4d4b6b54bba7afd5603",
+    "tools/em_web_camera.h": "cecd85a1370e6218308edd70d50b101ccbac8b089f675ffe72c51b2579e11726"
+  },
+  "command": "clang -std=c11 -O1 -Itools -I.local/source/genesis_recompiler tools/test_em_web_generic_world_intent.c -lm -o .local/test-generic-world-intent && .local/test-generic-world-intent",
+  "originalPalacePoint": [
+    424,
+    1032
+  ],
+  "requestedWorld": [
+    589,
+    826
+  ],
+  "requestedNativeTile": 1618,
+  "legacyNoHoverTarget": 1682,
+  "shippingQuietTarget": 1618,
+  "shippingStaleRenderHoverTarget": 1618,
+  "staleRenderHoverWorld": [
+    589,
+    858
+  ],
+  "staleHoverRedraws": 9,
+  "queuePopNativeFrame": 7476,
+  "nativeAConsumerFrame": 7480,
+  "nativeInternalCameraBefore": [
+    295,
+    839
+  ],
+  "nativeInternalCameraAfter": [
+    337,
+    797
+  ],
+  "observerWholeCpuUnchangedPerInstruction": true,
+  "overlapRejectionPreservesCpuAndMouseQueue": true,
+  "nativeReleasePc": 162688,
+  "nativeSpecialTargetPc": 163494,
+  "evidence": {
+    "result": "palace-result.log",
+    "traces": [
+      "palace-mode0.log",
+      "palace-mode1.log",
+      "palace-mode2.log"
+    ]
+  },
+  "limits": [
+    "Starts from projected world coordinates; browser CSS/DPR projection and final WASM must be checked separately.",
+    "Audio is muted. No claim about auditory latency or thermals.",
+    "This test does not exercise v2-load/route cancellation integration; independent reset guard tests/source review cover those paths.",
+    "The intent observer does not patch CPU registers/RAM, D3/C1A8/order/random fields or clocks. The existing pointer adapter supplies normal cursor/tile input, then original native routines perform the action."
+  ],
+  "evidenceSha256": {
+    "palace-result.log": "71052b396d7a32fc1dc271dc2706dce067779e4b079d9add36d7770c31c63d81",
+    "palace-mode0.log": "02c850f9722919e6d7cdad4a84689034d0b3c66a849999fe79b46f8a1793eebc",
+    "palace-mode1.log": "02e9aa16ce7d32f834200885e84262947b6b59d0ac2c73f3aa8b7eed85b19e16",
+    "palace-mode2.log": "e6403b147437d628b63d5393c0986372f0ae1f84d7e60f750559dbaef5dd3f29"
+  }
+}

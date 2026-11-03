@@ -1,0 +1,320 @@
+{
+  "version": 1,
+  "method": "Manual visual transcription of all33 exact native bitmap resource compositions, reviewed in six2x contact sheets. Not an automated ROM plaintext parser.",
+  "pixelPolicy": "Original spelling and terminology retained; no source pixels changed.",
+  "cards": [
+    {
+      "index": 0,
+      "id": "sand",
+      "title": "ПЕСОК",
+      "lines": [
+        "ПРОХОДИМ ДЛЯ",
+        "ВСЕХ",
+        "РОДОВ ВОЙСК"
+      ]
+    },
+    {
+      "index": 1,
+      "id": "spice",
+      "title": "СПАЙС",
+      "lines": [
+        "ЗА СПАЙС",
+        "ПЛАТЯТ",
+        "КРЕДИТЫ"
+      ]
+    },
+    {
+      "index": 2,
+      "id": "dunes",
+      "title": "БАРХАНЫ",
+      "lines": [
+        "ПОНИЖАЮТ",
+        "СКОРОСТЬ",
+        "ДВИЖЕНИЯ"
+      ]
+    },
+    {
+      "index": 3,
+      "id": "rock",
+      "title": "СКАЛЫ",
+      "lines": [
+        "НА НИХ",
+        "СТРОЯТСЯ",
+        "ЗДАНИЯ"
+      ]
+    },
+    {
+      "index": 4,
+      "id": "mountains",
+      "title": "ВАЛУНЫ",
+      "lines": [
+        "ПО ПОВЕРХНОСТИ ПОКРЫТОЙ",
+        "ВАЛУНАМИ МОЖЕТ ПРОЙТИ",
+        "ТОЛЬКО ПЕХОТА"
+      ]
+    },
+    {
+      "index": 5,
+      "id": "harvester",
+      "title": "ХАРВЕСТЕР",
+      "lines": [
+        "СОБИРАЕТ СПАЙС"
+      ]
+    },
+    {
+      "index": 6,
+      "id": "mcv",
+      "title": "УСБ",
+      "lines": [
+        "УНИВЕРСАЛЬНАЯ",
+        "СТРОИТЕЛЬНАЯ",
+        "БАЗА",
+        "ДВАЖДЫ НАЖМИ А",
+        "ДЛЯ СОЗДАНИЯ",
+        "НОВОЙ ПОСТРОЙКИ"
+      ],
+      "note": "Original A-button instruction retained. The modern host can explain double-tap/DEPLOY separately."
+    },
+    {
+      "index": 7,
+      "id": "infantry",
+      "title": "ПЕХОТА",
+      "lines": [
+        "БРОНЯ: СЛАБАЯ"
+      ]
+    },
+    {
+      "index": 8,
+      "id": "trooper",
+      "title": "НАЕМНИК",
+      "lines": [
+        "БРОНЯ: СЛАБАЯ"
+      ],
+      "note": "Fan terminology differs from literal Trooper."
+    },
+    {
+      "index": 9,
+      "id": "trike",
+      "title": "МОТОЦИКЛ",
+      "lines": [
+        "БРОНЯ: СЛАБАЯ"
+      ]
+    },
+    {
+      "index": 10,
+      "id": "quad",
+      "title": "ДЖИП",
+      "lines": [
+        "БРОНЯ: СЛАБАЯ"
+      ]
+    },
+    {
+      "index": 11,
+      "id": "missile-tank",
+      "title": "ЗЕНИТКА",
+      "lines": [
+        "БРОНЯ: СЛАБАЯ"
+      ],
+      "note": "Fan terminology differs from literal Missile Tank."
+    },
+    {
+      "index": 12,
+      "id": "combat-tank",
+      "title": "ТАНК",
+      "lines": [
+        "БРОНЯ: СРЕДНЯЯ"
+      ]
+    },
+    {
+      "index": 13,
+      "id": "siege-tank",
+      "title": "ТЯЖЕЛЫЙ ТАНК",
+      "lines": [
+        "БРОНЯ: ТЯЖЕЛАЯ"
+      ]
+    },
+    {
+      "index": 14,
+      "id": "carryall",
+      "title": "ТРАНСПОРТ",
+      "lines": [
+        "ПЕРЕНОСИТ",
+        "ХАРВЕСТЕРЫ",
+        "И ТЕХНИКУ"
+      ]
+    },
+    {
+      "index": 15,
+      "id": "ornithopter",
+      "title": "ПТИЦЕЛЕТ",
+      "lines": [
+        "БРОНЯ: СЛАБАЯ"
+      ]
+    },
+    {
+      "index": 16,
+      "id": "sonic-tank",
+      "title": "УЛЬТРАТАНК",
+      "lines": [
+        "БРОНЯ: СРЕДНЯЯ"
+      ],
+      "note": "Fan terminology differs from literal Sonic Tank."
+    },
+    {
+      "index": 17,
+      "id": "death-hand",
+      "title": "РУКА СМЕРТИ",
+      "lines": [
+        "СМЕРТЕЛЬНОЕ",
+        "ОРУЖИЕ",
+        "ХАРКОНЕНОВ"
+      ],
+      "note": "The native fan text spells the house with one Н before Е. A standardized faithful Russian house name may use ХАРКОННЕНОВ. No bitmap correction is silently applied."
+    },
+    {
+      "index": 18,
+      "id": "devastator",
+      "title": "ДЕВАСТАТОР",
+      "lines": [
+        "БРОНЯ: ТЯЖЕЛАЯ"
+      ]
+    },
+    {
+      "index": 19,
+      "id": "yard",
+      "title": "ОСНОВНАЯ БАЗА",
+      "lines": [
+        "МЕСТО ПОСТРОЙКИ",
+        "ВСЕХ НОВЫХ",
+        "ЗДАНИЙ"
+      ]
+    },
+    {
+      "index": 20,
+      "id": "windtrap",
+      "title": "СТАНЦИЯ",
+      "lines": [
+        "НЕОБХОДИМА ДЛЯ",
+        "БЕСПЕРЕБОЙНОЙ",
+        "РАБОТЫ",
+        "ПОСТРОЕННЫХ",
+        "ЗДАНИЙ"
+      ]
+    },
+    {
+      "index": 21,
+      "id": "outpost",
+      "title": "РАДАР",
+      "lines": [
+        "ПОКАЗЫВАЕТ",
+        "НА КАРТЕ",
+        "РАЗВЕДАННЫЕ",
+        "ОБЛАСТИ"
+      ]
+    },
+    {
+      "index": 22,
+      "id": "barracks",
+      "title": "БАРАКИ",
+      "lines": [
+        "МЕСТО",
+        "СБОРА",
+        "ПЕХОТЫ"
+      ]
+    },
+    {
+      "index": 23,
+      "id": "refinery",
+      "title": "ЗАВОД",
+      "lines": [
+        "ПЕРЕРАБОТКА СПАЙСА В КРЕДИТЫ"
+      ]
+    },
+    {
+      "index": 24,
+      "id": "silos",
+      "title": "СКЛАДЫ",
+      "lines": [
+        "ХРАНЯТ ИЗЛИШКИ СПАЙСА"
+      ]
+    },
+    {
+      "index": 25,
+      "id": "vehicle-factory",
+      "title": "ФАБРИКА",
+      "lines": [
+        "ПРОИЗВОДИТ",
+        "БОЕВЫЕ МАШИНЫ"
+      ]
+    },
+    {
+      "index": 26,
+      "id": "repair",
+      "title": "МАСТЕРСКАЯ",
+      "lines": [
+        "РЕМОНТИРУЕТ",
+        "БОЕВЫЕ МАШИНЫ"
+      ]
+    },
+    {
+      "index": 27,
+      "id": "high-tech",
+      "title": "АВИА ФАБРИКА",
+      "lines": [
+        "ПРОИЗВОДИТ",
+        "ПТИЦЕЛЕТЫ И",
+        "ТРАНСПОРТЫ"
+      ]
+    },
+    {
+      "index": 28,
+      "id": "turret",
+      "title": "БАШНЯ",
+      "lines": [
+        "ОБОРОНЯЕТ",
+        "ПОДСТУПЫ",
+        "К БАЗЕ"
+      ]
+    },
+    {
+      "index": 29,
+      "id": "rocket-turret",
+      "title": "РАКЕТНАЯ БАШНЯ",
+      "lines": [
+        "ОБОРОНА БАЗЫ",
+        "НА БОЛЬШОМ",
+        "РАССТОЯНИИ"
+      ]
+    },
+    {
+      "index": 30,
+      "id": "starport",
+      "title": "КОСМОПОРТ",
+      "lines": [
+        "ПОЗВОЛЯЕТ ЗАКУПАТЬ",
+        "ТЕХНИКУ У КУПЦОВ",
+        "ПО МИРОВЫМ ЦЕНАМ"
+      ]
+    },
+    {
+      "index": 31,
+      "id": "palace",
+      "title": "ДВОРЕЦ",
+      "lines": [
+        "ЛИШЬ ИЗБРАННЫЕ",
+        "ЛИДЕРЫ СПОСОБНЫ",
+        "ПОЗВОЛИТЬ СЕБЕ",
+        "СТРОИТЕЛЬСТВО",
+        "ДВОРЦА"
+      ]
+    },
+    {
+      "index": 32,
+      "id": "wall",
+      "title": "БЕТОННАЯ СТЕНА",
+      "lines": [
+        "МЕШАЕТ СИЛАМ ПРОТИВНИКА"
+      ]
+    }
+  ]
+}

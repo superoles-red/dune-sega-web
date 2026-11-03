@@ -1,0 +1,341 @@
+{
+  "version": 1,
+  "source": {
+    "romSha256": "b1bbe73186e0902fa8b2db0f227bf306e3d6a80fe592f927d1aa9d60c0f335ba",
+    "generatedSourceSha256": "e3055a76cd0eeb151591984a2c12312dcea49754afa0edee9f84889814ad1578",
+    "baseRepository": "https://github.com/andvolodko/dune2-sega-web",
+    "baseRevision": "56c6a6da10",
+    "baseOrigin": "existing inspected local checkout; ROM bytes equal operator-supplied file",
+    "runtime": "Original machine instructions translated ahead of time to C / WebAssembly; browser host scheduling patches only"
+  },
+  "method": "Original machine_step and vdp_render only after native menu entry; completed VDP frames. Modern pointer observers absent during all 320-frame measurements. RGBA alpha is native SAT nonzero 4bpp pattern nibble; RGB is taken from that exact completed native frame.",
+  "nativeFps": {
+    "numerator": 53693175,
+    "denominator": 896040
+  },
+  "neverDisappears": true,
+  "presentationRule": "One continuous colour pulse; retain the same animated overlay when changing the selected cell. Do not animate CSS opacity or recolour the artwork.",
+  "focus": {
+    "yard": {
+      "phases": [
+        {
+          "phase": 0,
+          "path": "focus/yard/phase-0.png",
+          "sourceSample": 16,
+          "nativeFrames": 8,
+          "width": 32,
+          "height": 24,
+          "opaquePixels": 208,
+          "rgbaSha256": "2fc8597ee5493c44bca58d663b50a314713bbd1072643b2d0966db7e3f92bb6f",
+          "sha256": "082597d09429927453c8774acce85636a1b04d1f5f9dcc42eea8617938e9dec0"
+        },
+        {
+          "phase": 1,
+          "path": "focus/yard/phase-1.png",
+          "sourceSample": 8,
+          "nativeFrames": 8,
+          "width": 32,
+          "height": 24,
+          "opaquePixels": 208,
+          "rgbaSha256": "5922bacb897322565e37d82e3d981607d3d3994257ebd95c9ec11fd2305000e0",
+          "sha256": "206fa6393b23cfa7d2319b3f4cb28e5040f3ac32e35200797540070b4b89f69a"
+        },
+        {
+          "phase": 2,
+          "path": "focus/yard/phase-2.png",
+          "sourceSample": 0,
+          "nativeFrames": 8,
+          "width": 32,
+          "height": 24,
+          "opaquePixels": 208,
+          "rgbaSha256": "1427d34cc0f66b37857175ebedbbbe91463c0528ff07d3f2b7c7f13384780692",
+          "sha256": "8049a5ea976041aae681e77f7f4f639a5de832d13a414450a996f675e3fba85b"
+        },
+        {
+          "phase": 3,
+          "path": "focus/yard/phase-3.png",
+          "sourceSample": 8,
+          "nativeFrames": 8,
+          "width": 32,
+          "height": 24,
+          "opaquePixels": 208,
+          "rgbaSha256": "5922bacb897322565e37d82e3d981607d3d3994257ebd95c9ec11fd2305000e0",
+          "sha256": "206fa6393b23cfa7d2319b3f4cb28e5040f3ac32e35200797540070b4b89f69a"
+        }
+      ],
+      "animatedPath": "focus/yard/pulse.png",
+      "animatedSha256": "02adb524e0088b659d3eac3a6dfcb4ff8a76e917bf6e482ba547f8f99775005d",
+      "phaseNativeFrames": 8,
+      "cycleNativeFrames": 32,
+      "phaseMilliseconds": 133.5052360006649,
+      "cycleMilliseconds": 534.0209440026596,
+      "nativePhaseDelay": {
+        "numerator": 477888,
+        "denominator": 3579545
+      },
+      "apngPhaseDelay": {
+        "numerator": 2537,
+        "denominator": 19003
+      },
+      "apngDelayErrorNanoseconds": 0.014701105869600304,
+      "observedNativeRgb": [
+        [
+          109,
+          0,
+          0
+        ],
+        [
+          182,
+          0,
+          0
+        ],
+        [
+          255,
+          0,
+          0
+        ]
+      ],
+      "sourceTimelineSha256": "6a2ee17153af4330372c988f9c314de2cef08f79770042f0a931cc4ff8fa5cf1"
+    },
+    "starport": {
+      "phases": [
+        {
+          "phase": 0,
+          "path": "focus/starport/phase-0.png",
+          "sourceSample": 0,
+          "nativeFrames": 16,
+          "width": 32,
+          "height": 24,
+          "opaquePixels": 208,
+          "rgbaSha256": "2743a9588688a4f9165f51eaa76f03398d4c988ffe0fb7d29165a8a069a7b1b9",
+          "sha256": "8e2aab951648bc1573b7da06e403370194a8b3af7d88f0999b92d4b4250e60e8"
+        },
+        {
+          "phase": 1,
+          "path": "focus/starport/phase-1.png",
+          "sourceSample": 3,
+          "nativeFrames": 16,
+          "width": 32,
+          "height": 24,
+          "opaquePixels": 208,
+          "rgbaSha256": "c2947240ccf1d2bdadb4c50e4d3d31986592e99a7f0c46a6430e3fd92f3a8941",
+          "sha256": "2b071f1943090e872c31596e227e3d33124ab95cc6cec4d8cb8be0d521a71f4d"
+        },
+        {
+          "phase": 2,
+          "path": "focus/starport/phase-2.png",
+          "sourceSample": 19,
+          "nativeFrames": 16,
+          "width": 32,
+          "height": 24,
+          "opaquePixels": 208,
+          "rgbaSha256": "657072d3e22a299b0d467d7f3cb8b17a05390394d1de59ea8b02255139833fda",
+          "sha256": "43e96795e6a079d1a91afd41b42290d80bca0ffcdacfdf73ac8e6ec8f776d2ab"
+        },
+        {
+          "phase": 3,
+          "path": "focus/starport/phase-3.png",
+          "sourceSample": 3,
+          "nativeFrames": 16,
+          "width": 32,
+          "height": 24,
+          "opaquePixels": 208,
+          "rgbaSha256": "c2947240ccf1d2bdadb4c50e4d3d31986592e99a7f0c46a6430e3fd92f3a8941",
+          "sha256": "2b071f1943090e872c31596e227e3d33124ab95cc6cec4d8cb8be0d521a71f4d"
+        }
+      ],
+      "animatedPath": "focus/starport/pulse.png",
+      "animatedSha256": "6471f1147ba853e1fb47040f8c8e6c10208035c1e37e5d0d5af5e460e10d6330",
+      "phaseNativeFrames": 16,
+      "cycleNativeFrames": 64,
+      "phaseMilliseconds": 267.0104720013298,
+      "cycleMilliseconds": 1068.0418880053192,
+      "nativePhaseDelay": {
+        "numerator": 955776,
+        "denominator": 3579545
+      },
+      "apngPhaseDelay": {
+        "numerator": 5074,
+        "denominator": 19003
+      },
+      "apngDelayErrorNanoseconds": 0.029402211739200608,
+      "observedNativeRgb": [
+        [
+          0,
+          109,
+          0
+        ],
+        [
+          0,
+          182,
+          0
+        ],
+        [
+          0,
+          255,
+          0
+        ]
+      ],
+      "sourceTimelineSha256": "663218cb4d1a7ebb8f7d5609b2b3aa2702257d02c090b37842c895476d2a05f1"
+    }
+  },
+  "verification": {
+    "yard": {
+      "sampleLine": -1,
+      "frameRange": [
+        3606,
+        3925
+      ],
+      "adaptedMismatchFrames": 0,
+      "legacyMismatchFrames": 0,
+      "borderMismatchFrames": 0,
+      "redLedMismatchFrames": 0,
+      "greenRingMismatchFrames": 0,
+      "phaseCounts": [
+        80,
+        80,
+        80,
+        80
+      ],
+      "nativeSamples": 320,
+      "sha256": "6a2ee17153af4330372c988f9c314de2cef08f79770042f0a931cc4ff8fa5cf1"
+    },
+    "starport": {
+      "sampleLine": -1,
+      "frameRange": [
+        3566,
+        3885
+      ],
+      "adaptedMismatchFrames": 0,
+      "legacyMismatchFrames": 187,
+      "borderMismatchFrames": 0,
+      "redLedMismatchFrames": 30,
+      "greenRingMismatchFrames": 0,
+      "phaseCounts": [
+        80,
+        80,
+        80,
+        80
+      ],
+      "nativeSamples": 320,
+      "sha256": "663218cb4d1a7ebb8f7d5609b2b3aa2702257d02c090b37842c895476d2a05f1"
+    },
+    "yard-midline100": {
+      "sampleLine": 100,
+      "frameRange": [
+        3606,
+        3926
+      ],
+      "adaptedMismatchFrames": 0,
+      "legacyMismatchFrames": 116,
+      "borderMismatchFrames": 40,
+      "redLedMismatchFrames": 32,
+      "greenRingMismatchFrames": 43,
+      "phaseCounts": [
+        80,
+        80,
+        80,
+        80
+      ],
+      "nativeSamples": 320,
+      "sha256": "c429cc96848c2502ee0e14fb1162fe6f9dcbfda942c5501e30e26bdaf7c39fb5"
+    },
+    "starport-midline100": {
+      "sampleLine": 100,
+      "frameRange": [
+        3566,
+        3886
+      ],
+      "adaptedMismatchFrames": 0,
+      "legacyMismatchFrames": 229,
+      "borderMismatchFrames": 20,
+      "redLedMismatchFrames": 45,
+      "greenRingMismatchFrames": 0,
+      "phaseCounts": [
+        80,
+        80,
+        80,
+        80
+      ],
+      "nativeSamples": 320,
+      "sha256": "14c23b84e15ec1da434d9e6c47d5aa719f2b1618c15297df79d3b2bb22c5e26c"
+    }
+  },
+  "yardIndicatorTiming": {
+    "scope": "Observed original idle Yard menu; Starport uses a separate helper and is not assigned these counters.",
+    "nativeHelper": "007F90",
+    "nativeRandomFunction": "000C0C",
+    "rule": "SUBQ happens before the nonnegative check; a reload value N lasts N+1 helper calls. Two decrements per completed native frame were observed for every interval without a reload. Graphics may choose the same state again, so visible run lengths can exceed one timer interval.",
+    "counters": {
+      "BFAC": {
+        "component": null,
+        "reloadInclusive": [
+          7,
+          27
+        ],
+        "reloadIntervalHelperCalls": [
+          8,
+          28
+        ],
+        "observedCounterDecrementPerNativeFrame": 2,
+        "observedReloadIntervalsNativeFrames": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "visibleStateMayRepeat": true
+      },
+      "BFAE": {
+        "component": "green indicator core [180,24,2,2]",
+        "reloadInclusive": [
+          4,
+          11
+        ],
+        "reloadIntervalHelperCalls": [
+          5,
+          12
+        ],
+        "observedCounterDecrementPerNativeFrame": 2,
+        "observedReloadIntervalsNativeFrames": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "visibleStateMayRepeat": true
+      },
+      "BFB0": {
+        "component": "red indicator",
+        "reloadInclusive": [
+          7,
+          17
+        ],
+        "reloadIntervalHelperCalls": [
+          8,
+          18
+        ],
+        "observedCounterDecrementPerNativeFrame": 2,
+        "observedReloadIntervalsNativeFrames": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "visibleStateMayRepeat": true
+      }
+    },
+    "combinedGreenCrop": "[172,12,16,16] contains four states: two native green-core states and a separate 21-pixel top-metal flash in [172..182,13..14]."
+  },
+  "filesBytes": 1782
+}

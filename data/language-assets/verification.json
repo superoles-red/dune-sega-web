@@ -1,0 +1,27 @@
+{
+  "pass": true,
+  "runtimeLocales": [
+    "en",
+    "ru"
+  ],
+  "sourceLiteralRecordsVerified": 518,
+  "keysPerLocale": 259,
+  "campaignTextRecordsPerLocale": 111,
+  "buildingNamesPerLocale": 19,
+  "unitNamesPerLocale": 27,
+  "nativeCommandPngs": 12,
+  "russianTutorialOriginalFramesPixelExact": 33,
+  "russianTutorialSourceGlyphCorrectedFrames": 16,
+  "guideRecoveredSourceGlyphsVerified": 31,
+  "outsideGuideModifiedTextAndPlateAreasIdentical": true,
+  "englishAsciiGlyphs": 94,
+  "cyrillicUnicodeGlyphsIncludingCaseAliases": 66,
+  "derivedCyrillicGlyphs": [
+    "Ё"
+  ],
+  "rawOperatorPathsAbsentFromRuntimeJson": true,
+  "runtimeBytes": 317712,
+  "sourceRomsUnchanged": true,
+  "manifestSha256": "e5cbaabbe1578a0c86251f765bddc478a8471f681476c396592b89ecfa2b80b2",
+  "runtimeManifestSha256": "0edec901218a992b4166bef89d908b8fa2426d010843c026a459e86541ca8001"
+}

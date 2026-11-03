@@ -1,0 +1,465 @@
+{
+  "version": 2,
+  "source": {
+    "nativeContext": 3,
+    "rgb": ".local/building-ui-fixtures/house1-building11.rgb",
+    "rgbSha256": "8344f187356580fcc25fd102dccb066245863303944ec54ded7f48a851014bdd",
+    "rgbBytes": 215040,
+    "game": "Dune The Battle for Arrakis Sega USA"
+  },
+  "policy": "Exact original Starport RGB pixels. No recolouring or generic Yard substitutes. Only the rolling-cash glyph aperture is replaced with its own original black interior sample. Complete native outer corners stay1:1; straight8pixel grain profiles repeat only on their own axis.",
+  "parts": {
+    "starport-body-fill": {
+      "path": "starport/starport-body-fill.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        136,
+        88,
+        8,
+        8
+      ],
+      "transparent": false,
+      "sha256": "1f0afee35979b288f41f253191823a9dee59ef151be9703f977af4a9d3b4386c",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-monitor-stack": {
+      "path": "starport/starport-monitor-stack.png",
+      "width": 112,
+      "height": 84,
+      "sourceRect": [
+        152,
+        32,
+        112,
+        84
+      ],
+      "transparent": false,
+      "sha256": "018eacedde0cf5c917f0be4c1ffd4e009021a09d57a2865ccc7de24458dae005",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-resource-vent": {
+      "path": "starport/starport-resource-vent.png",
+      "width": 40,
+      "height": 64,
+      "sourceRect": [
+        272,
+        152,
+        40,
+        64
+      ],
+      "transparent": false,
+      "sha256": "be0a90835b7d1c679d3ea4cf520f9be1ea52f4bb492398f271cc6c875e2de23a",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-resource-dollar": {
+      "path": "starport/starport-resource-dollar.png",
+      "width": 24,
+      "height": 24,
+      "sourceRect": [
+        156,
+        116,
+        24,
+        24
+      ],
+      "transparent": false,
+      "sha256": "d0847b9197c3c8138a255515092cbdbb35a2f4d43bb5bcf180d7dce36ca6548d",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-resource-power": {
+      "path": "starport/starport-resource-power.png",
+      "width": 24,
+      "height": 24,
+      "sourceRect": [
+        156,
+        148,
+        24,
+        24
+      ],
+      "transparent": false,
+      "sha256": "3e504fe8c5a6566f0bfbbf397ca7610a07527681bf27fc5e03881bd7b42ccd23",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-resource-armor": {
+      "path": "starport/starport-resource-armor.png",
+      "width": 24,
+      "height": 24,
+      "sourceRect": [
+        156,
+        180,
+        24,
+        24
+      ],
+      "transparent": false,
+      "sha256": "5ca8d23e7b84010549e09d7cc3325e96385b241e67724fbe3bfc438c86403820",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-command-cabinet-tl": {
+      "path": "starport/starport-command-cabinet-tl.png",
+      "width": 20,
+      "height": 12,
+      "sourceRect": [
+        12,
+        36,
+        20,
+        12
+      ],
+      "transparent": true,
+      "sha256": "e9f376a5b2f665f0178fe8b2a9915c37e93f961e3355761f812c9e4cc2d29480",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-command-cabinet-tr": {
+      "path": "starport/starport-command-cabinet-tr.png",
+      "width": 16,
+      "height": 12,
+      "sourceRect": [
+        128,
+        36,
+        16,
+        12
+      ],
+      "transparent": true,
+      "sha256": "aa25b21bbd4d4f139b44e4721eccd52be624798659a2a3e13308f2e8a4984880",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-command-cabinet-bl": {
+      "path": "starport/starport-command-cabinet-bl.png",
+      "width": 20,
+      "height": 20,
+      "sourceRect": [
+        12,
+        144,
+        20,
+        20
+      ],
+      "transparent": true,
+      "sha256": "131faccaab482cc3cea328d09de416bcdcf7afa0f46c31ce7313ac09ed1c2ce1",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-command-cabinet-br": {
+      "path": "starport/starport-command-cabinet-br.png",
+      "width": 16,
+      "height": 20,
+      "sourceRect": [
+        128,
+        144,
+        16,
+        20
+      ],
+      "transparent": true,
+      "sha256": "cc62f4b94f4e7c90a4d2935b3ec7031c4849fe6d562bae975dbff3454c464356",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-command-cabinet-top": {
+      "path": "starport/starport-command-cabinet-top.png",
+      "width": 8,
+      "height": 12,
+      "sourceRect": [
+        40,
+        36,
+        8,
+        12
+      ],
+      "transparent": true,
+      "sha256": "3716af47b89080893810570e105ed879c7cd210c379ebc72d9a0dab39110bfee",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-command-cabinet-bottom": {
+      "path": "starport/starport-command-cabinet-bottom.png",
+      "width": 8,
+      "height": 20,
+      "sourceRect": [
+        40,
+        144,
+        8,
+        20
+      ],
+      "transparent": true,
+      "sha256": "eb0b162ef7681506dbc1b0e6b550a1396d610efc18afffccbb1841f1164152fc",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-command-cabinet-left": {
+      "path": "starport/starport-command-cabinet-left.png",
+      "width": 20,
+      "height": 96,
+      "sourceRect": [
+        12,
+        48,
+        20,
+        96
+      ],
+      "transparent": true,
+      "sha256": "fd4023d7fa1fe87ee376f605cad7eff01f521700ef0abf95d7dbab446b7da8f7",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-command-cabinet-right": {
+      "path": "starport/starport-command-cabinet-right.png",
+      "width": 16,
+      "height": 96,
+      "sourceRect": [
+        128,
+        48,
+        16,
+        96
+      ],
+      "transparent": true,
+      "sha256": "b5b782e2b5550635c1f1b1f50b9b70e70bac93624181ec18287d55be4bfcc112",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-command-cabinet-left-middle": {
+      "path": "starport/starport-command-cabinet-left-middle.png",
+      "width": 20,
+      "height": 8,
+      "sourceRect": [
+        12,
+        104,
+        20,
+        8
+      ],
+      "transparent": false,
+      "sha256": "d58416da00a2981a9870fa374772d2551a66127d8938ca85ee6d11b28fa9f351",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-command-cabinet-right-middle": {
+      "path": "starport/starport-command-cabinet-right-middle.png",
+      "width": 16,
+      "height": 8,
+      "sourceRect": [
+        128,
+        104,
+        16,
+        8
+      ],
+      "transparent": false,
+      "sha256": "33b37bffa56454715647379e9a05a6d3dfa8b8c01247a6304aa527676889cd6f",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-cabinet-brace": {
+      "path": "starport/starport-cabinet-brace.png",
+      "width": 48,
+      "height": 16,
+      "sourceRect": [
+        56,
+        148,
+        48,
+        16
+      ],
+      "transparent": false,
+      "sha256": "02ff8be3a009a72cb564c268e8b13112a040ecb532e8aa60e957ed5ac8634609",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-cash-window-clean-left": {
+      "path": "starport/starport-cash-window-clean-left.png",
+      "width": 8,
+      "height": 12,
+      "sourceRect": [
+        230,
+        14,
+        8,
+        12
+      ],
+      "transparent": false,
+      "sha256": "366e7433ab5eae8dbdd58a4db234788904fffa282d4e0698c3f86dfe61f2ace7",
+      "role": "original-Starport-native-chrome",
+      "nativeBlankGlyphAperture": true
+    },
+    "starport-cash-window-clean-middle": {
+      "path": "starport/starport-cash-window-clean-middle.png",
+      "width": 1,
+      "height": 12,
+      "sourceRect": [
+        238,
+        14,
+        1,
+        12
+      ],
+      "transparent": false,
+      "sha256": "8b47eec79db6d29926fea2c0668f37f7b17625536024dda0da5a338919fd37e9",
+      "role": "original-Starport-native-chrome",
+      "nativeBlankGlyphAperture": true
+    },
+    "starport-cash-window-clean-right": {
+      "path": "starport/starport-cash-window-clean-right.png",
+      "width": 8,
+      "height": 12,
+      "sourceRect": [
+        291,
+        14,
+        8,
+        12
+      ],
+      "transparent": false,
+      "sha256": "c740ddd469cc784a2442f294d5e308f649d658ac1ad28b98997a5db8f7706f19",
+      "role": "original-Starport-native-chrome",
+      "nativeBlankGlyphAperture": true
+    },
+    "starport-meter-window-left": {
+      "path": "starport/starport-meter-window-left.png",
+      "width": 8,
+      "height": 16,
+      "sourceRect": [
+        188,
+        124,
+        8,
+        16
+      ],
+      "transparent": false,
+      "sha256": "8a83260e382145f16e1a97d132e3e2b9f9c318abef66d6714b4d2a5b955d524e",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-meter-window-middle": {
+      "path": "starport/starport-meter-window-middle.png",
+      "width": 1,
+      "height": 16,
+      "sourceRect": [
+        196,
+        124,
+        1,
+        16
+      ],
+      "transparent": false,
+      "sha256": "9eeb3a67540c6e25d0b28d018cd37f7b81680a2428912ece298271b8438fa715",
+      "role": "original-Starport-native-chrome"
+    },
+    "starport-meter-window-right": {
+      "path": "starport/starport-meter-window-right.png",
+      "width": 8,
+      "height": 16,
+      "sourceRect": [
+        252,
+        124,
+        8,
+        16
+      ],
+      "transparent": false,
+      "sha256": "d7c56cb5d961494617a246943b199b4ab131a04d82dfcfcf00f7d9d0cae0ec0a",
+      "role": "original-Starport-native-chrome"
+    }
+  },
+  "modules": {
+    "starport-command-cabinet": {
+      "kind": "native-banded-nine-slice",
+      "nativeRect": [
+        12,
+        36,
+        132,
+        128
+      ],
+      "insets": [
+        20,
+        12,
+        16,
+        20
+      ],
+      "frameOnly": true,
+      "pieces": {
+        "tl": "starport-command-cabinet-tl",
+        "tr": "starport-command-cabinet-tr",
+        "bl": "starport-command-cabinet-bl",
+        "br": "starport-command-cabinet-br",
+        "top": "starport-command-cabinet-top",
+        "bottom": "starport-command-cabinet-bottom",
+        "left": "starport-command-cabinet-left",
+        "right": "starport-command-cabinet-right"
+      },
+      "viewportInsets": [
+        20,
+        12,
+        16,
+        20
+      ],
+      "repeatPeriod": 8,
+      "profileAxes": {
+        "top": "x",
+        "bottom": "x",
+        "left": "y",
+        "right": "y"
+      },
+      "sideBands": {
+        "top": 56,
+        "bottom": 32,
+        "middleParts": {
+          "left": "starport-command-cabinet-left-middle",
+          "right": "starport-command-cabinet-right-middle"
+        },
+        "rule": "Keep original side connectors and shaded lower transition once. Extend only the8pixel quiet dither band at native y104."
+      }
+    },
+    "starport-cash-window-clean": {
+      "kind": "three-slice-repeat-x",
+      "nativeRect": [
+        230,
+        14,
+        69,
+        12
+      ],
+      "fixedHeight": 12,
+      "pieces": {
+        "left": "starport-cash-window-clean-left",
+        "middle": "starport-cash-window-clean-middle",
+        "right": "starport-cash-window-clean-right"
+      },
+      "insets": [
+        8,
+        0,
+        8,
+        0
+      ]
+    },
+    "starport-meter-window": {
+      "kind": "three-slice-repeat-x",
+      "nativeRect": [
+        188,
+        124,
+        72,
+        16
+      ],
+      "fixedHeight": 16,
+      "pieces": {
+        "left": "starport-meter-window-left",
+        "middle": "starport-meter-window-middle",
+        "right": "starport-meter-window-right"
+      },
+      "insets": [
+        8,
+        0,
+        8,
+        0
+      ]
+    }
+  },
+  "bodyNativeRgbSample": [
+    145,
+    145,
+    145
+  ],
+  "junctionProof": {
+    "nativeViewport": [
+      32,
+      48,
+      96,
+      96
+    ],
+    "nativeOuterCabinet": [
+      12,
+      36,
+      132,
+      128
+    ],
+    "oldInnerCrop": [
+      24,
+      40,
+      112,
+      112
+    ],
+    "monitorBottomExclusive": 116,
+    "nextNativeDollarTop": 116,
+    "monitorNeverIncludesDollarPixels": true,
+    "nativeCabinetBrace": [
+      56,
+      148,
+      48,
+      16
+    ],
+    "noArtificialGreenTint": "Native chrome is grayscale; native button/unit backgrounds intentionally include RGB145/145/182."
+  }
+}

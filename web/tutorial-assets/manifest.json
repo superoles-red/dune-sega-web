@@ -1,0 +1,520 @@
+{
+  "version": 2,
+  "nativeSize": [
+    320,
+    224
+  ],
+  "source": {
+    "romSha256": "b1bbe73186e0902fa8b2db0f227bf306e3d6a80fe592f927d1aa9d60c0f335ba",
+    "generatedSourceSha256": "e3055a76cd0eeb151591984a2c12312dcea49754afa0edee9f84889814ad1578",
+    "baseRepository": "https://github.com/andvolodko/dune2-sega-web",
+    "baseRevision": "56c6a6da10",
+    "baseOrigin": "existing inspected local checkout; ROM bytes equal operator-supplied file",
+    "runtime": "Original machine instructions translated ahead of time to C / WebAssembly; browser host scheduling patches only"
+  },
+  "captureTool": "tools/capture_modern_tutorial_native.c",
+  "extractor": "tools/extend_tutorial_native.py",
+  "captureIndexSha256": "9b8192efa6e18ef6c5bc105a8a6c6c70547b2ac119357de7dcf57f8727d18297",
+  "capturePolicy": "Genuine original Main to Tutorial route from the canonical cold-boot frontend CPU; original scripts run without synthetic orders, jumps or a new game simulation.",
+  "presentationPolicy": "Only33 original terrain, unit and building descriptions, with complete320x224 source composition and bounded manual page navigation. The guide loads no practice fixture and polls no native state.",
+  "cropPolicy": "Every card preserves the full original320x224 frame.",
+  "assets": {
+    "native-descriptions": {
+      "path": "art/native-descriptions.png",
+      "width": 320,
+      "height": 224,
+      "sheetWidth": 1280,
+      "sheetHeight": 2016,
+      "columns": 4,
+      "frames": 33,
+      "frameMs": null,
+      "manualFrames": true,
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "sourceFrames": [
+        {
+          "relativeFrame": 300,
+          "nativeFrame": 2591,
+          "sourceRgbSha256": "1987d166063ae41fa212bc777c0488bcd5d051232c33c02a783b566bc3ec3a8f",
+          "cropRgbSha256": "1987d166063ae41fa212bc777c0488bcd5d051232c33c02a783b566bc3ec3a8f"
+        },
+        {
+          "relativeFrame": 600,
+          "nativeFrame": 2891,
+          "sourceRgbSha256": "6997ad81beeec257e92808feffed4af4dfe1aa4da58a01213931814b7a7962ba",
+          "cropRgbSha256": "6997ad81beeec257e92808feffed4af4dfe1aa4da58a01213931814b7a7962ba"
+        },
+        {
+          "relativeFrame": 1200,
+          "nativeFrame": 3491,
+          "sourceRgbSha256": "c4d56225c6b69fdbb9b4648859fafab6b7ab3eedbfc1a59ccc6164d126cd1bd2",
+          "cropRgbSha256": "c4d56225c6b69fdbb9b4648859fafab6b7ab3eedbfc1a59ccc6164d126cd1bd2"
+        },
+        {
+          "relativeFrame": 1500,
+          "nativeFrame": 3791,
+          "sourceRgbSha256": "631fc1c48e8ccb40788d1c9ef5db666cb10013d91772f571d90ba1b1e0a720a3",
+          "cropRgbSha256": "631fc1c48e8ccb40788d1c9ef5db666cb10013d91772f571d90ba1b1e0a720a3"
+        },
+        {
+          "relativeFrame": 1800,
+          "nativeFrame": 4091,
+          "sourceRgbSha256": "020f59938bdfe9d31ae2fa4455118b348e6f0b4ce503d6be64ea6e23a28e13b1",
+          "cropRgbSha256": "020f59938bdfe9d31ae2fa4455118b348e6f0b4ce503d6be64ea6e23a28e13b1"
+        },
+        {
+          "relativeFrame": 2700,
+          "nativeFrame": 4991,
+          "sourceRgbSha256": "b21e9e8100efc76fd6da0041aef90082bb9d885a52f48072db832171377028e6",
+          "cropRgbSha256": "b21e9e8100efc76fd6da0041aef90082bb9d885a52f48072db832171377028e6"
+        },
+        {
+          "relativeFrame": 3000,
+          "nativeFrame": 5291,
+          "sourceRgbSha256": "1e9b4593800a1cb1d3cc95c4216ae8b3999a254c7e829576c5fbf916497538c6",
+          "cropRgbSha256": "1e9b4593800a1cb1d3cc95c4216ae8b3999a254c7e829576c5fbf916497538c6"
+        },
+        {
+          "relativeFrame": 3600,
+          "nativeFrame": 5891,
+          "sourceRgbSha256": "d2d1f00a377815661897febcbda593e891bacd4542e9b67f983bb43bed5aa428",
+          "cropRgbSha256": "d2d1f00a377815661897febcbda593e891bacd4542e9b67f983bb43bed5aa428"
+        },
+        {
+          "relativeFrame": 3900,
+          "nativeFrame": 6191,
+          "sourceRgbSha256": "d04012943cb88c8a4f2dbbdb62246e3b522eeb75d28fc8202470f48c334c11a7",
+          "cropRgbSha256": "d04012943cb88c8a4f2dbbdb62246e3b522eeb75d28fc8202470f48c334c11a7"
+        },
+        {
+          "relativeFrame": 4200,
+          "nativeFrame": 6491,
+          "sourceRgbSha256": "2fb6f8015c5b844332ac0c2b861fee6e07cba72ff1498258b9fb9deb15a04ed5",
+          "cropRgbSha256": "2fb6f8015c5b844332ac0c2b861fee6e07cba72ff1498258b9fb9deb15a04ed5"
+        },
+        {
+          "relativeFrame": 4800,
+          "nativeFrame": 7091,
+          "sourceRgbSha256": "c45970607411eaac840af6ed20f127323142b6966b404668999891d1c1d3d9ad",
+          "cropRgbSha256": "c45970607411eaac840af6ed20f127323142b6966b404668999891d1c1d3d9ad"
+        },
+        {
+          "relativeFrame": 5100,
+          "nativeFrame": 7391,
+          "sourceRgbSha256": "3b840069c735250bc52f72b2dd9b236e4b49cb64cdc5bf5ea201275e3a70f8f3",
+          "cropRgbSha256": "3b840069c735250bc52f72b2dd9b236e4b49cb64cdc5bf5ea201275e3a70f8f3"
+        },
+        {
+          "relativeFrame": 5400,
+          "nativeFrame": 7691,
+          "sourceRgbSha256": "27a872ba5d5ec25ba6f305c9d77ff3d7160dbd7b307621ea649a16133171308b",
+          "cropRgbSha256": "27a872ba5d5ec25ba6f305c9d77ff3d7160dbd7b307621ea649a16133171308b"
+        },
+        {
+          "relativeFrame": 6000,
+          "nativeFrame": 8291,
+          "sourceRgbSha256": "0fd26271a314bce003234a348087ae87b2895f53bffa16aab651f2a01fff947c",
+          "cropRgbSha256": "0fd26271a314bce003234a348087ae87b2895f53bffa16aab651f2a01fff947c"
+        },
+        {
+          "relativeFrame": 6300,
+          "nativeFrame": 8591,
+          "sourceRgbSha256": "8973aca84013d760ffc454b7f7786dc5a2edecd436d65853a2ba5608ff2d30f3",
+          "cropRgbSha256": "8973aca84013d760ffc454b7f7786dc5a2edecd436d65853a2ba5608ff2d30f3"
+        },
+        {
+          "relativeFrame": 6600,
+          "nativeFrame": 8891,
+          "sourceRgbSha256": "7f436602ab028b8c52f957279a28e4e7f9d08c289e63a1e18d322490bf76465b",
+          "cropRgbSha256": "7f436602ab028b8c52f957279a28e4e7f9d08c289e63a1e18d322490bf76465b"
+        },
+        {
+          "relativeFrame": 7200,
+          "nativeFrame": 9491,
+          "sourceRgbSha256": "afb1d7172ce7208da1ca5f065eeed1225146d7b6a26935246263e9f2dc0a5cf7",
+          "cropRgbSha256": "afb1d7172ce7208da1ca5f065eeed1225146d7b6a26935246263e9f2dc0a5cf7"
+        },
+        {
+          "relativeFrame": 7500,
+          "nativeFrame": 9791,
+          "sourceRgbSha256": "a9a086f4f5ad8142f8a9d0ceea19a9b8f2557b5f598b67591005c021f8f1e653",
+          "cropRgbSha256": "a9a086f4f5ad8142f8a9d0ceea19a9b8f2557b5f598b67591005c021f8f1e653"
+        },
+        {
+          "relativeFrame": 7800,
+          "nativeFrame": 10091,
+          "sourceRgbSha256": "5a21a1e483572b558e6e1c340583f266a7c27acdb3b3ab51882f1c174052518b",
+          "cropRgbSha256": "5a21a1e483572b558e6e1c340583f266a7c27acdb3b3ab51882f1c174052518b"
+        },
+        {
+          "relativeFrame": 8700,
+          "nativeFrame": 10991,
+          "sourceRgbSha256": "d8946ab4925c8a98e1c8d27473d5b34a50b10d0f74be65917033cd462b79b996",
+          "cropRgbSha256": "d8946ab4925c8a98e1c8d27473d5b34a50b10d0f74be65917033cd462b79b996"
+        },
+        {
+          "relativeFrame": 9300,
+          "nativeFrame": 11591,
+          "sourceRgbSha256": "f51f9f4a20ac68d0133d9dc86af8c13ee2db0a56ea353d92f9249203a1680980",
+          "cropRgbSha256": "f51f9f4a20ac68d0133d9dc86af8c13ee2db0a56ea353d92f9249203a1680980"
+        },
+        {
+          "relativeFrame": 9600,
+          "nativeFrame": 11891,
+          "sourceRgbSha256": "91a2323ca54bd6bf0385a7dc3b5a4e1427ee79cdabcf0b5285151f1b5fbef6f0",
+          "cropRgbSha256": "91a2323ca54bd6bf0385a7dc3b5a4e1427ee79cdabcf0b5285151f1b5fbef6f0"
+        },
+        {
+          "relativeFrame": 9900,
+          "nativeFrame": 12191,
+          "sourceRgbSha256": "44fa4bd11bee44ef17ad12f44c91dcb6aa0267d48ba8d0bb6af1e30c2d728703",
+          "cropRgbSha256": "44fa4bd11bee44ef17ad12f44c91dcb6aa0267d48ba8d0bb6af1e30c2d728703"
+        },
+        {
+          "relativeFrame": 10500,
+          "nativeFrame": 12791,
+          "sourceRgbSha256": "ee72b3d764e58a1bf27b355a2926f0fc0bb108d2feb1ebe9421e9646c1da0c07",
+          "cropRgbSha256": "ee72b3d764e58a1bf27b355a2926f0fc0bb108d2feb1ebe9421e9646c1da0c07"
+        },
+        {
+          "relativeFrame": 10800,
+          "nativeFrame": 13091,
+          "sourceRgbSha256": "07c8f97c45852ed107dad24b90909f02eeb8d0e7d95578d4c149c62453e4d84c",
+          "cropRgbSha256": "07c8f97c45852ed107dad24b90909f02eeb8d0e7d95578d4c149c62453e4d84c"
+        },
+        {
+          "relativeFrame": 11100,
+          "nativeFrame": 13391,
+          "sourceRgbSha256": "b7c31948c050a0a69fe970a99a0d95e4da5d6826709a39bf089a10a4152ffc1d",
+          "cropRgbSha256": "b7c31948c050a0a69fe970a99a0d95e4da5d6826709a39bf089a10a4152ffc1d"
+        },
+        {
+          "relativeFrame": 11700,
+          "nativeFrame": 13991,
+          "sourceRgbSha256": "28afe01fefbf544982dd5c97b0bdc5d95b62c4da7156c2bebaf5fb1a7aa0fca3",
+          "cropRgbSha256": "28afe01fefbf544982dd5c97b0bdc5d95b62c4da7156c2bebaf5fb1a7aa0fca3"
+        },
+        {
+          "relativeFrame": 12000,
+          "nativeFrame": 14291,
+          "sourceRgbSha256": "58e3b7256f5d8f857ed41f56581637a90fb9e219c501ad8a563e3f02675bb979",
+          "cropRgbSha256": "58e3b7256f5d8f857ed41f56581637a90fb9e219c501ad8a563e3f02675bb979"
+        },
+        {
+          "relativeFrame": 12300,
+          "nativeFrame": 14591,
+          "sourceRgbSha256": "445c63fdcf36dabb08aa125729d8b8be9ece8a7e8bdea21070f0615c51af5c28",
+          "cropRgbSha256": "445c63fdcf36dabb08aa125729d8b8be9ece8a7e8bdea21070f0615c51af5c28"
+        },
+        {
+          "relativeFrame": 12900,
+          "nativeFrame": 15191,
+          "sourceRgbSha256": "61cb1e2f091adc0886e6bc5e9490f36df0a7c438e025420fba6a44123e4eb85c",
+          "cropRgbSha256": "61cb1e2f091adc0886e6bc5e9490f36df0a7c438e025420fba6a44123e4eb85c"
+        },
+        {
+          "relativeFrame": 13200,
+          "nativeFrame": 15491,
+          "sourceRgbSha256": "d982fda738dc8c65e4530b9a4cf3afb52ca6588b08313a6ba39b5d572f6a69f4",
+          "cropRgbSha256": "d982fda738dc8c65e4530b9a4cf3afb52ca6588b08313a6ba39b5d572f6a69f4"
+        },
+        {
+          "relativeFrame": 13500,
+          "nativeFrame": 15791,
+          "sourceRgbSha256": "c509731519b977187d13fe83292765dba295a16e2aa13323177af87f3b995817",
+          "cropRgbSha256": "c509731519b977187d13fe83292765dba295a16e2aa13323177af87f3b995817"
+        },
+        {
+          "relativeFrame": 13980,
+          "nativeFrame": 16271,
+          "sourceRgbSha256": "c42165e739d4d848e3c12c01ee098f0576d427498b8c809971fccd18a1265c43",
+          "cropRgbSha256": "c42165e739d4d848e3c12c01ee098f0576d427498b8c809971fccd18a1265c43"
+        }
+      ],
+      "pngSha256": "29aa617fa60a1ef7e4189b0df8969b1dd9384bc5ae722020b44806fa7ac6e11a",
+      "pixelSha256": "40e012f8167d3f771b305760d1bc21c7484e83ede5a0103c76d9af7870af144c",
+      "scope": "All33 descriptive examples, complete original composition captured before the controller/instruction-button demonstration starts. Static manual cards, not a claimed full-rate animation."
+    }
+  },
+  "descriptions": [
+    {
+      "id": "sand",
+      "chapter": "terrain",
+      "title": "SAND",
+      "text": "All units can travel on sand.",
+      "asset": "native-descriptions",
+      "frameIndex": 0
+    },
+    {
+      "id": "spice",
+      "chapter": "terrain",
+      "title": "SPICE",
+      "text": "Harvest spice for credits.",
+      "asset": "native-descriptions",
+      "frameIndex": 1
+    },
+    {
+      "id": "dunes",
+      "chapter": "terrain",
+      "title": "SAND DUNES",
+      "text": "Sand dunes slow units down.",
+      "asset": "native-descriptions",
+      "frameIndex": 2
+    },
+    {
+      "id": "rock",
+      "chapter": "terrain",
+      "title": "ROCK",
+      "text": "Build your buildings on rock.",
+      "asset": "native-descriptions",
+      "frameIndex": 3
+    },
+    {
+      "id": "mountains",
+      "chapter": "terrain",
+      "title": "MOUNTAINS",
+      "text": "Vehicles cannot cross mountains. Infantry can pass.",
+      "asset": "native-descriptions",
+      "frameIndex": 4
+    },
+    {
+      "id": "harvester",
+      "chapter": "units",
+      "title": "HARVESTER",
+      "text": "Harvesters collect spice.",
+      "asset": "native-descriptions",
+      "frameIndex": 5
+    },
+    {
+      "id": "mcv",
+      "chapter": "units",
+      "title": "MCV",
+      "text": "Deploy an MCV to create a construction site.",
+      "asset": "native-descriptions",
+      "frameIndex": 6
+    },
+    {
+      "id": "infantry",
+      "chapter": "units",
+      "title": "INFANTRY",
+      "text": "Infantry have light armor.",
+      "asset": "native-descriptions",
+      "frameIndex": 7
+    },
+    {
+      "id": "trooper",
+      "chapter": "units",
+      "title": "TROOPER",
+      "text": "Troopers have light armor.",
+      "asset": "native-descriptions",
+      "frameIndex": 8
+    },
+    {
+      "id": "trike",
+      "chapter": "units",
+      "title": "TRIKE",
+      "text": "Trikes have light armor.",
+      "asset": "native-descriptions",
+      "frameIndex": 9
+    },
+    {
+      "id": "quad",
+      "chapter": "units",
+      "title": "QUAD",
+      "text": "Quads have light armor.",
+      "asset": "native-descriptions",
+      "frameIndex": 10
+    },
+    {
+      "id": "missile-tank",
+      "chapter": "units",
+      "title": "MISSILE TANK",
+      "text": "Missile Tanks have light armor.",
+      "asset": "native-descriptions",
+      "frameIndex": 11
+    },
+    {
+      "id": "combat-tank",
+      "chapter": "units",
+      "title": "COMBAT TANK",
+      "text": "Combat Tanks have medium armor.",
+      "asset": "native-descriptions",
+      "frameIndex": 12
+    },
+    {
+      "id": "siege-tank",
+      "chapter": "units",
+      "title": "SIEGE TANK",
+      "text": "Siege Tanks have heavy armor.",
+      "asset": "native-descriptions",
+      "frameIndex": 13
+    },
+    {
+      "id": "carryall",
+      "chapter": "units",
+      "title": "CARRYALL",
+      "text": "Carryalls transport vehicles.",
+      "asset": "native-descriptions",
+      "frameIndex": 14
+    },
+    {
+      "id": "ornithopter",
+      "chapter": "units",
+      "title": "ORNITHOPTER",
+      "text": "Ornithopters have light armor.",
+      "asset": "native-descriptions",
+      "frameIndex": 15
+    },
+    {
+      "id": "sonic-tank",
+      "chapter": "units",
+      "title": "SONIC TANK",
+      "text": "Sonic Tanks have medium armor.",
+      "asset": "native-descriptions",
+      "frameIndex": 16
+    },
+    {
+      "id": "death-hand",
+      "chapter": "units",
+      "title": "DEATH HAND",
+      "text": "A battlefield support missile.",
+      "asset": "native-descriptions",
+      "frameIndex": 17
+    },
+    {
+      "id": "devastator",
+      "chapter": "units",
+      "title": "DEVASTATOR",
+      "text": "Devastators have heavy armor.",
+      "asset": "native-descriptions",
+      "frameIndex": 18
+    },
+    {
+      "id": "yard",
+      "chapter": "buildings",
+      "title": "CONSTRUCTION YARD",
+      "text": "Use the Yard to build new structures.",
+      "asset": "native-descriptions",
+      "frameIndex": 19
+    },
+    {
+      "id": "windtrap",
+      "chapter": "buildings",
+      "title": "WINDTRAP",
+      "text": "Windtraps supply power to your buildings.",
+      "asset": "native-descriptions",
+      "frameIndex": 20
+    },
+    {
+      "id": "outpost",
+      "chapter": "buildings",
+      "title": "OUTPOST",
+      "text": "The Outpost displays an overview map.",
+      "asset": "native-descriptions",
+      "frameIndex": 21
+    },
+    {
+      "id": "barracks",
+      "chapter": "buildings",
+      "title": "BARRACKS",
+      "text": "Barracks produce infantry units.",
+      "asset": "native-descriptions",
+      "frameIndex": 22
+    },
+    {
+      "id": "refinery",
+      "chapter": "buildings",
+      "title": "REFINERY",
+      "text": "Refineries turn spice into credits.",
+      "asset": "native-descriptions",
+      "frameIndex": 23
+    },
+    {
+      "id": "silos",
+      "chapter": "buildings",
+      "title": "SILOS",
+      "text": "Silos provide extra storage for spice.",
+      "asset": "native-descriptions",
+      "frameIndex": 24
+    },
+    {
+      "id": "vehicle-factory",
+      "chapter": "buildings",
+      "title": "VEHICLE FACTORY",
+      "text": "Vehicle Factories produce vehicles.",
+      "asset": "native-descriptions",
+      "frameIndex": 25
+    },
+    {
+      "id": "repair",
+      "chapter": "buildings",
+      "title": "REPAIR FACILITY",
+      "text": "Repair Facilities repair damaged vehicles.",
+      "asset": "native-descriptions",
+      "frameIndex": 26
+    },
+    {
+      "id": "high-tech",
+      "chapter": "buildings",
+      "title": "HIGH TECH FACTORY",
+      "text": "High Tech Factories produce airborne units.",
+      "asset": "native-descriptions",
+      "frameIndex": 27
+    },
+    {
+      "id": "turret",
+      "chapter": "buildings",
+      "title": "TURRET",
+      "text": "Turrets provide close-range defense.",
+      "asset": "native-descriptions",
+      "frameIndex": 28
+    },
+    {
+      "id": "rocket-turret",
+      "chapter": "buildings",
+      "title": "ROCKET TURRET",
+      "text": "Rocket Turrets provide long-range defense.",
+      "asset": "native-descriptions",
+      "frameIndex": 29
+    },
+    {
+      "id": "starport",
+      "chapter": "buildings",
+      "title": "STARPORT",
+      "text": "Use the Starport to purchase vehicles.",
+      "asset": "native-descriptions",
+      "frameIndex": 30
+    },
+    {
+      "id": "palace",
+      "chapter": "buildings",
+      "title": "PALACE",
+      "text": "A command center awarded to chosen leaders.",
+      "asset": "native-descriptions",
+      "frameIndex": 31
+    },
+    {
+      "id": "wall",
+      "chapter": "buildings",
+      "title": "DEFENSIVE WALL",
+      "text": "Build walls to improve your defenses.",
+      "asset": "native-descriptions",
+      "frameIndex": 32
+    }
+  ],
+  "navigation": {
+    "kind": "bounded-pages",
+    "controls": [
+      "BACK",
+      "PREV",
+      "NEXT"
+    ],
+    "firstPrevDisabled": true,
+    "lastNextDisabled": true,
+    "back": "host-callback"
+  }
+}

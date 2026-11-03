@@ -1,0 +1,16 @@
+/* Offline capture of the real Sega tutorial, reached by the native Main route.
+ * No script rewrites, PC jumps, game-world simulation or gameplay patches.
+ * clang -std=c11 -O1 tools/capture_modern_tutorial_native.c -o .local/capture-modern-tutorial -lm
+ * .local/capture-modern-tutorial FRONTEND.cpu.bin OUT_DIR [frames=9000] [stride=30] [from1 to1 from2 to2]
+ */
+#define GENESIS_NO_MAIN
+#include "../.local/source/build/dune-base.c"
+#include "em_web_campaign.h"
+#include <sys/stat.h>
+static CPU c;static DuneMouse mouse;static const char*out;static FILE*index_file;
+static void check(int ok,const char*why){if(!ok){fprintf(stderr,"%s pc=%06x %s\n",why,c.pc,c.reason?c.reason:"");exit(1);}}
+static void write_file(const char*name,const char*suffix,const void*data,size_t n){char path[4096];snprintf(path,sizeof path,"%s/%s.%s",out,name,suffix);FILE*f=fopen(path,"wb");check(f&&fwrite(data,1,n,f)==n,"capture write");fclose(f);}
+static void capture(unsigned rel){char name[80];snprintf(name,sizeof name,"tutorial-%06u",rel);check(c.vdp.frame_width==320&&c.vdp.frame_height==224,"completed native size");write_file(name,"rgb",c.vdp.frame,320*224*3);fprintf(index_file,"{\"id\":\"%s\",\"relativeFrame\":%u,\"nativeFrame\":%llu,\"pc\":%u,\"scriptPointer\":%u,\"statePointer\":%u,\"scene\":\"%s\"}\n",name,rel,(unsigned long long)c.vdp.frames,c.pc,c.a[2],c.a[6],em_web_campaign.scene?em_web_campaign.scene:"");fflush(index_file);}
+static void step(void){if(!em_web_campaign_observe(&c))dune_mouse_observe(&mouse,&c);machine_step(&c);check(!c.fault,"original machine");}
+int main(int argc,char**argv){check(argc>=3,"usage FRONTEND.cpu.bin OUT_DIR [frames] [stride]");FILE*f=fopen(argv[1],"rb");check(f&&fread(&c,sizeof c,1,f)==1&&fgetc(f)==EOF,"frontend CPU ABI");fclose(f);c.rom=rom_data;c.rom_size=sizeof rom_data;c.reason=NULL;c.fault=0;c.audio_mode=AUDIO_MUTE;c.pad_buttons[0]=0;memset(&mouse,0,sizeof mouse);mouse.enabled=1;memset(&em_web_campaign,0,sizeof em_web_campaign);em_web_campaign_after_load(&c);out=argv[2];mkdir(out,0755);char path[4096];snprintf(path,sizeof path,"%s/captures.jsonl",out);index_file=fopen(path,"w");check(index_file!=NULL,"index");
+ check(em_web_campaign_route_request(&c,2),"native tutorial route");uint64_t end=c.vdp.frames+3000;while(em_web_campaign.route_pending&&c.vdp.frames<end)step();check(!em_web_campaign.route_pending&&em_web_campaign.scene&&!strcmp(em_web_campaign.scene,"tutorial"),"original tutorial reached");unsigned frames=argc>3?strtoul(argv[3],NULL,0):9000,stride=argc>4?strtoul(argv[4],NULL,0):30;check(stride>0,"stride");unsigned from1=argc>5?strtoul(argv[5],NULL,0):0,to1=argc>6?strtoul(argv[6],NULL,0):frames,from2=argc>7?strtoul(argv[7],NULL,0):frames+1,to2=argc>8?strtoul(argv[8],NULL,0):frames+1;uint64_t initial=c.vdp.frames,last=c.vdp.rendered_frames;capture(0);while(c.vdp.frames<initial+frames){step();if(c.vdp.rendered_frames!=last){last=c.vdp.rendered_frames;unsigned rel=c.vdp.frames-initial;if(rel&&rel%stride==0&&((rel>=from1&&rel<=to1)||(rel>=from2&&rel<=to2)))capture(rel);if(rel&&rel%600==0)fprintf(stderr,"Tutorial original frame %u/%u\n",rel,frames);}if(em_web_campaign.scene&&!strcmp(em_web_campaign.scene,"main")){capture(c.vdp.frames-initial);break;}}fclose(index_file);puts("PASS original tutorial capture, no simulated gameplay");return 0;}

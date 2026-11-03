@@ -1,0 +1,2040 @@
+{
+  "version": 1,
+  "game": "Dune — The Battle for Arrakis, Sega Genesis USA",
+  "source": {
+    "romSha256": "b1bbe73186e0902fa8b2db0f227bf306e3d6a80fe592f927d1aa9d60c0f335ba",
+    "generatedSourceSha256": "e3055a76cd0eeb151591984a2c12312dcea49754afa0edee9f84889814ad1578",
+    "cpuSnapshotSha256": "ee43b4985900c02d487b0367fd39ea8ec8db6c58aad2f25d93bddc5b8e922b23",
+    "method": "Original game procedures on an offline CPU snapshot; 1088 sprite compositor and original VDP pixel renderer on independent CPU copies; source-pixel crops at native resolution.",
+    "nativeResolution": [
+      320,
+      224
+    ],
+    "paletteCoverage": "Observed native Atreides menu palette from the supplied first-mission CPU snapshot (house1). Other houses UI palette variants are not claimed.",
+    "extractorSha256": {
+      "tools/extract_shop_ui.c": "b953f66a9818d2e9c413ac01744d9acb967c1f7189e05b2ae52b7f7e5da8f184",
+      "tools/extract_shop_ui.py": "717d7ec11c2dd05d1e56328b7e3fa6fb5a2a136cc95f405972197dab6b269de0",
+      "tools/em_web_menu_select.h": "534f8a9ca8c4fe6e003b5d797c3a228f0dbb62a16e1bf3ea36524e29fc54e548"
+    },
+    "transparency": "Only isolated focus sprites use native 4bpp nonzero-nibble alpha. Chrome/button crops remain opaque, including intentional native black areas."
+  },
+  "captures": [
+    {
+      "id": "factory-upgrade-available",
+      "context": 2,
+      "nativeWidth": 320,
+      "nativeHeight": 224,
+      "frame": 3506,
+      "selectedCol": 0,
+      "selectedRow": 0,
+      "focusNode": 62400,
+      "buildingType": 10,
+      "cells": [
+        {
+          "col": 0,
+          "row": 0,
+          "rawItem": -1
+        },
+        {
+          "col": 1,
+          "row": 0,
+          "rawItem": -2
+        },
+        {
+          "col": 2,
+          "row": 0,
+          "rawItem": -5
+        },
+        {
+          "col": 0,
+          "row": 1,
+          "rawItem": 4
+        },
+        {
+          "col": 1,
+          "row": 1,
+          "rawItem": 27
+        },
+        {
+          "col": 2,
+          "row": 1,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 5,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 5,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 5,
+          "rawItem": -128
+        }
+      ],
+      "rawRgbSha256": "e2d52ae72d242539ba26bfa42e0fbf04ec74ee3ed92e359aeb63b5af6e8532da",
+      "cleanRgbSha256": "f803eb48ace46b9a67635475191c87e2e7f54c6827bf99568042442f72303da0"
+    },
+    {
+      "id": "starport-idle",
+      "context": 3,
+      "nativeWidth": 320,
+      "nativeHeight": 224,
+      "frame": 3466,
+      "selectedCol": 0,
+      "selectedRow": 0,
+      "focusNode": 62400,
+      "buildingType": 11,
+      "cells": [
+        {
+          "col": 0,
+          "row": 0,
+          "rawItem": 28
+        },
+        {
+          "col": 1,
+          "row": 0,
+          "rawItem": 31
+        },
+        {
+          "col": 2,
+          "row": 0,
+          "rawItem": 32
+        },
+        {
+          "col": 0,
+          "row": 1,
+          "rawItem": 1
+        },
+        {
+          "col": 1,
+          "row": 1,
+          "rawItem": 7
+        },
+        {
+          "col": 2,
+          "row": 1,
+          "rawItem": 9
+        },
+        {
+          "col": 0,
+          "row": 2,
+          "rawItem": 10
+        },
+        {
+          "col": 1,
+          "row": 2,
+          "rawItem": 13
+        },
+        {
+          "col": 2,
+          "row": 2,
+          "rawItem": 15
+        },
+        {
+          "col": 0,
+          "row": 3,
+          "rawItem": 16
+        },
+        {
+          "col": 1,
+          "row": 3,
+          "rawItem": 17
+        },
+        {
+          "col": 2,
+          "row": 3,
+          "rawItem": 255
+        }
+      ],
+      "rawRgbSha256": "ebdaf6459832dd720d87cd8c74b08a327be7a9ca0732f52b53fcce2f938fbff0",
+      "cleanRgbSha256": "6ebfa39f9d07025130c99f776e36a3ed65608c06207ca6ab4a3f779c9049fdc6"
+    },
+    {
+      "id": "starport-repair-available",
+      "context": 3,
+      "nativeWidth": 320,
+      "nativeHeight": 224,
+      "frame": 3466,
+      "selectedCol": 0,
+      "selectedRow": 0,
+      "focusNode": 62400,
+      "buildingType": 11,
+      "cells": [
+        {
+          "col": 0,
+          "row": 0,
+          "rawItem": 28
+        },
+        {
+          "col": 1,
+          "row": 0,
+          "rawItem": 29
+        },
+        {
+          "col": 2,
+          "row": 0,
+          "rawItem": 32
+        },
+        {
+          "col": 0,
+          "row": 1,
+          "rawItem": 1
+        },
+        {
+          "col": 1,
+          "row": 1,
+          "rawItem": 7
+        },
+        {
+          "col": 2,
+          "row": 1,
+          "rawItem": 9
+        },
+        {
+          "col": 0,
+          "row": 2,
+          "rawItem": 10
+        },
+        {
+          "col": 1,
+          "row": 2,
+          "rawItem": 13
+        },
+        {
+          "col": 2,
+          "row": 2,
+          "rawItem": 15
+        },
+        {
+          "col": 0,
+          "row": 3,
+          "rawItem": 16
+        },
+        {
+          "col": 1,
+          "row": 3,
+          "rawItem": 17
+        },
+        {
+          "col": 2,
+          "row": 3,
+          "rawItem": 255
+        }
+      ],
+      "rawRgbSha256": "94ad9c486a2766c6cc0a4904b47083ab3a05211c6a78152f45ca4f689ab61327",
+      "cleanRgbSha256": "6b94b5af2d5943bd047b48eae551665840a841b2ccdaa41a0ae99a10e86d5ad7"
+    },
+    {
+      "id": "starport-repair-stop-available",
+      "context": 3,
+      "nativeWidth": 320,
+      "nativeHeight": 224,
+      "frame": 3748,
+      "selectedCol": 0,
+      "selectedRow": 0,
+      "focusNode": 62400,
+      "buildingType": 11,
+      "cells": [
+        {
+          "col": 0,
+          "row": 0,
+          "rawItem": 28
+        },
+        {
+          "col": 1,
+          "row": 0,
+          "rawItem": 29
+        },
+        {
+          "col": 2,
+          "row": 0,
+          "rawItem": 30
+        },
+        {
+          "col": 0,
+          "row": 1,
+          "rawItem": 1
+        },
+        {
+          "col": 1,
+          "row": 1,
+          "rawItem": 7
+        },
+        {
+          "col": 2,
+          "row": 1,
+          "rawItem": 9
+        },
+        {
+          "col": 0,
+          "row": 2,
+          "rawItem": 10
+        },
+        {
+          "col": 1,
+          "row": 2,
+          "rawItem": 13
+        },
+        {
+          "col": 2,
+          "row": 2,
+          "rawItem": 15
+        },
+        {
+          "col": 0,
+          "row": 3,
+          "rawItem": 16
+        },
+        {
+          "col": 1,
+          "row": 3,
+          "rawItem": 17
+        },
+        {
+          "col": 2,
+          "row": 3,
+          "rawItem": 255
+        }
+      ],
+      "rawRgbSha256": "8ebac86dec7088fbfdead0e31bc2923c4cd88f6a42eeddafafe25023d7a5cf24",
+      "cleanRgbSha256": "55ac153b07f2dec6291be62514937a72b399f9ceb1f311b911097df7b2f784c0"
+    },
+    {
+      "id": "yard-idle",
+      "context": 2,
+      "nativeWidth": 320,
+      "nativeHeight": 224,
+      "frame": 3506,
+      "selectedCol": 0,
+      "selectedRow": 0,
+      "focusNode": 62400,
+      "buildingType": 8,
+      "cells": [
+        {
+          "col": 0,
+          "row": 0,
+          "rawItem": -1
+        },
+        {
+          "col": 1,
+          "row": 0,
+          "rawItem": -4
+        },
+        {
+          "col": 2,
+          "row": 0,
+          "rawItem": -5
+        },
+        {
+          "col": 0,
+          "row": 1,
+          "rawItem": 1
+        },
+        {
+          "col": 1,
+          "row": 1,
+          "rawItem": 9
+        },
+        {
+          "col": 2,
+          "row": 1,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 5,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 5,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 5,
+          "rawItem": -128
+        }
+      ],
+      "rawRgbSha256": "5a9b5acf1ace8b9e6e45aa66035ed8a24365a9805b8a6b2b36404d4869b7eb99",
+      "cleanRgbSha256": "f51f3b735f661aa25f35cc66a41609f0ec23e0561d16988a25f53a3bb6632e27"
+    },
+    {
+      "id": "yard-production-stop-available",
+      "context": 2,
+      "nativeWidth": 320,
+      "nativeHeight": 224,
+      "frame": 3800,
+      "selectedCol": 0,
+      "selectedRow": 0,
+      "focusNode": 62400,
+      "buildingType": 8,
+      "cells": [
+        {
+          "col": 0,
+          "row": 0,
+          "rawItem": -1
+        },
+        {
+          "col": 1,
+          "row": 0,
+          "rawItem": -4
+        },
+        {
+          "col": 2,
+          "row": 0,
+          "rawItem": -3
+        },
+        {
+          "col": 0,
+          "row": 1,
+          "rawItem": 1
+        },
+        {
+          "col": 1,
+          "row": 1,
+          "rawItem": 9
+        },
+        {
+          "col": 2,
+          "row": 1,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 5,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 5,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 5,
+          "rawItem": -128
+        }
+      ],
+      "rawRgbSha256": "7f4f6edf3ff1c69b2967c415e3374521b952a9de0518146192a44c2cf24de888",
+      "cleanRgbSha256": "6b29675214dc6ff380c14075999c9a5aef40e32201bc9672f1b7f0bda9045e75"
+    },
+    {
+      "id": "yard-repair-available",
+      "context": 2,
+      "nativeWidth": 320,
+      "nativeHeight": 224,
+      "frame": 3506,
+      "selectedCol": 0,
+      "selectedRow": 0,
+      "focusNode": 62400,
+      "buildingType": 8,
+      "cells": [
+        {
+          "col": 0,
+          "row": 0,
+          "rawItem": -1
+        },
+        {
+          "col": 1,
+          "row": 0,
+          "rawItem": -2
+        },
+        {
+          "col": 2,
+          "row": 0,
+          "rawItem": -5
+        },
+        {
+          "col": 0,
+          "row": 1,
+          "rawItem": 1
+        },
+        {
+          "col": 1,
+          "row": 1,
+          "rawItem": 9
+        },
+        {
+          "col": 2,
+          "row": 1,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 5,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 5,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 5,
+          "rawItem": -128
+        }
+      ],
+      "rawRgbSha256": "4f04e74df91ea9aa8f62cc4f144abaf96d3c1884dc6ecfc6d6196e6136db194b",
+      "cleanRgbSha256": "48d398ab030471e70a8195df62d71026425a4e82596c099dfcaf142ef6248574"
+    },
+    {
+      "id": "yard-windtrap-preview",
+      "context": 2,
+      "nativeWidth": 320,
+      "nativeHeight": 224,
+      "frame": 3518,
+      "selectedCol": 1,
+      "selectedRow": 1,
+      "focusNode": 62400,
+      "buildingType": 8,
+      "cells": [
+        {
+          "col": 0,
+          "row": 0,
+          "rawItem": -1
+        },
+        {
+          "col": 1,
+          "row": 0,
+          "rawItem": -4
+        },
+        {
+          "col": 2,
+          "row": 0,
+          "rawItem": -5
+        },
+        {
+          "col": 0,
+          "row": 1,
+          "rawItem": 1
+        },
+        {
+          "col": 1,
+          "row": 1,
+          "rawItem": 9
+        },
+        {
+          "col": 2,
+          "row": 1,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 2,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 3,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 4,
+          "rawItem": -128
+        },
+        {
+          "col": 0,
+          "row": 5,
+          "rawItem": -128
+        },
+        {
+          "col": 1,
+          "row": 5,
+          "rawItem": -128
+        },
+        {
+          "col": 2,
+          "row": 5,
+          "rawItem": -128
+        }
+      ],
+      "rawRgbSha256": "e1b94f08a3303b12353f461cfaeeb092cab1b3af88c20a9b5b4928bb57088c7e",
+      "cleanRgbSha256": "16b989b7f89c3c5d1123a0b061faac58004979752ac050335f6ad24d0957c44a"
+    }
+  ],
+  "assets": [
+    {
+      "id": "factory-upgrade-available-original",
+      "kind": "reference-frame",
+      "label": "Native sprite composition with selection frame",
+      "path": "frames/factory-upgrade-available-original.png",
+      "width": 320,
+      "height": 224,
+      "capture": "factory-upgrade-available",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "2b81fb344a3c554e4338d27b07bbf3c2b767e591bda7485e23e1897010d03b55"
+    },
+    {
+      "id": "factory-upgrade-available-clean",
+      "kind": "reference-frame",
+      "label": "Same source CPU composition with only focus node hidden",
+      "path": "frames/factory-upgrade-available-clean.png",
+      "width": 320,
+      "height": 224,
+      "capture": "factory-upgrade-available",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "c6240a9a51cbd9819a5d51a1804ac266f3760d5f6da97f257ae82a265238b741"
+    },
+    {
+      "id": "starport-idle-original",
+      "kind": "reference-frame",
+      "label": "Native sprite composition with selection frame",
+      "path": "frames/starport-idle-original.png",
+      "width": 320,
+      "height": 224,
+      "capture": "starport-idle",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "9880011848e560eae927fc50e0db0b4c265c0b40ff65cf94dc56ab87b10f2359"
+    },
+    {
+      "id": "starport-idle-clean",
+      "kind": "reference-frame",
+      "label": "Same source CPU composition with only focus node hidden",
+      "path": "frames/starport-idle-clean.png",
+      "width": 320,
+      "height": 224,
+      "capture": "starport-idle",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "cb4ac1a55660d1610a097243a59b9adef3e0aeefd5a6f7e6a9481064d424422b"
+    },
+    {
+      "id": "starport-repair-available-original",
+      "kind": "reference-frame",
+      "label": "Native sprite composition with selection frame",
+      "path": "frames/starport-repair-available-original.png",
+      "width": 320,
+      "height": 224,
+      "capture": "starport-repair-available",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "1bfd363d0eb7619e14f336533299726cee62f0c9a585101c3f2b79ad4cf00e34"
+    },
+    {
+      "id": "starport-repair-available-clean",
+      "kind": "reference-frame",
+      "label": "Same source CPU composition with only focus node hidden",
+      "path": "frames/starport-repair-available-clean.png",
+      "width": 320,
+      "height": 224,
+      "capture": "starport-repair-available",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "e9490ea1778daed41bca8ca898dd61b24e5927c23dc3abd4131f3a077987b08d"
+    },
+    {
+      "id": "starport-repair-stop-available-original",
+      "kind": "reference-frame",
+      "label": "Native sprite composition with selection frame",
+      "path": "frames/starport-repair-stop-available-original.png",
+      "width": 320,
+      "height": 224,
+      "capture": "starport-repair-stop-available",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "f958bcf3621c431e540f5fc65fe8c10cfcfd48be7f29311b60c732cf6b37cb81"
+    },
+    {
+      "id": "starport-repair-stop-available-clean",
+      "kind": "reference-frame",
+      "label": "Same source CPU composition with only focus node hidden",
+      "path": "frames/starport-repair-stop-available-clean.png",
+      "width": 320,
+      "height": 224,
+      "capture": "starport-repair-stop-available",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "1c6976b7e07105c180b3d08b04dce8cd20bc645b9aefd9a62839327d5f339c66"
+    },
+    {
+      "id": "yard-idle-original",
+      "kind": "reference-frame",
+      "label": "Native sprite composition with selection frame",
+      "path": "frames/yard-idle-original.png",
+      "width": 320,
+      "height": 224,
+      "capture": "yard-idle",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "77ace9c3c276034549c4ccc99e53c598e9d3e4181af30c5f33f2b1f99711883f"
+    },
+    {
+      "id": "yard-idle-clean",
+      "kind": "reference-frame",
+      "label": "Same source CPU composition with only focus node hidden",
+      "path": "frames/yard-idle-clean.png",
+      "width": 320,
+      "height": 224,
+      "capture": "yard-idle",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "8f1dc2b337f2ca1934ddb2bcb7ccc6e75d5ded0275fbbddde571d1eb68704ef2"
+    },
+    {
+      "id": "yard-production-stop-available-original",
+      "kind": "reference-frame",
+      "label": "Native sprite composition with selection frame",
+      "path": "frames/yard-production-stop-available-original.png",
+      "width": 320,
+      "height": 224,
+      "capture": "yard-production-stop-available",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "e28abcf74102f23468b0dd61eaa0f2c89279808a0c9d323e3d2c4682548aef30"
+    },
+    {
+      "id": "yard-production-stop-available-clean",
+      "kind": "reference-frame",
+      "label": "Same source CPU composition with only focus node hidden",
+      "path": "frames/yard-production-stop-available-clean.png",
+      "width": 320,
+      "height": 224,
+      "capture": "yard-production-stop-available",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "b11bbb33cd438b7be36c88d5cc2f320292a8fdcf0fd7014121434e1720ccd160"
+    },
+    {
+      "id": "yard-repair-available-original",
+      "kind": "reference-frame",
+      "label": "Native sprite composition with selection frame",
+      "path": "frames/yard-repair-available-original.png",
+      "width": 320,
+      "height": 224,
+      "capture": "yard-repair-available",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "1a2d3f5af7e8f1815d52f531be59bacc795151ccfe1647e29cf01106394f23ba"
+    },
+    {
+      "id": "yard-repair-available-clean",
+      "kind": "reference-frame",
+      "label": "Same source CPU composition with only focus node hidden",
+      "path": "frames/yard-repair-available-clean.png",
+      "width": 320,
+      "height": 224,
+      "capture": "yard-repair-available",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "25d258c885d333a23b1ad8d3560de5ae2e7760ee6b0b91fe467be37e408a03c5"
+    },
+    {
+      "id": "yard-windtrap-preview-original",
+      "kind": "reference-frame",
+      "label": "Native sprite composition with selection frame",
+      "path": "frames/yard-windtrap-preview-original.png",
+      "width": 320,
+      "height": 224,
+      "capture": "yard-windtrap-preview",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "b9aa701891e32d088e9b2d077354afb418ae60c0978a99376cb8fc783da60c29"
+    },
+    {
+      "id": "yard-windtrap-preview-clean",
+      "kind": "reference-frame",
+      "label": "Same source CPU composition with only focus node hidden",
+      "path": "frames/yard-windtrap-preview-clean.png",
+      "width": 320,
+      "height": 224,
+      "capture": "yard-windtrap-preview",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "transparent": false,
+      "sha256": "cde6aabcf67c4e810ba0293363d66af53d7cad2c5dac27ca3862947b17d73049"
+    },
+    {
+      "id": "exit-enabled",
+      "kind": "buttons",
+      "label": "Выход",
+      "path": "buttons/exit-enabled.png",
+      "width": 32,
+      "height": 24,
+      "capture": "yard-idle",
+      "sourceRect": [
+        32,
+        48,
+        32,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "9f27d043af8fcb331fe179b0cb2b0ce20014387b9c75908f62ac4ab3832f2543",
+      "state": "enabled",
+      "nativeCell": {
+        "col": 0,
+        "row": 0,
+        "rawItem": -1
+      },
+      "sha256": "30df89e094985b596b50ae019cb7d3ac27029e076b421e65cb245024708ec1d4"
+    },
+    {
+      "id": "repair-disabled",
+      "kind": "buttons",
+      "label": "Ремонт: недоступен",
+      "path": "buttons/repair-disabled.png",
+      "width": 32,
+      "height": 24,
+      "capture": "yard-idle",
+      "sourceRect": [
+        64,
+        48,
+        32,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "53fc0f7079b036046878cf6ead61e7ede96601a1d71313d2fa0c991786aa4559",
+      "state": "disabled",
+      "nativeCell": {
+        "col": 1,
+        "row": 0,
+        "rawItem": -4
+      },
+      "sha256": "ffbe47fcbb5ec4efffa8a4f906af1df8749dac9249db2fa11a49a8cd0d0ca613"
+    },
+    {
+      "id": "repair-enabled",
+      "kind": "buttons",
+      "label": "Ремонт: доступен",
+      "path": "buttons/repair-enabled.png",
+      "width": 32,
+      "height": 24,
+      "capture": "yard-repair-available",
+      "sourceRect": [
+        64,
+        48,
+        32,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "4d2585c5077bbe8a336f1e07d8707d6d847112adae14dd12188a89f78fc61987",
+      "state": "enabled",
+      "nativeCell": {
+        "col": 1,
+        "row": 0,
+        "rawItem": -2
+      },
+      "sha256": "0b0011d08fe2bf7ccaebbe0fe7bb931ff361b466bf23df6ecf436e9eff6610b6"
+    },
+    {
+      "id": "stop-disabled",
+      "kind": "buttons",
+      "label": "Остановка: недоступна",
+      "path": "buttons/stop-disabled.png",
+      "width": 32,
+      "height": 24,
+      "capture": "yard-idle",
+      "sourceRect": [
+        96,
+        48,
+        32,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "ee06f2997416d9c48415b7030cdf37211d6dcba7bb4b5314260e49feed16cdc1",
+      "state": "disabled",
+      "nativeCell": {
+        "col": 2,
+        "row": 0,
+        "rawItem": -5
+      },
+      "sha256": "68bcb5a068774d8799d0940952767e2e10aebce39f1fb29c5b4f13288b8caccd"
+    },
+    {
+      "id": "stop-enabled",
+      "kind": "buttons",
+      "label": "Остановка производства: доступна",
+      "path": "buttons/stop-enabled.png",
+      "width": 32,
+      "height": 24,
+      "capture": "yard-production-stop-available",
+      "sourceRect": [
+        96,
+        48,
+        32,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "82d4514665a5ad81544ffd6b8c9b875b5a7597e19965d70d8f30925378df5225",
+      "state": "enabled",
+      "nativeCell": {
+        "col": 2,
+        "row": 0,
+        "rawItem": -3
+      },
+      "sha256": "d4e7e5106078f39cd6f2b671613e854ab210b8eb13343c875dfc9f06eac7fac5"
+    },
+    {
+      "id": "upgrade-enabled",
+      "kind": "buttons",
+      "label": "Платное улучшение: доступно",
+      "path": "buttons/upgrade-enabled.png",
+      "width": 32,
+      "height": 24,
+      "capture": "factory-upgrade-available",
+      "sourceRect": [
+        64,
+        72,
+        32,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "012d8f09b6fd8b20bf7f82f413af01bea45033128fbd84131c8b6d309e6c1d0d",
+      "state": "enabled",
+      "nativeCell": {
+        "col": 1,
+        "row": 1,
+        "rawItem": 27
+      },
+      "sha256": "27f59cad99324e9a6c9711df30b4f3f263a998ce95c3facb6da3e1981d4542c9"
+    },
+    {
+      "id": "starport-command-28",
+      "kind": "buttons",
+      "label": "Starport: Выход",
+      "path": "buttons/starport-command-28.png",
+      "width": 32,
+      "height": 24,
+      "capture": "starport-idle",
+      "sourceRect": [
+        32,
+        48,
+        32,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "9f27d043af8fcb331fe179b0cb2b0ce20014387b9c75908f62ac4ab3832f2543",
+      "state": "enabled",
+      "nativeCell": {
+        "col": 0,
+        "row": 0,
+        "rawItem": 28
+      },
+      "sha256": "30df89e094985b596b50ae019cb7d3ac27029e076b421e65cb245024708ec1d4"
+    },
+    {
+      "id": "starport-command-31",
+      "kind": "buttons",
+      "label": "Starport: Ремонт",
+      "path": "buttons/starport-command-31.png",
+      "width": 32,
+      "height": 24,
+      "capture": "starport-idle",
+      "sourceRect": [
+        64,
+        48,
+        32,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "53fc0f7079b036046878cf6ead61e7ede96601a1d71313d2fa0c991786aa4559",
+      "state": "disabled",
+      "nativeCell": {
+        "col": 1,
+        "row": 0,
+        "rawItem": 31
+      },
+      "sha256": "ffbe47fcbb5ec4efffa8a4f906af1df8749dac9249db2fa11a49a8cd0d0ca613"
+    },
+    {
+      "id": "starport-command-32",
+      "kind": "buttons",
+      "label": "Starport: Остановка",
+      "path": "buttons/starport-command-32.png",
+      "width": 32,
+      "height": 24,
+      "capture": "starport-idle",
+      "sourceRect": [
+        96,
+        48,
+        32,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "ee06f2997416d9c48415b7030cdf37211d6dcba7bb4b5314260e49feed16cdc1",
+      "state": "disabled",
+      "nativeCell": {
+        "col": 2,
+        "row": 0,
+        "rawItem": 32
+      },
+      "sha256": "68bcb5a068774d8799d0940952767e2e10aebce39f1fb29c5b4f13288b8caccd"
+    },
+    {
+      "id": "starport-command-29",
+      "kind": "buttons",
+      "label": "Starport: Ремонт",
+      "path": "buttons/starport-command-29.png",
+      "width": 32,
+      "height": 24,
+      "capture": "starport-repair-available",
+      "sourceRect": [
+        64,
+        48,
+        32,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "4d2585c5077bbe8a336f1e07d8707d6d847112adae14dd12188a89f78fc61987",
+      "state": "enabled",
+      "nativeCell": {
+        "col": 1,
+        "row": 0,
+        "rawItem": 29
+      },
+      "sha256": "0b0011d08fe2bf7ccaebbe0fe7bb931ff361b466bf23df6ecf436e9eff6610b6"
+    },
+    {
+      "id": "starport-command-30",
+      "kind": "buttons",
+      "label": "Starport: Остановка",
+      "path": "buttons/starport-command-30.png",
+      "width": 32,
+      "height": 24,
+      "capture": "starport-repair-stop-available",
+      "sourceRect": [
+        96,
+        48,
+        32,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "82d4514665a5ad81544ffd6b8c9b875b5a7597e19965d70d8f30925378df5225",
+      "state": "enabled",
+      "nativeCell": {
+        "col": 2,
+        "row": 0,
+        "rawItem": 30
+      },
+      "sha256": "d4e7e5106078f39cd6f2b671613e854ab210b8eb13343c875dfc9f06eac7fac5"
+    },
+    {
+      "id": "command-cabinet",
+      "kind": "panels",
+      "label": "Вся панель команд с исходной сеткой",
+      "path": "panels/command-cabinet.png",
+      "width": 112,
+      "height": 160,
+      "capture": "yard-idle",
+      "sourceRect": [
+        24,
+        40,
+        112,
+        160
+      ],
+      "transparent": false,
+      "pixelSha256": "748a29dfd3638b293c5b5ea50fd269858daa3f73fe0495908876197431b7534e",
+      "sha256": "64b93e233f7dd9f3f8b56eb90ca8fed71317b10ceb7a3f868e27d8efa2d3bb83"
+    },
+    {
+      "id": "information-cabinet",
+      "kind": "panels",
+      "label": "Исходная правая информационная часть",
+      "path": "panels/information-cabinet.png",
+      "width": 184,
+      "height": 224,
+      "capture": "yard-idle",
+      "sourceRect": [
+        136,
+        0,
+        184,
+        224
+      ],
+      "transparent": false,
+      "pixelSha256": "e105ad9abfc5d1787b951fbdd3be23d543df7fb81f92634e73a5a2d6b46abe72",
+      "sha256": "0467a6c712eb7a8861f518257a96cefc25c6d20319d6f23b666a5df8d9de9468"
+    },
+    {
+      "id": "monitor-cabinet",
+      "kind": "panels",
+      "label": "Монитор, название и счётчик денег",
+      "path": "panels/monitor-cabinet.png",
+      "width": 184,
+      "height": 120,
+      "capture": "yard-idle",
+      "sourceRect": [
+        136,
+        0,
+        184,
+        120
+      ],
+      "transparent": false,
+      "pixelSha256": "1254e4c83a24db43b3f39dcd9772e8ed251b5fe5e4e9de7786b09a1544b6b202",
+      "sha256": "c5672213d37dfc84a63431ba0b5f261510e7dc66381fc6a5f92587d66ad8d27b"
+    },
+    {
+      "id": "resources-cabinet",
+      "kind": "panels",
+      "label": "Цена, энергия, защита и детали корпуса",
+      "path": "panels/resources-cabinet.png",
+      "width": 184,
+      "height": 108,
+      "capture": "yard-idle",
+      "sourceRect": [
+        136,
+        116,
+        184,
+        108
+      ],
+      "transparent": false,
+      "pixelSha256": "42eaf41577a5fa19e6b5d9c12753afdbb525cb3c7ee4f7d22fcba10b0ace18cd",
+      "sha256": "9d6fea65d5a901ba7e1b84d93f758138f4b926911b86deef2386b92d5ded5541"
+    },
+    {
+      "id": "monitor-frame",
+      "kind": "panels",
+      "label": "Рамка монитора с исходным изображением внутри",
+      "path": "panels/monitor-frame.png",
+      "width": 112,
+      "height": 72,
+      "capture": "yard-idle",
+      "sourceRect": [
+        152,
+        32,
+        112,
+        72
+      ],
+      "transparent": false,
+      "pixelSha256": "63f805c6091af0c6676c415dd96f6240bef6781c522b883160492247158a9739",
+      "sha256": "d4aa501ff76b6a42fe264b112ccc95442f6aa5c0022286cc002803b85da4606b"
+    },
+    {
+      "id": "title-strip-blank",
+      "kind": "panels",
+      "label": "Исходная пустая плашка названия",
+      "path": "panels/title-strip-blank.png",
+      "width": 112,
+      "height": 16,
+      "capture": "yard-idle",
+      "sourceRect": [
+        152,
+        104,
+        112,
+        16
+      ],
+      "transparent": false,
+      "pixelSha256": "4d329902a52cf5bbbe0036d613423531c0f167acb863bb86ffe5a11031d80798",
+      "sha256": "efcc7b047205a0ae550068f9faa08f42a44c8ae206343a7f2fdcd0fccf6dc1a3"
+    },
+    {
+      "id": "credits-window",
+      "kind": "panels",
+      "label": "Окно счётчика денег с исходными цифрами",
+      "path": "panels/credits-window.png",
+      "width": 80,
+      "height": 16,
+      "capture": "yard-idle",
+      "sourceRect": [
+        224,
+        8,
+        80,
+        16
+      ],
+      "transparent": false,
+      "pixelSha256": "2cfc17ec609a50d3ff6b8ff36530649b9901ed35069f4231b76d849e2a3f8466",
+      "sha256": "a8ae83668fe49d9b64e183d605c511ae09a1b1fa523134637f5f506807600c14"
+    },
+    {
+      "id": "price-symbol",
+      "kind": "icons",
+      "label": "Знак доллара с родным фоном",
+      "path": "icons/price-symbol.png",
+      "width": 24,
+      "height": 24,
+      "capture": "yard-idle",
+      "sourceRect": [
+        156,
+        116,
+        24,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "907a4b2726bf585adbc5df8ea691e41d70677da79ab37c63fe879b7aadf8d373",
+      "sha256": "59fcb8e223b4092c187bb773758d20247bb28cd7d82003e99ba54af0f28fe433"
+    },
+    {
+      "id": "power-symbol",
+      "kind": "icons",
+      "label": "Значок энергии с родным фоном",
+      "path": "icons/power-symbol.png",
+      "width": 24,
+      "height": 24,
+      "capture": "yard-idle",
+      "sourceRect": [
+        156,
+        148,
+        24,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "bd581617071eef978b3feb29e39b2bd1d23f22152d5865e813b5abc7a32f27fd",
+      "sha256": "bb7f01af04ad0c998b1be4284a7bb2ab3c6d4d0d07c75e6db787e443620b8b0e"
+    },
+    {
+      "id": "armor-symbol",
+      "kind": "icons",
+      "label": "Значок защиты с родным фоном",
+      "path": "icons/armor-symbol.png",
+      "width": 24,
+      "height": 24,
+      "capture": "yard-idle",
+      "sourceRect": [
+        156,
+        180,
+        24,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "0441828919b8716df7fdf84c25aa32b89e1e76f60a94bfafb1a3df8e89cb9fe1",
+      "sha256": "5130f866dfaf92ab474e23ea4ce6b18c033c3f36053c8b002a7058c2e7d03363"
+    },
+    {
+      "id": "price-meter-blank",
+      "kind": "panels",
+      "label": "Пустое окно цены",
+      "path": "panels/price-meter-blank.png",
+      "width": 80,
+      "height": 16,
+      "capture": "yard-idle",
+      "sourceRect": [
+        188,
+        124,
+        80,
+        16
+      ],
+      "transparent": false,
+      "pixelSha256": "a837b662a36318c31bcab1c4bc9d8e66013afcfdd23bb786eccfa192158b6853",
+      "sha256": "798a4335624983ce9c619ed369888cdd6c0a62318aeb16bd652d6ccf75d023d2"
+    },
+    {
+      "id": "power-meter-blank",
+      "kind": "panels",
+      "label": "Пустое окно энергии",
+      "path": "panels/power-meter-blank.png",
+      "width": 80,
+      "height": 16,
+      "capture": "yard-idle",
+      "sourceRect": [
+        188,
+        156,
+        80,
+        16
+      ],
+      "transparent": false,
+      "pixelSha256": "f238c6b1000b234f3d5ca8cc1cdb1d03128472b995144e4e1fac01844d3bcacc",
+      "sha256": "edb698249f9161fe28e7823d65d808414ea93f81a69e92204e6dba776edf753a"
+    },
+    {
+      "id": "armor-meter-blank",
+      "kind": "panels",
+      "label": "Пустое окно защиты",
+      "path": "panels/armor-meter-blank.png",
+      "width": 80,
+      "height": 16,
+      "capture": "yard-idle",
+      "sourceRect": [
+        188,
+        188,
+        80,
+        16
+      ],
+      "transparent": false,
+      "pixelSha256": "9cd9698c582aa3e91791ba53e1fb0bf81f6d13089d203b554046a8ee5b929545",
+      "sha256": "4683178f7a0821bf5252210ca0ad59985d4a3974803eb5caf656ddf9701a28d7"
+    },
+    {
+      "id": "native-arrow-up",
+      "kind": "icons",
+      "label": "Исходная стрелка вверх",
+      "path": "icons/native-arrow-up.png",
+      "width": 16,
+      "height": 16,
+      "capture": "yard-idle",
+      "sourceRect": [
+        208,
+        140,
+        16,
+        16
+      ],
+      "transparent": false,
+      "pixelSha256": "c52285cd10b3810c6f48544e6de1d4f38375d8096636d69ce18ce46f97e6252c",
+      "sha256": "af617677543572c291a554d81712e690b3deab520816592409a3fb51a400b6e4"
+    },
+    {
+      "id": "native-arrow-down",
+      "kind": "icons",
+      "label": "Исходная стрелка вниз",
+      "path": "icons/native-arrow-down.png",
+      "width": 16,
+      "height": 16,
+      "capture": "yard-idle",
+      "sourceRect": [
+        230,
+        140,
+        16,
+        16
+      ],
+      "transparent": false,
+      "pixelSha256": "436660a8e67bd8270e7bcb3c24e7a450c00da6e7c21d86de933cfc11c7f9a4fa",
+      "sha256": "014f5b230ac1bc8c12a43e262ab9a4110e14ed117bb85fa20d210bad860a9cf4"
+    },
+    {
+      "id": "cabinet-knob",
+      "kind": "chrome",
+      "label": "Родная металлическая ручка",
+      "path": "chrome/cabinet-knob.png",
+      "width": 16,
+      "height": 24,
+      "capture": "yard-idle",
+      "sourceRect": [
+        136,
+        116,
+        16,
+        24
+      ],
+      "transparent": false,
+      "pixelSha256": "df06284ea2c93602aa07ff2eab6036b634240c8418494c12c64525d138a455a0",
+      "sha256": "feb1c63dc9da83fa80d01d077ab6f17c079f1c4c472f910cd595c616ac60a397"
+    },
+    {
+      "id": "cabinet-vent",
+      "kind": "chrome",
+      "label": "Родная вентиляционная решётка",
+      "path": "chrome/cabinet-vent.png",
+      "width": 40,
+      "height": 56,
+      "capture": "yard-idle",
+      "sourceRect": [
+        264,
+        116,
+        40,
+        56
+      ],
+      "transparent": false,
+      "pixelSha256": "1ab3f4f9c28f5ded9810225e8cb7b3136c8e7306721ec334a2b57da4f684c261",
+      "sha256": "9f92d4617a41c8edd93f89b5099448585b77a264b23f20e6bf1fb0ea89d0b292"
+    },
+    {
+      "id": "status-led",
+      "kind": "chrome",
+      "label": "Индикатор над монитором",
+      "path": "chrome/status-led.png",
+      "width": 16,
+      "height": 16,
+      "capture": "yard-idle",
+      "sourceRect": [
+        172,
+        12,
+        16,
+        16
+      ],
+      "transparent": false,
+      "pixelSha256": "143ddba3bf4c529dbb8eb29649374b16915dd6284c9d0c266903b33ed1288918",
+      "sha256": "304393107e60ba29d4cb771f002d3b74935236e0824f8dc14dfcee1f5cacdde9"
+    },
+    {
+      "id": "steel-flat-8",
+      "kind": "chrome",
+      "label": "Однотонный исходный металл",
+      "path": "chrome/steel-flat-8.png",
+      "width": 8,
+      "height": 8,
+      "capture": "yard-idle",
+      "sourceRect": [
+        136,
+        88,
+        8,
+        8
+      ],
+      "transparent": false,
+      "pixelSha256": "cac2380e07a2b209c7071d3f98eb46fdc41e15ee5e9f780aa31c44a144b87d1c",
+      "sha256": "fb90aa67d8c26b61d044303e53b8235c7605481cfdc8e0eb2da0858c4e325f74"
+    },
+    {
+      "id": "cabinet-top-left",
+      "kind": "chrome",
+      "label": "Командная панель: левый верхний угол",
+      "path": "chrome/cabinet-top-left.png",
+      "width": 8,
+      "height": 8,
+      "capture": "yard-idle",
+      "sourceRect": [
+        24,
+        40,
+        8,
+        8
+      ],
+      "transparent": false,
+      "pixelSha256": "b35ae4e93ba1f56b0bb1553bbc2e997eabfdaa6a1a220370252a31e7d49cbeb6",
+      "sha256": "313c0eabb27844b1883531ad3f80f0b4d0f60834432babcb527380158fc43587"
+    },
+    {
+      "id": "cabinet-top-edge",
+      "kind": "chrome",
+      "label": "Командная панель: участок верхнего края",
+      "path": "chrome/cabinet-top-edge.png",
+      "width": 8,
+      "height": 8,
+      "capture": "yard-idle",
+      "sourceRect": [
+        56,
+        40,
+        8,
+        8
+      ],
+      "transparent": false,
+      "pixelSha256": "059cc732acb0767f8425655b2b3f39d3f3d4522dba8bfd7d61993e546799378c",
+      "sha256": "075e62a61a29561f71af911585094c3717c7b1ee11ef7b838179e505a114cd71"
+    },
+    {
+      "id": "cabinet-top-right",
+      "kind": "chrome",
+      "label": "Командная панель: правый верхний угол",
+      "path": "chrome/cabinet-top-right.png",
+      "width": 8,
+      "height": 8,
+      "capture": "yard-idle",
+      "sourceRect": [
+        128,
+        40,
+        8,
+        8
+      ],
+      "transparent": false,
+      "pixelSha256": "8ee8bb0e66c452ace710dc8fc34df9562f94447a64bd49096421a9b64192a5d5",
+      "sha256": "36d161c3550c303f1c3b992b9ff94bae42311796649bbf0bea5202b29cf53307"
+    },
+    {
+      "id": "cabinet-left-edge",
+      "kind": "chrome",
+      "label": "Командная панель: участок левого края",
+      "path": "chrome/cabinet-left-edge.png",
+      "width": 8,
+      "height": 8,
+      "capture": "yard-idle",
+      "sourceRect": [
+        24,
+        112,
+        8,
+        8
+      ],
+      "transparent": false,
+      "pixelSha256": "f0212f8259e36e748784419d1f3351e2f8c807670ae7c266871d5d2822e97772",
+      "sha256": "c966f3056f2e0ae4030f93889579c272649325f528e0943ddade470002b0be70"
+    },
+    {
+      "id": "cabinet-inner-black",
+      "kind": "chrome",
+      "label": "Командная панель: исходное чёрное заполнение",
+      "path": "chrome/cabinet-inner-black.png",
+      "width": 8,
+      "height": 8,
+      "capture": "yard-idle",
+      "sourceRect": [
+        40,
+        112,
+        8,
+        8
+      ],
+      "transparent": false,
+      "pixelSha256": "5d89f056865052bcb89c910d2d62872e029fb273c3db03f8968a52a41593c1b5",
+      "sha256": "43c1b79b26009d2798246be983aa5ffa1a5757f916e10cdcad7cbc5fab3f40a0"
+    },
+    {
+      "id": "cabinet-right-edge",
+      "kind": "chrome",
+      "label": "Командная панель: участок правого края",
+      "path": "chrome/cabinet-right-edge.png",
+      "width": 8,
+      "height": 8,
+      "capture": "yard-idle",
+      "sourceRect": [
+        128,
+        112,
+        8,
+        8
+      ],
+      "transparent": false,
+      "pixelSha256": "3699fb15f4fa0b188d794637699670f7e56f1d5a2f88b1d3c4cd685c73c0ff9b",
+      "sha256": "0343f82b6e2f458adc54f85c69d570e75acce9f9f411b3971c9ff669001d1e60"
+    },
+    {
+      "id": "cabinet-bottom-left",
+      "kind": "chrome",
+      "label": "Командная панель: левый нижний угол",
+      "path": "chrome/cabinet-bottom-left.png",
+      "width": 8,
+      "height": 8,
+      "capture": "yard-idle",
+      "sourceRect": [
+        24,
+        192,
+        8,
+        8
+      ],
+      "transparent": false,
+      "pixelSha256": "f07a626d4b6b9402d075f3a8ab7d2ff653ae8b15fe89c94d8e4149901a054023",
+      "sha256": "d40e24cf5ffbae999a65d2f85c40c892d01b0f3d90f656bd8ab99f4fa2afc764"
+    },
+    {
+      "id": "cabinet-bottom-edge",
+      "kind": "chrome",
+      "label": "Командная панель: участок нижнего края",
+      "path": "chrome/cabinet-bottom-edge.png",
+      "width": 8,
+      "height": 8,
+      "capture": "yard-idle",
+      "sourceRect": [
+        56,
+        192,
+        8,
+        8
+      ],
+      "transparent": false,
+      "pixelSha256": "f178d0065653f607d164b4a770f42549122d7d18e76e0332a320336017c61e37",
+      "sha256": "0ed34f208d2ad318f4301e3e71c6201e4d0958f62bd18b4a525e62d7796b3b56"
+    },
+    {
+      "id": "cabinet-bottom-right",
+      "kind": "chrome",
+      "label": "Командная панель: правый нижний угол",
+      "path": "chrome/cabinet-bottom-right.png",
+      "width": 8,
+      "height": 8,
+      "capture": "yard-idle",
+      "sourceRect": [
+        128,
+        192,
+        8,
+        8
+      ],
+      "transparent": false,
+      "pixelSha256": "0c11128875692cfad1fffbb2b31c7eb0e62e59ecbc61e7291ec9c09d98423f21",
+      "sha256": "fa002501bec00a9e536051daac4fbca2e2c3824669facc59c106cc93df5acbd4"
+    },
+    {
+      "id": "price-meter-windtrap",
+      "kind": "panels",
+      "label": "Цена Windtrap",
+      "path": "panels/price-meter-windtrap.png",
+      "width": 80,
+      "height": 16,
+      "capture": "yard-windtrap-preview",
+      "sourceRect": [
+        188,
+        124,
+        80,
+        16
+      ],
+      "transparent": false,
+      "pixelSha256": "43a15230eaa670320e112fb3d079ea19d03bfe631717032b1e218f5453cad8cd",
+      "sha256": "f4e464cbd41a5b5b2a9b972f02c46bafea0e73303fd179568b7c4ffa02153bcb"
+    },
+    {
+      "id": "power-meter-windtrap",
+      "kind": "panels",
+      "label": "Энергия Windtrap",
+      "path": "panels/power-meter-windtrap.png",
+      "width": 80,
+      "height": 16,
+      "capture": "yard-windtrap-preview",
+      "sourceRect": [
+        188,
+        156,
+        80,
+        16
+      ],
+      "transparent": false,
+      "pixelSha256": "5c645e8a0b0e342a58b556f358d3b66c95bbb4ea796860d914d09b77a946c3eb",
+      "sha256": "6268301764c7e7ca7759e854275d85b2f3ae7ee0421ab6c364734bc7015318a2"
+    },
+    {
+      "id": "armor-meter-windtrap",
+      "kind": "panels",
+      "label": "Защита Windtrap",
+      "path": "panels/armor-meter-windtrap.png",
+      "width": 80,
+      "height": 16,
+      "capture": "yard-windtrap-preview",
+      "sourceRect": [
+        188,
+        188,
+        80,
+        16
+      ],
+      "transparent": false,
+      "pixelSha256": "980690c00536d3c78945770282de180f2da8bd48a1b8d4ea5b69661b572e42e4",
+      "sha256": "408397f4de0c433d5c230b453d5f9cb0c6e8b6673a48e93c2b6ec4b3692d701b"
+    },
+    {
+      "id": "factory-upgrade-available-active-frame",
+      "kind": "selection",
+      "label": "Исходная красная рамка активной ячейки",
+      "path": "selection/factory-upgrade-available-active-frame.png",
+      "width": 32,
+      "height": 24,
+      "capture": "factory-upgrade-available",
+      "sourceRect": [
+        32,
+        48,
+        32,
+        24
+      ],
+      "transparent": true,
+      "alphaSource": "native sprite palette-index nibble !=0",
+      "focusNode": 62400,
+      "sha256": "206fa6393b23cfa7d2319b3f4cb28e5040f3ac32e35200797540070b4b89f69a"
+    },
+    {
+      "id": "starport-idle-active-frame",
+      "kind": "selection",
+      "label": "Исходная красная рамка активной ячейки",
+      "path": "selection/starport-idle-active-frame.png",
+      "width": 32,
+      "height": 24,
+      "capture": "starport-idle",
+      "sourceRect": [
+        32,
+        48,
+        32,
+        24
+      ],
+      "transparent": true,
+      "alphaSource": "native sprite palette-index nibble !=0",
+      "focusNode": 62400,
+      "sha256": "43e96795e6a079d1a91afd41b42290d80bca0ffcdacfdf73ac8e6ec8f776d2ab"
+    },
+    {
+      "id": "starport-repair-available-active-frame",
+      "kind": "selection",
+      "label": "Исходная красная рамка активной ячейки",
+      "path": "selection/starport-repair-available-active-frame.png",
+      "width": 32,
+      "height": 24,
+      "capture": "starport-repair-available",
+      "sourceRect": [
+        32,
+        48,
+        32,
+        24
+      ],
+      "transparent": true,
+      "alphaSource": "native sprite palette-index nibble !=0",
+      "focusNode": 62400,
+      "sha256": "43e96795e6a079d1a91afd41b42290d80bca0ffcdacfdf73ac8e6ec8f776d2ab"
+    },
+    {
+      "id": "starport-repair-stop-available-active-frame",
+      "kind": "selection",
+      "label": "Исходная красная рамка активной ячейки",
+      "path": "selection/starport-repair-stop-available-active-frame.png",
+      "width": 32,
+      "height": 24,
+      "capture": "starport-repair-stop-available",
+      "sourceRect": [
+        32,
+        48,
+        32,
+        24
+      ],
+      "transparent": true,
+      "alphaSource": "native sprite palette-index nibble !=0",
+      "focusNode": 62400,
+      "sha256": "2b071f1943090e872c31596e227e3d33124ab95cc6cec4d8cb8be0d521a71f4d"
+    },
+    {
+      "id": "yard-idle-active-frame",
+      "kind": "selection",
+      "label": "Исходная красная рамка активной ячейки",
+      "path": "selection/yard-idle-active-frame.png",
+      "width": 32,
+      "height": 24,
+      "capture": "yard-idle",
+      "sourceRect": [
+        32,
+        48,
+        32,
+        24
+      ],
+      "transparent": true,
+      "alphaSource": "native sprite palette-index nibble !=0",
+      "focusNode": 62400,
+      "sha256": "206fa6393b23cfa7d2319b3f4cb28e5040f3ac32e35200797540070b4b89f69a"
+    },
+    {
+      "id": "yard-production-stop-available-active-frame",
+      "kind": "selection",
+      "label": "Исходная красная рамка активной ячейки",
+      "path": "selection/yard-production-stop-available-active-frame.png",
+      "width": 32,
+      "height": 24,
+      "capture": "yard-production-stop-available",
+      "sourceRect": [
+        32,
+        48,
+        32,
+        24
+      ],
+      "transparent": true,
+      "alphaSource": "native sprite palette-index nibble !=0",
+      "focusNode": 62400,
+      "sha256": "206fa6393b23cfa7d2319b3f4cb28e5040f3ac32e35200797540070b4b89f69a"
+    },
+    {
+      "id": "yard-repair-available-active-frame",
+      "kind": "selection",
+      "label": "Исходная красная рамка активной ячейки",
+      "path": "selection/yard-repair-available-active-frame.png",
+      "width": 32,
+      "height": 24,
+      "capture": "yard-repair-available",
+      "sourceRect": [
+        32,
+        48,
+        32,
+        24
+      ],
+      "transparent": true,
+      "alphaSource": "native sprite palette-index nibble !=0",
+      "focusNode": 62400,
+      "sha256": "206fa6393b23cfa7d2319b3f4cb28e5040f3ac32e35200797540070b4b89f69a"
+    },
+    {
+      "id": "yard-windtrap-preview-active-frame",
+      "kind": "selection",
+      "label": "Исходная красная рамка активной ячейки",
+      "path": "selection/yard-windtrap-preview-active-frame.png",
+      "width": 32,
+      "height": 24,
+      "capture": "yard-windtrap-preview",
+      "sourceRect": [
+        64,
+        72,
+        32,
+        24
+      ],
+      "transparent": true,
+      "alphaSource": "native sprite palette-index nibble !=0",
+      "focusNode": 62400,
+      "sha256": "8049a5ea976041aae681e77f7f4f639a5de832d13a414450a996f675e3fba85b"
+    }
+  ],
+  "scope": {
+    "included": [
+      "Construction Yard command states",
+      "Original selected-cell frame",
+      "Factory Upgrade command",
+      "Starport command cells",
+      "Cabinet/monitor/resource panels",
+      "Native resource icons, meter boxes, arrows, knobs, vent, chrome slices"
+    ],
+    "notIncluded": [
+      "Complete building/unit artwork and animations (separate extraction)",
+      "Any regenerated or repainted artwork",
+      "Every possible native command/disabled state in every campaign mission",
+      "Unverified other-house UI palette variants"
+    ],
+    "fixtures": "Damaged-Yard HP700 and mission2 mapped Factory with a native-created Outpost are documented offline test conditions; menu grids, labels, availability, prices and graphics are generated by original handlers."
+  },
+  "assetCount": 66,
+  "pngBytes": 167021
+}

@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-02",
+  "singleSelectionOnly": true,
+  "files": {
+    "web/index.html": "dbd206cbfca2ba59d761c2de7319d613cc1859c40d2deb61d5f033f4dff5259f",
+    "web/shell.js": "8b0f662a292287e5eff7e205bb9e87ece91695e8e1f04bd9a6a2394790f9a8a6",
+    "web/gestures.mjs": "73b113e9bde9cb4f167b3803a3cc2dc29fc92aa64d1bab34857d27d652801021",
+    "web/qa.mjs": "f22ebb9ca9eb9e0436b9e4217bbcbb5e76b6c170e80bcd92f0a66e3efecd9f58"
+  }
+}

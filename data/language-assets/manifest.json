@@ -1,0 +1,2290 @@
+{
+  "version": 1,
+  "sourceFiles": [
+    {
+      "id": "usa",
+      "path": "/Users/oleskarpov/Desktop/TEMP на Mac/SEGA/Dune - The Battle for Arrakis (USA).gen",
+      "bytes": 1048576,
+      "sha256": "b1bbe73186e0902fa8b2db0f227bf306e3d6a80fe592f927d1aa9d60c0f335ba",
+      "headerRegion": "U"
+    },
+    {
+      "id": "rus",
+      "path": "/Users/oleskarpov/Downloads/Dune lang/Dune - The Battle for Arrakis (U) [T+Rus Shedevr(NewGame)&Lipetsk (02.08.2011)].gen",
+      "bytes": 1048576,
+      "sha256": "4d93c48957cc81fc49a6edff6353787e5d32eb5e2c86963182fba918a45e906a",
+      "headerRegion": "U"
+    },
+    {
+      "id": "europe",
+      "path": "/Users/oleskarpov/Downloads/Dune lang/Dune II - The Battle for Arrakis (Europe).gen",
+      "bytes": 1048576,
+      "sha256": "31979d1d9a5d6fe5c9ae95f3cfc1dd6f9f51e9e075268bb8a9f9ca57da847547",
+      "headerRegion": "E"
+    }
+  ],
+  "sourcesUntouched": true,
+  "stage": "text-font-command-assets",
+  "languages": [
+    {
+      "code": "en",
+      "catalogPath": "en.json",
+      "label": "English",
+      "font": {
+        "glyphs": {
+          "32": {
+            "x": 0,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 32
+          },
+          "33": {
+            "x": 8,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 33
+          },
+          "34": {
+            "x": 16,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 34
+          },
+          "35": {
+            "x": 24,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 35
+          },
+          "36": {
+            "x": 32,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 36
+          },
+          "37": {
+            "x": 40,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 37
+          },
+          "38": {
+            "x": 48,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 38
+          },
+          "39": {
+            "x": 56,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 39
+          },
+          "40": {
+            "x": 64,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 40
+          },
+          "41": {
+            "x": 72,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 41
+          },
+          "42": {
+            "x": 80,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 42
+          },
+          "43": {
+            "x": 88,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 43
+          },
+          "44": {
+            "x": 96,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 44
+          },
+          "45": {
+            "x": 104,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 45
+          },
+          "46": {
+            "x": 112,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 46
+          },
+          "47": {
+            "x": 120,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 47
+          },
+          "48": {
+            "x": 0,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 48
+          },
+          "49": {
+            "x": 8,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 49
+          },
+          "50": {
+            "x": 16,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 50
+          },
+          "51": {
+            "x": 24,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 51
+          },
+          "52": {
+            "x": 32,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 52
+          },
+          "53": {
+            "x": 40,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 53
+          },
+          "54": {
+            "x": 48,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 54
+          },
+          "55": {
+            "x": 56,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 55
+          },
+          "56": {
+            "x": 64,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 56
+          },
+          "57": {
+            "x": 72,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 57
+          },
+          "58": {
+            "x": 80,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 58
+          },
+          "59": {
+            "x": 88,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 59
+          },
+          "60": {
+            "x": 96,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 60
+          },
+          "61": {
+            "x": 104,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 61
+          },
+          "62": {
+            "x": 112,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 62
+          },
+          "63": {
+            "x": 120,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 63
+          },
+          "65": {
+            "x": 8,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 65
+          },
+          "66": {
+            "x": 16,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 66
+          },
+          "67": {
+            "x": 24,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 67
+          },
+          "68": {
+            "x": 32,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 68
+          },
+          "69": {
+            "x": 40,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 69
+          },
+          "70": {
+            "x": 48,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 70
+          },
+          "71": {
+            "x": 56,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 71
+          },
+          "72": {
+            "x": 64,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 72
+          },
+          "73": {
+            "x": 72,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 73
+          },
+          "74": {
+            "x": 80,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 74
+          },
+          "75": {
+            "x": 88,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 75
+          },
+          "76": {
+            "x": 96,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 76
+          },
+          "77": {
+            "x": 104,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 77
+          },
+          "78": {
+            "x": 112,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 78
+          },
+          "79": {
+            "x": 120,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 79
+          },
+          "80": {
+            "x": 0,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 80
+          },
+          "81": {
+            "x": 8,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 81
+          },
+          "82": {
+            "x": 16,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 82
+          },
+          "83": {
+            "x": 24,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 83
+          },
+          "84": {
+            "x": 32,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 84
+          },
+          "85": {
+            "x": 40,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 85
+          },
+          "86": {
+            "x": 48,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 86
+          },
+          "87": {
+            "x": 56,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 87
+          },
+          "88": {
+            "x": 64,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 88
+          },
+          "89": {
+            "x": 72,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 89
+          },
+          "90": {
+            "x": 80,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 90
+          },
+          "91": {
+            "x": 88,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 91
+          },
+          "92": {
+            "x": 96,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 92
+          },
+          "93": {
+            "x": 104,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 93
+          },
+          "94": {
+            "x": 112,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 94
+          },
+          "95": {
+            "x": 120,
+            "y": 24,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 95
+          },
+          "96": {
+            "x": 0,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 96
+          },
+          "97": {
+            "x": 8,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 97
+          },
+          "98": {
+            "x": 16,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 98
+          },
+          "99": {
+            "x": 24,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 99
+          },
+          "100": {
+            "x": 32,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 100
+          },
+          "101": {
+            "x": 40,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 101
+          },
+          "102": {
+            "x": 48,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 102
+          },
+          "103": {
+            "x": 56,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 103
+          },
+          "104": {
+            "x": 64,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 104
+          },
+          "105": {
+            "x": 72,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 105
+          },
+          "106": {
+            "x": 80,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 106
+          },
+          "107": {
+            "x": 88,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 107
+          },
+          "108": {
+            "x": 96,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 108
+          },
+          "109": {
+            "x": 104,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 109
+          },
+          "110": {
+            "x": 112,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 110
+          },
+          "111": {
+            "x": 120,
+            "y": 32,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 111
+          },
+          "112": {
+            "x": 0,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 112
+          },
+          "113": {
+            "x": 8,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 113
+          },
+          "114": {
+            "x": 16,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 114
+          },
+          "115": {
+            "x": 24,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 115
+          },
+          "116": {
+            "x": 32,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 116
+          },
+          "117": {
+            "x": 40,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 117
+          },
+          "118": {
+            "x": 48,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 118
+          },
+          "119": {
+            "x": 56,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 119
+          },
+          "120": {
+            "x": 64,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 120
+          },
+          "121": {
+            "x": 72,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 121
+          },
+          "122": {
+            "x": 80,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 122
+          },
+          "123": {
+            "x": 88,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 123
+          },
+          "124": {
+            "x": 96,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 124
+          },
+          "125": {
+            "x": 104,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 125
+          },
+          "126": {
+            "x": 112,
+            "y": 40,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 126
+          }
+        },
+        "advance": 8,
+        "width": 128,
+        "height": 48,
+        "asciiPolicy": "USA bitmap ASCII stays separate and unchanged; Cyrillic font is Unicode-only.",
+        "maskPath": "fonts/en-mask.png",
+        "shadowPath": "fonts/en-shadow.png"
+      },
+      "commands": {
+        "exit-enabled": "commands/en-exit-enabled.png",
+        "fix-enabled": "commands/en-fix-enabled.png",
+        "stop-enabled": "commands/en-stop-enabled.png",
+        "fix-disabled": "commands/en-fix-disabled.png",
+        "stop-disabled": "commands/en-stop-disabled.png",
+        "send-order-enabled": "commands/en-send-order-enabled.png"
+      }
+    },
+    {
+      "code": "ru",
+      "catalogPath": "ru.json",
+      "label": "Русский",
+      "font": {
+        "glyphs": {
+          "1040": {
+            "x": 0,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 65
+          },
+          "1072": {
+            "x": 0,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 65
+          },
+          "1041": {
+            "x": 8,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 100
+          },
+          "1073": {
+            "x": 8,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 100
+          },
+          "1042": {
+            "x": 16,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 66
+          },
+          "1074": {
+            "x": 16,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 66
+          },
+          "1043": {
+            "x": 24,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 102
+          },
+          "1075": {
+            "x": 24,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 102
+          },
+          "1044": {
+            "x": 32,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 103
+          },
+          "1076": {
+            "x": 32,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 103
+          },
+          "1045": {
+            "x": 40,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 69
+          },
+          "1077": {
+            "x": 40,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 69
+          },
+          "1046": {
+            "x": 48,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 105
+          },
+          "1078": {
+            "x": 48,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 105
+          },
+          "1047": {
+            "x": 56,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 106
+          },
+          "1079": {
+            "x": 56,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 106
+          },
+          "1048": {
+            "x": 64,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 108
+          },
+          "1080": {
+            "x": 64,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 108
+          },
+          "1049": {
+            "x": 72,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 110
+          },
+          "1081": {
+            "x": 72,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 110
+          },
+          "1050": {
+            "x": 80,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 75
+          },
+          "1082": {
+            "x": 80,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 75
+          },
+          "1051": {
+            "x": 88,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 113
+          },
+          "1083": {
+            "x": 88,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 113
+          },
+          "1052": {
+            "x": 96,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 77
+          },
+          "1084": {
+            "x": 96,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 77
+          },
+          "1053": {
+            "x": 104,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 72
+          },
+          "1085": {
+            "x": 104,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 72
+          },
+          "1054": {
+            "x": 112,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 79
+          },
+          "1086": {
+            "x": 112,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 79
+          },
+          "1055": {
+            "x": 120,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 115
+          },
+          "1087": {
+            "x": 120,
+            "y": 0,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 115
+          },
+          "1056": {
+            "x": 0,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 80
+          },
+          "1088": {
+            "x": 0,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 80
+          },
+          "1057": {
+            "x": 8,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 67
+          },
+          "1089": {
+            "x": 8,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 67
+          },
+          "1058": {
+            "x": 16,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 84
+          },
+          "1090": {
+            "x": 16,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 84
+          },
+          "1059": {
+            "x": 24,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 117
+          },
+          "1091": {
+            "x": 24,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 117
+          },
+          "1060": {
+            "x": 32,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 118
+          },
+          "1092": {
+            "x": 32,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 118
+          },
+          "1061": {
+            "x": 40,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 88
+          },
+          "1093": {
+            "x": 40,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 88
+          },
+          "1062": {
+            "x": 48,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 119
+          },
+          "1094": {
+            "x": 48,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 119
+          },
+          "1063": {
+            "x": 56,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 121
+          },
+          "1095": {
+            "x": 56,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 121
+          },
+          "1064": {
+            "x": 64,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 122
+          },
+          "1096": {
+            "x": 64,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 122
+          },
+          "1065": {
+            "x": 72,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 97
+          },
+          "1097": {
+            "x": 72,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 97
+          },
+          "1066": {
+            "x": 80,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 101
+          },
+          "1098": {
+            "x": 80,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 101
+          },
+          "1067": {
+            "x": 88,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 99
+          },
+          "1099": {
+            "x": 88,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 99
+          },
+          "1068": {
+            "x": 96,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 98
+          },
+          "1100": {
+            "x": 96,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 98
+          },
+          "1069": {
+            "x": 104,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 104
+          },
+          "1101": {
+            "x": 104,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 104
+          },
+          "1070": {
+            "x": 112,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 107
+          },
+          "1102": {
+            "x": 112,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 107
+          },
+          "1071": {
+            "x": 120,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 114
+          },
+          "1103": {
+            "x": 120,
+            "y": 8,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": 114
+          },
+          "1025": {
+            "x": 0,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": null
+          },
+          "1105": {
+            "x": 0,
+            "y": 16,
+            "w": 8,
+            "h": 8,
+            "width": 8,
+            "height": 8,
+            "nativeByte": null
+          }
+        },
+        "advance": 8,
+        "width": 128,
+        "height": 24,
+        "asciiPolicy": "USA bitmap ASCII stays separate and unchanged; Cyrillic font is Unicode-only.",
+        "maskPath": "fonts/ru-mask.png",
+        "shadowPath": "fonts/ru-shadow.png"
+      },
+      "commands": {
+        "exit-enabled": "commands/ru-exit-enabled.png",
+        "fix-enabled": "commands/ru-fix-enabled.png",
+        "stop-enabled": "commands/ru-stop-enabled.png",
+        "fix-disabled": "commands/ru-fix-disabled.png",
+        "stop-disabled": "commands/ru-stop-disabled.png",
+        "send-order-enabled": "commands/ru-send-order-enabled.png"
+      },
+      "tutorial": {
+        "path": "tutorial/ru-native-descriptions.png",
+        "width": 320,
+        "height": 224,
+        "sheetWidth": 1280,
+        "sheetHeight": 2016,
+        "columns": 4,
+        "frames": 33,
+        "manualFrames": true,
+        "frameIndexPolicy": "Same33 card IDs/order and320x224 source geometry. Literal source atlas is preserved in data; the runtime correction variant is separately declared.",
+        "variant": "native-source-glyph-corrected",
+        "sha256": "895aeb29f49ad64a285aa2372dfba2afe3da3f9890d674681e857ae479db5c2c"
+      }
+    }
+  ],
+  "fontProvenance": {
+    "en": {
+      "sourceRom": "usa",
+      "fontRomBase": 325320,
+      "sourceFontBytesSha256": "697ea3c0a6640fa56bb755866d8fb68bb272be829af5c06956375e18bd55cd28",
+      "sourceNativeCharacters": 95,
+      "derivedCharacters": [],
+      "shadow": "Exact original right/down/down-right one-pixel shadow geometry. Native USA title VRAM equality independently verified for94 ordinary glyphs; byte64 is a native special control glyph, not a standard@ sign.",
+      "nativeShadowValidation": {
+        "relativeSource": ".local/screen-assets-phase-raw/title-menu-000040.vram.bin",
+        "sourceVramSha256": "e6f541e472a5f2b01ffa409508abd8095e9fa950cec86335b62f1e0a277c91a1",
+        "matchingNativeGlyphCodes": [
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126
+        ],
+        "nativeGlyphCount": 94,
+        "excludedControlByte": 64
+      }
+    },
+    "ru": {
+      "sourceRom": "rus",
+      "fontRomBase": 325320,
+      "sourceFontBytesSha256": "4448d4387997aabcd58baa3f6d151250130d2dc5ef1ccc0e3b9189107d23ffdb",
+      "sourceNativeCharacters": 32,
+      "derivedCharacters": [
+        "Ё"
+      ],
+      "shadow": "Exact original right/down/down-right one-pixel shadow geometry. Native USA title VRAM equality independently verified for94 ordinary glyphs; byte64 is a native special control glyph, not a standard@ sign."
+    }
+  },
+  "commandAssets": [
+    {
+      "language": "en",
+      "key": "exit-enabled",
+      "raw": 28,
+      "path": "commands/en-exit-enabled.png",
+      "width": 32,
+      "height": 24,
+      "labelSourceRect": [
+        2,
+        6,
+        28,
+        12
+      ],
+      "romPointerTable": 461988,
+      "romPointerEntry": 462100,
+      "romOffset": 462120,
+      "sourceRawSha256": "c75c17ddc8fbb4e723dadb787f763e5951a466a54a8a2f307a61c05aebc7f87e",
+      "paletteRomOffset": 683256,
+      "cramWords": [
+        0,
+        10,
+        4,
+        1126,
+        34,
+        2254,
+        1164,
+        582,
+        2624,
+        3822,
+        2696,
+        1058,
+        0,
+        236,
+        160,
+        32
+      ],
+      "sha256": "863af78f8634d1f82f7057c9a4184d8b2baff3f8fa5ce980c84f9d24ef17a05b",
+      "label": "EXIT",
+      "sourcePolicy": "Literal native4bpp column-major32x24 sprite and source CRAM. Nibble0 transparent. No painted/recolored letters; native fan translation abbreviates Repair as РЕМ."
+    },
+    {
+      "language": "en",
+      "key": "fix-enabled",
+      "raw": 29,
+      "path": "commands/en-fix-enabled.png",
+      "width": 32,
+      "height": 24,
+      "labelSourceRect": [
+        2,
+        6,
+        28,
+        12
+      ],
+      "romPointerTable": 461988,
+      "romPointerEntry": 462104,
+      "romOffset": 462504,
+      "sourceRawSha256": "4ec719a5eab69e725fd2f7e08438252e0c36bb5a7594d6eb20caa4a9c295a541",
+      "paletteRomOffset": 683256,
+      "cramWords": [
+        0,
+        10,
+        4,
+        1126,
+        34,
+        2254,
+        1164,
+        582,
+        2624,
+        3822,
+        2696,
+        1058,
+        0,
+        236,
+        160,
+        32
+      ],
+      "sha256": "92212d29cf89835456adc783caacd31c594488e169307b7a5519a40aa51621b1",
+      "label": "FIX",
+      "sourcePolicy": "Literal native4bpp column-major32x24 sprite and source CRAM. Nibble0 transparent. No painted/recolored letters; native fan translation abbreviates Repair as РЕМ."
+    },
+    {
+      "language": "en",
+      "key": "stop-enabled",
+      "raw": 30,
+      "path": "commands/en-stop-enabled.png",
+      "width": 32,
+      "height": 24,
+      "labelSourceRect": [
+        2,
+        6,
+        28,
+        12
+      ],
+      "romPointerTable": 461988,
+      "romPointerEntry": 462108,
+      "romOffset": 462888,
+      "sourceRawSha256": "6454fee7bad9fbd22a2cadb41523e85fac5f62e924ff7f4cdc4e95054e2f88e3",
+      "paletteRomOffset": 683256,
+      "cramWords": [
+        0,
+        10,
+        4,
+        1126,
+        34,
+        2254,
+        1164,
+        582,
+        2624,
+        3822,
+        2696,
+        1058,
+        0,
+        236,
+        160,
+        32
+      ],
+      "sha256": "b3f39cdeceeadb429c504ffec6ac1dcd48e3fe6f8a464b2933982a8f456d45fd",
+      "label": "STOP",
+      "sourcePolicy": "Literal native4bpp column-major32x24 sprite and source CRAM. Nibble0 transparent. No painted/recolored letters; native fan translation abbreviates Repair as РЕМ."
+    },
+    {
+      "language": "en",
+      "key": "fix-disabled",
+      "raw": 31,
+      "path": "commands/en-fix-disabled.png",
+      "width": 32,
+      "height": 24,
+      "labelSourceRect": [
+        2,
+        6,
+        28,
+        12
+      ],
+      "romPointerTable": 461988,
+      "romPointerEntry": 462112,
+      "romOffset": 463272,
+      "sourceRawSha256": "7d6470d6a5162e6c1096142f77f7563f276327038217dd2acf955254e71a21c7",
+      "paletteRomOffset": 683256,
+      "cramWords": [
+        0,
+        10,
+        4,
+        1126,
+        34,
+        2254,
+        1164,
+        582,
+        2624,
+        3822,
+        2696,
+        1058,
+        0,
+        236,
+        160,
+        32
+      ],
+      "sha256": "bf52e80b97d8dbd937fd4931a4b7c2679ee871fe5614e040c758efcc323d4593",
+      "label": "FIX",
+      "sourcePolicy": "Literal native4bpp column-major32x24 sprite and source CRAM. Nibble0 transparent. No painted/recolored letters; native fan translation abbreviates Repair as РЕМ."
+    },
+    {
+      "language": "en",
+      "key": "stop-disabled",
+      "raw": 32,
+      "path": "commands/en-stop-disabled.png",
+      "width": 32,
+      "height": 24,
+      "labelSourceRect": [
+        2,
+        6,
+        28,
+        12
+      ],
+      "romPointerTable": 461988,
+      "romPointerEntry": 462116,
+      "romOffset": 463656,
+      "sourceRawSha256": "692459d94261209dcf8d185cc64f5b41c130fbc0bea597b309406cfe8d86bba7",
+      "paletteRomOffset": 683256,
+      "cramWords": [
+        0,
+        10,
+        4,
+        1126,
+        34,
+        2254,
+        1164,
+        582,
+        2624,
+        3822,
+        2696,
+        1058,
+        0,
+        236,
+        160,
+        32
+      ],
+      "sha256": "3d3c2758922fbba7ab9e1f6462b90fc413cb32bb0b8a8095f06844720d36ca90",
+      "label": "STOP",
+      "sourcePolicy": "Literal native4bpp column-major32x24 sprite and source CRAM. Nibble0 transparent. No painted/recolored letters; native fan translation abbreviates Repair as РЕМ."
+    },
+    {
+      "language": "en",
+      "key": "send-order-enabled",
+      "raw": 27,
+      "path": "commands/en-send-order-enabled.png",
+      "width": 32,
+      "height": 24,
+      "labelSourceRect": null,
+      "romPointerTable": 461988,
+      "romPointerEntry": 462096,
+      "romOffset": 452752,
+      "sourceRawSha256": "78ae263fa4d7715b69c09512beca48302df1bc6bdfe8e7db562e9529e31ab174",
+      "paletteRomOffset": 683256,
+      "cramWords": [
+        0,
+        10,
+        4,
+        1126,
+        34,
+        2254,
+        1164,
+        582,
+        2624,
+        3822,
+        2696,
+        1058,
+        0,
+        236,
+        160,
+        32
+      ],
+      "sha256": "de5796981496b0f06d2a19b3fc462f5398160b2e36ce35d47e0f8c0e649b01f1",
+      "label": null,
+      "sourcePolicy": "Non-text native order arrow; identicalUSA/RU resource, also used for production Upgrade; no separate disabled-order pointer exists in33-entry native icon table."
+    },
+    {
+      "language": "ru",
+      "key": "exit-enabled",
+      "raw": 28,
+      "path": "commands/ru-exit-enabled.png",
+      "width": 32,
+      "height": 24,
+      "labelSourceRect": [
+        2,
+        6,
+        28,
+        12
+      ],
+      "romPointerTable": 461988,
+      "romPointerEntry": 462100,
+      "romOffset": 462120,
+      "sourceRawSha256": "494a044e50f0a35fb3fea0002d1e32d5fe2ea5e9f33c33ab7e3a11ab4823b1f8",
+      "paletteRomOffset": 683256,
+      "cramWords": [
+        0,
+        10,
+        4,
+        1126,
+        34,
+        2254,
+        1164,
+        582,
+        2624,
+        3822,
+        2696,
+        1058,
+        0,
+        236,
+        160,
+        32
+      ],
+      "sha256": "6820c0e438fb7863173543bab8bbba05c4c4f7bad63a55debc74e9fc750577da",
+      "label": "ВЫХОД",
+      "sourcePolicy": "Literal native4bpp column-major32x24 sprite and source CRAM. Nibble0 transparent. No painted/recolored letters; native fan translation abbreviates Repair as РЕМ."
+    },
+    {
+      "language": "ru",
+      "key": "fix-enabled",
+      "raw": 29,
+      "path": "commands/ru-fix-enabled.png",
+      "width": 32,
+      "height": 24,
+      "labelSourceRect": [
+        2,
+        6,
+        28,
+        12
+      ],
+      "romPointerTable": 461988,
+      "romPointerEntry": 462104,
+      "romOffset": 462504,
+      "sourceRawSha256": "2983fc97486c7d885d0da1f70472dd67b7510716915112c5776bc0083b9c832d",
+      "paletteRomOffset": 683256,
+      "cramWords": [
+        0,
+        10,
+        4,
+        1126,
+        34,
+        2254,
+        1164,
+        582,
+        2624,
+        3822,
+        2696,
+        1058,
+        0,
+        236,
+        160,
+        32
+      ],
+      "sha256": "61159eb2d866b6cde3c7fcf5a0e3492b1daa54a4b8ae7e19a43801aed2f30083",
+      "label": "РЕМ",
+      "sourcePolicy": "Literal native4bpp column-major32x24 sprite and source CRAM. Nibble0 transparent. No painted/recolored letters; native fan translation abbreviates Repair as РЕМ."
+    },
+    {
+      "language": "ru",
+      "key": "stop-enabled",
+      "raw": 30,
+      "path": "commands/ru-stop-enabled.png",
+      "width": 32,
+      "height": 24,
+      "labelSourceRect": [
+        2,
+        6,
+        28,
+        12
+      ],
+      "romPointerTable": 461988,
+      "romPointerEntry": 462108,
+      "romOffset": 462888,
+      "sourceRawSha256": "477d4950d152a101315ef34fb1ba5d3c90a2bb63b7f00c1d8c677fcb8e74d826",
+      "paletteRomOffset": 683256,
+      "cramWords": [
+        0,
+        10,
+        4,
+        1126,
+        34,
+        2254,
+        1164,
+        582,
+        2624,
+        3822,
+        2696,
+        1058,
+        0,
+        236,
+        160,
+        32
+      ],
+      "sha256": "3212b59f06446b718583d5cc129435f815408672cb176346931e0e7b088d649d",
+      "label": "СТОП",
+      "sourcePolicy": "Literal native4bpp column-major32x24 sprite and source CRAM. Nibble0 transparent. No painted/recolored letters; native fan translation abbreviates Repair as РЕМ."
+    },
+    {
+      "language": "ru",
+      "key": "fix-disabled",
+      "raw": 31,
+      "path": "commands/ru-fix-disabled.png",
+      "width": 32,
+      "height": 24,
+      "labelSourceRect": [
+        2,
+        6,
+        28,
+        12
+      ],
+      "romPointerTable": 461988,
+      "romPointerEntry": 462112,
+      "romOffset": 463272,
+      "sourceRawSha256": "51d728060ec05bb9943e1f1641e92cffd766229c51cfa1c91f0924f0594befa1",
+      "paletteRomOffset": 683256,
+      "cramWords": [
+        0,
+        10,
+        4,
+        1126,
+        34,
+        2254,
+        1164,
+        582,
+        2624,
+        3822,
+        2696,
+        1058,
+        0,
+        236,
+        160,
+        32
+      ],
+      "sha256": "7443a0e277ccef10070ddb1351ed54c03919f96b102336e07a2bafc433d945d0",
+      "label": "РЕМ",
+      "sourcePolicy": "Literal native4bpp column-major32x24 sprite and source CRAM. Nibble0 transparent. No painted/recolored letters; native fan translation abbreviates Repair as РЕМ."
+    },
+    {
+      "language": "ru",
+      "key": "stop-disabled",
+      "raw": 32,
+      "path": "commands/ru-stop-disabled.png",
+      "width": 32,
+      "height": 24,
+      "labelSourceRect": [
+        2,
+        6,
+        28,
+        12
+      ],
+      "romPointerTable": 461988,
+      "romPointerEntry": 462116,
+      "romOffset": 463656,
+      "sourceRawSha256": "e002ddfe6d2d90350887d94cdb57565bafc7beec05ba2918f97d1de826b884f4",
+      "paletteRomOffset": 683256,
+      "cramWords": [
+        0,
+        10,
+        4,
+        1126,
+        34,
+        2254,
+        1164,
+        582,
+        2624,
+        3822,
+        2696,
+        1058,
+        0,
+        236,
+        160,
+        32
+      ],
+      "sha256": "7cd05b5047f39f1dcbaec84b656452298c2de0d93614a78c5264a52b5ee9143c",
+      "label": "СТОП",
+      "sourcePolicy": "Literal native4bpp column-major32x24 sprite and source CRAM. Nibble0 transparent. No painted/recolored letters; native fan translation abbreviates Repair as РЕМ."
+    },
+    {
+      "language": "ru",
+      "key": "send-order-enabled",
+      "raw": 27,
+      "path": "commands/ru-send-order-enabled.png",
+      "width": 32,
+      "height": 24,
+      "labelSourceRect": null,
+      "romPointerTable": 461988,
+      "romPointerEntry": 462096,
+      "romOffset": 452752,
+      "sourceRawSha256": "78ae263fa4d7715b69c09512beca48302df1bc6bdfe8e7db562e9529e31ab174",
+      "paletteRomOffset": 683256,
+      "cramWords": [
+        0,
+        10,
+        4,
+        1126,
+        34,
+        2254,
+        1164,
+        582,
+        2624,
+        3822,
+        2696,
+        1058,
+        0,
+        236,
+        160,
+        32
+      ],
+      "sha256": "de5796981496b0f06d2a19b3fc462f5398160b2e36ce35d47e0f8c0e649b01f1",
+      "label": null,
+      "sourcePolicy": "Non-text native order arrow; identicalUSA/RU resource, also used for production Upgrade; no separate disabled-order pointer exists in33-entry native icon table."
+    }
+  ],
+  "coverage": {
+    "en": {
+      "canonicalCampaignTextRecords": 111,
+      "introRecords": 3,
+      "missionTextRecords": 108,
+      "houseNames": 3,
+      "buildingNames": 19,
+      "unitNames": 27,
+      "optionTestNames": 58,
+      "nativeUnitActionNames": 14,
+      "nativeOptionValueStrings": 14,
+      "nativeShopInlineLabels": 4,
+      "nativeResultRanks": 9,
+      "bakedMenuTutorialText": "Not parsed as literal C strings. Actual bitmap labels/resources are inventoried separately; no source translation is invented.",
+      "completeRuntimeLocalization": false
+    },
+    "ru": {
+      "canonicalCampaignTextRecords": 111,
+      "introRecords": 3,
+      "missionTextRecords": 108,
+      "houseNames": 3,
+      "buildingNames": 19,
+      "unitNames": 27,
+      "optionTestNames": 58,
+      "nativeUnitActionNames": 14,
+      "nativeOptionValueStrings": 14,
+      "nativeShopInlineLabels": 4,
+      "nativeResultRanks": 9,
+      "bakedMenuTutorialText": "Not parsed as literal C strings. Actual bitmap labels/resources are inventoried separately; no source translation is invented.",
+      "completeRuntimeLocalization": false
+    },
+    "eu-en": {
+      "canonicalCampaignTextRecords": 111,
+      "introRecords": 3,
+      "missionTextRecords": 108,
+      "houseNames": 3,
+      "buildingNames": 19,
+      "unitNames": 27,
+      "optionTestNames": 58,
+      "nativeUnitActionNames": 14,
+      "nativeOptionValueStrings": 14,
+      "nativeShopInlineLabels": 4,
+      "nativeResultRanks": 9,
+      "bakedMenuTutorialText": "Not parsed as literal C strings. Actual bitmap labels/resources are inventoried separately; no source translation is invented.",
+      "completeRuntimeLocalization": false
+    }
+  },
+  "europe": {
+    "canonicalEnglishCampaignEqualUSA": true,
+    "shippingLocale": false
+  },
+  "strategy": "Read-only presentation lookup by canonical USA text/pointer. Keep USA native instructions, scenarios, prices, AI, clocks and balance; never replace runtime ROM with the European or fan-translated binary.",
+  "research": {
+    "resourceIndexCountPerProfile": {
+      "usa": 37,
+      "rus": 37,
+      "europe": 37
+    },
+    "legacyRegionCaptionCount": 387,
+    "dataEquality": {
+      "rus": {
+        "scenariosCompared": 27,
+        "scenarioSemanticEquality": true,
+        "definitionFieldsCompared": {
+          "buildingIds": 19,
+          "unitIds": 27,
+          "buildingFields": [
+            "cost",
+            "hp",
+            "power",
+            "campaign",
+            "houseMask",
+            "sort",
+            "upgradeLevel"
+          ],
+          "unitFields": [
+            "cost",
+            "hp",
+            "damage",
+            "range"
+          ]
+        },
+        "definitionSelectedFieldEquality": true
+      },
+      "europe": {
+        "scenariosCompared": 27,
+        "scenarioSemanticEquality": true,
+        "definitionFieldsCompared": {
+          "buildingIds": 19,
+          "unitIds": 27,
+          "buildingFields": [
+            "cost",
+            "hp",
+            "power",
+            "campaign",
+            "houseMask",
+            "sort",
+            "upgradeLevel"
+          ],
+          "unitFields": [
+            "cost",
+            "hp",
+            "damage",
+            "range"
+          ]
+        },
+        "definitionSelectedFieldEquality": true
+      }
+    },
+    "countryFlags": {
+      "nativeCountryFlagsFound": false,
+      "searchScope": [
+        "All37 named native resource-index entries in each supplied ROM: no language/flag/country resource names.",
+        "Existing full native Main/Options/house-picker source-art inventory has no country-language selector; three faction banners are house emblems, not country flags."
+      ],
+      "limitation": "This is a bounded resource/UI inventory, not semantic identification of every opaque graphics byte. It does not prove an arbitrary unused bitmap could never resemble a flag.",
+      "shipping": "No native country flags are exported or claimed. Any English/Russian picker flag must be an explicitly authored matching-style interface symbol."
+    }
+  },
+  "extractorSha256": {
+    "extract_language_assets.py": "af0e94440f5b896d71f5fc0a288e32917160f3b289753d1a05ac5cd5b1ab76f6",
+    "verify_language_assets.py": "7a510b206256213d61b8a6751fb827830505d07abb4e6fb82aae54b357cfb2a5",
+    "capture_language_tutorial_native.c": "da58526b199edcbb2234c32384b1ff783b669ccaa415b1d0819a2f8a9599d1b7",
+    "language_tutorial_annotations_ru.json": "dae4475d756446f769b4ff7024d4c903ae703f39fc3daf62e15a8bdcd438047a",
+    "recompose_language_tutorial.py": "3464cccb45096092185541b50fbb18d347e91696f547c2a279d830d6e9a6db7d"
+  },
+  "analysisBoundary": {
+    "reaSkillApplied": true,
+    "reaNativeTargetOpened": false,
+    "reason": "Advertised REA raw-binary architecture schema lacks68000; no ROM was opened under a false architecture. Matching pinned original generated consumers and explicit format-aware byte/pixel parsers provide the extraction evidence.",
+    "runtimeCodeModified": false,
+    "runtimeRomReplaced": false
+  },
+  "russianTranslationReview": {
+    "status": "unreviewed-fan-source; canonical English remains authority",
+    "numericalDifferences": 3,
+    "details": "research/translation-review.json"
+  },
+  "countryFlags": {
+    "found": false,
+    "reason": "No native country-language flags in the parsed resource/UI inventory; faction banners are not country flags.",
+    "details": "research/country-flags.json"
+  },
+  "fontPreview": "font-preview.png",
+  "commandPreview": "command-preview.png",
+  "ru": {
+    "tutorial": {
+      "path": "tutorial/ru-native-descriptions.png",
+      "width": 320,
+      "height": 224,
+      "sheetWidth": 1280,
+      "sheetHeight": 2016,
+      "columns": 4,
+      "frames": 33,
+      "manualFrames": true,
+      "frameIndexPolicy": "Same33 card IDs/order and320x224 source geometry. Literal source atlas is preserved in data; the runtime correction variant is separately declared.",
+      "variant": "native-source-glyph-corrected",
+      "sha256": "895aeb29f49ad64a285aa2372dfba2afe3da3f9890d674681e857ae479db5c2c"
+    }
+  },
+  "tutorialCorrections": {
+    "proof": "tutorial/cleanup-proof.json",
+    "sourceAtlasPreserved": "tutorial/ru-native-descriptions.png",
+    "canonicalCorrectedAtlas": "tutorial/ru-native-descriptions-corrected.png",
+    "changedFrames": 16,
+    "allOtherPixelsExact": true
+  }
+}

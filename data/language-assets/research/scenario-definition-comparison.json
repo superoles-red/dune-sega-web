@@ -1,0 +1,4116 @@
+{
+  "comparisons": {
+    "rus": {
+      "scenariosCompared": 27,
+      "scenarioSemanticEquality": true,
+      "definitionFieldsCompared": {
+        "buildingIds": 19,
+        "unitIds": 27,
+        "buildingFields": [
+          "cost",
+          "hp",
+          "power",
+          "campaign",
+          "houseMask",
+          "sort",
+          "upgradeLevel"
+        ],
+        "unitFields": [
+          "cost",
+          "hp",
+          "damage",
+          "range"
+        ]
+      },
+      "definitionSelectedFieldEquality": true
+    },
+    "europe": {
+      "scenariosCompared": 27,
+      "scenarioSemanticEquality": true,
+      "definitionFieldsCompared": {
+        "buildingIds": 19,
+        "unitIds": 27,
+        "buildingFields": [
+          "cost",
+          "hp",
+          "power",
+          "campaign",
+          "houseMask",
+          "sort",
+          "upgradeLevel"
+        ],
+        "unitFields": [
+          "cost",
+          "hp",
+          "damage",
+          "range"
+        ]
+      },
+      "definitionSelectedFieldEquality": true
+    }
+  },
+  "scenarios": {
+    "usa": {
+      "SCENH001.INI": {
+        "romOffset": 369528,
+        "bytes": 374,
+        "sha256": "512481f614c469416948d473d29d10450ea08e62d5668cd54805b09b72c88d43",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HARVEST.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 592,
+          "tacticalPacked": 592,
+          "winFlags": 4,
+          "finishFlags": 6,
+          "mapSeed": 19
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 1000,
+            "credits": 990,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 0,
+            "brain": 67,
+            "maxUnits": 25
+          }
+        ],
+        "unitDefinitionCount": 18,
+        "buildingDefinitionCount": 1
+      },
+      "SCENH002.INI": {
+        "romOffset": 369902,
+        "bytes": 604,
+        "sha256": "6e130bda81b6a256a92ec4b80a3e3b8a5c1c7c08efd4463f6ba818c66f3cec52",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "HEADQRTS.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 531,
+          "tacticalPacked": 531,
+          "winFlags": 5,
+          "finishFlags": 23,
+          "mapSeed": 20
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 2700,
+            "credits": 1200,
+            "brain": 72,
+            "maxUnits": 12
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 17
+          }
+        ],
+        "unitDefinitionCount": 18,
+        "buildingDefinitionCount": 19
+      },
+      "SCENH003.INI": {
+        "romOffset": 370506,
+        "bytes": 766,
+        "sha256": "a1e2bfe7178ceadc86b4f7affddfd0c67a48adf972a405005cb1e9c10ad64175",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "QUAD.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 817,
+          "tacticalPacked": 817,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 21
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 14
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 67,
+            "maxUnits": 19
+          }
+        ],
+        "unitDefinitionCount": 23,
+        "buildingDefinitionCount": 30
+      },
+      "SCENH004.INI": {
+        "romOffset": 371272,
+        "bytes": 1230,
+        "sha256": "e57ef3e8f56a0b393b01f6cbfc1ee76959327b52fb6e1b4138bd219865930246",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "LTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2123,
+          "tacticalPacked": 2123,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 22
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 16
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2500,
+            "brain": 67,
+            "maxUnits": 21
+          }
+        ],
+        "unitDefinitionCount": 23,
+        "buildingDefinitionCount": 82
+      },
+      "SCENH005.INI": {
+        "romOffset": 372502,
+        "bytes": 1554,
+        "sha256": "9938d49e2fab4980d8bf0491b2bbf34da6c4bcf1796ce44eea69caa4035da767",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "REPAIR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 785,
+          "tacticalPacked": 785,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 23
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2700,
+            "brain": 67,
+            "maxUnits": 25
+          }
+        ],
+        "unitDefinitionCount": 23,
+        "buildingDefinitionCount": 116
+      },
+      "SCENH006.INI": {
+        "romOffset": 374056,
+        "bytes": 1656,
+        "sha256": "b92e76592fd34c53b3fccdd954db33c62d8538aa634b058a8d3b5ec5137c0cfc",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HVYFTRY.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2534,
+          "tacticalPacked": 2534,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 24
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1700,
+            "brain": 72,
+            "maxUnits": 20
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 3000,
+            "brain": 67,
+            "maxUnits": 29
+          }
+        ],
+        "unitDefinitionCount": 24,
+        "buildingDefinitionCount": 114
+      },
+      "SCENH007.INI": {
+        "romOffset": 375712,
+        "bytes": 2414,
+        "sha256": "473d47efdb73c53c1a0acf53b78871eebc44738447926a7eda49d864da246ab2",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "HARKTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2359,
+          "tacticalPacked": 2359,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 25
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1800,
+            "brain": 72,
+            "maxUnits": 22
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 3500,
+            "brain": 67,
+            "maxUnits": 32
+          }
+        ],
+        "unitDefinitionCount": 25,
+        "buildingDefinitionCount": 203
+      },
+      "SCENH008.INI": {
+        "romOffset": 378126,
+        "bytes": 2814,
+        "sha256": "d65db8f595b665815e1e4e89e4cb7f2a0551b9f79c278fd8b97168d0c3ca2bd4",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "PALACE.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2795,
+          "tacticalPacked": 2795,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 27
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 24
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 67,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 67,
+            "maxUnits": 18
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 237
+      },
+      "SCENH009.INI": {
+        "romOffset": 380940,
+        "bytes": 2848,
+        "sha256": "1f64092a6ecc6e161690b9246bc0690286d7b30ac92675cf0551f81ebb237883",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "SARDUKAR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1869,
+          "tacticalPacked": 1869,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 17
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 2500,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 4,
+            "quota": 0,
+            "credits": 15500,
+            "brain": 67,
+            "maxUnits": 38
+          }
+        ],
+        "unitDefinitionCount": 27,
+        "buildingDefinitionCount": 252
+      },
+      "SCENA001.INI": {
+        "romOffset": 356270,
+        "bytes": 406,
+        "sha256": "6452500bbfc87785d6e1cf4490b3f01f39008decd48253eafd5ed37f05f3d9e2",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HARVEST.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 1224,
+          "tacticalPacked": 1224,
+          "winFlags": 4,
+          "finishFlags": 6,
+          "mapSeed": 1
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 1000,
+            "credits": 990,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 0,
+            "brain": 67,
+            "maxUnits": 16
+          }
+        ],
+        "unitDefinitionCount": 18,
+        "buildingDefinitionCount": 1
+      },
+      "SCENA002.INI": {
+        "romOffset": 356676,
+        "bytes": 564,
+        "sha256": "2b8fd6136c167139e410d7f2bd8d9777d3c4235bba81d65da1af41e67fc9a20d",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "HEADQRTS.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 1360,
+          "tacticalPacked": 1360,
+          "winFlags": 5,
+          "finishFlags": 7,
+          "mapSeed": 2
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 2700,
+            "credits": 1200,
+            "brain": 72,
+            "maxUnits": 12
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 200,
+            "brain": 67,
+            "maxUnits": 16
+          }
+        ],
+        "unitDefinitionCount": 17,
+        "buildingDefinitionCount": 16
+      },
+      "SCENA003.INI": {
+        "romOffset": 357240,
+        "bytes": 620,
+        "sha256": "b5826b9e97531697f0c7972170291b8f3402ce2dd0618335195807eab1e1bcab",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "QUAD.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2513,
+          "tacticalPacked": 2513,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 3
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 300,
+            "brain": 67,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 14
+          }
+        ],
+        "unitDefinitionCount": 20,
+        "buildingDefinitionCount": 17
+      },
+      "SCENA004.INI": {
+        "romOffset": 357860,
+        "bytes": 1202,
+        "sha256": "65a9237ba000ecb9ff433adff06e0151766c27464ee81376b298c099fa6dfbc0",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "LTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 733,
+          "tacticalPacked": 733,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 4
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 800,
+            "brain": 67,
+            "maxUnits": 20
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 16
+          }
+        ],
+        "unitDefinitionCount": 26,
+        "buildingDefinitionCount": 74
+      },
+      "SCENA005.INI": {
+        "romOffset": 359062,
+        "bytes": 1454,
+        "sha256": "3e32dce8221df3af4da9f93111b61cda929544a1b9c27d91145eac015f08c432",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "REPAIR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1011,
+          "tacticalPacked": 1011,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 5
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 23
+          }
+        ],
+        "unitDefinitionCount": 24,
+        "buildingDefinitionCount": 104
+      },
+      "SCENA006.INI": {
+        "romOffset": 360516,
+        "bytes": 1552,
+        "sha256": "fda56d10455bf7966367c12adf958639974c911813edb4a4fa778ffb1bead7e2",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HVYFTRY.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2130,
+          "tacticalPacked": 2130,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 6
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1825,
+            "brain": 67,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1700,
+            "brain": 72,
+            "maxUnits": 20
+          }
+        ],
+        "unitDefinitionCount": 25,
+        "buildingDefinitionCount": 102
+      },
+      "SCENA007.INI": {
+        "romOffset": 362068,
+        "bytes": 1918,
+        "sha256": "b609cdb1930cf2279c720a58cd767485de528597d2c08757faba4be82951fbd4",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "STANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1264,
+          "tacticalPacked": 1264,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 7
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 22
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 67,
+            "maxUnits": 30
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 136
+      },
+      "SCENA008.INI": {
+        "romOffset": 363986,
+        "bytes": 2792,
+        "sha256": "d9d7b7fbf4bb38e1b4af8424282fe93e7aa20fe92717244dfe515df21abfc7ba",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "PALACE.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2710,
+          "tacticalPacked": 2710,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 8
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 24
+          },
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 17
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 17
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 233
+      },
+      "SCENA009.INI": {
+        "romOffset": 366778,
+        "bytes": 2750,
+        "sha256": "627a2179cd2f6e6f1afbd0a97e805b610d7391ede42f628a90c9d25d8c656134",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "SARDUKAR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2795,
+          "tacticalPacked": 2795,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 27
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2500,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 4,
+            "quota": 0,
+            "credits": 9000,
+            "brain": 67,
+            "maxUnits": 35
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 236
+      },
+      "SCENO001.INI": {
+        "romOffset": 383788,
+        "bytes": 374,
+        "sha256": "eb73421dc6651202e9839230e40fc4f74a972d537fedc888117ddadc71e5000a",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HARVEST.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 1491,
+          "tacticalPacked": 1491,
+          "winFlags": 4,
+          "finishFlags": 6,
+          "mapSeed": 10
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 0,
+            "brain": 67,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 2,
+            "quota": 1000,
+            "credits": 990,
+            "brain": 72,
+            "maxUnits": 25
+          }
+        ],
+        "unitDefinitionCount": 18,
+        "buildingDefinitionCount": 1
+      },
+      "SCENO002.INI": {
+        "romOffset": 384162,
+        "bytes": 586,
+        "sha256": "b2f313071943fc8d2f82aa6f96e45b7b9e8ec5cc026f642020a6da4acb5b7214",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "HEADQRTS.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 407,
+          "tacticalPacked": 407,
+          "winFlags": 5,
+          "finishFlags": 23,
+          "mapSeed": 11
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 600,
+            "brain": 67,
+            "maxUnits": 16
+          },
+          {
+            "houseId": 2,
+            "quota": 2700,
+            "credits": 1200,
+            "brain": 72,
+            "maxUnits": 12
+          }
+        ],
+        "unitDefinitionCount": 19,
+        "buildingDefinitionCount": 15
+      },
+      "SCENO003.INI": {
+        "romOffset": 384748,
+        "bytes": 1152,
+        "sha256": "9d09e420f8b3c389ce241af6d89becf5e5855e24f2972d062fd36359a0199d2d",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "QUAD.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 3436,
+          "tacticalPacked": 3436,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 12
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 800,
+            "brain": 67,
+            "maxUnits": 19
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 14
+          }
+        ],
+        "unitDefinitionCount": 24,
+        "buildingDefinitionCount": 73
+      },
+      "SCENO004.INI": {
+        "romOffset": 385900,
+        "bytes": 1136,
+        "sha256": "8e001866cc150fd7b98860a4e4790226d3f102e7c0dbcaba32b7d3240d854b4f",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "LTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1130,
+          "tacticalPacked": 1130,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 13
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 21
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 16
+          }
+        ],
+        "unitDefinitionCount": 23,
+        "buildingDefinitionCount": 69
+      },
+      "SCENO005.INI": {
+        "romOffset": 387036,
+        "bytes": 1066,
+        "sha256": "df2f99cb3446947f463b922469386e3c15a7c4cdfbc6889f84106cedad4f4df6",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "REPAIR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2763,
+          "tacticalPacked": 2763,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 14
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 67,
+            "maxUnits": 24
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 18
+          }
+        ],
+        "unitDefinitionCount": 22,
+        "buildingDefinitionCount": 61
+      },
+      "SCENO006.INI": {
+        "romOffset": 388102,
+        "bytes": 1628,
+        "sha256": "acdc6dec635f42694874de27115e2a52401e96ed626ce0f79bc3508b097ac525",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HVYFTRY.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2778,
+          "tacticalPacked": 2778,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 15
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1800,
+            "brain": 67,
+            "maxUnits": 26
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1700,
+            "brain": 72,
+            "maxUnits": 20
+          }
+        ],
+        "unitDefinitionCount": 26,
+        "buildingDefinitionCount": 106
+      },
+      "SCENO007.INI": {
+        "romOffset": 389730,
+        "bytes": 1554,
+        "sha256": "fb3cd90dd466abbbcfa8b3ce59d781f1759bc50c53bdf82c0fe56ac4808010c8",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "ORDRTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2523,
+          "tacticalPacked": 2523,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 16
+        },
+        "houses": [
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 22
+          },
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 67,
+            "maxUnits": 28
+          }
+        ],
+        "unitDefinitionCount": 24,
+        "buildingDefinitionCount": 98
+      },
+      "SCENO008.INI": {
+        "romOffset": 391284,
+        "bytes": 2930,
+        "sha256": "f3ee2e4b37f89c1d6fbc16109fdb5cc7cb7971e2ecce3e9f746aec7d8d21ad4b",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "PALACE.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1869,
+          "tacticalPacked": 1869,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 17
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 67,
+            "maxUnits": 17
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 67,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 24
+          }
+        ],
+        "unitDefinitionCount": 27,
+        "buildingDefinitionCount": 252
+      },
+      "SCENO009.INI": {
+        "romOffset": 394214,
+        "bytes": 2726,
+        "sha256": "43b1b8b050511b3e186c6ce2b46f46d20bebcca898ee82aed212efc90d316308",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "SARDUKAR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2710,
+          "tacticalPacked": 2710,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 8
+        },
+        "houses": [
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 4,
+            "quota": 0,
+            "credits": 10500,
+            "brain": 67,
+            "maxUnits": 37
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 233
+      }
+    },
+    "rus": {
+      "SCENH001.INI": {
+        "romOffset": 369528,
+        "bytes": 374,
+        "sha256": "512481f614c469416948d473d29d10450ea08e62d5668cd54805b09b72c88d43",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HARVEST.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 592,
+          "tacticalPacked": 592,
+          "winFlags": 4,
+          "finishFlags": 6,
+          "mapSeed": 19
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 1000,
+            "credits": 990,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 0,
+            "brain": 67,
+            "maxUnits": 25
+          }
+        ],
+        "unitDefinitionCount": 18,
+        "buildingDefinitionCount": 1
+      },
+      "SCENH002.INI": {
+        "romOffset": 369902,
+        "bytes": 604,
+        "sha256": "6e130bda81b6a256a92ec4b80a3e3b8a5c1c7c08efd4463f6ba818c66f3cec52",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "HEADQRTS.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 531,
+          "tacticalPacked": 531,
+          "winFlags": 5,
+          "finishFlags": 23,
+          "mapSeed": 20
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 2700,
+            "credits": 1200,
+            "brain": 72,
+            "maxUnits": 12
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 17
+          }
+        ],
+        "unitDefinitionCount": 18,
+        "buildingDefinitionCount": 19
+      },
+      "SCENH003.INI": {
+        "romOffset": 370506,
+        "bytes": 766,
+        "sha256": "a1e2bfe7178ceadc86b4f7affddfd0c67a48adf972a405005cb1e9c10ad64175",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "QUAD.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 817,
+          "tacticalPacked": 817,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 21
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 14
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 67,
+            "maxUnits": 19
+          }
+        ],
+        "unitDefinitionCount": 23,
+        "buildingDefinitionCount": 30
+      },
+      "SCENH004.INI": {
+        "romOffset": 371272,
+        "bytes": 1230,
+        "sha256": "e57ef3e8f56a0b393b01f6cbfc1ee76959327b52fb6e1b4138bd219865930246",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "LTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2123,
+          "tacticalPacked": 2123,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 22
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 16
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2500,
+            "brain": 67,
+            "maxUnits": 21
+          }
+        ],
+        "unitDefinitionCount": 23,
+        "buildingDefinitionCount": 82
+      },
+      "SCENH005.INI": {
+        "romOffset": 372502,
+        "bytes": 1554,
+        "sha256": "9938d49e2fab4980d8bf0491b2bbf34da6c4bcf1796ce44eea69caa4035da767",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "REPAIR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 785,
+          "tacticalPacked": 785,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 23
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2700,
+            "brain": 67,
+            "maxUnits": 25
+          }
+        ],
+        "unitDefinitionCount": 23,
+        "buildingDefinitionCount": 116
+      },
+      "SCENH006.INI": {
+        "romOffset": 374056,
+        "bytes": 1656,
+        "sha256": "b92e76592fd34c53b3fccdd954db33c62d8538aa634b058a8d3b5ec5137c0cfc",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HVYFTRY.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2534,
+          "tacticalPacked": 2534,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 24
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1700,
+            "brain": 72,
+            "maxUnits": 20
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 3000,
+            "brain": 67,
+            "maxUnits": 29
+          }
+        ],
+        "unitDefinitionCount": 24,
+        "buildingDefinitionCount": 114
+      },
+      "SCENH007.INI": {
+        "romOffset": 375712,
+        "bytes": 2414,
+        "sha256": "473d47efdb73c53c1a0acf53b78871eebc44738447926a7eda49d864da246ab2",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "HARKTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2359,
+          "tacticalPacked": 2359,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 25
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1800,
+            "brain": 72,
+            "maxUnits": 22
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 3500,
+            "brain": 67,
+            "maxUnits": 32
+          }
+        ],
+        "unitDefinitionCount": 25,
+        "buildingDefinitionCount": 203
+      },
+      "SCENH008.INI": {
+        "romOffset": 378126,
+        "bytes": 2814,
+        "sha256": "d65db8f595b665815e1e4e89e4cb7f2a0551b9f79c278fd8b97168d0c3ca2bd4",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "PALACE.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2795,
+          "tacticalPacked": 2795,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 27
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 24
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 67,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 67,
+            "maxUnits": 18
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 237
+      },
+      "SCENH009.INI": {
+        "romOffset": 380940,
+        "bytes": 2848,
+        "sha256": "1f64092a6ecc6e161690b9246bc0690286d7b30ac92675cf0551f81ebb237883",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "SARDUKAR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1869,
+          "tacticalPacked": 1869,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 17
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 2500,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 4,
+            "quota": 0,
+            "credits": 15500,
+            "brain": 67,
+            "maxUnits": 38
+          }
+        ],
+        "unitDefinitionCount": 27,
+        "buildingDefinitionCount": 252
+      },
+      "SCENA001.INI": {
+        "romOffset": 356270,
+        "bytes": 406,
+        "sha256": "6452500bbfc87785d6e1cf4490b3f01f39008decd48253eafd5ed37f05f3d9e2",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HARVEST.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 1224,
+          "tacticalPacked": 1224,
+          "winFlags": 4,
+          "finishFlags": 6,
+          "mapSeed": 1
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 1000,
+            "credits": 990,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 0,
+            "brain": 67,
+            "maxUnits": 16
+          }
+        ],
+        "unitDefinitionCount": 18,
+        "buildingDefinitionCount": 1
+      },
+      "SCENA002.INI": {
+        "romOffset": 356676,
+        "bytes": 564,
+        "sha256": "2b8fd6136c167139e410d7f2bd8d9777d3c4235bba81d65da1af41e67fc9a20d",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "HEADQRTS.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 1360,
+          "tacticalPacked": 1360,
+          "winFlags": 5,
+          "finishFlags": 7,
+          "mapSeed": 2
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 2700,
+            "credits": 1200,
+            "brain": 72,
+            "maxUnits": 12
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 200,
+            "brain": 67,
+            "maxUnits": 16
+          }
+        ],
+        "unitDefinitionCount": 17,
+        "buildingDefinitionCount": 16
+      },
+      "SCENA003.INI": {
+        "romOffset": 357240,
+        "bytes": 620,
+        "sha256": "b5826b9e97531697f0c7972170291b8f3402ce2dd0618335195807eab1e1bcab",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "QUAD.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2513,
+          "tacticalPacked": 2513,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 3
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 300,
+            "brain": 67,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 14
+          }
+        ],
+        "unitDefinitionCount": 20,
+        "buildingDefinitionCount": 17
+      },
+      "SCENA004.INI": {
+        "romOffset": 357860,
+        "bytes": 1202,
+        "sha256": "65a9237ba000ecb9ff433adff06e0151766c27464ee81376b298c099fa6dfbc0",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "LTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 733,
+          "tacticalPacked": 733,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 4
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 800,
+            "brain": 67,
+            "maxUnits": 20
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 16
+          }
+        ],
+        "unitDefinitionCount": 26,
+        "buildingDefinitionCount": 74
+      },
+      "SCENA005.INI": {
+        "romOffset": 359062,
+        "bytes": 1454,
+        "sha256": "3e32dce8221df3af4da9f93111b61cda929544a1b9c27d91145eac015f08c432",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "REPAIR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1011,
+          "tacticalPacked": 1011,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 5
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 23
+          }
+        ],
+        "unitDefinitionCount": 24,
+        "buildingDefinitionCount": 104
+      },
+      "SCENA006.INI": {
+        "romOffset": 360516,
+        "bytes": 1552,
+        "sha256": "fda56d10455bf7966367c12adf958639974c911813edb4a4fa778ffb1bead7e2",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HVYFTRY.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2130,
+          "tacticalPacked": 2130,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 6
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1825,
+            "brain": 67,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1700,
+            "brain": 72,
+            "maxUnits": 20
+          }
+        ],
+        "unitDefinitionCount": 25,
+        "buildingDefinitionCount": 102
+      },
+      "SCENA007.INI": {
+        "romOffset": 362068,
+        "bytes": 1918,
+        "sha256": "b609cdb1930cf2279c720a58cd767485de528597d2c08757faba4be82951fbd4",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "STANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1264,
+          "tacticalPacked": 1264,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 7
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 22
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 67,
+            "maxUnits": 30
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 136
+      },
+      "SCENA008.INI": {
+        "romOffset": 363986,
+        "bytes": 2792,
+        "sha256": "d9d7b7fbf4bb38e1b4af8424282fe93e7aa20fe92717244dfe515df21abfc7ba",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "PALACE.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2710,
+          "tacticalPacked": 2710,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 8
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 24
+          },
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 17
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 17
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 233
+      },
+      "SCENA009.INI": {
+        "romOffset": 366778,
+        "bytes": 2750,
+        "sha256": "627a2179cd2f6e6f1afbd0a97e805b610d7391ede42f628a90c9d25d8c656134",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "SARDUKAR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2795,
+          "tacticalPacked": 2795,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 27
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2500,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 4,
+            "quota": 0,
+            "credits": 9000,
+            "brain": 67,
+            "maxUnits": 35
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 236
+      },
+      "SCENO001.INI": {
+        "romOffset": 383788,
+        "bytes": 374,
+        "sha256": "eb73421dc6651202e9839230e40fc4f74a972d537fedc888117ddadc71e5000a",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HARVEST.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 1491,
+          "tacticalPacked": 1491,
+          "winFlags": 4,
+          "finishFlags": 6,
+          "mapSeed": 10
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 0,
+            "brain": 67,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 2,
+            "quota": 1000,
+            "credits": 990,
+            "brain": 72,
+            "maxUnits": 25
+          }
+        ],
+        "unitDefinitionCount": 18,
+        "buildingDefinitionCount": 1
+      },
+      "SCENO002.INI": {
+        "romOffset": 384162,
+        "bytes": 586,
+        "sha256": "b2f313071943fc8d2f82aa6f96e45b7b9e8ec5cc026f642020a6da4acb5b7214",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "HEADQRTS.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 407,
+          "tacticalPacked": 407,
+          "winFlags": 5,
+          "finishFlags": 23,
+          "mapSeed": 11
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 600,
+            "brain": 67,
+            "maxUnits": 16
+          },
+          {
+            "houseId": 2,
+            "quota": 2700,
+            "credits": 1200,
+            "brain": 72,
+            "maxUnits": 12
+          }
+        ],
+        "unitDefinitionCount": 19,
+        "buildingDefinitionCount": 15
+      },
+      "SCENO003.INI": {
+        "romOffset": 384748,
+        "bytes": 1152,
+        "sha256": "9d09e420f8b3c389ce241af6d89becf5e5855e24f2972d062fd36359a0199d2d",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "QUAD.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 3436,
+          "tacticalPacked": 3436,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 12
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 800,
+            "brain": 67,
+            "maxUnits": 19
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 14
+          }
+        ],
+        "unitDefinitionCount": 24,
+        "buildingDefinitionCount": 73
+      },
+      "SCENO004.INI": {
+        "romOffset": 385900,
+        "bytes": 1136,
+        "sha256": "8e001866cc150fd7b98860a4e4790226d3f102e7c0dbcaba32b7d3240d854b4f",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "LTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1130,
+          "tacticalPacked": 1130,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 13
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 21
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 16
+          }
+        ],
+        "unitDefinitionCount": 23,
+        "buildingDefinitionCount": 69
+      },
+      "SCENO005.INI": {
+        "romOffset": 387036,
+        "bytes": 1066,
+        "sha256": "df2f99cb3446947f463b922469386e3c15a7c4cdfbc6889f84106cedad4f4df6",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "REPAIR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2763,
+          "tacticalPacked": 2763,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 14
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 67,
+            "maxUnits": 24
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 18
+          }
+        ],
+        "unitDefinitionCount": 22,
+        "buildingDefinitionCount": 61
+      },
+      "SCENO006.INI": {
+        "romOffset": 388102,
+        "bytes": 1628,
+        "sha256": "acdc6dec635f42694874de27115e2a52401e96ed626ce0f79bc3508b097ac525",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HVYFTRY.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2778,
+          "tacticalPacked": 2778,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 15
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1800,
+            "brain": 67,
+            "maxUnits": 26
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1700,
+            "brain": 72,
+            "maxUnits": 20
+          }
+        ],
+        "unitDefinitionCount": 26,
+        "buildingDefinitionCount": 106
+      },
+      "SCENO007.INI": {
+        "romOffset": 389730,
+        "bytes": 1554,
+        "sha256": "fb3cd90dd466abbbcfa8b3ce59d781f1759bc50c53bdf82c0fe56ac4808010c8",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "ORDRTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2523,
+          "tacticalPacked": 2523,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 16
+        },
+        "houses": [
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 22
+          },
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 67,
+            "maxUnits": 28
+          }
+        ],
+        "unitDefinitionCount": 24,
+        "buildingDefinitionCount": 98
+      },
+      "SCENO008.INI": {
+        "romOffset": 391284,
+        "bytes": 2930,
+        "sha256": "f3ee2e4b37f89c1d6fbc16109fdb5cc7cb7971e2ecce3e9f746aec7d8d21ad4b",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "PALACE.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1869,
+          "tacticalPacked": 1869,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 17
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 67,
+            "maxUnits": 17
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 67,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 24
+          }
+        ],
+        "unitDefinitionCount": 27,
+        "buildingDefinitionCount": 252
+      },
+      "SCENO009.INI": {
+        "romOffset": 394214,
+        "bytes": 2726,
+        "sha256": "43b1b8b050511b3e186c6ce2b46f46d20bebcca898ee82aed212efc90d316308",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "SARDUKAR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2710,
+          "tacticalPacked": 2710,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 8
+        },
+        "houses": [
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 4,
+            "quota": 0,
+            "credits": 10500,
+            "brain": 67,
+            "maxUnits": 37
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 233
+      }
+    },
+    "europe": {
+      "SCENH001.INI": {
+        "romOffset": 369520,
+        "bytes": 374,
+        "sha256": "512481f614c469416948d473d29d10450ea08e62d5668cd54805b09b72c88d43",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HARVEST.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 592,
+          "tacticalPacked": 592,
+          "winFlags": 4,
+          "finishFlags": 6,
+          "mapSeed": 19
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 1000,
+            "credits": 990,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 0,
+            "brain": 67,
+            "maxUnits": 25
+          }
+        ],
+        "unitDefinitionCount": 18,
+        "buildingDefinitionCount": 1
+      },
+      "SCENH002.INI": {
+        "romOffset": 369894,
+        "bytes": 604,
+        "sha256": "6e130bda81b6a256a92ec4b80a3e3b8a5c1c7c08efd4463f6ba818c66f3cec52",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "HEADQRTS.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 531,
+          "tacticalPacked": 531,
+          "winFlags": 5,
+          "finishFlags": 23,
+          "mapSeed": 20
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 2700,
+            "credits": 1200,
+            "brain": 72,
+            "maxUnits": 12
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 17
+          }
+        ],
+        "unitDefinitionCount": 18,
+        "buildingDefinitionCount": 19
+      },
+      "SCENH003.INI": {
+        "romOffset": 370498,
+        "bytes": 766,
+        "sha256": "a1e2bfe7178ceadc86b4f7affddfd0c67a48adf972a405005cb1e9c10ad64175",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "QUAD.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 817,
+          "tacticalPacked": 817,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 21
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 14
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 67,
+            "maxUnits": 19
+          }
+        ],
+        "unitDefinitionCount": 23,
+        "buildingDefinitionCount": 30
+      },
+      "SCENH004.INI": {
+        "romOffset": 371264,
+        "bytes": 1230,
+        "sha256": "e57ef3e8f56a0b393b01f6cbfc1ee76959327b52fb6e1b4138bd219865930246",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "LTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2123,
+          "tacticalPacked": 2123,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 22
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 16
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2500,
+            "brain": 67,
+            "maxUnits": 21
+          }
+        ],
+        "unitDefinitionCount": 23,
+        "buildingDefinitionCount": 82
+      },
+      "SCENH005.INI": {
+        "romOffset": 372494,
+        "bytes": 1554,
+        "sha256": "9938d49e2fab4980d8bf0491b2bbf34da6c4bcf1796ce44eea69caa4035da767",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "REPAIR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 785,
+          "tacticalPacked": 785,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 23
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2700,
+            "brain": 67,
+            "maxUnits": 25
+          }
+        ],
+        "unitDefinitionCount": 23,
+        "buildingDefinitionCount": 116
+      },
+      "SCENH006.INI": {
+        "romOffset": 374048,
+        "bytes": 1656,
+        "sha256": "b92e76592fd34c53b3fccdd954db33c62d8538aa634b058a8d3b5ec5137c0cfc",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HVYFTRY.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2534,
+          "tacticalPacked": 2534,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 24
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1700,
+            "brain": 72,
+            "maxUnits": 20
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 3000,
+            "brain": 67,
+            "maxUnits": 29
+          }
+        ],
+        "unitDefinitionCount": 24,
+        "buildingDefinitionCount": 114
+      },
+      "SCENH007.INI": {
+        "romOffset": 375704,
+        "bytes": 2414,
+        "sha256": "473d47efdb73c53c1a0acf53b78871eebc44738447926a7eda49d864da246ab2",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "HARKTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2359,
+          "tacticalPacked": 2359,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 25
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1800,
+            "brain": 72,
+            "maxUnits": 22
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 3500,
+            "brain": 67,
+            "maxUnits": 32
+          }
+        ],
+        "unitDefinitionCount": 25,
+        "buildingDefinitionCount": 203
+      },
+      "SCENH008.INI": {
+        "romOffset": 378118,
+        "bytes": 2814,
+        "sha256": "d65db8f595b665815e1e4e89e4cb7f2a0551b9f79c278fd8b97168d0c3ca2bd4",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "PALACE.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2795,
+          "tacticalPacked": 2795,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 27
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 24
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 67,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 67,
+            "maxUnits": 18
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 237
+      },
+      "SCENH009.INI": {
+        "romOffset": 380932,
+        "bytes": 2848,
+        "sha256": "1f64092a6ecc6e161690b9246bc0690286d7b30ac92675cf0551f81ebb237883",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "SARDUKAR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1869,
+          "tacticalPacked": 1869,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 17
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 2500,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 4,
+            "quota": 0,
+            "credits": 15500,
+            "brain": 67,
+            "maxUnits": 38
+          }
+        ],
+        "unitDefinitionCount": 27,
+        "buildingDefinitionCount": 252
+      },
+      "SCENA001.INI": {
+        "romOffset": 356262,
+        "bytes": 406,
+        "sha256": "6452500bbfc87785d6e1cf4490b3f01f39008decd48253eafd5ed37f05f3d9e2",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HARVEST.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 1224,
+          "tacticalPacked": 1224,
+          "winFlags": 4,
+          "finishFlags": 6,
+          "mapSeed": 1
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 1000,
+            "credits": 990,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 0,
+            "brain": 67,
+            "maxUnits": 16
+          }
+        ],
+        "unitDefinitionCount": 18,
+        "buildingDefinitionCount": 1
+      },
+      "SCENA002.INI": {
+        "romOffset": 356668,
+        "bytes": 564,
+        "sha256": "2b8fd6136c167139e410d7f2bd8d9777d3c4235bba81d65da1af41e67fc9a20d",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "HEADQRTS.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 1360,
+          "tacticalPacked": 1360,
+          "winFlags": 5,
+          "finishFlags": 7,
+          "mapSeed": 2
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 2700,
+            "credits": 1200,
+            "brain": 72,
+            "maxUnits": 12
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 200,
+            "brain": 67,
+            "maxUnits": 16
+          }
+        ],
+        "unitDefinitionCount": 17,
+        "buildingDefinitionCount": 16
+      },
+      "SCENA003.INI": {
+        "romOffset": 357232,
+        "bytes": 620,
+        "sha256": "b5826b9e97531697f0c7972170291b8f3402ce2dd0618335195807eab1e1bcab",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "QUAD.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2513,
+          "tacticalPacked": 2513,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 3
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 300,
+            "brain": 67,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 14
+          }
+        ],
+        "unitDefinitionCount": 20,
+        "buildingDefinitionCount": 17
+      },
+      "SCENA004.INI": {
+        "romOffset": 357852,
+        "bytes": 1202,
+        "sha256": "65a9237ba000ecb9ff433adff06e0151766c27464ee81376b298c099fa6dfbc0",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "LTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 733,
+          "tacticalPacked": 733,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 4
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 800,
+            "brain": 67,
+            "maxUnits": 20
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 16
+          }
+        ],
+        "unitDefinitionCount": 26,
+        "buildingDefinitionCount": 74
+      },
+      "SCENA005.INI": {
+        "romOffset": 359054,
+        "bytes": 1454,
+        "sha256": "3e32dce8221df3af4da9f93111b61cda929544a1b9c27d91145eac015f08c432",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "REPAIR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1011,
+          "tacticalPacked": 1011,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 5
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 23
+          }
+        ],
+        "unitDefinitionCount": 24,
+        "buildingDefinitionCount": 104
+      },
+      "SCENA006.INI": {
+        "romOffset": 360508,
+        "bytes": 1552,
+        "sha256": "fda56d10455bf7966367c12adf958639974c911813edb4a4fa778ffb1bead7e2",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HVYFTRY.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2130,
+          "tacticalPacked": 2130,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 6
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1825,
+            "brain": 67,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1700,
+            "brain": 72,
+            "maxUnits": 20
+          }
+        ],
+        "unitDefinitionCount": 25,
+        "buildingDefinitionCount": 102
+      },
+      "SCENA007.INI": {
+        "romOffset": 362060,
+        "bytes": 1918,
+        "sha256": "b609cdb1930cf2279c720a58cd767485de528597d2c08757faba4be82951fbd4",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "STANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1264,
+          "tacticalPacked": 1264,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 7
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 22
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 67,
+            "maxUnits": 30
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 136
+      },
+      "SCENA008.INI": {
+        "romOffset": 363978,
+        "bytes": 2792,
+        "sha256": "d9d7b7fbf4bb38e1b4af8424282fe93e7aa20fe92717244dfe515df21abfc7ba",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "PALACE.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2710,
+          "tacticalPacked": 2710,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 8
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 24
+          },
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 17
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 17
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 233
+      },
+      "SCENA009.INI": {
+        "romOffset": 366770,
+        "bytes": 2750,
+        "sha256": "627a2179cd2f6e6f1afbd0a97e805b610d7391ede42f628a90c9d25d8c656134",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "SARDUKAR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2795,
+          "tacticalPacked": 2795,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 27
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 2500,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 4,
+            "quota": 0,
+            "credits": 9000,
+            "brain": 67,
+            "maxUnits": 35
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 236
+      },
+      "SCENO001.INI": {
+        "romOffset": 383780,
+        "bytes": 374,
+        "sha256": "eb73421dc6651202e9839230e40fc4f74a972d537fedc888117ddadc71e5000a",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HARVEST.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 1491,
+          "tacticalPacked": 1491,
+          "winFlags": 4,
+          "finishFlags": 6,
+          "mapSeed": 10
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 0,
+            "brain": 67,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 2,
+            "quota": 1000,
+            "credits": 990,
+            "brain": 72,
+            "maxUnits": 25
+          }
+        ],
+        "unitDefinitionCount": 18,
+        "buildingDefinitionCount": 1
+      },
+      "SCENO002.INI": {
+        "romOffset": 384154,
+        "bytes": 586,
+        "sha256": "b2f313071943fc8d2f82aa6f96e45b7b9e8ec5cc026f642020a6da4acb5b7214",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "HEADQRTS.WSA",
+          "timeout": 0,
+          "mapScale": 1,
+          "cursorPacked": 407,
+          "tacticalPacked": 407,
+          "winFlags": 5,
+          "finishFlags": 23,
+          "mapSeed": 11
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 600,
+            "brain": 67,
+            "maxUnits": 16
+          },
+          {
+            "houseId": 2,
+            "quota": 2700,
+            "credits": 1200,
+            "brain": 72,
+            "maxUnits": 12
+          }
+        ],
+        "unitDefinitionCount": 19,
+        "buildingDefinitionCount": 15
+      },
+      "SCENO003.INI": {
+        "romOffset": 384740,
+        "bytes": 1152,
+        "sha256": "9d09e420f8b3c389ce241af6d89becf5e5855e24f2972d062fd36359a0199d2d",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "QUAD.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 3436,
+          "tacticalPacked": 3436,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 12
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 800,
+            "brain": 67,
+            "maxUnits": 19
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 14
+          }
+        ],
+        "unitDefinitionCount": 24,
+        "buildingDefinitionCount": 73
+      },
+      "SCENO004.INI": {
+        "romOffset": 385892,
+        "bytes": 1136,
+        "sha256": "8e001866cc150fd7b98860a4e4790226d3f102e7c0dbcaba32b7d3240d854b4f",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "LTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1130,
+          "tacticalPacked": 1130,
+          "winFlags": 1,
+          "finishFlags": 19,
+          "mapSeed": 13
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1000,
+            "brain": 67,
+            "maxUnits": 21
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 16
+          }
+        ],
+        "unitDefinitionCount": 23,
+        "buildingDefinitionCount": 69
+      },
+      "SCENO005.INI": {
+        "romOffset": 387028,
+        "bytes": 1066,
+        "sha256": "df2f99cb3446947f463b922469386e3c15a7c4cdfbc6889f84106cedad4f4df6",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "REPAIR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2763,
+          "tacticalPacked": 2763,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 14
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 67,
+            "maxUnits": 24
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 72,
+            "maxUnits": 18
+          }
+        ],
+        "unitDefinitionCount": 22,
+        "buildingDefinitionCount": 61
+      },
+      "SCENO006.INI": {
+        "romOffset": 388094,
+        "bytes": 1628,
+        "sha256": "acdc6dec635f42694874de27115e2a52401e96ed626ce0f79bc3508b097ac525",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "HVYFTRY.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2778,
+          "tacticalPacked": 2778,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 15
+        },
+        "houses": [
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1800,
+            "brain": 67,
+            "maxUnits": 26
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 1700,
+            "brain": 72,
+            "maxUnits": 20
+          }
+        ],
+        "unitDefinitionCount": 26,
+        "buildingDefinitionCount": 106
+      },
+      "SCENO007.INI": {
+        "romOffset": 389722,
+        "bytes": 1554,
+        "sha256": "fb3cd90dd466abbbcfa8b3ce59d781f1759bc50c53bdf82c0fe56ac4808010c8",
+        "settings": {
+          "loseMovie": "LOSTVEHC.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "ORDRTANK.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2523,
+          "tacticalPacked": 2523,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 16
+        },
+        "houses": [
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 22
+          },
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 67,
+            "maxUnits": 28
+          }
+        ],
+        "unitDefinitionCount": 24,
+        "buildingDefinitionCount": 98
+      },
+      "SCENO008.INI": {
+        "romOffset": 391276,
+        "bytes": 2930,
+        "sha256": "f3ee2e4b37f89c1d6fbc16109fdb5cc7cb7971e2ecce3e9f746aec7d8d21ad4b",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN1.WSA",
+          "briefMovie": "PALACE.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 1869,
+          "tacticalPacked": 1869,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 17
+        },
+        "houses": [
+          {
+            "houseId": 0,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 67,
+            "maxUnits": 17
+          },
+          {
+            "houseId": 1,
+            "quota": 0,
+            "credits": 1500,
+            "brain": 67,
+            "maxUnits": 18
+          },
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 24
+          }
+        ],
+        "unitDefinitionCount": 27,
+        "buildingDefinitionCount": 252
+      },
+      "SCENO009.INI": {
+        "romOffset": 394206,
+        "bytes": 2726,
+        "sha256": "43b1b8b050511b3e186c6ce2b46f46d20bebcca898ee82aed212efc90d316308",
+        "settings": {
+          "loseMovie": "LOSTBILD.WSA",
+          "winMovie": "WIN2.WSA",
+          "briefMovie": "SARDUKAR.WSA",
+          "timeout": 0,
+          "mapScale": 0,
+          "cursorPacked": 2710,
+          "tacticalPacked": 2710,
+          "winFlags": 1,
+          "finishFlags": 3,
+          "mapSeed": 8
+        },
+        "houses": [
+          {
+            "houseId": 2,
+            "quota": 0,
+            "credits": 2000,
+            "brain": 72,
+            "maxUnits": 25
+          },
+          {
+            "houseId": 4,
+            "quota": 0,
+            "credits": 10500,
+            "brain": 67,
+            "maxUnits": 37
+          }
+        ],
+        "unitDefinitionCount": 28,
+        "buildingDefinitionCount": 233
+      }
+    }
+  },
+  "selectedDefinitionFields": {
+    "usa": {
+      "buildings": [
+        {
+          "id": 0,
+          "cost": 5,
+          "hp": 10,
+          "power": 0,
+          "campaign": 1,
+          "houseMask": 63,
+          "sort": 2,
+          "upgradeLevel": 9
+        },
+        {
+          "id": 1,
+          "cost": 15,
+          "hp": 40,
+          "power": 0,
+          "campaign": 4,
+          "houseMask": 63,
+          "sort": 4,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 2,
+          "cost": 999,
+          "hp": 2000,
+          "power": 80,
+          "campaign": 8,
+          "houseMask": 63,
+          "sort": 33,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 3,
+          "cost": 400,
+          "hp": 800,
+          "power": 20,
+          "campaign": 3,
+          "houseMask": 63,
+          "sort": 14,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 4,
+          "cost": 600,
+          "hp": 1200,
+          "power": 35,
+          "campaign": 4,
+          "houseMask": 63,
+          "sort": 14,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 5,
+          "cost": 500,
+          "hp": 1000,
+          "power": 35,
+          "campaign": 5,
+          "houseMask": 63,
+          "sort": 30,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 6,
+          "cost": 500,
+          "hp": 1000,
+          "power": 40,
+          "campaign": 7,
+          "houseMask": 0,
+          "sort": 34,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 7,
+          "cost": 400,
+          "hp": 800,
+          "power": 20,
+          "campaign": 5,
+          "houseMask": 61,
+          "sort": 16,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 8,
+          "cost": 400,
+          "hp": 800,
+          "power": 0,
+          "campaign": 99,
+          "houseMask": 63,
+          "sort": 0,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 9,
+          "cost": 300,
+          "hp": 400,
+          "power": -100,
+          "campaign": 1,
+          "houseMask": 63,
+          "sort": 6,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 10,
+          "cost": 300,
+          "hp": 600,
+          "power": 10,
+          "campaign": 2,
+          "houseMask": 62,
+          "sort": 16,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 11,
+          "cost": 500,
+          "hp": 1000,
+          "power": 50,
+          "campaign": 6,
+          "houseMask": 63,
+          "sort": 32,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 12,
+          "cost": 400,
+          "hp": 900,
+          "power": 30,
+          "campaign": 1,
+          "houseMask": 63,
+          "sort": 8,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 13,
+          "cost": 700,
+          "hp": 1800,
+          "power": 20,
+          "campaign": 5,
+          "houseMask": 63,
+          "sort": 28,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 14,
+          "cost": 50,
+          "hp": 140,
+          "power": 0,
+          "campaign": 4,
+          "houseMask": 63,
+          "sort": 18,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 15,
+          "cost": 125,
+          "hp": 250,
+          "power": 10,
+          "campaign": 5,
+          "houseMask": 63,
+          "sort": 22,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 16,
+          "cost": 250,
+          "hp": 500,
+          "power": 20,
+          "campaign": 0,
+          "houseMask": 63,
+          "sort": 26,
+          "upgradeLevel": 1
+        },
+        {
+          "id": 17,
+          "cost": 150,
+          "hp": 300,
+          "power": 5,
+          "campaign": 2,
+          "houseMask": 63,
+          "sort": 12,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 18,
+          "cost": 400,
+          "hp": 1000,
+          "power": 30,
+          "campaign": 2,
+          "houseMask": 63,
+          "sort": 10,
+          "upgradeLevel": 0
+        }
+      ],
+      "units": [
+        {
+          "id": 0,
+          "cost": 800,
+          "hp": 100,
+          "damage": 0,
+          "range": 0
+        },
+        {
+          "id": 1,
+          "cost": 600,
+          "hp": 5,
+          "damage": 75,
+          "range": 50
+        },
+        {
+          "id": 2,
+          "cost": 100,
+          "hp": 50,
+          "damage": 4,
+          "range": 2
+        },
+        {
+          "id": 3,
+          "cost": 200,
+          "hp": 110,
+          "damage": 8,
+          "range": 3
+        },
+        {
+          "id": 4,
+          "cost": 60,
+          "hp": 20,
+          "damage": 4,
+          "range": 2
+        },
+        {
+          "id": 5,
+          "cost": 100,
+          "hp": 45,
+          "damage": 8,
+          "range": 3
+        },
+        {
+          "id": 6,
+          "cost": 120,
+          "hp": 40,
+          "damage": 150,
+          "range": 2
+        },
+        {
+          "id": 7,
+          "cost": 450,
+          "hp": 100,
+          "damage": 112,
+          "range": 9
+        },
+        {
+          "id": 8,
+          "cost": 750,
+          "hp": 120,
+          "damage": 0,
+          "range": 7
+        },
+        {
+          "id": 9,
+          "cost": 300,
+          "hp": 200,
+          "damage": 38,
+          "range": 4
+        },
+        {
+          "id": 10,
+          "cost": 600,
+          "hp": 300,
+          "damage": 45,
+          "range": 5
+        },
+        {
+          "id": 11,
+          "cost": 800,
+          "hp": 400,
+          "damage": 60,
+          "range": 5
+        },
+        {
+          "id": 12,
+          "cost": 600,
+          "hp": 110,
+          "damage": 90,
+          "range": 8
+        },
+        {
+          "id": 13,
+          "cost": 150,
+          "hp": 100,
+          "damage": 8,
+          "range": 3
+        },
+        {
+          "id": 14,
+          "cost": 150,
+          "hp": 80,
+          "damage": 8,
+          "range": 3
+        },
+        {
+          "id": 15,
+          "cost": 200,
+          "hp": 130,
+          "damage": 10,
+          "range": 3
+        },
+        {
+          "id": 16,
+          "cost": 300,
+          "hp": 150,
+          "damage": 0,
+          "range": 0
+        },
+        {
+          "id": 17,
+          "cost": 900,
+          "hp": 150,
+          "damage": 0,
+          "range": 0
+        },
+        {
+          "id": 18,
+          "cost": 0,
+          "hp": 70,
+          "damage": 150,
+          "range": 15
+        },
+        {
+          "id": 19,
+          "cost": 0,
+          "hp": 70,
+          "damage": 112,
+          "range": 8
+        },
+        {
+          "id": 20,
+          "cost": 0,
+          "hp": 70,
+          "damage": 112,
+          "range": 60
+        },
+        {
+          "id": 21,
+          "cost": 0,
+          "hp": 70,
+          "damage": 112,
+          "range": 7
+        },
+        {
+          "id": 22,
+          "cost": 0,
+          "hp": 70,
+          "damage": 0,
+          "range": 3
+        },
+        {
+          "id": 23,
+          "cost": 0,
+          "hp": 1,
+          "damage": 0,
+          "range": 0
+        },
+        {
+          "id": 24,
+          "cost": 0,
+          "hp": 1,
+          "damage": 38,
+          "range": 10
+        },
+        {
+          "id": 25,
+          "cost": 0,
+          "hp": 1000,
+          "damage": 450,
+          "range": 0
+        },
+        {
+          "id": 26,
+          "cost": 0,
+          "hp": 100,
+          "damage": 0,
+          "range": 0
+        }
+      ]
+    },
+    "rus": {
+      "buildings": [
+        {
+          "id": 0,
+          "cost": 5,
+          "hp": 10,
+          "power": 0,
+          "campaign": 1,
+          "houseMask": 63,
+          "sort": 2,
+          "upgradeLevel": 9
+        },
+        {
+          "id": 1,
+          "cost": 15,
+          "hp": 40,
+          "power": 0,
+          "campaign": 4,
+          "houseMask": 63,
+          "sort": 4,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 2,
+          "cost": 999,
+          "hp": 2000,
+          "power": 80,
+          "campaign": 8,
+          "houseMask": 63,
+          "sort": 33,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 3,
+          "cost": 400,
+          "hp": 800,
+          "power": 20,
+          "campaign": 3,
+          "houseMask": 63,
+          "sort": 14,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 4,
+          "cost": 600,
+          "hp": 1200,
+          "power": 35,
+          "campaign": 4,
+          "houseMask": 63,
+          "sort": 14,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 5,
+          "cost": 500,
+          "hp": 1000,
+          "power": 35,
+          "campaign": 5,
+          "houseMask": 63,
+          "sort": 30,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 6,
+          "cost": 500,
+          "hp": 1000,
+          "power": 40,
+          "campaign": 7,
+          "houseMask": 0,
+          "sort": 34,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 7,
+          "cost": 400,
+          "hp": 800,
+          "power": 20,
+          "campaign": 5,
+          "houseMask": 61,
+          "sort": 16,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 8,
+          "cost": 400,
+          "hp": 800,
+          "power": 0,
+          "campaign": 99,
+          "houseMask": 63,
+          "sort": 0,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 9,
+          "cost": 300,
+          "hp": 400,
+          "power": -100,
+          "campaign": 1,
+          "houseMask": 63,
+          "sort": 6,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 10,
+          "cost": 300,
+          "hp": 600,
+          "power": 10,
+          "campaign": 2,
+          "houseMask": 62,
+          "sort": 16,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 11,
+          "cost": 500,
+          "hp": 1000,
+          "power": 50,
+          "campaign": 6,
+          "houseMask": 63,
+          "sort": 32,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 12,
+          "cost": 400,
+          "hp": 900,
+          "power": 30,
+          "campaign": 1,
+          "houseMask": 63,
+          "sort": 8,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 13,
+          "cost": 700,
+          "hp": 1800,
+          "power": 20,
+          "campaign": 5,
+          "houseMask": 63,
+          "sort": 28,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 14,
+          "cost": 50,
+          "hp": 140,
+          "power": 0,
+          "campaign": 4,
+          "houseMask": 63,
+          "sort": 18,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 15,
+          "cost": 125,
+          "hp": 250,
+          "power": 10,
+          "campaign": 5,
+          "houseMask": 63,
+          "sort": 22,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 16,
+          "cost": 250,
+          "hp": 500,
+          "power": 20,
+          "campaign": 0,
+          "houseMask": 63,
+          "sort": 26,
+          "upgradeLevel": 1
+        },
+        {
+          "id": 17,
+          "cost": 150,
+          "hp": 300,
+          "power": 5,
+          "campaign": 2,
+          "houseMask": 63,
+          "sort": 12,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 18,
+          "cost": 400,
+          "hp": 1000,
+          "power": 30,
+          "campaign": 2,
+          "houseMask": 63,
+          "sort": 10,
+          "upgradeLevel": 0
+        }
+      ],
+      "units": [
+        {
+          "id": 0,
+          "cost": 800,
+          "hp": 100,
+          "damage": 0,
+          "range": 0
+        },
+        {
+          "id": 1,
+          "cost": 600,
+          "hp": 5,
+          "damage": 75,
+          "range": 50
+        },
+        {
+          "id": 2,
+          "cost": 100,
+          "hp": 50,
+          "damage": 4,
+          "range": 2
+        },
+        {
+          "id": 3,
+          "cost": 200,
+          "hp": 110,
+          "damage": 8,
+          "range": 3
+        },
+        {
+          "id": 4,
+          "cost": 60,
+          "hp": 20,
+          "damage": 4,
+          "range": 2
+        },
+        {
+          "id": 5,
+          "cost": 100,
+          "hp": 45,
+          "damage": 8,
+          "range": 3
+        },
+        {
+          "id": 6,
+          "cost": 120,
+          "hp": 40,
+          "damage": 150,
+          "range": 2
+        },
+        {
+          "id": 7,
+          "cost": 450,
+          "hp": 100,
+          "damage": 112,
+          "range": 9
+        },
+        {
+          "id": 8,
+          "cost": 750,
+          "hp": 120,
+          "damage": 0,
+          "range": 7
+        },
+        {
+          "id": 9,
+          "cost": 300,
+          "hp": 200,
+          "damage": 38,
+          "range": 4
+        },
+        {
+          "id": 10,
+          "cost": 600,
+          "hp": 300,
+          "damage": 45,
+          "range": 5
+        },
+        {
+          "id": 11,
+          "cost": 800,
+          "hp": 400,
+          "damage": 60,
+          "range": 5
+        },
+        {
+          "id": 12,
+          "cost": 600,
+          "hp": 110,
+          "damage": 90,
+          "range": 8
+        },
+        {
+          "id": 13,
+          "cost": 150,
+          "hp": 100,
+          "damage": 8,
+          "range": 3
+        },
+        {
+          "id": 14,
+          "cost": 150,
+          "hp": 80,
+          "damage": 8,
+          "range": 3
+        },
+        {
+          "id": 15,
+          "cost": 200,
+          "hp": 130,
+          "damage": 10,
+          "range": 3
+        },
+        {
+          "id": 16,
+          "cost": 300,
+          "hp": 150,
+          "damage": 0,
+          "range": 0
+        },
+        {
+          "id": 17,
+          "cost": 900,
+          "hp": 150,
+          "damage": 0,
+          "range": 0
+        },
+        {
+          "id": 18,
+          "cost": 0,
+          "hp": 70,
+          "damage": 150,
+          "range": 15
+        },
+        {
+          "id": 19,
+          "cost": 0,
+          "hp": 70,
+          "damage": 112,
+          "range": 8
+        },
+        {
+          "id": 20,
+          "cost": 0,
+          "hp": 70,
+          "damage": 112,
+          "range": 60
+        },
+        {
+          "id": 21,
+          "cost": 0,
+          "hp": 70,
+          "damage": 112,
+          "range": 7
+        },
+        {
+          "id": 22,
+          "cost": 0,
+          "hp": 70,
+          "damage": 0,
+          "range": 3
+        },
+        {
+          "id": 23,
+          "cost": 0,
+          "hp": 1,
+          "damage": 0,
+          "range": 0
+        },
+        {
+          "id": 24,
+          "cost": 0,
+          "hp": 1,
+          "damage": 38,
+          "range": 10
+        },
+        {
+          "id": 25,
+          "cost": 0,
+          "hp": 1000,
+          "damage": 450,
+          "range": 0
+        },
+        {
+          "id": 26,
+          "cost": 0,
+          "hp": 100,
+          "damage": 0,
+          "range": 0
+        }
+      ]
+    },
+    "europe": {
+      "buildings": [
+        {
+          "id": 0,
+          "cost": 5,
+          "hp": 10,
+          "power": 0,
+          "campaign": 1,
+          "houseMask": 63,
+          "sort": 2,
+          "upgradeLevel": 9
+        },
+        {
+          "id": 1,
+          "cost": 15,
+          "hp": 40,
+          "power": 0,
+          "campaign": 4,
+          "houseMask": 63,
+          "sort": 4,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 2,
+          "cost": 999,
+          "hp": 2000,
+          "power": 80,
+          "campaign": 8,
+          "houseMask": 63,
+          "sort": 33,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 3,
+          "cost": 400,
+          "hp": 800,
+          "power": 20,
+          "campaign": 3,
+          "houseMask": 63,
+          "sort": 14,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 4,
+          "cost": 600,
+          "hp": 1200,
+          "power": 35,
+          "campaign": 4,
+          "houseMask": 63,
+          "sort": 14,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 5,
+          "cost": 500,
+          "hp": 1000,
+          "power": 35,
+          "campaign": 5,
+          "houseMask": 63,
+          "sort": 30,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 6,
+          "cost": 500,
+          "hp": 1000,
+          "power": 40,
+          "campaign": 7,
+          "houseMask": 0,
+          "sort": 34,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 7,
+          "cost": 400,
+          "hp": 800,
+          "power": 20,
+          "campaign": 5,
+          "houseMask": 61,
+          "sort": 16,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 8,
+          "cost": 400,
+          "hp": 800,
+          "power": 0,
+          "campaign": 99,
+          "houseMask": 63,
+          "sort": 0,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 9,
+          "cost": 300,
+          "hp": 400,
+          "power": -100,
+          "campaign": 1,
+          "houseMask": 63,
+          "sort": 6,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 10,
+          "cost": 300,
+          "hp": 600,
+          "power": 10,
+          "campaign": 2,
+          "houseMask": 62,
+          "sort": 16,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 11,
+          "cost": 500,
+          "hp": 1000,
+          "power": 50,
+          "campaign": 6,
+          "houseMask": 63,
+          "sort": 32,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 12,
+          "cost": 400,
+          "hp": 900,
+          "power": 30,
+          "campaign": 1,
+          "houseMask": 63,
+          "sort": 8,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 13,
+          "cost": 700,
+          "hp": 1800,
+          "power": 20,
+          "campaign": 5,
+          "houseMask": 63,
+          "sort": 28,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 14,
+          "cost": 50,
+          "hp": 140,
+          "power": 0,
+          "campaign": 4,
+          "houseMask": 63,
+          "sort": 18,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 15,
+          "cost": 125,
+          "hp": 250,
+          "power": 10,
+          "campaign": 5,
+          "houseMask": 63,
+          "sort": 22,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 16,
+          "cost": 250,
+          "hp": 500,
+          "power": 20,
+          "campaign": 0,
+          "houseMask": 63,
+          "sort": 26,
+          "upgradeLevel": 1
+        },
+        {
+          "id": 17,
+          "cost": 150,
+          "hp": 300,
+          "power": 5,
+          "campaign": 2,
+          "houseMask": 63,
+          "sort": 12,
+          "upgradeLevel": 0
+        },
+        {
+          "id": 18,
+          "cost": 400,
+          "hp": 1000,
+          "power": 30,
+          "campaign": 2,
+          "houseMask": 63,
+          "sort": 10,
+          "upgradeLevel": 0
+        }
+      ],
+      "units": [
+        {
+          "id": 0,
+          "cost": 800,
+          "hp": 100,
+          "damage": 0,
+          "range": 0
+        },
+        {
+          "id": 1,
+          "cost": 600,
+          "hp": 5,
+          "damage": 75,
+          "range": 50
+        },
+        {
+          "id": 2,
+          "cost": 100,
+          "hp": 50,
+          "damage": 4,
+          "range": 2
+        },
+        {
+          "id": 3,
+          "cost": 200,
+          "hp": 110,
+          "damage": 8,
+          "range": 3
+        },
+        {
+          "id": 4,
+          "cost": 60,
+          "hp": 20,
+          "damage": 4,
+          "range": 2
+        },
+        {
+          "id": 5,
+          "cost": 100,
+          "hp": 45,
+          "damage": 8,
+          "range": 3
+        },
+        {
+          "id": 6,
+          "cost": 120,
+          "hp": 40,
+          "damage": 150,
+          "range": 2
+        },
+        {
+          "id": 7,
+          "cost": 450,
+          "hp": 100,
+          "damage": 112,
+          "range": 9
+        },
+        {
+          "id": 8,
+          "cost": 750,
+          "hp": 120,
+          "damage": 0,
+          "range": 7
+        },
+        {
+          "id": 9,
+          "cost": 300,
+          "hp": 200,
+          "damage": 38,
+          "range": 4
+        },
+        {
+          "id": 10,
+          "cost": 600,
+          "hp": 300,
+          "damage": 45,
+          "range": 5
+        },
+        {
+          "id": 11,
+          "cost": 800,
+          "hp": 400,
+          "damage": 60,
+          "range": 5
+        },
+        {
+          "id": 12,
+          "cost": 600,
+          "hp": 110,
+          "damage": 90,
+          "range": 8
+        },
+        {
+          "id": 13,
+          "cost": 150,
+          "hp": 100,
+          "damage": 8,
+          "range": 3
+        },
+        {
+          "id": 14,
+          "cost": 150,
+          "hp": 80,
+          "damage": 8,
+          "range": 3
+        },
+        {
+          "id": 15,
+          "cost": 200,
+          "hp": 130,
+          "damage": 10,
+          "range": 3
+        },
+        {
+          "id": 16,
+          "cost": 300,
+          "hp": 150,
+          "damage": 0,
+          "range": 0
+        },
+        {
+          "id": 17,
+          "cost": 900,
+          "hp": 150,
+          "damage": 0,
+          "range": 0
+        },
+        {
+          "id": 18,
+          "cost": 0,
+          "hp": 70,
+          "damage": 150,
+          "range": 15
+        },
+        {
+          "id": 19,
+          "cost": 0,
+          "hp": 70,
+          "damage": 112,
+          "range": 8
+        },
+        {
+          "id": 20,
+          "cost": 0,
+          "hp": 70,
+          "damage": 112,
+          "range": 60
+        },
+        {
+          "id": 21,
+          "cost": 0,
+          "hp": 70,
+          "damage": 112,
+          "range": 7
+        },
+        {
+          "id": 22,
+          "cost": 0,
+          "hp": 70,
+          "damage": 0,
+          "range": 3
+        },
+        {
+          "id": 23,
+          "cost": 0,
+          "hp": 1,
+          "damage": 0,
+          "range": 0
+        },
+        {
+          "id": 24,
+          "cost": 0,
+          "hp": 1,
+          "damage": 38,
+          "range": 10
+        },
+        {
+          "id": 25,
+          "cost": 0,
+          "hp": 1000,
+          "damage": 450,
+          "range": 0
+        },
+        {
+          "id": 26,
+          "cost": 0,
+          "hp": 100,
+          "damage": 0,
+          "range": 0
+        }
+      ]
+    }
+  },
+  "scope": "Read-only data comparison only, not an equivalence proof for regional machine code. Shipping runtime always remains the pinned USA program."
+}

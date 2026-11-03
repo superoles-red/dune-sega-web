@@ -1,0 +1,4729 @@
+{
+  "version": 2,
+  "game": "Dune — The Battle for Arrakis, Sega Genesis USA",
+  "source": {
+    "romSha256": "b1bbe73186e0902fa8b2db0f227bf306e3d6a80fe592f927d1aa9d60c0f335ba",
+    "generatedSourceSha256": "e3055a76cd0eeb151591984a2c12312dcea49754afa0edee9f84889814ad1578",
+    "sourceFrame": "yard-idle.clean.rgb from extract_shop_ui.c",
+    "sourceFrameSha256": "f51f3b735f661aa25f35cc66a41609f0ec23e0561d16988a25f53a3bb6632e27",
+    "vramSha256": "9016c21177cb97a6a94e70afe2fd69a9046d9a3eb36e7016c38509d3bc4c4820",
+    "paletteSha256": "da715baecb5ed297fa2bd2d86dcd513709bdd4779cbb7c3157a8118113a94d03",
+    "paletteCoverage": "Original observed Atreides menu palette; no other-house UI palette claim."
+  },
+  "renderingRules": [
+    "Draw at native size multiplied by an integer scale. Disable image smoothing.",
+    "Do not resize corners, icons, caps or artwork independently. Repeat only declared straight strips or texture samples.",
+    "Crop the final repetition at the destination boundary; do not rescale its pixels.",
+    "Fonts have original opaque black 8x8 cells; use them on black windows.",
+    "No generated imagery, painted borders, CSS gradients or colour-key transparency are included."
+  ],
+  "parts": {
+    "command-cabinet-tl": {
+      "path": "chrome/command-cabinet-tl.png",
+      "width": 16,
+      "height": 16,
+      "sourceRect": [
+        24,
+        40,
+        16,
+        16
+      ],
+      "role": "corner",
+      "repeat": null,
+      "label": "command-cabinet-tl",
+      "transparent": true,
+      "pixelSha256": "f6944ea7bed5886497df60cdec7f69f5721346c20a87a22ae90dd162fc4cbeb7",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            16
+          ],
+          [
+            2,
+            16
+          ],
+          [
+            1,
+            16
+          ],
+          [
+            1,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sourceLayer": "Original VDP WINDOW plane, base0x6000, 64 tiles per row; sprites excluded.",
+      "sha256": "3857117534cde038c0c504c2612a14b84d6e1954ab2ae230794a85739d28aae4"
+    },
+    "command-cabinet-tr": {
+      "path": "chrome/command-cabinet-tr.png",
+      "width": 16,
+      "height": 16,
+      "sourceRect": [
+        120,
+        40,
+        16,
+        16
+      ],
+      "role": "corner",
+      "repeat": null,
+      "label": "command-cabinet-tr",
+      "transparent": true,
+      "pixelSha256": "d2d5b913a696c8d03526ea650d2d4b33fda4e7ff87b13a1c59beee0afc08d621",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            12
+          ],
+          [
+            0,
+            14
+          ],
+          [
+            0,
+            15
+          ],
+          [
+            0,
+            15
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sourceLayer": "Original VDP WINDOW plane, base0x6000, 64 tiles per row; sprites excluded.",
+      "sha256": "769b34c4234c9482baedaae118f402bebbcb98e67f8597d17137dad53abc2c6d"
+    },
+    "command-cabinet-bl": {
+      "path": "chrome/command-cabinet-bl.png",
+      "width": 16,
+      "height": 16,
+      "sourceRect": [
+        24,
+        184,
+        16,
+        16
+      ],
+      "role": "corner",
+      "repeat": null,
+      "label": "command-cabinet-bl",
+      "transparent": true,
+      "pixelSha256": "3e8911d6c4ffd2896654ac08c73fb019ea7c55d0c051fc1040eed159821488fc",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            2,
+            16
+          ],
+          [
+            1,
+            16
+          ],
+          [
+            2,
+            16
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sourceLayer": "Original VDP WINDOW plane, base0x6000, 64 tiles per row; sprites excluded.",
+      "sha256": "d74c5b28d19d90359241c67414592c7044439ad26b7d72f396af3fafab37044d"
+    },
+    "command-cabinet-br": {
+      "path": "chrome/command-cabinet-br.png",
+      "width": 16,
+      "height": 16,
+      "sourceRect": [
+        120,
+        184,
+        16,
+        16
+      ],
+      "role": "corner",
+      "repeat": null,
+      "label": "command-cabinet-br",
+      "transparent": true,
+      "pixelSha256": "10fd679ce1700e698542493daa92d16f0cae6f9328e5f11e6e404d6de23319dc",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            0,
+            15
+          ],
+          [
+            0,
+            15
+          ],
+          [
+            0,
+            14
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            11
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sourceLayer": "Original VDP WINDOW plane, base0x6000, 64 tiles per row; sprites excluded.",
+      "sha256": "c8a264441d6c5b070fde978f0fb29a9ee49a870b136b4610b2c7ebb6f52ebd58"
+    },
+    "command-cabinet-top": {
+      "path": "chrome/command-cabinet-top.png",
+      "width": 1,
+      "height": 16,
+      "sourceRect": [
+        64,
+        40,
+        1,
+        16
+      ],
+      "role": "straight-edge",
+      "repeat": "x",
+      "label": "command-cabinet-top",
+      "transparent": true,
+      "pixelSha256": "601a3b6163cb760427edb1b6d5ce3d30bdf97d839a7e55d076afa5b65ffdfe2b",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sourceLayer": "Original VDP WINDOW plane, base0x6000, 64 tiles per row; sprites excluded.",
+      "sha256": "ca4508057f2d70ac32794e7f39e7ec3c2e746bf5807e171da37601b0a8382909"
+    },
+    "command-cabinet-bottom": {
+      "path": "chrome/command-cabinet-bottom.png",
+      "width": 1,
+      "height": 16,
+      "sourceRect": [
+        64,
+        184,
+        1,
+        16
+      ],
+      "role": "straight-edge",
+      "repeat": "x",
+      "label": "command-cabinet-bottom",
+      "transparent": true,
+      "pixelSha256": "ba71ef411c6ae25ffd4426400208dd36bb933b489ab3acb3262c2e88385a6ffb",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sourceLayer": "Original VDP WINDOW plane, base0x6000, 64 tiles per row; sprites excluded.",
+      "sha256": "639d52f97f7d77e5382a8e8a8d9c8f85b975bff1ee5ac641d6b115a836da7feb"
+    },
+    "command-cabinet-left": {
+      "path": "chrome/command-cabinet-left.png",
+      "width": 16,
+      "height": 1,
+      "sourceRect": [
+        24,
+        112,
+        16,
+        1
+      ],
+      "role": "straight-edge",
+      "repeat": "y",
+      "label": "command-cabinet-left",
+      "transparent": true,
+      "pixelSha256": "90868f1d3a8822fe46a6c038f40367d28dc7ab06ef6aed9e4a933dabe78bd702",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            8
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sourceLayer": "Original VDP WINDOW plane, base0x6000, 64 tiles per row; sprites excluded.",
+      "sha256": "74ff0861d5f300cbc17f8c3213564baba79d47388b168952b9c2cc3d89d3957e"
+    },
+    "command-cabinet-right": {
+      "path": "chrome/command-cabinet-right.png",
+      "width": 16,
+      "height": 1,
+      "sourceRect": [
+        120,
+        112,
+        16,
+        1
+      ],
+      "role": "straight-edge",
+      "repeat": "y",
+      "label": "command-cabinet-right",
+      "transparent": true,
+      "pixelSha256": "579e8600b2deec8467e67dde81529aa00e6cd631be137ab4df01fe386de4d69e",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            8,
+            16
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sourceLayer": "Original VDP WINDOW plane, base0x6000, 64 tiles per row; sprites excluded.",
+      "sha256": "e1b84fb1983d9bd913aac2f4b2a8477db4c4fa2c1316e9e9ef012fcc0db2e378"
+    },
+    "command-cabinet-fill": {
+      "path": "chrome/command-cabinet-fill.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        40,
+        112,
+        8,
+        8
+      ],
+      "role": "fill",
+      "repeat": "xy",
+      "label": "command-cabinet-fill",
+      "transparent": false,
+      "pixelSha256": "5d89f056865052bcb89c910d2d62872e029fb273c3db03f8968a52a41593c1b5",
+      "sourceLayer": "Original VDP WINDOW plane, base0x6000, 64 tiles per row; sprites excluded.",
+      "sha256": "43c1b79b26009d2798246be983aa5ffa1a5757f916e10cdcad7cbc5fab3f40a0"
+    },
+    "monitor-tl": {
+      "path": "chrome/monitor-tl.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        152,
+        32,
+        8,
+        8
+      ],
+      "role": "corner",
+      "repeat": null,
+      "label": "monitor-tl",
+      "transparent": false,
+      "pixelSha256": "5c6f1f18e95a9870c24ccc59e529b67afc5db2b5077f1b44e15cde5b8abf504e",
+      "sha256": "4c2813cac0bc84b01f5931960297ddbed45a3f48f9014ee8d13f350f60d6912f"
+    },
+    "monitor-tr": {
+      "path": "chrome/monitor-tr.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        256,
+        32,
+        8,
+        8
+      ],
+      "role": "corner",
+      "repeat": null,
+      "label": "monitor-tr",
+      "transparent": false,
+      "pixelSha256": "4828c77024e3b659eff8be787cea2dd82741ad063530b133d09b6ae0b9ee8b17",
+      "sha256": "ea6d4cbd9a1a3e1fd55c52757b83717c32f595ee79f1bebbf66c1bbc80795d12"
+    },
+    "monitor-bl": {
+      "path": "chrome/monitor-bl.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        152,
+        96,
+        8,
+        8
+      ],
+      "role": "corner",
+      "repeat": null,
+      "label": "monitor-bl",
+      "transparent": false,
+      "pixelSha256": "5041fd22a1e323bb2031003520d854dbce947672d2f96ca4297d19934b51c747",
+      "sha256": "72b61ac97b750c61cc585fdb7d8bbdb9566f78ba2d66f341612a738be55177c1"
+    },
+    "monitor-br": {
+      "path": "chrome/monitor-br.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        256,
+        96,
+        8,
+        8
+      ],
+      "role": "corner",
+      "repeat": null,
+      "label": "monitor-br",
+      "transparent": false,
+      "pixelSha256": "8b029db35dfcf1a5e2a0e32a1d30e1819c82e948ca529b77e4cb6fab7a7836f8",
+      "sha256": "fa4f3eba87bb26aab5e282e514f5b71e1fd8f8d4501f4f49fb90299aad82f7ec"
+    },
+    "monitor-top": {
+      "path": "chrome/monitor-top.png",
+      "width": 1,
+      "height": 8,
+      "sourceRect": [
+        192,
+        32,
+        1,
+        8
+      ],
+      "role": "straight-edge",
+      "repeat": "x",
+      "label": "monitor-top",
+      "transparent": false,
+      "pixelSha256": "8c4e1466de2d67fa08dd3d86403a804705510a460c8886970aefceb7cf6cd05d",
+      "sha256": "671ad5faac94b3e0ca3f8d59dfb78566c4557cd07f75f840c10b6de2b53fafa2"
+    },
+    "monitor-bottom": {
+      "path": "chrome/monitor-bottom.png",
+      "width": 1,
+      "height": 8,
+      "sourceRect": [
+        192,
+        96,
+        1,
+        8
+      ],
+      "role": "straight-edge",
+      "repeat": "x",
+      "label": "monitor-bottom",
+      "transparent": false,
+      "pixelSha256": "bf1d4c3b91459a769ca8b5e1f5fd5652195ae04557f1846ae847cd7336f1c279",
+      "sha256": "ac159f2a653db4ba5a860f7aac7c033e80927377312761530d38a29829d94f98"
+    },
+    "monitor-left": {
+      "path": "chrome/monitor-left.png",
+      "width": 8,
+      "height": 1,
+      "sourceRect": [
+        152,
+        64,
+        8,
+        1
+      ],
+      "role": "straight-edge",
+      "repeat": "y",
+      "label": "monitor-left",
+      "transparent": false,
+      "pixelSha256": "f0e6a68ad6e5965998361142f9a19428883d5006e51f3d3d61ba345eb6d69215",
+      "sha256": "691980654786e8bc5705791c44fe539e779f1839972431cc09221e9d2cd87866"
+    },
+    "monitor-right": {
+      "path": "chrome/monitor-right.png",
+      "width": 8,
+      "height": 1,
+      "sourceRect": [
+        256,
+        64,
+        8,
+        1
+      ],
+      "role": "straight-edge",
+      "repeat": "y",
+      "label": "monitor-right",
+      "transparent": false,
+      "pixelSha256": "edbb44b4275a964699b1821192ae6417a2d037aae9ad44e47bdafdf807aa959e",
+      "sha256": "3ef92e0858e722f89055fd9ee354199151ee8cd58464a4e3db0256adbc292358"
+    },
+    "monitor-fill": {
+      "path": "chrome/monitor-fill.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        40,
+        112,
+        8,
+        8
+      ],
+      "role": "fill",
+      "repeat": "xy",
+      "label": "monitor-fill",
+      "transparent": false,
+      "pixelSha256": "5d89f056865052bcb89c910d2d62872e029fb273c3db03f8968a52a41593c1b5",
+      "sha256": "43c1b79b26009d2798246be983aa5ffa1a5757f916e10cdcad7cbc5fab3f40a0"
+    },
+    "title-window-left": {
+      "path": "chrome/title-window-left.png",
+      "width": 8,
+      "height": 16,
+      "sourceRect": [
+        152,
+        104,
+        8,
+        16
+      ],
+      "role": "cap",
+      "repeat": null,
+      "label": "title-window-left",
+      "transparent": false,
+      "pixelSha256": "b978fdfa40bc1f55f16d72e3ea3ea6a8c73f23eb0d295ef281173b5bcf981483",
+      "sha256": "4e134a659f29cedd1081824f30e2e015a80fc4bfde0dbc6f5e4beaa409f75efd"
+    },
+    "title-window-middle": {
+      "path": "chrome/title-window-middle.png",
+      "width": 1,
+      "height": 16,
+      "sourceRect": [
+        192,
+        104,
+        1,
+        16
+      ],
+      "role": "straight-edge",
+      "repeat": "x",
+      "label": "title-window-middle",
+      "transparent": false,
+      "pixelSha256": "eebffb9b56c1d38a2d7dbf4a28d7cd8d6f86e5b4a8430a49ea6956a315e3efe9",
+      "sha256": "8eee78179dbae769c7aa19787b965e219b3abc4270d44f028b83814bcaa1cc68"
+    },
+    "title-window-right": {
+      "path": "chrome/title-window-right.png",
+      "width": 8,
+      "height": 16,
+      "sourceRect": [
+        256,
+        104,
+        8,
+        16
+      ],
+      "role": "cap",
+      "repeat": null,
+      "label": "title-window-right",
+      "transparent": false,
+      "pixelSha256": "a96d827aecea5781c2093d515f633ee95ac5c2471a5034ca5653d89075cc4a35",
+      "sha256": "5f729c94e88ac986209a6a7aae946441fbbfeedefdfe10f7eb291efae36376b7"
+    },
+    "cash-window-left": {
+      "path": "chrome/cash-window-left.png",
+      "width": 8,
+      "height": 16,
+      "sourceRect": [
+        224,
+        8,
+        8,
+        16
+      ],
+      "role": "cap",
+      "repeat": null,
+      "label": "cash-window-left",
+      "transparent": false,
+      "pixelSha256": "c7eace154d817ec579e719d239a24f495bba18b5f6afb22b539da3d591cc5b27",
+      "sha256": "adb25d3fbcaab1b881f556a21b10c447ab46f929a97be78d495770c5f972105f"
+    },
+    "cash-window-middle": {
+      "path": "chrome/cash-window-middle.png",
+      "width": 1,
+      "height": 16,
+      "sourceRect": [
+        240,
+        8,
+        1,
+        16
+      ],
+      "role": "straight-edge",
+      "repeat": "x",
+      "label": "cash-window-middle",
+      "transparent": false,
+      "pixelSha256": "77d5de50aa4c82ae2bc7daafc7e90b369daa3b0d34f11c1339a7a99c2a789acb",
+      "sha256": "fc619d48a05303616d76447d8db7058de5c4b8e135ae467a18e7b0d265b5a1f6"
+    },
+    "cash-window-right": {
+      "path": "chrome/cash-window-right.png",
+      "width": 8,
+      "height": 16,
+      "sourceRect": [
+        296,
+        8,
+        8,
+        16
+      ],
+      "role": "cap",
+      "repeat": null,
+      "label": "cash-window-right",
+      "transparent": false,
+      "pixelSha256": "e416493c98403d15f49e5b666c26c3c307c58346ceefd2410051af77abb50524",
+      "sha256": "882a8723f1fb0d12c11d54c0757a4f5c36b5f5ed09a9ae11b8615f2919451719"
+    },
+    "meter-window-left": {
+      "path": "chrome/meter-window-left.png",
+      "width": 8,
+      "height": 16,
+      "sourceRect": [
+        188,
+        124,
+        8,
+        16
+      ],
+      "role": "cap",
+      "repeat": null,
+      "label": "meter-window-left",
+      "transparent": true,
+      "pixelSha256": "7eeceec3ee21208276e7615f71271007b83f689839071fb40b0ae7029a9844a2",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sha256": "92aa0adca34432733c0718f1da92e10ae27386e025f9e621b80f1ce1dd46293e"
+    },
+    "meter-window-middle": {
+      "path": "chrome/meter-window-middle.png",
+      "width": 1,
+      "height": 16,
+      "sourceRect": [
+        220,
+        124,
+        1,
+        16
+      ],
+      "role": "straight-edge",
+      "repeat": "x",
+      "label": "meter-window-middle",
+      "transparent": true,
+      "pixelSha256": "77d1e3b3c15632e99a83ad9fb30b1fce2891faf4b9bce3c9371d69c4866fb9a2",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sha256": "91c9b57c3a511831e60ac10aa8cbbe54f8ee32433f6f7826adcd00f6235483a0"
+    },
+    "meter-window-right": {
+      "path": "chrome/meter-window-right.png",
+      "width": 8,
+      "height": 16,
+      "sourceRect": [
+        252,
+        124,
+        8,
+        16
+      ],
+      "role": "cap",
+      "repeat": null,
+      "label": "meter-window-right",
+      "transparent": true,
+      "pixelSha256": "f31fb3ac1c7a6cd11e2ca4c10171e0d4b1b068e486a81cb8947e40048801ab32",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sha256": "178be09f9009bd56a0296eabd9574c5f7fbebed9d7447289c30503d396a406e4"
+    },
+    "native-black": {
+      "path": "chrome/native-black.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        40,
+        112,
+        8,
+        8
+      ],
+      "role": "fill",
+      "repeat": "xy",
+      "label": "native-black",
+      "transparent": false,
+      "pixelSha256": "5d89f056865052bcb89c910d2d62872e029fb273c3db03f8968a52a41593c1b5",
+      "sha256": "43c1b79b26009d2798246be983aa5ffa1a5757f916e10cdcad7cbc5fab3f40a0"
+    },
+    "steel-light": {
+      "path": "chrome/steel-light.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        136,
+        88,
+        8,
+        8
+      ],
+      "role": "texture",
+      "repeat": "xy",
+      "label": "steel-light",
+      "transparent": false,
+      "pixelSha256": "cac2380e07a2b209c7071d3f98eb46fdc41e15ee5e9f780aa31c44a144b87d1c",
+      "nativeRgb": [
+        182,
+        182,
+        218
+      ],
+      "sha256": "fb90aa67d8c26b61d044303e53b8235c7605481cfdc8e0eb2da0858c4e325f74"
+    },
+    "steel-grain": {
+      "path": "chrome/steel-grain.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        184,
+        144,
+        8,
+        8
+      ],
+      "role": "native-shading-band-reference",
+      "repeat": "x",
+      "label": "steel-grain",
+      "transparent": false,
+      "pixelSha256": "88fd42f2c43a8897c63aca6653b04dcdbfdb3d4eeb5f83d60f71587bd3ea948f",
+      "sha256": "3b9e630f4fa2a4ed5524e407d91862c9e198c3210958309c6a2eae98075b620e"
+    },
+    "command-top-texture8": {
+      "path": "chrome/command-top-texture8.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        56,
+        40,
+        8,
+        8
+      ],
+      "role": "straight-edge",
+      "repeat": "x",
+      "label": "command-top-texture8",
+      "transparent": false,
+      "pixelSha256": "059cc732acb0767f8425655b2b3f39d3f3d4522dba8bfd7d61993e546799378c",
+      "sha256": "075e62a61a29561f71af911585094c3717c7b1ee11ef7b838179e505a114cd71"
+    },
+    "command-bottom-texture8": {
+      "path": "chrome/command-bottom-texture8.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        56,
+        192,
+        8,
+        8
+      ],
+      "role": "straight-edge",
+      "repeat": "x",
+      "label": "command-bottom-texture8",
+      "transparent": false,
+      "pixelSha256": "f178d0065653f607d164b4a770f42549122d7d18e76e0332a320336017c61e37",
+      "sha256": "0ed34f208d2ad318f4301e3e71c6201e4d0958f62bd18b4a525e62d7796b3b56"
+    },
+    "command-left-texture8": {
+      "path": "chrome/command-left-texture8.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        24,
+        112,
+        8,
+        8
+      ],
+      "role": "straight-edge",
+      "repeat": "y",
+      "label": "command-left-texture8",
+      "transparent": false,
+      "pixelSha256": "f0212f8259e36e748784419d1f3351e2f8c807670ae7c266871d5d2822e97772",
+      "sha256": "c966f3056f2e0ae4030f93889579c272649325f528e0943ddade470002b0be70"
+    },
+    "command-right-texture8": {
+      "path": "chrome/command-right-texture8.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        128,
+        112,
+        8,
+        8
+      ],
+      "role": "straight-edge",
+      "repeat": "y",
+      "label": "command-right-texture8",
+      "transparent": false,
+      "pixelSha256": "3699fb15f4fa0b188d794637699670f7e56f1d5a2f88b1d3c4cd685c73c0ff9b",
+      "sha256": "0343f82b6e2f458adc54f85c69d570e75acce9f9f411b3971c9ff669001d1e60"
+    },
+    "radar-cabinet72": {
+      "path": "chrome/radar-cabinet72.png",
+      "width": 72,
+      "height": 24,
+      "sourceRect": [
+        64,
+        16,
+        72,
+        24
+      ],
+      "role": "fixed",
+      "repeat": null,
+      "label": "radar-cabinet72",
+      "transparent": false,
+      "pixelSha256": "8199ccf9d0f011726d71f2144d53b67a38c8b1f769770703c811944a7148c9a1",
+      "sha256": "d317db670673cb16b44a85537efb2e4259102f56e1e809d04d1011a8978cbded"
+    },
+    "radar-window56": {
+      "path": "chrome/radar-window56.png",
+      "width": 56,
+      "height": 16,
+      "sourceRect": [
+        72,
+        24,
+        56,
+        16
+      ],
+      "role": "fixed",
+      "repeat": null,
+      "label": "radar-window56",
+      "transparent": false,
+      "pixelSha256": "3d896b8ebdea99698f2a8cefcaf88ad13a55c5d85cb1d7ad9d96cafc5a5248c6",
+      "sha256": "22dd9a332d173f4c5a74e20b2316cef96061c0262cb8acce88db9a6e49c2ab11"
+    },
+    "radar-center48": {
+      "path": "chrome/radar-center48.png",
+      "width": 48,
+      "height": 16,
+      "sourceRect": [
+        80,
+        24,
+        48,
+        16
+      ],
+      "role": "literal-window-crop",
+      "repeat": null,
+      "label": "radar-center48",
+      "transparent": false,
+      "pixelSha256": "0bc794c4add9c50d21856a2ca705af035d5fcc93d4a588cc9e749719f4fe4c69",
+      "sha256": "b75d87dd489bb6b238e6888317d560d025a6169ae92f1939a2eb221f9a0d1030"
+    },
+    "radar-center32": {
+      "path": "chrome/radar-center32.png",
+      "width": 32,
+      "height": 16,
+      "sourceRect": [
+        88,
+        24,
+        32,
+        16
+      ],
+      "role": "literal-window-crop",
+      "repeat": null,
+      "label": "radar-center32",
+      "transparent": false,
+      "pixelSha256": "789c72299ea709a7859c7b31def127989feb329d00efe8ea1a5b933724edaa57",
+      "sha256": "f190def5571ce1632063bd764420309fe628a325e18e702abc7bafb200f3bfbc"
+    },
+    "resource-dollar": {
+      "path": "chrome/resource-dollar.png",
+      "width": 24,
+      "height": 24,
+      "sourceRect": [
+        156,
+        116,
+        24,
+        24
+      ],
+      "role": "fixed",
+      "repeat": null,
+      "label": "resource-dollar",
+      "transparent": true,
+      "pixelSha256": "e9f2849972bf17fde0515ed89dc5c98e7ea3647926eb6fee9f768d5d95511252",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            21
+          ],
+          [
+            2,
+            21
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            20
+          ],
+          [
+            3,
+            20
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sha256": "d7c4ed959e178947adc9eb1d6eafdb260f658b02bb5364d993d45d0b162dc2d1"
+    },
+    "resource-power": {
+      "path": "chrome/resource-power.png",
+      "width": 24,
+      "height": 24,
+      "sourceRect": [
+        156,
+        148,
+        24,
+        24
+      ],
+      "role": "fixed",
+      "repeat": null,
+      "label": "resource-power",
+      "transparent": true,
+      "pixelSha256": "a87445cd2b20d1235e5550f1e7e03a0bd038aad43b470af21296af0d62d41860",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            20
+          ],
+          [
+            3,
+            21
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            3,
+            21
+          ],
+          [
+            3,
+            21
+          ],
+          [
+            5,
+            19
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sha256": "9985798eaa0dd9cba88c7d8591fa2adcd11e154777feaebdb706ddc3e14481e0"
+    },
+    "resource-armor": {
+      "path": "chrome/resource-armor.png",
+      "width": 24,
+      "height": 24,
+      "sourceRect": [
+        156,
+        180,
+        24,
+        24
+      ],
+      "role": "fixed",
+      "repeat": null,
+      "label": "resource-armor",
+      "transparent": true,
+      "pixelSha256": "11027f788531ff7c7ece6734b895fc407d3e0faf17d753bd34c9a4a15d65b3c2",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            20
+          ],
+          [
+            3,
+            21
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            4,
+            21
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sha256": "04a72a5aa6dc9a8d5c4ec300c01a9e9fa309a711a15dc9381621f416d11b744d"
+    },
+    "resource-knob": {
+      "path": "chrome/resource-knob.png",
+      "width": 16,
+      "height": 24,
+      "sourceRect": [
+        136,
+        116,
+        16,
+        24
+      ],
+      "role": "fixed",
+      "repeat": null,
+      "label": "resource-knob",
+      "transparent": true,
+      "pixelSha256": "052bd9b52312c483a2a95447f4bcfc9e11191df14541c520a6f591224c529ae2",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            12
+          ],
+          [
+            7,
+            13
+          ],
+          [
+            5,
+            14
+          ],
+          [
+            4,
+            15
+          ],
+          [
+            4,
+            15
+          ],
+          [
+            4,
+            16
+          ],
+          [
+            4,
+            16
+          ],
+          [
+            4,
+            16
+          ],
+          [
+            4,
+            16
+          ],
+          [
+            4,
+            16
+          ],
+          [
+            4,
+            16
+          ],
+          [
+            4,
+            16
+          ],
+          [
+            4,
+            16
+          ],
+          [
+            4,
+            16
+          ],
+          [
+            4,
+            16
+          ],
+          [
+            4,
+            16
+          ],
+          [
+            5,
+            15
+          ],
+          [
+            6,
+            14
+          ],
+          [
+            8,
+            12
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sha256": "6ab81c804817da939ba1cf26a3e40b03120d8b09ef926ae453586a40a3c36d58"
+    },
+    "resource-vent": {
+      "path": "chrome/resource-vent.png",
+      "width": 40,
+      "height": 56,
+      "sourceRect": [
+        264,
+        116,
+        40,
+        56
+      ],
+      "role": "fixed",
+      "repeat": null,
+      "label": "resource-vent",
+      "transparent": true,
+      "pixelSha256": "4563a119abed531c05e2cc21a5919f44487a4c9db961cb5dce36f68e104345af",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            14,
+            25
+          ],
+          [
+            10,
+            29
+          ],
+          [
+            9,
+            31
+          ],
+          [
+            8,
+            33
+          ],
+          [
+            7,
+            34
+          ],
+          [
+            6,
+            35
+          ],
+          [
+            5,
+            36
+          ],
+          [
+            4,
+            37
+          ],
+          [
+            3,
+            38
+          ],
+          [
+            3,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            2,
+            39
+          ],
+          [
+            3,
+            39
+          ],
+          [
+            3,
+            38
+          ],
+          [
+            3,
+            38
+          ],
+          [
+            4,
+            37
+          ],
+          [
+            5,
+            36
+          ],
+          [
+            6,
+            35
+          ],
+          [
+            7,
+            34
+          ],
+          [
+            8,
+            33
+          ],
+          [
+            9,
+            32
+          ],
+          [
+            10,
+            31
+          ],
+          [
+            11,
+            29
+          ],
+          [
+            13,
+            27
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sha256": "90f103bb22905e5d9705faa91324ed3d6aaece2394f3afab740cb494bc57a476"
+    },
+    "steel-medium": {
+      "path": "chrome/steel-medium.png",
+      "width": 8,
+      "height": 8,
+      "sourceRect": [
+        32,
+        32,
+        8,
+        8
+      ],
+      "role": "texture",
+      "repeat": "xy",
+      "label": "steel-medium",
+      "transparent": false,
+      "pixelSha256": "b0de1a84653aa67625a431221d381e30c581c2ffb5497eff4d12566b48756d3a",
+      "nativeRgb": [
+        145,
+        145,
+        182
+      ],
+      "sha256": "a0a9d0f35fdfe7b63af80b4572465aea1e2a223de22c02ff74083abd7dffe9d5"
+    },
+    "monitor-stack": {
+      "path": "chrome/monitor-stack.png",
+      "width": 112,
+      "height": 88,
+      "sourceRect": [
+        152,
+        32,
+        112,
+        88
+      ],
+      "role": "fixed",
+      "repeat": null,
+      "label": "monitor-stack",
+      "transparent": true,
+      "pixelSha256": "97c7916d98e438ee1e49c16f6565258c51724281f10f5e581ca5887b679df133",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            8,
+            104
+          ],
+          [
+            6,
+            104
+          ],
+          [
+            5,
+            106
+          ],
+          [
+            4,
+            108
+          ],
+          [
+            4,
+            109
+          ],
+          [
+            3,
+            110
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            2,
+            111
+          ],
+          [
+            3,
+            111
+          ],
+          [
+            3,
+            111
+          ],
+          [
+            4,
+            111
+          ],
+          [
+            5,
+            110
+          ],
+          [
+            6,
+            109
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "nativeArtworkRect": [
+        8,
+        8,
+        96,
+        56
+      ],
+      "nativeTextRect": [
+        8,
+        72,
+        96,
+        8
+      ],
+      "joinContract": "One original fixed WINDOW assembly: monitor and title share their native bevel; do not split or resize.",
+      "sha256": "5df478376131e9c7d6b0f80c57b5042dbb209722c067b1f8487976215e4c1b65"
+    },
+    "radar-clean": {
+      "path": "chrome/radar-clean.png",
+      "width": 48,
+      "height": 24,
+      "sourceRect": [
+        66,
+        18,
+        48,
+        24
+      ],
+      "role": "fixed",
+      "repeat": null,
+      "label": "radar-clean",
+      "transparent": true,
+      "pixelSha256": "0dc2cb3fecf281ef09eaec7de695ca79ad72dc1d4350fa832d122f6d18ebead1",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            7,
+            10
+          ],
+          [
+            6,
+            11
+          ],
+          [
+            0,
+            47
+          ],
+          [
+            0,
+            47
+          ],
+          [
+            1,
+            47
+          ],
+          [
+            2,
+            47
+          ],
+          [
+            3,
+            47
+          ],
+          [
+            4,
+            47
+          ],
+          [
+            5,
+            47
+          ],
+          [
+            6,
+            47
+          ],
+          [
+            7,
+            47
+          ],
+          [
+            8,
+            47
+          ],
+          [
+            9,
+            47
+          ],
+          [
+            10,
+            47
+          ],
+          [
+            11,
+            47
+          ],
+          [
+            12,
+            47
+          ],
+          [
+            13,
+            47
+          ],
+          [
+            14,
+            47
+          ],
+          [
+            15,
+            47
+          ],
+          [
+            16,
+            47
+          ],
+          [
+            17,
+            47
+          ],
+          [
+            19,
+            47
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sha256": "00ca62aa5b48b5258c75b7be6bf48e797536fc0a2960f80fe19cdfee9ffc023a"
+    },
+    "header-vents": {
+      "path": "chrome/header-vents.png",
+      "width": 28,
+      "height": 8,
+      "sourceRect": [
+        124,
+        20,
+        28,
+        8
+      ],
+      "role": "fixed",
+      "repeat": null,
+      "label": "header-vents",
+      "transparent": true,
+      "pixelSha256": "70467374ea7d3dea49386d5a196d8aa1c3318ca35190a5fe6b32ef85543ad5fc",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            28
+          ],
+          [
+            0,
+            28
+          ],
+          [
+            0,
+            28
+          ],
+          [
+            0,
+            28
+          ],
+          [
+            0,
+            28
+          ],
+          [
+            0,
+            28
+          ],
+          [
+            0,
+            28
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sourceLayer": "Original VDP WINDOW plane, base0x6000, 64 tiles per row; sprites excluded.",
+      "sha256": "0f2ad5c3057f93398c40582120abd97f1adb010028f597b5ba5f98f173676399"
+    },
+    "cash-window-clean-left": {
+      "path": "chrome/cash-window-clean-left.png",
+      "width": 8,
+      "height": 12,
+      "sourceRect": [
+        230,
+        14,
+        8,
+        12
+      ],
+      "role": "cap",
+      "repeat": null,
+      "label": "cash-window-clean-left",
+      "transparent": true,
+      "pixelSha256": "c749a77cf56374ca10c5882c15b3116641cfd8ac812677221554cb37327410ea",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            4,
+            8
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sourceLayer": "Original VDP WINDOW plane, base0x6000, 64 tiles per row; sprites excluded.",
+      "sha256": "b2a10c961a7738a5d6af51d8a6e7bed1c2fdbff4472897e564399cbe4f2447a3"
+    },
+    "cash-window-clean-middle": {
+      "path": "chrome/cash-window-clean-middle.png",
+      "width": 1,
+      "height": 12,
+      "sourceRect": [
+        248,
+        14,
+        1,
+        12
+      ],
+      "role": "straight-edge",
+      "repeat": "x",
+      "label": "cash-window-clean-middle",
+      "transparent": true,
+      "pixelSha256": "e9fe3c69e60959acda4de2e56d8404371bcffbf2042eb80ea3aec695a810aa63",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sourceLayer": "Original VDP WINDOW plane, base0x6000, 64 tiles per row; sprites excluded.",
+      "sha256": "4057256751cb71544b83fdfc2d5d016a2c818a9b68550e0ea54fbd2d11fb26c2"
+    },
+    "cash-window-clean-right": {
+      "path": "chrome/cash-window-clean-right.png",
+      "width": 8,
+      "height": 12,
+      "sourceRect": [
+        291,
+        14,
+        8,
+        12
+      ],
+      "role": "cap",
+      "repeat": null,
+      "label": "cash-window-clean-right",
+      "transparent": true,
+      "pixelSha256": "72f756d1a3f7e66642e60f53c44b5472b576c9b156bb6c1e582d588cf8b99fe2",
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "method": "Measured source contour, end-exclusive X runs; no RGB colour-key. Interior original black remains opaque."
+      },
+      "sourceLayer": "Original VDP WINDOW plane, base0x6000, 64 tiles per row; sprites excluded.",
+      "sha256": "22f4957fc486fba753672b862b1d36db1ff353dd1c4185f63ec5f2d244ea362d"
+    }
+  },
+  "modules": {
+    "command-cabinet": {
+      "kind": "nine-slice-repeat",
+      "nativeRect": [
+        24,
+        40,
+        112,
+        160
+      ],
+      "nativeSize": [
+        112,
+        160
+      ],
+      "insets": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "borderWidth": 8,
+      "viewportInsets": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "minimumSize": [
+        40,
+        40
+      ],
+      "frameOnly": true,
+      "pieces": {
+        "tl": "command-cabinet-tl",
+        "tr": "command-cabinet-tr",
+        "bl": "command-cabinet-bl",
+        "br": "command-cabinet-br",
+        "top": "command-cabinet-top",
+        "bottom": "command-cabinet-bottom",
+        "left": "command-cabinet-left",
+        "right": "command-cabinet-right",
+        "fill": "command-cabinet-fill"
+      },
+      "seamContract": "Draw black underlay then content inset8, then frame-only corners/strips LAST, with no fill. Corners16 preserve native curves. Keep all pixels native; repeat only straight profiles."
+    },
+    "monitor": {
+      "kind": "nine-slice-repeat",
+      "nativeRect": [
+        152,
+        32,
+        112,
+        72
+      ],
+      "nativeSize": [
+        112,
+        72
+      ],
+      "insets": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "minimumSize": [
+        24,
+        24
+      ],
+      "pieces": {
+        "tl": "monitor-tl",
+        "tr": "monitor-tr",
+        "bl": "monitor-bl",
+        "br": "monitor-br",
+        "top": "monitor-top",
+        "bottom": "monitor-bottom",
+        "left": "monitor-left",
+        "right": "monitor-right",
+        "fill": "monitor-fill"
+      },
+      "seamContract": "All joins use unscaled 8px native corners. Repeat 1px straight profiles between them. Outer cabinet background variations remain original source pixels, not repainted.",
+      "nativeArtworkRect": [
+        160,
+        40,
+        96,
+        56
+      ],
+      "nativeArtworkSize": [
+        96,
+        56
+      ]
+    },
+    "title-window": {
+      "kind": "three-slice-repeat-x",
+      "nativeRect": [
+        152,
+        104,
+        112,
+        16
+      ],
+      "nativeSize": [
+        112,
+        16
+      ],
+      "fixedHeight": 16,
+      "minimumWidth": 24,
+      "contentInsets": [
+        8,
+        0,
+        8,
+        8
+      ],
+      "pieces": {
+        "left": "title-window-left",
+        "middle": "title-window-middle",
+        "right": "title-window-right"
+      },
+      "seamContract": "Keep both8px caps and native height; repeat the centre1px profile only in X."
+    },
+    "cash-window": {
+      "kind": "three-slice-repeat-x",
+      "nativeRect": [
+        224,
+        8,
+        80,
+        16
+      ],
+      "nativeSize": [
+        80,
+        16
+      ],
+      "fixedHeight": 16,
+      "minimumWidth": 24,
+      "contentInsets": [
+        8,
+        8,
+        8,
+        0
+      ],
+      "pieces": {
+        "left": "cash-window-left",
+        "middle": "cash-window-middle",
+        "right": "cash-window-right"
+      },
+      "seamContract": "Keep both8px caps and native height; repeat the centre1px profile only in X."
+    },
+    "meter-window": {
+      "kind": "three-slice-repeat-x",
+      "nativeRect": [
+        188,
+        124,
+        72,
+        16
+      ],
+      "nativeSize": [
+        72,
+        16
+      ],
+      "fixedHeight": 16,
+      "minimumWidth": 24,
+      "contentInsets": [
+        8,
+        4,
+        8,
+        4
+      ],
+      "pieces": {
+        "left": "meter-window-left",
+        "middle": "meter-window-middle",
+        "right": "meter-window-right"
+      },
+      "seamContract": "Keep8px native caps and16px height; repeat the original1px middle. Measured rounded aperture silhouette removes surrounding cabinet body only."
+    },
+    "cash-window-clean": {
+      "kind": "three-slice-repeat-x",
+      "nativeRect": [
+        230,
+        14,
+        69,
+        12
+      ],
+      "nativeSize": [
+        69,
+        12
+      ],
+      "fixedHeight": 12,
+      "minimumWidth": 24,
+      "contentInsets": [
+        8,
+        2,
+        3,
+        2
+      ],
+      "nativeTextRect": [
+        18,
+        2,
+        48,
+        8
+      ],
+      "pieces": {
+        "left": "cash-window-clean-left",
+        "middle": "cash-window-clean-middle",
+        "right": "cash-window-clean-right"
+      },
+      "seamContract": "Native closed glass bevel only, excluding original cabinet roof.8x12 caps,1x12 repeated middle. Native text startsY2."
+    }
+  },
+  "fonts": {
+    "ui": {
+      "path": "font/ui-ascii-32-95.png",
+      "width": 128,
+      "height": 32,
+      "glyphWidth": 8,
+      "glyphHeight": 8,
+      "firstCode": 32,
+      "lastCode": 95,
+      "columns": 16,
+      "rows": 4,
+      "advance": 8,
+      "nativeTileBase": 1024,
+      "paletteLane": 1,
+      "foregroundRgb": [
+        255,
+        255,
+        255
+      ],
+      "backgroundRgb": [
+        0,
+        0,
+        0
+      ],
+      "transparent": false,
+      "digitsPath": "font/digits.png",
+      "digitsOrder": "0123456789",
+      "dollarPath": "font/glyph-36.png",
+      "validation": "Exact64-pixel RGB equality with original WINDTRAP name cells and642 cash display cells.",
+      "glyphs": {
+        "32": {
+          "x": 0,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": " ",
+          "nativeTile": 1056
+        },
+        "33": {
+          "x": 8,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": "!",
+          "nativeTile": 1057
+        },
+        "34": {
+          "x": 16,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": "\"",
+          "nativeTile": 1058
+        },
+        "35": {
+          "x": 24,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": "#",
+          "nativeTile": 1059
+        },
+        "36": {
+          "x": 32,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": "$",
+          "nativeTile": 1060
+        },
+        "37": {
+          "x": 40,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": "%",
+          "nativeTile": 1061
+        },
+        "38": {
+          "x": 48,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": "&",
+          "nativeTile": 1062
+        },
+        "39": {
+          "x": 56,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": "'",
+          "nativeTile": 1063
+        },
+        "40": {
+          "x": 64,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": "(",
+          "nativeTile": 1064
+        },
+        "41": {
+          "x": 72,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": ")",
+          "nativeTile": 1065
+        },
+        "42": {
+          "x": 80,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": "*",
+          "nativeTile": 1066
+        },
+        "43": {
+          "x": 88,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": "+",
+          "nativeTile": 1067
+        },
+        "44": {
+          "x": 96,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": ",",
+          "nativeTile": 1068
+        },
+        "45": {
+          "x": 104,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": "-",
+          "nativeTile": 1069
+        },
+        "46": {
+          "x": 112,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": ".",
+          "nativeTile": 1070
+        },
+        "47": {
+          "x": 120,
+          "y": 0,
+          "width": 8,
+          "height": 8,
+          "char": "/",
+          "nativeTile": 1071
+        },
+        "48": {
+          "x": 0,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": "0",
+          "nativeTile": 1072
+        },
+        "49": {
+          "x": 8,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": "1",
+          "nativeTile": 1073
+        },
+        "50": {
+          "x": 16,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": "2",
+          "nativeTile": 1074
+        },
+        "51": {
+          "x": 24,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": "3",
+          "nativeTile": 1075
+        },
+        "52": {
+          "x": 32,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": "4",
+          "nativeTile": 1076
+        },
+        "53": {
+          "x": 40,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": "5",
+          "nativeTile": 1077
+        },
+        "54": {
+          "x": 48,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": "6",
+          "nativeTile": 1078
+        },
+        "55": {
+          "x": 56,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": "7",
+          "nativeTile": 1079
+        },
+        "56": {
+          "x": 64,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": "8",
+          "nativeTile": 1080
+        },
+        "57": {
+          "x": 72,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": "9",
+          "nativeTile": 1081
+        },
+        "58": {
+          "x": 80,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": ":",
+          "nativeTile": 1082
+        },
+        "59": {
+          "x": 88,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": ";",
+          "nativeTile": 1083
+        },
+        "60": {
+          "x": 96,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": "<",
+          "nativeTile": 1084
+        },
+        "61": {
+          "x": 104,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": "=",
+          "nativeTile": 1085
+        },
+        "62": {
+          "x": 112,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": ">",
+          "nativeTile": 1086
+        },
+        "63": {
+          "x": 120,
+          "y": 8,
+          "width": 8,
+          "height": 8,
+          "char": "?",
+          "nativeTile": 1087
+        },
+        "64": {
+          "x": 0,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "@",
+          "nativeTile": 1088
+        },
+        "65": {
+          "x": 8,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "A",
+          "nativeTile": 1089
+        },
+        "66": {
+          "x": 16,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "B",
+          "nativeTile": 1090
+        },
+        "67": {
+          "x": 24,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "C",
+          "nativeTile": 1091
+        },
+        "68": {
+          "x": 32,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "D",
+          "nativeTile": 1092
+        },
+        "69": {
+          "x": 40,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "E",
+          "nativeTile": 1093
+        },
+        "70": {
+          "x": 48,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "F",
+          "nativeTile": 1094
+        },
+        "71": {
+          "x": 56,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "G",
+          "nativeTile": 1095
+        },
+        "72": {
+          "x": 64,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "H",
+          "nativeTile": 1096
+        },
+        "73": {
+          "x": 72,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "I",
+          "nativeTile": 1097
+        },
+        "74": {
+          "x": 80,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "J",
+          "nativeTile": 1098
+        },
+        "75": {
+          "x": 88,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "K",
+          "nativeTile": 1099
+        },
+        "76": {
+          "x": 96,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "L",
+          "nativeTile": 1100
+        },
+        "77": {
+          "x": 104,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "M",
+          "nativeTile": 1101
+        },
+        "78": {
+          "x": 112,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "N",
+          "nativeTile": 1102
+        },
+        "79": {
+          "x": 120,
+          "y": 16,
+          "width": 8,
+          "height": 8,
+          "char": "O",
+          "nativeTile": 1103
+        },
+        "80": {
+          "x": 0,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "P",
+          "nativeTile": 1104
+        },
+        "81": {
+          "x": 8,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "Q",
+          "nativeTile": 1105
+        },
+        "82": {
+          "x": 16,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "R",
+          "nativeTile": 1106
+        },
+        "83": {
+          "x": 24,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "S",
+          "nativeTile": 1107
+        },
+        "84": {
+          "x": 32,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "T",
+          "nativeTile": 1108
+        },
+        "85": {
+          "x": 40,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "U",
+          "nativeTile": 1109
+        },
+        "86": {
+          "x": 48,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "V",
+          "nativeTile": 1110
+        },
+        "87": {
+          "x": 56,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "W",
+          "nativeTile": 1111
+        },
+        "88": {
+          "x": 64,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "X",
+          "nativeTile": 1112
+        },
+        "89": {
+          "x": 72,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "Y",
+          "nativeTile": 1113
+        },
+        "90": {
+          "x": 80,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "Z",
+          "nativeTile": 1114
+        },
+        "91": {
+          "x": 88,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "[",
+          "nativeTile": 1115
+        },
+        "92": {
+          "x": 96,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "\\",
+          "nativeTile": 1116
+        },
+        "93": {
+          "x": 104,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "]",
+          "nativeTile": 1117
+        },
+        "94": {
+          "x": 112,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "^",
+          "nativeTile": 1118
+        },
+        "95": {
+          "x": 120,
+          "y": 24,
+          "width": 8,
+          "height": 8,
+          "char": "_",
+          "nativeTile": 1119
+        }
+      }
+    }
+  },
+  "notes": [
+    "Monitor artwork remains96x56 native pixels. Integer zoom it inside a larger repeated-frame window; do not stretch the artwork.",
+    "Title window is a fixed16px-high three-slice. Native text is8px high, leaving original bezel rows.",
+    "cash-window-clean isolates actual glass bevel; original glyph cells start2px below its top. Old cash-window retains the surrounding original cabinet roof as reference.",
+    "Meter window is cropped tightly atx188..259 to avoid the vent; keep height16px.",
+    "Resources cabinet is intentionally not offered as arbitrary nine-slice: knobs/vent/curved cabinet are complex fixed art. Compose the original fixed icons and individual meter modules instead.",
+    "Radar32/48 crops are literal source windows, not rescaled or reconstructed complete radars.",
+    "Indicator PNG states and recorded native procedure timelines are provided. Random native lamp rules/timing are verified separately by focus_verification; these clips are not canonical periodic loops."
+  ],
+  "animations": {
+    "red-indicator": {
+      "sourceRect": [
+        272,
+        48,
+        16,
+        24
+      ],
+      "states": [
+        {
+          "index": 0,
+          "path": "animations/red-indicator/state-0.png",
+          "width": 16,
+          "height": 24,
+          "firstObservedFrame": 0,
+          "pixelSha256": "834938da687e32bcac47022aaccf0c641cef9ec3e502339104e44563130e6b36"
+        },
+        {
+          "index": 1,
+          "path": "animations/red-indicator/state-1.png",
+          "width": 16,
+          "height": 24,
+          "firstObservedFrame": 4,
+          "pixelSha256": "ad28a09f38aa158e19ab10d351ae30168df8e5fd8641f66285d0582408e55617"
+        }
+      ],
+      "stripPath": "animations/red-indicator/states-strip.png",
+      "frameWidth": 16,
+      "frameHeight": 24,
+      "static": false,
+      "timeline": [
+        {
+          "state": 0,
+          "startNativeFrame": 0,
+          "durationNativeFrames": 4,
+          "durationMs": 66.75261800033245
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 4,
+          "durationNativeFrames": 11,
+          "durationMs": 183.56969950091423
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 15,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 20,
+          "durationNativeFrames": 15,
+          "durationMs": 250.3223175012467
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 35,
+          "durationNativeFrames": 7,
+          "durationMs": 116.81708150058178
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 42,
+          "durationNativeFrames": 13,
+          "durationMs": 216.94600850108046
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 55,
+          "durationNativeFrames": 9,
+          "durationMs": 150.193390500748
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 64,
+          "durationNativeFrames": 19,
+          "durationMs": 317.07493550157915
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 83,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 88,
+          "durationNativeFrames": 13,
+          "durationMs": 216.94600850108046
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 101,
+          "durationNativeFrames": 21,
+          "durationMs": 350.45124450174535
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 122,
+          "durationNativeFrames": 7,
+          "durationMs": 116.81708150058178
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 129,
+          "durationNativeFrames": 7,
+          "durationMs": 116.81708150058178
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 136,
+          "durationNativeFrames": 11,
+          "durationMs": 183.56969950091423
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 147,
+          "durationNativeFrames": 9,
+          "durationMs": 150.193390500748
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 156,
+          "durationNativeFrames": 7,
+          "durationMs": 116.81708150058178
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 163,
+          "durationNativeFrames": 7,
+          "durationMs": 116.81708150058178
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 170,
+          "durationNativeFrames": 19,
+          "durationMs": 317.07493550157915
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 189,
+          "durationNativeFrames": 9,
+          "durationMs": 150.193390500748
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 198,
+          "durationNativeFrames": 9,
+          "durationMs": 150.193390500748
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 207,
+          "durationNativeFrames": 7,
+          "durationMs": 116.81708150058178
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 214,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 219,
+          "durationNativeFrames": 17,
+          "durationMs": 283.6986265014129
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 236,
+          "durationNativeFrames": 4,
+          "durationMs": 66.75261800033245
+        }
+      ],
+      "nativeFrameCount": 240,
+      "firstSourceNativeFrame": 3526,
+      "masterHz": 53693175,
+      "clocksPerFrame": 896040,
+      "msPerNativeFrame": 16.68815450008311,
+      "sourceMethod": "Actual core.vdp.frame, the last completed original VDP frame at every source native frame. No shadow1088 replay.",
+      "timingScope": "Recorded240-frame completed-native sequence. This is not a claimed periodic native cycle; original lamp timers are pseudo-random.",
+      "prototypeUse": "The observed native sequence may be replayed for the standalone visual prototype; game integration must use the live original timer/state rather than replace it with this clip."
+    },
+    "green-indicator": {
+      "sourceRect": [
+        172,
+        12,
+        16,
+        16
+      ],
+      "states": [
+        {
+          "index": 0,
+          "path": "animations/green-indicator/state-0.png",
+          "width": 16,
+          "height": 16,
+          "firstObservedFrame": 0,
+          "pixelSha256": "143ddba3bf4c529dbb8eb29649374b16915dd6284c9d0c266903b33ed1288918"
+        },
+        {
+          "index": 1,
+          "path": "animations/green-indicator/state-1.png",
+          "width": 16,
+          "height": 16,
+          "firstObservedFrame": 16,
+          "pixelSha256": "051b9ace70b59101029eaaa62541438e80457772c711123df2442ad7522719c4"
+        },
+        {
+          "index": 2,
+          "path": "animations/green-indicator/state-2.png",
+          "width": 16,
+          "height": 16,
+          "firstObservedFrame": 19,
+          "pixelSha256": "d5c4e54a8ca8b3b40e8ac316044abce362afd8414fbab761f66fac27dd278b7a"
+        },
+        {
+          "index": 3,
+          "path": "animations/green-indicator/state-3.png",
+          "width": 16,
+          "height": 16,
+          "firstObservedFrame": 47,
+          "pixelSha256": "b0dba0b4d6b46bc57f0177178e4dcf42505b8afae18793b2446594cb08ee0498"
+        }
+      ],
+      "stripPath": "animations/green-indicator/states-strip.png",
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "static": false,
+      "timeline": [
+        {
+          "state": 0,
+          "startNativeFrame": 0,
+          "durationNativeFrames": 16,
+          "durationMs": 267.0104720013298
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 16,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 2,
+          "startNativeFrame": 19,
+          "durationNativeFrames": 6,
+          "durationMs": 100.12892700049866
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 25,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 28,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 31,
+          "durationNativeFrames": 16,
+          "durationMs": 267.0104720013298
+        },
+        {
+          "state": 3,
+          "startNativeFrame": 47,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 2,
+          "startNativeFrame": 52,
+          "durationNativeFrames": 9,
+          "durationMs": 150.193390500748
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 61,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 64,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 67,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 70,
+          "durationNativeFrames": 21,
+          "durationMs": 350.45124450174535
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 91,
+          "durationNativeFrames": 4,
+          "durationMs": 66.75261800033245
+        },
+        {
+          "state": 3,
+          "startNativeFrame": 95,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 2,
+          "startNativeFrame": 100,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 105,
+          "durationNativeFrames": 10,
+          "durationMs": 166.88154500083112
+        },
+        {
+          "state": 3,
+          "startNativeFrame": 115,
+          "durationNativeFrames": 10,
+          "durationMs": 166.88154500083112
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 125,
+          "durationNativeFrames": 1,
+          "durationMs": 16.68815450008311
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 126,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 131,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 134,
+          "durationNativeFrames": 2,
+          "durationMs": 33.37630900016622
+        },
+        {
+          "state": 2,
+          "startNativeFrame": 136,
+          "durationNativeFrames": 17,
+          "durationMs": 283.6986265014129
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 153,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 156,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 161,
+          "durationNativeFrames": 14,
+          "durationMs": 233.63416300116356
+        },
+        {
+          "state": 3,
+          "startNativeFrame": 175,
+          "durationNativeFrames": 1,
+          "durationMs": 16.68815450008311
+        },
+        {
+          "state": 2,
+          "startNativeFrame": 176,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 3,
+          "startNativeFrame": 179,
+          "durationNativeFrames": 9,
+          "durationMs": 150.193390500748
+        },
+        {
+          "state": 2,
+          "startNativeFrame": 188,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 3,
+          "startNativeFrame": 193,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 2,
+          "startNativeFrame": 196,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 3,
+          "startNativeFrame": 199,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 2,
+          "startNativeFrame": 202,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 3,
+          "startNativeFrame": 205,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 2,
+          "startNativeFrame": 210,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 3,
+          "startNativeFrame": 213,
+          "durationNativeFrames": 7,
+          "durationMs": 116.81708150058178
+        },
+        {
+          "state": 2,
+          "startNativeFrame": 220,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 3,
+          "startNativeFrame": 225,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 2,
+          "startNativeFrame": 230,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 3,
+          "startNativeFrame": 235,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 2,
+          "startNativeFrame": 238,
+          "durationNativeFrames": 2,
+          "durationMs": 33.37630900016622
+        }
+      ],
+      "nativeFrameCount": 240,
+      "firstSourceNativeFrame": 3526,
+      "masterHz": 53693175,
+      "clocksPerFrame": 896040,
+      "msPerNativeFrame": 16.68815450008311,
+      "sourceMethod": "Actual core.vdp.frame, the last completed original VDP frame at every source native frame. No shadow1088 replay.",
+      "timingScope": "Recorded240-frame completed-native sequence. This is not a claimed periodic native cycle; original lamp timers are pseudo-random.",
+      "prototypeUse": "The observed native sequence may be replayed for the standalone visual prototype; game integration must use the live original timer/state rather than replace it with this clip."
+    },
+    "radar-display": {
+      "sourceRect": [
+        64,
+        16,
+        72,
+        24
+      ],
+      "states": [
+        {
+          "index": 0,
+          "path": "animations/radar-display/state-0.png",
+          "width": 72,
+          "height": 24,
+          "firstObservedFrame": 0,
+          "pixelSha256": "8199ccf9d0f011726d71f2144d53b67a38c8b1f769770703c811944a7148c9a1"
+        }
+      ],
+      "stripPath": "animations/radar-display/states-strip.png",
+      "frameWidth": 72,
+      "frameHeight": 24,
+      "static": true,
+      "timeline": [
+        {
+          "state": 0,
+          "startNativeFrame": 0,
+          "durationNativeFrames": 240,
+          "durationMs": 4005.157080019947
+        }
+      ],
+      "nativeFrameCount": 240,
+      "firstSourceNativeFrame": 3526,
+      "masterHz": 53693175,
+      "clocksPerFrame": 896040,
+      "msPerNativeFrame": 16.68815450008311,
+      "sourceMethod": "Actual core.vdp.frame, the last completed original VDP frame at every source native frame. No shadow1088 replay.",
+      "timingScope": "Recorded240-frame completed-native sequence. This is not a claimed periodic native cycle; original lamp timers are pseudo-random.",
+      "prototypeUse": "The observed native sequence may be replayed for the standalone visual prototype; game integration must use the live original timer/state rather than replace it with this clip."
+    },
+    "vent": {
+      "sourceRect": [
+        264,
+        116,
+        40,
+        56
+      ],
+      "states": [
+        {
+          "index": 0,
+          "path": "animations/vent/state-0.png",
+          "width": 40,
+          "height": 56,
+          "firstObservedFrame": 0,
+          "pixelSha256": "1ab3f4f9c28f5ded9810225e8cb7b3136c8e7306721ec334a2b57da4f684c261"
+        }
+      ],
+      "stripPath": "animations/vent/states-strip.png",
+      "frameWidth": 40,
+      "frameHeight": 56,
+      "static": true,
+      "timeline": [
+        {
+          "state": 0,
+          "startNativeFrame": 0,
+          "durationNativeFrames": 240,
+          "durationMs": 4005.157080019947
+        }
+      ],
+      "nativeFrameCount": 240,
+      "firstSourceNativeFrame": 3526,
+      "masterHz": 53693175,
+      "clocksPerFrame": 896040,
+      "msPerNativeFrame": 16.68815450008311,
+      "sourceMethod": "Actual core.vdp.frame, the last completed original VDP frame at every source native frame. No shadow1088 replay.",
+      "timingScope": "Recorded240-frame completed-native sequence. This is not a claimed periodic native cycle; original lamp timers are pseudo-random.",
+      "prototypeUse": "The observed native sequence may be replayed for the standalone visual prototype; game integration must use the live original timer/state rather than replace it with this clip."
+    },
+    "green-fixture": {
+      "sourceRect": [
+        172,
+        16,
+        16,
+        16
+      ],
+      "states": [
+        {
+          "index": 0,
+          "path": "animations/green-fixture/state-0.png",
+          "width": 16,
+          "height": 16,
+          "firstObservedFrame": 0,
+          "pixelSha256": "486d88657f9a5a2fc63b3cc81fc36733a58e39792d43f7b0374a64b58d0ead87"
+        },
+        {
+          "index": 1,
+          "path": "animations/green-fixture/state-1.png",
+          "width": 16,
+          "height": 16,
+          "firstObservedFrame": 16,
+          "pixelSha256": "da42d9ff4e1267b9c82eafffde816e9e4b40570edda2deb35d713e9b36fd1b54"
+        }
+      ],
+      "stripPath": null,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "static": false,
+      "timeline": [
+        {
+          "state": 0,
+          "startNativeFrame": 0,
+          "durationNativeFrames": 16,
+          "durationMs": 267.0104720013298
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 16,
+          "durationNativeFrames": 9,
+          "durationMs": 150.193390500748
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 25,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 28,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 31,
+          "durationNativeFrames": 21,
+          "durationMs": 350.45124450174535
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 52,
+          "durationNativeFrames": 9,
+          "durationMs": 150.193390500748
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 61,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 64,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 67,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 70,
+          "durationNativeFrames": 21,
+          "durationMs": 350.45124450174535
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 91,
+          "durationNativeFrames": 9,
+          "durationMs": 150.193390500748
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 100,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 105,
+          "durationNativeFrames": 21,
+          "durationMs": 350.45124450174535
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 126,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 131,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 134,
+          "durationNativeFrames": 19,
+          "durationMs": 317.07493550157915
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 153,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 156,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 161,
+          "durationNativeFrames": 15,
+          "durationMs": 250.3223175012467
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 176,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 179,
+          "durationNativeFrames": 9,
+          "durationMs": 150.193390500748
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 188,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 193,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 196,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 199,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 202,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 205,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 210,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 213,
+          "durationNativeFrames": 7,
+          "durationMs": 116.81708150058178
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 220,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 225,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 230,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 235,
+          "durationNativeFrames": 3,
+          "durationMs": 50.06446350024933
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 238,
+          "durationNativeFrames": 2,
+          "durationMs": 33.37630900016622
+        }
+      ],
+      "nativeFrameCount": 240,
+      "firstSourceNativeFrame": 3526,
+      "masterHz": 53693175,
+      "clocksPerFrame": 896040,
+      "msPerNativeFrame": 16.68815450008311,
+      "sourceMethod": "Exact overlap from same240 completed-native RGB frames; static fixture margin from the capture start completed-native frame. Measured source contour alpha only.",
+      "timingScope": "Recorded240-frame completed-native sequence. This is not a claimed periodic native cycle; original lamp timers are pseudo-random.",
+      "prototypeUse": "The observed native sequence may be replayed for the standalone visual prototype; game integration must use the live original timer/state rather than replace it with this clip.",
+      "transparent": true,
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            0
+          ],
+          [
+            7,
+            12
+          ],
+          [
+            7,
+            12
+          ],
+          [
+            7,
+            12
+          ],
+          [
+            7,
+            12
+          ],
+          [
+            6,
+            13
+          ],
+          [
+            5,
+            14
+          ],
+          [
+            4,
+            15
+          ],
+          [
+            4,
+            15
+          ],
+          [
+            4,
+            15
+          ],
+          [
+            4,
+            15
+          ],
+          [
+            4,
+            15
+          ],
+          [
+            5,
+            14
+          ],
+          [
+            6,
+            13
+          ],
+          [
+            7,
+            12
+          ],
+          [
+            7,
+            12
+          ]
+        ]
+      }
+    },
+    "red-fixture": {
+      "sourceRect": [
+        270,
+        51,
+        16,
+        16
+      ],
+      "states": [
+        {
+          "index": 0,
+          "path": "animations/red-fixture/state-0.png",
+          "width": 16,
+          "height": 16,
+          "firstObservedFrame": 0,
+          "pixelSha256": "0b23ad635d4646c1806971a5f6b2530d0126596791f3d56658b0eadb2c82c829"
+        },
+        {
+          "index": 1,
+          "path": "animations/red-fixture/state-1.png",
+          "width": 16,
+          "height": 16,
+          "firstObservedFrame": 4,
+          "pixelSha256": "eb9e3c28cc46d322c516bfec768aa2b53e3d79699604f9d2c9f1742527d0f5e7"
+        }
+      ],
+      "stripPath": null,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "static": false,
+      "timeline": [
+        {
+          "state": 0,
+          "startNativeFrame": 0,
+          "durationNativeFrames": 4,
+          "durationMs": 66.75261800033245
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 4,
+          "durationNativeFrames": 11,
+          "durationMs": 183.56969950091423
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 15,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 20,
+          "durationNativeFrames": 15,
+          "durationMs": 250.3223175012467
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 35,
+          "durationNativeFrames": 7,
+          "durationMs": 116.81708150058178
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 42,
+          "durationNativeFrames": 13,
+          "durationMs": 216.94600850108046
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 55,
+          "durationNativeFrames": 9,
+          "durationMs": 150.193390500748
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 64,
+          "durationNativeFrames": 19,
+          "durationMs": 317.07493550157915
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 83,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 88,
+          "durationNativeFrames": 13,
+          "durationMs": 216.94600850108046
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 101,
+          "durationNativeFrames": 21,
+          "durationMs": 350.45124450174535
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 122,
+          "durationNativeFrames": 7,
+          "durationMs": 116.81708150058178
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 129,
+          "durationNativeFrames": 7,
+          "durationMs": 116.81708150058178
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 136,
+          "durationNativeFrames": 11,
+          "durationMs": 183.56969950091423
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 147,
+          "durationNativeFrames": 9,
+          "durationMs": 150.193390500748
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 156,
+          "durationNativeFrames": 7,
+          "durationMs": 116.81708150058178
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 163,
+          "durationNativeFrames": 7,
+          "durationMs": 116.81708150058178
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 170,
+          "durationNativeFrames": 19,
+          "durationMs": 317.07493550157915
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 189,
+          "durationNativeFrames": 9,
+          "durationMs": 150.193390500748
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 198,
+          "durationNativeFrames": 9,
+          "durationMs": 150.193390500748
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 207,
+          "durationNativeFrames": 7,
+          "durationMs": 116.81708150058178
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 214,
+          "durationNativeFrames": 5,
+          "durationMs": 83.44077250041556
+        },
+        {
+          "state": 0,
+          "startNativeFrame": 219,
+          "durationNativeFrames": 17,
+          "durationMs": 283.6986265014129
+        },
+        {
+          "state": 1,
+          "startNativeFrame": 236,
+          "durationNativeFrames": 4,
+          "durationMs": 66.75261800033245
+        }
+      ],
+      "nativeFrameCount": 240,
+      "firstSourceNativeFrame": 3526,
+      "masterHz": 53693175,
+      "clocksPerFrame": 896040,
+      "msPerNativeFrame": 16.68815450008311,
+      "sourceMethod": "Exact overlap from same240 completed-native RGB frames; static fixture margin from the capture start completed-native frame. Measured source contour alpha only.",
+      "timingScope": "Recorded240-frame completed-native sequence. This is not a claimed periodic native cycle; original lamp timers are pseudo-random.",
+      "prototypeUse": "The observed native sequence may be replayed for the standalone visual prototype; game integration must use the live original timer/state rather than replace it with this clip.",
+      "transparent": true,
+      "alphaGeometry": {
+        "rowRuns": [
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ],
+          [
+            0,
+            13
+          ]
+        ]
+      }
+    }
+  },
+  "geometryNotes": [
+    "Native source contour rowRuns are explicit masks, never selected by RGB colour. All retained RGB bytes are unchanged.",
+    "Cabinet16 inner quadrants are native WINDOW tile0x001 black; alpha removes only black/background sprites there, never native bezel. See .local/backdrop-analysis/cabinet-geometry.json.",
+    "steel-grain is preserved only as a source reference; its native vertical shading is not suitable for repeating inY. Use steel-light/steel-medium for flat native body fields."
+  ],
+  "pngCount": 79,
+  "pngBytes": 15736
+}

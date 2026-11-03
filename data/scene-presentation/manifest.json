@@ -1,0 +1,634 @@
+{
+  "version": 1,
+  "parts": {
+    "options-helmet-and-launcher": {
+      "path": "art/options-helmet-and-launcher.png",
+      "width": 208,
+      "height": 88,
+      "channels": 3,
+      "transparent": false,
+      "pixelSha256": "ad63e31201c0d47b6e92b3ba4ebbaeccac29e80f23291f61bbbba0d013b46b62",
+      "sha256": "a10d8b03856294e24eacbf3e6711d8962bdcdfb6f482278228dfdf17c0e3bf33",
+      "capture": "pause-options",
+      "sourceLayer": "WINDOW",
+      "sourceRect": [
+        112,
+        48,
+        208,
+        88
+      ],
+      "phaseProof": "Current captured VDP reproduces the completed native frame exactly",
+      "sourceRgbSha256": "bf4333d8a1e8e7ca2af7481940564e44e04280e6caf6cf2f3168774b0d1745af",
+      "scope": "Entire original label-free native fragment; no cropped label, recolour, generated pixel or resampling."
+    },
+    "options-native-lower-body": {
+      "path": "art/options-native-lower-body.png",
+      "width": 320,
+      "height": 48,
+      "channels": 3,
+      "transparent": false,
+      "pixelSha256": "38b19f7c8d605ca4bcbf62b354b1f3bf9f740d81ab660e87415171b9e47f12cb",
+      "sha256": "6c99d30fe4566323ad567a5950579f8a1d89910d2f7b08c787a5b9c5b78be114",
+      "capture": "pause-options",
+      "sourceLayer": "WINDOW",
+      "sourceRect": [
+        0,
+        144,
+        320,
+        48
+      ],
+      "phaseProof": "Current captured VDP reproduces the completed native frame exactly",
+      "sourceRgbSha256": "bf4333d8a1e8e7ca2af7481940564e44e04280e6caf6cf2f3168774b0d1745af",
+      "scope": "Entire original label-free native fragment; no cropped label, recolour, generated pixel or resampling."
+    },
+    "options-native-bottom-terrain": {
+      "path": "art/options-native-bottom-terrain.png",
+      "width": 320,
+      "height": 24,
+      "channels": 3,
+      "transparent": false,
+      "pixelSha256": "7620bea709becc4c8b62f3190a64d06b45c553c355d85ae21ec9921d30b8a731",
+      "sha256": "e8af414e3e4aae0c1be946fc4873cbbc7e9282d27bd293bd1a6687ee2b744ad8",
+      "capture": "pause-options",
+      "sourceLayer": "WINDOW",
+      "sourceRect": [
+        0,
+        200,
+        320,
+        24
+      ],
+      "phaseProof": "Current captured VDP reproduces the completed native frame exactly",
+      "sourceRgbSha256": "bf4333d8a1e8e7ca2af7481940564e44e04280e6caf6cf2f3168774b0d1745af",
+      "scope": "Entire original label-free native fragment; no cropped label, recolour, generated pixel or resampling."
+    },
+    "options-native-right-side": {
+      "path": "art/options-native-right-side.png",
+      "width": 176,
+      "height": 144,
+      "channels": 3,
+      "transparent": false,
+      "pixelSha256": "0d1596911670c771e1927ce996aa57f1589ff27a113acb591bd49080534d9cd0",
+      "sha256": "ed73c152e6141d4bc92691e8e49291757407e9e77a6a4eb35dfa70901ef8fbdf",
+      "capture": "pause-options",
+      "sourceLayer": "WINDOW",
+      "sourceRect": [
+        144,
+        48,
+        176,
+        144
+      ],
+      "phaseProof": "Current captured VDP reproduces the completed native frame exactly",
+      "sourceRgbSha256": "bf4333d8a1e8e7ca2af7481940564e44e04280e6caf6cf2f3168774b0d1745af",
+      "scope": "Entire original label-free native fragment; no cropped label, recolour, generated pixel or resampling."
+    },
+    "options-native-left-shoulder": {
+      "path": "art/options-native-left-shoulder.png",
+      "width": 32,
+      "height": 96,
+      "channels": 3,
+      "transparent": false,
+      "pixelSha256": "2ce0bf3226d3300d898a7c84382c53af450c2c55cb37b671ee869f7e1bf77dad",
+      "sha256": "8b1c77aad022e8e5d7595292e49f80457df05688795b896549baade5e4411d5d",
+      "capture": "pause-options",
+      "sourceLayer": "WINDOW",
+      "sourceRect": [
+        0,
+        48,
+        32,
+        96
+      ],
+      "phaseProof": "Current captured VDP reproduces the completed native frame exactly",
+      "sourceRgbSha256": "bf4333d8a1e8e7ca2af7481940564e44e04280e6caf6cf2f3168774b0d1745af",
+      "scope": "Entire original label-free native fragment; no cropped label, recolour, generated pixel or resampling."
+    },
+    "options-responsive-art": {
+      "path": "art/options-responsive-art.png",
+      "width": 208,
+      "height": 136,
+      "channels": 3,
+      "transparent": false,
+      "pixelSha256": "d9f6fb2f8c5e783ac5168423d3ff31364a44587ee5c784f7ce22ff7691bc6d30",
+      "sha256": "af2b6adcd9f5600158388ca90dd6e4ca85f22316c3f694b382204978e401104f",
+      "capture": "pause-options",
+      "sourceLayer": "WINDOW",
+      "sourceRect": null,
+      "phaseProof": "Current captured VDP reproduces the completed native frame exactly",
+      "sourceRgbSha256": "bf4333d8a1e8e7ca2af7481940564e44e04280e6caf6cf2f3168774b0d1745af",
+      "sourceRects": [
+        [
+          112,
+          48,
+          208,
+          88
+        ],
+        [
+          112,
+          144,
+          208,
+          48
+        ]
+      ],
+      "destRects": [
+        [
+          0,
+          0,
+          208,
+          88
+        ],
+        [
+          0,
+          88,
+          208,
+          48
+        ]
+      ],
+      "scope": "Two original label-free WINDOW fragments joined without resampling, repainting, transparent holes or invented hidden pixels. Cropped helmet back remains the original native edge; original face, shoulder launcher and right scenery are preserved.",
+      "nativeSeam": {
+        "destinationY": 88,
+        "sourceRows": [
+          135,
+          144
+        ],
+        "removedSourceRows": [
+          136,
+          143
+        ],
+        "reason": "Only the baked ENTER PASSWORD row crosses this native fragment."
+      }
+    },
+    "options-native-decor": {
+      "path": "art/options-native-decor.png",
+      "width": 320,
+      "height": 224,
+      "channels": 4,
+      "transparent": true,
+      "pixelSha256": "a7f083c23f69fa846f1203902bbe7067a5a92b331cdd50a4fc30394b12c9778d",
+      "sha256": "418bc1ad14bb40c23c4a06022d6d1dc8acce63a88aa9c5156c27c49fee1fce4a",
+      "capture": "pause-options",
+      "sourceLayer": "WINDOW",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "phaseProof": "Current captured VDP reproduces the completed native frame exactly",
+      "sourceRgbSha256": "bf4333d8a1e8e7ca2af7481940564e44e04280e6caf6cf2f3168774b0d1745af",
+      "alphaSource": "Only the eight complete original static label/control rectangles are transparent; all remaining native artwork stays opaque. No RGB colour key.",
+      "controlHoles": [
+        {
+          "label": "OPTIONS",
+          "rect": [
+            128,
+            16,
+            56,
+            8
+          ]
+        },
+        {
+          "label": "MUSIC IS",
+          "rect": [
+            32,
+            40,
+            64,
+            8
+          ]
+        },
+        {
+          "label": "SOUNDS ARE",
+          "rect": [
+            32,
+            56,
+            80,
+            8
+          ]
+        },
+        {
+          "label": "RADAR IS",
+          "rect": [
+            32,
+            72,
+            64,
+            8
+          ]
+        },
+        {
+          "label": "MUSIC TEST",
+          "rect": [
+            32,
+            88,
+            80,
+            8
+          ]
+        },
+        {
+          "label": "SOUND TEST",
+          "rect": [
+            32,
+            104,
+            80,
+            8
+          ]
+        },
+        {
+          "label": "ENTER PASSWORD",
+          "rect": [
+            32,
+            136,
+            112,
+            8
+          ]
+        },
+        {
+          "label": "PRESS START TO EXIT",
+          "rect": [
+            72,
+            192,
+            168,
+            8
+          ]
+        }
+      ],
+      "requiresOpaqueControlsOverHoles": true,
+      "scope": "A native-piece UI composition layer, not a claim of recovering picture pixels hidden under original baked words."
+    },
+    "title-choice-underlay": {
+      "path": "art/title-choice-underlay.png",
+      "width": 144,
+      "height": 32,
+      "channels": 3,
+      "transparent": false,
+      "pixelSha256": "4c08e656d3fcf71e1f9c88a16e4221649ca5fa7649a3336958b4905ed06006f0",
+      "sha256": "2f19add0fb5b91fccb2323e9a90221fb5c902f492dbd28cd4c0e601820e0cbe8",
+      "capture": "title-menu-000040",
+      "sourceLayer": "plane-b",
+      "sourceRect": [
+        104,
+        156,
+        144,
+        32
+      ],
+      "sourceRgbSha256": "f29d6e712f98a389c3138bbb78623964824a24a9ccb93debe82f6ece2f3d8a5a",
+      "scope": "Exact original planet/starfield under native START GAME/OPTIONS/TUTORIAL and pointer; valid for settled native Main palette only."
+    },
+    "title-complete-without-choices": {
+      "path": "art/title-complete-without-choices.png",
+      "width": 320,
+      "height": 224,
+      "channels": 3,
+      "transparent": false,
+      "pixelSha256": "800f95f9ec16e027156e92354b9018e1c1afb08fbd3808c57e7dad4912b1a07d",
+      "sha256": "8e0da9d445fcbb657c1e7ef0537ca4fb1bdadb8f63b7f8763b39be37bb6d7cd9",
+      "capture": "title-menu-000040",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "recipe": "Complete actual native frame; only[104,156,144,32] replaced with its exact native planeB. DUNE/logo/subtitle/license/stars and all remaining pixels are unchanged.",
+      "scope": "Static settled-Main fallback. Live intro must use the complete live native frame, and live Main should use the read-only native choice-mask compositor."
+    },
+    "options-clean-background": {
+      "path": "art/options-native-decor.png",
+      "width": 320,
+      "height": 224,
+      "channels": 4,
+      "transparent": true,
+      "pixelSha256": "a7f083c23f69fa846f1203902bbe7067a5a92b331cdd50a4fc30394b12c9778d",
+      "sha256": "418bc1ad14bb40c23c4a06022d6d1dc8acce63a88aa9c5156c27c49fee1fce4a",
+      "capture": "pause-options",
+      "sourceLayer": "WINDOW",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "phaseProof": "Current captured VDP reproduces the completed native frame exactly",
+      "sourceRgbSha256": "bf4333d8a1e8e7ca2af7481940564e44e04280e6caf6cf2f3168774b0d1745af",
+      "alphaSource": "Only the eight complete original static label/control rectangles are transparent; all remaining native artwork stays opaque. No RGB colour key.",
+      "controlHoles": [
+        {
+          "label": "OPTIONS",
+          "rect": [
+            128,
+            16,
+            56,
+            8
+          ]
+        },
+        {
+          "label": "MUSIC IS",
+          "rect": [
+            32,
+            40,
+            64,
+            8
+          ]
+        },
+        {
+          "label": "SOUNDS ARE",
+          "rect": [
+            32,
+            56,
+            80,
+            8
+          ]
+        },
+        {
+          "label": "RADAR IS",
+          "rect": [
+            32,
+            72,
+            64,
+            8
+          ]
+        },
+        {
+          "label": "MUSIC TEST",
+          "rect": [
+            32,
+            88,
+            80,
+            8
+          ]
+        },
+        {
+          "label": "SOUND TEST",
+          "rect": [
+            32,
+            104,
+            80,
+            8
+          ]
+        },
+        {
+          "label": "ENTER PASSWORD",
+          "rect": [
+            32,
+            136,
+            112,
+            8
+          ]
+        },
+        {
+          "label": "PRESS START TO EXIT",
+          "rect": [
+            72,
+            192,
+            168,
+            8
+          ]
+        }
+      ],
+      "requiresOpaqueControlsOverHoles": true,
+      "scope": "A native-piece UI composition layer, not a claim of recovering picture pixels hidden under original baked words.",
+      "sourceAlias": "options-native-decor"
+    },
+    "options-original-window": {
+      "path": "art/pause-options-original-background.png",
+      "width": 320,
+      "height": 224,
+      "channels": 3,
+      "transparent": false,
+      "pixelSha256": "0e4ac7419a57f01e040f997d605940fabcae08da83511230933de95913f58574",
+      "sha256": "2fefb4dfaf86517573cd7a08cfcfbf272dbc0368656132ced69db426d527cc20",
+      "capture": "pause-options",
+      "sourceLayer": "window",
+      "sourceRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "sourceRgbSha256": "bf4333d8a1e8e7ca2af7481940564e44e04280e6caf6cf2f3168774b0d1745af",
+      "alphaSource": null,
+      "phaseProof": "Exact current VDP recomposition equals completed native RGB frame (0 mismatched bytes).",
+      "sourceAlias": "pause-options-original-background"
+    },
+    "title-choices-underlay": {
+      "path": "art/title-choice-underlay.png",
+      "width": 144,
+      "height": 32,
+      "channels": 3,
+      "transparent": false,
+      "pixelSha256": "4c08e656d3fcf71e1f9c88a16e4221649ca5fa7649a3336958b4905ed06006f0",
+      "sha256": "2f19add0fb5b91fccb2323e9a90221fb5c902f492dbd28cd4c0e601820e0cbe8",
+      "capture": "title-menu-000040",
+      "sourceLayer": "plane-b",
+      "sourceRect": [
+        104,
+        156,
+        144,
+        32
+      ],
+      "sourceRgbSha256": "f29d6e712f98a389c3138bbb78623964824a24a9ccb93debe82f6ece2f3d8a5a",
+      "scope": "Exact original planet/starfield under native START GAME/OPTIONS/TUTORIAL and pointer; valid for settled native Main palette only.",
+      "sourceAlias": "title-choice-underlay"
+    }
+  },
+  "recipes": {
+    "main": {
+      "liveRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "staticCompletePart": "title-complete-without-choices",
+      "choiceUnderlayPart": "title-choices-underlay",
+      "nativeChoiceArea": [
+        104,
+        156,
+        144,
+        32
+      ],
+      "hideOnlyAfterNativePoll": 96466,
+      "rule": "Preserve full original intro. Hide native menu glyphs/pointer only after actual Main is ready; never crop to the top144px."
+    },
+    "pause-options": {
+      "originalWindowPart": "options-original-window",
+      "nativeDecorPart": "options-clean-background",
+      "cleanWideHeroPart": "options-responsive-art",
+      "completeNativeSize": [
+        320,
+        224
+      ],
+      "controlHoles": [
+        {
+          "label": "OPTIONS",
+          "rect": [
+            128,
+            16,
+            56,
+            8
+          ]
+        },
+        {
+          "label": "MUSIC IS",
+          "rect": [
+            32,
+            40,
+            64,
+            8
+          ]
+        },
+        {
+          "label": "SOUNDS ARE",
+          "rect": [
+            32,
+            56,
+            80,
+            8
+          ]
+        },
+        {
+          "label": "RADAR IS",
+          "rect": [
+            32,
+            72,
+            64,
+            8
+          ]
+        },
+        {
+          "label": "MUSIC TEST",
+          "rect": [
+            32,
+            88,
+            80,
+            8
+          ]
+        },
+        {
+          "label": "SOUND TEST",
+          "rect": [
+            32,
+            104,
+            80,
+            8
+          ]
+        },
+        {
+          "label": "ENTER PASSWORD",
+          "rect": [
+            32,
+            136,
+            112,
+            8
+          ]
+        },
+        {
+          "label": "PRESS START TO EXIT",
+          "rect": [
+            72,
+            192,
+            168,
+            8
+          ]
+        }
+      ],
+      "suggestedOpaqueCoverRects": [
+        [
+          120,
+          8,
+          72,
+          24
+        ],
+        [
+          24,
+          32,
+          96,
+          88
+        ],
+        [
+          24,
+          128,
+          128,
+          24
+        ],
+        [
+          64,
+          184,
+          184,
+          24
+        ]
+      ],
+      "parts": [
+        "options-helmet-and-launcher",
+        "options-native-lower-body",
+        "options-native-bottom-terrain",
+        "options-native-right-side",
+        "options-native-left-shoulder",
+        "options-responsive-art",
+        "options-native-decor",
+        "options-clean-background",
+        "options-original-window"
+      ],
+      "rule": "Use options-responsive-art above separate controls. It joins two untouched original fragments; the native8px password-label row is omitted. Full original WINDOW and label-hole composition are reference alternatives. Hidden original artwork is not invented; do not substitute results soldiers."
+    },
+    "story": {
+      "liveRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "nativeTextRect": [
+        16,
+        16,
+        288,
+        40
+      ],
+      "nativeChoiceAreas": [
+        [
+          184,
+          164,
+          96,
+          24
+        ],
+        [
+          184,
+          188,
+          96,
+          28
+        ]
+      ],
+      "requiresNativeTextlessCompositor": true,
+      "rule": "Show complete original advisor+strategic map. Strip only original font480..4DE over true native background; fifth row overlaps the map. Original gold choice areas have genuine black background outside advisor/map; reflow the actual native message below."
+    },
+    "cinematics": {
+      "liveRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "originalMovieContentRect": [
+        8,
+        40,
+        304,
+        120
+      ],
+      "rule": "Keep the complete native canvas and original cadence, including the original black surrounding frame. A single reference PNG is not an animation replacement."
+    },
+    "results-ending": {
+      "liveRect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "rule": "Keep full original stats/background/extended artwork and ending/credits. Do not substitute cropped soldiers or a separately calculated scoreboard."
+    }
+  },
+  "source": {
+    "romSha256": "b1bbe73186e0902fa8b2db0f227bf306e3d6a80fe592f927d1aa9d60c0f335ba",
+    "generatedSourceSha256": "e3055a76cd0eeb151591984a2c12312dcea49754afa0edee9f84889814ad1578",
+    "baseRepository": "https://github.com/andvolodko/dune2-sega-web",
+    "baseRevision": "56c6a6da10",
+    "baseOrigin": "existing inspected local checkout; ROM bytes equal operator-supplied file",
+    "runtime": "Original machine instructions translated ahead of time to C / WebAssembly; browser host scheduling patches only"
+  }
+}

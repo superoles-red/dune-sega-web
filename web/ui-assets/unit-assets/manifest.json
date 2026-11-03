@@ -1,0 +1,4691 @@
+{
+  "version": 1,
+  "source": {
+    "game": "Dune — The Battle for Arrakis, Sega Genesis USA",
+    "romSha256": "b1bbe73186e0902fa8b2db0f227bf306e3d6a80fe592f927d1aa9d60c0f335ba",
+    "unitDefinitionTable": "0x06c5bc",
+    "iconPointerTable": "0x070ca4",
+    "portraitPointerTable": "0x08f1d0",
+    "nativeConsumers": [
+      "0x00827a",
+      "0x008306",
+      "0x008fec",
+      "0x00905e"
+    ]
+  },
+  "pixelPolicy": "Original 4bpp patterns, mappings/flips and CRAM colors; no painted/generated replacements. Live RGB frames remain authoritative for selected/state/house palettes.",
+  "palettes": {
+    "lane1": {
+      "romOffset": 683192,
+      "cramWords": [
+        0,
+        2218,
+        580,
+        34,
+        2766,
+        72,
+        36,
+        206,
+        106,
+        3822,
+        2696,
+        1058,
+        0,
+        3808,
+        3136,
+        512
+      ],
+      "rgb8": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          182,
+          182,
+          145
+        ],
+        [
+          72,
+          72,
+          36
+        ],
+        [
+          36,
+          36,
+          0
+        ],
+        [
+          255,
+          218,
+          182
+        ],
+        [
+          145,
+          72,
+          0
+        ],
+        [
+          72,
+          36,
+          0
+        ],
+        [
+          255,
+          218,
+          0
+        ],
+        [
+          182,
+          109,
+          0
+        ],
+        [
+          255,
+          255,
+          255
+        ],
+        [
+          145,
+          145,
+          182
+        ],
+        [
+          36,
+          36,
+          72
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          255,
+          255
+        ],
+        [
+          0,
+          72,
+          218
+        ],
+        [
+          0,
+          0,
+          36
+        ]
+      ]
+    },
+    "lane3": {
+      "romOffset": 683256,
+      "cramWords": [
+        0,
+        10,
+        4,
+        1126,
+        34,
+        2254,
+        1164,
+        582,
+        2624,
+        3822,
+        2696,
+        1058,
+        0,
+        236,
+        160,
+        32
+      ],
+      "rgb8": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          182,
+          0,
+          0
+        ],
+        [
+          72,
+          0,
+          0
+        ],
+        [
+          109,
+          109,
+          72
+        ],
+        [
+          36,
+          36,
+          0
+        ],
+        [
+          255,
+          218,
+          145
+        ],
+        [
+          218,
+          145,
+          72
+        ],
+        [
+          109,
+          72,
+          36
+        ],
+        [
+          0,
+          72,
+          182
+        ],
+        [
+          255,
+          255,
+          255
+        ],
+        [
+          145,
+          145,
+          182
+        ],
+        [
+          36,
+          36,
+          72
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          218,
+          255,
+          0
+        ],
+        [
+          0,
+          182,
+          0
+        ],
+        [
+          0,
+          36,
+          0
+        ]
+      ]
+    }
+  },
+  "units": [
+    {
+      "id": 0,
+      "key": "carryall",
+      "name": "Carryall",
+      "definitionRomOffset": 441352,
+      "icons": [
+        "icons/00-carryall.png"
+      ],
+      "portraits": [
+        "portraits/00-carryall.png"
+      ],
+      "iconVariants": {
+        "production": "icons/00-carryall.png",
+        "starport": "icons/00-carryall.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 800,
+      "hp": 100,
+      "damage": 0,
+      "range": 0,
+      "iconSource": {
+        "romOffset": 454672,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "97897fd28ca006651f5f454c7f9b0b4095e95335482941c6a9917f091c978c56",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 586324,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 586324,
+        "cramWords": [
+          0,
+          3822,
+          2218,
+          1672,
+          1126,
+          110,
+          3788,
+          3242,
+          2696,
+          2150,
+          1604,
+          1550,
+          522,
+          3714,
+          0,
+          546
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            182,
+            182,
+            145
+          ],
+          [
+            145,
+            145,
+            109
+          ],
+          [
+            109,
+            109,
+            72
+          ],
+          [
+            255,
+            109,
+            0
+          ],
+          [
+            218,
+            218,
+            255
+          ],
+          [
+            182,
+            182,
+            218
+          ],
+          [
+            145,
+            145,
+            182
+          ],
+          [
+            109,
+            109,
+            145
+          ],
+          [
+            72,
+            72,
+            109
+          ],
+          [
+            255,
+            0,
+            109
+          ],
+          [
+            182,
+            0,
+            36
+          ],
+          [
+            36,
+            145,
+            255
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            36,
+            36,
+            36
+          ]
+        ],
+        "tilemapRomOffset": 586356,
+        "tilemapWords": [
+          8193,
+          8194,
+          8195,
+          8195,
+          8195,
+          8195,
+          8195,
+          8195,
+          8195,
+          8195,
+          8195,
+          8196,
+          8197,
+          8198,
+          8199,
+          8200,
+          8201,
+          8202,
+          8203,
+          8204,
+          8205,
+          8206,
+          8207,
+          8208,
+          8209,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8216,
+          8217,
+          8218,
+          8219,
+          8208,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8248,
+          8249,
+          8250,
+          8251,
+          8252,
+          8253,
+          8254,
+          8255,
+          8256,
+          8257,
+          8258,
+          8259,
+          8260,
+          8261,
+          8262,
+          8263,
+          8264,
+          8265,
+          8266
+        ],
+        "compressedRomOffset": 586526,
+        "compressedBytes": 1456,
+        "decodedPatternBytes": 2400,
+        "nativeUploadBytes": 2400,
+        "patternsSha256": "bcda0ee328ec3ea6d695535d8f9007c391a0bf9169747ecc44361aa0160fc428",
+        "sha256": "99441365e2d8a40b38e4cc26197578cc1e813709924062ac53308f9c16b6c7c3",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 1,
+      "key": "ornithopter",
+      "name": "'Thopter",
+      "definitionRomOffset": 441444,
+      "icons": [
+        "icons/01-ornithopter.png"
+      ],
+      "portraits": [
+        "portraits/01-ornithopter.png"
+      ],
+      "iconVariants": {
+        "production": "icons/01-ornithopter.png",
+        "starport": "icons/01-ornithopter.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 600,
+      "hp": 5,
+      "damage": 75,
+      "range": 50,
+      "iconSource": {
+        "romOffset": 458128,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "9eaec050cc3d8c983eceaf02f703083dc38fbf2460f180f8a2d5250d7761e088",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 587982,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 587982,
+        "cramWords": [
+          0,
+          3822,
+          2148,
+          1740,
+          1194,
+          1162,
+          2694,
+          74,
+          108,
+          142,
+          1058,
+          2696,
+          616,
+          2150,
+          3822,
+          1604
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            72,
+            109,
+            145
+          ],
+          [
+            218,
+            218,
+            109
+          ],
+          [
+            182,
+            182,
+            72
+          ],
+          [
+            182,
+            145,
+            72
+          ],
+          [
+            109,
+            145,
+            182
+          ],
+          [
+            182,
+            72,
+            0
+          ],
+          [
+            218,
+            109,
+            0
+          ],
+          [
+            255,
+            145,
+            0
+          ],
+          [
+            36,
+            36,
+            72
+          ],
+          [
+            145,
+            145,
+            182
+          ],
+          [
+            145,
+            109,
+            36
+          ],
+          [
+            109,
+            109,
+            145
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            72,
+            72,
+            109
+          ]
+        ],
+        "tilemapRomOffset": 588014,
+        "tilemapWords": [
+          8193,
+          8194,
+          8194,
+          8194,
+          8194,
+          8195,
+          8196,
+          8197,
+          8194,
+          8194,
+          8194,
+          10241,
+          8198,
+          8199,
+          8199,
+          8199,
+          8199,
+          8200,
+          8201,
+          8202,
+          8199,
+          8199,
+          8199,
+          10246,
+          8198,
+          8199,
+          8199,
+          8199,
+          8199,
+          8203,
+          8204,
+          8205,
+          8199,
+          8199,
+          8199,
+          10246,
+          8198,
+          8206,
+          8207,
+          8199,
+          8199,
+          8208,
+          8209,
+          8210,
+          8211,
+          8199,
+          8199,
+          10246,
+          8212,
+          8213,
+          8214,
+          8215,
+          8216,
+          8217,
+          8218,
+          8219,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247
+        ],
+        "compressedRomOffset": 588184,
+        "compressedBytes": 1056,
+        "decodedPatternBytes": 1792,
+        "nativeUploadBytes": 1792,
+        "patternsSha256": "4c5f709ae17d9a86e9be688e771b593c9919caf9df84662cb4aad0e942a015ae",
+        "sha256": "64bd217964f27b7d3c4140e7afa8cb4bd9388597e9aa7d290f9362fe5efef290",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 2,
+      "key": "infantry",
+      "name": "Infantry",
+      "definitionRomOffset": 441536,
+      "icons": [
+        "icons/02-infantry.png"
+      ],
+      "portraits": [
+        "portraits/02-infantry.png"
+      ],
+      "iconVariants": {
+        "production": "icons/02-infantry.png",
+        "starport": "icons/02-infantry.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 100,
+      "hp": 50,
+      "damage": 4,
+      "range": 2,
+      "iconSource": {
+        "romOffset": 456592,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "06e75dff9e94ddc58bd36cbe62737e0196002652934e8b8b1471e7e523a50c85",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 589240,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 589240,
+        "cramWords": [
+          0,
+          2254,
+          3822,
+          3208,
+          8,
+          1672,
+          1126,
+          34,
+          1058,
+          72,
+          38,
+          1604,
+          1710,
+          1128,
+          2,
+          0
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            255,
+            218,
+            145
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            145,
+            145,
+            218
+          ],
+          [
+            145,
+            0,
+            0
+          ],
+          [
+            145,
+            145,
+            109
+          ],
+          [
+            109,
+            109,
+            72
+          ],
+          [
+            36,
+            36,
+            0
+          ],
+          [
+            36,
+            36,
+            72
+          ],
+          [
+            145,
+            72,
+            0
+          ],
+          [
+            109,
+            36,
+            0
+          ],
+          [
+            72,
+            72,
+            109
+          ],
+          [
+            255,
+            182,
+            109
+          ],
+          [
+            145,
+            109,
+            72
+          ],
+          [
+            36,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 589272,
+        "tilemapWords": [
+          8193,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          10241,
+          8195,
+          8196,
+          8197,
+          8198,
+          8199,
+          8200,
+          8200,
+          8200,
+          8200,
+          8200,
+          8200,
+          10243,
+          8195,
+          8201,
+          8202,
+          8203,
+          8204,
+          8205,
+          8206,
+          8200,
+          8200,
+          8200,
+          8200,
+          10243,
+          8207,
+          8208,
+          8209,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8200,
+          8200,
+          10243,
+          8216,
+          8217,
+          8218,
+          8219,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250,
+          8251
+        ],
+        "compressedRomOffset": 589442,
+        "compressedBytes": 1506,
+        "decodedPatternBytes": 1920,
+        "nativeUploadBytes": 2920,
+        "patternsSha256": "5df05cce21b8391d0eeb3c9044325fab100032c34ea351b86fea46eba09a2606",
+        "sha256": "188bbe341d260694891d7f3147893ab4ac7b98240165da6ccd20697fd8d30e81",
+        "animation": "One static native monitor resource; console and frame effects are separate.",
+        "nativeLengthQuirk": "The complete LCW resource is longer than the native declared upload length. This PNG preserves the complete decoded resource; the live native frame preserves any state-dependent prior VRAM bytes."
+      }
+    },
+    {
+      "id": 3,
+      "key": "troopers",
+      "name": "Troopers",
+      "definitionRomOffset": 441628,
+      "icons": [
+        "icons/03-troopers.png"
+      ],
+      "portraits": [
+        "portraits/03-troopers.png"
+      ],
+      "iconVariants": {
+        "production": "icons/03-troopers.png",
+        "starport": "icons/03-troopers.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 200,
+      "hp": 110,
+      "damage": 8,
+      "range": 3,
+      "iconSource": {
+        "romOffset": 460048,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "8e6326f17f106daa496c10adcebc44274ac55361e47bdb975db0c3a38f08150e",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 590948,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 590948,
+        "cramWords": [
+          0,
+          3822,
+          1162,
+          618,
+          70,
+          1058,
+          514,
+          2252,
+          2220,
+          1676,
+          1638,
+          1130,
+          548,
+          36,
+          3234,
+          34
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            182,
+            145,
+            72
+          ],
+          [
+            182,
+            109,
+            36
+          ],
+          [
+            109,
+            72,
+            0
+          ],
+          [
+            36,
+            36,
+            72
+          ],
+          [
+            36,
+            0,
+            36
+          ],
+          [
+            218,
+            218,
+            145
+          ],
+          [
+            218,
+            182,
+            145
+          ],
+          [
+            218,
+            145,
+            109
+          ],
+          [
+            109,
+            109,
+            109
+          ],
+          [
+            182,
+            109,
+            72
+          ],
+          [
+            72,
+            36,
+            36
+          ],
+          [
+            72,
+            36,
+            0
+          ],
+          [
+            36,
+            182,
+            218
+          ],
+          [
+            36,
+            36,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 590980,
+        "tilemapWords": [
+          8192,
+          8193,
+          8194,
+          8195,
+          8196,
+          8197,
+          8198,
+          8196,
+          8196,
+          8196,
+          8196,
+          8199,
+          8200,
+          8201,
+          8202,
+          8203,
+          8204,
+          8205,
+          8206,
+          8207,
+          8208,
+          8208,
+          8208,
+          8209,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8216,
+          8217,
+          8218,
+          8219,
+          8208,
+          8209,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250,
+          8251,
+          8252,
+          8253,
+          8254,
+          8255,
+          8256,
+          8257,
+          8258,
+          8259,
+          8260,
+          8261,
+          8262,
+          8263,
+          8264,
+          8265,
+          8266,
+          8267
+        ],
+        "compressedRomOffset": 591150,
+        "compressedBytes": 1799,
+        "decodedPatternBytes": 2432,
+        "nativeUploadBytes": 2432,
+        "patternsSha256": "0eaeae70c2dc67a9f06bceef0c18f7f7b991bc8aa13024427a22bce5914bbe0b",
+        "sha256": "6839ca790576f6d7754e847062c29dd7cd85c24479c55041bcda87de6cda9978",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 4,
+      "key": "soldier",
+      "name": "Soldier",
+      "definitionRomOffset": 441720,
+      "icons": [
+        "icons/04-soldier.png"
+      ],
+      "portraits": [
+        "portraits/04-soldier.png"
+      ],
+      "iconVariants": {
+        "production": "icons/04-soldier.png",
+        "starport": "icons/04-soldier.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 60,
+      "hp": 20,
+      "damage": 4,
+      "range": 2,
+      "iconSource": {
+        "romOffset": 459664,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "cf4c0ba191e2c17c5ad31d4cc10fd824be801f6721c2806ae96cf3be65431bb5",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 592950,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 592950,
+        "cramWords": [
+          0,
+          2254,
+          3822,
+          3208,
+          8,
+          1672,
+          1126,
+          34,
+          1058,
+          72,
+          38,
+          1604,
+          1710,
+          1128,
+          2,
+          0
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            255,
+            218,
+            145
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            145,
+            145,
+            218
+          ],
+          [
+            145,
+            0,
+            0
+          ],
+          [
+            145,
+            145,
+            109
+          ],
+          [
+            109,
+            109,
+            72
+          ],
+          [
+            36,
+            36,
+            0
+          ],
+          [
+            36,
+            36,
+            72
+          ],
+          [
+            145,
+            72,
+            0
+          ],
+          [
+            109,
+            36,
+            0
+          ],
+          [
+            72,
+            72,
+            109
+          ],
+          [
+            255,
+            182,
+            109
+          ],
+          [
+            145,
+            109,
+            72
+          ],
+          [
+            36,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 592982,
+        "tilemapWords": [
+          8193,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          10241,
+          8195,
+          8196,
+          8197,
+          8198,
+          8199,
+          8200,
+          8200,
+          8200,
+          8200,
+          8200,
+          8200,
+          10243,
+          8195,
+          8201,
+          8202,
+          8203,
+          8204,
+          8205,
+          8206,
+          8200,
+          8200,
+          8200,
+          8200,
+          10243,
+          8207,
+          8208,
+          8209,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8200,
+          8200,
+          10243,
+          8216,
+          8217,
+          8218,
+          8219,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250,
+          8251
+        ],
+        "compressedRomOffset": 593152,
+        "compressedBytes": 1506,
+        "decodedPatternBytes": 1920,
+        "nativeUploadBytes": 1920,
+        "patternsSha256": "5df05cce21b8391d0eeb3c9044325fab100032c34ea351b86fea46eba09a2606",
+        "sha256": "188bbe341d260694891d7f3147893ab4ac7b98240165da6ccd20697fd8d30e81",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 5,
+      "key": "trooper",
+      "name": "Trooper",
+      "definitionRomOffset": 441812,
+      "icons": [
+        "icons/05-trooper.png"
+      ],
+      "portraits": [
+        "portraits/05-trooper.png"
+      ],
+      "iconVariants": {
+        "production": "icons/05-trooper.png",
+        "starport": "icons/05-trooper.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 100,
+      "hp": 45,
+      "damage": 8,
+      "range": 3,
+      "iconSource": {
+        "romOffset": 454288,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "b91cfa3a8f7381aa938a7cabc2928d6c5664f6e28f4590413fdb8a915dc5dc2c",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 594658,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 594658,
+        "cramWords": [
+          0,
+          1196,
+          3822,
+          650,
+          2696,
+          3272,
+          2150,
+          1604,
+          1058,
+          2766,
+          2222,
+          512,
+          1094,
+          548,
+          1130,
+          0
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            218,
+            182,
+            72
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            182,
+            145,
+            36
+          ],
+          [
+            145,
+            145,
+            182
+          ],
+          [
+            145,
+            218,
+            218
+          ],
+          [
+            109,
+            109,
+            145
+          ],
+          [
+            72,
+            72,
+            109
+          ],
+          [
+            36,
+            36,
+            72
+          ],
+          [
+            255,
+            218,
+            182
+          ],
+          [
+            255,
+            182,
+            145
+          ],
+          [
+            0,
+            0,
+            36
+          ],
+          [
+            109,
+            72,
+            72
+          ],
+          [
+            72,
+            36,
+            36
+          ],
+          [
+            182,
+            109,
+            72
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 594690,
+        "tilemapWords": [
+          8193,
+          8194,
+          8195,
+          8196,
+          8197,
+          8197,
+          8198,
+          8199,
+          8197,
+          8197,
+          8197,
+          8200,
+          8201,
+          8202,
+          8203,
+          8204,
+          8205,
+          8206,
+          8207,
+          8208,
+          8209,
+          8209,
+          8209,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8216,
+          8217,
+          8218,
+          8219,
+          8220,
+          8209,
+          8210,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250,
+          8251,
+          8252,
+          8253,
+          8254,
+          8255,
+          8256,
+          8257,
+          8258,
+          8259,
+          8260,
+          8261,
+          8262,
+          8263,
+          8264,
+          8265,
+          8266,
+          8267,
+          8268
+        ],
+        "compressedRomOffset": 594860,
+        "compressedBytes": 1884,
+        "decodedPatternBytes": 2464,
+        "nativeUploadBytes": 2464,
+        "patternsSha256": "001675ff7a8675c44f30aaca601bebf3d114da18d6b8abd34d025121da712074",
+        "sha256": "5807bdb6344c4dfac7ffdb96ca4aab28f6ba5962eaf7da04a7ee623a0c58b82a",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 6,
+      "key": "saboteur",
+      "name": "Saboteur",
+      "definitionRomOffset": 441904,
+      "icons": [
+        "icons/06-saboteur.png"
+      ],
+      "portraits": [],
+      "iconVariants": {
+        "production": "icons/06-saboteur.png",
+        "starport": "icons/06-saboteur.png"
+      },
+      "nativeRole": "palace-special",
+      "cost": 120,
+      "hp": 40,
+      "damage": 150,
+      "range": 2,
+      "iconSource": {
+        "romOffset": 457744,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "3a3d4d23c8c060ba13f23b769246fb09cce2c0a72ae42405887dc5cb435d0560",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 613592,
+        "width": 96,
+        "height": 56,
+        "absence": "Original pointer is the non-picture dummy record0x95CD8 (or zero). No per-unit monitor illustration exists in this native table; use the original live UI fallback rather than a fabricated image."
+      }
+    },
+    {
+      "id": 7,
+      "key": "launcher",
+      "name": "Launcher",
+      "definitionRomOffset": 441996,
+      "icons": [
+        "icons/07-launcher.png"
+      ],
+      "portraits": [
+        "portraits/07-launcher.png"
+      ],
+      "iconVariants": {
+        "production": "icons/07-launcher.png",
+        "starport": "icons/07-launcher.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 450,
+      "hp": 100,
+      "damage": 112,
+      "range": 9,
+      "iconSource": {
+        "romOffset": 458512,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "82b7f1cc6da1de0536d97d8f4b2cde24f036e5773948c105b0d3bc1a6c2492eb",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 596744,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 596744,
+        "cramWords": [
+          0,
+          3822,
+          1742,
+          1196,
+          650,
+          2150,
+          3714,
+          2766,
+          2222,
+          1130,
+          584,
+          1058,
+          1676,
+          1128,
+          548,
+          0
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            255,
+            218,
+            109
+          ],
+          [
+            218,
+            182,
+            72
+          ],
+          [
+            182,
+            145,
+            36
+          ],
+          [
+            109,
+            109,
+            145
+          ],
+          [
+            36,
+            145,
+            255
+          ],
+          [
+            255,
+            218,
+            182
+          ],
+          [
+            255,
+            182,
+            145
+          ],
+          [
+            182,
+            109,
+            72
+          ],
+          [
+            145,
+            72,
+            36
+          ],
+          [
+            36,
+            36,
+            72
+          ],
+          [
+            218,
+            145,
+            109
+          ],
+          [
+            145,
+            109,
+            72
+          ],
+          [
+            72,
+            36,
+            36
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 596776,
+        "tilemapWords": [
+          8193,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          10241,
+          8195,
+          8196,
+          8196,
+          8197,
+          8198,
+          8199,
+          8200,
+          8201,
+          8196,
+          8196,
+          8196,
+          10243,
+          8195,
+          8196,
+          8202,
+          8203,
+          8204,
+          8205,
+          8206,
+          8207,
+          8208,
+          8209,
+          8196,
+          10243,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8216,
+          8217,
+          8218,
+          8219,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250,
+          8251,
+          8252,
+          8253,
+          8254,
+          8255,
+          8256,
+          8257
+        ],
+        "compressedRomOffset": 596946,
+        "compressedBytes": 1480,
+        "decodedPatternBytes": 2112,
+        "nativeUploadBytes": 2112,
+        "patternsSha256": "8cdf92ab3aa3a202d26c7dc37563e7ea5425abc53a5067260bc5fbaf04f5bfe7",
+        "sha256": "91fe72b652891e67fc651d24450b8618fb55265399dcc33ba17d6be364c795a9",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 8,
+      "key": "deviator",
+      "name": "Deviator",
+      "definitionRomOffset": 442088,
+      "icons": [
+        "icons/08-deviator.png"
+      ],
+      "portraits": [
+        "portraits/08-deviator.png"
+      ],
+      "iconVariants": {
+        "production": "icons/08-deviator.png",
+        "starport": "icons/08-deviator.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 750,
+      "hp": 120,
+      "damage": 0,
+      "range": 7,
+      "iconSource": {
+        "romOffset": 461584,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "707718a1cf8309a8e7851783677e9117d8f9bf251abfba41df50c704462ef5ff",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 598426,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 598426,
+        "cramWords": [
+          0,
+          3822,
+          134,
+          3276,
+          2730,
+          2150,
+          3714,
+          3822,
+          3788,
+          2696,
+          1604,
+          1058,
+          3242,
+          2150,
+          546,
+          0
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            109,
+            145,
+            0
+          ],
+          [
+            218,
+            218,
+            218
+          ],
+          [
+            182,
+            182,
+            182
+          ],
+          [
+            109,
+            109,
+            145
+          ],
+          [
+            36,
+            145,
+            255
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            218,
+            218,
+            255
+          ],
+          [
+            145,
+            145,
+            182
+          ],
+          [
+            72,
+            72,
+            109
+          ],
+          [
+            36,
+            36,
+            72
+          ],
+          [
+            182,
+            182,
+            218
+          ],
+          [
+            109,
+            109,
+            145
+          ],
+          [
+            36,
+            36,
+            36
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 598458,
+        "tilemapWords": [
+          8193,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          10241,
+          8195,
+          8196,
+          8196,
+          8197,
+          8198,
+          8199,
+          8200,
+          8201,
+          8196,
+          8196,
+          8196,
+          10243,
+          8195,
+          8196,
+          8202,
+          8203,
+          8204,
+          8205,
+          8206,
+          8207,
+          8208,
+          8209,
+          8196,
+          10243,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8216,
+          8217,
+          8218,
+          8219,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250,
+          8251,
+          8252,
+          8253,
+          8254,
+          8255,
+          8256,
+          8257
+        ],
+        "compressedRomOffset": 598628,
+        "compressedBytes": 1421,
+        "decodedPatternBytes": 2112,
+        "nativeUploadBytes": 2112,
+        "patternsSha256": "e293bc442cdb224bc7bee87d13a706b872b1703b7d43a8db4d4e233fffcb7473",
+        "sha256": "a97a3bde884e183ec977588e3fe540e80d3aad50ab99ae64690fa9724337bde3",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 9,
+      "key": "tank",
+      "name": "Tank",
+      "definitionRomOffset": 442180,
+      "icons": [
+        "icons/09-tank.png"
+      ],
+      "portraits": [
+        "portraits/09-tank.png"
+      ],
+      "iconVariants": {
+        "production": "icons/09-tank.png",
+        "starport": "icons/09-tank.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 300,
+      "hp": 200,
+      "damage": 38,
+      "range": 4,
+      "iconSource": {
+        "romOffset": 455056,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "3ff5eac0ae5ecaa75e55003f0364be6f520f32e5652c1731af145961266f5db8",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 600050,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 600050,
+        "cramWords": [
+          0,
+          3822,
+          1742,
+          1196,
+          650,
+          2150,
+          3714,
+          2766,
+          2222,
+          1130,
+          584,
+          1058,
+          1676,
+          1128,
+          548,
+          0
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            255,
+            218,
+            109
+          ],
+          [
+            218,
+            182,
+            72
+          ],
+          [
+            182,
+            145,
+            36
+          ],
+          [
+            109,
+            109,
+            145
+          ],
+          [
+            36,
+            145,
+            255
+          ],
+          [
+            255,
+            218,
+            182
+          ],
+          [
+            255,
+            182,
+            145
+          ],
+          [
+            182,
+            109,
+            72
+          ],
+          [
+            145,
+            72,
+            36
+          ],
+          [
+            36,
+            36,
+            72
+          ],
+          [
+            218,
+            145,
+            109
+          ],
+          [
+            145,
+            109,
+            72
+          ],
+          [
+            72,
+            36,
+            36
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 600082,
+        "tilemapWords": [
+          8193,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          10241,
+          8195,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          10243,
+          8195,
+          8196,
+          8196,
+          8196,
+          8197,
+          8198,
+          8199,
+          8200,
+          8201,
+          8202,
+          8196,
+          10243,
+          8203,
+          8204,
+          8205,
+          8206,
+          8207,
+          8208,
+          8209,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8216,
+          8217,
+          8218,
+          8219,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250
+        ],
+        "compressedRomOffset": 600252,
+        "compressedBytes": 1273,
+        "decodedPatternBytes": 1888,
+        "nativeUploadBytes": 1888,
+        "patternsSha256": "228f3c73075fa97565dceea176ddab10abd2e4b2038d0ae5c4544e24db8428a9",
+        "sha256": "805cd584e473a126e0ec7f22610f3f130d0be2f22caacba6f7eed98b20fe1323",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 10,
+      "key": "siege-tank",
+      "name": "Siege Tank",
+      "definitionRomOffset": 442272,
+      "icons": [
+        "icons/10-siege-tank.png"
+      ],
+      "portraits": [
+        "portraits/10-siege-tank.png"
+      ],
+      "iconVariants": {
+        "production": "icons/10-siege-tank.png",
+        "starport": "icons/10-siege-tank.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 600,
+      "hp": 300,
+      "damage": 45,
+      "range": 5,
+      "iconSource": {
+        "romOffset": 453136,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "e652d511a3f5db85d83a27202d14b095c10cca449dd380603c7b9d72405ef235",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 601526,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 601526,
+        "cramWords": [
+          0,
+          3822,
+          1742,
+          1196,
+          650,
+          3746,
+          3242,
+          2150,
+          1058,
+          2766,
+          2222,
+          1676,
+          1130,
+          584,
+          38,
+          0
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            255,
+            218,
+            109
+          ],
+          [
+            218,
+            182,
+            72
+          ],
+          [
+            182,
+            145,
+            36
+          ],
+          [
+            36,
+            182,
+            255
+          ],
+          [
+            182,
+            182,
+            218
+          ],
+          [
+            109,
+            109,
+            145
+          ],
+          [
+            36,
+            36,
+            72
+          ],
+          [
+            255,
+            218,
+            182
+          ],
+          [
+            255,
+            182,
+            145
+          ],
+          [
+            218,
+            145,
+            109
+          ],
+          [
+            182,
+            109,
+            72
+          ],
+          [
+            145,
+            72,
+            36
+          ],
+          [
+            109,
+            36,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 601558,
+        "tilemapWords": [
+          8193,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          10241,
+          8195,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          10243,
+          8195,
+          8196,
+          8196,
+          8197,
+          8198,
+          8199,
+          8200,
+          8201,
+          8202,
+          8203,
+          8204,
+          8205,
+          8206,
+          8207,
+          8208,
+          8209,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8216,
+          10243,
+          8217,
+          8218,
+          8219,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250,
+          8251,
+          8252
+        ],
+        "compressedRomOffset": 601728,
+        "compressedBytes": 1322,
+        "decodedPatternBytes": 1952,
+        "nativeUploadBytes": 1952,
+        "patternsSha256": "a52ec046d417e86ba10f8cc7b708f7e2a539cbc6377727a17d8383b4eb882c83",
+        "sha256": "a5602102c6ff47035564f8b40877c64b0975f6b132c75afb0b10c09cb682d525",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 11,
+      "key": "devastator",
+      "name": "Devastator",
+      "definitionRomOffset": 442364,
+      "icons": [
+        "icons/11-devastator.png"
+      ],
+      "portraits": [
+        "portraits/11-devastator.png"
+      ],
+      "iconVariants": {
+        "production": "icons/11-devastator.png",
+        "starport": "icons/11-devastator.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 800,
+      "hp": 400,
+      "damage": 60,
+      "range": 5,
+      "iconSource": {
+        "romOffset": 461200,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "6b55cf2ee6b5c55c1afa0d7dc214d295ec903681b873212c489c1c6d5b25ff4f",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 603050,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 603050,
+        "cramWords": [
+          0,
+          1038,
+          3822,
+          42,
+          3744,
+          2594,
+          2150,
+          1604,
+          1058,
+          512,
+          548,
+          8,
+          6,
+          4,
+          2,
+          0
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            255,
+            0,
+            72
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            182,
+            36,
+            0
+          ],
+          [
+            0,
+            182,
+            255
+          ],
+          [
+            36,
+            36,
+            182
+          ],
+          [
+            109,
+            109,
+            145
+          ],
+          [
+            72,
+            72,
+            109
+          ],
+          [
+            36,
+            36,
+            72
+          ],
+          [
+            0,
+            0,
+            36
+          ],
+          [
+            72,
+            36,
+            36
+          ],
+          [
+            145,
+            0,
+            0
+          ],
+          [
+            109,
+            0,
+            0
+          ],
+          [
+            72,
+            0,
+            0
+          ],
+          [
+            36,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 603082,
+        "tilemapWords": [
+          8193,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          10241,
+          8195,
+          8196,
+          8197,
+          8198,
+          8199,
+          8200,
+          8201,
+          8202,
+          8203,
+          8204,
+          8205,
+          10243,
+          8195,
+          8206,
+          8207,
+          8208,
+          8209,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          10243,
+          8195,
+          8216,
+          8217,
+          8218,
+          8219,
+          8219,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8195,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250,
+          8251,
+          8252,
+          8253,
+          8254,
+          8255,
+          8256,
+          8257,
+          8258,
+          8259,
+          8260
+        ],
+        "compressedRomOffset": 603252,
+        "compressedBytes": 1551,
+        "decodedPatternBytes": 2208,
+        "nativeUploadBytes": 2208,
+        "patternsSha256": "d75b01dd1a85c191e58f526caaf52b90cea6e6589243c6063024d78d92c5b5b2",
+        "sha256": "af255bbdcd60b8d43ff9c6c47a63ac331b5946ef97cdcb87dd2bb8778e658233",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 12,
+      "key": "sonic-tank",
+      "name": "Sonic Tank",
+      "definitionRomOffset": 442456,
+      "icons": [
+        "icons/12-sonic-tank.png",
+        "icons/12-sonic-tank-starport.png",
+        "icons/12-sonic-tank-selected-palette.png"
+      ],
+      "portraits": [
+        "portraits/12-sonic-tank.png"
+      ],
+      "iconVariants": {
+        "production": "icons/12-sonic-tank.png",
+        "starport": "icons/12-sonic-tank-starport.png",
+        "productionSelectedOwnPortraitPalette": "icons/12-sonic-tank-selected-palette.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 600,
+      "hp": 110,
+      "damage": 90,
+      "range": 8,
+      "iconSource": {
+        "romOffset": 455440,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "0354a053e1806308c997d66c9c5d5197444c3c2db6a154fa1c3dd00c8df32ee0",
+        "paletteLane": 1,
+        "paletteNote": "Native production renderer forces Sonic Tank12 to palette lane1, while Starport uses lane3. Production lane1 can change with the currently selected monitor image; the live native-frame bridge preserves that exact state."
+      },
+      "portraitSource": {
+        "recordRomOffset": 604804,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 604804,
+        "cramWords": [
+          0,
+          1252,
+          3822,
+          3136,
+          1024,
+          1228,
+          2048,
+          3780,
+          3780,
+          686,
+          674,
+          128,
+          96,
+          64,
+          106,
+          0
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            72,
+            255,
+            72
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            0,
+            72,
+            218
+          ],
+          [
+            0,
+            0,
+            72
+          ],
+          [
+            218,
+            218,
+            72
+          ],
+          [
+            0,
+            0,
+            145
+          ],
+          [
+            72,
+            218,
+            255
+          ],
+          [
+            72,
+            218,
+            255
+          ],
+          [
+            255,
+            182,
+            36
+          ],
+          [
+            36,
+            182,
+            36
+          ],
+          [
+            0,
+            145,
+            0
+          ],
+          [
+            0,
+            109,
+            0
+          ],
+          [
+            0,
+            72,
+            0
+          ],
+          [
+            182,
+            109,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 604836,
+        "tilemapWords": [
+          8193,
+          8194,
+          8194,
+          8194,
+          8194,
+          8195,
+          8196,
+          8197,
+          8194,
+          8194,
+          8194,
+          10241,
+          8198,
+          8199,
+          8199,
+          8199,
+          8200,
+          8201,
+          8202,
+          8203,
+          8199,
+          8199,
+          8199,
+          10246,
+          8198,
+          8204,
+          8205,
+          8206,
+          8207,
+          8208,
+          8209,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8216,
+          8217,
+          8218,
+          8219,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250,
+          8251,
+          8252,
+          8253,
+          8254,
+          8255,
+          8256,
+          8257,
+          8258,
+          8259,
+          8260,
+          8261,
+          8262
+        ],
+        "compressedRomOffset": 605006,
+        "compressedBytes": 1508,
+        "decodedPatternBytes": 2272,
+        "nativeUploadBytes": 2272,
+        "patternsSha256": "e43b098e08c47d021019fe3f0cf119094c2741de3a6e4931de21d3440ca30793",
+        "sha256": "b862a916995324c9c98e8f6897a1696820c4b683f436492cb79f708cbbea3471",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 13,
+      "key": "trike",
+      "name": "Trike",
+      "definitionRomOffset": 442548,
+      "icons": [
+        "icons/13-trike.png"
+      ],
+      "portraits": [
+        "portraits/13-trike.png"
+      ],
+      "iconVariants": {
+        "production": "icons/13-trike.png",
+        "starport": "icons/13-trike.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 150,
+      "hp": 100,
+      "damage": 8,
+      "range": 3,
+      "iconSource": {
+        "romOffset": 455824,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "bf4abcbee727b8c52fcca69d8f1e0373c4b2a8bbded142ed06f56c2c2b935357",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 606514,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 606514,
+        "cramWords": [
+          0,
+          3822,
+          1742,
+          2766,
+          1196,
+          2222,
+          3714,
+          1676,
+          1130,
+          580,
+          1126,
+          34,
+          650,
+          584,
+          548,
+          0
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            255,
+            218,
+            109
+          ],
+          [
+            255,
+            218,
+            182
+          ],
+          [
+            218,
+            182,
+            72
+          ],
+          [
+            255,
+            182,
+            145
+          ],
+          [
+            36,
+            145,
+            255
+          ],
+          [
+            218,
+            145,
+            109
+          ],
+          [
+            182,
+            109,
+            72
+          ],
+          [
+            72,
+            72,
+            36
+          ],
+          [
+            109,
+            109,
+            72
+          ],
+          [
+            36,
+            36,
+            0
+          ],
+          [
+            182,
+            145,
+            36
+          ],
+          [
+            145,
+            72,
+            36
+          ],
+          [
+            72,
+            36,
+            36
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 606546,
+        "tilemapWords": [
+          8193,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          10241,
+          8195,
+          8196,
+          8196,
+          8196,
+          8197,
+          8198,
+          8199,
+          8200,
+          8196,
+          8196,
+          8196,
+          10243,
+          8195,
+          8196,
+          8201,
+          8202,
+          8203,
+          8204,
+          8205,
+          8206,
+          8207,
+          8208,
+          8196,
+          10243,
+          8209,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8216,
+          8217,
+          8218,
+          8219,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250,
+          8251,
+          8252,
+          8253,
+          8254,
+          8255,
+          8256
+        ],
+        "compressedRomOffset": 606716,
+        "compressedBytes": 1103,
+        "decodedPatternBytes": 2080,
+        "nativeUploadBytes": 2080,
+        "patternsSha256": "5219ef5da39ddc8fc62400cf3a4e6075551373e8a3cba3e31bf9b074ff060942",
+        "sha256": "17e82915f9176d7d0be9422dea2b9dd35df8e74e0623cc888e3aff8ad2a892c0",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 14,
+      "key": "raider-trike",
+      "name": "Raider Trike",
+      "definitionRomOffset": 442640,
+      "icons": [
+        "icons/14-raider-trike.png"
+      ],
+      "portraits": [
+        "portraits/14-raider-trike.png"
+      ],
+      "iconVariants": {
+        "production": "icons/14-raider-trike.png",
+        "starport": "icons/14-raider-trike.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 150,
+      "hp": 80,
+      "damage": 8,
+      "range": 3,
+      "iconSource": {
+        "romOffset": 456208,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "fcb1ea1c6565fff8da486a35e3825799f8391593564875def58667b756b23d11",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 607820,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 607820,
+        "cramWords": [
+          0,
+          3822,
+          202,
+          192,
+          3276,
+          160,
+          2692,
+          128,
+          96,
+          580,
+          1126,
+          34,
+          2730,
+          64,
+          32,
+          0
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            182,
+            218,
+            0
+          ],
+          [
+            0,
+            218,
+            0
+          ],
+          [
+            218,
+            218,
+            218
+          ],
+          [
+            0,
+            182,
+            0
+          ],
+          [
+            72,
+            145,
+            182
+          ],
+          [
+            0,
+            145,
+            0
+          ],
+          [
+            0,
+            109,
+            0
+          ],
+          [
+            72,
+            72,
+            36
+          ],
+          [
+            109,
+            109,
+            72
+          ],
+          [
+            36,
+            36,
+            0
+          ],
+          [
+            182,
+            182,
+            182
+          ],
+          [
+            0,
+            72,
+            0
+          ],
+          [
+            0,
+            36,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 607852,
+        "tilemapWords": [
+          8193,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          10241,
+          8195,
+          8196,
+          8196,
+          8196,
+          8197,
+          8198,
+          8199,
+          8200,
+          8196,
+          8196,
+          8196,
+          10243,
+          8195,
+          8196,
+          8201,
+          8202,
+          8203,
+          8204,
+          8205,
+          8206,
+          8207,
+          8208,
+          8196,
+          10243,
+          8209,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8216,
+          8217,
+          8218,
+          8219,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250,
+          8251,
+          8252,
+          8253,
+          8254,
+          8255,
+          8256
+        ],
+        "compressedRomOffset": 608022,
+        "compressedBytes": 1081,
+        "decodedPatternBytes": 2080,
+        "nativeUploadBytes": 2080,
+        "patternsSha256": "10a5debc3aecc2d2c4bd6877238c142a72e0c454ec3475c2ef3578b789dc5a0e",
+        "sha256": "678b469ed22c61b8af415d5ca7796dfeb4fbe9d0d4ea36112f322292e3efa62b",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 15,
+      "key": "quad",
+      "name": "Quad",
+      "definitionRomOffset": 442732,
+      "icons": [
+        "icons/15-quad.png"
+      ],
+      "portraits": [
+        "portraits/15-quad.png"
+      ],
+      "iconVariants": {
+        "production": "icons/15-quad.png",
+        "starport": "icons/15-quad.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 200,
+      "hp": 130,
+      "damage": 10,
+      "range": 3,
+      "iconSource": {
+        "romOffset": 453904,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "953ececa82ad41ac436bcdf506066d81b64549a10ad39d369721f12c206ed14a",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 609104,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 609104,
+        "cramWords": [
+          0,
+          1126,
+          580,
+          1742,
+          1196,
+          3822,
+          3714,
+          650,
+          34,
+          2766,
+          2222,
+          1676,
+          584,
+          548,
+          584,
+          0
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            109,
+            109,
+            72
+          ],
+          [
+            72,
+            72,
+            36
+          ],
+          [
+            255,
+            218,
+            109
+          ],
+          [
+            218,
+            182,
+            72
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            36,
+            145,
+            255
+          ],
+          [
+            182,
+            145,
+            36
+          ],
+          [
+            36,
+            36,
+            0
+          ],
+          [
+            255,
+            218,
+            182
+          ],
+          [
+            255,
+            182,
+            145
+          ],
+          [
+            218,
+            145,
+            109
+          ],
+          [
+            145,
+            72,
+            36
+          ],
+          [
+            72,
+            36,
+            36
+          ],
+          [
+            145,
+            72,
+            36
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 609136,
+        "tilemapWords": [
+          8193,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          10241,
+          8195,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          10243,
+          8195,
+          8197,
+          8198,
+          8199,
+          8200,
+          8201,
+          8202,
+          8203,
+          8204,
+          8205,
+          8206,
+          10243,
+          8195,
+          8207,
+          8208,
+          8209,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8216,
+          10243,
+          8217,
+          8218,
+          8219,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250,
+          8251,
+          8252
+        ],
+        "compressedRomOffset": 609306,
+        "compressedBytes": 1270,
+        "decodedPatternBytes": 1952,
+        "nativeUploadBytes": 1952,
+        "patternsSha256": "3785d7d30d245a7b4b4af4cdd1d25329a613f9ecbd9d54e6945daa908131eb8c",
+        "sha256": "bf8de07522647bf839ac389bd0f8d0fcc9a2938d58452c31a9d3e892e4d2a38c",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 16,
+      "key": "harvester",
+      "name": "Harvester",
+      "definitionRomOffset": 442824,
+      "icons": [
+        "icons/16-harvester.png"
+      ],
+      "portraits": [
+        "portraits/16-harvester.png"
+      ],
+      "iconVariants": {
+        "production": "icons/16-harvester.png",
+        "starport": "icons/16-harvester.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 300,
+      "hp": 150,
+      "damage": 0,
+      "range": 0,
+      "iconSource": {
+        "romOffset": 458896,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "9efbeb16147a55be6224f555396d2b9cb4c5837129b9f61694005e0345fae0df",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 610576,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 610576,
+        "cramWords": [
+          0,
+          3822,
+          1742,
+          1196,
+          1164,
+          3782,
+          3270,
+          3714,
+          2766,
+          2222,
+          1676,
+          1130,
+          584,
+          38,
+          4,
+          0
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            255,
+            218,
+            109
+          ],
+          [
+            218,
+            182,
+            72
+          ],
+          [
+            218,
+            145,
+            72
+          ],
+          [
+            109,
+            218,
+            255
+          ],
+          [
+            109,
+            218,
+            218
+          ],
+          [
+            36,
+            145,
+            255
+          ],
+          [
+            255,
+            218,
+            182
+          ],
+          [
+            255,
+            182,
+            145
+          ],
+          [
+            218,
+            145,
+            109
+          ],
+          [
+            182,
+            109,
+            72
+          ],
+          [
+            145,
+            72,
+            36
+          ],
+          [
+            109,
+            36,
+            0
+          ],
+          [
+            72,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 610608,
+        "tilemapWords": [
+          8193,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          10241,
+          8195,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          10243,
+          8195,
+          8197,
+          8198,
+          8199,
+          8200,
+          8201,
+          8202,
+          8203,
+          8204,
+          8205,
+          8206,
+          10243,
+          8195,
+          8207,
+          8208,
+          8209,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8216,
+          8217,
+          8218,
+          8219,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250,
+          8251,
+          8252,
+          8253
+        ],
+        "compressedRomOffset": 610778,
+        "compressedBytes": 1449,
+        "decodedPatternBytes": 1984,
+        "nativeUploadBytes": 1984,
+        "patternsSha256": "3a92227adade70c0063f17f1889815d630116b14c2d9362ff7206469d3acdcb0",
+        "sha256": "a7894253ce75792de46fe5b0962517cf088e1df1af9be88168f2ca1cd728897f",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 17,
+      "key": "mcv",
+      "name": "MCV",
+      "definitionRomOffset": 442916,
+      "icons": [
+        "icons/17-mcv.png"
+      ],
+      "portraits": [
+        "portraits/17-mcv.png"
+      ],
+      "iconVariants": {
+        "production": "icons/17-mcv.png",
+        "starport": "icons/17-mcv.png"
+      },
+      "nativeRole": "ordinary-production-or-starport",
+      "cost": 900,
+      "hp": 150,
+      "damage": 0,
+      "range": 0,
+      "iconSource": {
+        "romOffset": 459280,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "b7a9b64f3190b0a6b02ba6105218506a8fd02d4dd5bc9e9a976abcf822e9f3f1",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 612228,
+        "width": 96,
+        "height": 56,
+        "paletteRomOffset": 612228,
+        "cramWords": [
+          0,
+          3822,
+          1742,
+          1196,
+          650,
+          2150,
+          3680,
+          2766,
+          1126,
+          1130,
+          584,
+          1058,
+          1676,
+          1128,
+          548,
+          0
+        ],
+        "rgb8": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            255,
+            218,
+            109
+          ],
+          [
+            218,
+            182,
+            72
+          ],
+          [
+            182,
+            145,
+            36
+          ],
+          [
+            109,
+            109,
+            145
+          ],
+          [
+            0,
+            109,
+            255
+          ],
+          [
+            255,
+            218,
+            182
+          ],
+          [
+            109,
+            109,
+            72
+          ],
+          [
+            182,
+            109,
+            72
+          ],
+          [
+            145,
+            72,
+            36
+          ],
+          [
+            36,
+            36,
+            72
+          ],
+          [
+            218,
+            145,
+            109
+          ],
+          [
+            145,
+            109,
+            72
+          ],
+          [
+            72,
+            36,
+            36
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "tilemapRomOffset": 612260,
+        "tilemapWords": [
+          8193,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          8194,
+          10241,
+          8195,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          8196,
+          10243,
+          8195,
+          8197,
+          8198,
+          8199,
+          8200,
+          8201,
+          8202,
+          8203,
+          8204,
+          8205,
+          8206,
+          10243,
+          8207,
+          8208,
+          8209,
+          8210,
+          8211,
+          8212,
+          8213,
+          8214,
+          8215,
+          8216,
+          8217,
+          8218,
+          8219,
+          8220,
+          8221,
+          8222,
+          8223,
+          8224,
+          8225,
+          8226,
+          8227,
+          8228,
+          8229,
+          8230,
+          8231,
+          8232,
+          8233,
+          8234,
+          8235,
+          8236,
+          8237,
+          8238,
+          8239,
+          8240,
+          8241,
+          8242,
+          8243,
+          8244,
+          8245,
+          8246,
+          8247,
+          8248,
+          8249,
+          8250,
+          8251,
+          8252,
+          8253,
+          8254
+        ],
+        "compressedRomOffset": 612430,
+        "compressedBytes": 1162,
+        "decodedPatternBytes": 2016,
+        "nativeUploadBytes": 2016,
+        "patternsSha256": "f5220fb2a69811db923a9059d27d5b935ce9cda00731c71b1024f35d96ecd6fb",
+        "sha256": "b8832a9a737e0d31c550499457f3fe502f3707c96268b193833f1b04183d355d",
+        "animation": "One static native monitor resource; console and frame effects are separate."
+      }
+    },
+    {
+      "id": 18,
+      "key": "death-hand",
+      "name": "Death Hand",
+      "definitionRomOffset": 443008,
+      "icons": [
+        "icons/18-death-hand.png"
+      ],
+      "portraits": [],
+      "iconVariants": {
+        "production": "icons/18-death-hand.png",
+        "starport": "icons/18-death-hand.png"
+      },
+      "nativeRole": "palace-projectile",
+      "cost": 0,
+      "hp": 70,
+      "damage": 150,
+      "range": 15,
+      "iconSource": {
+        "romOffset": 453520,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "9b78717d5c4c0c05fa96b7a29484937b306376e1ae41f65da851bf6543d9ba14",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 613592,
+        "width": 96,
+        "height": 56,
+        "absence": "Original pointer is the non-picture dummy record0x95CD8 (or zero). No per-unit monitor illustration exists in this native table; use the original live UI fallback rather than a fabricated image."
+      }
+    },
+    {
+      "id": 19,
+      "key": "rocket",
+      "name": "Rocket",
+      "definitionRomOffset": 443100,
+      "icons": [
+        "icons/19-rocket.png"
+      ],
+      "portraits": [],
+      "iconVariants": {
+        "production": "icons/19-rocket.png",
+        "starport": "icons/19-rocket.png"
+      },
+      "nativeRole": "projectile-effect",
+      "cost": 0,
+      "hp": 70,
+      "damage": 112,
+      "range": 8,
+      "iconSource": {
+        "romOffset": 458512,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "82b7f1cc6da1de0536d97d8f4b2cde24f036e5773948c105b0d3bc1a6c2492eb",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 613592,
+        "width": 96,
+        "height": 56,
+        "absence": "Original pointer is the non-picture dummy record0x95CD8 (or zero). No per-unit monitor illustration exists in this native table; use the original live UI fallback rather than a fabricated image."
+      }
+    },
+    {
+      "id": 20,
+      "key": "turret-rocket",
+      "name": "ARocket",
+      "definitionRomOffset": 443192,
+      "icons": [
+        "icons/20-turret-rocket.png"
+      ],
+      "portraits": [],
+      "iconVariants": {
+        "production": "icons/20-turret-rocket.png",
+        "starport": "icons/20-turret-rocket.png"
+      },
+      "nativeRole": "projectile-effect",
+      "cost": 0,
+      "hp": 70,
+      "damage": 112,
+      "range": 60,
+      "iconSource": {
+        "romOffset": 458512,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "82b7f1cc6da1de0536d97d8f4b2cde24f036e5773948c105b0d3bc1a6c2492eb",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 613592,
+        "width": 96,
+        "height": 56,
+        "absence": "Original pointer is the non-picture dummy record0x95CD8 (or zero). No per-unit monitor illustration exists in this native table; use the original live UI fallback rather than a fabricated image."
+      }
+    },
+    {
+      "id": 21,
+      "key": "deviator-rocket",
+      "name": "GRocket",
+      "definitionRomOffset": 443284,
+      "icons": [
+        "icons/21-deviator-rocket.png"
+      ],
+      "portraits": [],
+      "iconVariants": {
+        "production": "icons/21-deviator-rocket.png",
+        "starport": "icons/21-deviator-rocket.png"
+      },
+      "nativeRole": "projectile-effect",
+      "cost": 0,
+      "hp": 70,
+      "damage": 112,
+      "range": 7,
+      "iconSource": {
+        "romOffset": 458512,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "82b7f1cc6da1de0536d97d8f4b2cde24f036e5773948c105b0d3bc1a6c2492eb",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 613592,
+        "width": 96,
+        "height": 56,
+        "absence": "Original pointer is the non-picture dummy record0x95CD8 (or zero). No per-unit monitor illustration exists in this native table; use the original live UI fallback rather than a fabricated image."
+      }
+    },
+    {
+      "id": 22,
+      "key": "mini-rocket",
+      "name": "MiniRocket",
+      "definitionRomOffset": 443376,
+      "icons": [],
+      "portraits": [],
+      "iconVariants": {},
+      "nativeRole": "projectile-effect",
+      "cost": 0,
+      "hp": 70,
+      "damage": 0,
+      "range": 3,
+      "iconSource": {
+        "romOffset": 0,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "absence": "Original icon pointer is zero. No replacement icon has been invented."
+      },
+      "portraitSource": {
+        "recordRomOffset": 613592,
+        "width": 96,
+        "height": 56,
+        "absence": "Original pointer is the non-picture dummy record0x95CD8 (or zero). No per-unit monitor illustration exists in this native table; use the original live UI fallback rather than a fabricated image."
+      }
+    },
+    {
+      "id": 23,
+      "key": "bullet",
+      "name": "Bullet",
+      "definitionRomOffset": 443468,
+      "icons": [],
+      "portraits": [],
+      "iconVariants": {},
+      "nativeRole": "projectile-effect",
+      "cost": 0,
+      "hp": 1,
+      "damage": 0,
+      "range": 0,
+      "iconSource": {
+        "romOffset": 0,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "absence": "Original icon pointer is zero. No replacement icon has been invented."
+      },
+      "portraitSource": {
+        "recordRomOffset": 613592,
+        "width": 96,
+        "height": 56,
+        "absence": "Original pointer is the non-picture dummy record0x95CD8 (or zero). No per-unit monitor illustration exists in this native table; use the original live UI fallback rather than a fabricated image."
+      }
+    },
+    {
+      "id": 24,
+      "key": "sonic-blast",
+      "name": "Sonic Blast",
+      "definitionRomOffset": 443560,
+      "icons": [],
+      "portraits": [],
+      "iconVariants": {},
+      "nativeRole": "projectile-effect",
+      "cost": 0,
+      "hp": 1,
+      "damage": 38,
+      "range": 10,
+      "iconSource": {
+        "romOffset": 0,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "absence": "Original icon pointer is zero. No replacement icon has been invented."
+      },
+      "portraitSource": {
+        "recordRomOffset": 613592,
+        "width": 96,
+        "height": 56,
+        "absence": "Original pointer is the non-picture dummy record0x95CD8 (or zero). No per-unit monitor illustration exists in this native table; use the original live UI fallback rather than a fabricated image."
+      }
+    },
+    {
+      "id": 25,
+      "key": "sandworm",
+      "name": "Sandworm",
+      "definitionRomOffset": 443652,
+      "icons": [
+        "icons/25-sandworm.png"
+      ],
+      "portraits": [],
+      "iconVariants": {
+        "production": "icons/25-sandworm.png",
+        "starport": "icons/25-sandworm.png"
+      },
+      "nativeRole": "sandworm-non-shop",
+      "cost": 0,
+      "hp": 1000,
+      "damage": 450,
+      "range": 0,
+      "iconSource": {
+        "romOffset": 460816,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "sha256": "92e4b6e2ffe9d412019a285159aab1a469e0c3fe041701b4592dc4afdb3d7603",
+        "paletteLane": 3
+      },
+      "portraitSource": {
+        "recordRomOffset": 613592,
+        "width": 96,
+        "height": 56,
+        "absence": "Original pointer is the non-picture dummy record0x95CD8 (or zero). No per-unit monitor illustration exists in this native table; use the original live UI fallback rather than a fabricated image."
+      }
+    },
+    {
+      "id": 26,
+      "key": "frigate",
+      "name": "Frigate",
+      "definitionRomOffset": 443744,
+      "icons": [],
+      "portraits": [],
+      "iconVariants": {},
+      "nativeRole": "frigate-delivery-non-shop",
+      "cost": 0,
+      "hp": 100,
+      "damage": 0,
+      "range": 0,
+      "iconSource": {
+        "romOffset": 0,
+        "rawPatternBytes": 384,
+        "width": 32,
+        "height": 24,
+        "nativeTransparency": "4bpp nibble0 transparent",
+        "absence": "Original icon pointer is zero. No replacement icon has been invented."
+      },
+      "portraitSource": {
+        "recordRomOffset": 613592,
+        "width": 96,
+        "height": 56,
+        "absence": "Original pointer is the non-picture dummy record0x95CD8 (or zero). No per-unit monitor illustration exists in this native table; use the original live UI fallback rather than a fabricated image."
+      }
+    }
+  ],
+  "commands": [
+    {
+      "raw": 27,
+      "key": "upgrade-production",
+      "path": "commands/27-upgrade-production.png",
+      "width": 32,
+      "height": 24,
+      "romOffset": 452752,
+      "palette": "lane3",
+      "sha256": "de5796981496b0f06d2a19b3fc462f5398160b2e36ce35d47e0f8c0e649b01f1"
+    },
+    {
+      "raw": 28,
+      "key": "exit-starport",
+      "path": "commands/28-exit-starport.png",
+      "width": 32,
+      "height": 24,
+      "romOffset": 462120,
+      "palette": "lane3",
+      "sha256": "863af78f8634d1f82f7057c9a4184d8b2baff3f8fa5ce980c84f9d24ef17a05b"
+    },
+    {
+      "raw": 29,
+      "key": "fix-starport",
+      "path": "commands/29-fix-starport.png",
+      "width": 32,
+      "height": 24,
+      "romOffset": 462504,
+      "palette": "lane3",
+      "sha256": "92212d29cf89835456adc783caacd31c594488e169307b7a5519a40aa51621b1"
+    },
+    {
+      "raw": 30,
+      "key": "stop-starport",
+      "path": "commands/30-stop-starport.png",
+      "width": 32,
+      "height": 24,
+      "romOffset": 462888,
+      "palette": "lane3",
+      "sha256": "b3f39cdeceeadb429c504ffec6ac1dcd48e3fe6f8a464b2933982a8f456d45fd"
+    },
+    {
+      "raw": 31,
+      "key": "fix-disabled-starport",
+      "path": "commands/31-fix-disabled-starport.png",
+      "width": 32,
+      "height": 24,
+      "romOffset": 463272,
+      "palette": "lane3",
+      "sha256": "bf52e80b97d8dbd937fd4931a4b7c2679ee871fe5614e040c758efcc323d4593"
+    },
+    {
+      "raw": 32,
+      "key": "stop-disabled-starport",
+      "path": "commands/32-stop-disabled-starport.png",
+      "width": 32,
+      "height": 24,
+      "romOffset": 463656,
+      "palette": "lane3",
+      "sha256": "3d3c2758922fbba7ab9e1f6462b90fc413cb32bb0b8a8095f06844720d36ca90"
+    }
+  ],
+  "validation": {
+    "nativeLcwCompared": true,
+    "decoderAddress": "0x000c32",
+    "comparisons": [
+      {
+        "id": 0,
+        "bytes": 2400,
+        "sha256": "bcda0ee328ec3ea6d695535d8f9007c391a0bf9169747ecc44361aa0160fc428",
+        "matches": true
+      },
+      {
+        "id": 1,
+        "bytes": 1792,
+        "sha256": "4c5f709ae17d9a86e9be688e771b593c9919caf9df84662cb4aad0e942a015ae",
+        "matches": true
+      },
+      {
+        "id": 2,
+        "bytes": 1920,
+        "sha256": "5df05cce21b8391d0eeb3c9044325fab100032c34ea351b86fea46eba09a2606",
+        "matches": true
+      },
+      {
+        "id": 3,
+        "bytes": 2432,
+        "sha256": "0eaeae70c2dc67a9f06bceef0c18f7f7b991bc8aa13024427a22bce5914bbe0b",
+        "matches": true
+      },
+      {
+        "id": 4,
+        "bytes": 1920,
+        "sha256": "5df05cce21b8391d0eeb3c9044325fab100032c34ea351b86fea46eba09a2606",
+        "matches": true
+      },
+      {
+        "id": 5,
+        "bytes": 2464,
+        "sha256": "001675ff7a8675c44f30aaca601bebf3d114da18d6b8abd34d025121da712074",
+        "matches": true
+      },
+      {
+        "id": 7,
+        "bytes": 2112,
+        "sha256": "8cdf92ab3aa3a202d26c7dc37563e7ea5425abc53a5067260bc5fbaf04f5bfe7",
+        "matches": true
+      },
+      {
+        "id": 8,
+        "bytes": 2112,
+        "sha256": "e293bc442cdb224bc7bee87d13a706b872b1703b7d43a8db4d4e233fffcb7473",
+        "matches": true
+      },
+      {
+        "id": 9,
+        "bytes": 1888,
+        "sha256": "228f3c73075fa97565dceea176ddab10abd2e4b2038d0ae5c4544e24db8428a9",
+        "matches": true
+      },
+      {
+        "id": 10,
+        "bytes": 1952,
+        "sha256": "a52ec046d417e86ba10f8cc7b708f7e2a539cbc6377727a17d8383b4eb882c83",
+        "matches": true
+      },
+      {
+        "id": 11,
+        "bytes": 2208,
+        "sha256": "d75b01dd1a85c191e58f526caaf52b90cea6e6589243c6063024d78d92c5b5b2",
+        "matches": true
+      },
+      {
+        "id": 12,
+        "bytes": 2272,
+        "sha256": "e43b098e08c47d021019fe3f0cf119094c2741de3a6e4931de21d3440ca30793",
+        "matches": true
+      },
+      {
+        "id": 13,
+        "bytes": 2080,
+        "sha256": "5219ef5da39ddc8fc62400cf3a4e6075551373e8a3cba3e31bf9b074ff060942",
+        "matches": true
+      },
+      {
+        "id": 14,
+        "bytes": 2080,
+        "sha256": "10a5debc3aecc2d2c4bd6877238c142a72e0c454ec3475c2ef3578b789dc5a0e",
+        "matches": true
+      },
+      {
+        "id": 15,
+        "bytes": 1952,
+        "sha256": "3785d7d30d245a7b4b4af4cdd1d25329a613f9ecbd9d54e6945daa908131eb8c",
+        "matches": true
+      },
+      {
+        "id": 16,
+        "bytes": 1984,
+        "sha256": "3a92227adade70c0063f17f1889815d630116b14c2d9362ff7206469d3acdcb0",
+        "matches": true
+      },
+      {
+        "id": 17,
+        "bytes": 2016,
+        "sha256": "f5220fb2a69811db923a9059d27d5b935ce9cda00731c71b1024f35d96ecd6fb",
+        "matches": true
+      }
+    ]
+  },
+  "coverage": {
+    "unitDefinitions": 27,
+    "nativeUnitIconPointersPresent": 23,
+    "nativeMonitorResourcesPresent": 17,
+    "allOrdinaryUnitShopIconIds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "ordinaryShopPortraitIds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "iconsWithNoNativePointer": [
+      22,
+      23,
+      24,
+      26
+    ],
+    "portraitsWithNoNativeResource": [
+      6,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26
+    ],
+    "livePixelsRequired": "Focus frame/blink phase, counts, sold-out state, current selected palette and every house/state-dependent menu detail come from the live original 320x224 RGB frame."
+  }
+}

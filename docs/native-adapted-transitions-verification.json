@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "scope": "Continuous original native transitions; controlled before-outcome QA fixtures are not earned user wins. Browser integration is separate.",
+  "runtimeSha256": {
+    "em_web_campaign.h": "af18a0595511ccbdcf696bde103dbd9dd045d36dc78029738a2948be5295c329",
+    "em_web_frame.h": "b6488e0a36803ee438e7bfdd13713538c4a2fa398410b2506b7d992b8ecc2631",
+    "em_web_host.h": "f241e9e55300ec27cb9aba5312cca5be21fa30408434f229f5ddeebb25c2ff79",
+    "prepare_source.py": "10d260333ed9685755da44be0eab867090dcf87087a1aeca555b96e13e39fb12"
+  },
+  "nativeClockHz": 53693175,
+  "nativeClocksPerFrame": 896040,
+  "nativeFrameMs": 16.68815450008311,
+  "timings": [
+    {
+      "id": "yard-enter",
+      "fromPc": 165852,
+      "toPc": 165972,
+      "startNativeFrame": 3353,
+      "nativeSetupEndFrame": 3394,
+      "nativeFrames": 41,
+      "modeledMs": 683.5671386540282,
+      "freshFrameRequiredAfterSetup": true
+    },
+    {
+      "id": "yard-exit",
+      "fromPc": 166236,
+      "toPc": 166394,
+      "startNativeFrame": 3401,
+      "nativeSetupEndFrame": 3481,
+      "nativeFrames": 80,
+      "modeledMs": 1320.5774476923743,
+      "freshFrameRequiredAfterSetup": true
+    },
+    {
+      "id": "starport-exit",
+      "fromPc": 167144,
+      "toPc": 167266,
+      "startNativeFrame": 6415,
+      "nativeSetupEndFrame": 6498,
+      "nativeFrames": 83,
+      "modeledMs": 1370.3351310478474,
+      "freshFrameRequiredAfterSetup": true
+    }
+  ],
+  "guards": [
+    "building intent before first native fade",
+    "stale acknowledgements rejected",
+    "acknowledgement whole-CPU immutable",
+    "ready retained until host observes",
+    "native map input callback during fade is not publication ready",
+    "exit target only after native fade return plus fresh completed raster"
+  ],
+  "tests": {
+    "transition": [
+      "PASS continuous Yard entry/exit: generation2 sticky ready, before-first-fade hold, CPU-immutable acks; entry ready at3394",
+      "PASS original Starport exit full native transition",
+      "PASS native password scroll: 76 completed frames, 52 cleaned incoming, VSRAM0..224, original stats pixels retained74 frames",
+      "PASS genuine cold title license first ready frame2156; early frames hidden2033; native visible frames18"
+    ],
+    "adaptedFlyoverVictory": [
+      "PASS adapted flyover960x540 zoom100: seven planes, native sprites/world scale, camera(704,1063), no HUD duplicate, CPU unchanged",
+      "PASS adapted flyover960x540 zoom50: seven planes, native sprites/world scale, camera(505,951), no HUD duplicate, CPU unchanged",
+      "PASS adapted flyover390x844 zoom100: seven planes, native sprites/world scale, camera(743,829), no HUD duplicate, CPU unchanged",
+      "PASS adapted flyover390x844 zoom50: seven planes, native sprites/world scale, camera(726,791), no HUD duplicate, CPU unchanged",
+      "PASS adapted flyover844x390 zoom100: seven planes, native sprites/world scale, camera(661,1063), no HUD duplicate, CPU unchanged",
+      "PASS adapted flyover844x390 zoom50: seven planes, native sprites/world scale, camera(418,951), no HUD duplicate, CPU unchanged",
+      "PASS adapted flyover320x224 zoom100: seven planes, native sprites/world scale, camera(743,1063), no HUD duplicate, CPU unchanged"
+    ],
+    "adaptedFlyoverDefeat": [
+      "PASS adapted flyover960x540 zoom100: seven planes, native sprites/world scale, camera(704,1063), no HUD duplicate, CPU unchanged",
+      "PASS adapted flyover960x540 zoom50: seven planes, native sprites/world scale, camera(505,951), no HUD duplicate, CPU unchanged",
+      "PASS adapted flyover390x844 zoom100: seven planes, native sprites/world scale, camera(743,829), no HUD duplicate, CPU unchanged",
+      "PASS adapted flyover390x844 zoom50: seven planes, native sprites/world scale, camera(726,791), no HUD duplicate, CPU unchanged",
+      "PASS adapted flyover844x390 zoom100: seven planes, native sprites/world scale, camera(661,1063), no HUD duplicate, CPU unchanged",
+      "PASS adapted flyover844x390 zoom50: seven planes, native sprites/world scale, camera(418,951), no HUD duplicate, CPU unchanged",
+      "PASS adapted flyover320x224 zoom100: seven planes, native sprites/world scale, camera(743,1063), no HUD duplicate, CPU unchanged"
+    ]
+  },
+  "evidence": {
+    "continuous": ".local/transitions/continuous.jsonl",
+    "events": ".local/transitions/events.jsonl",
+    "flightPng": ".local/adapted-flyover",
+    "passwordPng": ".local/transitions/password-*.png"
+  }
+}

@@ -1,0 +1,674 @@
+{
+  "usa": [
+    {
+      "name": "BUILD.EMC",
+      "romOffset": 318256,
+      "namePointer": 339296,
+      "tableEntry": 338996
+    },
+    {
+      "name": "PLAYER.EMC",
+      "romOffset": 319330,
+      "namePointer": 339306,
+      "tableEntry": 339004
+    },
+    {
+      "name": "TEAM.EMC",
+      "romOffset": 319530,
+      "namePointer": 339317,
+      "tableEntry": 339012
+    },
+    {
+      "name": "UNIT.EMC",
+      "romOffset": 319880,
+      "namePointer": 339326,
+      "tableEntry": 339020
+    },
+    {
+      "name": "HOUSE.INI",
+      "romOffset": 339756,
+      "namePointer": 339335,
+      "tableEntry": 339028
+    },
+    {
+      "name": "PROFILE.INI",
+      "romOffset": 340352,
+      "namePointer": 339345,
+      "tableEntry": 339036
+    },
+    {
+      "name": "REGION.INI",
+      "romOffset": 344188,
+      "namePointer": 339357,
+      "tableEntry": 339044
+    },
+    {
+      "name": "REGIONA.INI",
+      "romOffset": 346686,
+      "namePointer": 339368,
+      "tableEntry": 339052
+    },
+    {
+      "name": "REGIONH.INI",
+      "romOffset": 349926,
+      "namePointer": 339380,
+      "tableEntry": 339060
+    },
+    {
+      "name": "REGIONO.INI",
+      "romOffset": 353314,
+      "namePointer": 339392,
+      "tableEntry": 339068
+    },
+    {
+      "name": "SCENH001.INI",
+      "romOffset": 369528,
+      "namePointer": 339521,
+      "tableEntry": 339076
+    },
+    {
+      "name": "SCENH002.INI",
+      "romOffset": 369902,
+      "namePointer": 339534,
+      "tableEntry": 339084
+    },
+    {
+      "name": "SCENH003.INI",
+      "romOffset": 370506,
+      "namePointer": 339547,
+      "tableEntry": 339092
+    },
+    {
+      "name": "SCENH004.INI",
+      "romOffset": 371272,
+      "namePointer": 339560,
+      "tableEntry": 339100
+    },
+    {
+      "name": "SCENH005.INI",
+      "romOffset": 372502,
+      "namePointer": 339573,
+      "tableEntry": 339108
+    },
+    {
+      "name": "SCENH006.INI",
+      "romOffset": 374056,
+      "namePointer": 339586,
+      "tableEntry": 339116
+    },
+    {
+      "name": "SCENH007.INI",
+      "romOffset": 375712,
+      "namePointer": 339599,
+      "tableEntry": 339124
+    },
+    {
+      "name": "SCENH008.INI",
+      "romOffset": 378126,
+      "namePointer": 339612,
+      "tableEntry": 339132
+    },
+    {
+      "name": "SCENH009.INI",
+      "romOffset": 380940,
+      "namePointer": 339625,
+      "tableEntry": 339140
+    },
+    {
+      "name": "SCENA001.INI",
+      "romOffset": 356270,
+      "namePointer": 339404,
+      "tableEntry": 339148
+    },
+    {
+      "name": "SCENA002.INI",
+      "romOffset": 356676,
+      "namePointer": 339417,
+      "tableEntry": 339156
+    },
+    {
+      "name": "SCENA003.INI",
+      "romOffset": 357240,
+      "namePointer": 339430,
+      "tableEntry": 339164
+    },
+    {
+      "name": "SCENA004.INI",
+      "romOffset": 357860,
+      "namePointer": 339443,
+      "tableEntry": 339172
+    },
+    {
+      "name": "SCENA005.INI",
+      "romOffset": 359062,
+      "namePointer": 339456,
+      "tableEntry": 339180
+    },
+    {
+      "name": "SCENA006.INI",
+      "romOffset": 360516,
+      "namePointer": 339469,
+      "tableEntry": 339188
+    },
+    {
+      "name": "SCENA007.INI",
+      "romOffset": 362068,
+      "namePointer": 339482,
+      "tableEntry": 339196
+    },
+    {
+      "name": "SCENA008.INI",
+      "romOffset": 363986,
+      "namePointer": 339495,
+      "tableEntry": 339204
+    },
+    {
+      "name": "SCENA009.INI",
+      "romOffset": 366778,
+      "namePointer": 339508,
+      "tableEntry": 339212
+    },
+    {
+      "name": "SCENO001.INI",
+      "romOffset": 383788,
+      "namePointer": 339638,
+      "tableEntry": 339220
+    },
+    {
+      "name": "SCENO002.INI",
+      "romOffset": 384162,
+      "namePointer": 339651,
+      "tableEntry": 339228
+    },
+    {
+      "name": "SCENO003.INI",
+      "romOffset": 384748,
+      "namePointer": 339664,
+      "tableEntry": 339236
+    },
+    {
+      "name": "SCENO004.INI",
+      "romOffset": 385900,
+      "namePointer": 339677,
+      "tableEntry": 339244
+    },
+    {
+      "name": "SCENO005.INI",
+      "romOffset": 387036,
+      "namePointer": 339690,
+      "tableEntry": 339252
+    },
+    {
+      "name": "SCENO006.INI",
+      "romOffset": 388102,
+      "namePointer": 339703,
+      "tableEntry": 339260
+    },
+    {
+      "name": "SCENO007.INI",
+      "romOffset": 389730,
+      "namePointer": 339716,
+      "tableEntry": 339268
+    },
+    {
+      "name": "SCENO008.INI",
+      "romOffset": 391284,
+      "namePointer": 339729,
+      "tableEntry": 339276
+    },
+    {
+      "name": "SCENO009.INI",
+      "romOffset": 394214,
+      "namePointer": 339742,
+      "tableEntry": 339284
+    }
+  ],
+  "rus": [
+    {
+      "name": "BUILD.EMC",
+      "romOffset": 318256,
+      "namePointer": 339296,
+      "tableEntry": 338996
+    },
+    {
+      "name": "PLAYER.EMC",
+      "romOffset": 319330,
+      "namePointer": 339306,
+      "tableEntry": 339004
+    },
+    {
+      "name": "TEAM.EMC",
+      "romOffset": 319530,
+      "namePointer": 339317,
+      "tableEntry": 339012
+    },
+    {
+      "name": "UNIT.EMC",
+      "romOffset": 319880,
+      "namePointer": 339326,
+      "tableEntry": 339020
+    },
+    {
+      "name": "HOUSE.INI",
+      "romOffset": 339756,
+      "namePointer": 339335,
+      "tableEntry": 339028
+    },
+    {
+      "name": "PROFILE.INI",
+      "romOffset": 340352,
+      "namePointer": 339345,
+      "tableEntry": 339036
+    },
+    {
+      "name": "REGION.INI",
+      "romOffset": 344188,
+      "namePointer": 339357,
+      "tableEntry": 339044
+    },
+    {
+      "name": "REGIONA.INI",
+      "romOffset": 346686,
+      "namePointer": 339368,
+      "tableEntry": 339052
+    },
+    {
+      "name": "REGIONH.INI",
+      "romOffset": 349926,
+      "namePointer": 339380,
+      "tableEntry": 339060
+    },
+    {
+      "name": "REGIONO.INI",
+      "romOffset": 353314,
+      "namePointer": 339392,
+      "tableEntry": 339068
+    },
+    {
+      "name": "SCENH001.INI",
+      "romOffset": 369528,
+      "namePointer": 339521,
+      "tableEntry": 339076
+    },
+    {
+      "name": "SCENH002.INI",
+      "romOffset": 369902,
+      "namePointer": 339534,
+      "tableEntry": 339084
+    },
+    {
+      "name": "SCENH003.INI",
+      "romOffset": 370506,
+      "namePointer": 339547,
+      "tableEntry": 339092
+    },
+    {
+      "name": "SCENH004.INI",
+      "romOffset": 371272,
+      "namePointer": 339560,
+      "tableEntry": 339100
+    },
+    {
+      "name": "SCENH005.INI",
+      "romOffset": 372502,
+      "namePointer": 339573,
+      "tableEntry": 339108
+    },
+    {
+      "name": "SCENH006.INI",
+      "romOffset": 374056,
+      "namePointer": 339586,
+      "tableEntry": 339116
+    },
+    {
+      "name": "SCENH007.INI",
+      "romOffset": 375712,
+      "namePointer": 339599,
+      "tableEntry": 339124
+    },
+    {
+      "name": "SCENH008.INI",
+      "romOffset": 378126,
+      "namePointer": 339612,
+      "tableEntry": 339132
+    },
+    {
+      "name": "SCENH009.INI",
+      "romOffset": 380940,
+      "namePointer": 339625,
+      "tableEntry": 339140
+    },
+    {
+      "name": "SCENA001.INI",
+      "romOffset": 356270,
+      "namePointer": 339404,
+      "tableEntry": 339148
+    },
+    {
+      "name": "SCENA002.INI",
+      "romOffset": 356676,
+      "namePointer": 339417,
+      "tableEntry": 339156
+    },
+    {
+      "name": "SCENA003.INI",
+      "romOffset": 357240,
+      "namePointer": 339430,
+      "tableEntry": 339164
+    },
+    {
+      "name": "SCENA004.INI",
+      "romOffset": 357860,
+      "namePointer": 339443,
+      "tableEntry": 339172
+    },
+    {
+      "name": "SCENA005.INI",
+      "romOffset": 359062,
+      "namePointer": 339456,
+      "tableEntry": 339180
+    },
+    {
+      "name": "SCENA006.INI",
+      "romOffset": 360516,
+      "namePointer": 339469,
+      "tableEntry": 339188
+    },
+    {
+      "name": "SCENA007.INI",
+      "romOffset": 362068,
+      "namePointer": 339482,
+      "tableEntry": 339196
+    },
+    {
+      "name": "SCENA008.INI",
+      "romOffset": 363986,
+      "namePointer": 339495,
+      "tableEntry": 339204
+    },
+    {
+      "name": "SCENA009.INI",
+      "romOffset": 366778,
+      "namePointer": 339508,
+      "tableEntry": 339212
+    },
+    {
+      "name": "SCENO001.INI",
+      "romOffset": 383788,
+      "namePointer": 339638,
+      "tableEntry": 339220
+    },
+    {
+      "name": "SCENO002.INI",
+      "romOffset": 384162,
+      "namePointer": 339651,
+      "tableEntry": 339228
+    },
+    {
+      "name": "SCENO003.INI",
+      "romOffset": 384748,
+      "namePointer": 339664,
+      "tableEntry": 339236
+    },
+    {
+      "name": "SCENO004.INI",
+      "romOffset": 385900,
+      "namePointer": 339677,
+      "tableEntry": 339244
+    },
+    {
+      "name": "SCENO005.INI",
+      "romOffset": 387036,
+      "namePointer": 339690,
+      "tableEntry": 339252
+    },
+    {
+      "name": "SCENO006.INI",
+      "romOffset": 388102,
+      "namePointer": 339703,
+      "tableEntry": 339260
+    },
+    {
+      "name": "SCENO007.INI",
+      "romOffset": 389730,
+      "namePointer": 339716,
+      "tableEntry": 339268
+    },
+    {
+      "name": "SCENO008.INI",
+      "romOffset": 391284,
+      "namePointer": 339729,
+      "tableEntry": 339276
+    },
+    {
+      "name": "SCENO009.INI",
+      "romOffset": 394214,
+      "namePointer": 339742,
+      "tableEntry": 339284
+    }
+  ],
+  "europe": [
+    {
+      "name": "BUILD.EMC",
+      "romOffset": 318248,
+      "namePointer": 339288,
+      "tableEntry": 338988
+    },
+    {
+      "name": "PLAYER.EMC",
+      "romOffset": 319322,
+      "namePointer": 339298,
+      "tableEntry": 338996
+    },
+    {
+      "name": "TEAM.EMC",
+      "romOffset": 319522,
+      "namePointer": 339309,
+      "tableEntry": 339004
+    },
+    {
+      "name": "UNIT.EMC",
+      "romOffset": 319872,
+      "namePointer": 339318,
+      "tableEntry": 339012
+    },
+    {
+      "name": "HOUSE.INI",
+      "romOffset": 339748,
+      "namePointer": 339327,
+      "tableEntry": 339020
+    },
+    {
+      "name": "PROFILE.INI",
+      "romOffset": 340344,
+      "namePointer": 339337,
+      "tableEntry": 339028
+    },
+    {
+      "name": "REGION.INI",
+      "romOffset": 344180,
+      "namePointer": 339349,
+      "tableEntry": 339036
+    },
+    {
+      "name": "REGIONA.INI",
+      "romOffset": 346678,
+      "namePointer": 339360,
+      "tableEntry": 339044
+    },
+    {
+      "name": "REGIONH.INI",
+      "romOffset": 349918,
+      "namePointer": 339372,
+      "tableEntry": 339052
+    },
+    {
+      "name": "REGIONO.INI",
+      "romOffset": 353306,
+      "namePointer": 339384,
+      "tableEntry": 339060
+    },
+    {
+      "name": "SCENH001.INI",
+      "romOffset": 369520,
+      "namePointer": 339513,
+      "tableEntry": 339068
+    },
+    {
+      "name": "SCENH002.INI",
+      "romOffset": 369894,
+      "namePointer": 339526,
+      "tableEntry": 339076
+    },
+    {
+      "name": "SCENH003.INI",
+      "romOffset": 370498,
+      "namePointer": 339539,
+      "tableEntry": 339084
+    },
+    {
+      "name": "SCENH004.INI",
+      "romOffset": 371264,
+      "namePointer": 339552,
+      "tableEntry": 339092
+    },
+    {
+      "name": "SCENH005.INI",
+      "romOffset": 372494,
+      "namePointer": 339565,
+      "tableEntry": 339100
+    },
+    {
+      "name": "SCENH006.INI",
+      "romOffset": 374048,
+      "namePointer": 339578,
+      "tableEntry": 339108
+    },
+    {
+      "name": "SCENH007.INI",
+      "romOffset": 375704,
+      "namePointer": 339591,
+      "tableEntry": 339116
+    },
+    {
+      "name": "SCENH008.INI",
+      "romOffset": 378118,
+      "namePointer": 339604,
+      "tableEntry": 339124
+    },
+    {
+      "name": "SCENH009.INI",
+      "romOffset": 380932,
+      "namePointer": 339617,
+      "tableEntry": 339132
+    },
+    {
+      "name": "SCENA001.INI",
+      "romOffset": 356262,
+      "namePointer": 339396,
+      "tableEntry": 339140
+    },
+    {
+      "name": "SCENA002.INI",
+      "romOffset": 356668,
+      "namePointer": 339409,
+      "tableEntry": 339148
+    },
+    {
+      "name": "SCENA003.INI",
+      "romOffset": 357232,
+      "namePointer": 339422,
+      "tableEntry": 339156
+    },
+    {
+      "name": "SCENA004.INI",
+      "romOffset": 357852,
+      "namePointer": 339435,
+      "tableEntry": 339164
+    },
+    {
+      "name": "SCENA005.INI",
+      "romOffset": 359054,
+      "namePointer": 339448,
+      "tableEntry": 339172
+    },
+    {
+      "name": "SCENA006.INI",
+      "romOffset": 360508,
+      "namePointer": 339461,
+      "tableEntry": 339180
+    },
+    {
+      "name": "SCENA007.INI",
+      "romOffset": 362060,
+      "namePointer": 339474,
+      "tableEntry": 339188
+    },
+    {
+      "name": "SCENA008.INI",
+      "romOffset": 363978,
+      "namePointer": 339487,
+      "tableEntry": 339196
+    },
+    {
+      "name": "SCENA009.INI",
+      "romOffset": 366770,
+      "namePointer": 339500,
+      "tableEntry": 339204
+    },
+    {
+      "name": "SCENO001.INI",
+      "romOffset": 383780,
+      "namePointer": 339630,
+      "tableEntry": 339212
+    },
+    {
+      "name": "SCENO002.INI",
+      "romOffset": 384154,
+      "namePointer": 339643,
+      "tableEntry": 339220
+    },
+    {
+      "name": "SCENO003.INI",
+      "romOffset": 384740,
+      "namePointer": 339656,
+      "tableEntry": 339228
+    },
+    {
+      "name": "SCENO004.INI",
+      "romOffset": 385892,
+      "namePointer": 339669,
+      "tableEntry": 339236
+    },
+    {
+      "name": "SCENO005.INI",
+      "romOffset": 387028,
+      "namePointer": 339682,
+      "tableEntry": 339244
+    },
+    {
+      "name": "SCENO006.INI",
+      "romOffset": 388094,
+      "namePointer": 339695,
+      "tableEntry": 339252
+    },
+    {
+      "name": "SCENO007.INI",
+      "romOffset": 389722,
+      "namePointer": 339708,
+      "tableEntry": 339260
+    },
+    {
+      "name": "SCENO008.INI",
+      "romOffset": 391276,
+      "namePointer": 339721,
+      "tableEntry": 339268
+    },
+    {
+      "name": "SCENO009.INI",
+      "romOffset": 394206,
+      "namePointer": 339734,
+      "tableEntry": 339276
+    }
+  ]
+}

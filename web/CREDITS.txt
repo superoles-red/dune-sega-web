@@ -1,0 +1,13 @@
+Dune — The Battle for Arrakis (Sega Genesis USA) adaptation
+
+Original game artwork, music and game program: their original copyright holders.
+
+Engine foundation: ReArrakis (MIT).
+Copyright (c)2026 kruzeman and RROP contributors.
+Copyright (c)2026 ReArrakis contributors.
+License text: licenses/ReArrakis-MIT.txt
+
+Web foundation: andvolodko/dune2-sega-web, pinned revision56c6a6da10.
+Based on kruzeman/ReArrakis.
+
+FM synthesis: YMFM by Aaron Giles; see the existing project license notices.

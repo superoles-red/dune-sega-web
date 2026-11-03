@@ -1,0 +1,488 @@
+{
+  "schemaVersion": 4,
+  "recordedUtc": "2026-11-03T05:20:42.697824+00:00",
+  "campaignHeaderSha256": "46091b2de068c8dae4e89d4d24f84f26a5454ba1e0e4e765ae1b0a9fc96bac9b",
+  "passed": true,
+  "api": {
+    "routeExport": "dune_web_screen_route",
+    "targets": {
+      "0": "main-only-in-clean-frontend",
+      "1": "options-only-in-clean-frontend",
+      "2": "tutorial-only-in-clean-frontend",
+      "3": "pause-idempotent",
+      "4": "resume-map"
+    },
+    "feedbackExport": "dune_web_ui_sound",
+    "idleHoldExport": "dune_web_frontend_hold",
+    "frontendAudioExport": "dune_web_frontend_audio",
+    "textlessFrameExport": "dune_web_readonly_textless_frame_rgb"
+  },
+  "worldExitPolicy": {
+    "worldGlobalRoutesRejected": [
+      0,
+      1,
+      2
+    ],
+    "rejectionChangesCpu": false,
+    "borrowedStartupMainRemoved": true,
+    "hostSavesWorldThenLoadsOrdinaryFrontendV2": true,
+    "continueUsesOrdinaryWorldV2Load": true,
+    "priorShortClockCreditsOnlySafetyClaimWithdrawn": true,
+    "cleanFrontendOptionsTutorialReturnThroughOriginalHandlers": true
+  },
+  "checks": {
+    "menuInstructionPhases": 12,
+    "repeatedMenuDoesNotResume": true,
+    "battleStartEligibleNativePolls": [
+      24954,
+      28166
+    ],
+    "startupPollFixtures": 6,
+    "startupTargetsPerFixture": 2,
+    "coldResetVectorBootTargets": 2,
+    "intermediateFrontendContinueRequired": false,
+    "tutorialTapMask": 16,
+    "tutorialTapAdvancesWithoutAbort": true,
+    "buildingKinds": [
+      "production",
+      "starport"
+    ],
+    "staleBuildingRgbReplacedBeforeReadiness": true,
+    "savedMapRestoreClearsRouterMetadata": true,
+    "enabledNative1664Calls": 1,
+    "mutedAdditional1664Calls": 0,
+    "feedbackInLiveBattleRejected": true,
+    "nativeFeedbackIdsByLoadedEffectsBank": {
+      "CF970-main-13entries": 12,
+      "F6363-campaign": 25
+    }
+  },
+  "buildingCampaignStarts": {
+    "passed": true,
+    "cases": 5,
+    "menus": [
+      "palace",
+      "construction-yard",
+      "starport"
+    ],
+    "originalHoveredProductWithoutPurchase": true,
+    "supersededPendingPauseRoute": true,
+    "originalExitAndCleanupExecute": true,
+    "newBriefingManualNativeFrames": 400,
+    "originalNewScenario": "Ordos mission 2",
+    "falseWinEdges": 0
+  },
+  "readyStates": {
+    "path": ".local/campaign-analysis/screen-route-states.jsonl",
+    "sha256": "f685241c58cf01a0c883f5878f2ec046f48ce6e2231ded40ca8aaa16e432f36c",
+    "count": 85,
+    "allCurrentNativePollGeneration": true,
+    "allFreshCompletedVdpFrame": true
+  },
+  "autoplay": {
+    "houses": 3,
+    "drawCheckpoints": {
+      "ending": 75700,
+      "credits": [
+        71744,
+        71748
+      ]
+    },
+    "maximumReadyNativeFrames": 4,
+    "originalFirstStaffScrollInputGatePreserved": true,
+    "visibleNativeFramesAfterReady": 100,
+    "observerCpuImmutableAtDrawCheckpoints": true
+  },
+  "frontendIdleAndSound": {
+    "nativeAudioMode": "AUDIO_ON with original pinned YMFM backend",
+    "defaultLegacyAttractObservedAfterNativeFrames": 1828,
+    "modernMainHeldNativeFrames": 5684,
+    "idleCounterRefreshes": 2841,
+    "nativeAudioZ80VideoContinue": true,
+    "defaultHoldFalse": true,
+    "routeAndLoadReleaseHold": true,
+    "shared4724CannotBorrowAudio": true,
+    "earlyFeedbackDeferredUntilVerifiedInteractivePoll": true,
+    "deferredFeedbackNativeCalls": 1
+  },
+  "frontendPayload": {
+    "path": "web/frontend.state.bin",
+    "manifest": "data/frontend/manifest.json",
+    "sha256": "6bfd6cb318ba28ced014c1a318a430ee5899025fdc2975d98a880e4abd2d7955",
+    "bytes": 140921,
+    "nativeYmBytes": 865,
+    "houseId": -1,
+    "housePointer": 0,
+    "source": "Genuine cold original reset to settled real main poll; original v2 serializer"
+  },
+  "hotV2AudioOn": {
+    "passed": true,
+    "actualCurrentBrowserV2Api": true,
+    "copiedApiSha256": "a896be4cdd60ca54406d58898f56335812f176efad7578c3a9ae7901ad16aed7",
+    "nativeApiIncludeGenerator": "tools/prepare_native_state_test.py",
+    "coldFullYmFrontendOptionsTutorialBack": true,
+    "nativeMusicSoundOffRetainedOnMain": true,
+    "hotYm0DemoPauseRestartNoResume": true,
+    "worldToCleanFrontendIdleNativeFrames": 6000,
+    "postIdleOptionsTutorialNoZ80Fault": true,
+    "ordinaryContinueRestoresAllWorldRamBytes": 65536,
+    "continueRestoresYmState": true,
+    "falseOutcomeEdges": 0,
+    "newCampaignFromCleanFrontend": "Original Atreides mission 1, manual briefing",
+    "campaignAndBuildingGettersEveryNativeFrames": 3,
+    "getterWholeCpuImmutable": true,
+    "largestObservedJsonBytes": 2248
+  },
+  "testSources": [
+    {
+      "path": "tools/test_em_web_screen_route.c",
+      "sha256": "b870125d044e1161f7ca17995b009192d2fdbecfb61e9e0f689d1f44d7e67c66"
+    },
+    {
+      "path": "tools/test_em_web_autoplay_ready.c",
+      "sha256": "a247a62cfc4ec58152527f04758ad6d71d71b882d21b68333f56c89bf4d78b57"
+    },
+    {
+      "path": "tools/test_em_web_campaign_building_start.c",
+      "sha256": "9ef2ccec7160d4bcf3d99a6c03aa704ad63394fec7109ef90cff98d739c2b22e"
+    },
+    {
+      "path": "tools/test_em_web_frontend_hold.c",
+      "sha256": "434a5c383be62366776f80f69f0ff2d7759977a165009de61145e183f9e26822"
+    },
+    {
+      "path": "tools/test_em_web_frontend_load.c",
+      "sha256": "187d7b09735e556b9153c271a9c06db96a8616716128fff58ecbd5aac65330a1"
+    },
+    {
+      "path": "tools/em_web_frame.h",
+      "sha256": "d9a347f0791b8c3311715753270cd75270f57468d57fab6e5d76a9f4da1cd855"
+    },
+    {
+      "path": "tools/test_em_web_presentation.c",
+      "sha256": "c63578153abd06aef309ecff70e70a0fb851f106973ce6e0b8eee94eafe45ca3"
+    },
+    {
+      "path": "tools/test_em_web_frontend_audio.c",
+      "sha256": "5dfb1f3522fcd122b5534728da2e8cd1abf9064771d96accaf3e92b8b0e2c043"
+    },
+    {
+      "path": "tools/capture_campaign_text_fixture.c",
+      "sha256": "8f545c52b5d5cd82191ae676daac7f5bcadea20b14c261ebb4afd6fcf550effe"
+    },
+    {
+      "path": "tools/test_em_web_terminal_replay.c",
+      "sha256": "6d27f867df68dc4a0da5c96613c065ae1c13292932388cc7e3d345a961d33545"
+    },
+    {
+      "path": "tools/test_em_web_continuous_scenes.c",
+      "sha256": "4263e31ad29b0c7efc10deaab36a4ba0fb74ad7d247ac3b28c8ccd18c4b8b766"
+    },
+    {
+      "path": "tools/test_em_web_frontend_cycles.c",
+      "sha256": "65c0eb74771785df510229d0e838b21652e8de48676e92457e816615081a12d5"
+    }
+  ],
+  "logs": [
+    {
+      "path": ".local/campaign-analysis/test-screen-route.log",
+      "sha256": "1ded28cb4b443fbe6ea20f42e2a8f532559cb9f9d46e935e265dfeb0e342c3ec",
+      "passed": true
+    },
+    {
+      "path": ".local/campaign-analysis/test-autoplay-ready.log",
+      "sha256": "df698aab268d43fc8e96de0ae602ba41fea9b7067e506763672b8dffd3b10aa4",
+      "passed": true
+    },
+    {
+      "path": ".local/campaign-analysis/test-building-start.log",
+      "sha256": "66a90c88a21a1ea9c71b6585079c09e357365384cef750119ca334696a0b49db",
+      "passed": true
+    },
+    {
+      "path": ".local/campaign-analysis/test-frontend-hold-audio.log",
+      "sha256": "b08d057a87e40fb57435c0af427d384732a43ee1a70122a493b95e2b8795fbe7",
+      "passed": true
+    },
+    {
+      "path": ".local/campaign-analysis/test-frontend-load-audio.log",
+      "sha256": "7f629f75a011ec1b6d9f67ba1710b89ee6f456ee27f6e5489843091030f9b461",
+      "passed": true
+    },
+    {
+      "path": ".local/campaign-analysis/test-presentation.log",
+      "sha256": "a289fc4408e3bb6b19f675d5e8be43d9d74491928d896f5ececdf922619e9276",
+      "passed": true
+    },
+    {
+      "path": ".local/campaign-analysis/test-frontend-audio-continuity.log",
+      "sha256": "eff149cc71c22501d7ec204823150f800ff76d7f130ef0b9f94d7a57c234838b",
+      "passed": true
+    },
+    {
+      "path": ".local/campaign-analysis/test-terminal-replay.log",
+      "sha256": "6a536f5d8ac49af3bcac5cfcd860ec404a2b84ecead78ca85d8b3266bfa2c46c",
+      "passed": true
+    },
+    {
+      "path": ".local/campaign-analysis/test-continuous-scenes.log",
+      "sha256": "655615cf3ae8d444bf683fed148b005f6d4138de659b8d9a0d5157d3cc3e7b9a",
+      "passed": true
+    },
+    {
+      "path": ".local/campaign-analysis/test-frontend-cycles.log",
+      "sha256": "30262bf2de8dcd9dc5d7922ec09206982abc5fda158fff3905868df2fd68b0f4",
+      "passed": true
+    }
+  ],
+  "originalRomAndTranslatedInstructionSuffixIdentical": true,
+  "limits": [
+    "Native proof is separate from browser/device evidence.",
+    "The unsafe borrowed-main approach was removed; its earlier short clock/credits test is not retained as world-memory safety evidence.",
+    "No new opcode bypass or Z80 guard suppression was introduced.",
+    "Initialization/transition coverage is not a full earned campaign playthrough."
+  ],
+  "previousNativeHeaderSha256": "25bc562ca4b1df83a893b52c1b77bde19ea5abce33b867d71ecdf098cb6b9d3e",
+  "frameHeaderSha256": "3d1fd5d3a054871660151d700ed449e8de8391c508d82075917859d6a89cd762",
+  "evidenceScopeNote": "Existing initialization/world-restore coverage is retained from the previous recorded native bridge. Current additions independently verify completed-frame composition/cinematics and real-YM frontend music; browser/device proof remains separate.",
+  "cinematicPresentation": {
+    "passed": true,
+    "completedNativeFrameRequired": true,
+    "presentationReadySeparateFromInputReady": true,
+    "originalStrategicMapNativeFrames": 471,
+    "originalBattleLoadingNativeFrames": 93,
+    "planeDrawingCheckpoints": [
+      76054,
+      76286
+    ],
+    "finaleDrawingCheckpoint": 75700,
+    "creditsDrawingCheckpoints": [
+      71744,
+      71748
+    ],
+    "earlyCreditsHouses": 3,
+    "firstStaffScrollInputGateUnchanged": true,
+    "newFullPhaseInvalidatesPreviousPoll": true,
+    "staleProceedConfirmTapRejected": true,
+    "defeatResultsTerminal": true,
+    "ninthVictoryResultsIntermediate": true,
+    "terminalReplayUsesOriginalCampaignApi": true,
+    "sameTerminalReplayNativeRegression": {
+      "passed": true,
+      "cases": [
+        "AtreidesM1-defeatResults",
+        "AtreidesM9-finalCredits"
+      ],
+      "originalTerminalMissionFieldRequiredForCredits": true,
+      "newBriefingManualNativeFrames": 400,
+      "falseOutcomeEdges": 0
+    },
+    "battlefieldFlyover": {
+      "passed": true,
+      "continuousOriginalBeforeOutcomeFixtures": true,
+      "winNativeFrames": 203,
+      "winDistinctRgb": 127,
+      "lossNativeFrames": 203,
+      "lossDistinctRgb": 128,
+      "winEntryChain": [
+        142076,
+        158034,
+        158084
+      ],
+      "lossEntryChain": [
+        142312,
+        158362,
+        158084
+      ],
+      "nativeFormationCreator": 46454,
+      "nativeSpriteList": 16774056,
+      "nativeFrameCallback": 46404,
+      "nativeRenderer": 4232,
+      "midflightProof": [
+        ".local/campaign-continuous/win-flyover-076.json",
+        ".local/campaign-continuous/lose-flyover-076.json"
+      ],
+      "montage": ".local/campaign-continuous/flyover-native-montage.png",
+      "positionPointer": 16765702,
+      "nativeResource": 46588
+    },
+    "resultsBeforeInput": {
+      "passed": true,
+      "entry": 160226,
+      "countingPhase": 160312,
+      "firstInput": 160466,
+      "nativeCountingLoop": 159640,
+      "ordinaryWinAndLossFramesEach": 147,
+      "ordinaryWinAndLossDistinctRgbEach": 65,
+      "positiveControlledFixture": {
+        "beforePredicateNativeStatisticFields": {
+          "C09E": 1200,
+          "C0A0": 800,
+          "C098": 17,
+          "C096": 23,
+          "C09C": 7,
+          "C09A": 9,
+          "C05E": 1234
+        },
+        "source": "Offline test CPU only; original outcome/flyover/story/counter handlers then execute continuously",
+        "nativeFrames": 447,
+        "distinctRgb": 365,
+        "numericStates": 315,
+        "isEarnedStats": false,
+        "montage": ".local/campaign-continuous/counters-controlled-native-montage.png"
+      },
+      "completeJsonScoreAndCountsVerified": true,
+      "nativeFiveCellReadX": {
+        "score": 72,
+        "counts": 256
+      },
+      "onesColumnReadBugFixedWithoutRendererOrTimingChanges": true
+    }
+  },
+  "textlessFrame": {
+    "passed": true,
+    "source": "actual completed VDP snapshot, no live sprite-handler replay",
+    "unmaskedRecompositionRgbByteEqual": true,
+    "getterWholeCpuImmutable": true,
+    "postRenderLiveVramCannotChangeSnapshot": true,
+    "mainChangedPixels": 848,
+    "briefingChangedPixels": 4684,
+    "ordosDefeatChangedPixels": 2713,
+    "ordosDefeatFifthRowChangedPixels": 266,
+    "allOutsideNativeTextChoiceRegionsUnchanged": true,
+    "storyGlyphAttributes": 49152,
+    "mainGlyphAttributes": 24576,
+    "storyTextRect": [
+      16,
+      16,
+      288,
+      40
+    ],
+    "nativeChoiceRects": [
+      [
+        184,
+        164,
+        96,
+        24
+      ],
+      [
+        184,
+        188,
+        96,
+        28
+      ]
+    ],
+    "mainTextRect": [
+      128,
+      160,
+      80,
+      24
+    ],
+    "mainArrowRect": [
+      104,
+      156,
+      144,
+      32
+    ],
+    "controlledFiveRowFixtureGenerator": "tools/capture_campaign_text_fixture.c",
+    "fixtureIsEarnedProgress": false,
+    "earlyMainMask": {
+      "passed": true,
+      "firstChoiceWriteCheckpoint": 96266,
+      "firstMainInputPoll": 96466,
+      "visibleChoiceFramesMaskedBeforeInput": 18,
+      "completeOriginalPlanetLogoCopyrightOutsideChoiceAreaUnchanged": true
+    }
+  },
+  "continuousFrontendAudio": {
+    "passed": true,
+    "audioMode": "AUDIO_ON, original Z80 and real YMFM",
+    "longRunNativeFrames": 18000,
+    "segments": [
+      "Main6000",
+      "Options6000",
+      "Main6000"
+    ],
+    "observedFrequencyUpdates": 958,
+    "streamAndYmWriteProgressEveryNativeFrames": 600,
+    "musicRestartsDuringLongRun": 0,
+    "musicStopsDuringLongRun": 0,
+    "driverReloadsDuringLongRun": 0,
+    "nativeMusicSoundOffOnPassed": true,
+    "campaignNativeStopAndDriverReloadRetained": true,
+    "defaultPolicyOffForLegacy": true,
+    "worldAndCampaignExcluded": true,
+    "nativeThemeHasInfiniteMultiNoteLoop": {
+      "loopOpcodes": "64 7F ... 65",
+      "musicChannel0LoopRomStart": 850817,
+      "loopCloseRom": 850856
+    },
+    "retainedMainEffectsBank": {
+      "rom": 850288,
+      "entries": 13,
+      "nativeConfirmId": 12,
+      "nativeConfirmHeaderRom": 850342,
+      "nativeConfirmStreamRom": 852546
+    },
+    "invalidOptionsFeedbackIdsMappedOnlyInCleanFrontend": [
+      25,
+      40,
+      44
+    ],
+    "adjacentOptionsStopResumeSkippedTogether": true,
+    "syntheticAudioSamples": false,
+    "browserLoopTimer": false
+  },
+  "scriptedCampaignFeedback": {
+    "passed": true,
+    "audioMode": "AUDIO_ON, real YMFM and original Z80",
+    "scope": "Explicit pending campaign request before stage4 only",
+    "nativeLaunchCases": 6,
+    "houses": [
+      0,
+      1,
+      2
+    ],
+    "missions": [
+      1,
+      2
+    ],
+    "actualMainConfirm12CallsPerCase": 1,
+    "actualScriptedCue11_25_40CallsPerCase": 0,
+    "suppressedCuesPerCase": [
+      3,
+      5,
+      5,
+      3,
+      4,
+      4
+    ],
+    "unconsumedHostCueRemoved": true,
+    "activeBorrowedCallNeverAborted": true,
+    "nativeCallSites": [
+      97014,
+      18480,
+      18518,
+      154900,
+      158754,
+      127944,
+      154924
+    ],
+    "ordinaryStoryMusicCombatAndUserInputUnchanged": true,
+    "testedBeforeReadOnlyStatsCoordinateFix": true
+  },
+  "tutorialRepeatedNative": {
+    "passed": true,
+    "cycles": 3,
+    "ordinaryV2FrontendLoadedOnceBeforeCycles": true,
+    "actualTutorialReturnPoll": 268472,
+    "nativeFramesToTutorialEach": 109,
+    "actualMainReturnPoll": 96466,
+    "nativeFramesToMainEach": 76,
+    "cpuNotReloadedBetweenCycles": true,
+    "faults": 0,
+    "hypothesizedSharedWaitReadinessBugNotReproduced": true,
+    "speculativeTutorialCoreChanges": false
+  },
+  "subsequentColdRouteAudit": "cold-route-verification.json (separate current-header guard audit; prior checks above retain their recorded header)"
+}

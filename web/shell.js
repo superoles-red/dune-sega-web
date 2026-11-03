@@ -1,0 +1,184 @@
+import {MapGestures,placementEdgeVelocity} from './gestures.mjs';
+import {NativeArt} from './native-ui.mjs';
+import {GameInterface} from './game-ui.mjs';
+import {validHouse,validMission} from './campaign-state.mjs';
+import {contextAction} from './context-action.mjs';
+import {OrderFeedback} from './order-feedback.mjs';
+import {NativeAudioBridge} from './native-audio.mjs';
+
+// Input and presentation only. The original Sega handlers decide every game action.
+const canvas=document.getElementById('canvas');
+const actionPanel=document.getElementById('context-actions');
+const clearButton=document.getElementById('clear-selection');
+const actionButton=document.getElementById('native-action');
+const menuButton=document.getElementById('native-menu');
+const status=document.getElementById('status');
+const SAVE_KEY='dune-original-aot-state-v2';
+const params=new URLSearchParams(location.search),qaMode=params.has('qa'),legacyMode=params.has('legacy');
+let gameUI=null,art=null,enginePromise=null,resolveEngine,rejectEngine,actionView=null;
+function browserStorage(){try{return qaMode?sessionStorage:localStorage;}catch{return {getItem:()=>null,setItem:()=>{throw Error('Хранилище браузера недоступно');}};}}
+const touches=new Set();
+let started=false,ready=false,mouseLeft=false,messageTimer,lastSize='',queuedResize=false;
+let lastGesture='idle',lastEdgeTime=0,latestActions={},lastActionKind='',lastCanvasVisible=null;
+const counters={taps:0,panEvents:0,zooms:0,placementDrags:0,edgePans:0,clearRequests:0,bRequests:0};
+const orderFeedback=new OrderFeedback({canvas});
+const local=e=>{const r=canvas.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};};
+const capture=(element,id)=>{try{element.setPointerCapture(id);}catch{}};
+const stop=e=>{e.preventDefault();e.stopImmediatePropagation();};
+function resumeAudio(){nativeAudio.resume();}
+function tell(text){document.getElementById('message').textContent=text;clearTimeout(messageTimer);messageTimer=setTimeout(()=>{document.getElementById('message').textContent='';},2500);}
+function nativeJSON(name){try{return ready&&Module[name]?JSON.parse(Module.UTF8ToString(Module[name]())):{};}catch{return {};}}
+function query(x,y){return ready&&!gameUI?.capturesInput?(Module._dune_web_gesture_query?.(x,y)??0):0;}
+function resizeGame(){if(queuedResize)return;queuedResize=true;requestAnimationFrame(()=>{queuedResize=false;const r=canvas.getBoundingClientRect(),key=Math.round(r.width)+':'+Math.round(r.height);if(ready&&key!==lastSize){lastSize=key;Module._dune_web_resize?.(Math.round(r.width),Math.round(r.height));}});}
+function cancelGesture(){gestures.cancel();mouseLeft=false;touches.clear();if(ready)Module._dune_web_end?.();lastEdgeTime=0;}
+function clearSelection(){if(!ready)return;cancelGesture();orderFeedback.clear();Module._dune_web_placement_cancel?.();counters.clearRequests++;Module._dune_web_clear_selection?.();pollState();}
+function nativeAction(){if(!ready)return;const action=contextAction(latestActions);if(!action)return;resumeAudio();if(action.method==='self')Module._dune_web_action_self?.();else{counters.bRequests++;Module._dune_web_action_b?.();}pollState();}
+function beginPointer(id,p,kind){if(!ready||gameUI?.capturesInput)return;resumeAudio();if(query(p.x,p.y)===1)orderFeedback.aimAt(p.x,p.y);canvas.focus({preventScroll:true});if(!gestures.points.size)Module._dune_web_begin?.(p.x,p.y);gestures.down({id,...p,kind});}
+function endPointer(id,p){gestures.up({id,...p});if(query(p.x,p.y)===1)orderFeedback.releaseAim(p.x,p.y);else orderFeedback.releaseAim();if(!gestures.points.size)Module._dune_web_end?.();}
+function mapTap(x,y){
+ if(!ready||gameUI?.capturesInput)return;
+ counters.taps++;orderFeedback.aimAt(x,y);Module._dune_web_end?.();Module._dune_web_selection_tap_screen?.(x,y);
+ // A queue acceptance is not an attack/move decision. The read-only native
+ // commit observer supplies its actual D4 action and target to pollState.
+}
+const gestures=new MapGestures({
+  canPanAt:(x,y)=>query(x,y)===1,
+  minimapStart:(x,y)=>ready&&Module._dune_web_minimap_begin?.(x,y),
+  minimapMove:(x,y)=>Module._dune_web_minimap_move?.(x,y),
+  tap:mapTap,
+  pan:(dx,dy)=>{if(!ready)return;orderFeedback.panAim();counters.panEvents++;Module._dune_web_pan?.(dx,dy);},
+  zoom:(factor,x,y)=>{if(!ready)return;orderFeedback.panAim();counters.zooms++;Module._dune_web_zoom?.(factor,x,y);},
+  placementStart:(x,y)=>{const ok=ready&&(Module._dune_web_placement_begin?.(x,y)??0);if(ok)counters.placementDrags++;return !!ok;},
+  placementMove:(x,y)=>Module._dune_web_placement_move?.(x,y),
+  placementEnd:(x,y)=>Module._dune_web_placement_end?.(x,y),
+  placementCancel:()=>Module._dune_web_placement_cancel?.(),
+  state:mode=>{lastGesture=mode;document.body.classList.toggle('dragging',mode==='pan');document.body.classList.toggle('placing',mode==='place');},
+});
+// Own the events before SDL sees them. A click is committed only on release.
+canvas.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'){capture(canvas,e.pointerId);e.stopImmediatePropagation();return;}stop(e);capture(canvas,e.pointerId);touches.add(e.pointerId);beginPointer(e.pointerId,local(e),e.pointerType);},true);
+canvas.addEventListener('pointermove',e=>{if(e.pointerType==='mouse')return;stop(e);if(touches.has(e.pointerId))gestures.move({id:e.pointerId,...local(e)});},true);
+canvas.addEventListener('pointerup',e=>{if(e.pointerType==='mouse')return;stop(e);if(touches.has(e.pointerId)){endPointer(e.pointerId,local(e));touches.delete(e.pointerId);}},true);
+canvas.addEventListener('pointercancel',e=>{stop(e);cancelGesture();},true);
+canvas.addEventListener('lostpointercapture',e=>{if(e.pointerType==='mouse'){if(mouseLeft)cancelGesture();}else if(touches.has(e.pointerId))cancelGesture();},true);
+canvas.addEventListener('mousedown',e=>{stop(e);if(e.button!==0)return;mouseLeft=true;beginPointer('mouse',local(e),'mouse');},true);
+canvas.addEventListener('mousemove',e=>{stop(e);const p=local(e);if(mouseLeft)gestures.move({id:'mouse',...p});else if(query(p.x,p.y)===1)orderFeedback.aimAt(p.x,p.y);},true);
+canvas.addEventListener('mouseup',e=>{stop(e);if(e.button!==0||!mouseLeft)return;mouseLeft=false;endPointer('mouse',local(e));},true);
+for(const name of ['click','dblclick','auxclick','contextmenu','touchstart','touchmove','touchend','touchcancel'])canvas.addEventListener(name,stop,{capture:true,passive:false});
+canvas.addEventListener('wheel',e=>{stop(e);const p=local(e);if(query(p.x,p.y)!==1||gestures.points.size)return;const unit=e.deltaMode===1?16:e.deltaMode===2?canvas.clientHeight:1;const factor=Math.exp(-Math.max(-240,Math.min(240,e.deltaY*unit))*(e.ctrlKey?.006:.002));orderFeedback.panAim();counters.zooms++;Module._dune_web_zoom?.(factor,p.x,p.y);orderFeedback.releaseAim(p.x,p.y);},{capture:true,passive:false});
+
+function bindButton(button,action){
+  // Standard HTML click owns the action. Keep NativeArt's same-element visual
+  // listeners and browser click synthesis; stop only propagation to SDL.
+  for(const name of ['pointerdown','pointerup','pointercancel','mousedown','mouseup','touchstart','touchmove','touchend'])button.addEventListener(name,e=>e.stopPropagation(),{passive:true});
+  button.addEventListener('pointerdown',resumeAudio);
+  button.addEventListener('click',e=>{e.stopPropagation();if(button.disabled)return;resumeAudio();button._nativeArtView?.pulse();action();});
+  button.addEventListener('contextmenu',e=>{e.preventDefault();e.stopPropagation();});
+}
+function pulseStart(){if(!ready)return;resumeAudio();cancelGesture();if(!legacyMode&&Module._dune_web_campaign_input)Module._dune_web_campaign_input(0,128);else{Module._dune_web_pad(128,1);setTimeout(()=>Module._dune_web_pad?.(128,0),140);}canvas.focus({preventScroll:true});}
+bindButton(clearButton,clearSelection);bindButton(actionButton,nativeAction);bindButton(menuButton,()=>{if(!legacyMode&&gameUI){cancelGesture();gameUI.openPause();}else pulseStart();});
+function saveGame(silent=false){
+  if(!ready||gameUI?.demoMode||gameUI?.trainingMode)return false;
+  const run=nativeJSON('_dune_web_campaign_json');
+  if(!run.activeRunArmed||run.fault||run.pending||run.routePending||run.uiCallActive||!run.sceneReady||!['map','building','pause'].includes(run.scene)||!validHouse(run.activeRunHouse)||!validMission(run.activeRunMission))return false;
+  try{const size=Module._dune_save_state_to_buffer();if(size<=0||size>256*1024)return false;
+    const ptr=Module._dune_get_save_buffer(),bytes=Module.HEAPU8.subarray(ptr,ptr+size);let binary='';
+    for(let i=0;i<bytes.length;i+=8192)binary+=String.fromCharCode(...bytes.subarray(i,i+8192));
+    const value=btoa(binary);if(legacyMode)browserStorage().setItem(SAVE_KEY,value);else if(!gameUI?.store.saveSlot(run.activeRunHouse,run.activeRunMission,value))throw Error('Браузер не разрешил записать сохранение');if(!silent)tell('Игра сохранена.');return true;
+  }catch(e){if(!silent)tell(`Сохранение недоступно: ${e.message}`);return false;}
+}
+function loadPayload(value,silent=false){
+  if(!ready||!value)return false;
+  try{
+    const bytes=Uint8Array.from(atob(value),c=>c.charCodeAt(0)),ptr=Module._dune_get_save_buffer();
+    if(bytes.length>256*1024||bytes.length>Module.HEAPU8.length-ptr)throw new Error('Сохранение повреждено');
+    cancelGesture();orderFeedback.clear({reset:true});Module.HEAPU8.set(bytes,ptr);
+    if(!Module._dune_load_state_from_buffer(bytes.length))throw new Error('Сохранение не подходит к этой сборке');
+    Module._dune_web_selection_reset?.();Module._dune_web_menu_select_reset?.();Module._dune_web_rebase?.();if(gameUI){gameUI.frame.valid=false;gameUI.building.frame.valid=false;gameUI.building.key='';}if(!silent)tell('Игра загружена.');return true;
+  }catch(e){if(!silent)tell(e.message);return false;}
+}
+function loadGame(silent=false){
+  if(!ready)return false;
+  let slot=null;try{if(!legacyMode){const p=gameUI?.store.progress;slot=gameUI?.store.resumable();}}
+  catch{}
+  let value=slot?.state||gameUI?.store.legacy();if(!value&&legacyMode)try{value=browserStorage().getItem(SAVE_KEY);}catch{}
+  if(!legacyMode&&gameUI){if(!value)return false;return gameUI.resumeSlot({state:value},{saveCurrent:false});}
+  const ok=loadPayload(value,silent);if(ok&&gameUI){gameUI.demoMode=false;gameUI.resuming=true;gameUI.view='native';gameUI.lastNativeKey='';gameUI.bootTarget=null;pollState();}return ok;
+}
+const Module=window.Module={
+  canvas,locateFile:name=>'engine/'+name,
+  print:(...args)=>console.log(...args),printErr:(...args)=>console.warn(...args),
+  setStatus:text=>{status.textContent=text;},
+  onRuntimeInitialized:()=>{},
+  postRun:[()=>{ready=true;Module._dune_web_native_video?.(legacyMode?1:0);Module._dune_web_set_hidden?.(document.hidden?1:0);if(legacyMode){document.getElementById('launch').hidden=true;loadGame(true);canvas.focus();}resizeGame();Module._dune_web_rebase?.();nativeAudio.start();resolveEngine?.();pollState();}],
+  onAbort:reason=>{ready=false;status.textContent=`Не удалось запустить игру: ${reason}`;rejectEngine?.(Error(status.textContent));if(legacyMode||!gameUI)document.getElementById('launch').hidden=false;else tell(status.textContent);},
+};
+const nativeAudio=new NativeAudioBridge({Module});
+function startEngine(){
+ if(ready)return Promise.resolve();if(enginePromise)return enginePromise;
+ enginePromise=new Promise((resolve,reject)=>{resolveEngine=resolve;rejectEngine=reject;});started=true;
+ status.textContent='Подготовка оригинальной игры…';document.getElementById('start').disabled=true;
+ const script=document.createElement('script');script.src='engine/dune_web.js';script.onerror=()=>{status.textContent='Не удалось загрузить сборку.';rejectEngine?.(Error(status.textContent));};document.body.appendChild(script);return enginePromise;
+}
+try{if(localStorage.getItem(SAVE_KEY))document.getElementById('start').textContent='Продолжить игру';}catch{}
+document.getElementById('start').onclick=()=>startEngine().catch(e=>tell(e.message));
+
+window.addEventListener('keydown',e=>{if(e.target.closest?.('#qa-modern-panel'))return;resumeAudio();if(e.code==='F5'){stop(e);saveGame();return;}if(e.code==='F8'){stop(e);if(!gameUI?.tutorial?.active)loadGame();return;}
+ if(['Enter','Space'].includes(e.code)&&e.target instanceof HTMLButtonElement){stop(e);if(!e.repeat&&!e.target.disabled&&!gameUI?.curtain.active)e.target.click();return;}
+ if(gameUI?.tutorial?.active){gameUI.tutorial.key(e);if(e.defaultPrevented){stop(e);return;}}
+ if(gameUI?.capturesInput){if(e.code==='Escape'){stop(e);if(!e.repeat)gameUI.back();return;}if(['Enter','Space'].includes(e.code)&&e.target instanceof HTMLButtonElement){stop(e);if(!e.repeat&&!e.target.disabled)e.target.click();return;}e.stopImmediatePropagation();return;}
+ if(e.code==='Space'){stop(e);if(!e.repeat)clearSelection();return;}
+ if(['KeyZ','KeyX','KeyC','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Escape'].includes(e.code)){stop(e);return;}if(e.code==='Tab')e.stopImmediatePropagation();if(e.code==='Enter'&&e.target instanceof HTMLButtonElement)e.stopImmediatePropagation();},true);
+window.addEventListener('keyup',e=>{if(e.target.closest?.('#qa-modern-panel'))return;if(gameUI?.capturesInput){if(['Enter','Space'].includes(e.code))stop(e);else e.stopImmediatePropagation();return;}if(e.code==='Space'){stop(e);return;}if(['KeyZ','KeyX','KeyC','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Escape','Tab'].includes(e.code))e.stopImmediatePropagation();if(e.code==='Enter'&&e.target instanceof HTMLButtonElement)e.stopImmediatePropagation();},true);
+window.addEventListener('blur',cancelGesture);window.addEventListener('resize',resizeGame);
+document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelGesture();if(!qaMode){pollState();saveGame(true);}}if(ready)Module._dune_web_set_hidden?.(document.hidden?1:0);});
+window.addEventListener('pagehide',()=>{if(!qaMode){pollState();saveGame(true);}});
+const icons={
+  repeat:'<path d="M22 10a9 9 0 1 0 1 8M22 4v7h-7"/><path d="M10 10h7v8h-7z"/>',
+  'confirm-devastator':'<path d="m14 2 2 7 6-4-3 7 7 2-7 3 3 7-6-4-2 7-3-7-6 4 3-7-7-3 7-2-3-7 6 4Z"/>',
+  'confirm-mcv':'<path d="M4 24V13l10-7 10 7v11H4Zm6 0v-8h8v8M14 2v4M5 4l4 4M23 4l-4 4"/>'
+};
+const labels={repeat:'Повторить производство', 'confirm-devastator':'Подтвердить самоподрыв — оригинальная B', 'confirm-mcv':'Подтвердить развёртывание — оригинальная B'};
+function pollState(){
+  const camera=nativeJSON('_dune_web_camera_debug');latestActions=nativeJSON('_dune_web_actions_debug');
+  const campaign=nativeJSON('_dune_web_campaign_json'),needsBuilding=campaign.scene==='building'||gameUI?.building.active,
+   building=needsBuilding?nativeJSON('_dune_web_building_ui_json'):{active:false};
+  if(qaMode){
+   document.getElementById('native-state').textContent=JSON.stringify({...nativeJSON('_dune_web_debug'),browserAudio:nativeAudio.snapshot()});
+   document.getElementById('camera-state').textContent=JSON.stringify(camera);
+   document.getElementById('layout-state').textContent=JSON.stringify(nativeJSON('_dune_web_portrait_debug'));
+   document.getElementById('selection-state').textContent=JSON.stringify(latestActions);
+   document.getElementById('menu-state').textContent=JSON.stringify(nativeJSON('_dune_web_menu_select_debug'));
+   document.getElementById('gesture-state').textContent=JSON.stringify({mode:lastGesture,...counters,orderFeedback:orderFeedback.debug()});
+  }
+  gameUI?.update(campaign,camera,building);
+  if(!legacyMode)orderFeedback.observe(latestActions,{blocked:!ready||!!gameUI?.capturesInput});
+  if(qaMode){document.getElementById('campaign-state').textContent=JSON.stringify(campaign);document.getElementById('building-ui-state').textContent=JSON.stringify(building);document.getElementById('interface-state').textContent=JSON.stringify(gameUI?.debug()||{});}
+  const canvasVisible=legacyMode||!gameUI||gameUI.element.hidden&&!gameUI.building.active&&!gameUI.tutorial?.active;if(ready&&canvasVisible!==lastCanvasVisible){lastCanvasVisible=canvasVisible;Module._dune_web_canvas_visible?.(canvasVisible?1:0);}
+  menuButton.hidden=!ready||!camera.map||!!gameUI?.capturesInput;
+  actionPanel.hidden=!!gameUI?.capturesInput||!camera.map||!latestActions.selected||latestActions.selected.kind==='none';
+  const action=contextAction(latestActions);actionButton.hidden=!action;
+  const kind=action?.kind||'none';if(kind!==lastActionKind){lastActionKind=kind;actionButton.dataset.action=kind;actionButton.setAttribute('aria-label',action?.aria||'Особое действие');actionButton.title=action?.aria||'';if(actionView)actionView.update(action?.label||'ACTION',{ariaLabel:action?.aria||'Особое действие'});else actionButton.textContent=action?.label||'ACTION';}
+
+}
+function placementFrame(now){
+  requestAnimationFrame(placementFrame);gameUI?.render(now);
+  if(orderFeedback.active){const camera=nativeJSON('_dune_web_camera_debug');orderFeedback.render(now,camera,{blocked:!ready||!!gameUI?.capturesInput});}
+  const dt=lastEdgeTime?Math.min(.05,(now-lastEdgeTime)/1000):0;lastEdgeTime=now;
+  if(!ready||gestures.mode!=='place')return;
+  const p=gestures.points.get(gestures.primary);if(!p)return;
+  const vx=placementEdgeVelocity(p.x,canvas.clientWidth),vy=placementEdgeVelocity(p.y,canvas.clientHeight);
+  if(dt&&(vx||vy)){Module._dune_web_pan?.(-vx*dt,-vy*dt);counters.edgePans++;}
+  Module._dune_web_placement_move?.(p.x,p.y);
+}
+setInterval(pollState,50);if(!qaMode)setInterval(()=>saveGame(true),30000);
+resizeGame();requestAnimationFrame(placementFrame);
+if(legacyMode){document.getElementById('launch').hidden=false;if(qaMode)import('./qa.mjs');}
+else (async()=>{try{
+ art=await new NativeArt({storage:browserStorage()}).load();
+ gameUI=new GameInterface({art,Module,storage:browserStorage(),startEngine,isReady:()=>ready,resumeAudio,saveCurrent:saveGame,loadPayload,tell,cancelGesture});
+ await gameUI.loadCampaign();art.decorate(menuButton,'MENU',{ariaLabel:'Пауза — меню игры (Start)'});art.decorate(clearButton,'CLEAR',{back:true,ariaLabel:'Снять выделение'});actionView=art.decorate(actionButton,'REPEAT',{ariaLabel:'Повторить производство'});
+ document.getElementById('launch').hidden=true;pollState();
+ orderFeedback.load().catch(e=>console.warn('Original order feedback unavailable:',e.message));
+ startEngine().catch(e=>{console.warn('Background engine preload failed:',e);tell(e.message);});
+ if(qaMode){const {installModernQA}=await import('./qa-modern.mjs');await installModernQA({Module,startEngine,loadPayload,ui:gameUI,pollState});}
+}catch(e){console.error(e);status.textContent='Не удалось подготовить интерфейс: '+e.message;document.getElementById('launch').hidden=false;}})();

@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "status": "Archived lesson data; not loaded by the current descriptions-only tutorial",
+  "steps": [
+    {
+      "id": "pan",
+      "title": "MOVE THE MAP",
+      "text": "Hold and drag the map a little. On a computer, use the left mouse button.",
+      "target": null
+    },
+    {
+      "id": "zoom",
+      "title": "CHANGE THE SCALE",
+      "text": "Pinch to change the scale. On a computer, use the wheel or trackpad.",
+      "target": null
+    },
+    {
+      "id": "select-tank",
+      "title": "SELECT YOUR TANK",
+      "text": "Tap your tank near the Yard. Its selection marker shows it is ready for an order.",
+      "target": "tank"
+    },
+    {
+      "id": "move-tank",
+      "title": "GIVE A MOVE ORDER",
+      "text": "With your tank selected, tap nearby open ground. Wait for the tank to move.",
+      "target": "tank"
+    },
+    {
+      "id": "clear",
+      "title": "CLEAR THE SELECTION",
+      "text": "Select your tank if needed, then tap CLEAR. Its current order stays in place.",
+      "target": "tank"
+    },
+    {
+      "id": "attack",
+      "title": "ATTACK THE ENEMY",
+      "text": "Select your tank, then tap the enemy soldier east of your base. Let the tank reach it and fire.",
+      "target": "enemy"
+    },
+    {
+      "id": "enter-yard",
+      "title": "ENTER THE YARD",
+      "text": "Clear any unit selection, then tap your Construction Yard twice to enter.",
+      "target": "yard"
+    },
+    {
+      "id": "preview",
+      "title": "PREVIEW CONCRETE",
+      "text": "Tap the Concrete item once. Check its picture and price before buying.",
+      "target": "yard"
+    },
+    {
+      "id": "buy",
+      "title": "START CONSTRUCTION",
+      "text": "Tap the same Concrete item again to start construction.",
+      "target": "yard"
+    },
+    {
+      "id": "exit",
+      "title": "RETURN TO THE MAP",
+      "text": "If the building screen is still open, tap EXIT. Otherwise you are already back on the map. Construction continues at the Yard.",
+      "target": "yard"
+    },
+    {
+      "id": "ready",
+      "title": "WAIT FOR OK",
+      "text": "Wait until the Yard shows OK. Your Concrete is ready to place.",
+      "target": "yard"
+    },
+    {
+      "id": "place",
+      "title": "PLACE THE CONCRETE",
+      "text": "Press the ready Yard and drag the Concrete onto rock. Use the placement grid, then release on an allowed site.",
+      "target": "yard"
+    },
+    {
+      "id": "select-harvester",
+      "title": "SELECT THE HARVESTER",
+      "text": "Look north of the base and tap your Harvester.",
+      "target": "harvester"
+    },
+    {
+      "id": "harvest",
+      "title": "COLLECT SPICE",
+      "text": "Tap the spice just east of the Harvester. Wait until it has collected some spice.",
+      "target": "harvester"
+    },
+    {
+      "id": "unload",
+      "title": "DELIVER THE SPICE",
+      "text": "If it has not returned automatically, clear any selection. Select the Harvester and tap your Refinery. Wait for it to unload and add credits.",
+      "target": "refinery"
+    },
+    {
+      "id": "complete",
+      "title": "TRAINING COMPLETE",
+      "text": "You have moved, fought, built and harvested. Return to the main menu when you are ready.",
+      "target": null
+    }
+  ]
+}

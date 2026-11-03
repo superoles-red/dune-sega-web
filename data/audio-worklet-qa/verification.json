@@ -1,0 +1,131 @@
+{
+  "date": "2026-11-03",
+  "scope": "Optional playback-only AudioWorklet consumer; original machine clocks, native chip generation, ROM/instruction suffix unchanged",
+  "files": {
+    "tools/em_web_host.h": "2258b5a1ff82a13c94eb06ab02c92ece4a3ff7b6cc921d907eb035df062fba8d",
+    "tools/prepare_source.py": "794494f0612e56b5339f9feeb973cd54a93bb6887a846f34cf2637329911ac78",
+    "web/native-audio.mjs": "bca9922f1f9de41a3e1f02fe7daab2bed389f671536223e717842c2c74b269e9",
+    "web/native-audio-worklet.js": "4d1255a80f755a58a24d0f99028db466d3833e6225f54212c530b7b939332731",
+    "tools/test_em_web_audio_worklet.c": "bc231a34c2ac53a0af9579e027a43743a92c4d19406714609fbe20696bd63287",
+    "tools/test_native_audio_worklet.mjs": "9e21957038808a4de40533f9f35398c1587a8ec16502160f8f9bc7c19aafcce4",
+    "tools/test_em_web_host_audio.c": "d5b0075e3ed18869872e44455e177501033fb6a8a8dbdc02b4a102101d2da92e",
+    "tools/test_em_web_clock.c": "f56b7a636e52f76f78d76fcf8ac580d9b281c807664774eca315cfcea78f96b0",
+    "tools/verify_audio_loader.mjs": "0ecf49b51d4ae9da74c886ec5e4b857e45e59b5f42270aed2e40f0d0e011a398",
+    "tools/record_wasm_build.py": "1d0ae827ab0e672d6bb8660413f3a2b6502be05a257319b89904857ba3fdaff0",
+    "web/qa-audio-worklet.html": "dc5f633e55a52608bdf72c9f4ba308c0c52b2ca801f78b726570ebb85e345a4a"
+  },
+  "nativeProof": {
+    "sourceFixture": ".local/frontend-fixture/frontend.cpu.bin + frontend.ym.bin (actual original cold Main)",
+    "callbacks": 120,
+    "pcmFrames": 96000,
+    "pcmBytes": 384000,
+    "cpuBytes": 391624,
+    "ymfmBytes": 865,
+    "externalPackets": 120,
+    "duplicateSDLFrames": 0,
+    "discardedFrames": 0,
+    "wholeNormalizedCPUIdentical": true,
+    "serializedYMFMIdentical": true,
+    "pcmByteIdentical": true,
+    "normalization": "Only process FM pointer and consumed output ring/read/count are normalized; remaining complete CPU/device state compared",
+    "fallbackFailedPacketFramesPreserved": 800,
+    "clockRatesHz": [
+      30,
+      60,
+      120,
+      240
+    ],
+    "logs": [
+      "logs/native-host-audio.log",
+      "logs/native-worklet-pcm.log",
+      "logs/native-clock.log"
+    ],
+    "hostHeaderAtNativeCompile": "d9f1421c47b75c8a60ca4c1dbba11738339688698fa041ecbfac5f0ce8beddd9",
+    "subsequentHostDifference": "Whitespace in EM_JS pointer signature corrected for actual generated JS; native-test preprocessor branch unchanged. Compiled-loader ABI separately exercised."
+  },
+  "workletProof": {
+    "runner": "node:test + actual processor source in VM",
+    "tests": 9,
+    "normal48000SampleExact": true,
+    "stereoOrderPreserved": true,
+    "variableRenderQuantum": true,
+    "context44100FixedResampling": true,
+    "prerollMs": 120,
+    "bufferedProducerStallMs": 100,
+    "overflowCeilingMs": 320,
+    "epochFlushOldPacketsRejected": true,
+    "underrun": "32-output-sample fade to zero then120ms rebuffer; not a held last note",
+    "logs": [
+      "logs/node-worklet.log"
+    ],
+    "coldSuspendedProducerSeconds": 10,
+    "coldSuspendedPCMFramesConsumedWithoutPortQueue": 480000,
+    "resumeEpochOwner": "native C output-route setter; no JS epoch increment",
+    "browserSuspensionAfterActivePlayback": "old output flushed; fresh packets alone enter preroll"
+  },
+  "browserProof": {
+    "status": "Actual standalone stress PASS and short integrated44100Hz output observation PASS; sustained battle/device/listening remain unverified",
+    "standalonePage": "/qa-audio-worklet.html",
+    "physicalIOS": false,
+    "physicalAndroid": false,
+    "auditoryAssessment": false,
+    "sustainedLargeBattle": false,
+    "standaloneProof": "browser-standalone.json",
+    "reportedBy": "root CUA browser QA",
+    "secureContext": true,
+    "outputSampleRate": 48000,
+    "producerGap100msActual": 110.83500003814697,
+    "underrunAfter100ms": 0,
+    "minQueueAfter100msFrames": 320,
+    "producerGap250msActual": 267.2249999642372,
+    "underrunAfter250msFrames": 6848,
+    "underrunEventsAfter250ms": 1,
+    "recoveredPrimed": true,
+    "error": null,
+    "testAudioStoppedAndTabClosed": true,
+    "integratedObservation": {
+      "reportedBy": "root actual CUA browser QA",
+      "wasmSha256": "972f665e3fa5ff74f4a02e2390d5ce78156b0877c53dbaffe743cdadcb551b09",
+      "backend": "worklet",
+      "contextState": "running",
+      "outputSampleRate": 44100,
+      "hostAudioExternal": 1,
+      "nativeFrameCounterReported": 569,
+      "nativeDropped": 0,
+      "workletUnderrun": 0,
+      "newErrors": 0,
+      "boundary": "Short root-reported integrated observation; not a sustained battle, auditory or physical-device proof"
+    }
+  },
+  "boundaries": [
+    "Worklet consumes already generated PCM on audio rendering thread; native simulation and YMFM generation remain on main thread.",
+    "Buffer can absorb finite producer stalls, not guarantee continuous sound if native production remains slower than real time.",
+    "No SharedArrayBuffer or cross-origin-isolation requirement. Feature/API failure retains SDL ScriptProcessor fallback.",
+    "The historical267ffc/779ac browser measurements remain attributed to their own builds; not retagged as this output change.",
+    "Suspended AudioContext consumes/discards host output with separate JS suspendedDiscardedFrames; no MessagePort history is queued. Resume requests a fresh C-owned epoch before fresh PCM."
+  ],
+  "preparedSource": {
+    "originalRomAndInstructionHandlersUnchanged": true,
+    "emscriptenSyntaxOnly": "PASS",
+    "wasmBuild": "owned by root; no WASM built by this agent"
+  },
+  "compiledBridgeABI": {
+    "fixedSignature": "(const int16_t *p, unsigned n)",
+    "guard": "tools/verify_audio_loader.mjs",
+    "buildRecorderRunsBeforeSuccess": true,
+    "tinyActualEmccArtifactPASS": true,
+    "pcmFrames": 32,
+    "pcmBytes": 128,
+    "epochAndPlayingAndFallbackPASS": true,
+    "actualBroken8cLoaderNegativeControl": "ReferenceError: p is not defined (int16_tp parameter)",
+    "fullRebuiltLoaderStatus": "PASS actual full engine972f665e3fa5ff74f4a02e2390d5ce78156b0877c53dbaffe743cdadcb551b09",
+    "log": "logs/generated-abi-tiny.log",
+    "fullRebuiltLoaderProof": {
+      "passed": true,
+      "pcmFrames": 32,
+      "pcmBytes": 128,
+      "epochAndPlayingABI": true,
+      "missingBridgeFallback": true
+    }
+  }
+}

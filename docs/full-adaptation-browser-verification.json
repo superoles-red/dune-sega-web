@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "date": "2026-11-02",
+  "engine": {
+    "date": "2026-11-02",
+    "sdk": "Emscripten 3.1.74",
+    "wasmBytes": 5216866,
+    "sha256": "65be2c055c784c2cc44f9afd55d72c4003618f20d114f1d33c0cc21e1064422a",
+    "loaderSha256": "ef2183842411a46e1df0e4ca80e2cdab8fc6dbd9b7bef06353b2e6c1e68843e4",
+    "noGroupExports": true,
+    "webExports": [
+      "dune_web_action_b",
+      "dune_web_actions_debug",
+      "dune_web_begin",
+      "dune_web_building_ui_frame_rgb",
+      "dune_web_building_ui_json",
+      "dune_web_building_ui_tap",
+      "dune_web_building_ui_tap_checked",
+      "dune_web_camera_debug",
+      "dune_web_campaign_input",
+      "dune_web_campaign_json",
+      "dune_web_campaign_start",
+      "dune_web_clear_selection",
+      "dune_web_debug",
+      "dune_web_end",
+      "dune_web_frame_height",
+      "dune_web_frame_rgb",
+      "dune_web_frame_width",
+      "dune_web_gesture_query",
+      "dune_web_hover_screen",
+      "dune_web_menu_select_debug",
+      "dune_web_menu_select_reset",
+      "dune_web_minimap_begin",
+      "dune_web_minimap_move",
+      "dune_web_pad",
+      "dune_web_pan",
+      "dune_web_pause",
+      "dune_web_placement_active",
+      "dune_web_placement_begin",
+      "dune_web_placement_cancel",
+      "dune_web_placement_end",
+      "dune_web_placement_move",
+      "dune_web_placement_preview_active",
+      "dune_web_portrait_debug",
+      "dune_web_rebase",
+      "dune_web_reset_clock",
+      "dune_web_resize",
+      "dune_web_selection_debug",
+      "dune_web_selection_reset",
+      "dune_web_selection_tap_screen",
+      "dune_web_set_hidden",
+      "dune_web_set_paused",
+      "dune_web_tap_screen",
+      "dune_web_world_x",
+      "dune_web_world_y",
+      "dune_web_zoom"
+    ],
+    "saveExports": [
+      "dune_get_save_buffer",
+      "dune_load_state_from_buffer",
+      "dune_mouse_leave",
+      "dune_save_state_to_buffer"
+    ],
+    "adapterSha256": {
+      "em_web_host.h": "a23c5c98953d31c580df5d66f0b33e45238f0263edf991697d63e39dfba44162",
+      "em_web_building_ui.h": "cc75a57421cf02a286285577a824f08701cad813d3a327751fef04a9313306a0",
+      "em_web_campaign.h": "3bd981828585af11f2949c21e5a6585ee0e51e2436ffc30071e50f429190b97a"
+    }
+  },
+  "frontendSha256": {
+    "shell.js": "0cf0fbcaac616166cd967312078be7a4770b12c7ab6ad057ab2f060a57371d52",
+    "game-ui.mjs": "414e96701f027d17db35d1705888bb71833f02be5c91167469bbdd65b5da0442",
+    "building-ui.mjs": "09fbf9a7dbb7108957f3633969104ddbe7fb93f6aa7a5ad648db8ef0c2858020",
+    "native-ui.mjs": "9539895c838dc8fdb992fadc7f50f15a4a00277303f3bdc899cc3b42014841e4",
+    "results-ui.mjs": "f430201485822c35129d386905b5ecdeb3c1a58e77af844911b46fff6d57e704",
+    "modern-ui.css": "e976745116bdd9bdfce71dcfd951f93a94f50adcd1f0d3504e5497f3e10b6f66",
+    "campaign-state.mjs": "50813e3db8c4c82fb35fa19a975d2f9e64b897971d0093f2a2188a4c9f3f4e83",
+    "index.html": "99c3c509137a74a69247bd8a0d12f8a43fef3606b7499e7af8813a067a99a8f9"
+  },
+  "uiPackageSha256": "5648eeb874635865905cfd7d3b24eb7db89747da51c40dc6650d95b4a9d8460e",
+  "browser": "Codex in-app browser on macOS",
+  "storage": "?qa sessionStorage, normal localStorage not used for fixture victories",
+  "checks": {
+    "nativeBuildingFixtureLoads": 60,
+    "regularProducerMenus": 45,
+    "nativeSceneFixtureLoads": 25,
+    "sceneFaults": 0,
+    "falseWinsFromPostOutcomeLoads": 0,
+    "controlledPreVictory": {
+      "outcomeSeq": 1,
+      "house": 1,
+      "mission": 1,
+      "unlocked": [
+        1,
+        2,
+        1
+      ]
+    },
+    "controlledPreDefeat": {
+      "outcomeSeq": 2,
+      "unlocked": [
+        1,
+        2,
+        1
+      ]
+    },
+    "manualSaveAndPageReload": "PASS",
+    "previewThenPurchase": "PASS",
+    "campaignStartReplayAndMission2": "PASS",
+    "adviceAndProceed": "PASS",
+    "pauseMusicToggleAndRestartNo": "PASS",
+    "keyboardEnterBuildingBack": "PASS",
+    "shortViewportMouseDragScrollWithoutSelection": "PASS",
+    "newMissionAfterEarlyEnding": "PASS",
+    "starportConfirmedPrice": {
+      "before": 2499,
+      "after": 2190,
+      "nativePrice": 309
+    },
+    "tutorialFromFreshBootAndSkip": "PASS",
+    "optionsAfterTutorial": "PASS",
+    "firstBootMenuIntentWaitsForNativeMainPoll": "PASS"
+  },
+  "viewports": [
+    [
+      390,
+      844
+    ],
+    [
+      844,
+      390
+    ],
+    [
+      800,
+      300
+    ],
+    [
+      1280,
+      720
+    ]
+  ],
+  "artifacts": ".local/full-adaptation-browser",
+  "limits": [
+    "Controlled fixtures are not player-earned campaign completion",
+    "Physical iPhone and Android tests not performed",
+    "Full campaign playthrough and heavy-battle audio/sprite performance remain unverified"
+  ]
+}
