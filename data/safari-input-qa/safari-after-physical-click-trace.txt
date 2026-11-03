@@ -1,0 +1,67 @@
+The following is a diff from the previous accessibility tree for Window: "ReArrakis Dune: The Battle for Arrakis" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 28
+~						27 container {
+ "input": {
+ "events": [
+ "pointerdown:mouse:0@250,180",
+ "pointerup:mouse:0@250,180",
+ "lostpointercapture:mouse:0@0,0"
+ ],
+ "gesture": {
+ "mode": "idle",
+ "taps": 1,
+ "panEvents": 0,
+ "placementDrags": 0
+ },
+ "selected": {
+ "kind": "unit",
+ "pointer": 16720676,
+ "id": 35,
+ "type": 9,
+ "owner": 0,
+ "own": 1,
+ "hp": 200,
+ "maxHp": 200,
+ "product": 65535
+ }
+ },
+ "fixture": null,
+ "ui": {
+ "heroPaints": 1080,
+ "frameUploads": 1076,
+ "language": {
+ "code": "en",
+ "revision": 0,
+ "available": [
+ "en",
+ "ru"
+ 
++							67 текст {
+  "input": {
+    "events": [
+      "pointerdown:mouse:0@250,180",
+      "pointerup:mouse:0@250,180",
+      "lostpointercapture:mouse:0@0,0"
+    ],
+    "gesture": {
+      "mode": "idle",
+      "taps": 1,
+      "panEvents": 0,
+      "placementDrags": 0
+    },
+    "selected": {
+      "kind": "unit",
+      "pointer": 16720676,
+      "id": 35,
+      "type": 9,
+      "owner": 0,
+      "own": 1,
+      "hp": 200,
+      "maxHp": 200,
+      "product": 65535
+    }
+  },
+  "fixture": null,
+  "ui": {
+    "heroPaints": 
+The focused UI element is 4 Содержимое HTML Description: ReArrakis Dune: The Battle for Arrakis, URL: 127.0.0.1:4174/?qa

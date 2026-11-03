@@ -1,0 +1,71 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {bindMapInput} from '../web/map-input.mjs';
+import {MapGestures} from '../web/gestures.mjs';
+class Canvas{
+ constructor(){this.listeners=new Map();this.captured=new Set();this.kinds=new Map();this.captures=0;this.releases=0;}
+ addEventListener(name,fn,options){const list=this.listeners.get(name)??[];list.push({fn,capture:options===true||!!options?.capture});this.listeners.set(name,list);}
+ getBoundingClientRect(){return {left:20,top:30};}
+ setPointerCapture(id){this.captured.add(id);this.captures++;}
+ releasePointerCapture(id){if(!this.captured.delete(id))return;this.releases++;this.emit('lostpointercapture',{pointerId:id,pointerType:this.kinds.get(id)});}
+ emit(name,properties={}){
+  const e={type:name,pointerId:1,pointerType:'mouse',button:0,buttons:0,clientX:120,clientY:130,defaultPrevented:false,immediateStopped:false,preventDefault(){this.defaultPrevented=true;},stopImmediatePropagation(){this.immediateStopped=true;},...properties};
+  this.kinds.set(e.pointerId,e.pointerType);
+  for(const {fn}of [...(this.listeners.get(name)??[])].sort((a,b)=>+b.capture-+a.capture)){fn(e);if(e.immediateStopped)break;}
+  return e;
+ }
+}
+function setup(options={}){
+ const canvas=new Canvas(),calls={begin:[],end:[],tap:[],pan:[],zoom:[],hover:[],cancel:0,placeCancel:0,placeEnd:0,miniMove:[]};let input;
+ const gestures=new MapGestures({canPanAt:()=>options.world!==false,minimapStart:()=>!!options.minimap,minimapMove:(...p)=>calls.miniMove.push(p),tap:(...p)=>calls.tap.push(p),pan:(...p)=>calls.pan.push(p),zoom:(...p)=>calls.zoom.push(p),placementStart:()=>!!options.place,placementMove(){},placementEnd:()=>calls.placeEnd++,placementCancel:()=>calls.placeCancel++});
+ input=bindMapInput(canvas,{begin:(id,p,kind)=>{calls.begin.push({id,...p,kind});if(options.disabled)return false;gestures.down({id,...p,kind});return true;},move:(id,p)=>gestures.move({id,...p}),end:(id,p)=>{calls.end.push({id,...p});gestures.up({id,...p});},cancel:()=>{calls.cancel++;input.reset();gestures.cancel();},hover:p=>calls.hover.push(p)},{pointerEvents:options.pointerEvents!==false});
+ return {canvas,calls,gestures,input};
+}
+test('actual Safari pointerup→lostcapture→compatmouseup commits one tap even with buttons0',()=>{
+ const {canvas,calls,input}=setup();for(const name of ['pointerdown','mousedown','pointerup','lostpointercapture','mouseup','click'])canvas.emit(name,name==='lostpointercapture'?{clientX:0,clientY:0}:{});
+ assert.equal(calls.begin.length,1);assert.deepEqual(calls.tap,[[100,100]]);assert.equal(calls.end.length,1);assert.equal(calls.cancel,0);assert.equal(input.activeCount,0);
+});
+test('Chrome compatibility ordering also commits one tap; same-target SDL bubble listeners see no events',()=>{
+ const {canvas,calls}=setup();let sdl=0;for(const name of ['mousedown','mousemove','mouseup','click'])canvas.addEventListener(name,()=>sdl++,false);
+ for(const name of ['pointerdown','mousedown','pointermove','mousemove','pointerup','mouseup','lostpointercapture','click'])canvas.emit(name);
+ assert.equal(calls.tap.length,1);assert.equal(calls.begin.length,1);assert.equal(calls.cancel,0);assert.equal(sdl,0);
+});
+test('compatibility mouse events alone never become a second pointer stream',()=>{
+ const {canvas,calls}=setup();for(const name of ['mousedown','mousemove','mouseup','click'])canvas.emit(name);
+ assert.equal(calls.begin.length,0);assert.equal(calls.tap.length,0);assert.equal(calls.hover.length,0);
+});
+test('mouse pan uses CSS-local positions once and never commits a command on release',()=>{
+ const {canvas,calls}=setup();canvas.emit('pointerdown');canvas.emit('pointermove',{clientX:140});canvas.emit('mousemove',{clientX:140});canvas.emit('pointerup',{clientX:140});canvas.emit('mouseup',{clientX:140});
+ assert.deepEqual(calls.pan,[[20,0]]);assert.equal(calls.tap.length,0);assert.equal(calls.cancel,0);
+});
+test('unexpected capture loss cancels once; late pointerup and compatmouseup do not commit',()=>{
+ const {canvas,calls,input}=setup();canvas.emit('pointerdown');canvas.emit('lostpointercapture');canvas.emit('pointerup');canvas.emit('mouseup');
+ assert.equal(calls.cancel,1);assert.equal(calls.tap.length,0);assert.equal(input.activeCount,0);
+});
+test('pointercancel aborts original placement once without a placement confirmation',()=>{
+ const {canvas,calls}=setup({place:true});canvas.emit('pointerdown');canvas.emit('pointermove',{clientX:150});canvas.emit('pointercancel');canvas.emit('pointerup');
+ assert.equal(calls.placeCancel,1);assert.equal(calls.placeEnd,0);assert.equal(calls.tap.length,0);assert.equal(calls.cancel,1);
+});
+test('touch pinch and subsequent one-finger pan preserve gesture recognition without taps',()=>{
+ const {canvas,calls,input}=setup();canvas.emit('pointerdown',{pointerId:11,pointerType:'touch',clientX:100});canvas.emit('pointerdown',{pointerId:12,pointerType:'touch',clientX:140});canvas.emit('pointermove',{pointerId:12,pointerType:'touch',clientX:180});canvas.emit('pointerup',{pointerId:11,pointerType:'touch',clientX:100});canvas.emit('pointermove',{pointerId:12,pointerType:'touch',clientX:190});canvas.emit('pointerup',{pointerId:12,pointerType:'touch',clientX:190});
+ assert.equal(calls.zoom.filter(p=>p[0]!==1).length,1);assert.equal(calls.zoom.reduce((scale,p)=>scale*p[0],1),2);assert.deepEqual(calls.pan,[[20,0],[10,0]]);assert.equal(calls.tap.length,0);assert.equal(calls.cancel,0);assert.equal(input.activeCount,0);
+});
+test('pen down/up uses the same direct release; raw touch compatibility is prevented',()=>{
+ const {canvas,calls}=setup();canvas.emit('pointerdown',{pointerType:'pen'});canvas.emit('pointerup',{pointerType:'pen'});assert.equal(calls.tap.length,1);assert.equal(calls.begin[0].kind,'pen');assert.equal(canvas.emit('touchstart').defaultPrevented,true);
+});
+test('minimap press/drag/release remains a camera action with no contextual A tap',()=>{
+ const {canvas,calls}=setup({minimap:true,world:false});canvas.emit('pointerdown');canvas.emit('pointermove',{clientX:160});canvas.emit('pointerup',{clientX:160});assert.ok(calls.miniMove.length>=1);assert.equal(calls.tap.length,0);assert.equal(calls.pan.length,0);
+});
+test('secondary mouse buttons are suppressed without selecting or starting a gesture',()=>{
+ const {canvas,calls,input}=setup();for(const button of [1,2]){canvas.emit('pointerdown',{button});canvas.emit('pointerup',{button});canvas.emit('mousedown',{button});canvas.emit('mouseup',{button});}assert.equal(calls.begin.length,0);assert.equal(calls.tap.length,0);assert.equal(input.activeCount,0);
+});
+test('legacy mouse-only fallback is enabled only when Pointer Events are unavailable',()=>{
+ const {canvas,calls,input}=setup({pointerEvents:false});canvas.emit('pointerdown');canvas.emit('mousedown');canvas.emit('mousemove');canvas.emit('mouseup');assert.equal(calls.begin.length,1);assert.equal(calls.begin[0].id,'mouse');assert.equal(calls.tap.length,1);assert.equal(canvas.captures,0);assert.equal(input.activeCount,0);
+});
+test('blocked UI/reset cannot leave held capture or generate a later tap',()=>{
+ const disabled=setup({disabled:true});disabled.canvas.emit('pointerdown');disabled.canvas.emit('pointerup');assert.equal(disabled.calls.tap.length,0);assert.equal(disabled.input.activeCount,0);assert.equal(disabled.canvas.captures,0);
+ const {canvas,calls,input,gestures}=setup();canvas.emit('pointerdown');input.reset();gestures.cancel();canvas.emit('pointerup');assert.equal(calls.tap.length,0);assert.equal(calls.cancel,0);assert.equal(input.activeCount,0);
+});
+test('pointer hover reports CSS-local coordinates once, ignoring compatibility mousemove',()=>{
+ const {canvas,calls}=setup();canvas.emit('pointermove',{clientX:90,clientY:110});canvas.emit('mousemove',{clientX:90,clientY:110});assert.deepEqual(calls.hover,[{x:70,y:80}]);
+});

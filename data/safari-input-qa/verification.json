@@ -1,0 +1,91 @@
+{
+  "date": "2026-11-03",
+  "scope": "DOM map-pointer routing only; no C/WASM/ROM/gameplay/audio change",
+  "files": {
+    "web/map-input.mjs": "2b4c1cd3757856fa8eb23ca537c53f3d42a327f31d6f522d34266dbc444040cd",
+    "web/shell.js": "686393d4f04248449709a2c936821011048716810d3a529b761cc0bec89f569d",
+    "tests/map-input.test.mjs": "5611100ff981b95326014c42bfe120a2e7b566ce9956cdabe0ecc97f47baea2b"
+  },
+  "oldShellSha256": "07eb5f6838b1c639b9e2707924083ae74540b5f23c262588a565b64f9bae143e",
+  "rootReportedActualSafariBefore": {
+    "events": [
+      "pointerdown:mouse:0",
+      "mousedown:mouse:0",
+      "pointerup:mouse:0",
+      "lostpointercapture:mouse:0",
+      "mouseup:mouse:0"
+    ],
+    "taps": 0,
+    "panEvents": 1,
+    "selection": "none",
+    "cause": "lostpointercapture cancelled pending mouse gesture before compatibility mouseup committed it",
+    "trace": "safari-before-input-trace.txt"
+  },
+  "fix": {
+    "pointerEvents": "One pointerdown/move/up/cancel stream for mouse,touch,pen",
+    "releaseOrdering": "Clear owned pointer before committing and releasing capture; subsequent capture-loss/compatibility mouseup cannot cancel or double-commit",
+    "primaryMouseCheck": "button0; does not require buttons1",
+    "compatibilityMouseEvents": "prevented before SDL, not gesture inputs",
+    "fallback": "Mouse gesture handlers only when PointerEvent is unavailable",
+    "nativeGestureRules": "Existing MapGestures and original WASM/native commands unchanged"
+  },
+  "node": {
+    "passed": 13,
+    "tests": [
+      "Exact Safari event order/buttons0",
+      "Chrome order",
+      "SDL compatibility suppression",
+      "No duplicate compatibility taps",
+      "Mouse CSS pan without command",
+      "Unexpected lost capture cancels once",
+      "Pointercancel aborts placement",
+      "Touch pinch then one-pointer pan",
+      "Pen tap",
+      "Minimap camera-only",
+      "Secondary mouse ignored",
+      "Legacy mouse fallback",
+      "Blocked/reset gesture and pointer hover"
+    ],
+    "log": "node-input.log",
+    "command": "node --test tests/map-input.test.mjs",
+    "suiteCommand": "node --test tests/*.test.mjs",
+    "ciDiscovery": "tests/map-input.test.mjs is collected by the ordinary tests/*.test.mjs command",
+    "suitePassed": 102,
+    "suiteFailed": 0,
+    "suiteLog": "node-suite.log"
+  },
+  "browserAfter": {
+    "actualSafariPhysicalClick": "PASS",
+    "events": [
+      "pointerdown:mouse:0@250,180",
+      "pointerup:mouse:0@250,180",
+      "lostpointercapture:mouse:0@0,0"
+    ],
+    "taps": 1,
+    "panEvents": 0,
+    "selected": {
+      "kind": "unit",
+      "id": 35,
+      "type": 9,
+      "owner": 0,
+      "hp": 200
+    },
+    "trace": "safari-after-physical-click-trace.txt",
+    "AXCaveat": "AX canvas-image activation produced unequal down/up positions and correctly became a pan; physical coordinate click verified actual map selection.",
+    "furtherOrderPanBuildingChecks": {
+      "unitOrder": "PASS: following map click clears the selected Tank after original command",
+      "buildingSelection": "PASS: Yard click exposes Clear selection + Repeat production",
+      "buildingEntry": "PASS: second physical click opens native building menu with EXIT/FIX/STOP and Windtrap",
+      "buildingPreviewAndExit": "PASS: first Windtrap button selects preview; EXIT returns to map",
+      "mapDrag": "PASS: physical pointer drag from CSS550,285 to650,285 keeps Yard selection and context actions"
+    },
+    "physicalPhones": "Not tested"
+  },
+  "wasmUnchanged": "4f3a8c75663e87b0f7dbcad2aff11ee36fa434d9d0a82d87a74318700ee64c22",
+  "chromiumAfter": {
+    "mapTap": "PASS: Yard selected",
+    "mapDrag": "PASS: cameraX295 to264, taps1 stays1, selected pointer preserved",
+    "consoleErrors": 0,
+    "centeredSelected": "PASS at390x844 and844x390 with Russian picker; native bitmap layout assertions also cover EN/RU"
+  }
+}

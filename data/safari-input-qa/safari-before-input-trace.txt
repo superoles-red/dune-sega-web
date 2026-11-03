@@ -1,0 +1,56 @@
+The following is a diff from the previous accessibility tree for Window: "ReArrakis Dune: The Battle for Arrakis" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 26
+~						25 container {
+ "input": {
+ "events": [
+ "pointerdown:mouse:0",
+ "mousedown:mouse:0",
+ "pointerup:mouse:0",
+ "lostpointercapture:mouse:0",
+ "mouseup:mouse:0"
+ ],
+ "gesture": {
+ "mode": "idle",
+ "taps": 0,
+ "panEvents": 1,
+ "zooms": 0,
+ "placementDrags": 0,
+ "edgePans": 0,
+ "clearRequests": 0,
+ "bRequests": 0,
+ "orderFeedback": {
+ "active": false,
+ "assetReady": true,
+ "attackAssetReady": true,
+ "special": null,
+ "lastSequence": 0,
+ "acceptedIntents": 0,
+ "displayedPulses": 0,
+ "pulse": 0,
+ "world": null,
+ "projection": 
++							66 текст {
+  "input": {
+    "events": [
+      "pointerdown:mouse:0",
+      "mousedown:mouse:0",
+      "pointerup:mouse:0",
+      "lostpointercapture:mouse:0",
+      "mouseup:mouse:0"
+    ],
+    "gesture": {
+      "mode": "idle",
+      "taps": 0,
+      "panEvents": 1,
+      "zooms": 0,
+      "placementDrags": 0,
+      "edgePans": 0,
+      "clearRequests": 0,
+      "bRequests": 0,
+      "orderFeedback": {
+        "active": false,
+        "assetReady": true,
+        "attackAssetReady": true,
+        "special": null,
+  
+The focused UI element is 4 Содержимое HTML Description: ReArrakis Dune: The Battle for Arrakis, URL: 127.0.0.1:4174/?qa

@@ -1,5 +1,6 @@
 import {MapGestures,placementEdgeVelocity} from './gestures.mjs';
-import {NativeArt} from './native-ui.mjs';
+import {bindMapInput} from './map-input.mjs';
+import {NativeArt} from './native-ui.mjs?v=20261103-safari1';
 import {GameInterface} from './game-ui.mjs';
 import {validHouse,validMission} from './campaign-state.mjs';
 import {contextAction} from './context-action.mjs';
@@ -17,23 +18,22 @@ const SAVE_KEY='dune-original-aot-state-v2';
 const params=new URLSearchParams(location.search),qaMode=params.has('qa'),legacyMode=params.has('legacy');
 let gameUI=null,art=null,enginePromise=null,resolveEngine,rejectEngine,actionView=null;
 function browserStorage(){try{return qaMode?sessionStorage:localStorage;}catch{return {getItem:()=>null,setItem:()=>{throw Error('Хранилище браузера недоступно');}};}}
-const touches=new Set();
-let started=false,ready=false,mouseLeft=false,messageTimer,lastSize='',queuedResize=false;
+let mapInput=null;
+let started=false,ready=false,messageTimer,lastSize='',queuedResize=false;
 let lastGesture='idle',lastEdgeTime=0,latestActions={},lastActionKind='',lastCanvasVisible=null;
 const counters={taps:0,panEvents:0,zooms:0,placementDrags:0,edgePans:0,clearRequests:0,bRequests:0};
 const orderFeedback=new OrderFeedback({canvas});
 const local=e=>{const r=canvas.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};};
-const capture=(element,id)=>{try{element.setPointerCapture(id);}catch{}};
 const stop=e=>{e.preventDefault();e.stopImmediatePropagation();};
 function resumeAudio(){nativeAudio.resume();}
 function tell(text){document.getElementById('message').textContent=text;clearTimeout(messageTimer);messageTimer=setTimeout(()=>{document.getElementById('message').textContent='';},2500);}
 function nativeJSON(name){try{return ready&&Module[name]?JSON.parse(Module.UTF8ToString(Module[name]())):{};}catch{return {};}}
 function query(x,y){return ready&&!gameUI?.capturesInput?(Module._dune_web_gesture_query?.(x,y)??0):0;}
 function resizeGame(){if(queuedResize)return;queuedResize=true;requestAnimationFrame(()=>{queuedResize=false;const r=canvas.getBoundingClientRect(),key=Math.round(r.width)+':'+Math.round(r.height);if(ready&&key!==lastSize){lastSize=key;Module._dune_web_resize?.(Math.round(r.width),Math.round(r.height));}});}
-function cancelGesture(){gestures.cancel();mouseLeft=false;touches.clear();if(ready)Module._dune_web_end?.();lastEdgeTime=0;}
+function cancelGesture(){mapInput?.reset();gestures.cancel();if(ready)Module._dune_web_end?.();lastEdgeTime=0;}
 function clearSelection(){if(!ready)return;cancelGesture();orderFeedback.clear();Module._dune_web_placement_cancel?.();counters.clearRequests++;Module._dune_web_clear_selection?.();pollState();}
 function nativeAction(){if(!ready)return;const action=contextAction(latestActions);if(!action)return;resumeAudio();if(action.method==='self')Module._dune_web_action_self?.();else{counters.bRequests++;Module._dune_web_action_b?.();}pollState();}
-function beginPointer(id,p,kind){if(!ready||gameUI?.capturesInput)return;resumeAudio();if(query(p.x,p.y)===1)orderFeedback.aimAt(p.x,p.y);canvas.focus({preventScroll:true});if(!gestures.points.size)Module._dune_web_begin?.(p.x,p.y);gestures.down({id,...p,kind});}
+function beginPointer(id,p,kind){if(!ready||gameUI?.capturesInput)return false;resumeAudio();if(query(p.x,p.y)===1)orderFeedback.aimAt(p.x,p.y);canvas.focus({preventScroll:true});if(!gestures.points.size)Module._dune_web_begin?.(p.x,p.y);gestures.down({id,...p,kind});return true;}
 function endPointer(id,p){gestures.up({id,...p});if(query(p.x,p.y)===1)orderFeedback.releaseAim(p.x,p.y);else orderFeedback.releaseAim();if(!gestures.points.size)Module._dune_web_end?.();}
 function mapTap(x,y){
  if(!ready||gameUI?.capturesInput)return;
@@ -54,16 +54,12 @@ const gestures=new MapGestures({
   placementCancel:()=>Module._dune_web_placement_cancel?.(),
   state:mode=>{lastGesture=mode;document.body.classList.toggle('dragging',mode==='pan');document.body.classList.toggle('placing',mode==='place');},
 });
-// Own the events before SDL sees them. A click is committed only on release.
-canvas.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'){capture(canvas,e.pointerId);e.stopImmediatePropagation();return;}stop(e);capture(canvas,e.pointerId);touches.add(e.pointerId);beginPointer(e.pointerId,local(e),e.pointerType);},true);
-canvas.addEventListener('pointermove',e=>{if(e.pointerType==='mouse')return;stop(e);if(touches.has(e.pointerId))gestures.move({id:e.pointerId,...local(e)});},true);
-canvas.addEventListener('pointerup',e=>{if(e.pointerType==='mouse')return;stop(e);if(touches.has(e.pointerId)){endPointer(e.pointerId,local(e));touches.delete(e.pointerId);}},true);
-canvas.addEventListener('pointercancel',e=>{stop(e);cancelGesture();},true);
-canvas.addEventListener('lostpointercapture',e=>{if(e.pointerType==='mouse'){if(mouseLeft)cancelGesture();}else if(touches.has(e.pointerId))cancelGesture();},true);
-canvas.addEventListener('mousedown',e=>{stop(e);if(e.button!==0)return;mouseLeft=true;beginPointer('mouse',local(e),'mouse');},true);
-canvas.addEventListener('mousemove',e=>{stop(e);const p=local(e);if(mouseLeft)gestures.move({id:'mouse',...p});else if(query(p.x,p.y)===1)orderFeedback.aimAt(p.x,p.y);},true);
-canvas.addEventListener('mouseup',e=>{stop(e);if(e.button!==0||!mouseLeft)return;mouseLeft=false;endPointer('mouse',local(e));},true);
-for(const name of ['click','dblclick','auxclick','contextmenu','touchstart','touchmove','touchend','touchcancel'])canvas.addEventListener(name,stop,{capture:true,passive:false});
+// One PointerEvent stream owns mouse/touch/pen before SDL sees compatibility
+// mouse events. A click is committed only on the real pointer release.
+mapInput=bindMapInput(canvas,{
+  begin:beginPointer,move:(id,p)=>gestures.move({id,...p}),end:endPointer,
+  cancel:cancelGesture,hover:p=>{if(query(p.x,p.y)===1)orderFeedback.aimAt(p.x,p.y);},position:local,
+});
 canvas.addEventListener('wheel',e=>{stop(e);const p=local(e);if(query(p.x,p.y)!==1||gestures.points.size)return;const unit=e.deltaMode===1?16:e.deltaMode===2?canvas.clientHeight:1;const factor=Math.exp(-Math.max(-240,Math.min(240,e.deltaY*unit))*(e.ctrlKey?.006:.002));orderFeedback.panAim();counters.zooms++;Module._dune_web_zoom?.(factor,p.x,p.y);orderFeedback.releaseAim(p.x,p.y);},{capture:true,passive:false});
 
 function bindButton(button,action){

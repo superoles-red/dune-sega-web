@@ -75,11 +75,12 @@ export class NativeArt {
    const localPaint=paint+':'+this.language?.revision;if(localPaint===lastPaint)return;lastPaint=localPaint;button.setAttribute('aria-label',this.displayText(opts.ariaLabel||String(current)));const pw=Math.round(box.width*dpr),ph=Math.round(box.height*dpr);if(can.width!==pw)can.width=pw;if(can.height!==ph)can.height=ph;const c=can.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,box.width,box.height);c.imageSmoothingEnabled=false;const w=box.width,h=box.height,u=Math.min(2,h/24);
    this.frame(c,opts.disabled?'command-skin-disabled':'command-skin-normal',0,0,w,h,{group:'screen',unit:u});
    let left=12;if(opts.back){const img=this.part('back-menu-arrow-native','screen')||this.part('back-glyph-native','screen');if(img){const s=Math.min(1.6,(h-12)/16);this.blit(c,img,10,(h-16*s)/2,s);left=10+16*s+6;}}else if(opts.image||opts.flag){const img=opts.flag?this.flag(opts.flag):this.part(opts.image,'screen');if(img){const s=Math.min((h-12)/img.height,w*.28/img.width);this.blit(c,img,12,(h-img.height*s)/2,s);left=24+img.width*s;}}
-   const subtitle=this.displayText(opts.subtitle||''),ss=Math.max(.8,Math.min(1.5,(w-16)/(Math.max(1,subtitle.length)*8))),gap=subtitle?4:0,subHeight=subtitle?8*ss:0,label=opts.translate===false?String(current):this.displayText(current);
+   const subtitleWidth=opts.back||opts.image||opts.flag?w-left-8:w-12;
+   const subtitle=this.displayText(opts.subtitle||''),ss=Math.max(.8,Math.min(1.5,Math.min(w-16,subtitleWidth)/(Math.max(1,subtitle.length)*8))),gap=subtitle?4:0,subHeight=subtitle?8*ss:0,label=opts.translate===false?String(current):this.displayText(current);
    const scale=Math.min(opts.large?4:2,(w-left-10)/(Math.max(1,label.length)*8),(h-12-gap-subHeight)/8);
    const hasShadow=!!this.skin.fonts.uiShadow;const tx=opts.back||opts.image||opts.flag?left+(w-left-8)/2:w/2,ty=(h-8*scale-gap-subHeight)/2;
    if(!hasShadow){const textW=label.length*8*scale;this.repeat(c,this.part('native-black'),tx-textW/2-3,ty-2,textW+6,8*scale+4);}
-   this.text(c,label,tx,ty,{scale,align:'center',shadow:hasShadow,translate:false});if(subtitle)this.text(c,subtitle,w/2,ty+8*scale+gap,{scale:ss,align:'center',transparent:true,maxWidth:w-12,translate:false});
+   this.text(c,label,tx,ty,{scale,align:'center',shadow:hasShadow,translate:false});if(subtitle)this.text(c,subtitle,tx,ty+8*scale+gap,{scale:ss,align:'center',transparent:true,maxWidth:subtitleWidth,translate:false});
    if(phase!==null||focus)this.frame(c,'command-focus-'+(phase??0),0,0,w,h,{group:'screen',unit:1.5,fill:false});
   };
   const stopPulse=()=>{if(pulseRaf)cancelAnimationFrame(pulseRaf);pulseRaf=0;pulsePhase=null;};
