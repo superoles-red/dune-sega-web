@@ -1141,9 +1141,9 @@
       "sha256": "0da3dd208b2dc331e932b0a82651670642befe8d5849819c41bee890a70d45a9"
     },
     "data/safari-input-qa/verification.json": {
-      "bytes": 5563,
+      "bytes": 5948,
       "mode": "0o644",
-      "sha256": "5437cd25c912dbcb339638bd0eccdd6178e513572c12914eb577d5d6bf635b94"
+      "sha256": "9aac498938378c88be5b1f96215852deb67eb1630c797496d6e8f60bfceb95fc"
     },
     "data/scene-presentation/README.md": {
       "bytes": 3497,
@@ -6028,12 +6028,12 @@
     "web/index.html": {
       "bytes": 4449,
       "mode": "0o644",
-      "sha256": "b8efbf5687efeaa18db605bb98bf44103772a0203c48328fe8158e94de1598d4"
+      "sha256": "8dff60f0b45f94cf40eda71890c83c6dafbb441440cb4588e79b5d8a6c8ed8b7"
     },
     "web/input-check.mjs": {
-      "bytes": 2177,
+      "bytes": 2725,
       "mode": "0o644",
-      "sha256": "03fc033403aca82735437d9dc229e154781eb23df0d855753c70e31ca272b527"
+      "sha256": "6e7dc216684832dee05f060c5c0fd5556b4cc5ea163f77bb78841d9b2eddb672"
     },
     "web/input-feedback/attack-manifest.json": {
       "bytes": 2305,
@@ -6261,9 +6261,9 @@
       "sha256": "58eea5578f3bc5f048bde5f0352ac0252adc3b1351eb0cb0292590d70d9dc5ab"
     },
     "web/shell.js": {
-      "bytes": 18691,
+      "bytes": 18710,
       "mode": "0o644",
-      "sha256": "9b5b175c20f7959dda2a79f7c5382fae93a6febefa0c1b79a1c79558e89bf756"
+      "sha256": "5b179e2dcd22fbb77f8fce34bd237fd7ab3d2e31153d105bb2614773194d79c9"
     },
     "web/training-manifest.json": {
       "bytes": 9463,

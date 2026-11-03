@@ -1,6 +1,6 @@
 import {MapGestures,placementEdgeVelocity} from './gestures.mjs';
 import {bindMapInput} from './map-input.mjs';
-import {NativeArt} from './native-ui.mjs?v=20261103-safari3';
+import {NativeArt} from './native-ui.mjs?v=20261103-safari4';
 import {GameInterface} from './game-ui.mjs';
 import {validHouse,validMission} from './campaign-state.mjs';
 import {contextAction} from './context-action.mjs';
@@ -167,7 +167,7 @@ function placementFrame(now){
   if(dt&&(vx||vy)){Module._dune_web_pan?.(-vx*dt,-vy*dt);counters.edgePans++;}
   Module._dune_web_placement_move?.(p.x,p.y);
 }
-if(inputCheckMode)import('./input-check.mjs').then(({mountInputCheck})=>{
+if(inputCheckMode)import('./input-check.mjs?v=20261103-safari4').then(({mountInputCheck})=>{
  inputCheck=mountInputCheck({canvas,read:()=>({taps:counters.taps,pan:counters.panEvents,mode:gestures.mode,lastTap:lastMapTap,selected:{kind:latestActions.selected?.kind||'none',id:latestActions.selected?.id},ready,capturesInput:!!gameUI?.capturesInput,camera:{map:latestCamera.map,css:[latestCamera.cssWidth,latestCamera.cssHeight],output:[latestCamera.outputWidth,latestCamera.outputHeight],left:latestCamera.left,top:latestCamera.top,scale:latestCamera.scale,queued:latestCamera.queuedClicks}})});
 }).catch(e=>console.warn('Input diagnostic unavailable:',e.message));
 setInterval(pollState,50);if(!qaMode)setInterval(()=>saveGame(true),30000);

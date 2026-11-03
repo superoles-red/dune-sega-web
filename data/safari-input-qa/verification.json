@@ -3,10 +3,10 @@
   "scope": "DOM map-pointer routing only; no C/WASM/ROM/gameplay/audio change",
   "files": {
     "web/map-input.mjs": "2b4c1cd3757856fa8eb23ca537c53f3d42a327f31d6f522d34266dbc444040cd",
-    "web/shell.js": "9b5b175c20f7959dda2a79f7c5382fae93a6febefa0c1b79a1c79558e89bf756",
+    "web/shell.js": "5b179e2dcd22fbb77f8fce34bd237fd7ab3d2e31153d105bb2614773194d79c9",
     "tests/map-input.test.mjs": "5611100ff981b95326014c42bfe120a2e7b566ce9956cdabe0ecc97f47baea2b",
-    "web/index.html": "b8efbf5687efeaa18db605bb98bf44103772a0203c48328fe8158e94de1598d4",
-    "web/input-check.mjs": "03fc033403aca82735437d9dc229e154781eb23df0d855753c70e31ca272b527"
+    "web/index.html": "8dff60f0b45f94cf40eda71890c83c6dafbb441440cb4588e79b5d8a6c8ed8b7",
+    "web/input-check.mjs": "6e7dc216684832dee05f060c5c0fd5556b4cc5ea163f77bb78841d9b2eddb672"
   },
   "oldShellSha256": "07eb5f6838b1c639b9e2707924083ae74540b5f23c262588a565b64f9bae143e",
   "rootReportedActualSafariBefore": {
@@ -103,16 +103,29 @@
   },
   "cacheEntryVersion": "20261103-safari2",
   "cacheVersionNote": "Final entry and NativeArt query updated together to avoid requiring a manual resource reload; pointer implementation unchanged from validated v1.",
-  "publicAfter": "Root reported public Safari click still unresolved; opt-in diagnostic safari3 published next to distinguish loaded source/event/target from native acceptance",
+  "publicAfter": "Unresolved pending root actual PUBLIC safari4 compact event trace; LOCAL normal and QA selection remain verified separately",
   "inputDiagnostic": {
     "activation": "URLSearchParams.has(inputcheck); default off",
     "module": "web/input-check.mjs",
-    "cacheToken": "20261103-safari3",
+    "cacheToken": "20261103-safari4",
     "reads": "Only existing JS counters/MapGestures/cached latestActions/camera; zero extra native getters or commands",
     "nativeTapCallsPerRelease": 1,
     "pointerAdapterUnchanged": true,
-    "ui": "Compact visible role=status output plus Snapshot; passive window trace of last6 pointer events, before/after mode; diagnostic control events excluded",
-    "displayOrder": "taps/pan/mode/lastTap/selected then ready/captures/camera then events",
-    "ciPassed": 102
+    "ui": "Compact role=status output begins with last4 eventSummary strings; Snapshot label includes latest down/up plus last2 move coordinates/buttons",
+    "displayOrder": "eventSummary first, taps/pan/mode/lastTap/selected then ready/captures/camera",
+    "ciPassed": 102,
+    "dynamicImport": "./input-check.mjs?v=20261103-safari4"
+  },
+  "publicDiagnosticV3": {
+    "taps": 0,
+    "pan": 2,
+    "lastTap": null,
+    "cameraChanged": false,
+    "physicalCUAPoint": [
+      950,
+      1100
+    ],
+    "finding": "Gesture became pan before native tap call; no C/core change justified without exact pointermove coordinates",
+    "next": "Compact safari4 formatter, no pointer-adapter changes"
   }
 }
