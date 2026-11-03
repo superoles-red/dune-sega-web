@@ -1,0 +1,19 @@
+{
+  "files": {
+    "dune-180.png": {
+      "bytes": 3759,
+      "sha256": "ffa5649c56e0201a9c2c787e43d2f7a617f6b82aa6ff353edf0592526a3045ca"
+    },
+    "dune-192.png": {
+      "bytes": 4173,
+      "sha256": "d52cb717871be4d1644f1cadfdcd54ac7deefa5a65de95c0dd9c102e435298d9"
+    },
+    "dune-512.png": {
+      "bytes": 12832,
+      "sha256": "8e6b63c220aa5b0066ad7023f7de688f69d249559f779bec3a76b25f540c7e99"
+    }
+  },
+  "method": "Original complete title image; centered black square; nearest-neighbor resize; no new drawn pixels",
+  "source": "web/ui-assets/screen-assets/art/title-complete-without-choices.png",
+  "sourceSha256": "8e0da9d445fcbb657c1e7ef0537ca4fb1bdadb8f63b7f8763b39be37bb6d7cd9"
+}

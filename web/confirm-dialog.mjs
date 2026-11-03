@@ -14,7 +14,7 @@ export class NativeConfirmation {
  ask({title,lines=[],confirm='CONTINUE',cancel='CANCEL',danger=false,confirmFeedback=true}){
   if(this.active)this.close(false);this.active=true;this.deciding=false;this.choiceVersion=(this.choiceVersion||0)+1;this.element.classList?.remove?.('accepting','cancelling');this.title=title;this.lines=lines;const local=value=>this.art.displayText?.(value)||value;this.text.setAttribute('aria-label',local(title));this.element.setAttribute('aria-label',[title,...lines].map(local).join('. '));
   this.previousFocus=document.activeElement;this.inert=[];
-  for(const id of ['scene-ui','building-screen','native-menu','context-actions','demo-launch']){const e=document.getElementById(id);if(e){this.inert.push([e,e.inert]);e.inert=true;}}
+  for(const id of ['scene-ui','building-screen','native-menu','global-fullscreen','context-actions','demo-launch']){const e=document.getElementById(id);if(e){this.inert.push([e,e.inert]);e.inert=true;}}
   this.actions.replaceChildren();this.views=[];
   for(const [label,value] of [[confirm,true],[cancel,false]]){
    const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',label);this.actions.append(b);

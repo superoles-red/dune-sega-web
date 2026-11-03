@@ -1,24 +1,34 @@
 {
   "files": {
     ".github/workflows/pages.yml": {
-      "bytes": 1775,
+      "bytes": 1946,
       "mode": "0o644",
-      "sha256": "e3abe4065ef93da98603973999993b233d67f6cb6c19e2676a9fd451da60bd00"
+      "sha256": "bc4f09b8d5792cdc62f2b4611d463f3d1ef2880bcb3a16ca812fac227c52b63e"
     },
     ".gitignore": {
       "bytes": 61,
       "mode": "0o644",
       "sha256": "6d37bdfbf1faf08dca74d81c3d3f929c4d5036202e10f9baa91fba0269efc45d"
     },
-    "LICENSE-ReArrakis.md": {
-      "bytes": 2581,
+    "CONTRIBUTING.md": {
+      "bytes": 2661,
       "mode": "0o644",
-      "sha256": "4f3ad3e04020df5bb8b5bfd15573381d482785116546c3735818d82043353297"
+      "sha256": "f11d7c61cbd33a506b857460904fb9a37a40bc843491ac57b429b0c266ad55a1"
+    },
+    "LICENSE": {
+      "bytes": 1429,
+      "mode": "0o644",
+      "sha256": "b2115d7681921a800dee164b33a7389c8e44a33e65d7ab6cc144b143ab3d74db"
+    },
+    "LICENSE-ReArrakis.md": {
+      "bytes": 2559,
+      "mode": "0o644",
+      "sha256": "5c51106d6ee86ec6ebe07f60495b1315d9092cce6eadbe53dc79b1c2565faaa0"
     },
     "README.md": {
-      "bytes": 45034,
+      "bytes": 51625,
       "mode": "0o644",
-      "sha256": "69ff8b9a89a22e8b8da159dc446bbcbfa902903c1b2ce889e0e11a26cdfa084c"
+      "sha256": "d42c63c81174742aafc26329aa1b352e1f9af4f4893203476fce4bc3ce569d98"
     },
     "THIRD_PARTY_NOTICES.md": {
       "bytes": 3653,
@@ -3616,9 +3626,14 @@
       "sha256": "056201c34ca3ac9a656b044cba2dd761c17cb17cdcdcd0074c82595170bddb56"
     },
     "docs/publication.md": {
-      "bytes": 7371,
+      "bytes": 9191,
       "mode": "0o644",
-      "sha256": "0f7cf8fa36a1cf0a29ceaa665064883ad72b4bfa778bdb6c265c021e7374b504"
+      "sha256": "d6827c9e07f2729088d3369aa15334ce24b43decca75b8307293ec0cc24765ad"
+    },
+    "docs/pwa-and-saves.md": {
+      "bytes": 9987,
+      "mode": "0o644",
+      "sha256": "480591e3c086ca004a1f1f3e3c01ee74e80f67170dd1128371d84182c8124426"
     },
     "docs/source-identity.json": {
       "bytes": 502,
@@ -3659,6 +3674,11 @@
       "bytes": 2999,
       "mode": "0o644",
       "sha256": "9a1714c8cd5180faed96815d4ea9b6b1dc3ca2338991f62eb8b5b1a5b08d46b0"
+    },
+    "tests/browser-features.test.mjs": {
+      "bytes": 13047,
+      "mode": "0o644",
+      "sha256": "f1ae1c6c9222ac8d7544fb61e56e56f7e90fb057e593c5c3075ed0a415b5891c"
     },
     "tests/building-layout.test.mjs": {
       "bytes": 3060,
@@ -3735,6 +3755,21 @@
       "mode": "0o644",
       "sha256": "16cfb8f0ece846f78e7de022a7d4acc2324e97ed8b5f2db6411965afe2be1972"
     },
+    "tests/platform-navigation.test.mjs": {
+      "bytes": 14200,
+      "mode": "0o644",
+      "sha256": "9325fc693502b4f0511135257cfaac785153beb3885ba8b47f253a8ee6a45cf2"
+    },
+    "tests/pwa-cache.test.mjs": {
+      "bytes": 7321,
+      "mode": "0o644",
+      "sha256": "9b0c15b08dd534395c18a84b549373f570f2be7cca590b3e833645b72f13cf9b"
+    },
+    "tests/save-files.test.mjs": {
+      "bytes": 10717,
+      "mode": "0o644",
+      "sha256": "a226150e0c3c78d10fa0846453e819da0b7eb077100df06b6b6e80ac3a49499b"
+    },
     "tests/scene-flow.test.mjs": {
       "bytes": 9616,
       "mode": "0o644",
@@ -3750,10 +3785,20 @@
       "mode": "0o644",
       "sha256": "0d0aa9669c5c4da81c41297dab4217e0eff6073212affb703c5610ae60c21448"
     },
+    "tools/bootstrap_core_source.py": {
+      "bytes": 2672,
+      "mode": "0o644",
+      "sha256": "15ab0b9802879e346b8c8ff29dabe6d8e5620c7d00cb86475a5061e37e52b3ff"
+    },
+    "tools/bootstrap_emsdk.sh": {
+      "bytes": 924,
+      "mode": "0o644",
+      "sha256": "c8408ea529261ffc1bf79419ee6803e0646374bac04302e73591278388a0c71a"
+    },
     "tools/build.sh": {
-      "bytes": 743,
+      "bytes": 1293,
       "mode": "0o755",
-      "sha256": "f86b7e03802b2377409d4e40e2847a6eedaedc441cf307212bd2310902de8099"
+      "sha256": "11609f2f1cdf3e59aa3f624db49756e3f9b94e975e118c337a5686f8aff95940"
     },
     "tools/build_asset_library.py": {
       "bytes": 13203,
@@ -3786,9 +3831,14 @@
       "sha256": "fd46d8a2a7bdaf41f73491ff92fcdcfbc6f7c66898fb1cdeac9b4026bf3d9cd9"
     },
     "tools/build_publication.py": {
-      "bytes": 9022,
+      "bytes": 10807,
       "mode": "0o644",
-      "sha256": "ed2cfeaa6965c5d959775caa84f47de5b79a200510d00a515daadebac5100505"
+      "sha256": "2d35c8b4195c9a8e44db8eb7a5e97ba680805742c2792bfc402f3719a6038c56"
+    },
+    "tools/build_pwa_icons.py": {
+      "bytes": 1959,
+      "mode": "0o644",
+      "sha256": "4599c99d785863dea6f5d8685edc1501285c8b1dbbe73603c607c54d38b3d719"
     },
     "tools/build_qa_scene_fixtures.py": {
       "bytes": 6261,
@@ -3921,9 +3971,9 @@
       "sha256": "94665c97cdd73e7d0bfc478c4a437e600bbfbb04336af715747021790e262b53"
     },
     "tools/export_publication_repository.py": {
-      "bytes": 3476,
+      "bytes": 3516,
       "mode": "0o644",
-      "sha256": "9e17ced52532033077267dafb9ca7724ed7183e598339af82ef0deb5391ca9df"
+      "sha256": "a21c049232c31727723bbff7e88b60e398aa70405ac4c64061843ea731322b78"
     },
     "tools/export_scene_references.py": {
       "bytes": 2218,
@@ -4089,6 +4139,11 @@
       "bytes": 761,
       "mode": "0o644",
       "sha256": "445a315e9a01e79a2ae1deea2d4aeae5208c47b91d820a695184865197e7b2be"
+    },
+    "tools/test_bootstrap_core_source.py": {
+      "bytes": 3059,
+      "mode": "0o644",
+      "sha256": "f9d10c00fb25068b24a1accb2530687c29f6238814319c42135b66da54f414a9"
     },
     "tools/test_demo_audio_load.c": {
       "bytes": 2797,
@@ -4375,10 +4430,300 @@
       "mode": "0o644",
       "sha256": "586d329425989d41bb9cba3b90e9a5ca42cea1d1915494b2b1873e526538e857"
     },
+    "vendor/rearrakis/LICENSE": {
+      "bytes": 1129,
+      "mode": "0o644",
+      "sha256": "c13caded3cc10264b580ea476f8c3c76afba1a1d4d8ab4c1f5c0e60394c48067"
+    },
+    "vendor/rearrakis/README.md": {
+      "bytes": 2200,
+      "mode": "0o644",
+      "sha256": "946c6d6b383e46165d9cb141bb160f69f49d56abccf2b06995ce1baa8338d448"
+    },
+    "vendor/rearrakis/build/dune-base.c": {
+      "bytes": 20412009,
+      "mode": "0o644",
+      "sha256": "e3055a76cd0eeb151591984a2c12312dcea49754afa0edee9f84889814ad1578"
+    },
+    "vendor/rearrakis/genesis_recompiler/__init__.py": {
+      "bytes": 58,
+      "mode": "0o644",
+      "sha256": "5dc0f6790fdd120a05b26a2590c2e1f6e3636b2c85d9560cb1bc9da7a7657a98"
+    },
+    "vendor/rearrakis/genesis_recompiler/__main__.py": {
+      "bytes": 47,
+      "mode": "0o644",
+      "sha256": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4"
+    },
+    "vendor/rearrakis/genesis_recompiler/audio.h": {
+      "bytes": 5670,
+      "mode": "0o644",
+      "sha256": "8d898152e60e97e46eb21a2d7c293e78efa02a2394240e15d998b973766b06a8"
+    },
+    "vendor/rearrakis/genesis_recompiler/audio_backend.h": {
+      "bytes": 760,
+      "mode": "0o644",
+      "sha256": "f7bd5bebd1fc6e48a3e5232f1b969411bd1631af7c15ebe87968f336dbb07281"
+    },
+    "vendor/rearrakis/genesis_recompiler/audio_state.h": {
+      "bytes": 493,
+      "mode": "0o644",
+      "sha256": "2d76a6278e5ff49854373e8b30a7665b73cde1b5a0d6d928da39506e77672de3"
+    },
+    "vendor/rearrakis/genesis_recompiler/audio_stub.h": {
+      "bytes": 579,
+      "mode": "0o644",
+      "sha256": "9a3068820d9c4a8f8c83fb200e7d3498dea6c46729e04d273584429477a7d867"
+    },
+    "vendor/rearrakis/genesis_recompiler/audio_stub_state.h": {
+      "bytes": 172,
+      "mode": "0o644",
+      "sha256": "d43763d7b717236ee9103064a5cc3b9824811acc5cbbe4d1738a17fe0bc1fda7"
+    },
+    "vendor/rearrakis/genesis_recompiler/audio_ymfm.cpp": {
+      "bytes": 4590,
+      "mode": "0o644",
+      "sha256": "d6bed632f7cc905e9edb091a507d3824695a065400fa91116e8837d6ba3297d3"
+    },
+    "vendor/rearrakis/genesis_recompiler/build.py": {
+      "bytes": 5836,
+      "mode": "0o644",
+      "sha256": "f1d95946c03922855bc5bfbf0f75150e4bb50036a557fc09dac7cf3a82c3f465"
+    },
+    "vendor/rearrakis/genesis_recompiler/callback_discovery.py": {
+      "bytes": 5636,
+      "mode": "0o644",
+      "sha256": "801f761aa2b1e81d5138122f5ed002e44263bb8ba11234828003dcf0d0597556"
+    },
+    "vendor/rearrakis/genesis_recompiler/cli.py": {
+      "bytes": 16680,
+      "mode": "0o644",
+      "sha256": "28e9c0f2d4fa9c7724da7d5a736561911991693ddef69f529e778cf82c01c74b"
+    },
+    "vendor/rearrakis/genesis_recompiler/controller.h": {
+      "bytes": 555,
+      "mode": "0o644",
+      "sha256": "ec9927b915b21b1b3c51e6075aa2349117ef8fe3d3507315a1e9c9cd5476bede"
+    },
+    "vendor/rearrakis/genesis_recompiler/cycles.py": {
+      "bytes": 4458,
+      "mode": "0o644",
+      "sha256": "997b6cecefde9dd818e5f38b3e2aa859887dd28ee8ba9005a4517b9697f4ba64"
+    },
+    "vendor/rearrakis/genesis_recompiler/decode.py": {
+      "bytes": 39186,
+      "mode": "0o644",
+      "sha256": "7adae4ca0a4776d6d3e8295e7aa43bce4a81bf565850a89ed8e4672e5e90e227"
+    },
+    "vendor/rearrakis/genesis_recompiler/discovery.py": {
+      "bytes": 20229,
+      "mode": "0o644",
+      "sha256": "e4f41fba3cf1858fec22bc866d6818a73c33c8802c6457d2295bbf5a3ab9e10d"
+    },
+    "vendor/rearrakis/genesis_recompiler/dune_audio.h": {
+      "bytes": 754,
+      "mode": "0o644",
+      "sha256": "4318c997d81128a6ef910425f7f25328f83c0884a3952681784bdde1076f64eb"
+    },
+    "vendor/rearrakis/genesis_recompiler/dune_cpu_sdl.h": {
+      "bytes": 2846,
+      "mode": "0o644",
+      "sha256": "3e21d2533289191aff1985fa13357609080959e87cb5a78134cd09ba588f4167"
+    },
+    "vendor/rearrakis/genesis_recompiler/dune_mouse.h": {
+      "bytes": 13988,
+      "mode": "0o644",
+      "sha256": "0d6a5b0972717fa64425596cbbd7f8a38fb6b0d46e0f9ae7176dff3034353d43"
+    },
+    "vendor/rearrakis/genesis_recompiler/dune_mouse_sdl.h": {
+      "bytes": 2045,
+      "mode": "0o644",
+      "sha256": "4341a1c3e3fb86a37862262458e5564975a1078e5514292914295da9f5595eef"
+    },
+    "vendor/rearrakis/genesis_recompiler/dune_savestate.h": {
+      "bytes": 11359,
+      "mode": "0o644",
+      "sha256": "2d4c3613e81e97b4ae177856cb1df5937100bb5e60e305681d338c9b5e52a779"
+    },
+    "vendor/rearrakis/genesis_recompiler/dune_view.h": {
+      "bytes": 7231,
+      "mode": "0o644",
+      "sha256": "8a8c7bd91f6c68bab8236ea9bb09f8886cf649760d09022d83031202c99021c6"
+    },
+    "vendor/rearrakis/genesis_recompiler/dune_view_sdl.h": {
+      "bytes": 11883,
+      "mode": "0o644",
+      "sha256": "fd2412409e962f80cc7071e4a303a250e4f74671c932ae1e4c265a6d9f2ff206"
+    },
+    "vendor/rearrakis/genesis_recompiler/eeprom.h": {
+      "bytes": 2897,
+      "mode": "0o644",
+      "sha256": "719b8aa27ea914b5ad6fcc5dc99f0adee3dbca1721c11731bcdedf29f0135be9"
+    },
+    "vendor/rearrakis/genesis_recompiler/eeprom_state.h": {
+      "bytes": 479,
+      "mode": "0o644",
+      "sha256": "d92fd18ce44b20c7b7d7ddc52bd1648195f05c5ec2036aee320124f4654b9c95"
+    },
+    "vendor/rearrakis/genesis_recompiler/emit.py": {
+      "bytes": 17616,
+      "mode": "0o644",
+      "sha256": "4b30c2f82e3ecd68bff051d7779edc280f32b12d9aac09a74d6627cd5c3f10d7"
+    },
+    "vendor/rearrakis/genesis_recompiler/psg.h": {
+      "bytes": 2278,
+      "mode": "0o644",
+      "sha256": "c5650b4c3efc8dd4ce210ac74c6d10dfa4aea70c1433d2fe4aa97c20dcb845ec"
+    },
+    "vendor/rearrakis/genesis_recompiler/psg_state.h": {
+      "bytes": 289,
+      "mode": "0o644",
+      "sha256": "65e382fa5ea03b8556515665a74f91b3bd992f9e9a444b846123b54dc7c47fae"
+    },
+    "vendor/rearrakis/genesis_recompiler/ram_discovery.py": {
+      "bytes": 10132,
+      "mode": "0o644",
+      "sha256": "8171d55ff5573a9ee60f74622b52aaa371288f2ccb0ab3fb7abefac5e231bebb"
+    },
+    "vendor/rearrakis/genesis_recompiler/resources.h": {
+      "bytes": 4406,
+      "mode": "0o644",
+      "sha256": "8a00545b165fc4169089d67cf058879e69255cae85a88b59095ec759184be235"
+    },
+    "vendor/rearrakis/genesis_recompiler/resources.py": {
+      "bytes": 6941,
+      "mode": "0o644",
+      "sha256": "f8cb4bac5cff088a0eda24f35a2976901d9570c8b5e33ae9c4c85cf046f3e201"
+    },
+    "vendor/rearrakis/genesis_recompiler/runtime.h": {
+      "bytes": 22089,
+      "mode": "0o644",
+      "sha256": "a7e5671bbb9f9d18d478a5b4d4064324c18afed870f09a61e16d10261e58828f"
+    },
+    "vendor/rearrakis/genesis_recompiler/scheduler.h": {
+      "bytes": 1777,
+      "mode": "0o644",
+      "sha256": "e861df293c40481c6dfe4e9e1b93205795f8a935090f73c47c1384779e418d89"
+    },
+    "vendor/rearrakis/genesis_recompiler/sdl_frontend.h": {
+      "bytes": 10122,
+      "mode": "0o644",
+      "sha256": "57eac935071029f83e5d9edeb5fbec851ab7accbc7e42e42ada2680e7f8a026a"
+    },
+    "vendor/rearrakis/genesis_recompiler/vdp.h": {
+      "bytes": 5558,
+      "mode": "0o644",
+      "sha256": "ebc828234a2ea66b9d16f6cd56d02690ccaa6bc614be0cbd3ce77bda8737f349"
+    },
+    "vendor/rearrakis/genesis_recompiler/vdp_render.h": {
+      "bytes": 6944,
+      "mode": "0o644",
+      "sha256": "f879d8ad22f5cb7e91073db209bc285d401ee265563098469c486b04d19bef4a"
+    },
+    "vendor/rearrakis/genesis_recompiler/vdp_state.h": {
+      "bytes": 604,
+      "mode": "0o644",
+      "sha256": "030cf0163b55cbc640833c52ce252e36ba2638eb7a631ef8e397840b937818b4"
+    },
+    "vendor/rearrakis/genesis_recompiler/vdp_timing.h": {
+      "bytes": 3450,
+      "mode": "0o644",
+      "sha256": "86eae192bf5bdf549efadd6f67dbea76732a897b1474bf706904eac87f5a47a2"
+    },
+    "vendor/rearrakis/genesis_recompiler/ymfm/LICENSE": {
+      "bytes": 1519,
+      "mode": "0o644",
+      "sha256": "2d2e9213c170a9866c616fa85b6da993a6724e10befc61f468ed9bfb84c4691c"
+    },
+    "vendor/rearrakis/genesis_recompiler/ymfm/UPSTREAM.txt": {
+      "bytes": 203,
+      "mode": "0o644",
+      "sha256": "0e36679aebdc059e094e78a91226b416a4d8aae7c6cefcee430ba44c1b68c7dd"
+    },
+    "vendor/rearrakis/genesis_recompiler/ymfm/ymfm.h": {
+      "bytes": 18554,
+      "mode": "0o644",
+      "sha256": "f5ab6fed63c8669abab8403e0e93132e1dad0ae4d8e4954e7836ab9e5b228405"
+    },
+    "vendor/rearrakis/genesis_recompiler/ymfm/ymfm_adpcm.cpp": {
+      "bytes": 22040,
+      "mode": "0o644",
+      "sha256": "74e5ded129ea7e532112e5b637d0a7bd4e127fd83331f1fac32011723051d4e0"
+    },
+    "vendor/rearrakis/genesis_recompiler/ymfm/ymfm_adpcm.h": {
+      "bytes": 13752,
+      "mode": "0o644",
+      "sha256": "5933691971493b853a9be443f6e6fd74f63869aa21225f66dd89fc20de20914d"
+    },
+    "vendor/rearrakis/genesis_recompiler/ymfm/ymfm_fm.h": {
+      "bytes": 17705,
+      "mode": "0o644",
+      "sha256": "1b27bfb7fa4963d7c54cb06fd9bf659450362d8ed496c6af7d487b068cac45c9"
+    },
+    "vendor/rearrakis/genesis_recompiler/ymfm/ymfm_fm.ipp": {
+      "bytes": 59236,
+      "mode": "0o644",
+      "sha256": "4fb7fe59d4494a19e9f9c7888eb644a63d86e109fdefb27a8117bf6a5f6ab4b9"
+    },
+    "vendor/rearrakis/genesis_recompiler/ymfm/ymfm_opn.cpp": {
+      "bytes": 67918,
+      "mode": "0o644",
+      "sha256": "8734c6d5a6e1bf49a08eeb33d260d39c17cd1d26f5db506e5d0d3e416913b489"
+    },
+    "vendor/rearrakis/genesis_recompiler/ymfm/ymfm_opn.h": {
+      "bytes": 28415,
+      "mode": "0o644",
+      "sha256": "1950990c3ea0c6d492a20f66a683a372a7367ef39f7830aa65b20a20d1bcbef5"
+    },
+    "vendor/rearrakis/genesis_recompiler/ymfm/ymfm_ssg.cpp": {
+      "bytes": 8421,
+      "mode": "0o644",
+      "sha256": "73a3028a77f13f3769b7705079659eb8325431a67b8164ded25e12f324f42bfd"
+    },
+    "vendor/rearrakis/genesis_recompiler/ymfm/ymfm_ssg.h": {
+      "bytes": 7752,
+      "mode": "0o644",
+      "sha256": "27966b0887fe98f2d06a96be2776c911107e2f2a13a64f9a349e1ffc19cf7584"
+    },
+    "vendor/rearrakis/genesis_recompiler/z80.py": {
+      "bytes": 20262,
+      "mode": "0o644",
+      "sha256": "d68b6b4c83c78f4e6c89dee7cbe0126d7f538816f6bb0d1892d4e937a8bc36cb"
+    },
+    "vendor/rearrakis/genesis_recompiler/z80_bus.h": {
+      "bytes": 1820,
+      "mode": "0o644",
+      "sha256": "2fdf0c4c5b93ee8abf2aa6aa4ccfd2a15317aa507f11719c19d737cd6abe99df"
+    },
+    "vendor/rearrakis/genesis_recompiler/z80_bus_state.h": {
+      "bytes": 204,
+      "mode": "0o644",
+      "sha256": "a1af0e6054dbbee034f7238646865729027d938b0656ccc64ecf1730108a67ea"
+    },
+    "vendor/rearrakis/genesis_recompiler/z80_cpu_state.h": {
+      "bytes": 375,
+      "mode": "0o644",
+      "sha256": "cd858c6fe2f5ba07b5ce78f8952724087a3f8f81ce3f5119b0648f261de176df"
+    },
+    "vendor/rearrakis/genesis_recompiler/z80_runtime.h": {
+      "bytes": 8048,
+      "mode": "0o644",
+      "sha256": "7acf283e9d1fd2ddbe738b05d2ec0c892bc7b9c6618f6d2d751334ecdf3d05ce"
+    },
+    "vendor/rearrakis/source-manifest.json": {
+      "bytes": 8741,
+      "mode": "0o644",
+      "sha256": "d13d4f95f9711e0392d72f41c67d7b3687e9573c13f77f2b608fa19c13e565c2"
+    },
     "web/CREDITS.txt": {
       "bytes": 492,
       "mode": "0o644",
       "sha256": "c4a3c50bfebb3bc82eeaaecf42e3b62da820cefb031947eaac96dff173771555"
+    },
+    "web/app.webmanifest": {
+      "bytes": 573,
+      "mode": "0o644",
+      "sha256": "e6e03ae04a00bc566b4f6205e72a0b77270f14b90c8a08eae4b3530ba6bfd0bd"
     },
     "web/asset-library/README.md": {
       "bytes": 1429,
@@ -5960,15 +6305,20 @@
       "mode": "0o644",
       "sha256": "25fa8ee1b53d5bb0985067e6f63702e82e43edf92cb51ea46b9fcbfd305fcbe5"
     },
+    "web/browser-features.mjs": {
+      "bytes": 5999,
+      "mode": "0o644",
+      "sha256": "b48ae1670318d78ec370a8e450f993ade709e44f116ab165b1b46ad8a83ba777"
+    },
     "web/building-layout.mjs": {
       "bytes": 1785,
       "mode": "0o644",
       "sha256": "8732e16da51048e1bd4a0b49686aaa0b9ddc4f4d88e7dd57aafbe26d4711860c"
     },
     "web/building-ui.mjs": {
-      "bytes": 14107,
+      "bytes": 14104,
       "mode": "0o644",
-      "sha256": "17de77948f705534a0c924faf4e51f72950d4146e9b78fa84bac47e8e9a91dac"
+      "sha256": "0a813282f9177769bc32e9952dac0d64b04c524c7fd73ea632c70c888fecf0e0"
     },
     "web/campaign-names.mjs": {
       "bytes": 318,
@@ -5981,9 +6331,9 @@
       "sha256": "1f550b52b8a2e10f78b0d0b11733abd331bd02b073cd2aca76486787b882f91c"
     },
     "web/confirm-dialog.mjs": {
-      "bytes": 4266,
+      "bytes": 4286,
       "mode": "0o644",
-      "sha256": "a910fbfeb7d1d0128cc0efe3d4a41f604663a2b280a3351d5eb7dca9a4b1926d"
+      "sha256": "3807e22691b989f4d64c4e0b7486332a95a41248d7a86e89af07fe698b0b88c3"
     },
     "web/context-action.mjs": {
       "bytes": 1200,
@@ -6016,9 +6366,9 @@
       "sha256": "6bfd6cb318ba28ced014c1a318a430ee5899025fdc2975d98a880e4abd2d7955"
     },
     "web/game-ui.mjs": {
-      "bytes": 47806,
+      "bytes": 54519,
       "mode": "0o644",
-      "sha256": "b4a83f9763772998772b8e4a5c2e6acc2d7319b71c0b508071a5914b3e8e570f"
+      "sha256": "9697812416e229e3718a8ce961d393ae09d04a1385c6e4be0f541584e91e13d0"
     },
     "web/gestures.mjs": {
       "bytes": 3532,
@@ -6026,14 +6376,34 @@
       "sha256": "73b113e9bde9cb4f167b3803a3cc2dc29fc92aa64d1bab34857d27d652801021"
     },
     "web/i18n.mjs": {
-      "bytes": 3904,
+      "bytes": 3920,
       "mode": "0o644",
-      "sha256": "c62779b4bc0584c4d275587325577fb0104ecbdbe8185ef3684f4ebe089e0dab"
+      "sha256": "fa3e46e63b60d5691f8c6c207fde19ba3378f7e753bc44b65bc8231724a9751d"
+    },
+    "web/icons/dune-180.png": {
+      "bytes": 3759,
+      "mode": "0o644",
+      "sha256": "ffa5649c56e0201a9c2c787e43d2f7a617f6b82aa6ff353edf0592526a3045ca"
+    },
+    "web/icons/dune-192.png": {
+      "bytes": 4173,
+      "mode": "0o644",
+      "sha256": "d52cb717871be4d1644f1cadfdcd54ac7deefa5a65de95c0dd9c102e435298d9"
+    },
+    "web/icons/dune-512.png": {
+      "bytes": 12832,
+      "mode": "0o644",
+      "sha256": "8e6b63c220aa5b0066ad7023f7de688f69d249559f779bec3a76b25f540c7e99"
+    },
+    "web/icons/provenance.json": {
+      "bytes": 702,
+      "mode": "0o644",
+      "sha256": "dbd03cfbd26ebe17b7fbe15bea937acad3eb4e9f57ab7a6a293ce330dd2557d5"
     },
     "web/index.html": {
-      "bytes": 4449,
+      "bytes": 4978,
       "mode": "0o644",
-      "sha256": "b82faabda1dc15a8bd712d518cdf33662e574acc8a806e932d2b0d648905e7fe"
+      "sha256": "13e0aaf68df77e21a5de223ad973e4b8feaab3a51b08ac64691404442b432a22"
     },
     "web/input-check.mjs": {
       "bytes": 2725,
@@ -6191,9 +6561,9 @@
       "sha256": "f587061fa9a5366c7e73ab954d54b83e497a77db63ca65c65a570c78b8821494"
     },
     "web/locale-ui-ru.mjs": {
-      "bytes": 11554,
+      "bytes": 14307,
       "mode": "0o644",
-      "sha256": "c98491fab8bc17f49b686e93035681fa22f79e4a4b8164627c09cfad7ceb4634"
+      "sha256": "be259e7a77f4b2a92d36fe7819126f611d49c9b8bf5c3d53231ce889533a73f6"
     },
     "web/localized-results.mjs": {
       "bytes": 3601,
@@ -6221,9 +6591,9 @@
       "sha256": "bca9922f1f9de41a3e1f02fe7daab2bed389f671536223e717842c2c74b269e9"
     },
     "web/native-ui.mjs": {
-      "bytes": 16030,
+      "bytes": 16046,
       "mode": "0o644",
-      "sha256": "9b6403a655b3ad6ec73073c6537695b29ab742c3d0361a9fcce911011953b894"
+      "sha256": "f1a2ddbff9bcc3686a4621a3ef6ff82d1a71dd8793dbabe51bf0b93bb16b6666"
     },
     "web/options-layout.mjs": {
       "bytes": 1418,
@@ -6255,20 +6625,30 @@
       "mode": "0o644",
       "sha256": "f430201485822c35129d386905b5ecdeb3c1a58e77af844911b46fff6d57e704"
     },
-    "web/scene-flow.css": {
-      "bytes": 11884,
+    "web/save-files.mjs": {
+      "bytes": 10720,
       "mode": "0o644",
-      "sha256": "38fba985bacbcc3b2ca538540b1408b4a6c8993dd872e27c1c11ad80c2e1c857"
+      "sha256": "3569402a123ea85f34ef5f6ebce9c685e3193f1aa02a8180916a2cdb0037d632"
+    },
+    "web/scene-flow.css": {
+      "bytes": 14893,
+      "mode": "0o644",
+      "sha256": "c6f4204d80eb080af0a73ae1bcba3658fe62b99a828ff9c584299feeace8d931"
     },
     "web/screen-transition.mjs": {
       "bytes": 2297,
       "mode": "0o644",
       "sha256": "58eea5578f3bc5f048bde5f0352ac0252adc3b1351eb0cb0292590d70d9dc5ab"
     },
-    "web/shell.js": {
-      "bytes": 18748,
+    "web/service-worker.js": {
+      "bytes": 5054,
       "mode": "0o644",
-      "sha256": "df1d4c182190c77e7159207f740f66e60978442e71cec537fc4d4d5d9e0fb8dc"
+      "sha256": "b3fd58c89cac913b9b648960613a76769b9ccd1c326dbff6d2ffce5ec469933e"
+    },
+    "web/shell.js": {
+      "bytes": 19331,
+      "mode": "0o644",
+      "sha256": "6b17357ff11064547129037692603c68815210070790de227d55ceb8ab583c2d"
     },
     "web/training-manifest.json": {
       "bytes": 9463,

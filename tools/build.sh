@@ -2,7 +2,20 @@
 set -euo pipefail
 project_dir="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$project_dir"
-source "$project_dir/.local/emsdk/emsdk_env.sh" >/dev/null
+python3 tools/bootstrap_core_source.py
+if [[ -n "${EMSDK:-}" && -f "$EMSDK/emsdk_env.sh" ]]; then
+  source "$EMSDK/emsdk_env.sh" >/dev/null
+elif [[ -f "$project_dir/.local/emsdk/emsdk_env.sh" ]]; then
+  source "$project_dir/.local/emsdk/emsdk_env.sh" >/dev/null
+elif ! command -v emcc >/dev/null || ! command -v em++ >/dev/null; then
+  echo 'Emscripten 3.1.74 is required; run bash tools/bootstrap_emsdk.sh.' >&2
+  exit 1
+fi
+compiler_version="$(emcc --version)"
+if [[ "$compiler_version" != *'3.1.74'* ]]; then
+  echo 'This build records Emscripten 3.1.74; select that SDK before rebuilding.' >&2
+  exit 1
+fi
 python3 tools/prepare_source.py
 mkdir -p .local/objects web/engine
 em++ -std=c++17 -O2 -c .local/source/genesis_recompiler/audio_ymfm.cpp -o .local/objects/audio.o

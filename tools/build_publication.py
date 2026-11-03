@@ -10,8 +10,8 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 ARCHIVED_ROOT = {'qa.mjs', 'qa-modern.mjs', 'tutorial-training.mjs', 'results-ui.mjs'}
-RUNTIME_DIRS = ('engine', 'ui-assets', 'input-feedback', 'licenses')
-ROOT_ASSETS = ('index.html', 'CREDITS.txt', 'frontend.state.bin', 'demo-harkonnen.state.bin')
+RUNTIME_DIRS = ('engine', 'ui-assets', 'input-feedback', 'licenses', 'icons')
+ROOT_ASSETS = ('index.html', 'CREDITS.txt', 'frontend.state.bin', 'demo-harkonnen.state.bin', 'app.webmanifest')
 
 
 def sha(data):
@@ -27,6 +27,18 @@ def safe_relative(value):
     if p.is_absolute() or '..' in p.parts or '\\' in value:
         raise ValueError('Unsafe publication path: ' + value)
     return p
+
+
+def add_offline_worker(payload):
+    """Embed an exact bounded precache without a worker/release hash cycle."""
+    template = payload['service-worker.js']
+    if template.count(b'__DUNE_CACHE_VERSION__') != 1 or template.count(b'/*__DUNE_PRECACHE__*/ []') != 1:
+        raise ValueError('Invalid offline worker template')
+    precache = [{'path': name, 'bytes': len(data), 'sha256': sha(data)}
+                for name, data in sorted(payload.items()) if name not in ('service-worker.js', '.nojekyll', 'release.json')]
+    cache_version = sha(template + encode(precache))
+    payload['service-worker.js'] = template.replace(b'__DUNE_CACHE_VERSION__', cache_version.encode()).replace(
+        b'/*__DUNE_PRECACHE__*/ []', json.dumps(precache, ensure_ascii=False, separators=(',', ':')).encode())
 
 
 def collect(root=ROOT):
@@ -75,6 +87,7 @@ def collect(root=ROOT):
         add(p)
     for name in ('THIRD_PARTY_NOTICES.md', 'LICENSE-ReArrakis.md'):
         add(root / name, 'licenses/' + name)
+    add(root / 'LICENSE', 'licenses/Adaptation-MIT.txt')
     build = json.loads((root / 'docs/wasm-build.json').read_text())
     for name, key in [('engine/dune_web.wasm', 'sha256'), ('engine/dune_web.js', 'loaderSha256')]:
         if sha(source[name].read_bytes()) != build[key]:
@@ -91,10 +104,14 @@ def collect(root=ROOT):
     payload['.nojekyll'] = b''
     payload['licenses/README.txt'] = (
         'Original game program, artwork and sound retain their original copyright.\n'
-        'The MIT engine license does not license those game assets.\n'
+        'Original adaptation code is licensed by Adaptation-MIT.txt.\n'
+        'The adaptation and engine MIT licenses do not license original game assets.\n'
         'See CREDITS.txt, ReArrakis-MIT.txt, LICENSE-ReArrakis.md,\n'
         'THIRD_PARTY_NOTICES.md, YMFM-BSD-3-Clause.txt and Emscripten-LICENSE.txt.\n'
     ).encode()
+    # The worker includes hashes of every playable byte, but cannot include its
+    # own hash (or release.json, which itself records the worker). No cycle.
+    add_offline_worker(payload)
     validate_payload(payload)
     return payload, build
 
@@ -106,10 +123,18 @@ def validate_payload(payload):
             raise ValueError('Private/research output in site: ' + name)
         if name.endswith(('.gen', '.rom', '.cpu.bin')):
             raise ValueError('Standalone ROM/CPU copy in site: ' + name)
-    required = set(ROOT_ASSETS) | {'engine/dune_web.js', 'engine/dune_web.wasm',
+    required = set(ROOT_ASSETS) | {'engine/dune_web.js', 'engine/dune_web.wasm', 'service-worker.js',
         'licenses/YMFM-BSD-3-Clause.txt', 'licenses/Emscripten-LICENSE.txt'}
     if missing := required - payload.keys():
         raise ValueError('Missing publication files: ' + ', '.join(sorted(missing)))
+    app = json.loads(payload['app.webmanifest'])
+    if any(app.get(key) != './' for key in ('id', 'start_url', 'scope')) or app.get('display') != 'standalone':
+        raise ValueError('PWA must preserve the existing project origin and scope')
+    for size in ('192x192', '512x512'):
+        icon = next((item for item in app.get('icons', []) if item.get('sizes') == size), {})
+        path = safe_relative(icon.get('src', '').removeprefix('./')).as_posix()
+        if path not in payload or not payload[path].startswith(b'\x89PNG\r\n\x1a\n'):
+            raise ValueError('Missing PWA icon: ' + size)
     # Literal ES imports and HTML/CSS references must resolve under a project
     # subpath. Optional developer-only ?qa imports are excluded intentionally.
     refs = [r'''(?:from\s*|import\s*\()\s*['"](\./[^'"]+)['"]''',

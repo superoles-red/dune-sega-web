@@ -1,12 +1,14 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261103-safari6';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261103-safari6';
+import {BuildingInterface} from './building-ui.mjs?v=20261103-pwa2';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261103-pwa2';
 import {ScreenTransition} from './screen-transition.mjs';
-import {NativeConfirmation} from './confirm-dialog.mjs';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261103-pwa2';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs';
+import {LANGUAGES} from './i18n.mjs?v=20261103-pwa2';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
+import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs';
+import {downloadSave,pickSaveFile} from './browser-features.mjs';
 
 const STORY=new Set(['house_briefing','briefing','victory','defeat']);
 const SEQUENCE=new Set([...STORY,'tutorial','loading','campaign','victory_movie','defeat_movie','results','ending','credits']);
@@ -18,8 +20,8 @@ const ROUTE={main:0,options:1,tutorial:2,pause:3,map:4};
 const ready=s=>s?.sceneReady===true;
 
 export class GameInterface {
- constructor({art,Module,storage,startEngine,isReady,resumeAudio,saveCurrent,loadPayload,tell,cancelGesture=()=>{}}){
-  Object.assign(this,{art,Module,startEngine,isReady,resumeAudio,saveCurrent,loadPayload,tell,cancelGesture});
+ constructor({art,Module,storage,startEngine,isReady,resumeAudio,saveCurrent,loadPayload,tell,platform,cancelGesture=()=>{}}){
+  Object.assign(this,{art,Module,startEngine,isReady,resumeAudio,saveCurrent,loadPayload,tell,platform,cancelGesture});
   this.store=new CampaignStore(storage);this.frame=new LiveNativeFrame();this.textFrame=new LiveNativeFrame();this.titleFrame=document.createElement('canvas');this.homeFrame=document.createElement('canvas');this.homeFrameValid=false;this.creditsUnlocked=false;this.state={};this.visibleNative={};this.view='home';this.selectedHouse=this.store.progress.lastHouse;
   this.bound=[];this.lastOutcome=0;this.activeRun=null;this.lastNativeKey='';this.lastText='';this.paintKey='';this.busy=false;this.nativeBusy=false;this.frontOrigin=null;this.sequence=0;this.optionViews=new Map();this.pendingScreen=null;this.demoMode=false;this.trainingMode=false;this.coldHomeVideo=true;this.displayed='home';this.waitingForFrame=false;this.updateEpoch=0;
   this.curtain=new ScreenTransition(art);this.dialog=new NativeConfirmation({art,feedback:()=>this.uiSound()});this.building=new BuildingInterface({art,Module,resumeAudio});
@@ -31,7 +33,7 @@ export class GameInterface {
   this.actions=document.createElement('div');this.actions.className='scene-actions';this.footer=document.createElement('nav');this.footer.className='scene-footer';this.footer.setAttribute('aria-label','Навигация');this.shell.append(head,this.hero,this.message,this.actions,this.footer);this.element.append(this.backdrop,this.shell);document.body.append(this.element);
   this.demoButton=document.createElement('button');this.demoButton.id='demo-launch';this.demoButton.type='button';this.demoButton.textContent=this.art.displayText?.('LAUNCH DEMONSTRATION')||'Launch demonstration';this.demoButton.addEventListener('click',()=>this.beginDemo());document.body.append(this.demoButton);
   dragScroll(this.actions);dragScroll(this.message);this.bindDialogTap();
-  this.observer=new ResizeObserver(()=>{this.paintKey='';this.heroPaintKey='';if(this.hero)this.hero.style.cssText='';this.element.dataset.artLocked='false';this.drawCaption();this.drawMessage();this.resizeLockedArt();});this.observer.observe(this.element);this.observer.observe(this.message);this.removeLanguageListener=this.art.language?.onChange(()=>this.languageChanged());this.showHome();
+  this.observer=new ResizeObserver(()=>{this.paintKey='';this.heroPaintKey='';if(this.hero)this.hero.style.cssText='';this.element.dataset.artLocked='false';this.drawCaption();this.drawMessage();this.resizeLockedArt();});this.observer.observe(this.element);this.observer.observe(this.message);this.removeLanguageListener=this.art.language?.onChange(()=>this.languageChanged());this.removePlatformListener=platform?.subscribe(()=>this.refreshPlatform());this.showHome();
  }
  async loadCampaign(){const r=await fetch('./ui-assets/campaign/manifest.json');if(!r.ok)throw Error('Campaign catalogue '+r.status);this.campaign=await r.json();this.prepareTutorial().catch(e=>console.warn('Reference prefetch:',e.message));}
  async prepareTutorial(){
@@ -47,6 +49,64 @@ export class GameInterface {
   this.drawCaption();this.drawMessage();this.dialog.draw();
   if(this.tutorial?.active){this.tutorial.syncControls();this.tutorial.invalidate();}
   if(this.view==='languages')this.showLanguages();
+  if(this.view==='platform')this.showPlatform();
+ }
+ async toggleFullscreen(){
+  try{const result=await this.platform.fullscreen();if(result==='apple-help')this.tell(this.art.displayText('ON IPHONE: SHARE > ADD TO HOME SCREEN > OPEN AS WEB APP.'));else if(result==='unsupported')this.tell(this.art.displayText('FULL SCREEN IS NOT AVAILABLE IN THIS BROWSER.'));}
+  catch{this.tell(this.art.displayText('FULL SCREEN WAS NOT ALLOWED. TRY AGAIN.'));}
+ }
+ openPlatform(){
+  if(this.busy||this.pendingScreen||this.curtain.active)return;
+  this.platformOrigin=this.state.scene==='pause'?'pause':'options';this.saveCurrent(true);this.platformNotice='';return this.front(()=>this.showPlatform());
+ }
+ showPlatform(){
+  this.clear('platform','FILES & OFFLINE');this.displayed='platform';this.actions.classList.add('platform-grid');
+  this.downloadButton=this.button('DOWNLOAD SAVE',()=>this.exportFile(),{id:'download-save',disabled:true}).button;
+  this.button('LOAD SAVE FILE',()=>pickSaveFile(file=>this.importFile(file)),{id:'upload-save'});
+  this.button('INSTALL GAME',()=>this.installGame(),{id:'install-game'});
+  this.offlineButton=this.button('PREPARE OFFLINE',()=>this.prepareOffline(),{id:'prepare-offline'}).button;
+  this.button('SOURCE CODE',()=>this.platform.openSource(),{id:'source-code'});
+  this.backButton(()=>this.closePlatform());this.refreshPlatform();this.prepareSaveFile();
+ }
+ closePlatform(){return this.front(()=>{this.platformNotice='';const scene=this.platformOrigin||'options';this.lastNativeKey='';if(this.state.scene===scene){this.showNative(this.state);this.displayed=scene;}else this.requestRoute(scene);});}
+ refreshPlatform(){
+  if(!this.platform)return;
+  const s=this.platform.snapshot();this.optionViews.get('fullscreen')?.update(s.fullscreen?'EXIT FULL SCREEN':'FULL SCREEN');
+  if(this.view!=='platform')return;
+  let status=s.status==='ready'?'OFFLINE GAME READY.':s.status==='downloading'?'DOWNLOADING OFFLINE GAME...':s.status==='error'?'OFFLINE DOWNLOAD FAILED. TRY AGAIN.':'PREPARE OFFLINE ONCE WHILE CONNECTED.';
+  status=this.art.displayText(status)+(s.status==='downloading'&&s.total?' '+s.loaded+' / '+s.total:'');
+  const hint=this.art.displayText(s.installed?'INSTALLED ON THIS DEVICE.':s.appleMobile?'ON IPHONE: SHARE > ADD TO HOME SCREEN > OPEN AS WEB APP.':'INSTALL THE GAME FROM YOUR BROWSER MENU.');
+  this.liveText=false;this.messageText=[this.platformNotice,status,hint].filter(Boolean).join('\n\n');this.message.hidden=false;this.element.dataset.hasMessage='true';this.drawMessage();if(this.offlineButton){this.offlineButton.disabled=!!s.preparing;this.offlineButton._nativeArtView?.update('PREPARE OFFLINE',{disabled:!!s.preparing});}
+ }
+ async installGame(){
+  try{const result=await this.platform.install();this.platformNotice=this.art.displayText(result==='apple-help'?'ON IPHONE: SHARE > ADD TO HOME SCREEN > OPEN AS WEB APP.':result==='install-help'?'INSTALL THE GAME FROM YOUR BROWSER MENU.':result==='cancelled'?'INSTALLATION CANCELLED.':'INSTALLED ON THIS DEVICE.');this.refreshPlatform();}
+  catch{this.tell(this.art.displayText('INSTALL THE GAME FROM YOUR BROWSER MENU.'));}
+ }
+ async prepareOffline(){try{await this.platform.prepareOffline();this.refreshPlatform();}catch{this.tell(this.art.displayText('OFFLINE DOWNLOAD FAILED. TRY AGAIN.'));}}
+ async prepareSaveFile(){
+  const token=this.preparingSaveToken=(this.preparingSaveToken||0)+1;this.preparedSave=null;
+  try{const file=await createSaveFile({store:this.store,language:this.art.language?.code||'en'});if(token!==this.preparingSaveToken)return;this.preparedSave=file;if(this.downloadButton){this.downloadButton.disabled=false;this.downloadButton._nativeArtView?.update('DOWNLOAD SAVE',{disabled:false});}}
+  catch{if(this.view==='platform')this.tell(this.art.displayText('COULD NOT EXPORT SAVE FILE.'));}
+ }
+ exportFile(){
+  if(this.fileBusy||!this.preparedSave)return;this.fileBusy=true;
+  // SHA and JSON were prepared while opening this paused screen. iPhone's
+  // native share sheet is invoked directly within this click's activation.
+  return downloadSave(this.preparedSave).then(()=>{this.platformNotice=this.art.displayText('SAVE FILE CONTAINS CONTINUE AND ALL HOUSE PROGRESS.');this.refreshPlatform();}).catch(()=>this.tell(this.art.displayText('COULD NOT EXPORT SAVE FILE.'))).finally(()=>{this.fileBusy=false;});
+ }
+ async importFile(file){
+  if(this.fileBusy||this.busy||this.pendingScreen)return;this.fileBusy=true;
+  try{
+   if(file.size>MAX_SAVE_FILE_BYTES)throw Error('too-large');const archive=await parseSaveFile(await file.text());
+   const slot=archive.continue,lines=slot?[HOUSE_NAMES[slot.house],'MISSION '+slot.mission,'THE CURRENT CONTINUE WILL BE REPLACED.']:['ALL HOUSE PROGRESS WILL BE REPLACED.','THIS FILE HAS NO ACTIVE MISSION.'];
+   if(!await this.dialog.ask({title:'LOAD SAVE FILE?',lines,confirm:'LOAD',danger:true}))return;
+   const transaction=commitSaveFile({store:this.store,archive});this.fileImportInProgress=true;
+   const complete=()=>{this.fileImportInProgress=false;this.art.language?.setLanguage(transaction.language);this.tell(this.art.displayText('SAVE FILE LOADED.'));};
+   const failure=()=>{this.fileImportInProgress=false;try{const previous=transaction.rollback();this.art.language?.setLanguage(previous.language||'en');}catch{this.tell(this.art.displayText('COULD NOT RESTORE BROWSER SAVE. KEEP YOUR SAVE FILE.'));}};
+   this.selectedHouse=this.store.progress.lastHouse;
+   if(slot)await this.resumeSlot(slot,{saveCurrent:false,onReady:complete,onFailure:failure});else await this.mainMenu({save:false,onReady:complete,onFailure:failure});
+  }catch(error){const code=error.code||error.message;this.tell(this.art.displayText(String(code).startsWith('storage')?'BROWSER COULD NOT STORE SAVE FILE.':String(code).startsWith('incompatible')?'SAVE FILE IS FROM AN INCOMPATIBLE VERSION.':'SAVE FILE IS INVALID OR DAMAGED.'));}
+  finally{this.fileBusy=false;}
  }
  openLanguages(){
   if(this.busy||this.pendingScreen||this.curtain.active)return;
@@ -171,29 +231,31 @@ export class GameInterface {
   if(!canStart(this.store.progress,house,mission))return;this.saveCurrent(true);this.activeRun=null;this.selectedHouse=house;
   return this.prepareNative({kind:'mission',house,mission},()=>{const ok=this.Module._dune_web_campaign_start?.(house,mission);if(ok){this.demoMode=false;this.trainingMode=false;this.store.begin(house,mission);this.requestedRun={house,mission};}return ok;});
  }
- async resumeSlot(slot,{saveCurrent:saveBeforeLoad=true}={}){
+ async resumeSlot(slot,{saveCurrent:saveBeforeLoad=true,onReady,onFailure}={}){
   if(saveBeforeLoad)this.saveCurrent(true);this.resuming=false;
-  return this.prepareNative({kind:'load'},()=>{const payload=slot?.state||this.store.legacy();if(!payload||!this.loadPayload(payload,true))throw Error('Сохранение не удалось загрузить');this.demoMode=false;this.trainingMode=false;this.resuming=true;this.activeRun=null;return 1;});
+  return this.prepareNative({kind:'load',onReady,reject:onFailure},()=>{const payload=slot?.state||this.store.legacy();if(!payload||!this.loadPayload(payload,true))throw Error('Сохранение не удалось загрузить');this.demoMode=false;this.trainingMode=false;this.resuming=true;this.activeRun=null;return 1;});
  }
  async beginDemo(){
   if(this.busy||this.pendingScreen||this.curtain.active)return;this.uiSound();this.saveCurrent(true);const previousDemo=this.demoMode;this.demoMode=true;this.trainingMode=false;this.demoLoadError=null;this.resuming=false;this.activeRun=null;
   let payload;return this.prepareNative({kind:'load',demo:true,previousDemo},()=>{if(this.demoLoadError)throw this.demoLoadError;if(!payload){if(!this.demoFetch){this.demoFetch=fetch('./demo-harkonnen.state.bin').then(r=>{if(!r.ok)throw Error('Демонстрация недоступна');return r.arrayBuffer();}).then(buffer=>{const b=new Uint8Array(buffer);let text='';for(let i=0;i<b.length;i+=8192)text+=String.fromCharCode(...b.subarray(i,i+8192));this.demoPayload=btoa(text);}).catch(e=>{this.demoLoadError=e;this.demoFetch=null;});}payload=this.demoPayload;if(!payload)return 0;}if(!this.loadPayload(payload,true))throw Error('Не удалось загрузить демонстрацию');this.resuming=false;return 1;});
  }
- mainMenu({house=null,save=true}={}){
+ mainMenu({house=null,save=true,onReady,onFailure}={}){
   if(save)this.saveCurrent(true);this.activeRun=null;this.resuming=false;
-  if(this.state.houseId===-1&&['options','tutorial'].includes(this.state.scene))return this.requestRoute('main');
+  if(this.state.houseId===-1&&['options','tutorial'].includes(this.state.scene)&&!onReady)return this.requestRoute('main');
   this.frontendLoadError=null;const preferences={music:this.state.music??1,sound:this.state.sound??1};
-  let payload;return this.prepareNative({kind:'frontend',house,preferences},()=>{if(this.frontendLoadError)throw this.frontendLoadError;if(!payload){if(!this.frontendFetch){this.frontendFetch=fetch('./frontend.state.bin').then(r=>{if(!r.ok)throw Error('Главное меню недоступно');return r.arrayBuffer();}).then(buffer=>{const b=new Uint8Array(buffer);let text='';for(let i=0;i<b.length;i+=8192)text+=String.fromCharCode(...b.subarray(i,i+8192));this.frontendPayload=btoa(text);}).catch(e=>{this.frontendLoadError=e;this.frontendFetch=null;});}payload=this.frontendPayload;if(!payload)return 0;}if(!this.loadPayload(payload,true))throw Error('Не удалось открыть главное меню');return 1;});
+  let payload;return this.prepareNative({kind:'frontend',house,preferences,onReady,reject:onFailure},()=>{if(this.frontendLoadError)throw this.frontendLoadError;if(!payload){if(!this.frontendFetch){this.frontendFetch=fetch('./frontend.state.bin').then(r=>{if(!r.ok)throw Error('Главное меню недоступно');return r.arrayBuffer();}).then(buffer=>{const b=new Uint8Array(buffer);let text='';for(let i=0;i<b.length;i+=8192)text+=String.fromCharCode(...b.subarray(i,i+8192));this.frontendPayload=btoa(text);}).catch(e=>{this.frontendLoadError=e;this.frontendFetch=null;});}payload=this.frontendPayload;if(!payload)return 0;}if(!this.loadPayload(payload,true))throw Error('Не удалось открыть главное меню');return 1;});
  }
  input(action,value){if(!this.isReady()||!ready(this.state)||this.state.inputReady===false||this.pendingScreen||this.curtain.active)return false;this.resumeAudio();const ok=!!this.Module._dune_web_campaign_input?.(action,value);if(ok&&action===5&&value===0&&STORY.has(this.state.scene)&&this.state.choiceLabels?.[0]==='PROCEED'){const b=this.hero?.getBoundingClientRect?.();if(b){this.artLock={x:b.left,y:b.top,w:b.width,h:b.height};this.applyArtLock(this.state,true);}}return ok;}
  async restartMission(){if(this.trainingMode&&this.tutorial?.active){this.tutorial.setSuspended?.(false);return this.tutorial.startPractice();}return this.prepareNative({kind:'confirm'},()=>this.Module._dune_web_campaign_input?.(1,6));}
  back(){
+  if(this.fileImportInProgress)return;
   if(this.dialog?.active){this.dialog.close(false);return;}
   if(this.tutorial?.active&&!this.tutorial?.suspended)return this.closeTutorial();
   if(this.view==='native'&&this.state.presentationFullFrame&&this.state.inputReady===false)return;
   if(this.pendingScreen){if(this.pendingScreen.target==='pause')this.requestRoute('map');else this.mainMenu();return;}
   if(this.view==='home')return;if(this.view==='houses')return this.front(()=>this.showHome());if(this.view==='missions')return this.front(()=>this.showHouses(this.frontOrigin));if(this.view==='replay')return this.front(()=>this.showMissions(this.selectedHouse));
   if(this.view==='languages')return this.closeLanguageScreen();
+  if(this.view==='platform')return this.closePlatform();
   if(this.building.active){this.building.exit();return;}
   if(this.state.scene==='pause')return this.requestRoute('map');if(this.state.scene==='options'||this.state.scene==='tutorial')return this.mainMenu();
   if(this.state.inputKind==='confirm'){this.input(5,1);return;}
@@ -260,7 +322,7 @@ export class GameInterface {
   if(this.view!=='native'){this.demoButton.hidden=this.view!=='home';return;}
   const p=this.pendingScreen;if(p){try{this.tryPending();}catch(e){p.reject?.(e);if(p.training)this.trainingMode=false;if(p.demo)this.demoMode=p.previousDemo;this.tell(e.message);this.pendingScreen=null;this.busy=false;this.nativeBusy=false;this.showHome();this.curtain.reveal();return;}
    if(p.kind==='frontend'&&!this.syncFrontendPreferences(p,s))return;
-   if(!this.matchesPending(p,s))return;this.pendingScreen=null;this.busy=false;this.nativeBusy=false;this.lastNativeKey='';this.waitingForFrame=true;
+   if(!this.matchesPending(p,s))return;this.pendingScreen=null;this.busy=false;this.nativeBusy=false;this.lastNativeKey='';this.waitingForFrame=true;p.onReady?.();
    if(p.training)p.resolve?.(this.getTrainingState());
    if(p.kind==='load'&&!p.demo&&!p.training&&s.scene==='pause'){this.requestRoute('map');return;}
    if(p.kind==='frontend'){this.trainingMode=false;this.waitingForFrame=false;if(validHouse(p.house))this.showMissions(p.house);else this.showHome();this.render(performance.now());this.curtain.reveal();return;}
@@ -298,6 +360,7 @@ export class GameInterface {
     for(const row of [0,1]){const v=this.button('',()=>this.input(2,row),{...opts,id:'option-'+row});this.optionViews.set(row,v.view);}
     this.button('LANGUAGES',()=>this.openLanguages(),{...opts,id:'open-languages',feedback:true});
     this.button('TUTORIAL',()=>this.openTutorial(),{...opts,id:'open-tutorial',ariaLabel:'Пояснения об Арракисе',feedback:true});
+    if(this.platform){const full=this.button('FULL SCREEN',()=>this.toggleFullscreen(),{...opts,id:'fullscreen',feedback:true});this.optionViews.set('fullscreen',full.view);this.button('FILES & OFFLINE',()=>this.openPlatform(),{...opts,id:'open-platform',feedback:true});}
     if(scene==='pause'){this.button('RESTART',()=>this.restartMission(),{...opts,id:'restart-mission',ariaLabel:'Начать текущую миссию заново'});this.button('MAIN MENU',()=>this.confirmMainMenu(),{...opts,id:'main-menu',ariaLabel:'Главное меню'});}
     this.backButton(()=>scene==='pause'?this.requestRoute('map'):this.mainMenu(),{feedback:true,disabled:pending});
    }else if(terminal(s)){
@@ -311,7 +374,7 @@ export class GameInterface {
   }
   this.applyArtLock(s);this.nativeBusy=pending;this.visibleNative={...s};this.element.hidden=false;this.element.dataset.scene=scene;this.element.dataset.phase=s.presentationPhase||scene;this.element.dataset.ready=String(!pending);this.element.dataset.optionsLayout=String(scene==='pause'||scene==='options');this.element.dataset.timeline=String(SEQUENCE.has(scene));this.element.dataset.story=String(STORY.has(scene)&&(!s.presentationFullFrame||s.presentationPhase==='briefing_exit'));this.element.dataset.terminal=String(terminal(s));this.element.dataset.dialog=String(SEQUENCE.has(scene)&&!terminal(s));
   this.footer.hidden=!this.footer.childElementCount;this.actions.hidden=!this.actions.childElementCount;
-  if(scene==='options'||scene==='pause'){this.optionViews.get(0)?.update('MUSIC: '+(s.music?'ON':'OFF'));this.optionViews.get(1)?.update('SOUND: '+(s.sound?'ON':'OFF'));}
+  if(scene==='options'||scene==='pause'){this.optionViews.get(0)?.update('MUSIC: '+(s.music?'ON':'OFF'));this.optionViews.get(1)?.update('SOUND: '+(s.sound?'ON':'OFF'));this.refreshPlatform();}
   const dialogue=STORY.has(scene)&&!s.presentationFullFrame,hasText=typeof s.visibleMessageText==='string';this.liveText=dialogue&&!hasText;this.messageText=cleanText(dialogue&&hasText?s.visibleMessageText:scene==='confirm'?(s.promptText||'ARE YOU SURE?'):'');this.message.hidden=!(this.messageText||this.liveText);this.element.dataset.hasMessage=String(!this.message.hidden);this.message.setAttribute('aria-label',this.messageText||'Оригинальный текст игры');this.drawMessage();
  }
  drawCaption(){const box=this.caption.getBoundingClientRect();if(!this.art.ready||box.width<1)return;const text=value=>this.art.displayText?.(value)||value,label=text(this.title||'DUNE'),sub=this.view==='native'&&this.visibleNative?.scene==='pause'&&this.state.house?text(this.state.house.toUpperCase()+' - MISSION '+this.state.mission):'',d=Math.min(devicePixelRatio||1,3),h=sub?64:40;this.caption.width=Math.ceil(box.width*d);this.caption.height=h*d;this.caption.style.height=h+'px';this.caption.setAttribute('aria-label',label);const c=this.caption.getContext('2d');c.scale(d,d);c.imageSmoothingEnabled=false;const scale=Math.min(2,Math.max(1,(box.width-16)/(Math.max(1,label.length)*8)));this.art.text(c,label,box.width/2,(40-8*scale)/2,{scale,align:'center',shadow:true,translate:false});if(sub)this.art.text(c,sub,box.width/2,44,{scale:Math.min(1.25,(box.width-24)/(sub.length*8)),align:'center',shadow:true,translate:false});}

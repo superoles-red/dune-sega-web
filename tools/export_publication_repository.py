@@ -8,8 +8,8 @@ import stat
 
 ROOT = Path(__file__).resolve().parents[1]
 MARKER = '.publication-export.json'
-TOP_FILES = ('README.md', 'LICENSE-ReArrakis.md', 'THIRD_PARTY_NOTICES.md')
-SOURCE_DIRS = ('tools', 'tests', 'docs', 'data', 'web', '.github')
+TOP_FILES = ('README.md', 'LICENSE', 'LICENSE-ReArrakis.md', 'THIRD_PARTY_NOTICES.md', 'CONTRIBUTING.md')
+SOURCE_DIRS = ('tools', 'tests', 'docs', 'data', 'web', '.github', 'vendor')
 RUNTIME_KITS = {'shop-layout-kit', 'screen-assets', 'campaign', 'unit-assets'}
 GITIGNORE = '''.local/
 _site/

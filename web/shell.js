@@ -1,11 +1,12 @@
 import {MapGestures,placementEdgeVelocity} from './gestures.mjs';
-import {bindMapInput} from './map-input.mjs?v=20261103-safari6';
-import {NativeArt} from './native-ui.mjs?v=20261103-safari6';
-import {GameInterface} from './game-ui.mjs?v=20261103-safari6';
+import {bindMapInput} from './map-input.mjs?v=20261103-pwa2';
+import {NativeArt} from './native-ui.mjs?v=20261103-pwa2';
+import {GameInterface} from './game-ui.mjs?v=20261103-pwa2';
 import {validHouse,validMission} from './campaign-state.mjs';
 import {contextAction} from './context-action.mjs';
 import {OrderFeedback} from './order-feedback.mjs';
 import {NativeAudioBridge} from './native-audio.mjs';
+import {BrowserFeatures} from './browser-features.mjs';
 
 // Input and presentation only. The original Sega handlers decide every game action.
 const canvas=document.getElementById('canvas');
@@ -13,6 +14,7 @@ const actionPanel=document.getElementById('context-actions');
 const clearButton=document.getElementById('clear-selection');
 const actionButton=document.getElementById('native-action');
 const menuButton=document.getElementById('native-menu');
+const fullscreenButton=document.getElementById('global-fullscreen');
 const status=document.getElementById('status');
 const SAVE_KEY='dune-original-aot-state-v2';
 const params=new URLSearchParams(location.search),qaMode=params.has('qa'),legacyMode=params.has('legacy'),inputCheckMode=params.has('inputcheck');
@@ -23,6 +25,7 @@ let started=false,ready=false,messageTimer,lastSize='',queuedResize=false;
 let lastGesture='idle',lastEdgeTime=0,latestActions={},lastActionKind='',lastCanvasVisible=null;
 const counters={taps:0,panEvents:0,zooms:0,placementDrags:0,edgePans:0,clearRequests:0,bRequests:0};
 const orderFeedback=new OrderFeedback({canvas});
+const platform=new BrowserFeatures();
 const local=e=>{const r=canvas.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};};
 const stop=e=>{e.preventDefault();e.stopImmediatePropagation();};
 function resumeAudio(){nativeAudio.resume();}
@@ -71,9 +74,9 @@ function bindButton(button,action){
   button.addEventListener('contextmenu',e=>{e.preventDefault();e.stopPropagation();});
 }
 function pulseStart(){if(!ready)return;resumeAudio();cancelGesture();if(!legacyMode&&Module._dune_web_campaign_input)Module._dune_web_campaign_input(0,128);else{Module._dune_web_pad(128,1);setTimeout(()=>Module._dune_web_pad?.(128,0),140);}canvas.focus({preventScroll:true});}
-bindButton(clearButton,clearSelection);bindButton(actionButton,nativeAction);bindButton(menuButton,()=>{if(!legacyMode&&gameUI){cancelGesture();gameUI.openPause();}else pulseStart();});
+bindButton(clearButton,clearSelection);bindButton(actionButton,nativeAction);bindButton(fullscreenButton,()=>gameUI?.toggleFullscreen());bindButton(menuButton,()=>{if(!legacyMode&&gameUI){cancelGesture();gameUI.openPause();}else pulseStart();});
 function saveGame(silent=false){
-  if(!ready||gameUI?.demoMode||gameUI?.trainingMode)return false;
+  if(!ready||gameUI?.demoMode||gameUI?.trainingMode||gameUI?.fileImportInProgress)return false;
   const run=nativeJSON('_dune_web_campaign_json');
   if(!run.activeRunArmed||run.fault||run.pending||run.routePending||run.uiCallActive||!run.sceneReady||!['map','building','pause'].includes(run.scene)||!validHouse(run.activeRunHouse)||!validMission(run.activeRunMission))return false;
   try{const size=Module._dune_save_state_to_buffer();if(size<=0||size>256*1024)return false;
@@ -118,7 +121,7 @@ function startEngine(){
 try{if(localStorage.getItem(SAVE_KEY))document.getElementById('start').textContent='Продолжить игру';}catch{}
 document.getElementById('start').onclick=()=>startEngine().catch(e=>tell(e.message));
 
-window.addEventListener('keydown',e=>{if(e.target.closest?.('#qa-modern-panel'))return;resumeAudio();if(e.code==='F5'){stop(e);saveGame();return;}if(e.code==='F8'){stop(e);if(!gameUI?.tutorial?.active)loadGame();return;}
+window.addEventListener('keydown',e=>{if(e.target.closest?.('#qa-modern-panel'))return;if(gameUI?.fileImportInProgress){stop(e);return;}resumeAudio();if(e.code==='F5'){stop(e);saveGame();return;}if(e.code==='F8'){stop(e);if(!gameUI?.tutorial?.active)loadGame();return;}
  if(['Enter','Space'].includes(e.code)&&e.target instanceof HTMLButtonElement){stop(e);if(!e.repeat&&!e.target.disabled&&!gameUI?.curtain.active)e.target.click();return;}
  if(gameUI?.tutorial?.active){gameUI.tutorial.key(e);if(e.defaultPrevented){stop(e);return;}}
  if(gameUI?.capturesInput){if(e.code==='Escape'){stop(e);if(!e.repeat)gameUI.back();return;}if(['Enter','Space'].includes(e.code)&&e.target instanceof HTMLButtonElement){stop(e);if(!e.repeat&&!e.target.disabled)e.target.click();return;}e.stopImmediatePropagation();return;}
@@ -151,6 +154,7 @@ function pollState(){
   if(qaMode){document.getElementById('campaign-state').textContent=JSON.stringify(campaign);document.getElementById('building-ui-state').textContent=JSON.stringify(building);document.getElementById('interface-state').textContent=JSON.stringify(gameUI?.debug()||{});}
   const canvasVisible=legacyMode||!gameUI||gameUI.element.hidden&&!gameUI.building.active&&!gameUI.tutorial?.active;if(ready&&canvasVisible!==lastCanvasVisible){lastCanvasVisible=canvasVisible;Module._dune_web_canvas_visible?.(canvasVisible?1:0);}
   menuButton.hidden=!ready||!camera.map||!!gameUI?.capturesInput;
+  fullscreenButton.hidden=!art?.ready||!!gameUI?.building.active;
   actionPanel.hidden=!!gameUI?.capturesInput||!camera.map||!latestActions.selected||latestActions.selected.kind==='none';
   const action=contextAction(latestActions);actionButton.hidden=!action;
   const kind=action?.kind||'none';if(kind!==lastActionKind){lastActionKind=kind;actionButton.dataset.action=kind;actionButton.setAttribute('aria-label',action?.aria||'Особое действие');actionButton.title=action?.aria||'';if(actionView)actionView.update(action?.label||'ACTION',{ariaLabel:action?.aria||'Особое действие'});else actionButton.textContent=action?.label||'ACTION';}
@@ -167,7 +171,7 @@ function placementFrame(now){
   if(dt&&(vx||vy)){Module._dune_web_pan?.(-vx*dt,-vy*dt);counters.edgePans++;}
   Module._dune_web_placement_move?.(p.x,p.y);
 }
-if(inputCheckMode)import('./input-check.mjs?v=20261103-safari6').then(({mountInputCheck})=>{
+if(inputCheckMode)import('./input-check.mjs?v=20261103-pwa2').then(({mountInputCheck})=>{
  inputCheck=mountInputCheck({canvas,read:()=>({taps:counters.taps,pan:counters.panEvents,mode:gestures.mode,lastTap:lastMapTap,selected:{kind:latestActions.selected?.kind||'none',id:latestActions.selected?.id},ready,capturesInput:!!gameUI?.capturesInput,camera:{map:latestCamera.map,css:[latestCamera.cssWidth,latestCamera.cssHeight],output:[latestCamera.outputWidth,latestCamera.outputHeight],left:latestCamera.left,top:latestCamera.top,scale:latestCamera.scale,queued:latestCamera.queuedClicks}})});
 }).catch(e=>console.warn('Input diagnostic unavailable:',e.message));
 setInterval(pollState,50);if(!qaMode)setInterval(()=>saveGame(true),30000);
@@ -175,8 +179,8 @@ resizeGame();requestAnimationFrame(placementFrame);
 if(legacyMode){document.getElementById('launch').hidden=false;if(qaMode)import('./qa.mjs');}
 else (async()=>{try{
  art=await new NativeArt({storage:browserStorage()}).load();
- gameUI=new GameInterface({art,Module,storage:browserStorage(),startEngine,isReady:()=>ready,resumeAudio,saveCurrent:saveGame,loadPayload,tell,cancelGesture});
- await gameUI.loadCampaign();art.decorate(menuButton,'MENU',{ariaLabel:'Пауза — меню игры (Start)'});art.decorate(clearButton,'CLEAR',{back:true,ariaLabel:'Снять выделение'});actionView=art.decorate(actionButton,'REPEAT',{ariaLabel:'Повторить производство'});
+ gameUI=new GameInterface({art,Module,storage:browserStorage(),startEngine,isReady:()=>ready,resumeAudio,saveCurrent:saveGame,loadPayload,tell,platform,cancelGesture});
+ await gameUI.loadCampaign();art.decorate(menuButton,'MENU',{ariaLabel:'Пауза — меню игры (Start)'});const fullscreenView=art.decorate(fullscreenButton,'',{ariaLabel:'FULL SCREEN'});platform.subscribe(s=>fullscreenView.update('',{ariaLabel:s.fullscreen?'EXIT FULL SCREEN':'FULL SCREEN'}));fullscreenButton.hidden=false;art.decorate(clearButton,'CLEAR',{back:true,ariaLabel:'Снять выделение'});actionView=art.decorate(actionButton,'REPEAT',{ariaLabel:'Повторить производство'});
  document.getElementById('launch').hidden=true;pollState();
  orderFeedback.load().catch(e=>console.warn('Original order feedback unavailable:',e.message));
  startEngine().catch(e=>{console.warn('Background engine preload failed:',e);tell(e.message);});

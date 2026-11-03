@@ -31,7 +31,7 @@ This project incorporates or links to the following third-party open-source comp
 ### 1. ymfm (Yamaha YM2612 & TI PSG Emulation)
 - **Copyright:** (c) 2021 Aaron Giles
 - **License:** BSD 3-Clause License
-- **Details:** See [rearrakis_src/THIRD_PARTY_NOTICES.md](rearrakis_src/THIRD_PARTY_NOTICES.md) and [rearrakis_src/genesis_recompiler/ymfm/LICENSE](rearrakis_src/genesis_recompiler/ymfm/LICENSE).
+- **Details:** See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [vendor/rearrakis/genesis_recompiler/ymfm/LICENSE](vendor/rearrakis/genesis_recompiler/ymfm/LICENSE).
 
 ### 2. Simple DirectMedia Layer (SDL2)
 - **Copyright:** (c) 1997-2025 Sam Lantinga
