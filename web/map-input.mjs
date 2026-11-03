@@ -15,7 +15,12 @@ export function bindMapInput(canvas,{begin,move,end,cancel,hover=()=>{},position
       try{canvas.setPointerCapture(e.pointerId);}catch{}
     });
     listen('pointermove',e=>{
-      stop(e);const p=position(e);
+      stop(e);
+      // An assistive/AX click can have no held mouse buttons yet receive an
+      // unrelated OS hover between down/up. That hover is not a drag. The
+      // release still supplies its final position to the gesture recognizer.
+      if(active.get(e.pointerId)==='mouse'&&e.buttons===0)return;
+      const p=position(e);
       if(active.has(e.pointerId))move(e.pointerId,p);
       else if(e.pointerType==='mouse'||e.pointerType==='pen')hover(p);
     });

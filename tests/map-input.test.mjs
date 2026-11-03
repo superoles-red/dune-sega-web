@@ -16,8 +16,8 @@ class Canvas{
  }
 }
 function setup(options={}){
- const canvas=new Canvas(),calls={begin:[],end:[],tap:[],pan:[],zoom:[],hover:[],cancel:0,placeCancel:0,placeEnd:0,miniMove:[]};let input;
- const gestures=new MapGestures({canPanAt:()=>options.world!==false,minimapStart:()=>!!options.minimap,minimapMove:(...p)=>calls.miniMove.push(p),tap:(...p)=>calls.tap.push(p),pan:(...p)=>calls.pan.push(p),zoom:(...p)=>calls.zoom.push(p),placementStart:()=>!!options.place,placementMove(){},placementEnd:()=>calls.placeEnd++,placementCancel:()=>calls.placeCancel++});
+ const canvas=new Canvas(),calls={begin:[],end:[],tap:[],pan:[],zoom:[],hover:[],cancel:0,placeStart:0,placeCancel:0,placeEnd:0,miniMove:[]};let input;
+ const gestures=new MapGestures({canPanAt:()=>options.world!==false,minimapStart:()=>!!options.minimap,minimapMove:(...p)=>calls.miniMove.push(p),tap:(...p)=>calls.tap.push(p),pan:(...p)=>calls.pan.push(p),zoom:(...p)=>calls.zoom.push(p),placementStart:()=>{calls.placeStart++;return !!options.place;},placementMove(){},placementEnd:()=>calls.placeEnd++,placementCancel:()=>calls.placeCancel++});
  input=bindMapInput(canvas,{begin:(id,p,kind)=>{calls.begin.push({id,...p,kind});if(options.disabled)return false;gestures.down({id,...p,kind});return true;},move:(id,p)=>gestures.move({id,...p}),end:(id,p)=>{calls.end.push({id,...p});gestures.up({id,...p});},cancel:()=>{calls.cancel++;input.reset();gestures.cancel();},hover:p=>calls.hover.push(p)},{pointerEvents:options.pointerEvents!==false});
  return {canvas,calls,gestures,input};
 }
@@ -35,7 +35,7 @@ test('compatibility mouse events alone never become a second pointer stream',()=
  assert.equal(calls.begin.length,0);assert.equal(calls.tap.length,0);assert.equal(calls.hover.length,0);
 });
 test('mouse pan uses CSS-local positions once and never commits a command on release',()=>{
- const {canvas,calls}=setup();canvas.emit('pointerdown');canvas.emit('pointermove',{clientX:140});canvas.emit('mousemove',{clientX:140});canvas.emit('pointerup',{clientX:140});canvas.emit('mouseup',{clientX:140});
+ const {canvas,calls}=setup();canvas.emit('pointerdown');canvas.emit('pointermove',{clientX:140,buttons:1});canvas.emit('mousemove',{clientX:140});canvas.emit('pointerup',{clientX:140});canvas.emit('mouseup',{clientX:140});
  assert.deepEqual(calls.pan,[[20,0]]);assert.equal(calls.tap.length,0);assert.equal(calls.cancel,0);
 });
 test('unexpected capture loss cancels once; late pointerup and compatmouseup do not commit',()=>{
@@ -43,7 +43,7 @@ test('unexpected capture loss cancels once; late pointerup and compatmouseup do 
  assert.equal(calls.cancel,1);assert.equal(calls.tap.length,0);assert.equal(input.activeCount,0);
 });
 test('pointercancel aborts original placement once without a placement confirmation',()=>{
- const {canvas,calls}=setup({place:true});canvas.emit('pointerdown');canvas.emit('pointermove',{clientX:150});canvas.emit('pointercancel');canvas.emit('pointerup');
+ const {canvas,calls}=setup({place:true});canvas.emit('pointerdown');canvas.emit('pointermove',{clientX:150,buttons:1});canvas.emit('pointercancel');canvas.emit('pointerup');
  assert.equal(calls.placeCancel,1);assert.equal(calls.placeEnd,0);assert.equal(calls.tap.length,0);assert.equal(calls.cancel,1);
 });
 test('touch pinch and subsequent one-finger pan preserve gesture recognition without taps',()=>{
@@ -68,4 +68,21 @@ test('blocked UI/reset cannot leave held capture or generate a later tap',()=>{
 });
 test('pointer hover reports CSS-local coordinates once, ignoring compatibility mousemove',()=>{
  const {canvas,calls}=setup();canvas.emit('pointermove',{clientX:90,clientY:110});canvas.emit('mousemove',{clientX:90,clientY:110});assert.deepEqual(calls.hover,[{x:70,y:80}]);
+});
+
+
+test('PUBLIC Safari phantom unpressed hover between stationary down/up stays one tap and cannot begin placement',()=>{
+ for(const place of [false,true]){const {canvas,calls,input}=setup({place});
+  canvas.emit('pointerdown',{clientX:475,clientY:460,buttons:0});
+  canvas.emit('pointermove',{clientX:770,clientY:612,button:-1,buttons:0});
+  canvas.emit('pointerup',{clientX:475,clientY:460,buttons:0});
+  canvas.emit('lostpointercapture',{clientX:0,clientY:0,buttons:0});
+  assert.deepEqual(calls.tap,[[455,430]]);assert.equal(calls.pan.length,0);assert.equal(calls.placeStart,0);assert.equal(calls.placeEnd,0);assert.equal(calls.hover.length,0);assert.equal(calls.cancel,0);assert.equal(input.activeCount,0);
+ }
+});
+test('AX mouse drag with unpressed moves still pans once from the final release position',()=>{
+ const {canvas,calls}=setup();canvas.emit('pointerdown');canvas.emit('pointermove',{clientX:770,clientY:612,buttons:0});assert.equal(calls.pan.length,0);canvas.emit('pointerup',{clientX:220,clientY:130,buttons:0});assert.deepEqual(calls.pan,[[100,0]]);assert.equal(calls.tap.length,0);
+});
+test('pen movement with buttons0 remains a live drag; the unpressed guard applies to mouse only',()=>{
+ const {canvas,calls}=setup();canvas.emit('pointerdown',{pointerType:'pen'});canvas.emit('pointermove',{pointerType:'pen',clientX:140,buttons:0});assert.deepEqual(calls.pan,[[20,0]]);canvas.emit('pointerup',{pointerType:'pen',clientX:140});assert.equal(calls.tap.length,0);
 });

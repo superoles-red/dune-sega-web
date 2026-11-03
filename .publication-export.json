@@ -1141,9 +1141,9 @@
       "sha256": "0da3dd208b2dc331e932b0a82651670642befe8d5849819c41bee890a70d45a9"
     },
     "data/safari-input-qa/verification.json": {
-      "bytes": 5948,
+      "bytes": 7001,
       "mode": "0o644",
-      "sha256": "9aac498938378c88be5b1f96215852deb67eb1630c797496d6e8f60bfceb95fc"
+      "sha256": "3622174497420ce103e58ae9b6aa78f50eb6d3e86e6d4e32f8644511b92a97ed"
     },
     "data/scene-presentation/README.md": {
       "bytes": 3497,
@@ -3706,9 +3706,9 @@
       "sha256": "32e7b95bc30e07525c58ce0f1c5c3f1c7bb233c98ae9e7c2cfd7c14912a9055a"
     },
     "tests/map-input.test.mjs": {
-      "bytes": 7850,
+      "bytes": 9397,
       "mode": "0o644",
-      "sha256": "5611100ff981b95326014c42bfe120a2e7b566ce9956cdabe0ecc97f47baea2b"
+      "sha256": "47a31d7ecc391507ce3bd381cd4a9a7a684fd4a5a0e23d0b0dc1d848cc56a5bd"
     },
     "tests/native-button-layout.test.mjs": {
       "bytes": 3441,
@@ -6028,12 +6028,12 @@
     "web/index.html": {
       "bytes": 4449,
       "mode": "0o644",
-      "sha256": "8dff60f0b45f94cf40eda71890c83c6dafbb441440cb4588e79b5d8a6c8ed8b7"
+      "sha256": "332d92c99fae385a6cc6b75e534653a0b9cf29ba1ebc88113f4e873389c59768"
     },
     "web/input-check.mjs": {
       "bytes": 2725,
       "mode": "0o644",
-      "sha256": "6e7dc216684832dee05f060c5c0fd5556b4cc5ea163f77bb78841d9b2eddb672"
+      "sha256": "ab131092f9ca4a23a2f70f9641419025f3bbe632ed6ffdee295b1dda820b15f5"
     },
     "web/input-feedback/attack-manifest.json": {
       "bytes": 2305,
@@ -6196,9 +6196,9 @@
       "sha256": "89497186d8237913302241df49a44de8de6f03e276b3390f5440669a31b164e4"
     },
     "web/map-input.mjs": {
-      "bytes": 2612,
+      "bytes": 2915,
       "mode": "0o644",
-      "sha256": "2b4c1cd3757856fa8eb23ca537c53f3d42a327f31d6f522d34266dbc444040cd"
+      "sha256": "e58fb0da82f7328353d1d666ff4780095b983aa05df33a165ee05ff26f39d79b"
     },
     "web/modern-ui.css": {
       "bytes": 15655,
@@ -6261,9 +6261,9 @@
       "sha256": "58eea5578f3bc5f048bde5f0352ac0252adc3b1351eb0cb0292590d70d9dc5ab"
     },
     "web/shell.js": {
-      "bytes": 18710,
+      "bytes": 18729,
       "mode": "0o644",
-      "sha256": "5b179e2dcd22fbb77f8fce34bd237fd7ab3d2e31153d105bb2614773194d79c9"
+      "sha256": "36655ef4edead56c6871b1b7a44f274c434b51f81d1f785eef5ef76df5778424"
     },
     "web/training-manifest.json": {
       "bytes": 9463,

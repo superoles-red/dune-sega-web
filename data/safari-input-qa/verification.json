@@ -2,11 +2,11 @@
   "date": "2026-11-03",
   "scope": "DOM map-pointer routing only; no C/WASM/ROM/gameplay/audio change",
   "files": {
-    "web/map-input.mjs": "2b4c1cd3757856fa8eb23ca537c53f3d42a327f31d6f522d34266dbc444040cd",
-    "web/shell.js": "5b179e2dcd22fbb77f8fce34bd237fd7ab3d2e31153d105bb2614773194d79c9",
-    "tests/map-input.test.mjs": "5611100ff981b95326014c42bfe120a2e7b566ce9956cdabe0ecc97f47baea2b",
-    "web/index.html": "8dff60f0b45f94cf40eda71890c83c6dafbb441440cb4588e79b5d8a6c8ed8b7",
-    "web/input-check.mjs": "6e7dc216684832dee05f060c5c0fd5556b4cc5ea163f77bb78841d9b2eddb672"
+    "web/map-input.mjs": "e58fb0da82f7328353d1d666ff4780095b983aa05df33a165ee05ff26f39d79b",
+    "web/shell.js": "36655ef4edead56c6871b1b7a44f274c434b51f81d1f785eef5ef76df5778424",
+    "tests/map-input.test.mjs": "47a31d7ecc391507ce3bd381cd4a9a7a684fd4a5a0e23d0b0dc1d848cc56a5bd",
+    "web/index.html": "332d92c99fae385a6cc6b75e534653a0b9cf29ba1ebc88113f4e873389c59768",
+    "web/input-check.mjs": "ab131092f9ca4a23a2f70f9641419025f3bbe632ed6ffdee295b1dda820b15f5"
   },
   "oldShellSha256": "07eb5f6838b1c639b9e2707924083ae74540b5f23c262588a565b64f9bae143e",
   "rootReportedActualSafariBefore": {
@@ -29,10 +29,11 @@
     "primaryMouseCheck": "button0; does not require buttons1",
     "compatibilityMouseEvents": "prevented before SDL, not gesture inputs",
     "fallback": "Mouse gesture handlers only when PointerEvent is unavailable",
-    "nativeGestureRules": "Existing MapGestures and original WASM/native commands unchanged"
+    "nativeGestureRules": "Existing MapGestures and original WASM/native commands unchanged",
+    "unpressedMouseMoves": "While an owned mouse pointer has buttons===0, ignore pointermove without hover/pan/placement; final release still runs original MapGestures.up; real buttons1 moves, touch and pen unchanged"
   },
   "node": {
-    "passed": 13,
+    "passed": 16,
     "tests": [
       "Exact Safari event order/buttons0",
       "Chrome order",
@@ -46,13 +47,16 @@
       "Minimap camera-only",
       "Secondary mouse ignored",
       "Legacy mouse fallback",
-      "Blocked/reset gesture and pointer hover"
+      "Blocked/reset gesture and pointer hover",
+      "Exact PUBLIC phantom unpressed pointermove: one tap, zero pan/placement",
+      "Held mouse buttons1 keeps live pan; AX buttons0 drag uses final release once",
+      "Pen buttons0 movement unchanged"
     ],
     "log": "node-input.log",
     "command": "node --test tests/map-input.test.mjs",
     "suiteCommand": "node --test tests/*.test.mjs",
     "ciDiscovery": "tests/map-input.test.mjs is collected by the ordinary tests/*.test.mjs command",
-    "suitePassed": 102,
+    "suitePassed": 105,
     "suiteFailed": 0,
     "suiteLog": "node-suite.log"
   },
@@ -101,20 +105,21 @@
     "consoleErrors": 0,
     "centeredSelected": "PASS at390x844 and844x390 with Russian picker; native bitmap layout assertions also cover EN/RU"
   },
-  "cacheEntryVersion": "20261103-safari2",
-  "cacheVersionNote": "Final entry and NativeArt query updated together to avoid requiring a manual resource reload; pointer implementation unchanged from validated v1.",
-  "publicAfter": "Unresolved pending root actual PUBLIC safari4 compact event trace; LOCAL normal and QA selection remain verified separately",
+  "cacheEntryVersion": "20261103-safari5",
+  "cacheVersionNote": "Entry, map-input, NativeArt and diagnostic imports are versioned together; this prevents a previously cached pointer controller from masking the fix.",
+  "publicAfter": "Awaiting root actual PUBLIC safari5 verification; exact captured false-pan case passes focused regression. No C/WASM change.",
   "inputDiagnostic": {
     "activation": "URLSearchParams.has(inputcheck); default off",
     "module": "web/input-check.mjs",
-    "cacheToken": "20261103-safari4",
+    "cacheToken": "20261103-safari5",
     "reads": "Only existing JS counters/MapGestures/cached latestActions/camera; zero extra native getters or commands",
     "nativeTapCallsPerRelease": 1,
-    "pointerAdapterUnchanged": true,
     "ui": "Compact role=status output begins with last4 eventSummary strings; Snapshot label includes latest down/up plus last2 move coordinates/buttons",
     "displayOrder": "eventSummary first, taps/pan/mode/lastTap/selected then ready/captures/camera",
-    "ciPassed": 102,
-    "dynamicImport": "./input-check.mjs?v=20261103-safari4"
+    "ciPassed": 105,
+    "dynamicImport": "./input-check.mjs?v=20261103-safari5",
+    "pointerAdapterChange": "Narrow active mouse pointermove buttons===0 guard only; touch/pen and final pointerup location retained",
+    "pointerImport": "./map-input.mjs?v=20261103-safari5"
   },
   "publicDiagnosticV3": {
     "taps": 0,
@@ -127,5 +132,17 @@
     ],
     "finding": "Gesture became pan before native tap call; no C/core change justified without exact pointermove coordinates",
     "next": "Compact safari4 formatter, no pointer-adapter changes"
+  },
+  "publicDiagnosticV4": {
+    "reportedBy": "root actual PUBLIC Safari trace",
+    "down": "475,460 buttons0 pending",
+    "move": "770,612 button-1 buttons0 -> pan",
+    "up": "475,460 buttons0 -> pan",
+    "lost": "0,0 -> idle",
+    "taps": 0,
+    "pan": 2,
+    "cameraChanged": false,
+    "lastTap": null,
+    "cause": "Unpressed OS hover contaminates assistive/AX click while mouse pointer is owned; not native input rejection or QA-only getter behavior"
   }
 }
