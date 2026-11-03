@@ -1,12 +1,12 @@
 import {MapGestures,placementEdgeVelocity} from './gestures.mjs';
-import {bindMapInput} from './map-input.mjs?v=20261103-pwa2';
-import {NativeArt} from './native-ui.mjs?v=20261103-pwa2';
-import {GameInterface} from './game-ui.mjs?v=20261103-pwa2';
+import {bindMapInput} from './map-input.mjs?v=20261103-pwa3';
+import {NativeArt} from './native-ui.mjs?v=20261103-pwa3';
+import {GameInterface} from './game-ui.mjs?v=20261103-pwa3';
 import {validHouse,validMission} from './campaign-state.mjs';
 import {contextAction} from './context-action.mjs';
 import {OrderFeedback} from './order-feedback.mjs';
 import {NativeAudioBridge} from './native-audio.mjs';
-import {BrowserFeatures} from './browser-features.mjs';
+import {BrowserFeatures} from './browser-features.mjs?v=20261103-pwa3';
 
 // Input and presentation only. The original Sega handlers decide every game action.
 const canvas=document.getElementById('canvas');
@@ -171,7 +171,7 @@ function placementFrame(now){
   if(dt&&(vx||vy)){Module._dune_web_pan?.(-vx*dt,-vy*dt);counters.edgePans++;}
   Module._dune_web_placement_move?.(p.x,p.y);
 }
-if(inputCheckMode)import('./input-check.mjs?v=20261103-pwa2').then(({mountInputCheck})=>{
+if(inputCheckMode)import('./input-check.mjs?v=20261103-pwa3').then(({mountInputCheck})=>{
  inputCheck=mountInputCheck({canvas,read:()=>({taps:counters.taps,pan:counters.panEvents,mode:gestures.mode,lastTap:lastMapTap,selected:{kind:latestActions.selected?.kind||'none',id:latestActions.selected?.id},ready,capturesInput:!!gameUI?.capturesInput,camera:{map:latestCamera.map,css:[latestCamera.cssWidth,latestCamera.cssHeight],output:[latestCamera.outputWidth,latestCamera.outputHeight],left:latestCamera.left,top:latestCamera.top,scale:latestCamera.scale,queued:latestCamera.queuedClicks}})});
 }).catch(e=>console.warn('Input diagnostic unavailable:',e.message));
 setInterval(pollState,50);if(!qaMode)setInterval(()=>saveGame(true),30000);

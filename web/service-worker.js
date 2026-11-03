@@ -20,6 +20,16 @@ async function digest(bytes) {
   const hash = await crypto.subtle.digest('SHA-256', bytes);
   return Array.from(new Uint8Array(hash), byte => byte.toString(16).padStart(2, '0')).join('');
 }
+let installErrorReported = false;
+async function reportInstallFailure(error, extra = {}) {
+  const detail = [error?.name, error?.message || String(error)].filter(Boolean).join(': ');
+  // Reporting must never hide the original install failure, even if the page
+  // was closed or the browser has denied its storage/client APIs.
+  try {
+    await broadcast(summary('error', {loaded: 0, bytes: 0, ...extra, message: detail}));
+    installErrorReported = true;
+  } catch {}
+}
 async function installPackage() {
   if (!PRECACHE.length || VERSION.startsWith('__')) throw Error('Offline package has not been built');
   // A failed candidate never deletes the preceding, still-active version.
@@ -48,19 +58,24 @@ async function installPackage() {
   const failed = results.find(result => result.status === 'rejected');
   if (failed) {
     if (!alreadyReady) await caches.delete(CACHE_NAME);
-    await broadcast(summary('error', {loaded, bytes, message: failed.reason?.message || 'Offline download failed'}));
+    await reportInstallFailure(failed.reason, {loaded, bytes});
     throw failed.reason;
   }
   try {
     await cache.put(READY_URL, new Response(JSON.stringify({version: VERSION, files: PRECACHE.length}), {headers: {'Content-Type': 'application/json'}}));
   } catch (error) {
     if (!alreadyReady) await caches.delete(CACHE_NAME);
-    await broadcast(summary('error', {loaded, bytes, message: error.message || 'Offline download failed'}));
+    await reportInstallFailure(error, {loaded, bytes});
     throw error;
   }
   await broadcast(summary('ready'));
 }
-self.addEventListener('install', event => event.waitUntil(installPackage()));
+self.addEventListener('install', event => event.waitUntil(installPackage().catch(async error => {
+  // CacheStorage can reject before the first progress message. Surface that
+  // precise early failure too; failed installs still reject and never activate.
+  if (!installErrorReported) await reportInstallFailure(error);
+  throw error;
+})));
 self.addEventListener('activate', event => event.waitUntil((async () => {
   if (!await (await caches.open(CACHE_NAME)).match(READY_URL)) throw Error('Incomplete offline package');
   for (const name of await caches.keys()) {

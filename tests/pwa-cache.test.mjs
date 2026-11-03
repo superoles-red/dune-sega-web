@@ -15,8 +15,8 @@ function host({version='new',corrupt=null,fail=null,old=true}={}){
  const prefix='dune-sega-offline:/dune-sega-web/:';
  if(old)data.set(prefix+'old',new Map([['preserved',new Response('old')]]));
  data.set('unrelated-site-cache',new Map());
- const cacheFor=name=>({async put(key,response){if(fail==='put')throw Error('quota');data.get(name).set(String(key),response.clone());},async match(key){return data.get(name).get(String(key))?.clone();}});
- const caches={async keys(){return [...data.keys()];},async open(name){if(!data.has(name))data.set(name,new Map());return cacheFor(name);},async delete(name){return data.delete(name);}};
+ const cacheFor=name=>({async put(key,response){if(fail==='put')throw Error('quota');data.get(name).set(String(key),response.clone());},async match(key){if(fail==='match')throw Error('cache match denied');return data.get(name).get(String(key))?.clone();}});
+ const caches={async keys(){return [...data.keys()];},async open(name){if(fail==='open')throw Error('cache open denied');if(!data.has(name))data.set(name,new Map());return cacheFor(name);},async delete(name){return data.delete(name);}};
  const self={registration:{scope},clients:{async matchAll(){return [{postMessage:m=>messages.push(m)}];}},addEventListener:(name,fn)=>listeners[name]=fn};
  const fetch=async (request,options)=>{
   const url=typeof request==='string'?request:request.url;network.push({url,options});
@@ -51,6 +51,16 @@ test('corrupt bytes or failed download never replace last working offline packag
   const h=host(options);await assert.rejects(()=>h.event('install'));
   assert.ok(h.data.has(h.prefix+'old'));assert.ok(!h.data.has(h.cacheName));
   assert.equal(h.messages.at(-1).status,'error');
+ }
+});
+
+test('early CacheStorage errors report their detail before any download and still reject install',async()=>{
+ for(const [fail,message] of [['open','cache open denied'],['match','cache match denied']]){
+  const h=host({fail});await assert.rejects(()=>h.event('install'),new RegExp(message));
+  assert.equal(h.network.length,0);assert.ok(h.data.has(h.prefix+'old'));
+  assert.equal(h.messages.at(-1).status,'error');assert.equal(h.messages.at(-1).loaded,0);
+  assert.equal(h.messages.at(-1).total,entries.length);
+  assert.equal(h.messages.at(-1).message,'Error: '+message);
  }
 });
 

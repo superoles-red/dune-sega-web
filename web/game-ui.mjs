@@ -1,14 +1,14 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261103-pwa2';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261103-pwa2';
+import {BuildingInterface} from './building-ui.mjs?v=20261103-pwa3';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261103-pwa3';
 import {ScreenTransition} from './screen-transition.mjs';
-import {NativeConfirmation} from './confirm-dialog.mjs?v=20261103-pwa2';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261103-pwa3';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261103-pwa2';
+import {LANGUAGES} from './i18n.mjs?v=20261103-pwa3';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
 import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs';
-import {downloadSave,pickSaveFile} from './browser-features.mjs';
+import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261103-pwa3';
 
 const STORY=new Set(['house_briefing','briefing','victory','defeat']);
 const SEQUENCE=new Set([...STORY,'tutorial','loading','campaign','victory_movie','defeat_movie','results','ending','credits']);
@@ -360,7 +360,7 @@ export class GameInterface {
     for(const row of [0,1]){const v=this.button('',()=>this.input(2,row),{...opts,id:'option-'+row});this.optionViews.set(row,v.view);}
     this.button('LANGUAGES',()=>this.openLanguages(),{...opts,id:'open-languages',feedback:true});
     this.button('TUTORIAL',()=>this.openTutorial(),{...opts,id:'open-tutorial',ariaLabel:'Пояснения об Арракисе',feedback:true});
-    if(this.platform){const full=this.button('FULL SCREEN',()=>this.toggleFullscreen(),{...opts,id:'fullscreen',feedback:true});this.optionViews.set('fullscreen',full.view);this.button('FILES & OFFLINE',()=>this.openPlatform(),{...opts,id:'open-platform',feedback:true});}
+    if(this.platform)this.button('FILES & OFFLINE',()=>this.openPlatform(),{...opts,id:'open-platform',feedback:true});
     if(scene==='pause'){this.button('RESTART',()=>this.restartMission(),{...opts,id:'restart-mission',ariaLabel:'Начать текущую миссию заново'});this.button('MAIN MENU',()=>this.confirmMainMenu(),{...opts,id:'main-menu',ariaLabel:'Главное меню'});}
     this.backButton(()=>scene==='pause'?this.requestRoute('map'):this.mainMenu(),{feedback:true,disabled:pending});
    }else if(terminal(s)){

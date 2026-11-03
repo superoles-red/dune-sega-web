@@ -104,6 +104,7 @@
 #global-fullscreen.native-button{position:fixed;z-index:80;top:max(10px,env(safe-area-inset-top));right:max(10px,env(safe-area-inset-right));width:52px;height:48px;min-width:52px;min-height:48px}
 #global-fullscreen::after{content:"";position:absolute;inset:11px 12px;pointer-events:none;--native-ink:url('./ui-assets/screen-assets/ui/command-skin-normal-tl.png');background-image:var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink);background-position:top left,top right,bottom left,bottom right,top left,top right,bottom left,bottom right;background-size:10px 3px,10px 3px,10px 3px,10px 3px,3px 10px,3px 10px,3px 10px,3px 10px;background-repeat:no-repeat;image-rendering:pixelated}
 .scene-head{padding-left:56px;padding-right:56px}
+.native-screen[data-view="native"] #open-platform{grid-column:1/-1}
 #demo-launch{top:max(68px,calc(env(safe-area-inset-top) + 68px))}
 
 /* Browser settings use the same original bitmap buttons and dialog frame.
@@ -119,7 +120,7 @@
  .native-screen[data-view="platform"] .scene-shell{grid-template-areas:"head head" "message actions" "footer footer";grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);grid-template-rows:40px minmax(0,1fr) 60px}
  .native-screen[data-view="platform"] .scene-actions{height:100%;max-height:none;align-content:center;grid-auto-rows:56px}
  .native-screen[data-view="platform"] .scene-actions>.native-button{height:56px}
- .native-screen[data-view="native"][data-scene="options"] #fullscreen,.native-screen[data-view="native"][data-scene="options"] #open-platform{grid-column:span 2}
+ .native-screen[data-view="native"][data-scene="options"] #open-platform{grid-column:1/-1}
 }
 @media(max-height:419px){
  .native-screen[data-view="platform"] .scene-shell{gap:6px;grid-template-rows:32px minmax(0,1fr) 56px}

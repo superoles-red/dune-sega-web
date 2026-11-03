@@ -9,6 +9,7 @@ export class BrowserFeatures {
   win?.addEventListener('appinstalled',()=>{this.installPrompt=null;this.state.installed=true;this.emit();});
   doc?.addEventListener('fullscreenchange',()=>this.emit());doc?.addEventListener('webkitfullscreenchange',()=>this.emit());
   nav?.serviceWorker?.addEventListener('message',e=>{
+   if(e.data?.type==='DUNE_OFFLINE_PROGRESS'&&e.data.status==='error'){this.lastWorkerError=e.data.message;console.warn('Dune offline worker:',e.data.message);}
    if(e.data?.type!=='DUNE_OFFLINE_PROGRESS'||this.pending&&this.targetWorker&&e.source&&e.source!==this.targetWorker)return;
    let {status,loaded,total,bytes,totalBytes,version}=e.data;
    if(this.state.preparing&&status==='ready'&&this.targetWorker?.state==='installing')status='downloading';
@@ -36,8 +37,8 @@ export class BrowserFeatures {
  }
  async prepareOffline(){
   if(this.pending)return this.pending;
-  this.state.status='downloading';this.state.preparing=true;this.emit();
-  this.pending=this.prepare().catch(error=>{this.state.status='error';this.state.preparing=false;this.emit();throw error;}).finally(()=>{this.pending=null;});
+  this.state.status='downloading';this.state.preparing=true;this.lastWorkerError=null;this.emit();
+  this.pending=this.prepare().catch(error=>{this.state.status='error';this.state.preparing=false;this.state.error=this.lastWorkerError||error.message;console.warn('Dune offline preparation:',this.state.error,error.name);this.emit();throw error;}).finally(()=>{this.pending=null;});
   return this.pending;
  }
  async prepare(){

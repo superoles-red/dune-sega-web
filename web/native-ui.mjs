@@ -1,5 +1,5 @@
 // Native PNG composition only. Game actions stay in the original runtime.
-import {GameLanguage} from './i18n.mjs?v=20261103-pwa2';
+import {GameLanguage} from './i18n.mjs?v=20261103-pwa3';
 export class NativeArt {
  constructor({storage}={}){this.images=new Map();this.alpha=new Map();this.inkAtlases=new Map();this.flags=new Map();this.buttonViews=new Set();this.pressedViews=new Set();this.language=new GameLanguage({storage});this.ready=false;this.language.onChange(()=>{for(const v of this.buttonViews)v.draw();});for(const ev of ['pointerup','pointercancel'])window.addEventListener(ev,()=>{for(const v of [...this.pressedViews])v.release();},true);}
  async load(){

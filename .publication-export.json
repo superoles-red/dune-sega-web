@@ -26,9 +26,9 @@
       "sha256": "5c51106d6ee86ec6ebe07f60495b1315d9092cce6eadbe53dc79b1c2565faaa0"
     },
     "README.md": {
-      "bytes": 51625,
+      "bytes": 51596,
       "mode": "0o644",
-      "sha256": "d42c63c81174742aafc26329aa1b352e1f9af4f4893203476fce4bc3ce569d98"
+      "sha256": "53138c17ea2359ffd97485bebfa11a4347b6b3137eb99507b6d2b498e42594c1"
     },
     "THIRD_PARTY_NOTICES.md": {
       "bytes": 3653,
@@ -3631,9 +3631,9 @@
       "sha256": "d6827c9e07f2729088d3369aa15334ce24b43decca75b8307293ec0cc24765ad"
     },
     "docs/pwa-and-saves.md": {
-      "bytes": 9987,
+      "bytes": 9967,
       "mode": "0o644",
-      "sha256": "480591e3c086ca004a1f1f3e3c01ee74e80f67170dd1128371d84182c8124426"
+      "sha256": "0c681268baca66a03707247f1413ef26840d4fd659149b3795f08e4584b7af9b"
     },
     "docs/source-identity.json": {
       "bytes": 502,
@@ -3761,9 +3761,9 @@
       "sha256": "9325fc693502b4f0511135257cfaac785153beb3885ba8b47f253a8ee6a45cf2"
     },
     "tests/pwa-cache.test.mjs": {
-      "bytes": 7321,
+      "bytes": 8004,
       "mode": "0o644",
-      "sha256": "9b0c15b08dd534395c18a84b549373f570f2be7cca590b3e833645b72f13cf9b"
+      "sha256": "d4c5295db91525eaf176d997ed683af2a4a4db1f07ecde556c4ff099e8e09aa4"
     },
     "tests/save-files.test.mjs": {
       "bytes": 10717,
@@ -6306,9 +6306,9 @@
       "sha256": "25fa8ee1b53d5bb0985067e6f63702e82e43edf92cb51ea46b9fcbfd305fcbe5"
     },
     "web/browser-features.mjs": {
-      "bytes": 5999,
+      "bytes": 6309,
       "mode": "0o644",
-      "sha256": "b48ae1670318d78ec370a8e450f993ade709e44f116ab165b1b46ad8a83ba777"
+      "sha256": "af31325f5db21633e8efd654ee47a893c430bca24af3ff17046f37f8c6d3868b"
     },
     "web/building-layout.mjs": {
       "bytes": 1785,
@@ -6318,7 +6318,7 @@
     "web/building-ui.mjs": {
       "bytes": 14104,
       "mode": "0o644",
-      "sha256": "0a813282f9177769bc32e9952dac0d64b04c524c7fd73ea632c70c888fecf0e0"
+      "sha256": "eb477a57644043de0a22fa785e4256f80e96b98d598cd8960e6c99970f09ec41"
     },
     "web/campaign-names.mjs": {
       "bytes": 318,
@@ -6366,9 +6366,9 @@
       "sha256": "6bfd6cb318ba28ced014c1a318a430ee5899025fdc2975d98a880e4abd2d7955"
     },
     "web/game-ui.mjs": {
-      "bytes": 54519,
+      "bytes": 54382,
       "mode": "0o644",
-      "sha256": "9697812416e229e3718a8ce961d393ae09d04a1385c6e4be0f541584e91e13d0"
+      "sha256": "78b0f44604d9cdce0f88d633d69a2984fdca86390b6b261f6cc0f70f74c6bda5"
     },
     "web/gestures.mjs": {
       "bytes": 3532,
@@ -6378,7 +6378,7 @@
     "web/i18n.mjs": {
       "bytes": 3920,
       "mode": "0o644",
-      "sha256": "fa3e46e63b60d5691f8c6c207fde19ba3378f7e753bc44b65bc8231724a9751d"
+      "sha256": "a7ab01cda374989157fbe3e97fd24b5295bd7056380e173280175d66dfe3d083"
     },
     "web/icons/dune-180.png": {
       "bytes": 3759,
@@ -6403,7 +6403,7 @@
     "web/index.html": {
       "bytes": 4978,
       "mode": "0o644",
-      "sha256": "13e0aaf68df77e21a5de223ad973e4b8feaab3a51b08ac64691404442b432a22"
+      "sha256": "92e1ec01523914cba893f5238cdd245fe7fbc4ddef722624f17aeaf265e57ae8"
     },
     "web/input-check.mjs": {
       "bytes": 2725,
@@ -6593,7 +6593,7 @@
     "web/native-ui.mjs": {
       "bytes": 16046,
       "mode": "0o644",
-      "sha256": "f1a2ddbff9bcc3686a4621a3ef6ff82d1a71dd8793dbabe51bf0b93bb16b6666"
+      "sha256": "fdf7f2893569899f45352e9933be193314ba4a108901e4a33147836e0fac255a"
     },
     "web/options-layout.mjs": {
       "bytes": 1418,
@@ -6631,9 +6631,9 @@
       "sha256": "3569402a123ea85f34ef5f6ebce9c685e3193f1aa02a8180916a2cdb0037d632"
     },
     "web/scene-flow.css": {
-      "bytes": 14893,
+      "bytes": 14890,
       "mode": "0o644",
-      "sha256": "c6f4204d80eb080af0a73ae1bcba3658fe62b99a828ff9c584299feeace8d931"
+      "sha256": "75e18ecf270ada9e064d6b97d375050cf050d26272263acd7164f371fa9e2b80"
     },
     "web/screen-transition.mjs": {
       "bytes": 2297,
@@ -6641,14 +6641,14 @@
       "sha256": "58eea5578f3bc5f048bde5f0352ac0252adc3b1351eb0cb0292590d70d9dc5ab"
     },
     "web/service-worker.js": {
-      "bytes": 5054,
+      "bytes": 5683,
       "mode": "0o644",
-      "sha256": "b3fd58c89cac913b9b648960613a76769b9ccd1c326dbff6d2ffce5ec469933e"
+      "sha256": "fa1f8c6708d7236716ec1fdaf51209bcc7c0f77af3de2b5b95471becaadca21b"
     },
     "web/shell.js": {
-      "bytes": 19331,
+      "bytes": 19347,
       "mode": "0o644",
-      "sha256": "6b17357ff11064547129037692603c68815210070790de227d55ceb8ab583c2d"
+      "sha256": "38771d7940941a7d5c0a12b46764d252533206114af46a6fafaf9f92a24b187e"
     },
     "web/training-manifest.json": {
       "bytes": 9463,

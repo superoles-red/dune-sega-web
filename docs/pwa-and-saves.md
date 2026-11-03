@@ -7,8 +7,8 @@
 
 ## Полный экран и значок
 
-Откройте `OPTIONS` (в игре — `MENU`/пауза) → `FULL SCREEN`. То же действие
-доступно по маленькому значку справа сверху; внутри здания он скрыт, чтобы
+Для полного экрана нажмите маленький значок справа сверху. Это единственная
+кнопка полного экрана; внутри здания она скрыта, чтобы
 не перекрывать денежный счётчик. Полноэкранный режим включается по нажатию
 пользователя, если браузер поддерживает его для игр. Выход —
 той же кнопкой или системным жестом/Escape. Масштаб камеры внутри игры — отдельная
@@ -100,8 +100,8 @@
 
 ## English quick guide
 
-Open **Options/Pause → Full Screen** (or the upper-right icon) for fullscreen.
-Open **Files & Offline** for **Download Save**, **Load Save File**, **Install
+Use the single upper-right icon for fullscreen. Open **Options/Pause →
+Files & Offline** for **Download Save**, **Load Save File**, **Install
 Game**, **Prepare Offline**, and **Source Code**. On iPhone, use Safari → Share → Add to Home Screen → Open as Web
 App, then launch the icon. On Android/desktop, use the browser's supported
 installation/fullscreen controls. A Home Screen icon alone does not guarantee
