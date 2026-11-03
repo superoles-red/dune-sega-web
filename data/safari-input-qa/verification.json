@@ -3,7 +3,7 @@
   "scope": "DOM map-pointer routing only; no C/WASM/ROM/gameplay/audio change",
   "files": {
     "web/map-input.mjs": "2b4c1cd3757856fa8eb23ca537c53f3d42a327f31d6f522d34266dbc444040cd",
-    "web/shell.js": "686393d4f04248449709a2c936821011048716810d3a529b761cc0bec89f569d",
+    "web/shell.js": "b129ad12540e06c064938262935b5c2950fa2e1d9c57c5c9d499d93849070a1d",
     "tests/map-input.test.mjs": "5611100ff981b95326014c42bfe120a2e7b566ce9956cdabe0ecc97f47baea2b"
   },
   "oldShellSha256": "07eb5f6838b1c639b9e2707924083ae74540b5f23c262588a565b64f9bae143e",
@@ -79,7 +79,17 @@
       "buildingPreviewAndExit": "PASS: first Windtrap button selects preview; EXIT returns to map",
       "mapDrag": "PASS: physical pointer drag from CSS550,285 to650,285 keeps Yard selection and context actions"
     },
-    "physicalPhones": "Not tested"
+    "physicalPhones": "Not tested",
+    "publicSafari": {
+      "status": "PASS after native Safari Reload Page From Origin",
+      "actualLoadedScripts": [
+        "map-input.mjs",
+        "shell.js?v=20261103-safari1",
+        "native-ui.mjs?v=20261103-safari1"
+      ],
+      "interaction": "Physical Yard click exposes Clear selection and Repeat production",
+      "storageCleared": false
+    }
   },
   "wasmUnchanged": "4f3a8c75663e87b0f7dbcad2aff11ee36fa434d9d0a82d87a74318700ee64c22",
   "chromiumAfter": {
@@ -87,5 +97,7 @@
     "mapDrag": "PASS: cameraX295 to264, taps1 stays1, selected pointer preserved",
     "consoleErrors": 0,
     "centeredSelected": "PASS at390x844 and844x390 with Russian picker; native bitmap layout assertions also cover EN/RU"
-  }
+  },
+  "cacheEntryVersion": "20261103-safari2",
+  "cacheVersionNote": "Final entry and NativeArt query updated together to avoid requiring a manual resource reload; pointer implementation unchanged from validated v1."
 }

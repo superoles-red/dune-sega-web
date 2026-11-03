@@ -1,6 +1,6 @@
 import {MapGestures,placementEdgeVelocity} from './gestures.mjs';
 import {bindMapInput} from './map-input.mjs';
-import {NativeArt} from './native-ui.mjs?v=20261103-safari1';
+import {NativeArt} from './native-ui.mjs?v=20261103-safari2';
 import {GameInterface} from './game-ui.mjs';
 import {validHouse,validMission} from './campaign-state.mjs';
 import {contextAction} from './context-action.mjs';
