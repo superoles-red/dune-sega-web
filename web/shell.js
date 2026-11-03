@@ -1,6 +1,6 @@
 import {MapGestures,placementEdgeVelocity} from './gestures.mjs';
 import {bindMapInput} from './map-input.mjs';
-import {NativeArt} from './native-ui.mjs?v=20261103-safari2';
+import {NativeArt} from './native-ui.mjs?v=20261103-safari3';
 import {GameInterface} from './game-ui.mjs';
 import {validHouse,validMission} from './campaign-state.mjs';
 import {contextAction} from './context-action.mjs';
@@ -15,10 +15,10 @@ const actionButton=document.getElementById('native-action');
 const menuButton=document.getElementById('native-menu');
 const status=document.getElementById('status');
 const SAVE_KEY='dune-original-aot-state-v2';
-const params=new URLSearchParams(location.search),qaMode=params.has('qa'),legacyMode=params.has('legacy');
+const params=new URLSearchParams(location.search),qaMode=params.has('qa'),legacyMode=params.has('legacy'),inputCheckMode=params.has('inputcheck');
 let gameUI=null,art=null,enginePromise=null,resolveEngine,rejectEngine,actionView=null;
 function browserStorage(){try{return qaMode?sessionStorage:localStorage;}catch{return {getItem:()=>null,setItem:()=>{throw Error('Хранилище браузера недоступно');}};}}
-let mapInput=null;
+let mapInput=null,inputCheck=null,lastMapTap=null,latestCamera={};
 let started=false,ready=false,messageTimer,lastSize='',queuedResize=false;
 let lastGesture='idle',lastEdgeTime=0,latestActions={},lastActionKind='',lastCanvasVisible=null;
 const counters={taps:0,panEvents:0,zooms:0,placementDrags:0,edgePans:0,clearRequests:0,bRequests:0};
@@ -37,7 +37,7 @@ function beginPointer(id,p,kind){if(!ready||gameUI?.capturesInput)return false;r
 function endPointer(id,p){gestures.up({id,...p});if(query(p.x,p.y)===1)orderFeedback.releaseAim(p.x,p.y);else orderFeedback.releaseAim();if(!gestures.points.size)Module._dune_web_end?.();}
 function mapTap(x,y){
  if(!ready||gameUI?.capturesInput)return;
- counters.taps++;orderFeedback.aimAt(x,y);Module._dune_web_end?.();Module._dune_web_selection_tap_screen?.(x,y);
+ counters.taps++;orderFeedback.aimAt(x,y);Module._dune_web_end?.();const result=Module._dune_web_selection_tap_screen?.(x,y);if(inputCheckMode)lastMapTap={x,y,result:result??null};
  // A queue acceptance is not an attack/move decision. The read-only native
  // commit observer supplies its actual D4 action and target to pollState.
 }
@@ -135,7 +135,7 @@ const icons={
 };
 const labels={repeat:'Повторить производство', 'confirm-devastator':'Подтвердить самоподрыв — оригинальная B', 'confirm-mcv':'Подтвердить развёртывание — оригинальная B'};
 function pollState(){
-  const camera=nativeJSON('_dune_web_camera_debug');latestActions=nativeJSON('_dune_web_actions_debug');
+  const camera=nativeJSON('_dune_web_camera_debug');if(inputCheckMode)latestCamera=camera;latestActions=nativeJSON('_dune_web_actions_debug');
   const campaign=nativeJSON('_dune_web_campaign_json'),needsBuilding=campaign.scene==='building'||gameUI?.building.active,
    building=needsBuilding?nativeJSON('_dune_web_building_ui_json'):{active:false};
   if(qaMode){
@@ -154,6 +154,7 @@ function pollState(){
   actionPanel.hidden=!!gameUI?.capturesInput||!camera.map||!latestActions.selected||latestActions.selected.kind==='none';
   const action=contextAction(latestActions);actionButton.hidden=!action;
   const kind=action?.kind||'none';if(kind!==lastActionKind){lastActionKind=kind;actionButton.dataset.action=kind;actionButton.setAttribute('aria-label',action?.aria||'Особое действие');actionButton.title=action?.aria||'';if(actionView)actionView.update(action?.label||'ACTION',{ariaLabel:action?.aria||'Особое действие'});else actionButton.textContent=action?.label||'ACTION';}
+  inputCheck?.refresh();
 
 }
 function placementFrame(now){
@@ -166,6 +167,9 @@ function placementFrame(now){
   if(dt&&(vx||vy)){Module._dune_web_pan?.(-vx*dt,-vy*dt);counters.edgePans++;}
   Module._dune_web_placement_move?.(p.x,p.y);
 }
+if(inputCheckMode)import('./input-check.mjs').then(({mountInputCheck})=>{
+ inputCheck=mountInputCheck({canvas,read:()=>({taps:counters.taps,pan:counters.panEvents,mode:gestures.mode,lastTap:lastMapTap,selected:{kind:latestActions.selected?.kind||'none',id:latestActions.selected?.id},ready,capturesInput:!!gameUI?.capturesInput,camera:{map:latestCamera.map,css:[latestCamera.cssWidth,latestCamera.cssHeight],output:[latestCamera.outputWidth,latestCamera.outputHeight],left:latestCamera.left,top:latestCamera.top,scale:latestCamera.scale,queued:latestCamera.queuedClicks}})});
+}).catch(e=>console.warn('Input diagnostic unavailable:',e.message));
 setInterval(pollState,50);if(!qaMode)setInterval(()=>saveGame(true),30000);
 resizeGame();requestAnimationFrame(placementFrame);
 if(legacyMode){document.getElementById('launch').hidden=false;if(qaMode)import('./qa.mjs');}
