@@ -1141,9 +1141,9 @@
       "sha256": "0da3dd208b2dc331e932b0a82651670642befe8d5849819c41bee890a70d45a9"
     },
     "data/safari-input-qa/verification.json": {
-      "bytes": 7001,
+      "bytes": 7807,
       "mode": "0o644",
-      "sha256": "3622174497420ce103e58ae9b6aa78f50eb6d3e86e6d4e32f8644511b92a97ed"
+      "sha256": "ffd7be7197deaf9501322b77452c7b71a7b6f16490758a3e0c51ed084b0ca298"
     },
     "data/scene-presentation/README.md": {
       "bytes": 3497,
@@ -3715,6 +3715,11 @@
       "mode": "0o644",
       "sha256": "bcfada84006229fb66c5a4868478ee5b8ee87b7af70f8082f6181c30c76e3a7a"
     },
+    "tests/native-drag-scroll.test.mjs": {
+      "bytes": 2536,
+      "mode": "0o644",
+      "sha256": "6736c1dbc2706a3f00d7f7211c63bb1887aba7cb9b6fd00b3fa3c0e9f52c20bc"
+    },
     "tests/native-frame-cache.test.mjs": {
       "bytes": 1865,
       "mode": "0o644",
@@ -5961,9 +5966,9 @@
       "sha256": "8732e16da51048e1bd4a0b49686aaa0b9ddc4f4d88e7dd57aafbe26d4711860c"
     },
     "web/building-ui.mjs": {
-      "bytes": 14088,
+      "bytes": 14107,
       "mode": "0o644",
-      "sha256": "39781e0d6be1779ce5955968a9ae4082ca48dd416ed46131f6a206e8f9fa9877"
+      "sha256": "17de77948f705534a0c924faf4e51f72950d4146e9b78fa84bac47e8e9a91dac"
     },
     "web/campaign-names.mjs": {
       "bytes": 318,
@@ -6011,9 +6016,9 @@
       "sha256": "6bfd6cb318ba28ced014c1a318a430ee5899025fdc2975d98a880e4abd2d7955"
     },
     "web/game-ui.mjs": {
-      "bytes": 47768,
+      "bytes": 47806,
       "mode": "0o644",
-      "sha256": "7e2684277f449a63d49e6d800d2338081dd6150e9dc985ba0379a6923185a9d8"
+      "sha256": "b4a83f9763772998772b8e4a5c2e6acc2d7319b71c0b508071a5914b3e8e570f"
     },
     "web/gestures.mjs": {
       "bytes": 3532,
@@ -6028,7 +6033,7 @@
     "web/index.html": {
       "bytes": 4449,
       "mode": "0o644",
-      "sha256": "332d92c99fae385a6cc6b75e534653a0b9cf29ba1ebc88113f4e873389c59768"
+      "sha256": "b82faabda1dc15a8bd712d518cdf33662e574acc8a806e932d2b0d648905e7fe"
     },
     "web/input-check.mjs": {
       "bytes": 2725,
@@ -6216,9 +6221,9 @@
       "sha256": "bca9922f1f9de41a3e1f02fe7daab2bed389f671536223e717842c2c74b269e9"
     },
     "web/native-ui.mjs": {
-      "bytes": 16006,
+      "bytes": 16030,
       "mode": "0o644",
-      "sha256": "91929efaa7c522de22d30e579bf3ec67b0929ebd6ac3b4a9b6c64475d1bd0582"
+      "sha256": "9b6403a655b3ad6ec73073c6537695b29ab742c3d0361a9fcce911011953b894"
     },
     "web/options-layout.mjs": {
       "bytes": 1418,
@@ -6261,9 +6266,9 @@
       "sha256": "58eea5578f3bc5f048bde5f0352ac0252adc3b1351eb0cb0292590d70d9dc5ab"
     },
     "web/shell.js": {
-      "bytes": 18729,
+      "bytes": 18748,
       "mode": "0o644",
-      "sha256": "36655ef4edead56c6871b1b7a44f274c434b51f81d1f785eef5ef76df5778424"
+      "sha256": "df1d4c182190c77e7159207f740f66e60978442e71cec537fc4d4d5d9e0fb8dc"
     },
     "web/training-manifest.json": {
       "bytes": 9463,

@@ -120,7 +120,7 @@ export class LiveNativeFrame {
 
 export function dragScroll(element){
  let p=null,suppressUntil=0;const down=e=>{if(e.button!==0||!e.isPrimary)return;suppressUntil=0;p={id:e.pointerId,x:e.clientX,y:e.clientY,top:element.scrollTop,dragged:false,mouse:e.pointerType==='mouse'};};
- const move=e=>{if(!p||p.id!==e.pointerId)return;const dy=e.clientY-p.y;if(Math.hypot(e.clientX-p.x,dy)>8){p.dragged=true;suppressUntil=performance.now()+400;}if(p.dragged&&p.mouse&&element.scrollHeight>element.clientHeight){e.preventDefault();element.setPointerCapture(e.pointerId);element.scrollTop=p.top-dy;}};
+ const move=e=>{if(!p||p.id!==e.pointerId||p.mouse&&e.buttons===0)return;const dy=e.clientY-p.y;if(Math.hypot(e.clientX-p.x,dy)>8){p.dragged=true;suppressUntil=performance.now()+400;}if(p.dragged&&p.mouse&&element.scrollHeight>element.clientHeight){e.preventDefault();element.setPointerCapture(e.pointerId);element.scrollTop=p.top-dy;}};
  const end=()=>{if(p?.dragged)suppressUntil=performance.now()+400;p=null;};const click=e=>{if(e.detail&&performance.now()<suppressUntil){e.preventDefault();e.stopImmediatePropagation();}};
  element.addEventListener('pointerdown',down);element.addEventListener('pointermove',move,{passive:false});element.addEventListener('pointerup',end);element.addEventListener('pointercancel',end);element.addEventListener('click',click,true);
  return ()=>{element.removeEventListener('pointerdown',down);element.removeEventListener('pointermove',move);element.removeEventListener('pointerup',end);element.removeEventListener('pointercancel',end);element.removeEventListener('click',click,true);};

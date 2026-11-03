@@ -3,10 +3,14 @@
   "scope": "DOM map-pointer routing only; no C/WASM/ROM/gameplay/audio change",
   "files": {
     "web/map-input.mjs": "e58fb0da82f7328353d1d666ff4780095b983aa05df33a165ee05ff26f39d79b",
-    "web/shell.js": "36655ef4edead56c6871b1b7a44f274c434b51f81d1f785eef5ef76df5778424",
+    "web/shell.js": "df1d4c182190c77e7159207f740f66e60978442e71cec537fc4d4d5d9e0fb8dc",
     "tests/map-input.test.mjs": "47a31d7ecc391507ce3bd381cd4a9a7a684fd4a5a0e23d0b0dc1d848cc56a5bd",
-    "web/index.html": "332d92c99fae385a6cc6b75e534653a0b9cf29ba1ebc88113f4e873389c59768",
-    "web/input-check.mjs": "ab131092f9ca4a23a2f70f9641419025f3bbe632ed6ffdee295b1dda820b15f5"
+    "web/index.html": "b82faabda1dc15a8bd712d518cdf33662e574acc8a806e932d2b0d648905e7fe",
+    "web/input-check.mjs": "ab131092f9ca4a23a2f70f9641419025f3bbe632ed6ffdee295b1dda820b15f5",
+    "web/native-ui.mjs": "9b6403a655b3ad6ec73073c6537695b29ab742c3d0361a9fcce911011953b894",
+    "web/game-ui.mjs": "b4a83f9763772998772b8e4a5c2e6acc2d7319b71c0b508071a5914b3e8e570f",
+    "web/building-ui.mjs": "17de77948f705534a0c924faf4e51f72950d4146e9b78fa84bac47e8e9a91dac",
+    "tests/native-drag-scroll.test.mjs": "6736c1dbc2706a3f00d7f7211c63bb1887aba7cb9b6fd00b3fa3c0e9f52c20bc"
   },
   "oldShellSha256": "07eb5f6838b1c639b9e2707924083ae74540b5f23c262588a565b64f9bae143e",
   "rootReportedActualSafariBefore": {
@@ -105,8 +109,8 @@
     "consoleErrors": 0,
     "centeredSelected": "PASS at390x844 and844x390 with Russian picker; native bitmap layout assertions also cover EN/RU"
   },
-  "cacheEntryVersion": "20261103-safari5",
-  "cacheVersionNote": "Entry, map-input, NativeArt and diagnostic imports are versioned together; this prevents a previously cached pointer controller from masking the fix.",
+  "cacheEntryVersion": "20261103-safari6",
+  "cacheVersionNote": "Versioned entry and changed module dependency graph includes shared dragScroll users; page URL/origin and browser storage keys are unchanged.",
   "publicAfter": "Awaiting root actual PUBLIC safari5 verification; exact captured false-pan case passes focused regression. No C/WASM change.",
   "inputDiagnostic": {
     "activation": "URLSearchParams.has(inputcheck); default off",
@@ -144,5 +148,16 @@
     "cameraChanged": false,
     "lastTap": null,
     "cause": "Unpressed OS hover contaminates assistive/AX click while mouse pointer is owned; not native input rejection or QA-only getter behavior"
+  },
+  "sharedScrollGuard": {
+    "scope": "Input gesture filtering only",
+    "change": "Ignore unpressed mouse pointermove before marking a scroll drag and suppressing click",
+    "preserved": [
+      "Pressed mouse live scrolling",
+      "Touch scrolling and suppression after a real drag",
+      "Language label centering",
+      "Original Sega program and balance"
+    ],
+    "tests": "tests/native-drag-scroll.test.mjs"
   }
 }
