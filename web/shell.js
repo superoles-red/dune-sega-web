@@ -1,15 +1,22 @@
-import {MapGestures,placementEdgeVelocity} from './gestures.mjs?v=20261105-webapp7';
-import {bindMapInput} from './map-input.mjs?v=20261105-webapp7';
-import {OrderInput} from './order-input.mjs?v=20261105-webapp7';
-import {PanInertia} from './pan-inertia.mjs?v=20261105-webapp7';
-import {NativeArt} from './native-ui.mjs?v=20261105-webapp7';
-import {GameInterface} from './game-ui.mjs?v=20261105-webapp7';
+import {MapGestures,placementEdgeVelocity} from './gestures.mjs?v=20261105-webapp8';
+import {bindMapInput} from './map-input.mjs?v=20261105-webapp8';
+import {OrderInput} from './order-input.mjs?v=20261105-webapp8';
+import {PanInertia} from './pan-inertia.mjs?v=20261105-webapp8';
+import {NativeArt} from './native-ui.mjs?v=20261105-webapp8';
+import {GameInterface} from './game-ui.mjs?v=20261105-webapp8';
 import {validHouse,validMission} from './campaign-state.mjs';
-import {contextAction} from './context-action.mjs?v=20261105-webapp7';
-import {OrderFeedback} from './order-feedback.mjs?v=20261105-webapp7-palace';
+import {contextAction} from './context-action.mjs?v=20261105-webapp8';
+import {OrderFeedback} from './order-feedback.mjs?v=20261105-webapp8-palace';
 import {NativeAudioBridge} from './native-audio.mjs';
-import {BrowserFeatures} from './browser-features.mjs?v=20261105-webapp7';
-import {bindAppViewport,showFullscreenControl} from './viewport.mjs?v=20261105-webapp7';
+import {BrowserFeatures} from './browser-features.mjs?v=20261105-webapp8';
+import {bindAppViewport,showFullscreenControl} from './viewport.mjs?v=20261105-webapp8';
+
+// The original SDL host names its engine. Keep the game's public page title
+// independent of that host metadata, including later pause/stop title writes.
+const PAGE_TITLE='Dune - The Battle for Arrakis';
+const pageTitleElement=document.querySelector('title');
+document.title=PAGE_TITLE;
+if(pageTitleElement)new MutationObserver(()=>{if(document.title!==PAGE_TITLE)document.title=PAGE_TITLE;}).observe(pageTitleElement,{childList:true,characterData:true,subtree:true});
 
 // Input and presentation only. The original Sega handlers decide every game action.
 const canvas=document.getElementById('canvas');
@@ -126,7 +133,7 @@ function loadGame(silent=false){
   const ok=loadPayload(value,silent);if(ok&&gameUI){gameUI.demoMode=false;gameUI.resuming=true;gameUI.view='native';gameUI.lastNativeKey='';gameUI.bootTarget=null;pollState();}return ok;
 }
 const Module=window.Module={
-  canvas,locateFile:name=>'engine/'+name+(name.endsWith('.wasm')?'?v=f4a8cb4fc34845f1':'?v=20261105-webapp7'),
+  canvas,locateFile:name=>'engine/'+name+(name.endsWith('.wasm')?'?v=f4a8cb4fc34845f1':'?v=20261105-webapp8'),
   print:(...args)=>console.log(...args),printErr:(...args)=>console.warn(...args),
   setStatus:text=>{status.textContent=text;if(text)startup?.engine();},
   onRuntimeInitialized:()=>{},
@@ -138,7 +145,7 @@ function startEngine(){
  if(ready)return Promise.resolve();if(enginePromise)return enginePromise;
  enginePromise=new Promise((resolve,reject)=>{resolveEngine=resolve;rejectEngine=reject;});started=true;
  status.textContent='Подготовка оригинальной игры…';document.getElementById('start').disabled=true;
- const script=document.createElement('script');script.src='engine/dune_web.js?v=20261105-webapp7';script.onerror=()=>{status.textContent='Не удалось загрузить сборку.';rejectEngine?.(Error(status.textContent));};document.body.appendChild(script);return enginePromise;
+ const script=document.createElement('script');script.src='engine/dune_web.js?v=20261105-webapp8';script.onerror=()=>{status.textContent='Не удалось загрузить сборку.';rejectEngine?.(Error(status.textContent));};document.body.appendChild(script);return enginePromise;
 }
 try{if(localStorage.getItem(SAVE_KEY))document.getElementById('start').textContent='Продолжить игру';}catch{}
 document.getElementById('start').onclick=()=>startEngine().catch(e=>tell(e.message));
@@ -196,7 +203,7 @@ function placementFrame(now){
   if(dt&&(vx||vy)){Module._dune_web_pan?.(-vx*dt,-vy*dt);counters.edgePans++;}
   Module._dune_web_placement_move?.(p.x,p.y);
 }
-if(inputCheckMode)import('./input-check.mjs?v=20261105-webapp7').then(({mountInputCheck})=>{
+if(inputCheckMode)import('./input-check.mjs?v=20261105-webapp8').then(({mountInputCheck})=>{
  inputCheck=mountInputCheck({canvas,read:()=>({taps:counters.taps,selectRequests:counters.selectRequests,commandRequests:counters.commandRequests,pan:counters.panEvents,inertia:panInertia.active,mode:gestures.mode,lastTap:lastMapTap,lastOrder:latestActions.lastOrder,special:latestActions.special,unitSpecial:latestActions.unitSpecial,bAvailable:latestActions.bAvailable,bKind:latestActions.bKind,orders:orders.snapshot(),selected:{kind:latestActions.selected?.kind||'none',id:latestActions.selected?.id,type:latestActions.selected?.type},ready,capturesInput:!!gameUI?.capturesInput,camera:{map:latestCamera.map,css:[latestCamera.cssWidth,latestCamera.cssHeight],output:[latestCamera.outputWidth,latestCamera.outputHeight],left:latestCamera.left,top:latestCamera.top,scale:latestCamera.scale,queued:latestCamera.queuedClicks}})});
 }).catch(e=>console.warn('Input diagnostic unavailable:',e.message));
 setInterval(pollState,50);if(!qaMode)setInterval(()=>saveGame(true),30000);
