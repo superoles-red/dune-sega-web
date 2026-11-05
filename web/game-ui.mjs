@@ -1,14 +1,15 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261105-controls1';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261105-controls1';
-import {ScreenTransition} from './screen-transition.mjs';
-import {NativeConfirmation} from './confirm-dialog.mjs?v=20261105-controls1';
+import {BuildingInterface} from './building-ui.mjs?v=20261105-webapp1';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261105-webapp1';
+import {ScreenTransition} from './screen-transition.mjs?v=20261105-webapp1';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261105-webapp1';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261105-controls1';
+import {LANGUAGES} from './i18n.mjs?v=20261105-webapp1';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
-import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261105-controls1';
-import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261105-controls1';
+import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261105-webapp1';
+import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261105-webapp1';
+import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261105-webapp1';
 
 const STORY=new Set(['house_briefing','briefing','victory','defeat']);
 const SEQUENCE=new Set([...STORY,'tutorial','loading','campaign','victory_movie','defeat_movie','results','ending','credits']);
@@ -23,7 +24,7 @@ export class GameInterface {
  constructor({art,Module,storage,startEngine,isReady,resumeAudio,saveCurrent,loadPayload,tell,platform,cancelGesture=()=>{}}){
   Object.assign(this,{art,Module,startEngine,isReady,resumeAudio,saveCurrent,loadPayload,tell,platform,cancelGesture});
   this.store=new CampaignStore(storage);this.frame=new LiveNativeFrame();this.textFrame=new LiveNativeFrame();this.titleFrame=document.createElement('canvas');this.homeFrame=document.createElement('canvas');this.homeFrameValid=false;this.creditsUnlocked=false;this.state={};this.visibleNative={};this.view='home';this.selectedHouse=this.store.progress.lastHouse;
-  this.bound=[];this.lastOutcome=0;this.activeRun=null;this.lastNativeKey='';this.lastText='';this.paintKey='';this.busy=false;this.nativeBusy=false;this.frontOrigin=null;this.sequence=0;this.optionViews=new Map();this.pendingScreen=null;this.demoMode=false;this.trainingMode=false;this.coldHomeVideo=true;this.displayed='home';this.waitingForFrame=false;this.updateEpoch=0;
+  this.bound=[];this.lastOutcome=0;this.activeRun=null;this.lastNativeKey='';this.lastText='';this.paintKey='';this.busy=false;this.nativeBusy=false;this.frontOrigin=null;this.sequence=0;this.optionViews=new Map();this.pendingScreen=null;this.demoMode=false;this.trainingMode=false;this.coldHomeVideo=true;this.homeVideoStarted=false;this.homeVideoProbeRevision=-1;this.displayed='home';this.waitingForFrame=false;this.updateEpoch=0;
   this.curtain=new ScreenTransition(art);this.dialog=new NativeConfirmation({art,feedback:()=>this.uiSound()});this.building=new BuildingInterface({art,Module,resumeAudio});
   this.element=document.createElement('section');this.element.id='scene-ui';this.element.className='native-screen';this.element.setAttribute('aria-label','Dune — меню');
   this.backdrop=document.createElement('canvas');this.backdrop.className='scene-backdrop';this.backdrop.setAttribute('aria-hidden','true');this.shell=document.createElement('div');this.shell.className='scene-shell';
@@ -50,6 +51,7 @@ export class GameInterface {
   if(this.tutorial?.active){this.tutorial.syncControls();this.tutorial.invalidate();}
   if(this.view==='languages')this.showLanguages();
   if(this.view==='platform')this.showPlatform();
+  if(this.view==='controls')this.showControls(this.controlsMode);
  }
  async toggleFullscreen(){
   try{const result=await this.platform.fullscreen();if(result==='apple-help')this.tell(this.art.displayText('ON IPHONE: SHARE > ADD TO HOME SCREEN > OPEN AS WEB APP.'));else if(result==='unsupported')this.tell(this.art.displayText('FULL SCREEN IS NOT AVAILABLE IN THIS BROWSER.'));}
@@ -63,7 +65,7 @@ export class GameInterface {
   this.clear('platform','FILES & OFFLINE');this.displayed='platform';this.actions.classList.add('platform-grid');
   this.downloadButton=this.button('DOWNLOAD SAVE',()=>this.exportFile(),{id:'download-save',disabled:true}).button;
   this.button('LOAD SAVE FILE',()=>pickSaveFile(file=>this.importFile(file)),{id:'upload-save'});
-  this.button('INSTALL GAME',()=>this.installGame(),{id:'install-game'});
+  this.installButton=this.button('INSTALL GAME',()=>this.installGame(),{id:'install-game'}).button;
   this.offlineButton=this.button('PREPARE OFFLINE',()=>this.prepareOffline(),{id:'prepare-offline'}).button;
   this.button('SOURCE CODE',()=>this.platform.openSource(),{id:'source-code'});
   this.backButton(()=>this.closePlatform());this.refreshPlatform();this.prepareSaveFile();
@@ -73,14 +75,35 @@ export class GameInterface {
   if(!this.platform)return;
   const s=this.platform.snapshot();this.optionViews.get('fullscreen')?.update(s.fullscreen?'EXIT FULL SCREEN':'FULL SCREEN');
   if(this.view!=='platform')return;
+  if(s.installed&&this.platformNotice===this.art.displayText('INSTALLATION REQUESTED.'))this.platformNotice='';
   let status=s.status==='ready'?'OFFLINE GAME READY.':s.status==='downloading'?'DOWNLOADING OFFLINE GAME...':s.status==='error'?'OFFLINE DOWNLOAD FAILED. TRY AGAIN.':'PREPARE OFFLINE ONCE WHILE CONNECTED.';
   status=this.art.displayText(status)+(s.status==='downloading'&&s.total?' '+s.loaded+' / '+s.total:'');
-  const hint=this.art.displayText(s.installed?'INSTALLED ON THIS DEVICE.':s.appleMobile?'ON IPHONE: SHARE > ADD TO HOME SCREEN > OPEN AS WEB APP.':'INSTALL THE GAME FROM YOUR BROWSER MENU.');
-  this.liveText=false;this.messageText=[this.platformNotice,status,hint].filter(Boolean).join('\n\n');this.message.hidden=false;this.element.dataset.hasMessage='true';this.drawMessage();if(this.offlineButton){this.offlineButton.disabled=!!s.preparing;this.offlineButton._nativeArtView?.update('PREPARE OFFLINE',{disabled:!!s.preparing});}
+  const hint=this.art.displayText(s.installed?'INSTALLED ON THIS DEVICE.':this.installHelp(s));
+  const restart=s.restartRequired?this.art.displayText('CLOSE ALL GAME WINDOWS AND REOPEN TO USE THE DOWNLOADED COPY.'):'';
+  this.liveText=false;this.messageText=[this.platformNotice,status,hint,restart].filter((text,index,all)=>text&&all.indexOf(text)===index).join('\n\n');this.message.hidden=false;this.element.dataset.hasMessage='true';this.drawMessage();if(this.offlineButton){this.offlineButton.disabled=!!s.preparing;this.offlineButton._nativeArtView?.update('PREPARE OFFLINE',{disabled:!!s.preparing});}
+  if(this.installButton){const label=s.installed?'INSTALLED':'INSTALL GAME',disabled=!!s.installed||!!this.installBusy;this.installButton.disabled=disabled;this.installButton._nativeArtView?.update(label,{disabled});}
+ }
+ installHelp(s=this.platform.snapshot()){
+  if(s.appleMobile||s.installationKind==='apple')return 'ON IPHONE: SHARE > ADD TO HOME SCREEN > OPEN AS WEB APP.';
+  if(s.installationKind==='samsung')return 'SAMSUNG INTERNET: INSTALL ICON OR MENU > ADD TO HOME SCREEN.';
+  if(s.installationKind==='android-chrome')return 'ANDROID CHROME: MENU > INSTALL AND CREATE SHORTCUT > INSTALL.';
+  if(s.installationKind==='android')return 'ANDROID: BROWSER MENU > INSTALL APP / ADD TO HOME SCREEN.';
+  if(s.installationKind==='mac-safari')return 'MAC SAFARI: FILE > ADD TO DOCK.';
+  return 'INSTALL THE GAME FROM YOUR BROWSER MENU.';
  }
  async installGame(){
-  try{const result=await this.platform.install();this.platformNotice=this.art.displayText(result==='apple-help'?'ON IPHONE: SHARE > ADD TO HOME SCREEN > OPEN AS WEB APP.':result==='install-help'?'INSTALL THE GAME FROM YOUR BROWSER MENU.':result==='cancelled'?'INSTALLATION CANCELLED.':'INSTALLED ON THIS DEVICE.');this.refreshPlatform();}
-  catch{this.tell(this.art.displayText('INSTALL THE GAME FROM YOUR BROWSER MENU.'));}
+  if(this.installBusy)return;this.installBusy=true;
+  try{
+   // Invoke the browser prompt during the original click, before any download.
+   // Only a completed appinstalled event may label the application installed.
+   const operation=this.platform.install();this.refreshPlatform();const result=await operation;
+   this.platformNotice=this.art.displayText(result==='cancelled'?'INSTALLATION CANCELLED.':result==='accepted'?'INSTALLATION REQUESTED.':result==='installed'?'INSTALLED ON THIS DEVICE.':this.installHelp());this.refreshPlatform();
+   // This explicit install action also downloads the complete verified game.
+   // A dismissed prompt remains dismissed and starts no offline download.
+   if(result!=='cancelled')await this.prepareOffline();
+  }
+  catch{this.platformNotice=this.art.displayText(this.installHelp());this.refreshPlatform();}
+  finally{this.installBusy=false;this.refreshPlatform();}
  }
  async prepareOffline(){try{await this.platform.prepareOffline();this.refreshPlatform();}catch{this.tell(this.art.displayText('OFFLINE DOWNLOAD FAILED. TRY AGAIN.'));}}
  async prepareSaveFile(){
@@ -119,6 +142,17 @@ export class GameInterface {
   this.backButton(()=>this.closeLanguageScreen());
  }
  closeLanguageScreen(){return this.front(()=>{const scene=this.languageOrigin||'options';this.lastNativeKey='';if(this.state.scene===scene){this.showNative(this.state);this.displayed=scene;}else this.requestRoute(scene);});}
+ openControls(){
+  if(this.busy||this.pendingScreen||this.curtain.active)return;
+  this.controlsOrigin=this.state.scene==='pause'?'pause':'options';this.cancelGesture();return this.front(()=>this.showControls());
+ }
+ showControls(mode=this.controlsMode||defaultControlsMode()){
+  this.controlsMode=mode==='touch'?'touch':'mouse';this.controlsPaper=null;this.controlsPaintKey='';this.clear('controls','CONTROLS');this.displayed='controls';
+  this.button('TOUCH SCREEN',()=>this.showControls('touch'),{id:'controls-touch',subtitle:this.controlsMode==='touch'?'SELECTED':''});
+  this.button('MOUSE',()=>this.showControls('mouse'),{id:'controls-mouse',subtitle:this.controlsMode==='mouse'?'SELECTED':''});
+  this.backButton(()=>this.closeControls());if(this.hero)this.hero.scrollTop=0;
+ }
+ closeControls(){return this.front(()=>{const scene=this.controlsOrigin||'options';this.lastNativeKey='';if(this.state.scene===scene){this.showNative(this.state);this.displayed=scene;}else this.requestRoute(scene);});}
  get capturesInput(){return this.state?.battlePresentation&&this.state?.inputReady===false||this.tutorial?.capturesInput||this.dialog?.active||this.curtain.active||this.building.active||!this.element.hidden;}
  get inMission(){return !this.demoMode&&!this.trainingMode&&!!this.activeRun&&this.isReady()&&!!this.state.activeRunArmed;}
  get canAdvanceDialog(){return this.view==='native'&&!this.pendingScreen&&!this.curtain.active&&presentationReady(this.state)&&this.state.inputReady!==false&&!terminal(this.state)&&this.state.inputKind!=='confirm'&&SEQUENCE.has(this.state.scene);}
@@ -133,7 +167,7 @@ export class GameInterface {
  }
  backButton(action=()=>this.back(),options={}){this.button('BACK',action,{back:true,ariaLabel:'Назад',allowPending:true,...options},this.footer);}
  cancelTrainingLoad(){const p=this.pendingScreen;if(p?.training&&p.reject){p.reject(Error('Training loading cancelled'));p.reject=null;}}
- async front(action){this.artLock=null;this.cancelTrainingLoad();const token=++this.sequence;this.coldHomeVideo=false;await this.curtain.cover();if(token!==this.sequence)return;this.pendingScreen=null;this.nativeBusy=false;this.busy=false;this.building.update({active:false});action();this.render(performance.now());this.curtain.reveal();}
+ async front(action){this.artLock=null;this.cancelTrainingLoad();const token=++this.sequence;this.coldHomeVideo=false;await this.curtain.cover();if(token!==this.sequence)return;this.pendingScreen=null;this.nativeBusy=false;this.busy=false;this.building.update({active:false});action();if(token!==this.sequence)return;this.render(performance.now());this.curtain.reveal();}
  houseInfo(h){return this.campaign?.houses.find(x=>x.id===h);}
  missionInfo(h,m){return this.houseInfo(h)?.missions.find(x=>x.mission===m);}
  missionName(h,m){return displayMissionName(h,m,this.missionInfo(h,m)?.name);}
@@ -209,7 +243,7 @@ export class GameInterface {
   const from=this.fromConfirmation?0.65:0;this.fromConfirmation=false;
   try{
    if(eager){if(pending.target==='pause'&&this.element.hidden)this.Module._dune_web_route_hold?.(token,1);this.tryPending();}
-   await this.curtain.cover({loading:pending.kind==='load',from,duration:pending.kind==='route'&&pending.target==='options'?120:240});if(token!==this.sequence){releaseHold();return;}
+   await this.curtain.cover({loading:pending.kind==='load'||!this.isReady(),from,duration:pending.kind==='route'&&pending.target==='options'?120:240});if(token!==this.sequence){releaseHold();return;}
    this.pendingScreen.awaitingCover=false;
    if(!pending.training&&!(this.trainingMode&&this.tutorial?.practice&&pending.kind==='route'&&['pause','map'].includes(pending.target)))this.tutorial?.hide();
    await this.startEngine();if(token!==this.sequence){releaseHold();return;}
@@ -286,6 +320,7 @@ export class GameInterface {
   if(this.view==='home')return;if(this.view==='houses')return this.front(()=>this.showHome());if(this.view==='missions')return this.front(()=>this.showHouses(this.frontOrigin));if(this.view==='replay')return this.front(()=>this.showMissions(this.selectedHouse));
   if(this.view==='languages')return this.closeLanguageScreen();
   if(this.view==='platform')return this.closePlatform();
+  if(this.view==='controls')return this.closeControls();
   if(this.building.active){this.building.exit();return;}
   if(this.state.scene==='pause')return this.requestRoute('map');if(this.state.scene==='options'||this.state.scene==='tutorial')return this.mainMenu();
   if(this.state.inputKind==='confirm'){this.input(5,1);return;}
@@ -329,6 +364,10 @@ export class GameInterface {
   const record=this.nativeTransition;
   if(record.finished)return false;
   if(!record.covered||!s.transitionReady)return true;
+  // The native scene poll can be ready before the building adapter has a
+  // complete, unfaded source raster. Retain this one cover until both agree;
+  // publishing map here would make the following building poll fade again.
+  if(s.transitionTarget==='building'&&!(s.scene==='building'&&ready(s)&&building?.active&&building.frame?.ready))return true;
   record.finished=true;this.building.holdFrame=false;
   if(s.transitionTarget==='building'&&building?.frame?.ready){this.building.update(building);this.displayed='building';}
   else{this.building.update({active:false});this.displayed='map';}
@@ -389,6 +428,7 @@ export class GameInterface {
    if(scene==='options'||scene==='pause'){
     for(const row of [0,1]){const v=this.button('',()=>this.input(2,row),{...opts,id:'option-'+row});this.optionViews.set(row,v.view);}
     this.button('LANGUAGES',()=>this.openLanguages(),{...opts,id:'open-languages',feedback:true});
+    this.button('CONTROLS',()=>this.openControls(),{...opts,id:'open-controls',feedback:true});
     this.button('TUTORIAL',()=>this.openTutorial(),{...opts,id:'open-tutorial',ariaLabel:'Пояснения об Арракисе',feedback:true});
     if(this.platform)this.button('FILES & OFFLINE',()=>this.openPlatform(),{...opts,id:'open-platform',feedback:true});
     if(scene==='pause'){this.button('RESTART',()=>this.restartMission(),{...opts,id:'restart-mission',ariaLabel:'Начать текущую миссию заново'});this.button('MAIN MENU',()=>this.confirmMainMenu(),{...opts,id:'main-menu',ariaLabel:'Главное меню'});}
@@ -433,14 +473,32 @@ export class GameInterface {
   if(textless&&this.liveText&&this.textFrame)this.textFrame.update(this.Module,raw,320,224);
   const ok=this.frame.update(this.Module,ptr,this.Module._dune_web_frame_width?.()||320,this.Module._dune_web_frame_height?.()||224);if(ok)this.frameReadKey=key;return ok;
  }
+ homeSource(){
+  const safe=['boot','title','main'].includes(this.state.scene),live=safe&&(this.coldHomeVideo||ready(this.state)&&!this.state.routePending);
+  if(live&&this.updateFrame({textless:true})&&this.frame.valid){
+   if(this.coldHomeVideo&&!this.homeVideoStarted&&this.homeVideoProbeRevision!==this.frame.revision){
+    this.homeVideoProbeRevision=this.frame.revision;const pixels=this.frame.data?.data;
+    // Alpha is opaque even in the initial all-black native framebuffer. Probe
+    // RGB only, and only a changed bitmap, until the original intro begins.
+    for(let i=0;pixels&&i<pixels.length;i+=4)if(pixels[i]||pixels[i+1]||pixels[i+2]){this.homeVideoStarted=true;break;}
+   }
+   if(!this.coldHomeVideo||this.homeVideoStarted)return {source:this.frame.canvas,sourceKey:'home:'+this.frame.revision,cacheHome:ready(this.state)&&this.state.scene==='main'};
+  }
+  // The original static title keeps the first usable menu visible while the
+  // runtime has no picture. After the first native ink, its later black frames
+  // and publisher/title fades remain part of the unmodified original video.
+  return {source:this.homeFrameValid?this.homeFrame:this.art.part('title-complete-without-choices','screen'),sourceKey:'home-static',cacheHome:false};
+ }
  render(now){
   this.curtain.paint(now);this.building.render(now);this.tutorial?.render?.(now);
   if(!this.element.hidden){
    const a=this.art,s=this.visibleNative||{},scene=s.scene;let source=null,sourceKey='',home=false,cacheHome=false;
-   if(this.view==='home'){
-    const safe=['boot','title','main'].includes(this.state.scene),live=safe&&(this.coldHomeVideo||ready(this.state)&&!this.state.routePending);
-    if(live&&this.updateFrame({textless:true})&&this.frame.valid){source=this.frame.canvas;sourceKey='home:'+this.frame.revision;home=true;cacheHome=ready(this.state)&&this.state.scene==='main';}
-    else if(!this.coldHomeVideo){source=this.homeFrameValid?this.homeFrame:a.part('title-complete-without-choices','screen');sourceKey='home-static';home=true;}
+   if(this.view==='controls'){
+    const width=Math.min(720,Math.max(240,Math.floor(this.hero.getBoundingClientRect().width))),guideKey=[width,this.controlsMode,this.art.language?.revision].join(':');
+    if(!this.controlsPaper||guideKey!==this.controlsPaintKey){this.controlsPaintKey=guideKey;this.controlsPaper=composeControlsGuide({art:a,width,mode:this.controlsMode});this.heroCanvas.setAttribute('aria-label',this.controlsPaper.accessibility);}
+    source=this.controlsPaper.canvas;sourceKey='controls:'+guideKey;
+   }else if(this.view==='home'){
+    ({source,sourceKey,cacheHome}=this.homeSource());home=true;
    }else if(this.view==='houses'){source=a.part('title-logo','screen');sourceKey='house-logo';}
    else if(this.view==='missions'||this.view==='replay'){const h=a.skin.houses?.[this.selectedHouse];source=a.part(h?.crestPart||h?.part,'screen');sourceKey='crest:'+this.selectedHouse;}
    else if(this.view==='completion'){source=a.part('results-soldier-scene','screen');sourceKey='completion';}

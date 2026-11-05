@@ -152,6 +152,9 @@ static int em_web_queue_self_pointer(void){
     em_web_selection_drop_mouse_queue();DuneMouse*m=&em_host.dune_mouse;s->self_clicks_before=m->clicks;
     dune_mouse_world_click(m,&em_cpu,(tile&63)*32+16,(tile/64)*32+16,DUNE_CLICK_SELECT);return m->count!=0;
 }
+static void em_web_typed_observe(void);
+static void em_web_typed_reset(void);
+static int em_web_typed_busy(void);
 static void em_web_selection_observe(void){
     EmWebSelection *s=&em_web_selection;
     if(!em_window || em_cpu.fault)return;
@@ -159,6 +162,7 @@ static void em_web_selection_observe(void){
     em_web_world_intent_observe(&em_host.dune_mouse,&em_cpu);
 #endif
     em_web_order_observe();
+    em_web_typed_observe();
     if((s->operation || s->phase || s->clear_requested) && dune_mouse_context(&em_cpu)!=1){
         if((s->operation>=EM_ACTION_PLACE_SELECT&&s->operation<=EM_ACTION_PLACE_COMMIT) || s->phase==EM_PHASE_SELECT || s->phase==EM_PHASE_PLACE){
             s->deferred_yard_clear=s->yard;s->outcome=EM_PLACE_CANCELLED;
@@ -281,10 +285,10 @@ static void em_web_selection_observe(void){
 EMSCRIPTEN_KEEPALIVE int dune_web_clear_selection(void){
     EmWebSelection *s=&em_web_selection;
     if(!em_web_selection_map())return 0;
-    ++s->clear_requests;em_web_selection_request_clear();return 1;
+    em_web_typed_reset();++s->clear_requests;em_web_selection_request_clear();return 1;
 }
 EMSCRIPTEN_KEEPALIVE int dune_web_action_b(void){
-    EmWebSelection *s=&em_web_selection;if(!em_web_selection_map() || s->operation || s->phase)return 0;
+    EmWebSelection *s=&em_web_selection;if(!em_web_selection_map() || s->operation || s->phase || em_web_typed_busy())return 0;
     EmWebActionContext c=em_web_action_context();if(!c.b_kind)return 0;
     em_web_selection_drop_mouse_queue();s->action_pointer=c.pointer;s->b_kind=c.b_kind;
     s->operation=EM_ACTION_B;++s->b_requests;return 1;
@@ -300,10 +304,11 @@ EMSCRIPTEN_KEEPALIVE void dune_web_selection_reset(void){
     em_web_world_intent_cancel();
 #endif
     memset(&em_web_selection,0,sizeof em_web_selection);
+    em_web_typed_reset();
 }
 static int em_web_placement_begin_world(double wx,double wy){
     EmWebSelection *s=&em_web_selection;
-    if(!em_web_selection_map() || s->phase || s->operation || dune_long(&em_cpu,0xc25c))return 0;
+    if(!em_web_selection_map() || s->phase || s->operation || em_web_typed_busy() || dune_long(&em_cpu,0xc25c))return 0;
     uint32_t b=em_web_selection_building_at(wx,wy);if(!em_web_action_live(b,1))return 0;
     unsigned a=b&65535,product=dune_word(&em_cpu,a+82);
     if(em_cpu.ram[a+2]!=8 || em_cpu.ram[a+8]!=dune_word(&em_cpu,0xc274) ||
@@ -384,6 +389,7 @@ static int em_web_ready_yard_unit_tap(double wx,double wy){
     if(!em_web_action_live(unit,0)||em_cpu.ram[a+8]!=dune_word(&em_cpu,0xc274))return 0;
     em_web_selection_request_clear();s->select_unit_after_clear=1;s->select_unit_x=wx;s->select_unit_y=wy;return 1;
 }
+#include "em_web_typed_input.h"
 #ifndef EM_WEB_SELECTION_NO_SCREEN
 EMSCRIPTEN_KEEPALIVE int dune_web_placement_begin(double x,double y){
     double wx,wy;return em_web_camera_screen_world(x,y,&wx,&wy)?em_web_placement_begin_world(wx,wy):0;
@@ -409,14 +415,14 @@ EMSCRIPTEN_KEEPALIVE const char *dune_web_actions_debug(void){
     const char *kind=c.kind==1?"unit":c.kind==2?"building":"none";
     const char *b=c.b_kind==EM_B_REPEAT?"repeat":c.b_kind==EM_B_DEVASTATOR?"confirm-devastator":c.b_kind==EM_B_MCV?"confirm-mcv":c.b_kind==EM_B_TIMER?"confirm-native":"none";
     const char *outcome=s->outcome==EM_PLACE_PLACED?"placed":s->outcome==EM_PLACE_REJECTED?"rejected":s->outcome==EM_PLACE_CANCELLED?"cancelled":"none";
-    int available=em_web_selection_map() && !s->operation && !s->phase && c.b_kind;
+    int available=em_web_selection_map() && !s->operation && !s->phase && !em_web_typed_busy() && c.b_kind;
     snprintf(report,sizeof report,"{\"selected\":{\"kind\":\"%s\",\"pointer\":%u,\"id\":%u,\"type\":%u,\"owner\":%u,\"own\":%d,\"hp\":%u,\"maxHp\":%u,\"product\":%u},\"bAvailable\":%d,\"bKind\":\"%s\",\"readyYard\":%d,\"placementActive\":%d,\"placementPhase\":%u,\"lastPlacementOutcome\":\"%s\",\"operation\":%u,\"phase\":%u,\"selectedNative\":%u,\"producerNative\":%u,\"clearRequests\":%llu,\"nativeClears\":%llu,\"nativeBCount\":%llu,\"placementStarts\":%llu,\"placementAttempts\":%llu,\"placementSuccesses\":%llu,\"placementRejections\":%llu}",
         kind,c.pointer,c.id,c.type,c.owner,c.kind && c.owner==dune_word(&em_cpu,0xc274),c.hp,c.max_hp,c.product,available,b,c.ready,!!dune_web_placement_active(),s->operation,outcome,s->operation,s->phase,dune_long(&em_cpu,0xc25c),dune_long(&em_cpu,0xc578),(unsigned long long)s->clear_requests,(unsigned long long)s->native_clears,(unsigned long long)s->native_bs,(unsigned long long)s->placement_starts,(unsigned long long)s->placement_attempts,(unsigned long long)s->placement_successes,(unsigned long long)s->placement_rejections);
     size_t n=strlen(report);if(n&&report[n-1]=='}')report[--n]=0;
     unsigned power=em_web_palace_power(c.owner),special_ready=em_web_palace_ready(c);
     snprintf(report+n,sizeof report-n,",\"special\":{\"ready\":%s,\"armed\":%s,\"house\":%u,\"power\":%u,\"key\":\"%s\",\"targetsCell\":true,\"cursorId\":5,\"cooldown\":%u,\"nativeArmed\":%u,\"cancels\":%llu},\"lastOrder\":{\"seq\":%llu,\"kind\":\"%s\",\"action\":%u,\"tile\":%u,\"worldX\":%u,\"worldY\":%u,\"actor\":%u,\"target\":%u,\"targetKind\":\"%s\",\"sourcePc\":%u}}",special_ready?"true":"false",special_ready&&dune_word(&em_cpu,0xdc4c)?"true":"false",c.owner,power,power==1?"death-hand":power==2?"fremen":power==3?"saboteur":"none",c.kind==2&&c.type==2?dune_word(&em_cpu,(c.pointer&65535)+86):0,dune_word(&em_cpu,0xdc4c),(unsigned long long)s->special_cancels,(unsigned long long)s->order_seq,s->order_kind==2?"attack":s->order_kind==3?"special":s->order_kind==1?"move":"none",s->order_action,s->order_tile,(s->order_tile%64)*32+16,(s->order_tile/64)*32+16,s->order_actor,s->order_target,s->order_target_kind==1?"unit":s->order_target_kind==2?"building":"none",s->order_source);
     n=strlen(report);if(n&&report[n-1]=='}')report[--n]=0;
-    int self_available=em_web_selection_map()&&!s->operation&&!s->phase&&em_host.dune_mouse.enabled&&em_web_unit_self_available(c);
+    int self_available=em_web_selection_map()&&!s->operation&&!s->phase&&!em_web_typed_busy()&&em_host.dune_mouse.enabled&&em_web_unit_self_available(c);
     int unit_special=c.kind==1&&(c.type==11||c.type==17),armed=c.kind==1&&(dune_word(&em_cpu,(c.pointer&65535)+6)&0x80);
     const char*self_kind=em_web_unit_self_available(c)?c.type==11?"devastator":"mcv":"none";
     snprintf(report+n,sizeof report-n,",\"selfAvailable\":%s,\"selfKind\":\"%s\",\"selfPending\":%s,\"selfPointer\":%u,\"selfRequests\":%llu,\"nativeSelfCount\":%llu,\"nativeSelfSelections\":%llu,\"selfResult\":\"%s\",\"unitSpecial\":{\"kind\":\"%s\",\"armed\":%s,\"countdownRaw\":%u,\"selfAction\":\"%s\",\"bAction\":\"%s\"}}",self_available?"true":"false",self_kind,(s->operation==EM_ACTION_SELF||s->operation==EM_ACTION_RESELECT||s->self_followup||s->phase==EM_PHASE_SELF||s->phase==EM_PHASE_RESELECT)?"true":"false",s->self_pointer,(unsigned long long)s->self_requests,(unsigned long long)s->native_selfs,(unsigned long long)s->self_selections,s->self_result==1?"armed":s->self_result==2?"cancelled":s->self_result==3?"native-rejected":"none",unit_special?c.type==11?"devastator":"mcv":"none",armed?"true":"false",c.kind==1?em_cpu.ram[(c.pointer&65535)+15]:0,unit_special?(armed?"cancel-countdown":"arm-countdown"):"none",armed?"complete-countdown":"deselect");

@@ -22,11 +22,25 @@ The intent is observed before the first native palette fade: Yard `$287DC`, Star
 
 On entry, SDL reuses its last good world/HUD textures and layout until the host acknowledges cover. It does not rebuild those textures against a fading palette. The generic native RGB getter also holds the preceding completed frame. On exit, the building bridge holds its last published corrected RGB, preserving the Upgrade repair.
 
-The host covers once, calls `dune_web_transition_covered(generation)`, waits for `transitionReady`, then renders and reveals. A stale generation is rejected. Acknowledgement changes host state only. Native execution continues at its original speed.
+The host covers once, calls `dune_web_transition_covered(generation)`, waits for `transitionReady`, then renders and reveals. Building entry also requires the actual building bridge's ready raster: its original-palette and completed-pixel checks are stricter than the campaign scene poll. An earlier scene-ready report must not briefly publish `map` or finish the entry generation while that raster is still unavailable. A stale generation is rejected. Acknowledgement changes host state only. Native execution continues at its original speed.
 
 Readiness requires the original target setup and a fresh completed raster. Importantly, original map input callbacks also run *inside* the palette fade-in. They do not authorize `sceneReady` / `transitionReady` until the fade returns and another frame completes. This prevents publishing a partially faded map under a second host reveal.
 
 The generation, intent, target and ready flag remain available until the next transition or state load. `transitionActive` remains true until both ready and covered; a ready result cannot disappear before the JavaScript poll sees it. Scripted campaign/router exits do not create another building-curtain generation.
+
+Frontend-panel handoffs keep the same presentation ownership rule. If a panel's
+action starts another native route, the outgoing panel cannot reveal that route
+before its native-ready poll. A completed opaque cover can be reused without a
+second 240ms host-only wait at opacity one. This does not shorten an original
+palette animation or advance a native task. Loading text reuses its bitmap until
+the dots, device pixel ratio or language changes rather than reallocating it on
+every animation frame.
+
+These host edges are exercised in `tests/scene-flow.test.mjs`: delayed building
+raster readiness, one entry generation, panel-to-native handoff, opaque-cover
+reuse, stale reveal cancellation and loading-label invalidation. These tests
+establish JavaScript presentation ordering; actual browser frames and physical
+devices require their own checks.
 
 ## Password scroll
 

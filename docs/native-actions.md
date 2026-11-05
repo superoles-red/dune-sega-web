@@ -1,9 +1,10 @@
 # Single selection, contextual actions and paid-building drag
 
 `tools/em_web_selection.h` contains browser input intent only. It stores no
-multiple-unit selection, group membership or fan-out commands. Ordinary map taps
-use the complete original contextual A through `dune_web_selection_tap_screen` /
-`dune_web_tap_screen`. Original targeting, movement, attack, harvesting,
+multiple-unit selection, group membership or fan-out commands. The modern
+selector/command vocabulary is documented in [native-typed-input.md](native-typed-input.md).
+The legacy `dune_web_selection_tap_screen` / `dune_web_tap_screen` paths still
+provide the complete original contextual A. Original targeting, movement, attack, harvesting,
 production, placement, special actions and AI remain in translated game code.
 
 ## Integration and public API

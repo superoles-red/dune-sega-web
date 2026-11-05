@@ -42,6 +42,35 @@ async function waitFor(condition){for(let i=0;i<1000;i++){if(condition())return;
 async function confirmImport(f,file,{accept=true}={}){const operation=f.ui.importFile(file);await waitFor(()=>f.ui.dialog.active);f.ui.dialog.close(accept);await operation;}
 const canonical=value=>Array.isArray(value)?'['+value.map(canonical).join(',')+']':value!==null&&typeof value==='object'?'{'+Object.keys(value).sort().map(key=>JSON.stringify(key)+':'+canonical(value[key])).join(',')+'}':JSON.stringify(value);
 
+function installFixture({result='accepted',kind='android-chrome',failure=false}={}){
+ const f=fixture(),order=[],updates=[],state={status:'idle',installed:false,preparing:false,installationKind:kind,appleMobile:kind==='apple'};
+ f.ui.platform={snapshot:()=>({...state}),install(){order.push('prompt');return Promise.resolve(result);},async prepareOffline(){order.push('offline');state.status=failure?'error':'ready';if(failure)throw Error('offline download failed');return {...state};}};
+ f.ui.installButton=new Element();f.ui.installButton._nativeArtView={update:(label,options)=>updates.push({label,...options})};
+ return {...f,order,updates,platformState:state};
+}
+test('Install Game invokes the prompt before downloading, but accepted is not yet an installed application',async()=>dom(async()=>{
+ const f=installFixture(),before=[...f.storage.values],operation=f.ui.installGame();assert.deepEqual(f.order,['prompt']);assert.equal(f.ui.installButton.disabled,true);
+ await operation;assert.deepEqual(f.order,['prompt','offline']);assert.equal(f.ui.platformNotice,'INSTALLATION REQUESTED.');assert(!f.ui.messageText.includes('INSTALLED ON THIS DEVICE.'));assert(f.ui.messageText.includes('OFFLINE GAME READY.'));assert(f.ui.messageText.includes('ANDROID CHROME:'));
+ assert.equal(f.ui.installButton.disabled,false);assert.deepEqual([...f.storage.values],before);assert.deepEqual(f.calls.loads,[]);assert.deepEqual(f.calls.saves,[]);
+ f.platformState.installed=true;f.ui.refreshPlatform();assert.equal(f.ui.platformNotice,'');assert.equal(f.ui.installButton.disabled,true);assert.equal(f.updates.at(-1).label,'INSTALLED');assert(f.ui.messageText.includes('INSTALLED ON THIS DEVICE.'));
+}));
+test('dismissing installation does not begin a cache download or report the app installed',async()=>dom(async()=>{
+ const f=installFixture({result:'cancelled'});await f.ui.installGame();assert.deepEqual(f.order,['prompt']);assert.equal(f.ui.platformNotice,'INSTALLATION CANCELLED.');assert.equal(f.ui.installBusy,false);assert.equal(f.ui.installButton.disabled,false);assert(!f.ui.messageText.includes('INSTALLED ON THIS DEVICE.'));
+}));
+test('manual install instructions fit the actual browser and an explicit install action prepares offline too',async()=>dom(async()=>{
+ for(const [kind,phrase]of [['apple','ON IPHONE: SHARE'],['samsung','SAMSUNG INTERNET:'],['android-chrome','ANDROID CHROME:'],['android','ANDROID:'],['mac-safari','MAC SAFARI:'],['desktop','INSTALL THE GAME FROM YOUR BROWSER MENU.']]){
+  const f=installFixture({result:kind==='apple'?'apple-help':'install-help',kind});await f.ui.installGame();assert.deepEqual(f.order,['prompt','offline']);assert(f.ui.messageText.includes(phrase));assert.equal(f.ui.messageText.split(phrase).length,2,'the instruction is not repeated as both notice and hint');
+ }
+}));
+test('failed offline preparation stays separate from an accepted install request and can be retried',async()=>dom(async()=>{
+ const f=installFixture({failure:true});await f.ui.installGame();assert.equal(f.ui.installBusy,false);assert.equal(f.ui.installButton.disabled,false);assert.equal(f.ui.platformNotice,'INSTALLATION REQUESTED.');assert(f.ui.messageText.includes('OFFLINE DOWNLOAD FAILED. TRY AGAIN.'));assert(f.calls.messages.includes('OFFLINE DOWNLOAD FAILED. TRY AGAIN.'));assert(!f.ui.messageText.includes('OFFLINE GAME READY.'));
+}));
+test('in-flight installation coalesces clicks and a waiting complete package asks for a clean relaunch',async()=>dom(async()=>{
+ const f=installFixture();let choose;f.ui.platform.install=()=>{f.order.push('prompt');return new Promise(resolve=>{choose=resolve;});};
+ const first=f.ui.installGame();await f.ui.installGame();assert.deepEqual(f.order,['prompt']);choose('accepted');await first;
+ f.platformState.restartRequired=true;f.ui.refreshPlatform();assert(f.ui.messageText.includes('CLOSE ALL GAME WINDOWS AND REOPEN TO USE THE DOWNLOADED COPY.'));assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);
+}));
+
 test('import asks confirmation before changing any existing browser save, and CANCEL preserves it exactly',async()=>dom(async parents=>{
  const f=fixture(),file=await archiveFile(),before=[...f.storage.values],operation=f.ui.importFile(file);await waitFor(()=>f.ui.dialog.active);
  assert.equal(f.ui.dialog.title,'LOAD SAVE FILE?');assert.equal(parents.get('scene-ui').inert,true);assert.deepEqual([...f.storage.values],before);assert.deepEqual(f.calls.loads,[]);assert.equal(f.ui.fileBusy,true);

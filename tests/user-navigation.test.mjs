@@ -300,7 +300,7 @@ test('opening the reference overlaps its asset load and engine readiness with th
 
 test('Home uses the native textless getter even while its polled scene still says Title',()=>{
  const {ui}=fixture(),reads=[],previousDpr=globalThis.devicePixelRatio;globalThis.devicePixelRatio=1;
- Object.assign(ui,{view:'home',state:{scene:'title',sceneReady:false},coldHomeVideo:true,homePicture:im=>im,frame:{valid:true,canvas:{width:320,height:224}},hero:{getBoundingClientRect:()=>({width:320,height:240})},heroCanvas:{getContext:()=>({setTransform(){},drawImage(){}})},drawBackdrop(){},updateFrame(options){reads.push(options);return true;}});
+ Object.assign(ui,{view:'home',state:{scene:'title',sceneReady:false},coldHomeVideo:true,homePicture:im=>im,frame:{valid:true,revision:1,data:{data:Uint8ClampedArray.of(1,0,0,255)},canvas:{width:320,height:224}},hero:{getBoundingClientRect:()=>({width:320,height:240})},heroCanvas:{getContext:()=>({setTransform(){},drawImage(){}})},drawBackdrop(){},updateFrame(options){reads.push(options);return true;}});
  ui.element.hidden=false;ui.curtain.paint=()=>{};ui.building.render=()=>{};
  try{GameInterface.prototype.render.call(ui,100);assert.deepEqual(reads,[{textless:true}],'native Main can draw its first menu words between the50ms DOM polls; the getter knows the actual C scene');}finally{globalThis.devicePixelRatio=previousDpr;}
 });

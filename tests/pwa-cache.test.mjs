@@ -12,6 +12,24 @@ const fixtures=new Map([['index.html','<html>game</html>'],['shell.js','game();'
 const entries=[...fixtures].map(([path,data])=>({path,bytes:Buffer.byteLength(data),sha256:hash(data)}));
 function host({version='new',corrupt=null,fail=null,old=true,transient=null,timeoutPath=null,noAbortController=false}={}){
  const listeners={},messages=[],network=[],data=new Map(),attempts=new Map(),scope='https://example.test/dune-sega-web/';
+ // The timeout test advances only the hung resource's clock. Accelerating
+ // every real30s deadline to1ms also races legitimate Response/crypto work
+ // under parallel suite load, which says nothing about the worker's deadline.
+ let fetchingPath,timerId=0;
+ const timers=new Map(),timerWaiters=new Map(),firedDeadlines=[],abortedPaths=[];
+ const deadlineClock={
+  next(path){
+   const timer=[...timers.values()].find(timer=>timer.path===path);
+   return timer?Promise.resolve(timer):new Promise(resolve=>timerWaiters.set(path,resolve));
+  },
+  fire(timer){assert.ok(timers.delete(timer.id),'deadline is active and fires only once');firedDeadlines.push(timer);timer.callback();},
+  fired:firedDeadlines,
+ };
+ const scheduleDeadline=(callback,ms)=>{
+  const timer={id:++timerId,path:fetchingPath,ms,callback};timers.set(timer.id,timer);
+  const resolve=timerWaiters.get(timer.path);if(resolve){timerWaiters.delete(timer.path);resolve(timer);}
+  return timer.id;
+ };
  const prefix='dune-sega-offline:/dune-sega-web/:';
  if(old)data.set(prefix+'old',new Map([['preserved',new Response('old')]]));
  data.set('unrelated-site-cache',new Map());
@@ -21,8 +39,9 @@ function host({version='new',corrupt=null,fail=null,old=true,transient=null,time
  const fetch=async (request,options)=>{
   const url=typeof request==='string'?request:request.url;network.push({url,options});
   const path=new URL(url).pathname.replace('/dune-sega-web/','');
+  fetchingPath=path;
   const count=(attempts.get(path)||0)+1;attempts.set(path,count);
-  if(path===timeoutPath)return new Promise((_,reject)=>options.signal?.addEventListener('abort',()=>reject(Error('aborted')),{once:true}));
+  if(path===timeoutPath)return new Promise((_,reject)=>options.signal?.addEventListener('abort',()=>{abortedPaths.push(path);reject(Error('aborted'));},{once:true}));
   if(transient?.path===path&&count<=transient.count){
    if(transient.kind==='network')throw TypeError('Load failed');
    if(transient.kind==='http')return new Response('try again',{status:500});
@@ -35,12 +54,13 @@ function host({version='new',corrupt=null,fail=null,old=true,transient=null,time
  const script=template.replace('__DUNE_CACHE_VERSION__',version).replace('/*__DUNE_PRECACHE__*/ []',JSON.stringify(entries));
  runInNewContext(script,{self,caches,fetch,crypto:webcrypto,URL,Response,Uint8Array,console,
   AbortController:noAbortController?undefined:AbortController,
-  setTimeout:timeoutPath?(fn,ms)=>setTimeout(fn,Math.min(ms,1)):setTimeout,clearTimeout});
+  setTimeout:timeoutPath?scheduleDeadline:setTimeout,
+  clearTimeout:timeoutPath?id=>timers.delete(id):clearTimeout});
  const event=async(name,values={})=>{
   let promise;listeners[name]({...values,waitUntil:p=>promise=p,respondWith:p=>promise=p});
   return promise?await promise:undefined;
  };
- return {event,data,messages,network,attempts,scope,prefix,cacheName:prefix+version};
+ return {event,data,messages,network,attempts,scope,prefix,cacheName:prefix+version,deadlineClock,abortedPaths};
 }
 
 test('complete verified package installs without replacing a running worker',async()=>{
@@ -94,10 +114,21 @@ test('permanent HTTP/network/corrupt failures are bounded at three attempts and 
  }
 });
 
-test('hung fetches have a finite deadline and three attempts with or without AbortController',async()=>{
+test('hung fetches have a finite deadline and three attempts with or without AbortController',{timeout:10000},async()=>{
  for(const noAbortController of [false,true]){
-  const h=host({timeoutPath:'shell.js',noAbortController});await assert.rejects(()=>h.event('install'),/after 3 attempts: shell.js/);
+  const h=host({timeoutPath:'shell.js',noAbortController});
+  const rejected=assert.rejects(()=>h.event('install'),/after 3 attempts: shell.js/);
+  for(let attempt=1;attempt<=3;attempt++){
+   const timer=await h.deadlineClock.next('shell.js');
+   assert.equal(timer.ms,30000,'each hung attempt has the actual finite production deadline');
+   assert.equal(h.attempts.get('shell.js'),attempt,'a new fetch is required before each timeout');
+   h.deadlineClock.fire(timer);
+  }
+  await rejected;
   assert.equal(h.attempts.get('shell.js'),3);assert.ok(h.data.has(h.prefix+'old'));assert.ok(!h.data.has(h.cacheName));
+  assert.deepEqual(h.deadlineClock.fired.map(timer=>timer.path),['shell.js','shell.js','shell.js']);
+  assert.deepEqual(h.abortedPaths,noAbortController?[]:['shell.js','shell.js','shell.js']);
+  for(const path of fixtures.keys())if(path!=='shell.js')assert.equal(h.attempts.get(path),1,'successful resources never time out or retry');
  }
 });
 

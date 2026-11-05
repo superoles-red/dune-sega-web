@@ -96,6 +96,7 @@
    game's real button PNGs; no new font, vector skin, or game input is added. */
 #global-fullscreen.native-button{position:fixed;z-index:80;top:max(10px,env(safe-area-inset-top));left:max(10px,env(safe-area-inset-left));right:auto;width:52px;height:48px;min-width:52px;min-height:48px}
 #native-menu.native-button{left:calc(max(10px,env(safe-area-inset-left)) + 60px)}
+body[data-fullscreen-control="hidden"] #native-menu.native-button{left:max(10px,env(safe-area-inset-left))}
 #global-fullscreen::after{content:"";position:absolute;inset:11px 12px;pointer-events:none;--native-ink:url('./ui-assets/screen-assets/ui/command-skin-normal-tl.png');background-image:var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink);background-position:top left,top right,bottom left,bottom right,top left,top right,bottom left,bottom right;background-size:10px 3px,10px 3px,10px 3px,10px 3px,3px 10px,3px 10px,3px 10px,3px 10px;background-repeat:no-repeat;image-rendering:pixelated}
 .scene-head{padding-left:56px;padding-right:56px}
 .native-screen[data-view="native"] #open-platform{grid-column:1/-1}
@@ -133,3 +134,23 @@
 @media(orientation:landscape) and (min-width:560px) and (max-height:519px){
  .native-screen[data-view="native"][data-scene="options"][data-options-layout="true"]{--settings-head:32px}
 }
+
+/* One browser-measured rectangle owns the map and every HTML screen. It can
+   follow visualViewport-only bar changes and the guarded iPhone standalone
+   status/home-indicator gap without changing original artwork or simulation. */
+:root{--app-viewport-width:100vw;--app-viewport-height:100vh;--app-viewport-bottom-offset:0px;--app-safe-top:env(safe-area-inset-top,0px);--app-safe-bottom:env(safe-area-inset-bottom,0px)}
+html,body{height:var(--app-viewport-height);min-height:0}
+#canvas{width:var(--app-viewport-width)!important;height:var(--app-viewport-height)!important}
+.native-screen,.building-screen,#screen-transition,#native-confirmation,#launch,#order-feedback{width:var(--app-viewport-width);height:var(--app-viewport-height)}
+#context-actions{bottom:calc(max(10px,env(safe-area-inset-bottom)) + var(--app-viewport-bottom-offset))}
+#message{bottom:calc(max(68px,calc(env(safe-area-inset-bottom) + 68px)) + var(--app-viewport-bottom-offset))}
+
+/* Static input reference: original dialog frame, menu arrow and bitmap font.
+   Both input modes remain reachable on touch/mouse hybrid devices. */
+.native-screen[data-view="controls"] .scene-shell{grid-template-areas:"head" "actions" "hero" "footer";grid-template-columns:minmax(0,1fr);grid-template-rows:40px 64px minmax(0,1fr) auto;gap:8px}
+.native-screen[data-view="controls"] .scene-message{display:none}
+.native-screen[data-view="controls"] .scene-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:56px;max-height:none;width:100%;max-width:720px;justify-self:center}
+.native-screen[data-view="controls"] .scene-hero{align-items:flex-start;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;width:100%;max-width:720px;justify-self:center}
+.native-screen[data-view="controls"] .scene-art{width:100%;height:auto;max-height:none;object-fit:contain;flex:none}
+.native-screen[data-view="controls"] .scene-footer{justify-content:flex-start;background:transparent}
+@media(orientation:landscape) and (max-height:519px){.native-screen[data-view="controls"] .scene-shell{grid-template-rows:28px 56px minmax(0,1fr) auto;gap:4px}.native-screen[data-view="controls"] .scene-actions{grid-auto-rows:48px}}

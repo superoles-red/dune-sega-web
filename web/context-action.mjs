@@ -2,6 +2,7 @@
 export function contextAction(actions={}){
  if(actions.placementActive)return null;
  if(actions.bAvailable){const kind=actions.bKind||'confirm-native';return {method:'b',kind,label:({repeat:'REPEAT','confirm-devastator':'DETONATE','confirm-mcv':'DEPLOY','confirm-native':'CONFIRM'}[kind]||'ACTION'),aria:({repeat:'Повторить производство','confirm-devastator':'Завершить отсчёт самоподрыва — оригинальная B','confirm-mcv':'Подтвердить развёртывание — оригинальная B','confirm-native':'Завершить особый отсчёт — оригинальная B'}[kind]||'Действие оригинальной кнопки B')};}
- if(actions.selfAvailable){const mcv=actions.selfKind==='mcv';return {method:'self',kind:'self-'+actions.selfKind,label:mcv?'DEPLOY':'ARM',aria:mcv?'Начать развёртывание — оригинальное нажатие на сам юнит':'Включить отсчёт самоподрыва — оригинальное нажатие на сам юнит'};}
+ // Arming belongs to the explicit contextual command on the selected unit.
+ // The bottom row exposes only an already available original B action.
  return null;
 }

@@ -42,7 +42,7 @@ test('progress-only backup creates a Continue tombstone and never resurrects leg
  commitSaveFile({store,archive});assert.equal(store.resumable(),null);assert.equal(new CampaignStore(storage).resumable(),null);assert.equal(store.legacy(),null);assert.equal(storage.getItem(LEGACY_SAVE_KEY),'old');assert(storage.getItem(slotKey(1)));assert.equal(store.progress.houses[0].unlocked,2);
 });
 test('previous published core exports import unchanged and re-export with the current ABI-compatible core',async()=>{
- const oldHash='4f3a8c75663e87b0f7dbcad2aff11ee36fa434d9d0a82d87a74318700ee64c22';
+ for(const oldHash of ['4f3a8c75663e87b0f7dbcad2aff11ee36fa434d9d0a82d87a74318700ee64c22','777d313a36f86b7c46bc5994b1c43507a2ef2a9006bd80648cf4f73c7b534add']){
  const {store}=source(),{archive}=await createSaveFile({store,language:'ru'});
  const oldText=signed(archive,v=>v.compatibility.engineSha256=oldHash),old=await parseSaveFile(oldText);
  assert.equal(old.compatibility.engineSha256,oldHash);assert.equal(old.checksum,JSON.parse(oldText).checksum);
@@ -54,6 +54,7 @@ test('previous published core exports import unchanged and re-export with the cu
  assert.equal(current.archive.continue.state,payload);assert.deepEqual(current.archive.progress,old.progress);
  for(const mutate of [v=>v.compatibility.nativeVersion=3,v=>v.compatibility.nativeBaseBytes++,v=>v.compatibility.game='dune-sega-eur',v=>v.compatibility.extra=true]){
   await rejects(signed(old,mutate),'incompatible-engine');
+ }
  }
 });
 test('invalid JSON, unrelated data, unknown envelope fields, oversize and checksum corruption are rejected',async()=>{

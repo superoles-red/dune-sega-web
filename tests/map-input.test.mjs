@@ -16,14 +16,14 @@ class Canvas{
  }
 }
 function setup(options={}){
- const canvas=new Canvas(),calls={begin:[],end:[],tap:[],pan:[],zoom:[],hover:[],cancel:0,placeStart:0,placeCancel:0,placeEnd:0,miniMove:[]};let input;
+ const canvas=new Canvas(),calls={begin:[],end:[],tap:[],command:[],pan:[],zoom:[],hover:[],cancel:0,placeStart:0,placeCancel:0,placeEnd:0,miniMove:[]};let input;
  const gestures=new MapGestures({canPanAt:()=>options.world!==false,minimapStart:()=>!!options.minimap,minimapMove:(...p)=>calls.miniMove.push(p),tap:(...p)=>calls.tap.push(p),pan:(...p)=>calls.pan.push(p),zoom:(...p)=>calls.zoom.push(p),placementStart:()=>{calls.placeStart++;return !!options.place;},placementMove(){},placementEnd:()=>calls.placeEnd++,placementCancel:()=>calls.placeCancel++});
- input=bindMapInput(canvas,{begin:(id,p,kind)=>{calls.begin.push({id,...p,kind});if(options.disabled)return false;gestures.down({id,...p,kind});return true;},move:(id,p)=>gestures.move({id,...p}),end:(id,p)=>{calls.end.push({id,...p});gestures.up({id,...p});},cancel:()=>{calls.cancel++;input.reset();gestures.cancel();},hover:p=>calls.hover.push(p)},{pointerEvents:options.pointerEvents!==false});
+ input=bindMapInput(canvas,{begin:(id,p,kind)=>{calls.begin.push({id,...p,kind});if(options.disabled)return false;gestures.down({id,...p,kind});return true;},move:(id,p)=>gestures.move({id,...p}),end:(id,p)=>{calls.end.push({id,...p});gestures.up({id,...p});},command:(p,kind)=>calls.command.push({p,kind}),cancel:()=>{calls.cancel++;input.reset();gestures.cancel();},hover:p=>calls.hover.push(p)},{pointerEvents:options.pointerEvents!==false});
  return {canvas,calls,gestures,input};
 }
 test('actual Safari pointerup→lostcapture→compatmouseup commits one tap even with buttons0',()=>{
  const {canvas,calls,input}=setup();for(const name of ['pointerdown','mousedown','pointerup','lostpointercapture','mouseup','click'])canvas.emit(name,name==='lostpointercapture'?{clientX:0,clientY:0}:{});
- assert.equal(calls.begin.length,1);assert.deepEqual(calls.tap,[[100,100]]);assert.equal(calls.end.length,1);assert.equal(calls.cancel,0);assert.equal(input.activeCount,0);
+ assert.equal(calls.begin.length,1);assert.deepEqual(calls.tap,[[100,100,'mouse']]);assert.equal(calls.end.length,1);assert.equal(calls.cancel,0);assert.equal(input.activeCount,0);
 });
 test('Chrome compatibility ordering also commits one tap; same-target SDL bubble listeners see no events',()=>{
  const {canvas,calls}=setup();let sdl=0;for(const name of ['mousedown','mousemove','mouseup','click'])canvas.addEventListener(name,()=>sdl++,false);
@@ -56,8 +56,8 @@ test('pen down/up uses the same direct release; raw touch compatibility is preve
 test('minimap press/drag/release remains a camera action with no contextual A tap',()=>{
  const {canvas,calls}=setup({minimap:true,world:false});canvas.emit('pointerdown');canvas.emit('pointermove',{clientX:160});canvas.emit('pointerup',{clientX:160});assert.ok(calls.miniMove.length>=1);assert.equal(calls.tap.length,0);assert.equal(calls.pan.length,0);
 });
-test('secondary mouse buttons are suppressed without selecting or starting a gesture',()=>{
- const {canvas,calls,input}=setup();for(const button of [1,2]){canvas.emit('pointerdown',{button});canvas.emit('pointerup',{button});canvas.emit('mousedown',{button});canvas.emit('mouseup',{button});}assert.equal(calls.begin.length,0);assert.equal(calls.tap.length,0);assert.equal(input.activeCount,0);
+test('middle mouse is ignored and right mouse releases only the command callback',()=>{
+ const {canvas,calls,input}=setup();for(const button of [1,2]){canvas.emit('pointerdown',{button});canvas.emit('pointerup',{button});canvas.emit('mousedown',{button});canvas.emit('mouseup',{button});}assert.equal(calls.begin.length,0);assert.equal(calls.tap.length,0);assert.equal(calls.command.length,1);assert.equal(input.activeCount,0);
 });
 test('legacy mouse-only fallback is enabled only when Pointer Events are unavailable',()=>{
  const {canvas,calls,input}=setup({pointerEvents:false});canvas.emit('pointerdown');canvas.emit('mousedown');canvas.emit('mousemove');canvas.emit('mouseup');assert.equal(calls.begin.length,1);assert.equal(calls.begin[0].id,'mouse');assert.equal(calls.tap.length,1);assert.equal(canvas.captures,0);assert.equal(input.activeCount,0);
@@ -87,7 +87,7 @@ test('PUBLIC Safari phantom unpressed hover between stationary down/up stays one
   canvas.emit('pointermove',{clientX:770,clientY:612,button:-1,buttons:0});
   canvas.emit('pointerup',{clientX:475,clientY:460,buttons:0});
   canvas.emit('lostpointercapture',{clientX:0,clientY:0,buttons:0});
-  assert.deepEqual(calls.tap,[[455,430]]);assert.equal(calls.pan.length,0);assert.equal(calls.placeStart,0);assert.equal(calls.placeEnd,0);assert.equal(calls.hover.length,0);assert.equal(calls.cancel,0);assert.equal(input.activeCount,0);
+  assert.deepEqual(calls.tap,[[455,430,'mouse']]);assert.equal(calls.pan.length,0);assert.equal(calls.placeStart,0);assert.equal(calls.placeEnd,0);assert.equal(calls.hover.length,0);assert.equal(calls.cancel,0);assert.equal(input.activeCount,0);
  }
 });
 test('AX mouse drag with unpressed moves still pans once from the final release position',()=>{
@@ -95,4 +95,43 @@ test('AX mouse drag with unpressed moves still pans once from the final release 
 });
 test('pen movement with buttons0 remains a live drag; the unpressed guard applies to mouse only',()=>{
  const {canvas,calls}=setup();canvas.emit('pointerdown',{pointerType:'pen'});canvas.emit('pointermove',{pointerType:'pen',clientX:140,buttons:0});assert.deepEqual(calls.pan,[[20,0]]);canvas.emit('pointerup',{pointerType:'pen',clientX:140});assert.equal(calls.tap.length,0);
+});
+test('right pointer release commits once before Safari capture loss and suppresses all compatibility events',()=>{
+ const {canvas,calls,input}=setup();for(const name of ['pointerdown','mousedown','pointerup','mouseup','click','dblclick','auxclick','contextmenu'])canvas.emit(name,{button:2});
+ assert.deepEqual(calls.command,[{p:{x:100,y:100},kind:'mouse'}]);assert.equal(calls.begin.length,0);assert.equal(calls.end.length,0);assert.equal(calls.cancel,0);assert.equal(canvas.releases,1);assert.equal(input.activeCount,0);
+});
+test('right drag, including a return to origin or a moved release, never commands or hovers',()=>{
+ for(const pointerEvents of [true,false])for(const returnToOrigin of [true,false]){
+  const {canvas,calls,input}=setup({pointerEvents}),prefix=pointerEvents?'pointer':'mouse';
+  canvas.emit(prefix+'down',{button:2});canvas.emit(prefix+'move',{button:-1,buttons:2,clientX:145});
+  canvas.emit(prefix+'up',{button:2,clientX:returnToOrigin?120:145});
+  assert.equal(calls.command.length,0);assert.equal(calls.begin.length,0);assert.equal(calls.hover.length,0);assert.equal(calls.pan.length,0);assert.equal(calls.cancel,1);assert.equal(input.activeCount,0);
+ }
+});
+test('right drag threshold is eight CSS pixels and release position catches AX drags with unpressed moves',()=>{
+ for(const pointerEvents of [true,false])for(const delta of [8,9]){
+  const {canvas,calls}=setup({pointerEvents}),prefix=pointerEvents?'pointer':'mouse';
+  canvas.emit(prefix+'down',{button:2});canvas.emit(prefix+'move',{clientX:770,buttons:0});canvas.emit(prefix+'up',{button:2,clientX:120+delta});
+  assert.equal(calls.command.length,delta===8?1:0);assert.equal(calls.hover.length,0);
+ }
+});
+test('right cancel, unexpected loss and outer blur/reset consume ownership without a late command',()=>{
+ for(const action of ['pointercancel','lostpointercapture','blur']){
+  const {canvas,calls,input,gestures}=setup();canvas.emit('pointerdown',{button:2});
+  if(action==='blur'){input.reset();gestures.cancel();}else canvas.emit(action,{button:2});
+  canvas.emit('pointerup',{button:2});canvas.emit('mouseup',{button:2});
+  assert.equal(calls.command.length,0);assert.equal(calls.cancel,action==='blur'?0:1);assert.equal(input.activeCount,0);
+ }
+ const {canvas,calls,input}=setup({pointerEvents:false});canvas.emit('mousedown',{button:2});input.reset();canvas.emit('mouseup',{button:2});assert.equal(calls.command.length,0);
+});
+test('wrong-button release cannot commit held right pointer or fallback mouse',()=>{
+ for(const pointerEvents of [true,false]){
+  const {canvas,calls,input}=setup({pointerEvents}),prefix=pointerEvents?'pointer':'mouse';
+  canvas.emit(prefix+'down',{button:2});canvas.emit(prefix+'up',{button:0});assert.equal(input.activeCount,1);assert.equal(calls.command.length,0);
+  canvas.emit(prefix+'up',{button:2});assert.equal(calls.command.length,1);assert.equal(input.activeCount,0);
+ }
+});
+test('legacy mouse right command commits once; synthetic clicks and double clicks never command',()=>{
+ const {canvas,calls}=setup({pointerEvents:false});for(const name of ['click','dblclick','auxclick','contextmenu'])canvas.emit(name,{button:2});assert.equal(calls.command.length,0);
+ canvas.emit('mousedown',{button:2});canvas.emit('mouseup',{button:2});canvas.emit('contextmenu',{button:2});assert.equal(calls.command.length,1);assert.equal(calls.begin.length,0);
 });

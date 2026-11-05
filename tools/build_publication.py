@@ -44,6 +44,10 @@ def add_offline_worker(payload):
 def collect(root=ROOT):
     """An allowlist prevents local CPU fixtures, ROM copies and QA pages leaking."""
     web = root / 'web'
+    from build_runtime_atlas import verify as verify_runtime_atlas
+    verify_runtime_atlas(root)
+    from build_startup import verify as verify_startup
+    verify_startup(root)
     source = {}
     def add(path, name=None):
         if path.is_symlink() or not path.is_file():

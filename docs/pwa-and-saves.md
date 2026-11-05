@@ -7,9 +7,11 @@
 
 ## Полный экран и значок
 
-Для полного экрана нажмите маленький значок слева сверху. Это единственная
-кнопка полного экрана, доступная и внутри зданий. Кнопка игровой паузы `MENU`
-на карте расположена сразу справа от этого значка. Полноэкранный режим включается по нажатию
+На ПК и поддерживающем Android-браузере для полного экрана нажмите маленький
+значок слева сверху. Это единственная кнопка полного экрана, доступная и внутри
+зданий. На iPhone она скрыта: игра со значка Home Screen уже открывается отдельным
+окном. Когда значок скрыт, `MENU` занимает левое верхнее место без пустого промежутка.
+Полноэкранный режим включается по нажатию
 пользователя, если браузер поддерживает его для игр. Выход —
 той же кнопкой или системным жестом/Escape. Масштаб камеры внутри игры — отдельная
 функция и не заменяет полный экран браузера.
@@ -17,21 +19,54 @@
 - **iPhone:** откройте сайт в Safari → «Поделиться» → «На экран Домой» → оставьте
   «Открывать как веб-приложение» включённым, если есть такой переключатель.
   Запускайте игру с нового значка. Панелей Safari не будет; системные области
-  iOS, вырез и домашний индикатор учитываются компоновкой. Обычная вкладка Safari
-  на iPhone не обязана поддерживать полноэкранную кнопку для canvas.
-- **Android:** откройте `OPTIONS`/паузу → `FILES & OFFLINE` → `INSTALL GAME`, если браузер предложит установку,
-  или меню браузера → «Установить приложение» / «На главный экран».
+  iOS, вырез и домашний индикатор учитываются компоновкой.
+- **Android:** откройте `OPTIONS`/паузу → `FILES & OFFLINE` → `INSTALL GAME`.
+  Доступный системный запрос открывается сразу по нажатию. После принятия запроса
+  игра готовит полную офлайн-копию. Если системного запроса нет, показывается
+  подсказка для данного браузера, а копия также скачивается по этому явному действию.
+  Отмена системной установки не начинает скачивание.
 - **ПК:** можно играть во вкладке и включить полный экран значком слева сверху. Chrome/Edge
   также могут предложить установку. В Safari на Mac доступно «Добавить в Dock».
 
-Наличие значка и готовность офлайн-копии — разные вещи. Для игры без сети
-выполните следующий шаг.
+`INSTALLATION REQUESTED` означает, что запрос принят, а не что установка уже
+завершилась. Надпись `INSTALLED` появляется после события браузера об установке
+или при запуске из отдельного установленного окна. Наличие значка и готовность
+офлайн-копии — разные вещи; дождитесь сообщения `OFFLINE GAME READY`.
+
+### Как запускать на Android без ссылки
+
+Первый раз открыть сайт через интернет всё равно необходимо. Затем установить
+его, дождаться полной офлайн-подготовки и запускать со значка на главном экране
+или в списке приложений. Вручную искать и открывать ссылку каждый раз не нужно.
+Загрузка APK и отдельная Android-версия для этого способа не требуются.
+
+- В **Chrome для Android** доступен пункт меню «Установка и создание ярлыка» →
+  «Установить». Названия зависят от языка и версии браузера.
+  [Инструкция Google](https://support.google.com/chrome/answer/9658361?co=GENIE.Platform%3DAndroid&hl=en).
+- **Samsung Internet** поддерживает добавление веб-приложений на главный экран;
+  используйте значок установки или соответствующий пункт меню.
+  [Руководство Samsung](https://developer.samsung.com/browser/android/web-developer-guide.html).
+
+Для этой игры на Samsung сейчас используйте **Chrome**. На настоящем Galaxy A07
+(SM-A075F, Android 16) проверен игровой ввод в Chrome 154.0.8037.126. Samsung
+Internet 30.0.5.24 на том же аппарате закрывает вкладку при запуске — в том числе
+с прежней опубликованной сборкой и в отдельном запуске движка без нового атласа.
+Эта комбинация браузера и устройства пока не поддерживается; причина сбоя не
+установлена. Ограничение максимальной WASM-памяти до 512 MiB его не устранило.
+
+Это путь для совместимых Android-телефонов и планшетов, а не обещание работы
+на любой старой модели. Нужны современный браузер с WebAssembly/Web Audio и
+поддержка Service Worker/Cache Storage для офлайн-копии. В некоторых браузерах
+вместо отдельного приложения создаётся ярлык вкладки. Реальная установка,
+системные панели, звук и производительность на конкретном Samsung проверяются
+на устройстве отдельно от настольной проверки и автоматических тестов.
 
 ## Подготовить игру без интернета
 
 1. При доступном интернете откройте `OPTIONS`/паузу → `FILES & OFFLINE` → `PREPARE OFFLINE`.
-2. Дождитесь сообщения о завершении загрузки всех файлов. До него загрузка
-   может быть неполной.
+2. Дождитесь сообщения о завершении загрузки всех файлов. Оно подтверждается
+   ответом выбранного Service Worker о готовом проверенном кеше; одной регистрации
+   или наличия активного worker недостаточно. До него загрузка может быть неполной.
 3. Закройте игру и запустите её со значка или той же ссылки. При следующем
    запуске готовая офлайн-копия получит управление; после этого можно играть без сети.
 
@@ -42,8 +77,10 @@
 
 Офлайн-обновление устанавливается целиком; неуспешная загрузка новой версии
 не должна удалять предыдущую готовую копию. Работающая миссия не переключается
-на другой набор файлов посреди игры. При повторном запуске с сетью можно
-подготовить новую версию. Защищённое браузерное хранение запрашивается там,
+на другой набор файлов посреди игры. `PREPARE OFFLINE` явно проверяет обновление
+при доступной сети. Когда новая копия ждёт активации, экран просит закрыть все
+окна игры и открыть её снова; принудительной перезагрузки миссии нет.
+Защищённое браузерное хранение запрашивается там,
 где доступно; окончательное решение остаётся за браузером.
 
 Удаление данных сайта или самого приложения может удалить офлайн-копию и
@@ -100,14 +137,21 @@
 
 ## English quick guide
 
-Use the single upper-left icon for fullscreen; the map's **Menu** button is
-immediately to its right. The fullscreen icon remains available inside buildings.
+Use the single upper-left icon for fullscreen on supporting desktop/Android
+browsers; the map's **Menu** button is immediately to its right. On iPhone the
+fullscreen icon is hidden and Menu occupies the upper-left position.
 Open **Options/Pause →
 Files & Offline** for **Download Save**, **Load Save File**, **Install
 Game**, **Prepare Offline**, and **Source Code**. On iPhone, use Safari → Share → Add to Home Screen → Open as Web
 App, then launch the icon. On Android/desktop, use the browser's supported
-installation/fullscreen controls. A Home Screen icon alone does not guarantee
-offline readiness: wait until offline preparation finishes, then relaunch the game.
+installation/fullscreen controls. Install Game invokes an available native prompt
+within the tap, then prepares offline after acceptance; without a prompt it shows
+browser-specific instructions and prepares the copy. A dismissed prompt does not
+download it. A requested installation is not labelled installed until the browser
+confirms it. A Home Screen icon alone does not guarantee offline readiness: wait
+until offline preparation finishes, then close all game windows and relaunch the game.
+Subsequent icon launches can use the verified cached game without entering a link
+or connecting to the internet. This does not package a separate APK.
 
 Browser autosaves stay local to that browser/profile. Export a save file for an
 independent backup; it contains the global Continue slot, each house's mission

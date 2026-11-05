@@ -1,20 +1,25 @@
 // Native PNG composition only. Game actions stay in the original runtime.
-import {GameLanguage} from './i18n.mjs?v=20261105-controls1';
-import {loadAssetImage,loadAssetJSON,runAssetPool} from './asset-loader.mjs?v=20261105-controls1';
+import {GameLanguage} from './i18n.mjs?v=20261105-webapp1';
+import {loadAssetImage,loadAssetJSON,runAssetPool} from './asset-loader.mjs?v=20261105-webapp1';
+import {loadRuntimeAtlas} from './runtime-atlas.mjs?v=20261105-webapp1';
 export class NativeArt {
  constructor({storage}={}){this.images=new Map();this.alpha=new Map();this.inkAtlases=new Map();this.flags=new Map();this.buttonViews=new Set();this.pressedViews=new Set();this.language=new GameLanguage({storage});this.ready=false;this.language.onChange(()=>{for(const v of this.buttonViews)v.draw();});for(const ev of ['pointerup','pointercancel'])window.addEventListener(ev,()=>{for(const v of [...this.pressedViews])v.release();},true);}
- async load(){
+ async load({onProgress=()=>{},atlas=true}={}){
   this.ready=false;const base='./ui-assets/';
-  [this.kit,this.skin]=await Promise.all(['shop-layout-kit/manifest.json','screen-assets/manifest.json'].map(p=>loadAssetJSON(base+p)));
-  const jobs=[];for(const [group,m] of [['shop',this.kit],['screen',this.skin]]){
+  onProgress({stage:'catalogue',loaded:0,total:0});
+  [this.kit,this.skin]=await Promise.all([...['shop-layout-kit/manifest.json','screen-assets/manifest.json'].map(p=>loadAssetJSON(base+p)),this.language.load()]);
+  const expected=new Map();for(const [group,m] of [['shop',this.kit],['screen',this.skin]]){
    const folder=group==='shop'?'shop-layout-kit/':'screen-assets/';
    const paths=[...Object.values(m.parts).map(p=>p.path),...Object.values(m.fonts).filter(f=>f?.path).map(f=>f.path),...Object.values(m.animations||{}).flatMap(a=>(a.states||[]).map(s=>s.path))].filter(p=>typeof p==='string'&&p.length);
-   for(const path of new Set(paths))jobs.push(async()=>{const image=await loadAssetImage(base+folder+path);this.images.set(group+':'+path,image);});
+   for(const path of new Set(paths))expected.set(group+':'+path,'ui-assets/'+folder+path);
   }
-  await this.language.load();
   const localePaths=new Set(this.language.manifest.languages.flatMap(locale=>[locale.font?.maskPath,locale.font?.shadowPath,...Object.values(locale.commands||{})].filter(Boolean)));
-  for(const path of localePaths)jobs.push(async()=>{const image=await loadAssetImage(new URL('./language-assets/'+path,import.meta.url));this.images.set('locale:'+path,image);});
-  await runAssetPool(jobs);this.ready=true;return this;
+  for(const path of localePaths)expected.set('locale:'+path,'language-assets/'+path);
+  onProgress({stage:'graphics',loaded:0,total:expected.size});
+  let packed=false;
+  if(atlas)try{const images=await loadRuntimeAtlas(expected,{onProgress});for(const [key,image]of images)this.images.set(key,image);packed=true;}catch{onProgress({stage:'graphics',loaded:0,total:expected.size});}
+  if(!packed){let loaded=0;await runAssetPool([...expected].map(([key,path])=>async()=>{const image=await loadAssetImage(new URL('./'+path,import.meta.url));this.images.set(key,image);onProgress({stage:'graphics',loaded:++loaded,total:expected.size});}));}
+  this.ready=true;onProgress({stage:'graphics',loaded:expected.size,total:expected.size});return this;
  }
  displayText(value){return this.language?.text(value)??String(value??'');}
  command(key,disabled=false){const locale=this.language?.manifest?.languages.find(l=>l.code===this.language.code),path=locale?.commands?.[key+'-'+(disabled?'disabled':'enabled')];return path?this.images.get('locale:'+path):null;}

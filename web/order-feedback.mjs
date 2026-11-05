@@ -41,6 +41,9 @@ export class OrderFeedback {
  }
  observe(actions,{blocked=false,now=performance.now()}={}){
   const wasArmed=!!this.special?.armed;this.special=actions?.special?.armed?actions.special:null;if(!this.special||!wasArmed){this.specialPoint=this.special&&this.lastPointer?{...this.lastPointer}:null;this.specialDragging=false;}
+  // Once cancelled there may be no active feedback left, so the host stops
+  // calling render(). Remove the previous Palace marker at this state change.
+  if(wasArmed&&!this.special){this.specialImage.hidden=true;if(!this.current){this.image.hidden=true;this.element.hidden=true;}}
   const order=actions?.lastOrder,seq=order?.seq;if(!Number.isSafeInteger(seq)||seq<0)return;
   if(seq<this.lastSequence)this.lastSequence=seq;
   if(seq===this.lastSequence)return;this.lastSequence=seq;

@@ -27,7 +27,11 @@ jobs:
           python3 tools/bootstrap_core_source.py --check
           python3 tools/test_bootstrap_core_source.py
       - name: Publication guards
-        run: python3 tools/test_publication.py
+        run: |
+          python3 tools/build_runtime_atlas.py --check
+          python3 tools/build_startup.py --check
+          python3 tools/test_runtime_atlas.py
+          python3 tools/test_publication.py
       - name: Build static site
         run: python3 tools/build_publication.py --output _site --revision "$GITHUB_SHA"
       - name: Verify complete package

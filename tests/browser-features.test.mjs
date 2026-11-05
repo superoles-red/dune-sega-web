@@ -1,17 +1,19 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {BrowserFeatures,isAppleMobile,SOURCE_URL,downloadSave,pickSaveFile} from '../web/browser-features.mjs';
+import {BrowserFeatures,isAppleMobile,installationKind,SOURCE_URL,downloadSave,pickSaveFile} from '../web/browser-features.mjs';
 
 function events(properties={}){
  const listeners=new Map();return Object.assign({listeners,addEventListener(type,callback){if(!listeners.has(type))listeners.set(type,new Set());listeners.get(type).add(callback);},removeEventListener(type,callback){listeners.get(type)?.delete(callback);},dispatch(type,event={}){for(const callback of [...(listeners.get(type)||[])])callback(event);}},properties);
 }
 function environment(){
- const messages=[],opens=[],win=events({matchMedia:()=>({matches:false}),open:(...args)=>opens.push(args)}),doc=events({documentElement:{}}),nav={userAgent:'Desktop browser',platform:'MacIntel',maxTouchPoints:0};
- const worker=events({state:'activated',postMessage:message=>messages.push(message)}),registration={active:worker};
- let registrations=0,lookups=0;
+ class Channel {constructor(){this.port1={onmessage:null,close(){}};this.port2={postMessage:data=>queueMicrotask(()=>this.port1.onmessage?.({data})),close(){}};}}
+ const messages=[],opens=[],win=events({MessageChannel:Channel,matchMedia:()=>({matches:false}),open:(...args)=>opens.push(args)}),doc=events({documentElement:{}}),nav={userAgent:'Desktop browser',platform:'MacIntel',maxTouchPoints:0};
+ const worker=events({state:'activated',postMessage(message,ports){messages.push(message);ports?.[0]?.postMessage(this.statusResponse||{type:'DUNE_OFFLINE_PROGRESS',status:'ready',loaded:429,total:429,bytes:8000000,totalBytes:8000000,version:'verified-version'});}});
+ let registrations=0,lookups=0,updates=0;
+ const registration={active:worker,async update(){updates++;}};
  nav.serviceWorker=events({async getRegistration(){lookups++;return registration;},async register(){registrations++;return registration;}});
  const feature=new BrowserFeatures({win,doc,nav});
- return {feature,win,doc,nav,worker,registration,messages,opens,get registrations(){return registrations;},get lookups(){return lookups;}};
+ return {feature,win,doc,nav,worker,registration,messages,opens,get registrations(){return registrations;},get lookups(){return lookups;},get updates(){return updates;}};
 }
 const tick=async()=>{for(let i=0;i<8;i++)await Promise.resolve();};
 
@@ -37,6 +39,11 @@ test('standalone detection covers iPhone and touch-capable iPad desktop UA, with
  const e=environment();e.nav.standalone=true;const installed=new BrowserFeatures(e);assert.equal(installed.snapshot().installed,true);
  const media=environment();media.win.matchMedia=query=>({matches:query==='(display-mode: standalone)'});assert.equal(new BrowserFeatures(media).snapshot().installed,true);
 });
+test('installation help distinguishes Android Chrome, Samsung Internet, Apple and desktop without promising every browser can install',()=>{
+ const cases=[['Mozilla/5.0 (Linux; Android 15) Chrome/130.0','android-chrome'],['Mozilla/5.0 (Linux; Android 15) Chrome/130.0 SamsungBrowser/28.0','samsung'],['Mozilla/5.0 Android Firefox/130.0','android'],['Mozilla/5.0 iPhone Safari/605','apple'],['Mozilla/5.0 (Macintosh) AppleWebKit/605 Safari/605','mac-safari'],['Mozilla/5.0 (Macintosh) Chrome/130 Safari/605','desktop']];
+ for(const [userAgent,kind]of cases)assert.equal(installationKind({userAgent}),kind);
+ const e=environment();e.nav.userAgent=cases[1][0];assert.equal(e.feature.snapshot().installationKind,'samsung');
+});
 test('install prompt is explicit, synchronous, one-use, and user dismissal is preserved',async()=>{
  const e=environment();let prevented=0,prompted=0;const prompt={preventDefault:()=>prevented++,prompt:()=>{prompted++;return Promise.resolve();},userChoice:Promise.resolve({outcome:'dismissed'})};
  e.win.dispatch('beforeinstallprompt',prompt);assert.equal(prevented,1);assert.equal(prompted,0);assert.equal(e.feature.snapshot().canInstall,true);
@@ -56,7 +63,23 @@ test('unsupported offline mode fails safely without claiming ready or initiating
 test('offline preparation registers only explicitly, coalesces requests, and survives denied persistent storage',async()=>{
  const e=environment();let resolve,options;e.nav.storage={persist:()=>Promise.reject(Error('denied'))};e.nav.serviceWorker.register=(url,config)=>{assert.equal(url,'./service-worker.js');options=config;return new Promise(done=>{resolve=done;});};
  const first=e.feature.prepareOffline(),second=e.feature.prepareOffline();await tick();assert.equal(e.feature.snapshot().preparing,true);assert.equal(typeof resolve,'function');assert.deepEqual(options,{scope:'./',updateViaCache:'none'});const pending=e.feature.pending;assert(pending);
- resolve(e.registration);await Promise.all([first,second]);assert.equal(e.feature.snapshot().status,'ready');assert.equal(e.feature.snapshot().persistent,false);assert.equal(e.feature.pending,null);
+ resolve(e.registration);await Promise.all([first,second]);assert.equal(e.feature.snapshot().status,'ready');assert.equal(e.feature.snapshot().persistent,false);assert.equal(e.feature.pending,null);assert.equal(e.updates,1);assert.equal(e.feature.snapshot().loaded,429);assert.equal(e.feature.snapshot().version,'verified-version');assert.equal(e.feature.snapshot().restartRequired,true);
+});
+test('offline readiness requires the selected worker ready marker, not just an activated registration',async()=>{
+ const e=environment();e.worker.statusResponse={type:'DUNE_OFFLINE_PROGRESS',status:'downloading',loaded:1,total:429,version:'incomplete'};
+ await assert.rejects(e.feature.prepareOffline(),/offline-package-incomplete/);assert.equal(e.feature.snapshot().status,'error');assert.equal(e.feature.snapshot().preparing,false);
+ e.worker.statusResponse={type:'DUNE_OFFLINE_PROGRESS',status:'ready',loaded:428,total:429,version:'incomplete'};
+ await assert.rejects(e.feature.prepareOffline(),/offline-package-incomplete/);assert.equal(e.feature.snapshot().status,'error');
+ e.worker.statusResponse=null;await e.feature.prepareOffline();assert.equal(e.feature.snapshot().status,'ready');
+});
+test('new waiting offline packages request a relaunch while the already controlling complete package does not',async()=>{
+ const e=environment();e.nav.serviceWorker.controller=e.worker;await e.feature.prepareOffline();assert.equal(e.feature.snapshot().restartRequired,false);
+ const waiting=events({state:'installed',postMessage(message,ports){ports?.[0]?.postMessage({type:'DUNE_OFFLINE_PROGRESS',status:'ready',loaded:430,total:430,version:'new-version'});}});e.registration.waiting=waiting;
+ await e.feature.prepareOffline();assert.equal(e.feature.snapshot().restartRequired,true);assert.equal(e.feature.snapshot().version,'new-version');assert.equal(e.nav.serviceWorker.controller,e.worker,'no forced takeover or reload');
+});
+test('offline status handshake failure is bounded and never reports a successful download',async t=>{
+ let expire;t.mock.method(globalThis,'setTimeout',fn=>(expire=fn,1));t.mock.method(globalThis,'clearTimeout',()=>{});
+ const e=environment();e.worker.postMessage=()=>{};const operation=e.feature.prepareOffline(),rejected=assert.rejects(operation,/offline-status-timeout/);await tick();expire();await rejected;assert.equal(e.feature.snapshot().status,'error');assert.equal(e.feature.pending,null);
 });
 test('offline installing worker waits until cache installation finishes; failure never announces ready',async t=>{
  const timeouts=[];t.mock.method(globalThis,'setTimeout',(fn)=>{timeouts.push(fn);return 1;});t.mock.method(globalThis,'clearTimeout',()=>{});

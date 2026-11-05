@@ -57,6 +57,21 @@ test('armed native Palace shows its original large reticle while camera movement
  }finally{globalThis.document=oldDocument;}
 });
 
+test('one Palace cancellation hides the painted marker even when the host stops rendering inactive feedback',()=>{
+ const oldDocument=globalThis.document;globalThis.document={createElement:()=>({style:{},hidden:true,setAttribute(){},append(){}}),body:{append(){}}};
+ try{
+  for(const kind of ['mouse','touch']){
+   const view=new OrderFeedback({canvas:{getBoundingClientRect:()=>({left:0,top:0,width:390,height:844})},pointerKind:kind});view.ready=true;view.assets.attack={width:24,height:24,url:'native-attack.png'};
+   const camera={map:1,left:0,top:0,scale:1,scaleY:1},armed={special:{armed:true},lastOrder:{seq:0}};
+   view.aimAt(120,180);view.observe(armed);if(view.active)view.render(0,camera);assert.equal(view.specialImage.hidden,false);
+   // A queued native clear can still produce one old armed snapshot.
+   view.clear();view.observe(armed);if(view.active)view.render(1,camera);assert.equal(view.specialImage.hidden,false);
+   view.observe({special:{armed:false},lastOrder:{seq:0}});if(view.active)view.render(2,camera);
+   assert.equal(view.active,false);assert.equal(view.specialImage.hidden,true);assert.equal(view.element.hidden,true);assert.equal(view.acceptedIntents,0);
+  }
+ }finally{globalThis.document=oldDocument;}
+});
+
 test('Palace aim follows the actual pointer, hides during pan and confirms the committed world target',()=>{
  const oldDocument=globalThis.document;globalThis.document={createElement:()=>({style:{},hidden:true,setAttribute(){},append(){}}),body:{append(){}}};
  try{

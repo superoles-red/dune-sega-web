@@ -1,0 +1,3238 @@
+{
+  "assets": {
+    "locale:commands/en-exit-enabled.png": {
+      "rect": [
+        1951,
+        1608,
+        32,
+        24
+      ],
+      "rgbaSha256": "bcb3ca17d21a5f98da51d83ed659987024b3ee0461aa6ee47ca71436bce388a5",
+      "sha256": "863af78f8634d1f82f7057c9a4184d8b2baff3f8fa5ce980c84f9d24ef17a05b",
+      "source": "language-assets/commands/en-exit-enabled.png"
+    },
+    "locale:commands/en-fix-disabled.png": {
+      "rect": [
+        1983,
+        1608,
+        32,
+        24
+      ],
+      "rgbaSha256": "8c7f63b2ff29ba7862c0b4d58a75bc905c33bdb8cc4f5c9857879fb07bc8a60f",
+      "sha256": "bf52e80b97d8dbd937fd4931a4b7c2679ee871fe5614e040c758efcc323d4593",
+      "source": "language-assets/commands/en-fix-disabled.png"
+    },
+    "locale:commands/en-fix-enabled.png": {
+      "rect": [
+        2015,
+        1608,
+        32,
+        24
+      ],
+      "rgbaSha256": "347493ef6257061b40b43fea500464ad5a105da202e1b8dabae50d3fecb5d2a6",
+      "sha256": "92212d29cf89835456adc783caacd31c594488e169307b7a5519a40aa51621b1",
+      "source": "language-assets/commands/en-fix-enabled.png"
+    },
+    "locale:commands/en-send-order-enabled.png": {
+      "rect": [
+        0,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "5a5c506380f578799b3021a3ca3c138031e49d7606c5569529944a61edb2ff92",
+      "sha256": "de5796981496b0f06d2a19b3fc462f5398160b2e36ce35d47e0f8c0e649b01f1",
+      "source": "language-assets/commands/en-send-order-enabled.png"
+    },
+    "locale:commands/en-stop-disabled.png": {
+      "rect": [
+        32,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "120f8e18f7d02d5e9ed1f69ffd17efa2adc25c9d2902ba6b885b4c6ea64fef2b",
+      "sha256": "3d3c2758922fbba7ab9e1f6462b90fc413cb32bb0b8a8095f06844720d36ca90",
+      "source": "language-assets/commands/en-stop-disabled.png"
+    },
+    "locale:commands/en-stop-enabled.png": {
+      "rect": [
+        64,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "3ce57a441e9b8225717063152566bcab998bfc6532edaae267b21bd52f576771",
+      "sha256": "b3f39cdeceeadb429c504ffec6ac1dcd48e3fe6f8a464b2933982a8f456d45fd",
+      "source": "language-assets/commands/en-stop-enabled.png"
+    },
+    "locale:commands/ru-exit-enabled.png": {
+      "rect": [
+        96,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "c993fdc54b315ebf2fb8ebecf1a04b859066741855e155f6b5cabe2f023330ed",
+      "sha256": "6820c0e438fb7863173543bab8bbba05c4c4f7bad63a55debc74e9fc750577da",
+      "source": "language-assets/commands/ru-exit-enabled.png"
+    },
+    "locale:commands/ru-fix-disabled.png": {
+      "rect": [
+        128,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "951fdf2028d602ab550032e1a20c9757270f9d100fc1e2a3d8e4b3188de06e2a",
+      "sha256": "7443a0e277ccef10070ddb1351ed54c03919f96b102336e07a2bafc433d945d0",
+      "source": "language-assets/commands/ru-fix-disabled.png"
+    },
+    "locale:commands/ru-fix-enabled.png": {
+      "rect": [
+        160,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "c04b0cd99bfae4057b98700c7afea021af5f3e49fccc91573285cbfd0cc2bcdb",
+      "sha256": "61159eb2d866b6cde3c7fcf5a0e3492b1daa54a4b8ae7e19a43801aed2f30083",
+      "source": "language-assets/commands/ru-fix-enabled.png"
+    },
+    "locale:commands/ru-send-order-enabled.png": {
+      "rect": [
+        192,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "5a5c506380f578799b3021a3ca3c138031e49d7606c5569529944a61edb2ff92",
+      "sha256": "de5796981496b0f06d2a19b3fc462f5398160b2e36ce35d47e0f8c0e649b01f1",
+      "source": "language-assets/commands/ru-send-order-enabled.png"
+    },
+    "locale:commands/ru-stop-disabled.png": {
+      "rect": [
+        224,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "1ae6d635083cc9378d726217bbb884cd7d4823a0c2eb77badfe38aefeee1585a",
+      "sha256": "7cd05b5047f39f1dcbaec84b656452298c2de0d93614a78c5264a52b5ee9143c",
+      "source": "language-assets/commands/ru-stop-disabled.png"
+    },
+    "locale:commands/ru-stop-enabled.png": {
+      "rect": [
+        256,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "55ce93c470df7edaf6d760148f614f2f819e391cb6e444595165100b9a2d5c36",
+      "sha256": "3212b59f06446b718583d5cc129435f815408672cb176346931e0e7b088d649d",
+      "source": "language-assets/commands/ru-stop-enabled.png"
+    },
+    "locale:fonts/en-mask.png": {
+      "rect": [
+        816,
+        1560,
+        128,
+        48
+      ],
+      "rgbaSha256": "b39fd751ad21dd6297e3fc358a075195ed09f2f2e1bbf13f13383a041c584bae",
+      "sha256": "3ab616d37c2372fc2d46fbbfbf5b9976d8bb3703ed575b3f4de91b2bee9491f3",
+      "source": "language-assets/fonts/en-mask.png"
+    },
+    "locale:fonts/en-shadow.png": {
+      "rect": [
+        944,
+        1560,
+        128,
+        48
+      ],
+      "rgbaSha256": "d60fbfadc536d13487f831541e1a16be6ef01f881fde3173a16389107c231264",
+      "sha256": "4af0176da8be9159728e0133d3673bb38044b47770ea4ccdba35dc0fe6c89683",
+      "source": "language-assets/fonts/en-shadow.png"
+    },
+    "locale:fonts/ru-mask.png": {
+      "rect": [
+        1503,
+        1608,
+        128,
+        24
+      ],
+      "rgbaSha256": "e1fd7ddddc68e3c5819037f3c4d43809433f8118db0ddd901214ab65a094f383",
+      "sha256": "32802d6b0865cc77961e8be7f36594d37b1d2f94abf0c89fde00dfb74f695635",
+      "source": "language-assets/fonts/ru-mask.png"
+    },
+    "locale:fonts/ru-shadow.png": {
+      "rect": [
+        1631,
+        1608,
+        128,
+        24
+      ],
+      "rgbaSha256": "b351aa229c25af1ab4413c040574ce19eae47ab3f5bf650e9317fe00e341ded6",
+      "sha256": "428989f8cbb3cdd47eaec9ee707d4e78a3c6fa0df20ced5288ee82437a6fff02",
+      "source": "language-assets/fonts/ru-shadow.png"
+    },
+    "screen:art/advisor-0-portrait.png": {
+      "rect": [
+        1384,
+        1120,
+        144,
+        144
+      ],
+      "rgbaSha256": "cbee6609159f2d5f7054873087313e81bf50074ef6585bbd5e36f5dfd49683de",
+      "sha256": "5b11c866b79979add5ffc6e05078d9d53c80651e2c077e567b8f5f36bdd3b032",
+      "source": "ui-assets/screen-assets/art/advisor-0-portrait.png"
+    },
+    "screen:art/advisor-1-portrait.png": {
+      "rect": [
+        1528,
+        1120,
+        144,
+        144
+      ],
+      "rgbaSha256": "7139ca576177d105df73c6973d122e7230e4535d81e6441c12d4a578d9fbb8ea",
+      "sha256": "08c18f94a040a6394ae0ae816cb1830f7affc89ce7ab0b6a5c5272cdcc8070b1",
+      "source": "ui-assets/screen-assets/art/advisor-1-portrait.png"
+    },
+    "screen:art/advisor-2-portrait.png": {
+      "rect": [
+        1672,
+        1120,
+        144,
+        144
+      ],
+      "rgbaSha256": "5b00a94b27fda73fabde55073fc134abc59e9599e265bd037af88670a2bc9a0e",
+      "sha256": "54071c026ddba2a5f0bd24bb2898260ee4159e157fae5f8e474a6e53ac2cc653",
+      "source": "ui-assets/screen-assets/art/advisor-2-portrait.png"
+    },
+    "screen:art/boot-starfield.png": {
+      "rect": [
+        0,
+        0,
+        320,
+        224
+      ],
+      "rgbaSha256": "47685579f5ef244fd420aa74f61024a11c594c59bfcb2cde1ed918b6da1f71c8",
+      "sha256": "0622a64184da5af46a09210eb1bd0386fc45b9a2644575862c4da9ed08ea9c1e",
+      "source": "ui-assets/screen-assets/art/boot-starfield.png"
+    },
+    "screen:art/campaign-final-map-house-0.png": {
+      "rect": [
+        928,
+        1344,
+        248,
+        104
+      ],
+      "rgbaSha256": "c8f50d48726fcf96a6f744bcac53db2ad8064366f4e4b6f194d23ca509eea3c1",
+      "sha256": "671f3d30bbc13b707ad9def586877a64c60885d5d96886f378c04f1e0632cc45",
+      "source": "ui-assets/screen-assets/art/campaign-final-map-house-0.png"
+    },
+    "screen:art/campaign-final-map-house-1.png": {
+      "rect": [
+        1176,
+        1344,
+        248,
+        104
+      ],
+      "rgbaSha256": "fc3685b2bab7d5513abaaa6d6269d1816f81ccd66348cee68992a4be9c20a002",
+      "sha256": "95f6c29ea28cc6da8705067caf49b8c0f66e268a9ddc97af43def0f0a9117ab2",
+      "source": "ui-assets/screen-assets/art/campaign-final-map-house-1.png"
+    },
+    "screen:art/campaign-final-map-house-2.png": {
+      "rect": [
+        1424,
+        1344,
+        248,
+        104
+      ],
+      "rgbaSha256": "64242afc9e2096dfec249ee590129fa2318a2e57a8e6a60e69060b114dcdce66",
+      "sha256": "e62be6d8b8df5a0f1917251efc78f61f37b607c837b143b6283a756141304dc1",
+      "source": "ui-assets/screen-assets/art/campaign-final-map-house-2.png"
+    },
+    "screen:art/campaign-map-native.png": {
+      "rect": [
+        1672,
+        1344,
+        248,
+        104
+      ],
+      "rgbaSha256": "01f09191cf10cfebb05f592ab0656f9da050c28e16aaed2ce838ec8b626fbb44",
+      "sha256": "3e18797127416d5a0ea6c4e0d46cd747cda7be3827baa1e53d9c4d11802ac249",
+      "source": "ui-assets/screen-assets/art/campaign-map-native.png"
+    },
+    "screen:art/confirmation-dialog-native.png": {
+      "rect": [
+        1071,
+        1608,
+        112,
+        32
+      ],
+      "rgbaSha256": "0d9ad2dc012dd6341a13a48ab3ea1ea1431f3abf6e74a68a767fcaeca6548bfd",
+      "sha256": "d4ab571dc9eb2d7297d2089c68210e80350c03de31e4dc37f093ea6850edc73e",
+      "source": "ui-assets/screen-assets/art/confirmation-dialog-native.png"
+    },
+    "screen:art/defeat_movie-preview.png": {
+      "rect": [
+        320,
+        1344,
+        304,
+        120
+      ],
+      "rgbaSha256": "55aa2a2f326cb802e6fde25e08476bbe0612b62465c5709eedb374775226230c",
+      "sha256": "aa9fe636f0ade2095f2b9951c148cd48fdc6778a7a215739086177c8ee898e86",
+      "source": "ui-assets/screen-assets/art/defeat_movie-preview.png"
+    },
+    "screen:art/ending-label-house-0.png": {
+      "rect": [
+        1274,
+        1668,
+        56,
+        8
+      ],
+      "rgbaSha256": "14aa8231f684278ae2646acc402d9edf19cf125ee68582db94ac8575f6a65da4",
+      "sha256": "f056f9e0b4916921132ac20ff53f98c8568f1f6c550742e4aeb407b1015f7334",
+      "source": "ui-assets/screen-assets/art/ending-label-house-0.png"
+    },
+    "screen:art/ending-label-house-1.png": {
+      "rect": [
+        1330,
+        1668,
+        56,
+        8
+      ],
+      "rgbaSha256": "14aa8231f684278ae2646acc402d9edf19cf125ee68582db94ac8575f6a65da4",
+      "sha256": "f056f9e0b4916921132ac20ff53f98c8568f1f6c550742e4aeb407b1015f7334",
+      "source": "ui-assets/screen-assets/art/ending-label-house-1.png"
+    },
+    "screen:art/ending-label-house-2.png": {
+      "rect": [
+        1386,
+        1668,
+        56,
+        8
+      ],
+      "rgbaSha256": "14aa8231f684278ae2646acc402d9edf19cf125ee68582db94ac8575f6a65da4",
+      "sha256": "f056f9e0b4916921132ac20ff53f98c8568f1f6c550742e4aeb407b1015f7334",
+      "source": "ui-assets/screen-assets/art/ending-label-house-2.png"
+    },
+    "screen:art/ending-planet-house-0.png": {
+      "rect": [
+        320,
+        0,
+        320,
+        224
+      ],
+      "rgbaSha256": "3aab09dbcc1c6a8ba57473c0409719549c1765cade12d7ac9778f87c4b97a3d3",
+      "sha256": "60bf599e0470ea70d9a13295f91eb4919cdd788f46accdfed015acf2347179e5",
+      "source": "ui-assets/screen-assets/art/ending-planet-house-0.png"
+    },
+    "screen:art/ending-planet-house-1.png": {
+      "rect": [
+        640,
+        0,
+        320,
+        224
+      ],
+      "rgbaSha256": "1ae230c2b8955ae5e820166f668388950dec9057e836967a815d894d7f3ce0cb",
+      "sha256": "580fca3311667bbb023a7a701b2bab8592c87b7c3e11554303012d7488b65f5e",
+      "source": "ui-assets/screen-assets/art/ending-planet-house-1.png"
+    },
+    "screen:art/ending-planet-house-2.png": {
+      "rect": [
+        960,
+        0,
+        320,
+        224
+      ],
+      "rgbaSha256": "6d44d861f97c629ac36ec4e38d6d8e5b9ed08ea5ba3515fe3400c5c9af7179a9",
+      "sha256": "e1c4a1613a46eaebca4d63863aa60e85413a4e65c1faed0d512dea1a6c9e4197",
+      "source": "ui-assets/screen-assets/art/ending-planet-house-2.png"
+    },
+    "screen:art/house-0-caption.png": {
+      "rect": [
+        1355,
+        1644,
+        80,
+        16
+      ],
+      "rgbaSha256": "97efaf833c7d60b72a9b48e89cda36f092e238290c7f6e8770ff1ed8bbf771cb",
+      "sha256": "7d1450d31e1b9021aca2673f0170d1508425ee334db82678d05cc8e9c3c94328",
+      "source": "ui-assets/screen-assets/art/house-0-caption.png"
+    },
+    "screen:art/house-0-crest.png": {
+      "rect": [
+        1456,
+        1560,
+        64,
+        48
+      ],
+      "rgbaSha256": "ab7664c5700f28bf8113e35db4e027c36c02096d93e95d7034fa193af4d8ea79",
+      "sha256": "5d3baa8f164403f5580c20731702676879abf26fff35036c52f4953886f2a959",
+      "source": "ui-assets/screen-assets/art/house-0-crest.png"
+    },
+    "screen:art/house-0-emblem.png": {
+      "rect": [
+        1513,
+        1464,
+        80,
+        64
+      ],
+      "rgbaSha256": "5c17d112d4da634ea4c92ef3dbf29cb49dbb99bfdae2dff2f57aa9c2f14d6eab",
+      "sha256": "cecb62e62e0f9bf6a2f48346e743b0c57542bf118aa11b4c1de48bee8a6308ab",
+      "source": "ui-assets/screen-assets/art/house-0-emblem.png"
+    },
+    "screen:art/house-1-caption.png": {
+      "rect": [
+        1435,
+        1644,
+        80,
+        16
+      ],
+      "rgbaSha256": "689d9b9cf72ad87527f63c79d2e7768845bb70f9736407dd17ab55885ad3f1e1",
+      "sha256": "af543655c90cf8bd308af9f516e76397b54b18f8ea52ca2f29f57e2cdd0e94fb",
+      "source": "ui-assets/screen-assets/art/house-1-caption.png"
+    },
+    "screen:art/house-1-crest.png": {
+      "rect": [
+        1520,
+        1560,
+        64,
+        48
+      ],
+      "rgbaSha256": "e80fd9370eafe974774631269a719c9a4d91ae287e7ba3ac7ace78ca776155c6",
+      "sha256": "7e2d2455f8d9aa0dca67a1fa9abcba3a6842a0f1c846942f95a60b2fe4fc7ee7",
+      "source": "ui-assets/screen-assets/art/house-1-crest.png"
+    },
+    "screen:art/house-1-emblem.png": {
+      "rect": [
+        1593,
+        1464,
+        80,
+        64
+      ],
+      "rgbaSha256": "454879ff89c4003dc4fc455f80abc4a67435ca039aea4cac931777966e5c32ab",
+      "sha256": "279c31d456fa07c72a1d4307932e4e6d8cb66f91fa11d622784b92466c90cc59",
+      "source": "ui-assets/screen-assets/art/house-1-emblem.png"
+    },
+    "screen:art/house-2-caption.png": {
+      "rect": [
+        1515,
+        1644,
+        80,
+        16
+      ],
+      "rgbaSha256": "cbccef1bbc2116107ac50b60f4a4086267592cb601b3b8fa72732fb54e5d9c05",
+      "sha256": "3d0ba4af12b499c4b4fce4fe9ee750d397727b4f44251270550dfe77cb891f7a",
+      "source": "ui-assets/screen-assets/art/house-2-caption.png"
+    },
+    "screen:art/house-2-crest.png": {
+      "rect": [
+        1584,
+        1560,
+        64,
+        48
+      ],
+      "rgbaSha256": "bc5561eefed77547430cb9d214c8c56158c62a44669c3c47f9d9d18e3901481c",
+      "sha256": "a7f536b87e77dec721e6ae7f9a1b41a4a9655ccd764b35f3098da85116986000",
+      "source": "ui-assets/screen-assets/art/house-2-crest.png"
+    },
+    "screen:art/house-2-emblem.png": {
+      "rect": [
+        1673,
+        1464,
+        80,
+        64
+      ],
+      "rgbaSha256": "6f1009c4f15be8b1c121c3043d28dbdfaefbb775d1c6660e2fc4ddabf5158a77",
+      "sha256": "cc0140003b70f009086269b1baf3f8afa0e359101abbb6d424d3ef9f94f654ad",
+      "source": "ui-assets/screen-assets/art/house-2-emblem.png"
+    },
+    "screen:art/house-choice-heading.png": {
+      "rect": [
+        1131,
+        1644,
+        136,
+        16
+      ],
+      "rgbaSha256": "09db02e1da92ec0ad6816aa2739b785b77aeafb8093467a72bea7ab8e597d73a",
+      "sha256": "18bfd953535c5334e2fa83eb910d3a0e3473bd12ca96222c9e8736f3d889850e",
+      "source": "ui-assets/screen-assets/art/house-choice-heading.png"
+    },
+    "screen:art/menu-arrow-native.png": {
+      "rect": [
+        80,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "04f784e6d3ceb9a3ed352d0da0777a7ee022b492cbdadbfd6f69299c04cb36a3",
+      "sha256": "197657e19b7677d0bb64715d3972cb8d07159e82174195fef0906b343b168997",
+      "source": "ui-assets/screen-assets/art/menu-arrow-native.png"
+    },
+    "screen:art/native-gold-sky.png": {
+      "rect": [
+        1585,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "c8c9b5f9a40087eb99a9079da6cd3c818ba8d7eb48ceb2cd66d0f4aadf307ab6",
+      "sha256": "a790b677ac33dc8c51cdbe4febd4cef716c9832b13c77ffc96409b9065f214bc",
+      "source": "ui-assets/screen-assets/art/native-gold-sky.png"
+    },
+    "screen:art/options-desert-panorama.png": {
+      "rect": [
+        0,
+        1560,
+        320,
+        48
+      ],
+      "rgbaSha256": "3d9f21c70e189c116bcc00f47dfc24e56909e32bbdb84b5b324bc72030f8aaea",
+      "sha256": "6c99d30fe4566323ad567a5950579f8a1d89910d2f7b08c787a5b9c5b78be114",
+      "source": "ui-assets/screen-assets/art/options-desert-panorama.png"
+    },
+    "screen:art/options-helmet-and-launcher.png": {
+      "rect": [
+        708,
+        1464,
+        208,
+        88
+      ],
+      "rgbaSha256": "7867be7da0d76c0f9dc1f1e64286901e4f09523a80a535be81d914a1957ba5c2",
+      "sha256": "a10d8b03856294e24eacbf3e6711d8962bdcdfb6f482278228dfdf17c0e3bf33",
+      "source": "ui-assets/screen-assets/art/options-helmet-and-launcher.png"
+    },
+    "screen:art/options-helmet-face.png": {
+      "rect": [
+        1377,
+        1464,
+        64,
+        80
+      ],
+      "rgbaSha256": "9785ef132b179160370f52e813354d9ad18febc33ff88838e9de3880f8ebb15e",
+      "sha256": "7cc4ff3044743deb49fb26c4a2c6a78596d224b9bae955e038de583e3abd48a0",
+      "source": "ui-assets/screen-assets/art/options-helmet-face.png"
+    },
+    "screen:art/options-helmet-lower.png": {
+      "rect": [
+        640,
+        1560,
+        176,
+        48
+      ],
+      "rgbaSha256": "3e6de0a66eec9d51f0e486dfe2d9820e39b5acbd10ae5ce18fad3a9ab12d9f2c",
+      "sha256": "33ed85913138ce0420648aa610128a1f0b7ceb46af3f62fc1f18b4aa632b575b",
+      "source": "ui-assets/screen-assets/art/options-helmet-lower.png"
+    },
+    "screen:art/options-landscape-right.png": {
+      "rect": [
+        1233,
+        1464,
+        144,
+        80
+      ],
+      "rgbaSha256": "38a664bb6fccade5c621cb685eaa3b4c901444c06a3d11a4da5cd7eb03512d18",
+      "sha256": "02494cc29257c2dc2460a06d10e01fbae8c930a94483b81f1eed3afbab102bba",
+      "source": "ui-assets/screen-assets/art/options-landscape-right.png"
+    },
+    "screen:art/options-native-bottom-terrain.png": {
+      "rect": [
+        1183,
+        1608,
+        320,
+        24
+      ],
+      "rgbaSha256": "60f09456dfcbcd01a9dde17cabb536f78f6934ab7d01ce567360e507b91e500e",
+      "sha256": "e8af414e3e4aae0c1be946fc4873cbbc7e9282d27bd293bd1a6687ee2b744ad8",
+      "source": "ui-assets/screen-assets/art/options-native-bottom-terrain.png"
+    },
+    "screen:art/options-native-decor.png": {
+      "rect": [
+        1280,
+        0,
+        320,
+        224
+      ],
+      "rgbaSha256": "a7f083c23f69fa846f1203902bbe7067a5a92b331cdd50a4fc30394b12c9778d",
+      "sha256": "418bc1ad14bb40c23c4a06022d6d1dc8acce63a88aa9c5156c27c49fee1fce4a",
+      "source": "ui-assets/screen-assets/art/options-native-decor.png"
+    },
+    "screen:art/options-native-full-decor.png": {
+      "rect": [
+        1600,
+        0,
+        320,
+        224
+      ],
+      "rgbaSha256": "ab078663e7e1c1067fd87601797e210dda10752c2df07c7c5ce7ddac4afcf2ea",
+      "sha256": "92fe7b1f64bf9aa100f6dadce8b671f37c1198c6e2c1974e594b533120f10292",
+      "source": "ui-assets/screen-assets/art/options-native-full-decor.png"
+    },
+    "screen:art/options-native-full-label-panels.png": {
+      "rect": [
+        0,
+        224,
+        320,
+        224
+      ],
+      "rgbaSha256": "9c148317bc04b89e0a23b2c76ba044afbe56297d067bf444abd6d65c4de4d4b1",
+      "sha256": "90f9f4bbe709338a5918e4bbecfaf3397507b4c3b8bfef9cb6a68319a59f0c2e",
+      "source": "ui-assets/screen-assets/art/options-native-full-label-panels.png"
+    },
+    "screen:art/options-native-full-restored.png": {
+      "rect": [
+        320,
+        224,
+        320,
+        224
+      ],
+      "rgbaSha256": "2a5281551440c9033d68862bf323db598e04e826a0200999686ce72168ec3175",
+      "sha256": "7f0a3c4c66af10d5cf972772d648d8985c3df34ed97fb58a992402524a50f7b3",
+      "source": "ui-assets/screen-assets/art/options-native-full-restored.png"
+    },
+    "screen:art/options-native-full-source.png": {
+      "rect": [
+        640,
+        224,
+        320,
+        224
+      ],
+      "rgbaSha256": "0493956679ced326a822471be882f1ffe96bd776cd62eb32387a8b8fbe40e962",
+      "sha256": "2fefb4dfaf86517573cd7a08cfcfbf272dbc0368656132ced69db426d527cc20",
+      "source": "ui-assets/screen-assets/art/options-native-full-source.png"
+    },
+    "screen:art/options-native-left-shoulder.png": {
+      "rect": [
+        640,
+        1464,
+        32,
+        96
+      ],
+      "rgbaSha256": "2780ba38f8ae8fd793d48677283fa14173be3e858da94b48c4ff77d66987bfce",
+      "sha256": "8b1c77aad022e8e5d7595292e49f80457df05688795b896549baade5e4411d5d",
+      "source": "ui-assets/screen-assets/art/options-native-left-shoulder.png"
+    },
+    "screen:art/options-native-lower-body.png": {
+      "rect": [
+        320,
+        1560,
+        320,
+        48
+      ],
+      "rgbaSha256": "3d9f21c70e189c116bcc00f47dfc24e56909e32bbdb84b5b324bc72030f8aaea",
+      "sha256": "6c99d30fe4566323ad567a5950579f8a1d89910d2f7b08c787a5b9c5b78be114",
+      "source": "ui-assets/screen-assets/art/options-native-lower-body.png"
+    },
+    "screen:art/options-native-pixel-patches.png": {
+      "rect": [
+        960,
+        224,
+        320,
+        224
+      ],
+      "rgbaSha256": "b25b9bf52f27862b28928181fa0b33068ad938b6bea20b8d419e909ed89b9002",
+      "sha256": "c1a8e57f7d1c777b2f5a1837f08231ff7f222e179a700fb9d77a49173d20a412",
+      "source": "ui-assets/screen-assets/art/options-native-pixel-patches.png"
+    },
+    "screen:art/options-native-right-side.png": {
+      "rect": [
+        1208,
+        1120,
+        176,
+        144
+      ],
+      "rgbaSha256": "589142135af3ee816f254b092128aeb7054e40f191edcec4622603c52509f1d6",
+      "sha256": "ed73c152e6141d4bc92691e8e49291757407e9e77a6a4eb35dfa70901ef8fbdf",
+      "source": "ui-assets/screen-assets/art/options-native-right-side.png"
+    },
+    "screen:art/options-responsive-art.png": {
+      "rect": [
+        1816,
+        1120,
+        208,
+        136
+      ],
+      "rgbaSha256": "7507ab82f9d7d4ca1b2a35c8e735b221a32eea6c2c0e80a628a46bf48b3338af",
+      "sha256": "af2b6adcd9f5600158388ca90dd6e4ca85f22316c3f694b382204978e401104f",
+      "source": "ui-assets/screen-assets/art/options-responsive-art.png"
+    },
+    "screen:art/password-display-desert-background.png": {
+      "rect": [
+        1280,
+        224,
+        320,
+        224
+      ],
+      "rgbaSha256": "53b56cb997da481f93a8717e84957178ee8b857913f81c657ea57e3dfad47090",
+      "sha256": "327aeda9c5e144fb1ee5e804a03e7bff78426426e3c8718a678268ed01913948",
+      "source": "ui-assets/screen-assets/art/password-display-desert-background.png"
+    },
+    "screen:art/password-original-background.png": {
+      "rect": [
+        1600,
+        224,
+        320,
+        224
+      ],
+      "rgbaSha256": "d4a9378da8d06eb01aa84ab497dff83a996ed0124509c7a3c856cc3d0700a34c",
+      "sha256": "2ac1d61f0e69c66de672ffbf04642c320f1fa78a77231669f03a38f37f808aee",
+      "source": "ui-assets/screen-assets/art/password-original-background.png"
+    },
+    "screen:art/password-sky-sample.png": {
+      "rect": [
+        1593,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "c8c9b5f9a40087eb99a9079da6cd3c818ba8d7eb48ceb2cd66d0f4aadf307ab6",
+      "sha256": "a790b677ac33dc8c51cdbe4febd4cef716c9832b13c77ffc96409b9065f214bc",
+      "source": "ui-assets/screen-assets/art/password-sky-sample.png"
+    },
+    "screen:art/password-soldier-landscape.png": {
+      "rect": [
+        0,
+        1464,
+        320,
+        96
+      ],
+      "rgbaSha256": "0e1617402f4e44ead19fa185aa66a2abc3f913f3f42d516d32cf393ebe49d254",
+      "sha256": "7e0951fe84d1d1da67dea0ff374951484b74f58ba678952816a0331d05acc2bf",
+      "source": "ui-assets/screen-assets/art/password-soldier-landscape.png"
+    },
+    "screen:art/pause-options-helmet-lower.png": {
+      "rect": [
+        255,
+        1608,
+        160,
+        36
+      ],
+      "rgbaSha256": "1d3864459731015b8f05c71444b02f8295051b1c0b53e74b118039583719f700",
+      "sha256": "94a2360c6033248db2e041d4f2b5d7bb72d9db043fabf69b005632b88f711847",
+      "source": "ui-assets/screen-assets/art/pause-options-helmet-lower.png"
+    },
+    "screen:art/pause-options-original-background.png": {
+      "rect": [
+        0,
+        448,
+        320,
+        224
+      ],
+      "rgbaSha256": "0493956679ced326a822471be882f1ffe96bd776cd62eb32387a8b8fbe40e962",
+      "sha256": "2fefb4dfaf86517573cd7a08cfcfbf272dbc0368656132ced69db426d527cc20",
+      "source": "ui-assets/screen-assets/art/pause-options-original-background.png"
+    },
+    "screen:art/pause-options-sky-sample.png": {
+      "rect": [
+        1601,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "c8c9b5f9a40087eb99a9079da6cd3c818ba8d7eb48ceb2cd66d0f4aadf307ab6",
+      "sha256": "a790b677ac33dc8c51cdbe4febd4cef716c9832b13c77ffc96409b9065f214bc",
+      "source": "ui-assets/screen-assets/art/pause-options-sky-sample.png"
+    },
+    "screen:art/pause-options-terrain-right.png": {
+      "rect": [
+        1441,
+        1464,
+        72,
+        72
+      ],
+      "rgbaSha256": "072ef4a73895afab20d573ff9175e7f07a6bd2a27c5939b28271d725139a3e58",
+      "sha256": "f07c916c98bf1be5aba9f5632a62f10565807b85b416e2fed523288785bdd8fe",
+      "source": "ui-assets/screen-assets/art/pause-options-terrain-right.png"
+    },
+    "screen:art/publisher-and.png": {
+      "rect": [
+        1525,
+        1668,
+        24,
+        8
+      ],
+      "rgbaSha256": "d1e3852fc9c43c1edbea03271641611d3d8abfb17dcb0591ea5a2beffce3974f",
+      "sha256": "78c0c52b717420ae37eaf0e78b01302d2e4e3fe0416c983984060fb7a1737418",
+      "source": "ui-assets/screen-assets/art/publisher-and.png"
+    },
+    "screen:art/publisher-copyright-virgin.png": {
+      "rect": [
+        940,
+        1644,
+        191,
+        16
+      ],
+      "rgbaSha256": "52fafdd07fa3cf392ea7c8aac2c477c28cdffb90817b9a19ac46b089bba362db",
+      "sha256": "ebb075e51b363a1433e9bcbdf815d7aaf032397afb1f08e7a2d88fa8a29d0797",
+      "source": "ui-assets/screen-assets/art/publisher-copyright-virgin.png"
+    },
+    "screen:art/publisher-copyright-westwood.png": {
+      "rect": [
+        813,
+        1668,
+        221,
+        8
+      ],
+      "rgbaSha256": "2d561eb08495fb43460e911dba31c8c675d4634c9279cdd82c5287d9d12e77ed",
+      "sha256": "f963347306a8b736078c1c9ff9a080cc66d18634727d0682a97df61b2d976ba1",
+      "source": "ui-assets/screen-assets/art/publisher-copyright-westwood.png"
+    },
+    "screen:art/publisher-present.png": {
+      "rect": [
+        1442,
+        1668,
+        55,
+        8
+      ],
+      "rgbaSha256": "1fd4763371d605d397b0b05a61455321bede67093e60a15ee8e23e805eaeef63",
+      "sha256": "da02428f046bda7c281d320a9ff3c6185115bcea367deebc1c724b278dcb40e3",
+      "source": "ui-assets/screen-assets/art/publisher-present.png"
+    },
+    "screen:art/publisher-virgin.png": {
+      "rect": [
+        1140,
+        1464,
+        93,
+        83
+      ],
+      "rgbaSha256": "d42ea61e22874a6851b989f10b30eec55fa9f2b68805adab3ad09e5228c188da",
+      "sha256": "8327019faa644d1ceaa324f06851044f3be14c483f04263d98bd0b6ec9162b68",
+      "source": "ui-assets/screen-assets/art/publisher-virgin.png"
+    },
+    "screen:art/publisher-westwood.png": {
+      "rect": [
+        1664,
+        1560,
+        200,
+        43
+      ],
+      "rgbaSha256": "fdef00907fb89e6f56a3f0d8bf62fc0197e3eaaf2bdecfe4cebaa15eacdd0849",
+      "sha256": "a1e69f3d29f6105f40fde1df52d665e36191fc6e359a067dcb53562094fd850a",
+      "source": "ui-assets/screen-assets/art/publisher-westwood.png"
+    },
+    "screen:art/results-desert-background.png": {
+      "rect": [
+        320,
+        448,
+        320,
+        224
+      ],
+      "rgbaSha256": "53b56cb997da481f93a8717e84957178ee8b857913f81c657ea57e3dfad47090",
+      "sha256": "327aeda9c5e144fb1ee5e804a03e7bff78426426e3c8718a678268ed01913948",
+      "source": "ui-assets/screen-assets/art/results-desert-background.png"
+    },
+    "screen:art/results-final-tanks-background.png": {
+      "rect": [
+        640,
+        448,
+        320,
+        224
+      ],
+      "rgbaSha256": "75538fde665d6833e7f2a54e96b28f56703e0f132f4004dda6f468df8cd06703",
+      "sha256": "553422227301ecf93dda015e94020b339d0c1c07b0493a93392babcc632932de",
+      "source": "ui-assets/screen-assets/art/results-final-tanks-background.png"
+    },
+    "screen:art/results-final-tanks-scene.png": {
+      "rect": [
+        0,
+        1344,
+        320,
+        120
+      ],
+      "rgbaSha256": "ba4d34919da10f8603059c1dcf947f5dc391a64c0f31e2d0df020bc64616fd5b",
+      "sha256": "d191adf3286eb09463b635c61a6d9334742f8bb579ce373576df752b78392c0f",
+      "source": "ui-assets/screen-assets/art/results-final-tanks-scene.png"
+    },
+    "screen:art/results-soldier-scene.png": {
+      "rect": [
+        320,
+        1464,
+        320,
+        96
+      ],
+      "rgbaSha256": "f371406ac76b54746eb42bb238d9f2f90703511289bd080cddfac6ed7a4e385a",
+      "sha256": "42325ec0a671a118a8e5a11f15c09b75906f63fc78b39f79a7038139b2d3799b",
+      "source": "ui-assets/screen-assets/art/results-soldier-scene.png"
+    },
+    "screen:art/story-button-advice.png": {
+      "rect": [
+        1595,
+        1644,
+        80,
+        16
+      ],
+      "rgbaSha256": "f53c4c9f39ee7aef1284e067c15efc514dfbbe167a0340070c13083e24c9a626",
+      "sha256": "374c609c060ec56387054ec17b89f19d871d1a199cdc9d710810124692209883",
+      "source": "ui-assets/screen-assets/art/story-button-advice.png"
+    },
+    "screen:art/story-button-no.png": {
+      "rect": [
+        1675,
+        1644,
+        80,
+        16
+      ],
+      "rgbaSha256": "b978e8d49c06774d3ab445ba1692f6a1447a3f7bb65e9345eeb699df63f5990e",
+      "sha256": "13b8fe5c074f42e9ef73265e9bf14168bd396aac1bf689de2381c19a808ba98a",
+      "source": "ui-assets/screen-assets/art/story-button-no.png"
+    },
+    "screen:art/story-button-proceed.png": {
+      "rect": [
+        1755,
+        1644,
+        80,
+        16
+      ],
+      "rgbaSha256": "8c4d3fe04e757e1482584b130062bf759f1433c9c7a088eefdb3c3da33f87943",
+      "sha256": "dc8c701dbafe9197dab9559235b3701f3c93e1a96d92abaffa997efef962bf45",
+      "source": "ui-assets/screen-assets/art/story-button-proceed.png"
+    },
+    "screen:art/story-button-yes.png": {
+      "rect": [
+        1835,
+        1644,
+        80,
+        16
+      ],
+      "rgbaSha256": "539f314803682e4ecc8f30b852eeb90fe3e1a22a596b56af1c622b923dcab5a2",
+      "sha256": "03aedce4dc40f0a5cca10b569d7549dd2d63a9f4093339f8587b864ff2a54b9c",
+      "source": "ui-assets/screen-assets/art/story-button-yes.png"
+    },
+    "screen:art/title-background.png": {
+      "rect": [
+        960,
+        448,
+        320,
+        224
+      ],
+      "rgbaSha256": "bd046d03ce0e0cce0b474d30b1b6548074979116f4f1c073d43bdf9cdd147811",
+      "sha256": "b58543abe232224ce4f440a3dfb3428ae60dd6391bad43e96c73e0f0d897172b",
+      "source": "ui-assets/screen-assets/art/title-background.png"
+    },
+    "screen:art/title-choice-underlay.png": {
+      "rect": [
+        415,
+        1608,
+        144,
+        32
+      ],
+      "rgbaSha256": "ee56e588f1f0d0bd447185633715028119ff31fa563fff29c961c75dfe83f39f",
+      "sha256": "2f19add0fb5b91fccb2323e9a90221fb5c902f492dbd28cd4c0e601820e0cbe8",
+      "source": "ui-assets/screen-assets/art/title-choice-underlay.png"
+    },
+    "screen:art/title-complete-without-choices.png": {
+      "rect": [
+        1280,
+        448,
+        320,
+        224
+      ],
+      "rgbaSha256": "854b52d30003bcfb98af71c086718b7f5dba20f25d04e1cdeb9318df387effb3",
+      "sha256": "8e0da9d445fcbb657c1e7ef0537ca4fb1bdadb8f63b7f8763b39be37bb6d7cd9",
+      "source": "ui-assets/screen-assets/art/title-complete-without-choices.png"
+    },
+    "screen:art/title-label-options.png": {
+      "rect": [
+        1034,
+        1668,
+        80,
+        8
+      ],
+      "rgbaSha256": "e59645d886c86013db6817eadd01bcd18cca306d3de1cca14e802c57e47f98b2",
+      "sha256": "96f9f89d276331aae8667439c0016f178c659acfdea5fb00c05ab618483e6413",
+      "source": "ui-assets/screen-assets/art/title-label-options.png"
+    },
+    "screen:art/title-label-start-game.png": {
+      "rect": [
+        1114,
+        1668,
+        80,
+        8
+      ],
+      "rgbaSha256": "a5407b12da68e5a38c26041d84279f5313538b6d6c7b02c6795f6c347de9cf6f",
+      "sha256": "7df32c64d102cee2f858d503a60b685a9c40a82e2cbb2efa5b8c07ba895323a3",
+      "source": "ui-assets/screen-assets/art/title-label-start-game.png"
+    },
+    "screen:art/title-label-tutorial.png": {
+      "rect": [
+        1194,
+        1668,
+        80,
+        8
+      ],
+      "rgbaSha256": "d11bf1b3c5443c5a3921d50a4b6afd72e833cf4b265b3a3fb488d82b860ad476",
+      "sha256": "44154ee318ccc043ba491678a31760f848a1bedf3bfd7193f67a64f2aaf34876",
+      "source": "ui-assets/screen-assets/art/title-label-tutorial.png"
+    },
+    "screen:art/title-license.png": {
+      "rect": [
+        1763,
+        1668,
+        128,
+        6
+      ],
+      "rgbaSha256": "0439cdb7d93b33c5337e864f58f7ebe0653826a821dc324d21bcc0d11b2fe3f3",
+      "sha256": "482331d12a1e909b7348c213638a7a971b3f50f41aab830c553c331bbdc4c189",
+      "source": "ui-assets/screen-assets/art/title-license.png"
+    },
+    "screen:art/title-logo.png": {
+      "rect": [
+        0,
+        1608,
+        255,
+        36
+      ],
+      "rgbaSha256": "17da126a769c57b0a370f03da93d2abf8a00ef1d14def37eda2363df827e9a1b",
+      "sha256": "8164f2304814b4a7e8a4f7c0760b18c4d3d881dbd470d5071c0272fe577c0fa1",
+      "source": "ui-assets/screen-assets/art/title-logo.png"
+    },
+    "screen:art/title-native-cursor.png": {
+      "rect": [
+        96,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "39237b650865687aee35af57191094a9b6948faef994f4c12e44826f327c3b05",
+      "sha256": "688e68bf9955bada00c86e1dfe25447316778d11272118fc2da30e94f18cf0a6",
+      "source": "ui-assets/screen-assets/art/title-native-cursor.png"
+    },
+    "screen:art/title-planet-nebula.png": {
+      "rect": [
+        960,
+        1120,
+        248,
+        176
+      ],
+      "rgbaSha256": "fec265ed4e1e5fc9984cb83652cc10472a4944440b8379e2ab3c1ed47abed54d",
+      "sha256": "5b3c4227d3d196715d6ff0056decdd3a239c4f51b3ba3207ce4d1faaad3c2833",
+      "source": "ui-assets/screen-assets/art/title-planet-nebula.png"
+    },
+    "screen:art/title-subtitle.png": {
+      "rect": [
+        520,
+        1668,
+        215,
+        15
+      ],
+      "rgbaSha256": "abd2f70ad97c69633d82b05cc33c94984233dc0cb5c324c9669eb26f43c01c3a",
+      "sha256": "ec377028f63cc5b3f2c97208c24307357e4f6ab746adbc1cd670e84281ffca09",
+      "source": "ui-assets/screen-assets/art/title-subtitle.png"
+    },
+    "screen:art/victory_movie-preview.png": {
+      "rect": [
+        624,
+        1344,
+        304,
+        120
+      ],
+      "rgbaSha256": "0007381c96aecc4784e8672bd8167e1f0617112f4ffdd51c714d5df5e83efe49",
+      "sha256": "65b76c635620fafeec05d49ac39477fac8434e8e169a4474657a6b85cad7c0a8",
+      "source": "ui-assets/screen-assets/art/victory_movie-preview.png"
+    },
+    "screen:chrome/dialog-frame-bl.png": {
+      "rect": [
+        1891,
+        1668,
+        4,
+        4
+      ],
+      "rgbaSha256": "d43a44515727a6a0e698d75ecffb4d7f453ba0f4a8c1fe6423f74b6ec30a0a42",
+      "sha256": "02a603040bfe2d40fcd31af2980a8a0e05e69b26e1ae38dbf392ab734900ae23",
+      "source": "ui-assets/screen-assets/chrome/dialog-frame-bl.png"
+    },
+    "screen:chrome/dialog-frame-bottom.png": {
+      "rect": [
+        1907,
+        1668,
+        1,
+        4
+      ],
+      "rgbaSha256": "4791da84f0fdbad167f608b8b9aeb4679a531e1650fd917f4ace4024fadaacfe",
+      "sha256": "6882d6793fd6d65e39d6de1f39dec5efed28b8c6c2c195c5f4dee51f7ba63c05",
+      "source": "ui-assets/screen-assets/chrome/dialog-frame-bottom.png"
+    },
+    "screen:chrome/dialog-frame-br.png": {
+      "rect": [
+        1895,
+        1668,
+        4,
+        4
+      ],
+      "rgbaSha256": "46d085e497916f80354a90586f196f8db9ad45b72ef76e9dad6baf372e506f24",
+      "sha256": "43b1dfe37361995f76022971dbda1bef7a37858a6e9be3ee80de55c2277b16dd",
+      "source": "ui-assets/screen-assets/chrome/dialog-frame-br.png"
+    },
+    "screen:chrome/dialog-frame-fill.png": {
+      "rect": [
+        6,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "e3820096cb82366b860b8a4e668453a7aaaf423af03bdf289fa308ea03a79332",
+      "sha256": "dc5687b50f70cb95379bfced5a0eae768dd4382cd6b393ee77d65bbdd6373fbf",
+      "source": "ui-assets/screen-assets/chrome/dialog-frame-fill.png"
+    },
+    "screen:chrome/dialog-frame-left.png": {
+      "rect": [
+        2029,
+        1668,
+        4,
+        1
+      ],
+      "rgbaSha256": "f728d9487c9257c4c455dd318a74cdd2d7f7f913808ecf4e5d8e06f81e25acaa",
+      "sha256": "3ecef89e364ae5d6541064605485d5912e488d20c65f97bd7f0a103ed7211011",
+      "source": "ui-assets/screen-assets/chrome/dialog-frame-left.png"
+    },
+    "screen:chrome/dialog-frame-right.png": {
+      "rect": [
+        2033,
+        1668,
+        4,
+        1
+      ],
+      "rgbaSha256": "4791da84f0fdbad167f608b8b9aeb4679a531e1650fd917f4ace4024fadaacfe",
+      "sha256": "6ed1711508b2352133d8d4679968f97f02df01f1f3c6f3ba312fd11b5553a0e3",
+      "source": "ui-assets/screen-assets/chrome/dialog-frame-right.png"
+    },
+    "screen:chrome/dialog-frame-tl.png": {
+      "rect": [
+        1899,
+        1668,
+        4,
+        4
+      ],
+      "rgbaSha256": "04c0f3b4885bfc198b28b154e9530ee2cc8a277999c218b4de3f67dcd95e3ac4",
+      "sha256": "8e6d3c4d2499086637038630756a0f062c802aa7cb7a51fc008c70f9b95e504e",
+      "source": "ui-assets/screen-assets/chrome/dialog-frame-tl.png"
+    },
+    "screen:chrome/dialog-frame-top.png": {
+      "rect": [
+        1908,
+        1668,
+        1,
+        4
+      ],
+      "rgbaSha256": "f728d9487c9257c4c455dd318a74cdd2d7f7f913808ecf4e5d8e06f81e25acaa",
+      "sha256": "2df251f132c28f2ed0b6ac3adfc845df61b17f5fce27fc42b6e72bcaaded8d7c",
+      "source": "ui-assets/screen-assets/chrome/dialog-frame-top.png"
+    },
+    "screen:chrome/dialog-frame-tr.png": {
+      "rect": [
+        1903,
+        1668,
+        4,
+        4
+      ],
+      "rgbaSha256": "787de5ce620b9ae353f3e70c608876fe1de14e2fc2c0b4eb267160f2541e3ebc",
+      "sha256": "a3975fc64662aeaabaadb8cb706091cd9da580e494e0a61ab7d32d869958f0eb",
+      "source": "ui-assets/screen-assets/chrome/dialog-frame-tr.png"
+    },
+    "screen:chrome/starport-bar-bank-native.png": {
+      "rect": [
+        1648,
+        1560,
+        16,
+        48
+      ],
+      "rgbaSha256": "272d05e7e731d7d9a0981c4a75c7d14822b5949b170975e1b619e3fa99c887dc",
+      "sha256": "eaa6a64de500e35fc441b87207bfb5c7b655fbc50f226af1e1186bcac3769ba0",
+      "source": "ui-assets/screen-assets/chrome/starport-bar-bank-native.png"
+    },
+    "screen:chrome/starport-radar-native.png": {
+      "rect": [
+        1267,
+        1644,
+        88,
+        16
+      ],
+      "rgbaSha256": "088c139b73d7a004d774d68b42d4f2a402825a88e6dd5c0d396725be1d82287f",
+      "sha256": "aa405471004c3fbffeaf68a284b6e3b40f13b933da5970aaa0663952da8b919b",
+      "source": "ui-assets/screen-assets/chrome/starport-radar-native.png"
+    },
+    "screen:references/boot-publishers-reference.png": {
+      "rect": [
+        1600,
+        448,
+        320,
+        224
+      ],
+      "rgbaSha256": "366ff12a0572a2ff535c8ce729d79a886461d3f8455a0ac5363bd80e871d37e8",
+      "sha256": "ab754870035535daa1f3d268c5248838e192a0329cf583f8fc08e43f6314d12d",
+      "source": "ui-assets/screen-assets/references/boot-publishers-reference.png"
+    },
+    "screen:references/briefing-reference.png": {
+      "rect": [
+        0,
+        672,
+        320,
+        224
+      ],
+      "rgbaSha256": "0906101c6bc6e06f339f432a22b2d139dd016674bc9f4784d8ae4e62b64cf1d5",
+      "sha256": "a70bab50322a6a7fc621ad1163bcd0cc6bdf94ee7a6da2899afbbd90d4f84ba2",
+      "source": "ui-assets/screen-assets/references/briefing-reference.png"
+    },
+    "screen:references/credits-reference.png": {
+      "rect": [
+        320,
+        672,
+        320,
+        224
+      ],
+      "rgbaSha256": "e5a0cfef62d78d2cee12a97de4951f46ca77ba2e8f25661c268ab0338c4b7957",
+      "sha256": "9fcf8d99e049b88a6a4cb3494ea763b2b6fff8137b4cad5e8f8e51c62637419b",
+      "source": "ui-assets/screen-assets/references/credits-reference.png"
+    },
+    "screen:references/defeat-reference.png": {
+      "rect": [
+        640,
+        672,
+        320,
+        224
+      ],
+      "rgbaSha256": "58faca209e7b0f5a7828580c7bd5d43ab06de83346e7ca020e013aa73b988723",
+      "sha256": "bdcb26336c2033d4db74134eea1a9ea979de455a612b6432d4fb307dc949617a",
+      "source": "ui-assets/screen-assets/references/defeat-reference.png"
+    },
+    "screen:references/defeat_movie-reference.png": {
+      "rect": [
+        960,
+        672,
+        320,
+        224
+      ],
+      "rgbaSha256": "fcba0c500f3f21e82357069d3a3747fb063dfe7842f5ae52f873529c2d6888e2",
+      "sha256": "1bffb4e76c4a93bbc080fcd24c3ddaa2f668467d5d8022cc0ca1c5f6e6306f2d",
+      "source": "ui-assets/screen-assets/references/defeat_movie-reference.png"
+    },
+    "screen:references/ending-reference.png": {
+      "rect": [
+        1280,
+        672,
+        320,
+        224
+      ],
+      "rgbaSha256": "c5a2232cca2063cee81be2ed95ab92ddfd9e315b77f5574af28bd3ce0de7f6eb",
+      "sha256": "dd293bc6a2f2e10a2f7280c54cfa5d4147771387bdab9018c499c26c840be5c7",
+      "source": "ui-assets/screen-assets/references/ending-reference.png"
+    },
+    "screen:references/house-confirm-reference.png": {
+      "rect": [
+        1600,
+        672,
+        320,
+        224
+      ],
+      "rgbaSha256": "39756557c5971463a2033d92e572b21bcee6ed00fa01067c18b13ca34821097d",
+      "sha256": "6bc7998ab9d883a3803ef58e8d35c4e16afbd06293bd7d86944b2042415a7513",
+      "source": "ui-assets/screen-assets/references/house-confirm-reference.png"
+    },
+    "screen:references/house-picker-reference.png": {
+      "rect": [
+        0,
+        896,
+        320,
+        224
+      ],
+      "rgbaSha256": "1bcdf7af0f3752853c55e7c5b311b806f198881ba0fee410da1fa1210d39f2cc",
+      "sha256": "08ac2310aff188035d490ca71c3fdc80c8ec2a302a03cffc889d17f5d4df9237",
+      "source": "ui-assets/screen-assets/references/house-picker-reference.png"
+    },
+    "screen:references/password-display-reference.png": {
+      "rect": [
+        320,
+        896,
+        320,
+        224
+      ],
+      "rgbaSha256": "62019c2333700c52e68fe349d8abb9acc9ce4760d0a46432dcab563380dcab9d",
+      "sha256": "1e705539f1cd3dfeeda163310bb4c9c2f6a48c62bec2f048ce181cc8862e0bd8",
+      "source": "ui-assets/screen-assets/references/password-display-reference.png"
+    },
+    "screen:references/password-reference.png": {
+      "rect": [
+        640,
+        896,
+        320,
+        224
+      ],
+      "rgbaSha256": "b96940fa74e5bec5616db3a542954077a714d39a06bb539282f091dd9e0eb302",
+      "sha256": "6dc2aecd3e262b8149fa33046320b82b8b6e4f8b0f141b45ef7bbad2edb12071",
+      "source": "ui-assets/screen-assets/references/password-reference.png"
+    },
+    "screen:references/pause-options-reference.png": {
+      "rect": [
+        960,
+        896,
+        320,
+        224
+      ],
+      "rgbaSha256": "f849a344ba591301b17ecd3b1cdf315cf5ccdf886f47454db973812683c7b71a",
+      "sha256": "806e5a4873d0ba73b8ef5d63eebda7c91e0599afe531b2feb2fdad629b7c11df",
+      "source": "ui-assets/screen-assets/references/pause-options-reference.png"
+    },
+    "screen:references/restart-confirm-reference.png": {
+      "rect": [
+        1280,
+        896,
+        320,
+        224
+      ],
+      "rgbaSha256": "77b87878cac6fb0108ccab78cbb7bc6c51e26cea9cfe85827a9e54810ab3b628",
+      "sha256": "fcdde8dc8d82bf1bdf32c23b9ab0b7a0c0a3ca1823a9a5612f381fd21dd90d85",
+      "source": "ui-assets/screen-assets/references/restart-confirm-reference.png"
+    },
+    "screen:references/results-reference.png": {
+      "rect": [
+        1600,
+        896,
+        320,
+        224
+      ],
+      "rgbaSha256": "d44ebb2fee0e6d83a031a4871e8af0f174978e6e6209eb429aa8b0017eb1d397",
+      "sha256": "5272910c773868bb9ca4dad0e8d8c32a8a3426962c30757a4518015a78f13c6c",
+      "source": "ui-assets/screen-assets/references/results-reference.png"
+    },
+    "screen:references/title-reference.png": {
+      "rect": [
+        0,
+        1120,
+        320,
+        224
+      ],
+      "rgbaSha256": "c0587561173a0a6db12415e3801ed1cbf60bdd67d76befb60e40c3004f57182e",
+      "sha256": "c8ea7c2d7f1bdc56a0b888fa0e9e97e47c770f6c9172aec17d8d2ecdbb6b4210",
+      "source": "ui-assets/screen-assets/references/title-reference.png"
+    },
+    "screen:references/victory-reference.png": {
+      "rect": [
+        320,
+        1120,
+        320,
+        224
+      ],
+      "rgbaSha256": "4ee92ac7b160bbd86c8c242ec6340c0beff42916444a9a833498ad6b17a856c4",
+      "sha256": "6f56d997a8182cca45b9df1eef085c523b7756a13badfdb858c59d6c79cfe5fc",
+      "source": "ui-assets/screen-assets/references/victory-reference.png"
+    },
+    "screen:references/victory_movie-reference.png": {
+      "rect": [
+        640,
+        1120,
+        320,
+        224
+      ],
+      "rgbaSha256": "ecc5dd9051f95b342935b328c049e755038037f0490277ff503e587b378233f4",
+      "sha256": "8ada4b3f723f186b0b92f0b204edc52097692e909da4717a58de444b47158917",
+      "source": "ui-assets/screen-assets/references/victory_movie-reference.png"
+    },
+    "screen:starport/starport-body-fill.png": {
+      "rect": [
+        1609,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "2a9fa83b24a2d3af870dbf83ad138443bac0a3e6cdc72d8fff7667107554cdad",
+      "sha256": "1f0afee35979b288f41f253191823a9dee59ef151be9703f977af4a9d3b4386c",
+      "source": "ui-assets/screen-assets/starport/starport-body-fill.png"
+    },
+    "screen:starport/starport-cabinet-brace.png": {
+      "rect": [
+        1971,
+        1644,
+        48,
+        16
+      ],
+      "rgbaSha256": "c070c14e88447306a78f95a77efa95ca8a083c630b9b5011855f6f0d6077c5f4",
+      "sha256": "02ff8be3a009a72cb564c268e8b13112a040ecb532e8aa60e957ed5ac8634609",
+      "source": "ui-assets/screen-assets/starport/starport-cabinet-brace.png"
+    },
+    "screen:starport/starport-cash-window-clean-left.png": {
+      "rect": [
+        771,
+        1668,
+        8,
+        12
+      ],
+      "rgbaSha256": "0669aa6daf63f68f71090302edaae011ff7e4f86f02dac45fc0f71626b4efc28",
+      "sha256": "366e7433ab5eae8dbdd58a4db234788904fffa282d4e0698c3f86dfe61f2ace7",
+      "source": "ui-assets/screen-assets/starport/starport-cash-window-clean-left.png"
+    },
+    "screen:starport/starport-cash-window-clean-middle.png": {
+      "rect": [
+        811,
+        1668,
+        1,
+        12
+      ],
+      "rgbaSha256": "937d497ff9439479f9a77994b703e6ebced8ca0b9b3c66640567d267c5387a75",
+      "sha256": "8b47eec79db6d29926fea2c0668f37f7b17625536024dda0da5a338919fd37e9",
+      "source": "ui-assets/screen-assets/starport/starport-cash-window-clean-middle.png"
+    },
+    "screen:starport/starport-cash-window-clean-right.png": {
+      "rect": [
+        779,
+        1668,
+        8,
+        12
+      ],
+      "rgbaSha256": "6876553580985fc0971700d241818a6a1691cf5a532f1da37b96be90300dad75",
+      "sha256": "c740ddd469cc784a2442f294d5e308f649d658ac1ad28b98997a5db8f7706f19",
+      "source": "ui-assets/screen-assets/starport/starport-cash-window-clean-right.png"
+    },
+    "screen:starport/starport-command-cabinet-bl.png": {
+      "rect": [
+        896,
+        1644,
+        20,
+        20
+      ],
+      "rgbaSha256": "0b40e531cd3a34d5be45a4161cf830f0dc44b204c831b01ffafdef6bec5aaad3",
+      "sha256": "131faccaab482cc3cea328d09de416bcdcf7afa0f46c31ce7313ac09ed1c2ce1",
+      "source": "ui-assets/screen-assets/starport/starport-command-cabinet-bl.png"
+    },
+    "screen:starport/starport-command-cabinet-bottom.png": {
+      "rect": [
+        932,
+        1644,
+        8,
+        20
+      ],
+      "rgbaSha256": "c738ca5206841c5331d04793fe45c171017d76af51f948001dc08f1b8e6a49e0",
+      "sha256": "eb0b162ef7681506dbc1b0e6b550a1396d610efc18afffccbb1841f1164152fc",
+      "source": "ui-assets/screen-assets/starport/starport-command-cabinet-bottom.png"
+    },
+    "screen:starport/starport-command-cabinet-br.png": {
+      "rect": [
+        916,
+        1644,
+        16,
+        20
+      ],
+      "rgbaSha256": "3d0e65344d0e5c1d8c9adf97ab5b555b3a3c06ae35d807f36c20982695f6d166",
+      "sha256": "cc62f4b94f4e7c90a4d2935b3ec7031c4849fe6d562bae975dbff3454c464356",
+      "source": "ui-assets/screen-assets/starport/starport-command-cabinet-br.png"
+    },
+    "screen:starport/starport-command-cabinet-left-middle.png": {
+      "rect": [
+        1549,
+        1668,
+        20,
+        8
+      ],
+      "rgbaSha256": "4eee795dd792e0485e2e8458b8fe2366b4f700222fa359c660fe70d0ae86c6a2",
+      "sha256": "d58416da00a2981a9870fa374772d2551a66127d8938ca85ee6d11b28fa9f351",
+      "source": "ui-assets/screen-assets/starport/starport-command-cabinet-left-middle.png"
+    },
+    "screen:starport/starport-command-cabinet-left.png": {
+      "rect": [
+        672,
+        1464,
+        20,
+        96
+      ],
+      "rgbaSha256": "d9113dfc6916e06640aadf26e6fe863d53df17a204a809cd344db62162547317",
+      "sha256": "fd4023d7fa1fe87ee376f605cad7eff01f521700ef0abf95d7dbab446b7da8f7",
+      "source": "ui-assets/screen-assets/starport/starport-command-cabinet-left.png"
+    },
+    "screen:starport/starport-command-cabinet-right-middle.png": {
+      "rect": [
+        1569,
+        1668,
+        16,
+        8
+      ],
+      "rgbaSha256": "86a9ed7c457c5fe7cb4c61719d18db33a471e377a0e2f535ce2505b8a44a53af",
+      "sha256": "33b37bffa56454715647379e9a05a6d3dfa8b8c01247a6304aa527676889cd6f",
+      "source": "ui-assets/screen-assets/starport/starport-command-cabinet-right-middle.png"
+    },
+    "screen:starport/starport-command-cabinet-right.png": {
+      "rect": [
+        692,
+        1464,
+        16,
+        96
+      ],
+      "rgbaSha256": "413e13a71688ddedcd254bee4b03c40dc614f154b64f1f5204bc2336461eeca3",
+      "sha256": "b5b782e2b5550635c1f1b1f50b9b70e70bac93624181ec18287d55be4bfcc112",
+      "source": "ui-assets/screen-assets/starport/starport-command-cabinet-right.png"
+    },
+    "screen:starport/starport-command-cabinet-tl.png": {
+      "rect": [
+        735,
+        1668,
+        20,
+        12
+      ],
+      "rgbaSha256": "54ba5b06b602d609be1040a392fcbbfa2db3cee936cee51d5657aeedec82a67f",
+      "sha256": "e9f376a5b2f665f0178fe8b2a9915c37e93f961e3355761f812c9e4cc2d29480",
+      "source": "ui-assets/screen-assets/starport/starport-command-cabinet-tl.png"
+    },
+    "screen:starport/starport-command-cabinet-top.png": {
+      "rect": [
+        787,
+        1668,
+        8,
+        12
+      ],
+      "rgbaSha256": "c9b7a99766c523f7a1542bea77871397c9b3b91f8831f560e371e7998782bdab",
+      "sha256": "3716af47b89080893810570e105ed879c7cd210c379ebc72d9a0dab39110bfee",
+      "source": "ui-assets/screen-assets/starport/starport-command-cabinet-top.png"
+    },
+    "screen:starport/starport-command-cabinet-tr.png": {
+      "rect": [
+        755,
+        1668,
+        16,
+        12
+      ],
+      "rgbaSha256": "8c82db035cd82a67b82928a32660d67bc88fa1a1911da9e56aa2ac2536e768c6",
+      "sha256": "aa25b21bbd4d4f139b44e4721eccd52be624798659a2a3e13308f2e8a4984880",
+      "source": "ui-assets/screen-assets/starport/starport-command-cabinet-tr.png"
+    },
+    "screen:starport/starport-meter-window-left.png": {
+      "rect": [
+        448,
+        1668,
+        8,
+        16
+      ],
+      "rgbaSha256": "a738e46fa9e371ee4be62cd2b34b7ffc46ede876c9d775da3a29765bbce59a9b",
+      "sha256": "8a83260e382145f16e1a97d132e3e2b9f9c318abef66d6714b4d2a5b955d524e",
+      "source": "ui-assets/screen-assets/starport/starport-meter-window-left.png"
+    },
+    "screen:starport/starport-meter-window-middle.png": {
+      "rect": [
+        512,
+        1668,
+        1,
+        16
+      ],
+      "rgbaSha256": "92e97d4c65cf5d4cc211dd14c46c77f3d5dc48045c2f2461a8b6809af19aff66",
+      "sha256": "9eeb3a67540c6e25d0b28d018cd37f7b81680a2428912ece298271b8438fa715",
+      "source": "ui-assets/screen-assets/starport/starport-meter-window-middle.png"
+    },
+    "screen:starport/starport-meter-window-right.png": {
+      "rect": [
+        456,
+        1668,
+        8,
+        16
+      ],
+      "rgbaSha256": "7039a7460b0c6beafcede612808be6e51bda60dd881ac40509bc0c57644b2c90",
+      "sha256": "d7c56cb5d961494617a246943b199b4ab131a04d82dfcfcf00f7d9d0cae0ec0a",
+      "source": "ui-assets/screen-assets/starport/starport-meter-window-right.png"
+    },
+    "screen:starport/starport-monitor-stack.png": {
+      "rect": [
+        1028,
+        1464,
+        112,
+        84
+      ],
+      "rgbaSha256": "03b447ed34e414493d703ef77cc256f8f719f3a0ab6baddc3ee55072750326f9",
+      "sha256": "018eacedde0cf5c917f0be4c1ffd4e009021a09d57a2865ccc7de24458dae005",
+      "source": "ui-assets/screen-assets/starport/starport-monitor-stack.png"
+    },
+    "screen:starport/starport-resource-armor.png": {
+      "rect": [
+        704,
+        1644,
+        24,
+        24
+      ],
+      "rgbaSha256": "0b6f401dfac9e9cd189054a064bd0044a5f5bb95c3c3eb54b0eaaad97f19abdf",
+      "sha256": "5ca8d23e7b84010549e09d7cc3325e96385b241e67724fbe3bfc438c86403820",
+      "source": "ui-assets/screen-assets/starport/starport-resource-armor.png"
+    },
+    "screen:starport/starport-resource-dollar.png": {
+      "rect": [
+        728,
+        1644,
+        24,
+        24
+      ],
+      "rgbaSha256": "835b3478a73c4b5e2f8365f867b9f53b8c54bb0aa004360e325a7db74ed472a5",
+      "sha256": "d0847b9197c3c8138a255515092cbdbb35a2f4d43bb5bcf180d7dce36ca6548d",
+      "source": "ui-assets/screen-assets/starport/starport-resource-dollar.png"
+    },
+    "screen:starport/starport-resource-power.png": {
+      "rect": [
+        752,
+        1644,
+        24,
+        24
+      ],
+      "rgbaSha256": "446d5612d58397b739fe96f53327715af0825703c82cb9c87e5a0e85f26d38f4",
+      "sha256": "3e504fe8c5a6566f0bfbbf397ca7610a07527681bf27fc5e03881bd7b42ccd23",
+      "source": "ui-assets/screen-assets/starport/starport-resource-power.png"
+    },
+    "screen:starport/starport-resource-vent.png": {
+      "rect": [
+        1753,
+        1464,
+        40,
+        64
+      ],
+      "rgbaSha256": "651c3fbf8fa8ce220f887f95d42b73122bebe8fb81b1dbb6622d1c48bbd3f73f",
+      "sha256": "be0a90835b7d1c679d3ea4cf520f9be1ea52f4bb492398f271cc6c875e2de23a",
+      "source": "ui-assets/screen-assets/starport/starport-resource-vent.png"
+    },
+    "screen:ui/arrow-up-glyph-native.png": {
+      "rect": [
+        112,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "ba3a197ed6df9734cfd8e9e9e35d5511efeb086edbfc1ff41ec80d3bb0eb76f0",
+      "sha256": "cf1d0b9a420af5bad061aa83acee0c0bdc7c0c0b8727d1ab68ce1b8fab9d6de1",
+      "source": "ui-assets/screen-assets/ui/arrow-up-glyph-native.png"
+    },
+    "screen:ui/arrow-up-native.png": {
+      "rect": [
+        128,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "34b73822065adb0a0035c4384a1d3bd0a326e85afaad19b470612f9aa304cb5d",
+      "sha256": "af617677543572c291a554d81712e690b3deab520816592409a3fb51a400b6e4",
+      "source": "ui-assets/screen-assets/ui/arrow-up-native.png"
+    },
+    "screen:ui/back-button-native.png": {
+      "rect": [
+        144,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "e9569cd9ee31b99c1924e5bb8810192d4bf14557ee02b16c8a35a99c4aecc487",
+      "sha256": "3b24f8c1c06907c44e3aede4cf5c69e2137fda0ad423ce633dfb264436d00936",
+      "source": "ui-assets/screen-assets/ui/back-button-native.png"
+    },
+    "screen:ui/back-glyph-native.png": {
+      "rect": [
+        160,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "3b4dcdd6e7641094005859b50a17ab2869ba93af78520fff1f47c6316352d6fb",
+      "sha256": "788ace75be5c009f02b559dead71090f9bfe0cad866d897e5ba8b40ed07f0241",
+      "source": "ui-assets/screen-assets/ui/back-glyph-native.png"
+    },
+    "screen:ui/back-menu-arrow-native.png": {
+      "rect": [
+        176,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "401bf1803c463e172459c29d73eee891077ceac4f427289fc6b4d99be5817b2c",
+      "sha256": "d7569ac605326ce913d363fe357bd264dc281b01564751b07c31f12a1414c899",
+      "source": "ui-assets/screen-assets/ui/back-menu-arrow-native.png"
+    },
+    "screen:ui/command-cabinet-bl.png": {
+      "rect": [
+        192,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "3e8911d6c4ffd2896654ac08c73fb019ea7c55d0c051fc1040eed159821488fc",
+      "sha256": "d74c5b28d19d90359241c67414592c7044439ad26b7d72f396af3fafab37044d",
+      "source": "ui-assets/screen-assets/ui/command-cabinet-bl.png"
+    },
+    "screen:ui/command-cabinet-bottom.png": {
+      "rect": [
+        513,
+        1668,
+        1,
+        16
+      ],
+      "rgbaSha256": "ba71ef411c6ae25ffd4426400208dd36bb933b489ab3acb3262c2e88385a6ffb",
+      "sha256": "639d52f97f7d77e5382a8e8a8d9c8f85b975bff1ee5ac641d6b115a836da7feb",
+      "source": "ui-assets/screen-assets/ui/command-cabinet-bottom.png"
+    },
+    "screen:ui/command-cabinet-br.png": {
+      "rect": [
+        208,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "10fd679ce1700e698542493daa92d16f0cae6f9328e5f11e6e404d6de23319dc",
+      "sha256": "c8a264441d6c5b070fde978f0fb29a9ee49a870b136b4610b2c7ebb6f52ebd58",
+      "source": "ui-assets/screen-assets/ui/command-cabinet-br.png"
+    },
+    "screen:ui/command-cabinet-fill.png": {
+      "rect": [
+        1617,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "2c893cd47b6757133987906e00c55e6dcce3c567b9df9e7f91ffecd3604cc6a6",
+      "sha256": "43c1b79b26009d2798246be983aa5ffa1a5757f916e10cdcad7cbc5fab3f40a0",
+      "source": "ui-assets/screen-assets/ui/command-cabinet-fill.png"
+    },
+    "screen:ui/command-cabinet-left.png": {
+      "rect": [
+        1949,
+        1668,
+        16,
+        1
+      ],
+      "rgbaSha256": "90868f1d3a8822fe46a6c038f40367d28dc7ab06ef6aed9e4a933dabe78bd702",
+      "sha256": "74ff0861d5f300cbc17f8c3213564baba79d47388b168952b9c2cc3d89d3957e",
+      "source": "ui-assets/screen-assets/ui/command-cabinet-left.png"
+    },
+    "screen:ui/command-cabinet-right.png": {
+      "rect": [
+        1965,
+        1668,
+        16,
+        1
+      ],
+      "rgbaSha256": "579e8600b2deec8467e67dde81529aa00e6cd631be137ab4df01fe386de4d69e",
+      "sha256": "e1b84fb1983d9bd913aac2f4b2a8477db4c4fa2c1316e9e9ef012fcc0db2e378",
+      "source": "ui-assets/screen-assets/ui/command-cabinet-right.png"
+    },
+    "screen:ui/command-cabinet-tl.png": {
+      "rect": [
+        224,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "f6944ea7bed5886497df60cdec7f69f5721346c20a87a22ae90dd162fc4cbeb7",
+      "sha256": "3857117534cde038c0c504c2612a14b84d6e1954ab2ae230794a85739d28aae4",
+      "source": "ui-assets/screen-assets/ui/command-cabinet-tl.png"
+    },
+    "screen:ui/command-cabinet-top.png": {
+      "rect": [
+        514,
+        1668,
+        1,
+        16
+      ],
+      "rgbaSha256": "601a3b6163cb760427edb1b6d5ce3d30bdf97d839a7e55d076afa5b65ffdfe2b",
+      "sha256": "ca4508057f2d70ac32794e7f39e7ec3c2e746bf5807e171da37601b0a8382909",
+      "source": "ui-assets/screen-assets/ui/command-cabinet-top.png"
+    },
+    "screen:ui/command-cabinet-tr.png": {
+      "rect": [
+        240,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "d2d5b913a696c8d03526ea650d2d4b33fda4e7ff87b13a1c59beee0afc08d621",
+      "sha256": "769b34c4234c9482baedaae118f402bebbcb98e67f8597d17137dad53abc2c6d",
+      "source": "ui-assets/screen-assets/ui/command-cabinet-tr.png"
+    },
+    "screen:ui/command-focus-0-bl.png": {
+      "rect": [
+        1909,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "fb3a6a641bbce9b762a240d320a72e963ebbfd6d38cf17e86f37f165574bdbe0",
+      "sha256": "17e2cbf8b8700d09eee3bc5f687132392e4b5a605c84556da791e444708b4652",
+      "source": "ui-assets/screen-assets/ui/command-focus-0-bl.png"
+    },
+    "screen:ui/command-focus-0-bottom.png": {
+      "rect": [
+        1941,
+        1668,
+        1,
+        2
+      ],
+      "rgbaSha256": "42af801193fad22a2c6b98d9fe22f22d9c00f8f927539f65d98a41178fa31142",
+      "sha256": "9a1597b1b035346049e015b26217439e4e34d2650ae7866f217f1714ad010883",
+      "source": "ui-assets/screen-assets/ui/command-focus-0-bottom.png"
+    },
+    "screen:ui/command-focus-0-br.png": {
+      "rect": [
+        1911,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "fb3a6a641bbce9b762a240d320a72e963ebbfd6d38cf17e86f37f165574bdbe0",
+      "sha256": "17e2cbf8b8700d09eee3bc5f687132392e4b5a605c84556da791e444708b4652",
+      "source": "ui-assets/screen-assets/ui/command-focus-0-br.png"
+    },
+    "screen:ui/command-focus-0-left.png": {
+      "rect": [
+        2037,
+        1668,
+        2,
+        1
+      ],
+      "rgbaSha256": "42af801193fad22a2c6b98d9fe22f22d9c00f8f927539f65d98a41178fa31142",
+      "sha256": "1b83eaeb73d914ceac87acb8eff422298f8f1840fdc5c1fe9c10dad40379b921",
+      "source": "ui-assets/screen-assets/ui/command-focus-0-left.png"
+    },
+    "screen:ui/command-focus-0-right.png": {
+      "rect": [
+        2039,
+        1668,
+        2,
+        1
+      ],
+      "rgbaSha256": "42af801193fad22a2c6b98d9fe22f22d9c00f8f927539f65d98a41178fa31142",
+      "sha256": "1b83eaeb73d914ceac87acb8eff422298f8f1840fdc5c1fe9c10dad40379b921",
+      "source": "ui-assets/screen-assets/ui/command-focus-0-right.png"
+    },
+    "screen:ui/command-focus-0-tl.png": {
+      "rect": [
+        1913,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "fb3a6a641bbce9b762a240d320a72e963ebbfd6d38cf17e86f37f165574bdbe0",
+      "sha256": "17e2cbf8b8700d09eee3bc5f687132392e4b5a605c84556da791e444708b4652",
+      "source": "ui-assets/screen-assets/ui/command-focus-0-tl.png"
+    },
+    "screen:ui/command-focus-0-top.png": {
+      "rect": [
+        1942,
+        1668,
+        1,
+        2
+      ],
+      "rgbaSha256": "42af801193fad22a2c6b98d9fe22f22d9c00f8f927539f65d98a41178fa31142",
+      "sha256": "9a1597b1b035346049e015b26217439e4e34d2650ae7866f217f1714ad010883",
+      "source": "ui-assets/screen-assets/ui/command-focus-0-top.png"
+    },
+    "screen:ui/command-focus-0-tr.png": {
+      "rect": [
+        1915,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "fb3a6a641bbce9b762a240d320a72e963ebbfd6d38cf17e86f37f165574bdbe0",
+      "sha256": "17e2cbf8b8700d09eee3bc5f687132392e4b5a605c84556da791e444708b4652",
+      "source": "ui-assets/screen-assets/ui/command-focus-0-tr.png"
+    },
+    "screen:ui/command-focus-0.png": {
+      "rect": [
+        288,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "2fc8597ee5493c44bca58d663b50a314713bbd1072643b2d0966db7e3f92bb6f",
+      "sha256": "082597d09429927453c8774acce85636a1b04d1f5f9dcc42eea8617938e9dec0",
+      "source": "ui-assets/screen-assets/ui/command-focus-0.png"
+    },
+    "screen:ui/command-focus-1-bl.png": {
+      "rect": [
+        1917,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "f8114c42a3f8c7325cdd7799bc857863648d8808612446ef97a3b63e78cb14f4",
+      "sha256": "85252f78a9bdfd897f82bb9ae5e2914d0a62b8f9070bfcbf148cd8755d91936f",
+      "source": "ui-assets/screen-assets/ui/command-focus-1-bl.png"
+    },
+    "screen:ui/command-focus-1-bottom.png": {
+      "rect": [
+        1943,
+        1668,
+        1,
+        2
+      ],
+      "rgbaSha256": "f1069fe3c22dcb76656d1657a660770714d187ab03a0899e5e86434bc9d464d1",
+      "sha256": "e85419a0419142f25384fe0891a19a532f4d991105d52b89f149c11b5c727323",
+      "source": "ui-assets/screen-assets/ui/command-focus-1-bottom.png"
+    },
+    "screen:ui/command-focus-1-br.png": {
+      "rect": [
+        1919,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "f8114c42a3f8c7325cdd7799bc857863648d8808612446ef97a3b63e78cb14f4",
+      "sha256": "85252f78a9bdfd897f82bb9ae5e2914d0a62b8f9070bfcbf148cd8755d91936f",
+      "source": "ui-assets/screen-assets/ui/command-focus-1-br.png"
+    },
+    "screen:ui/command-focus-1-left.png": {
+      "rect": [
+        2041,
+        1668,
+        2,
+        1
+      ],
+      "rgbaSha256": "f1069fe3c22dcb76656d1657a660770714d187ab03a0899e5e86434bc9d464d1",
+      "sha256": "4a2bb1ffc2ba07f5474219a8703ea36ac00ebe790b0e8ce1f0058b3145dfee31",
+      "source": "ui-assets/screen-assets/ui/command-focus-1-left.png"
+    },
+    "screen:ui/command-focus-1-right.png": {
+      "rect": [
+        2043,
+        1668,
+        2,
+        1
+      ],
+      "rgbaSha256": "f1069fe3c22dcb76656d1657a660770714d187ab03a0899e5e86434bc9d464d1",
+      "sha256": "4a2bb1ffc2ba07f5474219a8703ea36ac00ebe790b0e8ce1f0058b3145dfee31",
+      "source": "ui-assets/screen-assets/ui/command-focus-1-right.png"
+    },
+    "screen:ui/command-focus-1-tl.png": {
+      "rect": [
+        1921,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "f8114c42a3f8c7325cdd7799bc857863648d8808612446ef97a3b63e78cb14f4",
+      "sha256": "85252f78a9bdfd897f82bb9ae5e2914d0a62b8f9070bfcbf148cd8755d91936f",
+      "source": "ui-assets/screen-assets/ui/command-focus-1-tl.png"
+    },
+    "screen:ui/command-focus-1-top.png": {
+      "rect": [
+        1944,
+        1668,
+        1,
+        2
+      ],
+      "rgbaSha256": "f1069fe3c22dcb76656d1657a660770714d187ab03a0899e5e86434bc9d464d1",
+      "sha256": "e85419a0419142f25384fe0891a19a532f4d991105d52b89f149c11b5c727323",
+      "source": "ui-assets/screen-assets/ui/command-focus-1-top.png"
+    },
+    "screen:ui/command-focus-1-tr.png": {
+      "rect": [
+        1923,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "f8114c42a3f8c7325cdd7799bc857863648d8808612446ef97a3b63e78cb14f4",
+      "sha256": "85252f78a9bdfd897f82bb9ae5e2914d0a62b8f9070bfcbf148cd8755d91936f",
+      "source": "ui-assets/screen-assets/ui/command-focus-1-tr.png"
+    },
+    "screen:ui/command-focus-1.png": {
+      "rect": [
+        320,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "5922bacb897322565e37d82e3d981607d3d3994257ebd95c9ec11fd2305000e0",
+      "sha256": "206fa6393b23cfa7d2319b3f4cb28e5040f3ac32e35200797540070b4b89f69a",
+      "source": "ui-assets/screen-assets/ui/command-focus-1.png"
+    },
+    "screen:ui/command-focus-2-bl.png": {
+      "rect": [
+        1925,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "19ad1e77ecb8962d22869e93d317fed15067cef6f1d614384af9ed58c03f7e97",
+      "sha256": "510e836ac1810b1f411f339bac94c923dbe2ae9f922502910709ea797ff0bb6a",
+      "source": "ui-assets/screen-assets/ui/command-focus-2-bl.png"
+    },
+    "screen:ui/command-focus-2-bottom.png": {
+      "rect": [
+        1945,
+        1668,
+        1,
+        2
+      ],
+      "rgbaSha256": "7ef3e1c706500d7d6a435369e60bd9cdb1002a4e57e94d1db4d596ae789d1903",
+      "sha256": "8b96d0366d2779982e4fc2aea5d5cd6b6f99b7c2f41c726f67eb417f526ea48d",
+      "source": "ui-assets/screen-assets/ui/command-focus-2-bottom.png"
+    },
+    "screen:ui/command-focus-2-br.png": {
+      "rect": [
+        1927,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "19ad1e77ecb8962d22869e93d317fed15067cef6f1d614384af9ed58c03f7e97",
+      "sha256": "510e836ac1810b1f411f339bac94c923dbe2ae9f922502910709ea797ff0bb6a",
+      "source": "ui-assets/screen-assets/ui/command-focus-2-br.png"
+    },
+    "screen:ui/command-focus-2-left.png": {
+      "rect": [
+        2045,
+        1668,
+        2,
+        1
+      ],
+      "rgbaSha256": "7ef3e1c706500d7d6a435369e60bd9cdb1002a4e57e94d1db4d596ae789d1903",
+      "sha256": "cb643d62181313a20f1ed903ef55737a01bda8b1fc9ef09b2d9435faff991694",
+      "source": "ui-assets/screen-assets/ui/command-focus-2-left.png"
+    },
+    "screen:ui/command-focus-2-right.png": {
+      "rect": [
+        0,
+        1684,
+        2,
+        1
+      ],
+      "rgbaSha256": "7ef3e1c706500d7d6a435369e60bd9cdb1002a4e57e94d1db4d596ae789d1903",
+      "sha256": "cb643d62181313a20f1ed903ef55737a01bda8b1fc9ef09b2d9435faff991694",
+      "source": "ui-assets/screen-assets/ui/command-focus-2-right.png"
+    },
+    "screen:ui/command-focus-2-tl.png": {
+      "rect": [
+        1929,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "19ad1e77ecb8962d22869e93d317fed15067cef6f1d614384af9ed58c03f7e97",
+      "sha256": "510e836ac1810b1f411f339bac94c923dbe2ae9f922502910709ea797ff0bb6a",
+      "source": "ui-assets/screen-assets/ui/command-focus-2-tl.png"
+    },
+    "screen:ui/command-focus-2-top.png": {
+      "rect": [
+        1946,
+        1668,
+        1,
+        2
+      ],
+      "rgbaSha256": "7ef3e1c706500d7d6a435369e60bd9cdb1002a4e57e94d1db4d596ae789d1903",
+      "sha256": "8b96d0366d2779982e4fc2aea5d5cd6b6f99b7c2f41c726f67eb417f526ea48d",
+      "source": "ui-assets/screen-assets/ui/command-focus-2-top.png"
+    },
+    "screen:ui/command-focus-2-tr.png": {
+      "rect": [
+        1931,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "19ad1e77ecb8962d22869e93d317fed15067cef6f1d614384af9ed58c03f7e97",
+      "sha256": "510e836ac1810b1f411f339bac94c923dbe2ae9f922502910709ea797ff0bb6a",
+      "source": "ui-assets/screen-assets/ui/command-focus-2-tr.png"
+    },
+    "screen:ui/command-focus-2.png": {
+      "rect": [
+        352,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "1427d34cc0f66b37857175ebedbbbe91463c0528ff07d3f2b7c7f13384780692",
+      "sha256": "8049a5ea976041aae681e77f7f4f639a5de832d13a414450a996f675e3fba85b",
+      "source": "ui-assets/screen-assets/ui/command-focus-2.png"
+    },
+    "screen:ui/command-focus-3-bl.png": {
+      "rect": [
+        1933,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "f8114c42a3f8c7325cdd7799bc857863648d8808612446ef97a3b63e78cb14f4",
+      "sha256": "85252f78a9bdfd897f82bb9ae5e2914d0a62b8f9070bfcbf148cd8755d91936f",
+      "source": "ui-assets/screen-assets/ui/command-focus-3-bl.png"
+    },
+    "screen:ui/command-focus-3-bottom.png": {
+      "rect": [
+        1947,
+        1668,
+        1,
+        2
+      ],
+      "rgbaSha256": "f1069fe3c22dcb76656d1657a660770714d187ab03a0899e5e86434bc9d464d1",
+      "sha256": "e85419a0419142f25384fe0891a19a532f4d991105d52b89f149c11b5c727323",
+      "source": "ui-assets/screen-assets/ui/command-focus-3-bottom.png"
+    },
+    "screen:ui/command-focus-3-br.png": {
+      "rect": [
+        1935,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "f8114c42a3f8c7325cdd7799bc857863648d8808612446ef97a3b63e78cb14f4",
+      "sha256": "85252f78a9bdfd897f82bb9ae5e2914d0a62b8f9070bfcbf148cd8755d91936f",
+      "source": "ui-assets/screen-assets/ui/command-focus-3-br.png"
+    },
+    "screen:ui/command-focus-3-left.png": {
+      "rect": [
+        2,
+        1684,
+        2,
+        1
+      ],
+      "rgbaSha256": "f1069fe3c22dcb76656d1657a660770714d187ab03a0899e5e86434bc9d464d1",
+      "sha256": "4a2bb1ffc2ba07f5474219a8703ea36ac00ebe790b0e8ce1f0058b3145dfee31",
+      "source": "ui-assets/screen-assets/ui/command-focus-3-left.png"
+    },
+    "screen:ui/command-focus-3-right.png": {
+      "rect": [
+        4,
+        1684,
+        2,
+        1
+      ],
+      "rgbaSha256": "f1069fe3c22dcb76656d1657a660770714d187ab03a0899e5e86434bc9d464d1",
+      "sha256": "4a2bb1ffc2ba07f5474219a8703ea36ac00ebe790b0e8ce1f0058b3145dfee31",
+      "source": "ui-assets/screen-assets/ui/command-focus-3-right.png"
+    },
+    "screen:ui/command-focus-3-tl.png": {
+      "rect": [
+        1937,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "f8114c42a3f8c7325cdd7799bc857863648d8808612446ef97a3b63e78cb14f4",
+      "sha256": "85252f78a9bdfd897f82bb9ae5e2914d0a62b8f9070bfcbf148cd8755d91936f",
+      "source": "ui-assets/screen-assets/ui/command-focus-3-tl.png"
+    },
+    "screen:ui/command-focus-3-top.png": {
+      "rect": [
+        1948,
+        1668,
+        1,
+        2
+      ],
+      "rgbaSha256": "f1069fe3c22dcb76656d1657a660770714d187ab03a0899e5e86434bc9d464d1",
+      "sha256": "e85419a0419142f25384fe0891a19a532f4d991105d52b89f149c11b5c727323",
+      "source": "ui-assets/screen-assets/ui/command-focus-3-top.png"
+    },
+    "screen:ui/command-focus-3-tr.png": {
+      "rect": [
+        1939,
+        1668,
+        2,
+        2
+      ],
+      "rgbaSha256": "f8114c42a3f8c7325cdd7799bc857863648d8808612446ef97a3b63e78cb14f4",
+      "sha256": "85252f78a9bdfd897f82bb9ae5e2914d0a62b8f9070bfcbf148cd8755d91936f",
+      "source": "ui-assets/screen-assets/ui/command-focus-3-tr.png"
+    },
+    "screen:ui/command-focus-3.png": {
+      "rect": [
+        384,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "5922bacb897322565e37d82e3d981607d3d3994257ebd95c9ec11fd2305000e0",
+      "sha256": "206fa6393b23cfa7d2319b3f4cb28e5040f3ac32e35200797540070b4b89f69a",
+      "source": "ui-assets/screen-assets/ui/command-focus-3.png"
+    },
+    "screen:ui/command-skin-disabled-bl.png": {
+      "rect": [
+        7,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "a4fde8e43d230fb055396f4c5d14ff16378b73535abfbdaaa723c9e1108cdc82",
+      "sha256": "314a26481ee070e860a9ed5e65b057e5a246a59c46bb4eec75c6c656d205ee45",
+      "source": "ui-assets/screen-assets/ui/command-skin-disabled-bl.png"
+    },
+    "screen:ui/command-skin-disabled-bottom.png": {
+      "rect": [
+        8,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "e3820096cb82366b860b8a4e668453a7aaaf423af03bdf289fa308ea03a79332",
+      "sha256": "1280e8de649805526731cc11672b0479f5ca25d9bd7ebf7a3375f8a9c966205e",
+      "source": "ui-assets/screen-assets/ui/command-skin-disabled-bottom.png"
+    },
+    "screen:ui/command-skin-disabled-br.png": {
+      "rect": [
+        9,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "e3820096cb82366b860b8a4e668453a7aaaf423af03bdf289fa308ea03a79332",
+      "sha256": "1280e8de649805526731cc11672b0479f5ca25d9bd7ebf7a3375f8a9c966205e",
+      "source": "ui-assets/screen-assets/ui/command-skin-disabled-br.png"
+    },
+    "screen:ui/command-skin-disabled-fill.png": {
+      "rect": [
+        10,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "a4fde8e43d230fb055396f4c5d14ff16378b73535abfbdaaa723c9e1108cdc82",
+      "sha256": "314a26481ee070e860a9ed5e65b057e5a246a59c46bb4eec75c6c656d205ee45",
+      "source": "ui-assets/screen-assets/ui/command-skin-disabled-fill.png"
+    },
+    "screen:ui/command-skin-disabled-left.png": {
+      "rect": [
+        11,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "921becf1fe955b3aef67ef8d4cc450e0564fa43e648fb461d0d737778d85a585",
+      "sha256": "6cd72e604b65c4f09135caaf120fbc05c530079b8e62dbd94106bcd67012d96d",
+      "source": "ui-assets/screen-assets/ui/command-skin-disabled-left.png"
+    },
+    "screen:ui/command-skin-disabled-right.png": {
+      "rect": [
+        12,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "e3820096cb82366b860b8a4e668453a7aaaf423af03bdf289fa308ea03a79332",
+      "sha256": "1280e8de649805526731cc11672b0479f5ca25d9bd7ebf7a3375f8a9c966205e",
+      "source": "ui-assets/screen-assets/ui/command-skin-disabled-right.png"
+    },
+    "screen:ui/command-skin-disabled-tl.png": {
+      "rect": [
+        13,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "921becf1fe955b3aef67ef8d4cc450e0564fa43e648fb461d0d737778d85a585",
+      "sha256": "6cd72e604b65c4f09135caaf120fbc05c530079b8e62dbd94106bcd67012d96d",
+      "source": "ui-assets/screen-assets/ui/command-skin-disabled-tl.png"
+    },
+    "screen:ui/command-skin-disabled-top.png": {
+      "rect": [
+        14,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "921becf1fe955b3aef67ef8d4cc450e0564fa43e648fb461d0d737778d85a585",
+      "sha256": "6cd72e604b65c4f09135caaf120fbc05c530079b8e62dbd94106bcd67012d96d",
+      "source": "ui-assets/screen-assets/ui/command-skin-disabled-top.png"
+    },
+    "screen:ui/command-skin-disabled-tr.png": {
+      "rect": [
+        15,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "a4fde8e43d230fb055396f4c5d14ff16378b73535abfbdaaa723c9e1108cdc82",
+      "sha256": "314a26481ee070e860a9ed5e65b057e5a246a59c46bb4eec75c6c656d205ee45",
+      "source": "ui-assets/screen-assets/ui/command-skin-disabled-tr.png"
+    },
+    "screen:ui/command-skin-disabled.png": {
+      "rect": [
+        416,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "149f45f3b700a138b18e46ba26943430d338fc0e8fa997b686190099e859e121",
+      "sha256": "cb84c9b72466c9f20f98b19ad65644e1012a6fba79ee78c872bc35ce82e81838",
+      "source": "ui-assets/screen-assets/ui/command-skin-disabled.png"
+    },
+    "screen:ui/command-skin-normal-bl.png": {
+      "rect": [
+        16,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "921becf1fe955b3aef67ef8d4cc450e0564fa43e648fb461d0d737778d85a585",
+      "sha256": "6cd72e604b65c4f09135caaf120fbc05c530079b8e62dbd94106bcd67012d96d",
+      "source": "ui-assets/screen-assets/ui/command-skin-normal-bl.png"
+    },
+    "screen:ui/command-skin-normal-bottom.png": {
+      "rect": [
+        17,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "a4fde8e43d230fb055396f4c5d14ff16378b73535abfbdaaa723c9e1108cdc82",
+      "sha256": "314a26481ee070e860a9ed5e65b057e5a246a59c46bb4eec75c6c656d205ee45",
+      "source": "ui-assets/screen-assets/ui/command-skin-normal-bottom.png"
+    },
+    "screen:ui/command-skin-normal-br.png": {
+      "rect": [
+        18,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "a4fde8e43d230fb055396f4c5d14ff16378b73535abfbdaaa723c9e1108cdc82",
+      "sha256": "314a26481ee070e860a9ed5e65b057e5a246a59c46bb4eec75c6c656d205ee45",
+      "source": "ui-assets/screen-assets/ui/command-skin-normal-br.png"
+    },
+    "screen:ui/command-skin-normal-fill.png": {
+      "rect": [
+        19,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "921becf1fe955b3aef67ef8d4cc450e0564fa43e648fb461d0d737778d85a585",
+      "sha256": "6cd72e604b65c4f09135caaf120fbc05c530079b8e62dbd94106bcd67012d96d",
+      "source": "ui-assets/screen-assets/ui/command-skin-normal-fill.png"
+    },
+    "screen:ui/command-skin-normal-left.png": {
+      "rect": [
+        20,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "ad95131bc0b799c0b1af477fb14fcf26a6a9f76079e48bf090acb7e8367bfd0e",
+      "sha256": "9853e99cb7e9817f7ee8b6fb9ade7c8e023d2520647034a098f7f85ed81e9cb0",
+      "source": "ui-assets/screen-assets/ui/command-skin-normal-left.png"
+    },
+    "screen:ui/command-skin-normal-right.png": {
+      "rect": [
+        21,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "a4fde8e43d230fb055396f4c5d14ff16378b73535abfbdaaa723c9e1108cdc82",
+      "sha256": "314a26481ee070e860a9ed5e65b057e5a246a59c46bb4eec75c6c656d205ee45",
+      "source": "ui-assets/screen-assets/ui/command-skin-normal-right.png"
+    },
+    "screen:ui/command-skin-normal-tl.png": {
+      "rect": [
+        22,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "ad95131bc0b799c0b1af477fb14fcf26a6a9f76079e48bf090acb7e8367bfd0e",
+      "sha256": "9853e99cb7e9817f7ee8b6fb9ade7c8e023d2520647034a098f7f85ed81e9cb0",
+      "source": "ui-assets/screen-assets/ui/command-skin-normal-tl.png"
+    },
+    "screen:ui/command-skin-normal-top.png": {
+      "rect": [
+        23,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "ad95131bc0b799c0b1af477fb14fcf26a6a9f76079e48bf090acb7e8367bfd0e",
+      "sha256": "9853e99cb7e9817f7ee8b6fb9ade7c8e023d2520647034a098f7f85ed81e9cb0",
+      "source": "ui-assets/screen-assets/ui/command-skin-normal-top.png"
+    },
+    "screen:ui/command-skin-normal-tr.png": {
+      "rect": [
+        24,
+        1684,
+        1,
+        1
+      ],
+      "rgbaSha256": "921becf1fe955b3aef67ef8d4cc450e0564fa43e648fb461d0d737778d85a585",
+      "sha256": "6cd72e604b65c4f09135caaf120fbc05c530079b8e62dbd94106bcd67012d96d",
+      "source": "ui-assets/screen-assets/ui/command-skin-normal-tr.png"
+    },
+    "screen:ui/command-skin-normal.png": {
+      "rect": [
+        448,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "b1ef52cc26cc2ad892f06ab3256832eb4cd17f546de9df03e622378ef36f704b",
+      "sha256": "239db7fada4b393d6519df47dfe307cbd09cc4979fbf31b5f070c00452c53ece",
+      "source": "ui-assets/screen-assets/ui/command-skin-normal.png"
+    },
+    "screen:ui/command-skin-pressed.png": {
+      "rect": [
+        480,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "6d08e1e0fed6c517b01dbb41bb1757ae1eeb93f69abe8754eca9b0930f44db35",
+      "sha256": "59a89fa12cc9930691289a19b4d955d7297dcca076180bf4b5549158877bd6a6",
+      "source": "ui-assets/screen-assets/ui/command-skin-pressed.png"
+    },
+    "screen:ui/exit-enabled.png": {
+      "rect": [
+        512,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "bcb3ca17d21a5f98da51d83ed659987024b3ee0461aa6ee47ca71436bce388a5",
+      "sha256": "30df89e094985b596b50ae019cb7d3ac27029e076b421e65cb245024708ec1d4",
+      "source": "ui-assets/screen-assets/ui/exit-enabled.png"
+    },
+    "screen:ui/font-statistics-native.png": {
+      "rect": [
+        1072,
+        1560,
+        128,
+        48
+      ],
+      "rgbaSha256": "c5a4701b56bd9a17e8b487d51eb14f4d59374b66031fbefe9be4fbb2f0d5e706",
+      "sha256": "f9cd2202b4dec7604f010e5d00a25e0b3d01f05a328c462a128c9c2c93e3938f",
+      "source": "ui-assets/screen-assets/ui/font-statistics-native.png"
+    },
+    "screen:ui/font-textmask-native.png": {
+      "rect": [
+        1200,
+        1560,
+        128,
+        48
+      ],
+      "rgbaSha256": "b39fd751ad21dd6297e3fc358a075195ed09f2f2e1bbf13f13383a041c584bae",
+      "sha256": "3ab616d37c2372fc2d46fbbfbf5b9976d8bb3703ed575b3f4de91b2bee9491f3",
+      "source": "ui-assets/screen-assets/ui/font-textmask-native.png"
+    },
+    "screen:ui/font-textshadow-native.png": {
+      "rect": [
+        1328,
+        1560,
+        128,
+        48
+      ],
+      "rgbaSha256": "5150715635d2f34b2aa01ec55eba5cac5b177ddddeb501e7c3bec25769142433",
+      "sha256": "fbc60b2b4d1c6a0118d2ff935dc5f1ad6066df90430236075123e4d9cec71169",
+      "source": "ui-assets/screen-assets/ui/font-textshadow-native.png"
+    },
+    "screen:ui/font-ui-native-mask.png": {
+      "rect": [
+        559,
+        1608,
+        128,
+        32
+      ],
+      "rgbaSha256": "abaaa8cf8cd7458d80a6a0124da08434e3f1c162cc08355f4acbc17b9675b27c",
+      "sha256": "fde6d6e6873b89e246cd94108cb61718c812e389762798ae55322960eb956bc1",
+      "source": "ui-assets/screen-assets/ui/font-ui-native-mask.png"
+    },
+    "screen:ui/font-ui-native.png": {
+      "rect": [
+        687,
+        1608,
+        128,
+        32
+      ],
+      "rgbaSha256": "6b69cd28527c445250051312ce31ad73b1d527e17da715236f0ba66a0e34e8ec",
+      "sha256": "b14c9b7583b0cc551a408ecbeee41cf660c760ef2d27c67a09f4c45ccbbffa64",
+      "source": "ui-assets/screen-assets/ui/font-ui-native.png"
+    },
+    "screen:ui/font-ui-shadow-native.png": {
+      "rect": [
+        815,
+        1608,
+        128,
+        32
+      ],
+      "rgbaSha256": "cb25cddde0edef8bcceec5a178360440d9d048cfb1633e8c30618707c7586281",
+      "sha256": "4f9ea0b3c4faf96abba755b86bd10499d58f390c802705933e75923a788fa49c",
+      "source": "ui-assets/screen-assets/ui/font-ui-shadow-native.png"
+    },
+    "screen:ui/native-black.png": {
+      "rect": [
+        1625,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "2c893cd47b6757133987906e00c55e6dcce3c567b9df9e7f91ffecd3604cc6a6",
+      "sha256": "43c1b79b26009d2798246be983aa5ffa1a5757f916e10cdcad7cbc5fab3f40a0",
+      "source": "ui-assets/screen-assets/ui/native-black.png"
+    },
+    "screen:ui/repair-disabled.png": {
+      "rect": [
+        544,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "8c7f63b2ff29ba7862c0b4d58a75bc905c33bdb8cc4f5c9857879fb07bc8a60f",
+      "sha256": "ffbe47fcbb5ec4efffa8a4f906af1df8749dac9249db2fa11a49a8cd0d0ca613",
+      "source": "ui-assets/screen-assets/ui/repair-disabled.png"
+    },
+    "screen:ui/repair-enabled.png": {
+      "rect": [
+        576,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "347493ef6257061b40b43fea500464ad5a105da202e1b8dabae50d3fecb5d2a6",
+      "sha256": "0b0011d08fe2bf7ccaebbe0fe7bb931ff361b466bf23df6ecf436e9eff6610b6",
+      "source": "ui-assets/screen-assets/ui/repair-enabled.png"
+    },
+    "screen:ui/steel-light.png": {
+      "rect": [
+        1633,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "31d3258e149adef794656ccb200292b1055f2c87785c744a822359411786f4e7",
+      "sha256": "fb90aa67d8c26b61d044303e53b8235c7605481cfdc8e0eb2da0858c4e325f74",
+      "source": "ui-assets/screen-assets/ui/steel-light.png"
+    },
+    "screen:ui/steel-medium.png": {
+      "rect": [
+        1641,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "44d8f73513b316545119b058565609333c6ca84238116c739c9a72841949c24b",
+      "sha256": "a0a9d0f35fdfe7b63af80b4572465aea1e2a223de22c02ff74083abd7dffe9d5",
+      "source": "ui-assets/screen-assets/ui/steel-medium.png"
+    },
+    "screen:ui/stop-disabled.png": {
+      "rect": [
+        608,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "120f8e18f7d02d5e9ed1f69ffd17efa2adc25c9d2902ba6b885b4c6ea64fef2b",
+      "sha256": "68bcb5a068774d8799d0940952767e2e10aebce39f1fb29c5b4f13288b8caccd",
+      "source": "ui-assets/screen-assets/ui/stop-disabled.png"
+    },
+    "screen:ui/stop-enabled.png": {
+      "rect": [
+        640,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "68889facad506f95b55cad19e5f5ad07791c5bf5979f93a0b13ce6d0320250e5",
+      "sha256": "d4e7e5106078f39cd6f2b671613e854ab210b8eb13343c875dfc9f06eac7fac5",
+      "source": "ui-assets/screen-assets/ui/stop-enabled.png"
+    },
+    "screen:ui/upgrade-enabled.png": {
+      "rect": [
+        672,
+        1644,
+        32,
+        24
+      ],
+      "rgbaSha256": "5a5c506380f578799b3021a3ca3c138031e49d7606c5569529944a61edb2ff92",
+      "sha256": "27f59cad99324e9a6c9711df30b4f3f263a998ce95c3facb6da3e1981d4542c9",
+      "source": "ui-assets/screen-assets/ui/upgrade-enabled.png"
+    },
+    "shop:animations/green-fixture/state-0.png": {
+      "rect": [
+        256,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "486d88657f9a5a2fc63b3cc81fc36733a58e39792d43f7b0374a64b58d0ead87",
+      "sha256": "1427870acf846e02acf9185c98fc4f9594acb74d33c1a63abf45bc0c3bb6bfe2",
+      "source": "ui-assets/shop-layout-kit/animations/green-fixture/state-0.png"
+    },
+    "shop:animations/green-fixture/state-1.png": {
+      "rect": [
+        272,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "da42d9ff4e1267b9c82eafffde816e9e4b40570edda2deb35d713e9b36fd1b54",
+      "sha256": "b501a34b9667defdf193ba1742beefac1c7a3cd20c0a3611133a3b27fe7803fe",
+      "source": "ui-assets/shop-layout-kit/animations/green-fixture/state-1.png"
+    },
+    "shop:animations/green-indicator/state-0.png": {
+      "rect": [
+        288,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "be20b1c462596db0ce4475a4fec3a213e2f92a3f4168046c4a3d1a770c94fc93",
+      "sha256": "304393107e60ba29d4cb771f002d3b74935236e0824f8dc14dfcee1f5cacdde9",
+      "source": "ui-assets/shop-layout-kit/animations/green-indicator/state-0.png"
+    },
+    "shop:animations/green-indicator/state-1.png": {
+      "rect": [
+        304,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "34686f221546fc928b47b1f93b01bf48ceb5e0c2904b214456ea8a1d1893f002",
+      "sha256": "2aaa36f46d67958e57b65114b34d62e2d5065fc663a3d5ad6000323a2e85da51",
+      "source": "ui-assets/shop-layout-kit/animations/green-indicator/state-1.png"
+    },
+    "shop:animations/green-indicator/state-2.png": {
+      "rect": [
+        320,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "7893e256744c16748683df417c756bf013ec468e7b96b1f2d25460eba1dada9e",
+      "sha256": "3df37e1b6c8709292fbd058cf4a4b0e40164ab6901a462cc5bf3a19b14379a3c",
+      "source": "ui-assets/shop-layout-kit/animations/green-indicator/state-2.png"
+    },
+    "shop:animations/green-indicator/state-3.png": {
+      "rect": [
+        336,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "1a5b31b31feb1026f7eec611bf315af020565375611da96bbf377d80420e27a3",
+      "sha256": "76e9faf6e7f83ade44179ef52fa7149d813c0dabcd44f4bb97ccfcc3971608d9",
+      "source": "ui-assets/shop-layout-kit/animations/green-indicator/state-3.png"
+    },
+    "shop:animations/radar-display/state-0.png": {
+      "rect": [
+        1759,
+        1608,
+        72,
+        24
+      ],
+      "rgbaSha256": "a0ad60c8575be19c225f62f61eb988e6288a33d89aedb96facf01349ed23b5e7",
+      "sha256": "d317db670673cb16b44a85537efb2e4259102f56e1e809d04d1011a8978cbded",
+      "source": "ui-assets/shop-layout-kit/animations/radar-display/state-0.png"
+    },
+    "shop:animations/red-fixture/state-0.png": {
+      "rect": [
+        352,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "0b23ad635d4646c1806971a5f6b2530d0126596791f3d56658b0eadb2c82c829",
+      "sha256": "c6dfbb48f0297f9a37813b13411a23d83cebd8868d36a0c5684d0992a0e0ccf8",
+      "source": "ui-assets/shop-layout-kit/animations/red-fixture/state-0.png"
+    },
+    "shop:animations/red-fixture/state-1.png": {
+      "rect": [
+        368,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "eb9e3c28cc46d322c516bfec768aa2b53e3d79699604f9d2c9f1742527d0f5e7",
+      "sha256": "d38535a7e891f50bfcc756612778e1ab40856bcb4cb76da82a974a273490b696",
+      "source": "ui-assets/shop-layout-kit/animations/red-fixture/state-1.png"
+    },
+    "shop:animations/red-indicator/state-0.png": {
+      "rect": [
+        848,
+        1644,
+        16,
+        24
+      ],
+      "rgbaSha256": "515b5e6664552a28eba10297acaf636211f3b90034b744a159591d8647c21923",
+      "sha256": "87c903db5c6fe25a76404ace7da7bf5bdc1babe414826afa9f3ecc8eeff9a3b2",
+      "source": "ui-assets/shop-layout-kit/animations/red-indicator/state-0.png"
+    },
+    "shop:animations/red-indicator/state-1.png": {
+      "rect": [
+        864,
+        1644,
+        16,
+        24
+      ],
+      "rgbaSha256": "71181ca69ff06f37e7c4f3040cb54cec5e93471abc46b57c291055ef673103d4",
+      "sha256": "6069eca8a90b7f318876f7fdb8cd32d725235024420b5101c7fdef1cfdf44de7",
+      "source": "ui-assets/shop-layout-kit/animations/red-indicator/state-1.png"
+    },
+    "shop:animations/vent/state-0.png": {
+      "rect": [
+        1793,
+        1464,
+        40,
+        56
+      ],
+      "rgbaSha256": "91722e4648eac44e57c80dcd8d57c92eebd4e0dba17a9c4c6e0f45951b69ff15",
+      "sha256": "9f92d4617a41c8edd93f89b5099448585b77a264b23f20e6bf1fb0ea89d0b292",
+      "source": "ui-assets/shop-layout-kit/animations/vent/state-0.png"
+    },
+    "shop:chrome/cash-window-clean-left.png": {
+      "rect": [
+        795,
+        1668,
+        8,
+        12
+      ],
+      "rgbaSha256": "c749a77cf56374ca10c5882c15b3116641cfd8ac812677221554cb37327410ea",
+      "sha256": "b2a10c961a7738a5d6af51d8a6e7bed1c2fdbff4472897e564399cbe4f2447a3",
+      "source": "ui-assets/shop-layout-kit/chrome/cash-window-clean-left.png"
+    },
+    "shop:chrome/cash-window-clean-middle.png": {
+      "rect": [
+        812,
+        1668,
+        1,
+        12
+      ],
+      "rgbaSha256": "e9fe3c69e60959acda4de2e56d8404371bcffbf2042eb80ea3aec695a810aa63",
+      "sha256": "4057256751cb71544b83fdfc2d5d016a2c818a9b68550e0ea54fbd2d11fb26c2",
+      "source": "ui-assets/shop-layout-kit/chrome/cash-window-clean-middle.png"
+    },
+    "shop:chrome/cash-window-clean-right.png": {
+      "rect": [
+        803,
+        1668,
+        8,
+        12
+      ],
+      "rgbaSha256": "72f756d1a3f7e66642e60f53c44b5472b576c9b156bb6c1e582d588cf8b99fe2",
+      "sha256": "22f4957fc486fba753672b862b1d36db1ff353dd1c4185f63ec5f2d244ea362d",
+      "source": "ui-assets/shop-layout-kit/chrome/cash-window-clean-right.png"
+    },
+    "shop:chrome/cash-window-left.png": {
+      "rect": [
+        464,
+        1668,
+        8,
+        16
+      ],
+      "rgbaSha256": "bc55ef18fc560acda635caea043c44a43f10f1773f0e4bd460925140247df2b0",
+      "sha256": "adb25d3fbcaab1b881f556a21b10c447ab46f929a97be78d495770c5f972105f",
+      "source": "ui-assets/shop-layout-kit/chrome/cash-window-left.png"
+    },
+    "shop:chrome/cash-window-middle.png": {
+      "rect": [
+        515,
+        1668,
+        1,
+        16
+      ],
+      "rgbaSha256": "6dc388e19532e40a7fa7b8b797120af2927921c1ab51946a82e41e9c7f0edc54",
+      "sha256": "fc619d48a05303616d76447d8db7058de5c4b8e135ae467a18e7b0d265b5a1f6",
+      "source": "ui-assets/shop-layout-kit/chrome/cash-window-middle.png"
+    },
+    "shop:chrome/cash-window-right.png": {
+      "rect": [
+        472,
+        1668,
+        8,
+        16
+      ],
+      "rgbaSha256": "ba2584dce9bc74598a347d455fdb8dbf00a3db6f9310d5e678153f29cb104957",
+      "sha256": "882a8723f1fb0d12c11d54c0757a4f5c36b5f5ed09a9ae11b8615f2919451719",
+      "source": "ui-assets/shop-layout-kit/chrome/cash-window-right.png"
+    },
+    "shop:chrome/command-bottom-texture8.png": {
+      "rect": [
+        1649,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "68f81ff284b7ffd314da458b04d0e9e3c8af8d1f34d17d102b7b568c1828926f",
+      "sha256": "0ed34f208d2ad318f4301e3e71c6201e4d0958f62bd18b4a525e62d7796b3b56",
+      "source": "ui-assets/shop-layout-kit/chrome/command-bottom-texture8.png"
+    },
+    "shop:chrome/command-cabinet-bl.png": {
+      "rect": [
+        384,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "3e8911d6c4ffd2896654ac08c73fb019ea7c55d0c051fc1040eed159821488fc",
+      "sha256": "d74c5b28d19d90359241c67414592c7044439ad26b7d72f396af3fafab37044d",
+      "source": "ui-assets/shop-layout-kit/chrome/command-cabinet-bl.png"
+    },
+    "shop:chrome/command-cabinet-bottom.png": {
+      "rect": [
+        516,
+        1668,
+        1,
+        16
+      ],
+      "rgbaSha256": "ba71ef411c6ae25ffd4426400208dd36bb933b489ab3acb3262c2e88385a6ffb",
+      "sha256": "639d52f97f7d77e5382a8e8a8d9c8f85b975bff1ee5ac641d6b115a836da7feb",
+      "source": "ui-assets/shop-layout-kit/chrome/command-cabinet-bottom.png"
+    },
+    "shop:chrome/command-cabinet-br.png": {
+      "rect": [
+        400,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "10fd679ce1700e698542493daa92d16f0cae6f9328e5f11e6e404d6de23319dc",
+      "sha256": "c8a264441d6c5b070fde978f0fb29a9ee49a870b136b4610b2c7ebb6f52ebd58",
+      "source": "ui-assets/shop-layout-kit/chrome/command-cabinet-br.png"
+    },
+    "shop:chrome/command-cabinet-fill.png": {
+      "rect": [
+        1657,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "2c893cd47b6757133987906e00c55e6dcce3c567b9df9e7f91ffecd3604cc6a6",
+      "sha256": "43c1b79b26009d2798246be983aa5ffa1a5757f916e10cdcad7cbc5fab3f40a0",
+      "source": "ui-assets/shop-layout-kit/chrome/command-cabinet-fill.png"
+    },
+    "shop:chrome/command-cabinet-left.png": {
+      "rect": [
+        1981,
+        1668,
+        16,
+        1
+      ],
+      "rgbaSha256": "90868f1d3a8822fe46a6c038f40367d28dc7ab06ef6aed9e4a933dabe78bd702",
+      "sha256": "74ff0861d5f300cbc17f8c3213564baba79d47388b168952b9c2cc3d89d3957e",
+      "source": "ui-assets/shop-layout-kit/chrome/command-cabinet-left.png"
+    },
+    "shop:chrome/command-cabinet-right.png": {
+      "rect": [
+        1997,
+        1668,
+        16,
+        1
+      ],
+      "rgbaSha256": "579e8600b2deec8467e67dde81529aa00e6cd631be137ab4df01fe386de4d69e",
+      "sha256": "e1b84fb1983d9bd913aac2f4b2a8477db4c4fa2c1316e9e9ef012fcc0db2e378",
+      "source": "ui-assets/shop-layout-kit/chrome/command-cabinet-right.png"
+    },
+    "shop:chrome/command-cabinet-tl.png": {
+      "rect": [
+        416,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "f6944ea7bed5886497df60cdec7f69f5721346c20a87a22ae90dd162fc4cbeb7",
+      "sha256": "3857117534cde038c0c504c2612a14b84d6e1954ab2ae230794a85739d28aae4",
+      "source": "ui-assets/shop-layout-kit/chrome/command-cabinet-tl.png"
+    },
+    "shop:chrome/command-cabinet-top.png": {
+      "rect": [
+        517,
+        1668,
+        1,
+        16
+      ],
+      "rgbaSha256": "601a3b6163cb760427edb1b6d5ce3d30bdf97d839a7e55d076afa5b65ffdfe2b",
+      "sha256": "ca4508057f2d70ac32794e7f39e7ec3c2e746bf5807e171da37601b0a8382909",
+      "source": "ui-assets/shop-layout-kit/chrome/command-cabinet-top.png"
+    },
+    "shop:chrome/command-cabinet-tr.png": {
+      "rect": [
+        432,
+        1668,
+        16,
+        16
+      ],
+      "rgbaSha256": "d2d5b913a696c8d03526ea650d2d4b33fda4e7ff87b13a1c59beee0afc08d621",
+      "sha256": "769b34c4234c9482baedaae118f402bebbcb98e67f8597d17137dad53abc2c6d",
+      "source": "ui-assets/shop-layout-kit/chrome/command-cabinet-tr.png"
+    },
+    "shop:chrome/command-left-texture8.png": {
+      "rect": [
+        1665,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "a15532b83a66a83105900dbdce4718c66c22c9c6266f247a8bc01f3aa20781b7",
+      "sha256": "c966f3056f2e0ae4030f93889579c272649325f528e0943ddade470002b0be70",
+      "source": "ui-assets/shop-layout-kit/chrome/command-left-texture8.png"
+    },
+    "shop:chrome/command-right-texture8.png": {
+      "rect": [
+        1673,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "115f47d90d2cd40d0fabecd01a699b41184a4b3f1ad1ca015cba7e362b5c41b0",
+      "sha256": "0343f82b6e2f458adc54f85c69d570e75acce9f9f411b3971c9ff669001d1e60",
+      "source": "ui-assets/shop-layout-kit/chrome/command-right-texture8.png"
+    },
+    "shop:chrome/command-top-texture8.png": {
+      "rect": [
+        1681,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "d268c1d4b13569bddd3798f6ee295aada9b21c41d82e94e94f448ecc44ad1b1d",
+      "sha256": "075e62a61a29561f71af911585094c3717c7b1ee11ef7b838179e505a114cd71",
+      "source": "ui-assets/shop-layout-kit/chrome/command-top-texture8.png"
+    },
+    "shop:chrome/header-vents.png": {
+      "rect": [
+        1497,
+        1668,
+        28,
+        8
+      ],
+      "rgbaSha256": "70467374ea7d3dea49386d5a196d8aa1c3318ca35190a5fe6b32ef85543ad5fc",
+      "sha256": "0f2ad5c3057f93398c40582120abd97f1adb010028f597b5ba5f98f173676399",
+      "source": "ui-assets/shop-layout-kit/chrome/header-vents.png"
+    },
+    "shop:chrome/meter-window-left.png": {
+      "rect": [
+        480,
+        1668,
+        8,
+        16
+      ],
+      "rgbaSha256": "7eeceec3ee21208276e7615f71271007b83f689839071fb40b0ae7029a9844a2",
+      "sha256": "92aa0adca34432733c0718f1da92e10ae27386e025f9e621b80f1ce1dd46293e",
+      "source": "ui-assets/shop-layout-kit/chrome/meter-window-left.png"
+    },
+    "shop:chrome/meter-window-middle.png": {
+      "rect": [
+        518,
+        1668,
+        1,
+        16
+      ],
+      "rgbaSha256": "77d1e3b3c15632e99a83ad9fb30b1fce2891faf4b9bce3c9371d69c4866fb9a2",
+      "sha256": "91c9b57c3a511831e60ac10aa8cbbe54f8ee32433f6f7826adcd00f6235483a0",
+      "source": "ui-assets/shop-layout-kit/chrome/meter-window-middle.png"
+    },
+    "shop:chrome/meter-window-right.png": {
+      "rect": [
+        488,
+        1668,
+        8,
+        16
+      ],
+      "rgbaSha256": "f31fb3ac1c7a6cd11e2ca4c10171e0d4b1b068e486a81cb8947e40048801ab32",
+      "sha256": "178be09f9009bd56a0296eabd9574c5f7fbebed9d7447289c30503d396a406e4",
+      "source": "ui-assets/shop-layout-kit/chrome/meter-window-right.png"
+    },
+    "shop:chrome/monitor-bl.png": {
+      "rect": [
+        1689,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "fb27ac4e2f806b9a651bd79cbdb4fcd2fa2a139b3e0b65e96a221daf036908dc",
+      "sha256": "72b61ac97b750c61cc585fdb7d8bbdb9566f78ba2d66f341612a738be55177c1",
+      "source": "ui-assets/shop-layout-kit/chrome/monitor-bl.png"
+    },
+    "shop:chrome/monitor-bottom.png": {
+      "rect": [
+        1761,
+        1668,
+        1,
+        8
+      ],
+      "rgbaSha256": "ef72507dd5f34076488c3a49b3b850b3c5e98a816bfc70596e0a5ec4df39cbb2",
+      "sha256": "ac159f2a653db4ba5a860f7aac7c033e80927377312761530d38a29829d94f98",
+      "source": "ui-assets/shop-layout-kit/chrome/monitor-bottom.png"
+    },
+    "shop:chrome/monitor-br.png": {
+      "rect": [
+        1697,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "de41d87820a5878d113860a0faf45e9390362d51ef05327843c0092d9ec734b5",
+      "sha256": "fa4f3eba87bb26aab5e282e514f5b71e1fd8f8d4501f4f49fb90299aad82f7ec",
+      "source": "ui-assets/shop-layout-kit/chrome/monitor-br.png"
+    },
+    "shop:chrome/monitor-fill.png": {
+      "rect": [
+        1705,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "2c893cd47b6757133987906e00c55e6dcce3c567b9df9e7f91ffecd3604cc6a6",
+      "sha256": "43c1b79b26009d2798246be983aa5ffa1a5757f916e10cdcad7cbc5fab3f40a0",
+      "source": "ui-assets/shop-layout-kit/chrome/monitor-fill.png"
+    },
+    "shop:chrome/monitor-left.png": {
+      "rect": [
+        2013,
+        1668,
+        8,
+        1
+      ],
+      "rgbaSha256": "9d48f86c2d9176c0a2b159592acb296727052c6e28e2dc3dcebaa66875de23b6",
+      "sha256": "691980654786e8bc5705791c44fe539e779f1839972431cc09221e9d2cd87866",
+      "source": "ui-assets/shop-layout-kit/chrome/monitor-left.png"
+    },
+    "shop:chrome/monitor-right.png": {
+      "rect": [
+        2021,
+        1668,
+        8,
+        1
+      ],
+      "rgbaSha256": "1e24925856bf71146fdc5e7721cde8615af5c43c5ae10b9c4cca6a7ebf64adb8",
+      "sha256": "3ef92e0858e722f89055fd9ee354199151ee8cd58464a4e3db0256adbc292358",
+      "source": "ui-assets/shop-layout-kit/chrome/monitor-right.png"
+    },
+    "shop:chrome/monitor-stack.png": {
+      "rect": [
+        916,
+        1464,
+        112,
+        88
+      ],
+      "rgbaSha256": "97c7916d98e438ee1e49c16f6565258c51724281f10f5e581ca5887b679df133",
+      "sha256": "5df478376131e9c7d6b0f80c57b5042dbb209722c067b1f8487976215e4c1b65",
+      "source": "ui-assets/shop-layout-kit/chrome/monitor-stack.png"
+    },
+    "shop:chrome/monitor-tl.png": {
+      "rect": [
+        1713,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "041ae149344c7e1114f233a36ca5da6d1886873f5071d7c506930a1fa69f15d9",
+      "sha256": "4c2813cac0bc84b01f5931960297ddbed45a3f48f9014ee8d13f350f60d6912f",
+      "source": "ui-assets/shop-layout-kit/chrome/monitor-tl.png"
+    },
+    "shop:chrome/monitor-top.png": {
+      "rect": [
+        1762,
+        1668,
+        1,
+        8
+      ],
+      "rgbaSha256": "3754b94cfc5939eaab6ec6cefc52976aabd33f2e5118babc45519e4112ceebd6",
+      "sha256": "671ad5faac94b3e0ca3f8d59dfb78566c4557cd07f75f840c10b6de2b53fafa2",
+      "source": "ui-assets/shop-layout-kit/chrome/monitor-top.png"
+    },
+    "shop:chrome/monitor-tr.png": {
+      "rect": [
+        1721,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "889e5f4a05d8fd412bfa689697bf4fefc87e80c0bf8648a25f52b04096833f31",
+      "sha256": "ea6d4cbd9a1a3e1fd55c52757b83717c32f595ee79f1bebbf66c1bbc80795d12",
+      "source": "ui-assets/shop-layout-kit/chrome/monitor-tr.png"
+    },
+    "shop:chrome/native-black.png": {
+      "rect": [
+        1729,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "2c893cd47b6757133987906e00c55e6dcce3c567b9df9e7f91ffecd3604cc6a6",
+      "sha256": "43c1b79b26009d2798246be983aa5ffa1a5757f916e10cdcad7cbc5fab3f40a0",
+      "source": "ui-assets/shop-layout-kit/chrome/native-black.png"
+    },
+    "shop:chrome/radar-cabinet72.png": {
+      "rect": [
+        1831,
+        1608,
+        72,
+        24
+      ],
+      "rgbaSha256": "a0ad60c8575be19c225f62f61eb988e6288a33d89aedb96facf01349ed23b5e7",
+      "sha256": "d317db670673cb16b44a85537efb2e4259102f56e1e809d04d1011a8978cbded",
+      "source": "ui-assets/shop-layout-kit/chrome/radar-cabinet72.png"
+    },
+    "shop:chrome/radar-center32.png": {
+      "rect": [
+        48,
+        1668,
+        32,
+        16
+      ],
+      "rgbaSha256": "834623794e312033b80ee58de2ae45cfc23943e1325b607f50ace490b97667fd",
+      "sha256": "f190def5571ce1632063bd764420309fe628a325e18e702abc7bafb200f3bfbc",
+      "source": "ui-assets/shop-layout-kit/chrome/radar-center32.png"
+    },
+    "shop:chrome/radar-center48.png": {
+      "rect": [
+        0,
+        1668,
+        48,
+        16
+      ],
+      "rgbaSha256": "4dc252460f6f8423a2bc9e6868e83566a4e357a02c8cabfe94ede2c61858f6e1",
+      "sha256": "b75d87dd489bb6b238e6888317d560d025a6169ae92f1939a2eb221f9a0d1030",
+      "source": "ui-assets/shop-layout-kit/chrome/radar-center48.png"
+    },
+    "shop:chrome/radar-clean.png": {
+      "rect": [
+        1903,
+        1608,
+        48,
+        24
+      ],
+      "rgbaSha256": "0dc2cb3fecf281ef09eaec7de695ca79ad72dc1d4350fa832d122f6d18ebead1",
+      "sha256": "00ca62aa5b48b5258c75b7be6bf48e797536fc0a2960f80fe19cdfee9ffc023a",
+      "source": "ui-assets/shop-layout-kit/chrome/radar-clean.png"
+    },
+    "shop:chrome/radar-window56.png": {
+      "rect": [
+        1915,
+        1644,
+        56,
+        16
+      ],
+      "rgbaSha256": "e32f0d3540cf1303ac16e43f028cb54d003c79c0eb35e0b8b9cd032b3810dc10",
+      "sha256": "22dd9a332d173f4c5a74e20b2316cef96061c0262cb8acce88db9a6e49c2ab11",
+      "source": "ui-assets/shop-layout-kit/chrome/radar-window56.png"
+    },
+    "shop:chrome/resource-armor.png": {
+      "rect": [
+        776,
+        1644,
+        24,
+        24
+      ],
+      "rgbaSha256": "11027f788531ff7c7ece6734b895fc407d3e0faf17d753bd34c9a4a15d65b3c2",
+      "sha256": "04a72a5aa6dc9a8d5c4ec300c01a9e9fa309a711a15dc9381621f416d11b744d",
+      "source": "ui-assets/shop-layout-kit/chrome/resource-armor.png"
+    },
+    "shop:chrome/resource-dollar.png": {
+      "rect": [
+        800,
+        1644,
+        24,
+        24
+      ],
+      "rgbaSha256": "e9f2849972bf17fde0515ed89dc5c98e7ea3647926eb6fee9f768d5d95511252",
+      "sha256": "d7c4ed959e178947adc9eb1d6eafdb260f658b02bb5364d993d45d0b162dc2d1",
+      "source": "ui-assets/shop-layout-kit/chrome/resource-dollar.png"
+    },
+    "shop:chrome/resource-knob.png": {
+      "rect": [
+        880,
+        1644,
+        16,
+        24
+      ],
+      "rgbaSha256": "052bd9b52312c483a2a95447f4bcfc9e11191df14541c520a6f591224c529ae2",
+      "sha256": "6ab81c804817da939ba1cf26a3e40b03120d8b09ef926ae453586a40a3c36d58",
+      "source": "ui-assets/shop-layout-kit/chrome/resource-knob.png"
+    },
+    "shop:chrome/resource-power.png": {
+      "rect": [
+        824,
+        1644,
+        24,
+        24
+      ],
+      "rgbaSha256": "a87445cd2b20d1235e5550f1e7e03a0bd038aad43b470af21296af0d62d41860",
+      "sha256": "9985798eaa0dd9cba88c7d8591fa2adcd11e154777feaebdb706ddc3e14481e0",
+      "source": "ui-assets/shop-layout-kit/chrome/resource-power.png"
+    },
+    "shop:chrome/resource-vent.png": {
+      "rect": [
+        1833,
+        1464,
+        40,
+        56
+      ],
+      "rgbaSha256": "4563a119abed531c05e2cc21a5919f44487a4c9db961cb5dce36f68e104345af",
+      "sha256": "90f103bb22905e5d9705faa91324ed3d6aaece2394f3afab740cb494bc57a476",
+      "source": "ui-assets/shop-layout-kit/chrome/resource-vent.png"
+    },
+    "shop:chrome/steel-grain.png": {
+      "rect": [
+        1737,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "5991a84b7ce256a3cbed32c5e892c40480db4bccb53e2eeb692407984e95ffa7",
+      "sha256": "3b9e630f4fa2a4ed5524e407d91862c9e198c3210958309c6a2eae98075b620e",
+      "source": "ui-assets/shop-layout-kit/chrome/steel-grain.png"
+    },
+    "shop:chrome/steel-light.png": {
+      "rect": [
+        1745,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "31d3258e149adef794656ccb200292b1055f2c87785c744a822359411786f4e7",
+      "sha256": "fb90aa67d8c26b61d044303e53b8235c7605481cfdc8e0eb2da0858c4e325f74",
+      "source": "ui-assets/shop-layout-kit/chrome/steel-light.png"
+    },
+    "shop:chrome/steel-medium.png": {
+      "rect": [
+        1753,
+        1668,
+        8,
+        8
+      ],
+      "rgbaSha256": "44d8f73513b316545119b058565609333c6ca84238116c739c9a72841949c24b",
+      "sha256": "a0a9d0f35fdfe7b63af80b4572465aea1e2a223de22c02ff74083abd7dffe9d5",
+      "source": "ui-assets/shop-layout-kit/chrome/steel-medium.png"
+    },
+    "shop:chrome/title-window-left.png": {
+      "rect": [
+        496,
+        1668,
+        8,
+        16
+      ],
+      "rgbaSha256": "d7875d12ce24b3535618ca34955ed978bd2fb44da1f7db04af927d6cec48268b",
+      "sha256": "4e134a659f29cedd1081824f30e2e015a80fc4bfde0dbc6f5e4beaa409f75efd",
+      "source": "ui-assets/shop-layout-kit/chrome/title-window-left.png"
+    },
+    "shop:chrome/title-window-middle.png": {
+      "rect": [
+        519,
+        1668,
+        1,
+        16
+      ],
+      "rgbaSha256": "b14363141f9aa5d0c6145252e596828febd60ab82863d31391a97597c0569bb1",
+      "sha256": "8eee78179dbae769c7aa19787b965e219b3abc4270d44f028b83814bcaa1cc68",
+      "source": "ui-assets/shop-layout-kit/chrome/title-window-middle.png"
+    },
+    "shop:chrome/title-window-right.png": {
+      "rect": [
+        504,
+        1668,
+        8,
+        16
+      ],
+      "rgbaSha256": "3d2dd99ee4d415befb7a4093d88cdc017e14670bdd8c3b4e174f0d2fcfdc6abe",
+      "sha256": "5f729c94e88ac986209a6a7aae946441fbbfeedefdfe10f7eb291efae36376b7",
+      "source": "ui-assets/shop-layout-kit/chrome/title-window-right.png"
+    },
+    "shop:font/ui-ascii-32-95.png": {
+      "rect": [
+        943,
+        1608,
+        128,
+        32
+      ],
+      "rgbaSha256": "6b69cd28527c445250051312ce31ad73b1d527e17da715236f0ba66a0e34e8ec",
+      "sha256": "b14c9b7583b0cc551a408ecbeee41cf660c760ef2d27c67a09f4c45ccbbffa64",
+      "source": "ui-assets/shop-layout-kit/font/ui-ascii-32-95.png"
+    }
+  },
+  "height": 1685,
+  "inputs": {
+    "language-assets/manifest.json": "0edec901218a992b4166bef89d908b8fa2426d010843c026a459e86541ca8001",
+    "ui-assets/screen-assets/manifest.json": "67b01884afef341cfc9f6bcf60d3f55eee20779a5ec66a35ff97a4ca642a2b37",
+    "ui-assets/shop-layout-kit/manifest.json": "d2c18faaaadbcd48c18d573a28638a2bb996d269d08d7d234c3045ad3d3d0390"
+  },
+  "path": "runtime-atlas.png",
+  "rgbaSha256": "91c4acd7c478ee5a4127b3abb3372d61baac9a275b6e4deb7e9609c8a4bd09e3",
+  "sha256": "35a19f7e9e9aa25b0b7bb676cde53021b3f53a0b85a0d544e84ed9141e14b209",
+  "version": 1,
+  "width": 2048
+}

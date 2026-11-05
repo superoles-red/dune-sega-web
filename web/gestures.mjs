@@ -32,14 +32,14 @@ export class MapGestures {
   }
   up(point){
     if(!this.points.has(point.id))return;this.move(point);
-    const mode=this.mode,primary=point.id===this.primary;this.points.delete(point.id);
+    const mode=this.mode,primary=point.id===this.primary,kind=this.points.get(point.id).kind||'mouse';this.points.delete(point.id);
     if(mode==='pinch'){
       if(this.points.size>=2){this.pinch=this.geometry([...this.points.values()].slice(0,2));return;}
       if(this.points.size===1){const p=[...this.points.values()][0];this.primary=p.id;this.origin={x:p.x,y:p.y};this.last={...this.origin};this.pinch=null;this.change('pan');return;}
       this.finish();return;
     }
     if(!primary){if(!this.points.size)this.finish();return;}
-    if(mode==='pending')this.callbacks.tap(point.x,point.y);
+    if(mode==='pending')this.callbacks.tap(point.x,point.y,kind);
     if(mode==='place')this.callbacks.placementEnd?.(point.x,point.y);
     this.finish();
   }
