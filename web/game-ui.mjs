@@ -1,14 +1,14 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261103-pwa4';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261103-pwa4';
+import {BuildingInterface} from './building-ui.mjs?v=20261105-controls1';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261105-controls1';
 import {ScreenTransition} from './screen-transition.mjs';
-import {NativeConfirmation} from './confirm-dialog.mjs?v=20261103-pwa4';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261105-controls1';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261103-pwa4';
+import {LANGUAGES} from './i18n.mjs?v=20261105-controls1';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
-import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs';
-import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261103-pwa4';
+import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261105-controls1';
+import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261105-controls1';
 
 const STORY=new Set(['house_briefing','briefing','victory','defeat']);
 const SEQUENCE=new Set([...STORY,'tutorial','loading','campaign','victory_movie','defeat_movie','results','ending','credits']);
@@ -35,7 +35,7 @@ export class GameInterface {
   dragScroll(this.actions);dragScroll(this.message);this.bindDialogTap();
   this.observer=new ResizeObserver(()=>{this.paintKey='';this.heroPaintKey='';if(this.hero)this.hero.style.cssText='';this.element.dataset.artLocked='false';this.drawCaption();this.drawMessage();this.resizeLockedArt();});this.observer.observe(this.element);this.observer.observe(this.message);this.removeLanguageListener=this.art.language?.onChange(()=>this.languageChanged());this.removePlatformListener=platform?.subscribe(()=>this.refreshPlatform());this.showHome();
  }
- async loadCampaign(){const r=await fetch('./ui-assets/campaign/manifest.json');if(!r.ok)throw Error('Campaign catalogue '+r.status);this.campaign=await r.json();this.prepareTutorial().catch(e=>console.warn('Reference prefetch:',e.message));}
+ async loadCampaign(){const r=await fetch('./ui-assets/campaign/manifest.json');if(!r.ok)throw Error('Campaign catalogue '+r.status);this.campaign=await r.json();}
  async prepareTutorial(){
   if(this.tutorial)return this.tutorial;
   if(!this.tutorialPromise)this.tutorialPromise=import('./tutorial.mjs').then(({ModernTutorial})=>ModernTutorial.load({host:document.body,art:this.art,onBack:()=>this.closeTutorial(),onSound:()=>this.uiSound()})).then(guide=>(this.tutorial=guide)).catch(error=>{this.tutorialPromise=null;throw error;});
@@ -148,10 +148,8 @@ export class GameInterface {
   if(this.busy||this.pendingScreen||this.curtain.active)return;
   this.tutorialOrigin=this.state.scene==='pause'?'pause':'options';
   const token=++this.sequence;this.busy=true;this.coldHomeVideo=false;this.cancelGesture();
-  await this.curtain.cover();
   try{
-   await this.startEngine();
-   await this.prepareTutorial();
+   await Promise.all([this.curtain.cover(),this.startEngine(),this.prepareTutorial()]);
    if(token!==this.sequence)return;
    this.view='tutorial-guide';this.element.hidden=true;this.demoButton.hidden=true;this.building.update({active:false});this.tutorial.show(0);this.busy=false;this.curtain.reveal();
   }catch(e){if(token!==this.sequence)return;this.tell('Не удалось открыть обучение: '+e.message);this.busy=false;this.showHome();this.curtain.reveal();}
@@ -211,7 +209,7 @@ export class GameInterface {
   const from=this.fromConfirmation?0.65:0;this.fromConfirmation=false;
   try{
    if(eager){if(pending.target==='pause'&&this.element.hidden)this.Module._dune_web_route_hold?.(token,1);this.tryPending();}
-   await this.curtain.cover({loading:pending.kind==='load',from,duration:240});if(token!==this.sequence){releaseHold();return;}
+   await this.curtain.cover({loading:pending.kind==='load',from,duration:pending.kind==='route'&&pending.target==='options'?120:240});if(token!==this.sequence){releaseHold();return;}
    this.pendingScreen.awaitingCover=false;
    if(!pending.training&&!(this.trainingMode&&this.tutorial?.practice&&pending.kind==='route'&&['pause','map'].includes(pending.target)))this.tutorial?.hide();
    await this.startEngine();if(token!==this.sequence){releaseHold();return;}
@@ -222,9 +220,36 @@ export class GameInterface {
 
  tryPending(){const p=this.pendingScreen;if(p&&!p.sent&&this.isReady()){p.sent=!!p.send();if(p.sent)p.sentAt=this.updateEpoch;}}
  placeholder(scene){return {...this.state,scene,inputKind:'options',optionsInGame:scene==='pause',music:this.state.music??1,sound:this.state.sound??1,sceneReady:false,rows:[]};}
- requestRoute(target){const id=ROUTE[target];if(id===undefined)return;return this.prepareNative({kind:'route',target,route:id,presentation:target==='pause'||target==='options'?target:null},()=>this.Module._dune_web_screen_route?.(id));}
+ requestRoute(target){
+  const id=ROUTE[target];if(id===undefined)return;
+  if(target==='options')this.frontendLoadError=null;
+  const options={};return this.prepareNative({kind:'route',target,route:id,presentation:target==='pause'||target==='options'?target:null},()=>target==='options'?this.sendOptionsRoute(options):this.Module._dune_web_screen_route?.(id));
+ }
+ liveNativeState(){try{const at=this.Module._dune_web_campaign_json?.();return at?JSON.parse(this.Module.UTF8ToString(at)):null;}catch{return null;}}
+ sendOptionsRoute(cold){
+  const route=()=>this.Module._dune_web_screen_route?.(ROUTE.options);
+  if(cold.restored||this.demoMode||this.trainingMode)return route();
+  // Read the live machine after engine readiness, not the last DOM poll.
+  const native=this.liveNativeState();if(native?.fault)throw Error('Не удалось открыть настройки игры');
+  // House zero is untouched reset RAM here, not a selected faction. The exact
+  // original reset entry, zero starts and absence of any world/request prove
+  // this is first boot. No existing Title, Main, world or Pause may restore.
+  const reset=native?.sceneNativePc===0x200&&native.sceneFrame===0&&native.starts===0&&native.houseId===0&&native.activeRunArmed===0&&native.pending===0&&native.routePending===0&&native.mapContext===0;
+  if(reset&&(native.scene==='boot'||native.scene==='unknown'&&native.completedFrame===0)){
+   cold.startedAt??=performance.now();
+   if(native.scene==='unknown'||native.uiCallActive){if(performance.now()-cold.startedAt<1000)return 0;}
+   else{
+    // Only an explicit Options request skips the unfinished console logo.
+    // Restore its genuine Main/audio endpoint behind the opaque curtain,
+    // then retain the normal Options handler and native-ready publication.
+    const payload=this.frontendState();if(!payload||this.pendingScreen?.awaitingCover)return 0;
+    if(!this.loadPayload(payload,true))throw Error('Не удалось открыть главное меню');cold.restored=true;
+   }
+  }
+  return route();
+ }
  openPause(){if(this.view==='native'&&(this.state.scene==='pause'||this.pendingScreen?.target==='pause'))return;this.requestRoute('pause');}
- openOptions(){this.requestRoute('options');}
+ openOptions(){return this.requestRoute('options');}
  openOriginalMain(index){if(index===2)this.requestRoute('tutorial');else if(index===1)this.openOptions();else this.front(()=>this.showHouses());}
  beginBoot(target){if(target==='houses')return this.front(()=>this.showHouses());if(target==='options')return this.openOptions();return this.openOriginalMain(target);}
  startMission(house,mission){
@@ -239,11 +264,16 @@ export class GameInterface {
   if(this.busy||this.pendingScreen||this.curtain.active)return;this.uiSound();this.saveCurrent(true);const previousDemo=this.demoMode;this.demoMode=true;this.trainingMode=false;this.demoLoadError=null;this.resuming=false;this.activeRun=null;
   let payload;return this.prepareNative({kind:'load',demo:true,previousDemo},()=>{if(this.demoLoadError)throw this.demoLoadError;if(!payload){if(!this.demoFetch){this.demoFetch=fetch('./demo-harkonnen.state.bin').then(r=>{if(!r.ok)throw Error('Демонстрация недоступна');return r.arrayBuffer();}).then(buffer=>{const b=new Uint8Array(buffer);let text='';for(let i=0;i<b.length;i+=8192)text+=String.fromCharCode(...b.subarray(i,i+8192));this.demoPayload=btoa(text);}).catch(e=>{this.demoLoadError=e;this.demoFetch=null;});}payload=this.demoPayload;if(!payload)return 0;}if(!this.loadPayload(payload,true))throw Error('Не удалось загрузить демонстрацию');this.resuming=false;return 1;});
  }
+ frontendState(){
+  if(this.frontendLoadError)throw this.frontendLoadError;
+  if(!this.frontendPayload&&!this.frontendFetch)this.frontendFetch=fetch('./frontend.state.bin').then(r=>{if(!r.ok)throw Error('Главное меню недоступно');return r.arrayBuffer();}).then(buffer=>{const b=new Uint8Array(buffer);let text='';for(let i=0;i<b.length;i+=8192)text+=String.fromCharCode(...b.subarray(i,i+8192));this.frontendPayload=btoa(text);}).catch(e=>{this.frontendLoadError=e;this.frontendFetch=null;});
+  return this.frontendPayload;
+ }
  mainMenu({house=null,save=true,onReady,onFailure}={}){
   if(save)this.saveCurrent(true);this.activeRun=null;this.resuming=false;
   if(this.state.houseId===-1&&['options','tutorial'].includes(this.state.scene)&&!onReady)return this.requestRoute('main');
   this.frontendLoadError=null;const preferences={music:this.state.music??1,sound:this.state.sound??1};
-  let payload;return this.prepareNative({kind:'frontend',house,preferences,onReady,reject:onFailure},()=>{if(this.frontendLoadError)throw this.frontendLoadError;if(!payload){if(!this.frontendFetch){this.frontendFetch=fetch('./frontend.state.bin').then(r=>{if(!r.ok)throw Error('Главное меню недоступно');return r.arrayBuffer();}).then(buffer=>{const b=new Uint8Array(buffer);let text='';for(let i=0;i<b.length;i+=8192)text+=String.fromCharCode(...b.subarray(i,i+8192));this.frontendPayload=btoa(text);}).catch(e=>{this.frontendLoadError=e;this.frontendFetch=null;});}payload=this.frontendPayload;if(!payload)return 0;}if(!this.loadPayload(payload,true))throw Error('Не удалось открыть главное меню');return 1;});
+  return this.prepareNative({kind:'frontend',house,preferences,onReady,reject:onFailure},()=>{const payload=this.frontendState();if(!payload)return 0;if(!this.loadPayload(payload,true))throw Error('Не удалось открыть главное меню');return 1;});
  }
  input(action,value){if(!this.isReady()||!ready(this.state)||this.state.inputReady===false||this.pendingScreen||this.curtain.active)return false;this.resumeAudio();const ok=!!this.Module._dune_web_campaign_input?.(action,value);if(ok&&action===5&&value===0&&STORY.has(this.state.scene)&&this.state.choiceLabels?.[0]==='PROCEED'){const b=this.hero?.getBoundingClientRect?.();if(b){this.artLock={x:b.left,y:b.top,w:b.width,h:b.height};this.applyArtLock(this.state,true);}}return ok;}
  async restartMission(){if(this.trainingMode&&this.tutorial?.active){this.tutorial.setSuspended?.(false);return this.tutorial.startPractice();}return this.prepareNative({kind:'confirm'},()=>this.Module._dune_web_campaign_input?.(1,6));}
@@ -390,8 +420,8 @@ export class GameInterface {
  homePicture(source,{cache=false}={}){
   if(!source)return null;
   if(cache){this.homeFrame.width=source.width;this.homeFrame.height=source.height;this.homeFrame.getContext('2d').drawImage(source,0,0);this.homeFrameValid=true;}
-  const can=this.titleFrame;can.width=320;can.height=246;const c=can.getContext('2d');c.imageSmoothingEnabled=false;c.fillStyle='#000';c.fillRect(0,0,320,246);c.drawImage(source,0,0,320,224);
-  if(this.creditsUnlocked){this.art.text(c,'ENGINE: REARRAKIS - OPEN SOURCE (MIT)',160,228,{scale:.65,align:'center',shadow:true});this.art.text(c,'KRUZEMAN / RROP / REARRAKIS CONTRIBUTORS',160,237,{scale:.65,align:'center',shadow:true});}return can;
+  const can=this.titleFrame;can.width=320;can.height=255;const c=can.getContext('2d');c.imageSmoothingEnabled=false;c.fillStyle='#000';c.fillRect(0,0,320,255);c.drawImage(source,0,0,320,224);
+  if(this.creditsUnlocked){this.art.text(c,'ENGINE: REARRAKIS - OPEN SOURCE (MIT)',160,228,{scale:.65,align:'center',shadow:true});this.art.text(c,'KRUZEMAN / RROP / REARRAKIS CONTRIBUTORS',160,237,{scale:.65,align:'center',shadow:true});this.art.text(c,'RU FONT / UI: SHEDEVR (2003)',160,246,{scale:.65,align:'center',shadow:true});}return can;
  }
  updateFrame({textless=false,resultLabels=false,sceneLabels=false}={}){
   if(!this.isReady())return false;const serial=this.Module._dune_web_frame_serial?.(),key=[serial,textless,resultLabels,sceneLabels,this.liveText,this.state.scene,this.state.presentationPhase].join(':');

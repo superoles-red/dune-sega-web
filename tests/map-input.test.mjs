@@ -69,6 +69,16 @@ test('blocked UI/reset cannot leave held capture or generate a later tap',()=>{
 test('pointer hover reports CSS-local coordinates once, ignoring compatibility mousemove',()=>{
  const {canvas,calls}=setup();canvas.emit('pointermove',{clientX:90,clientY:110});canvas.emit('mousemove',{clientX:90,clientY:110});assert.deepEqual(calls.hover,[{x:70,y:80}]);
 });
+test('hover identifies the actual pointer source on hybrid touch/mouse devices',()=>{
+ for(const pointerEvents of [true,false]){
+  const canvas=new Canvas(),hover=[];
+  bindMapInput(canvas,{begin(){},move(){},end(){},cancel(){},hover:(p,kind)=>hover.push({p,kind})},{pointerEvents});
+  if(pointerEvents){
+   canvas.emit('pointermove',{pointerType:'touch'});canvas.emit('pointermove',{pointerType:'pen'});canvas.emit('pointermove',{pointerType:'mouse'});
+   assert.deepEqual(hover,[{p:{x:100,y:100},kind:'pen'},{p:{x:100,y:100},kind:'mouse'}]);
+  }else{canvas.emit('mousemove');assert.deepEqual(hover,[{p:{x:100,y:100},kind:'mouse'}]);}
+ }
+});
 
 
 test('PUBLIC Safari phantom unpressed hover between stationary down/up stays one tap and cannot begin placement',()=>{

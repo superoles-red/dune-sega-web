@@ -7,6 +7,20 @@ Copyright (c)2026 kruzeman and RROP contributors.
 Copyright (c)2026 ReArrakis contributors.
 License text: licenses/ReArrakis-MIT.txt
 
+Russian presentation resources: Shedevr translation group (2003).
+Thanks for the Russian bitmap font, command graphics and reference-guide assets.
+The supplied Russian ROM's original credits name:
+  Project lead: Dmitry "Dimok" Avilov (Дмитрий «Димок» Авилов).
+  Programming: Oleg "Amorphous" Aksenov (Олег «Amorphous» Аксенов).
+  Graphics: STUDIO GRAND.
+  Special thanks in that ROM: Valentin Kozin and Dead Moroz.
+The supplied later edition is labelled Shedevr(NewGame)&Lipetsk (02.08.2011).
+Its embedded translation credits remain the Shedevr 2003 credits above.
+This adaptation's revised Russian story/UI follows the original USA meaning;
+the borrowed Russian presentation art is acknowledged separately.
+Original USA voices and music remain in use; Russian voice recordings are not used.
+Source repository attribution evidence: data/language-assets/research/translator-credits.json
+
 Web foundation: andvolodko/dune2-sega-web, pinned revision56c6a6da10.
 Based on kruzeman/ReArrakis.
 

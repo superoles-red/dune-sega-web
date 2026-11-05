@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "sourceRomSha256": "4d93c48957cc81fc49a6edff6353787e5d32eb5e2c86963182fba918a45e906a",
+  "sourceRomBytes": 1048576,
+  "sourceFileLabel": "Dune - The Battle for Arrakis (U) [T+Rus Shedevr(NewGame)&Lipetsk (02.08.2011)].gen",
+  "sourceScope": "Read-only attribution from the operator-supplied Russian ROM; no source ROM or game program modification.",
+  "introCredit": "RU FONT / UI: SHEDEVR (2003)",
+  "groupCredit": {
+    "displayName": "Shedevr / Шедевр",
+    "year": 2003,
+    "evidence": [
+      "Embedded Russian credit stream explicitly says ГРУППА ПЕРЕВОДА ПРИСТАВОЧНЫХ ИГР «ШЕДЕВР».",
+      "Embedded copyright text says 2003 ГРУППА ПЕРЕВОДА «ШЕДЕВР».",
+      "Embedded source site: WWW.SHEDEVR.RU."
+    ],
+    "sourceRecords": [
+      {
+        "romOffset": "0x11b23",
+        "rawASCII": "fPussA sEPEBOgA sPlCTABOyHcX lfP",
+        "sourceBytesSha256": "282b730a05f32b112feb6814dd79fa758a78e0c0925b8309efffd2c9c4cc5ca5"
+      },
+      {
+        "romOffset": "0x11d4e",
+        "rawASCII": "2003 fPussA sEPEBOgA \"zEgEBP\"",
+        "sourceBytesSha256": "f496c923fbcfef216f848940da36356db122d723809c0bc9ab2a1e163ee79c0a"
+      },
+      {
+        "romOffset": "0x11d19",
+        "rawASCII": "WWW.SHEDEVR.RU",
+        "sourceBytesSha256": "e6c70e83755a898c37c47c1d85646856802037a018d7229f1f07c01a8c132d64"
+      }
+    ]
+  },
+  "nativeCreditStream": {
+    "startOffset": "0x11b08",
+    "endOffsetExclusive": "0x11cf1",
+    "bytesSha256": "0bb1ca7ebf6227a8ca2e01577c506a2e11e38cbd8f9b6621a4a95387d16ae3f0",
+    "rawBytesHex": "73455045424f6720484120507543434b6c6e20726a634b0a0aff026650757373412073455045424f67412073506c435441424f79486358206c66500a0a227a4567454250220a0a0a0a0aff0242456775616c6e2073504f454b54410a0aff03674d6c54506c6e2022676c4d4f4b222041426c714f420a0a0a0a0aff0273504f6650414d4d6c43540a0aff034f7145662022414d4f5250484f55532220414b4345484f420a0a0a0a0aff025041644f5441204320665041766c4b4f6e0a0aff0353545544494f204752414e440a0a56524e2e434f4d4c494e4b2e52550a0a2020202020202020202020202020202020202020202020200a0aff02507543434b4172204f6a4275794b410a0aff03202020223344534348554d414348455222202020200a0a0a0a0aff024f434f64417220647141664f674150484f4354620a0aff034241714548546c4875204b4f6a6c48750a0a6a412064454377454848756b206c48764f504d41776c6b0a0a4f20434f6a674154457172582068544f6e206c6650630a0a200a0a44454144204d4f524f5a750a0a6a412022764148434b756b2220735041424b7520676c41714f664f420a0a200a0a412054414b6945204243454d2c0a0a204b4f664f20722048456a41437175694548484f206a4164637121200a0a0a0a0a0a0a0aff02",
+    "decodedNativeText": "ПЕРЕВОД НА РУССКИЙ ЯЗЫК\n\n[PALETTE 2]ГРУППА ПЕРЕВОДА ПРИСТАВОЧНЫХ ИГР\n\n\"ШЕДЕВР\"\n\n\n\n\n[PALETTE 2]ВЕДУЩИЙ ПРОЕКТА\n\n[PALETTE 3]ДМИТРИЙ \"ДИМОК\" АВИЛОВ\n\n\n\n\n[PALETTE 2]ПРОГРАММИСТ\n\n[PALETTE 3]ОЛЕГ \"АМОRРНОUS\" АКСЕНОВ\n\n\n\n\n[PALETTE 2]РАБОТА С ГРАФИКОЙ\n\n[PALETTE 3]SТUDIО GRАND\n\nVRN.СОМLINК.RU\n\n                        \n\n[PALETTE 2]РУССКАЯ ОЗВУЧКА\n\n[PALETTE 3]   \"3DSСНUМАСНЕR\"    \n\n\n\n\n[PALETTE 2]ОСОБАЯ БЛАГОДАРНОСТЬ\n\n[PALETTE 3]ВАЛЕНТИНУ КОЗИНУ\n\nЗА БЕСЦЕННУЮ ИНФОРМАЦИЮ\n\nО СОЗДАТЕЛЯХ ЭТОЙ ИГРЫ\n\n \n\nDЕАD МОRОZУ\n\nЗА \"ФАНСКУЮ\" ПРАВКУ ДИАЛОГОВ\n\n \n\nА ТАКЖЕ ВСЕМ,\n\n КОГО Я НЕЗАСЛУЖЕННО ЗАБЫЛ! \n\n\n\n\n\n\n\n[PALETTE 2]",
+    "decoding": "tools/extract_language_assets.py RU_CODES. Latin aliases within names are preserved in displayName using their literal ASCII spelling, not claimed to be additional Cyrillic font slots."
+  },
+  "peopleAndRoles": [
+    {
+      "role": "Project lead",
+      "displayName": "Дмитрий «Димок» Авилов",
+      "romOffset": "0x11b67",
+      "rawASCII": "gMlTPln \"glMOK\" ABlqOB",
+      "sourceBytesSha256": "e1cfa241f4d2ba0f3d76e73c259dc0184ef2ba3f01216ef7316f18ac8e5b940a"
+    },
+    {
+      "role": "Programming",
+      "displayName": "Олег «Amorphous» Аксенов",
+      "romOffset": "0x11b93",
+      "rawASCII": "OqEf \"AMORPHOUS\" AKCEHOB",
+      "sourceBytesSha256": "6dc5ad1bdeed6f81c92a1a69cc2cffe2f173ad3154b2dafa8d03ffadc1df7160"
+    },
+    {
+      "role": "Graphics",
+      "displayName": "STUDIO GRAND",
+      "romOffset": "0x11bc7",
+      "rawASCII": "STUDIO GRAND",
+      "sourceBytesSha256": "7c8ef6135cd74cb2fbde6649924b3880a159bed894e1217d7b77e6525cdd72df"
+    },
+    {
+      "role": "Original ROM Russian voice credit (recordings not used)",
+      "displayName": "3DSCHUMACHER",
+      "romOffset": "0x11c18",
+      "rawASCII": "3DSCHUMACHER",
+      "sourceBytesSha256": "420d2e163199433a1e227590ee36090ee166a3106f9c0587a810200e0a009f3f"
+    },
+    {
+      "role": "Special thanks in original ROM",
+      "displayName": "Валентин Козин",
+      "romOffset": "0x11c48",
+      "rawASCII": "BAqEHTlHu KOjlHu",
+      "sourceBytesSha256": "004c65ba40691c06cd5a87ed393194fbfe7ee8a875570a3dad130a9fdc1dabe7"
+    },
+    {
+      "role": "Special thanks in original ROM",
+      "displayName": "Dead Moroz",
+      "romOffset": "0x11c8e",
+      "rawASCII": "DEAD MOROZu",
+      "sourceBytesSha256": "1230871e643684ac291283cac2444b081f440c5d605d1d4e7fa35cc902e00fd7"
+    }
+  ],
+  "laterEditionAttribution": {
+    "label": "Shedevr(NewGame)&Lipetsk (02.08.2011)",
+    "evidence": "Operator-supplied file label only. NewGame/Lipetsk are not silently presented as personal names extracted from the embedded credit stream."
+  },
+  "adaptationUse": {
+    "borrowed": [
+      "Russian bitmap font shapes",
+      "Original Russian command graphics",
+      "Original Russian descriptive-guide resources, with separately recorded finite glyph corrections"
+    ],
+    "notUsed": [
+      "Russian game instructions/ROM as runtime",
+      "Russian voice recordings",
+      "Unreviewed fan story as a substitute for USA mission meaning"
+    ],
+    "storyAndUI": "The adaptation reviews/revises story and UI against the unchanged USA program and meaning.",
+    "unchangedROM": true
+  }
+}

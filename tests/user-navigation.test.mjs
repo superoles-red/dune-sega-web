@@ -28,6 +28,7 @@ function memory(){const values=new Map();return {getItem:k=>values.get(k)??null,
 const campaign=JSON.parse(readFileSync(new URL('../web/ui-assets/campaign/manifest.json',import.meta.url)));
 const saved=btoa('THE_CURRENT_NATIVE_V2_SAVE');
 function snapshot(extra={}){return {scene:'map',sceneReady:true,presentationReady:true,inputReady:true,inputKind:'continue',outcomeSeq:0,activeRunArmed:0,houseId:0,mission:1,...extra};}
+function bootSnapshot(extra={}){return snapshot({scene:'boot',sceneReady:false,houseId:0,activeRunArmed:0,pending:0,routePending:0,mapContext:0,sceneNativePc:0x200,sceneFrame:0,completedFrame:0,starts:0,...extra});}
 function fixture(){
  const ui=Object.create(GameInterface.prototype),storage=memory(),store=new CampaignStore(storage),calls={nativeStarts:[],nativeRoutes:[],loads:[],saves:[],messages:[],covers:0,reveals:0,inputs:[]};
  store.saveSlot(0,1,saved);
@@ -136,7 +137,7 @@ for(const target of ['options','pause'])test(target+' keeps one black fade until
  ui.curtain.cover=options=>{calls.covers++;coverOptions.push(options);ui.curtain.active=true;return new Promise(resolve=>{finishCover=resolve;});};
  const opening=ui.requestRoute(target);
  assert.deepEqual(calls.nativeRoutes,[target==='options'?1:3],'the route queues before the visual cover, without waiting for another DOM poll');
- assert.equal(ui.pendingScreen.sent,true);assert.deepEqual(published,[]);assert.equal(coverOptions[0].duration,240);assert.equal(coverOptions[0].loading,false);
+ assert.equal(ui.pendingScreen.sent,true);assert.deepEqual(published,[]);assert.equal(coverOptions[0].duration,target==='options'?120:240);assert.equal(coverOptions[0].loading,false);
  assert.equal(ui.input(2,0),false);assert.deepEqual(calls.inputs,[]);
  finishCover();await opening;
  assert.deepEqual(published,[]);assert.equal(calls.reveals,0,'the old screen stays covered while native preparation completes');assert.equal(ui.pendingScreen.target,target);assert.equal(ui.curtain.active,true);
@@ -148,6 +149,92 @@ for(const target of ['options','pause'])test(target+' keeps one black fade until
  assert.deepEqual(published,[{scene:target,pending:false}]);assert.equal(ui.pendingScreen,null);assert.equal(ui.element.dataset.ready,'true');assert.ok(ui.buttons.every(button=>!button.options.disabled));assert.equal(calls.covers,1,'native readiness does not start a second fade');
  assert.equal(ui.input(2,0),false,'the first completed paint must still uncover the screen');ui.curtain.reveal();
  assert.equal(ui.input(2,0),true);assert.deepEqual(calls.inputs,[[2,0]]);
+});
+
+test('explicit cold Options restores genuine Main only behind the finished cover, then awaits real native Options',async()=>{
+ const {ui,calls,storage}=fixture(),before=storage.getItem(CONTINUE_KEY);
+ const payload=readFileSync(new URL('../web/frontend.state.bin',import.meta.url)).toString('base64');ui.frontendPayload=payload;
+ let native=bootSnapshot({music:1,sound:1}),finishCover,reads=0;
+ ui.Module._dune_web_campaign_json=()=>{reads++;return 1;};ui.Module.UTF8ToString=()=>JSON.stringify(native);
+ // A stale UI poll must neither reject real boot nor supply its preferences.
+ ui.state=snapshot({scene:'main',houseId:-1,activeRunArmed:0,music:0,sound:0});ui.activeRun=null;
+ ui.curtain.cover=()=>{calls.covers++;ui.curtain.active=true;return new Promise(resolve=>{finishCover=resolve;});};
+ ui.loadPayload=(value,silent)=>{calls.loads.push([value,silent]);assert.equal(ui.pendingScreen.awaitingCover,false);native={...native,scene:'main',sceneReady:true};return true;};
+ const opening=ui.openOptions();assert.equal(ui.pendingScreen.sent,false);assert.deepEqual(calls.loads,[]);assert.deepEqual(calls.nativeRoutes,[]);
+ finishCover();await opening;
+ assert.ok(reads>=2,'native state is read again when the cover and engine are ready');assert.deepEqual(calls.loads,[[payload,true]]);assert.deepEqual(calls.nativeRoutes,[1]);assert.equal(ui.pendingScreen.sent,true);
+ assert.equal(storage.getItem(CONTINUE_KEY),before);assert.deepEqual(calls.saves,[]);assert.equal(ui.curtain.active,true);assert.equal(calls.reveals,0);
+ ui.update({...native,scene:'options',sceneReady:false,inputReady:false},null,{});assert.equal(ui.pendingScreen.target,'options');assert.equal(calls.reveals,0);
+ ui.update({...native,scene:'options',sceneReady:true,inputReady:true,inputKind:'options'},null,{});
+ assert.equal(ui.pendingScreen,null);assert.equal(ui.state.music,1);assert.equal(ui.state.sound,1);assert.equal(ui.element.dataset.ready,'true');assert.equal(calls.loads.length,1);assert.equal(storage.getItem(CONTINUE_KEY),before);
+});
+
+test('cold Options reads after engine readiness and keeps the route unsent while its shared frontend download is pending',async()=>{
+ const {ui,calls,storage}=fixture(),before=storage.getItem(CONTINUE_KEY),previousFetch=globalThis.fetch;
+ delete ui.frontendPayload;let engineReady=false,reads=0,resolveFetch;
+ const native=bootSnapshot();
+ ui.isReady=()=>engineReady;ui.startEngine=async()=>{engineReady=true;};ui.Module._dune_web_campaign_json=()=>{assert.equal(engineReady,true);reads++;return 1;};ui.Module.UTF8ToString=()=>JSON.stringify(native);
+ globalThis.fetch=url=>{assert.equal(url,'./frontend.state.bin');return new Promise(resolve=>{resolveFetch=resolve;});};
+ try{
+  const opening=ui.openOptions();assert.equal(reads,0);await opening;
+  assert.equal(ui.pendingScreen.sent,false);assert.deepEqual(calls.loads,[]);assert.deepEqual(calls.nativeRoutes,[]);assert.equal(ui.curtain.active,true);
+  const bytes=readFileSync(new URL('../web/frontend.state.bin',import.meta.url));resolveFetch({ok:true,arrayBuffer:async()=>bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength)});await ui.frontendFetch;
+  ui.update(native,null,{});assert.equal(ui.pendingScreen.sent,true);assert.equal(calls.loads.length,1);assert.deepEqual(calls.nativeRoutes,[1]);assert.equal(ui.pendingScreen.target,'options','the poll before snapshot restoration is not a destination acknowledgement');assert.equal(storage.getItem(CONTINUE_KEY),before);
+ }finally{globalThis.fetch=previousFetch;}
+});
+
+test('fresh Title/Main/world and unsafe boot states never reload audio/defaults for Options',async()=>{
+ const states=[{scene:'title'},{scene:'main'},{scene:'options'},{scene:'map',houseId:1},{scene:'pause',houseId:1},{activeRunArmed:1},{pending:1},{routePending:1},{mapContext:1},{houseId:-1},{sceneNativePc:0x9320},{sceneFrame:1},{starts:1},{demo:true},{training:true}];
+ for(const extra of states){
+  const {ui,calls,storage}=fixture(),before=storage.getItem(CONTINUE_KEY);
+  const native=bootSnapshot({music:0,sound:0,...extra});
+  ui.demoMode=!!extra.demo;ui.trainingMode=!!extra.training;ui.state={...native,scene:'boot',houseId:-1,activeRunArmed:0,pending:0};
+  ui.Module._dune_web_campaign_json=()=>1;ui.Module.UTF8ToString=()=>JSON.stringify(native);
+  await ui.openOptions();assert.deepEqual(calls.loads,[],'no restore for '+JSON.stringify(extra));assert.deepEqual(calls.nativeRoutes,[1]);assert.equal(ui.state.music,0);assert.equal(ui.state.sound,0);assert.equal(storage.getItem(CONTINUE_KEY),before);assert.deepEqual(calls.saves,[]);
+ }
+});
+
+test('an immediate frame-zero Options click waits for genuine boot identity before restoring its snapshot',async()=>{
+ const {ui,calls}=fixture();let native=bootSnapshot({scene:'unknown'});
+ ui.Module._dune_web_campaign_json=()=>1;ui.Module.UTF8ToString=()=>JSON.stringify(native);
+ await ui.openOptions();assert.equal(ui.pendingScreen.sent,false);assert.deepEqual(calls.loads,[]);assert.deepEqual(calls.nativeRoutes,[]);
+ native={...native,scene:'boot'};ui.update(native,null,{});
+ assert.equal(calls.loads.length,1);assert.deepEqual(calls.nativeRoutes,[1]);assert.equal(ui.pendingScreen.sent,true);
+});
+
+test('frame-zero waiting is bounded and a native fault fails instead of keeping Options loading forever',async()=>{
+ const previousPerformance=globalThis.performance;let now=0;globalThis.performance={now:()=>now};
+ try{
+  const {ui,calls}=fixture(),native=bootSnapshot({scene:'unknown'});
+  ui.Module._dune_web_campaign_json=()=>1;ui.Module.UTF8ToString=()=>JSON.stringify(native);
+  await ui.openOptions();assert.equal(ui.pendingScreen.sent,false);now=1001;ui.update(native,null,{});
+  assert.equal(ui.pendingScreen.sent,true);assert.deepEqual(calls.loads,[]);assert.deepEqual(calls.nativeRoutes,[1],'an initialization that remains unknown uses the bounded ordinary route fallback');
+  const failed=fixture();failed.ui.Module._dune_web_campaign_json=()=>1;failed.ui.Module.UTF8ToString=()=>JSON.stringify({...native,fault:1});
+  await failed.ui.openOptions();assert.equal(failed.ui.pendingScreen,null);assert.equal(failed.ui.view,'home');assert.equal(failed.ui.busy,false);assert.equal(failed.ui.curtain.active,false);assert.deepEqual(failed.calls.loads,[]);assert.deepEqual(failed.calls.nativeRoutes,[]);assert.ok(failed.calls.messages.length);
+ }finally{globalThis.performance=previousPerformance;}
+});
+
+test('a transient boot click sound finishes before snapshot restore; a stuck call has a bounded ordinary-route fallback',async()=>{
+ const previousPerformance=globalThis.performance;let now=0;globalThis.performance={now:()=>now};
+ try{
+  const {ui,calls}=fixture();let native=bootSnapshot({uiCallActive:1});ui.Module._dune_web_campaign_json=()=>1;ui.Module.UTF8ToString=()=>JSON.stringify(native);
+  await ui.openOptions();assert.equal(ui.pendingScreen.sent,false);assert.deepEqual(calls.loads,[]);assert.deepEqual(calls.nativeRoutes,[]);
+  native={...native,uiCallActive:0};ui.update(native,null,{});assert.equal(calls.loads.length,1);assert.deepEqual(calls.nativeRoutes,[1]);
+  const stuck=fixture();stuck.ui.Module._dune_web_campaign_json=()=>1;stuck.ui.Module.UTF8ToString=()=>JSON.stringify(bootSnapshot({uiCallActive:1}));
+  await stuck.ui.openOptions();now=1001;stuck.ui.update(bootSnapshot({uiCallActive:1}),null,{});
+  assert.equal(stuck.ui.pendingScreen.sent,true);assert.deepEqual(stuck.calls.loads,[]);assert.deepEqual(stuck.calls.nativeRoutes,[1]);
+ }finally{globalThis.performance=previousPerformance;}
+});
+
+test('a boot that reaches Title during the snapshot download follows the ordinary route and keeps live music',async()=>{
+ const {ui,calls}=fixture(),previousFetch=globalThis.fetch;delete ui.frontendPayload;let resolveFetch;
+ let native=bootSnapshot({music:0,sound:0});ui.Module._dune_web_campaign_json=()=>1;ui.Module.UTF8ToString=()=>JSON.stringify(native);
+ globalThis.fetch=()=>new Promise(resolve=>{resolveFetch=resolve;});
+ try{
+  await ui.openOptions();assert.equal(ui.pendingScreen.sent,false);
+  native={...native,scene:'title'};resolveFetch({ok:true,arrayBuffer:async()=>new TextEncoder().encode('UNUSED_FRONTEND').buffer});await ui.frontendFetch;
+  ui.update(native,null,{});assert.equal(ui.pendingScreen.sent,true);assert.deepEqual(calls.loads,[]);assert.deepEqual(calls.nativeRoutes,[1]);assert.equal(ui.state.music,0);assert.equal(ui.state.sound,0);
+ }finally{globalThis.fetch=previousFetch;}
 });
 
 test('Tutorial and Languages are available in both Options and Pause, with no Home shortcut',()=>{
@@ -192,9 +279,39 @@ test('modern Tutorial opens repeatedly at step zero without rerouting the origin
  assert.deepEqual(shown,[0,0,0]);assert.deepEqual(calls.nativeRoutes,[]);assert.deepEqual(calls.loads,[]);assert.deepEqual(calls.nativeStarts,[]);assert.equal(storage.getItem(CONTINUE_KEY),before);
 });
 
+test('loading the campaign catalogue does not download or decode unused tutorial atlases',async()=>{
+ const previousFetch=globalThis.fetch,requests=[];const {ui}=fixture();
+ globalThis.fetch=async url=>{requests.push(String(url));return {ok:true,json:async()=>campaign};};
+ ui.prepareTutorial=()=>{assert.fail('reference images are on demand, not a startup dependency');};
+ try{await ui.loadCampaign();assert.equal(ui.campaign,campaign);assert.deepEqual(requests,['./ui-assets/campaign/manifest.json']);}finally{globalThis.fetch=previousFetch;}
+});
+
+test('opening the reference overlaps its asset load and engine readiness with the fade',async()=>{
+ const {ui}=fixture(),started=[];let finishCover,finishEngine,finishAssets;
+ ui.state=snapshot({scene:'options',houseId:-1,optionsInGame:false});
+ ui.tutorial={active:false,show(index){assert.equal(index,0);this.active=true;},hide(){this.active=false;}};
+ ui.curtain.cover=()=>{started.push('cover');ui.curtain.active=true;return new Promise(resolve=>{finishCover=resolve;});};
+ ui.startEngine=()=>{started.push('engine');return new Promise(resolve=>{finishEngine=resolve;});};
+ ui.prepareTutorial=()=>{started.push('assets');return new Promise(resolve=>{finishAssets=resolve;});};
+ const opening=ui.openTutorial();assert.deepEqual(started,['cover','engine','assets']);assert.equal(ui.tutorial.active,false);
+ finishEngine();finishAssets();await Promise.resolve();assert.equal(ui.tutorial.active,false,'the cover remains the presentation boundary');
+ finishCover();await opening;assert.equal(ui.tutorial.active,true);assert.equal(ui.busy,false);assert.equal(ui.view,'tutorial-guide');
+});
+
 test('Home uses the native textless getter even while its polled scene still says Title',()=>{
  const {ui}=fixture(),reads=[],previousDpr=globalThis.devicePixelRatio;globalThis.devicePixelRatio=1;
  Object.assign(ui,{view:'home',state:{scene:'title',sceneReady:false},coldHomeVideo:true,homePicture:im=>im,frame:{valid:true,canvas:{width:320,height:224}},hero:{getBoundingClientRect:()=>({width:320,height:240})},heroCanvas:{getContext:()=>({setTransform(){},drawImage(){}})},drawBackdrop(){},updateFrame(options){reads.push(options);return true;}});
  ui.element.hidden=false;ui.curtain.paint=()=>{};ui.building.render=()=>{};
  try{GameInterface.prototype.render.call(ui,100);assert.deepEqual(reads,[{textless:true}],'native Main can draw its first menu words between the50ms DOM polls; the getter knows the actual C scene');}finally{globalThis.devicePixelRatio=previousDpr;}
+});
+
+test('Home credits retain the legal-credit gate and extend below the complete original frame',()=>{
+ const source={width:320,height:224},images=[],credits=[],fills=[];
+ const context={drawImage(...args){images.push(args);},fillRect(...args){fills.push(args);}};
+ const ui=Object.create(GameInterface.prototype);Object.assign(ui,{titleFrame:{getContext:()=>context},creditsUnlocked:false,art:{text(_context,label,x,y,options){credits.push({label,x,y,options});}}});
+ const cold=ui.homePicture(source);assert.equal(cold.width,320);assert.equal(credits.length,0,'translator and engine acknowledgements cannot precede the original licensing sequence');
+ ui.creditsUnlocked=true;const final=ui.homePicture(source);assert.ok(credits.some(line=>line.label.includes('SHEDEVR')));
+ assert.ok(credits.every(line=>line.y>=224&&line.y+8*line.options.scale<=final.height),'all acknowledgements occupy added rows below the original image');
+ assert.ok(images.every(args=>args[0]===source&&args.slice(1).join(',')==='0,0,320,224'),'the source frame and its original legal text are never cropped or resized internally');
+ assert.deepEqual(fills.at(-1),[0,0,final.width,final.height]);
 });

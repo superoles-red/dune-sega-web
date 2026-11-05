@@ -430,6 +430,26 @@ static void em_web_campaign_route_intro(CPU*c){
  if(c->pc==0x1752e)c->d[3]=(c->d[3]&0xffff0000u)|0x12cu;
 }
 
+/* Modern startup Options is already covered by the host curtain. Finish only
+ * the hidden Main confirmation hold and exact native palette endpoints. This
+ * does not jump the PC, bypass DMA/the final VBlank/sound calls, or fast-forward
+ * a machine clock. Fewer hidden palette/hold loop iterations are intentional.
+ * A live or paused scenario can never enter this path. */
+static void em_web_campaign_options_presentation(CPU*c){
+ EmWebCampaign*s=&em_web_campaign;
+ if(!c||c->fault||s->cpu!=c||!s->route_pending||s->route_target!=1||s->pending||s->armed||s->calling||s->ui_call_active||em_web_campaign_house(c)!=-1||dune_mouse_context(c)||dune_long(c,0xc278))return;
+ if(!s->scene||(strcmp(s->scene,"main")&&strcmp(s->scene,"options")))return;
+ if(c->pc==0x17a02){c->d[3]=(c->d[3]&0xffff0000u)|1u;return;}
+ unsigned sp=c->a[7]&65535;
+ if(c->pc==0x65c&&(c->a[2]&0xffffffu)==0xffe2b4u&&(c->d[5]&65535)==0&&(c->d[6]&65535)==64&&sp<=65503&&dune_long(c,sp+24)==0xa94){
+  unsigned caller=dune_long(c,sp+28);
+  if(caller==0x179c0||caller==0x20dca)memset(c->ram+0xe2b4,0,128);
+ }else if(c->pc==0x6e2&&(c->a[2]&0xffffffu)==0xffe2b4u&&(c->a[4]&65535)==64&&(c->a[5]&65535)==0&&sp<=65491&&dune_long(c,sp+40)==0x20ef4){
+  unsigned source=c->a[3]&0xffffffu;
+  if(c->rom&&source<=c->rom_size&&c->rom_size-source>=128)memcpy(c->ram+0xe2b4,c->rom+source,128);
+ }
+}
+
 static int em_web_campaign_route_observe(CPU*c){
  EmWebCampaign*s=&em_web_campaign;
  if(!s->route_pending||s->pending||s->calling)return 0;
@@ -464,6 +484,7 @@ static int em_web_campaign_observe(CPU*c){
  s->last_steps=c->steps;s->last_cycles=c->master_cycles;
  if(c->fault)return 0;
  em_web_campaign_route_intro(c);
+ em_web_campaign_options_presentation(c);
  em_web_campaign_transition_update(c);
  if(em_web_campaign_sound_return(c))return 1;
  /* An explicit campaign request drives the old hidden menu selections.

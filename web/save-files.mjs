@@ -10,8 +10,13 @@ export const MAX_NATIVE_SAVE_BYTES=256*1024;
 export const NATIVE_SAVE_BASE_BYTES=140056;
 export const SAVE_COMPATIBILITY=Object.freeze({
  game:'dune-sega-usa',nativeFormat:'DSAV',nativeVersion:2,nativeBaseBytes:NATIVE_SAVE_BASE_BYTES,
- engineSha256:'4f3a8c75663e87b0f7dbcad2aff11ee36fa434d9d0a82d87a74318700ee64c22',
+ engineSha256:'777d313a36f86b7c46bc5994b1c43507a2ef2a9006bd80648cf4f73c7b534add',
 });
+// These two builds share the exact DSAV v2 ABI. The newer build changes host
+// pointing and frontend presentation only; existing exported saves remain valid.
+const compatibleEngineHashes=new Set([SAVE_COMPATIBILITY.engineSha256,
+ '4f3a8c75663e87b0f7dbcad2aff11ee36fa434d9d0a82d87a74318700ee64c22',
+]);
 const verifiedArchives=new WeakSet();
 const encoder=new TextEncoder();
 const record=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
@@ -72,10 +77,12 @@ function checkedBody(value){
  exactKeys(value,['format','version','compatibility','createdAt','language','progress','continue']);
  if(value.format!==SAVE_FILE_FORMAT)fail('wrong-game','This is not a Dune Sega web save.');
  if(value.version!==SAVE_FILE_VERSION)fail('incompatible-version','This save file version is not supported.');
- if(!equal(value.compatibility,SAVE_COMPATIBILITY))fail('incompatible-engine','This save belongs to a different game core.');
+ if(!record(value.compatibility)||!compatibleEngineHashes.has(value.compatibility.engineSha256)||!equal({...value.compatibility,engineSha256:SAVE_COMPATIBILITY.engineSha256},SAVE_COMPATIBILITY))fail('incompatible-engine','This save belongs to a different game core.');
  if(!positiveDate(value.createdAt)||!['en','ru'].includes(value.language))fail('invalid-format','Save metadata is invalid.');
  const progress=checkedProgress(value.progress),current=checkedContinue(value.continue,progress);
- return {format:SAVE_FILE_FORMAT,version:SAVE_FILE_VERSION,compatibility:{...SAVE_COMPATIBILITY},createdAt:value.createdAt,language:value.language,progress,continue:current};
+ // Retain the original accepted hash, so the verified archive still matches its
+ // original checksum. A fresh export records the current build's hash instead.
+ return {format:SAVE_FILE_FORMAT,version:SAVE_FILE_VERSION,compatibility:{...value.compatibility},createdAt:value.createdAt,language:value.language,progress,continue:current};
 }
 function verified(value){deepFreeze(value);verifiedArchives.add(value);return value;}
 

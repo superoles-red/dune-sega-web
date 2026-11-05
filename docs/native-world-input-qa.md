@@ -1,5 +1,11 @@
 # World-A target lifetime: Palace regression
 
+Historical evidence for the earlier adapter and the hashes recorded below.
+Since 2026-11-05, [native-tap-latency.md](native-tap-latency.md) supersedes the
+camera-travel path: current in-bounds clicks retain the correct original cell
+without moving the hidden native camera. The earlier traces are kept intact,
+not presented as measurements of the current build.
+
 `tools/test_em_web_generic_world_intent.c` reproduces the reported Palace target error on the actual red demo snapshot. This is a targeted input test on an authored demonstration, separate from the ordinary-campaign execution differential.
 
 The Palace is selected/armed through two original A taps at world424,1032. The following requested world point589,826 belongs to native tile1618 `(18,25)`. Native internal camera movement is required to reach this point:295,839→337,797. The browser's adapted-camera pan is already reflected in the supplied world coordinate; this headless test does not reproduce CSS/DPR projection.

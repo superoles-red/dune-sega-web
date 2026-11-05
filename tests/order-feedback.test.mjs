@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {OrderFeedback,orderFeedbackPulse,projectOrderFeedback} from '../web/order-feedback.mjs';
+import {OrderFeedback,orderFeedbackPulse,projectOrderFeedback,initialFeedbackPointerKind} from '../web/order-feedback.mjs';
 
 test('one accepted intent has exactly two short visible intervals, then ends',()=>{
  assert.deepEqual([0,50,99,100,179,180,250,279,280].map(orderFeedbackPulse),[1,1,1,0,0,2,2,2,0]);
@@ -70,4 +70,33 @@ test('Palace aim follows the actual pointer, hides during pan and confirms the c
   view.observe({special:{armed:false},lastOrder:{seq:1,kind:'special',worldX:180,worldY:340}},{now:3});view.render(3,camera);
   assert.equal(view.current.kind,'special');assert.equal(view.lastProjection.width,256);assert.equal(view.lastProjection.x+view.lastProjection.width/2,170);assert.equal(view.lastProjection.y+view.lastProjection.height/2,300);
  }finally{globalThis.document=oldDocument;}
+});
+
+test('touch and pen Palace indicators stay visible at viewport centre before a pointer, through pan and resize',()=>{
+ const oldDocument=globalThis.document;globalThis.document={createElement:()=>({style:{},hidden:true,setAttribute(){},append(){}}),body:{append(){}}};
+ try{
+  for(const kind of ['touch','pen']){
+   let rect={left:10,top:20,width:390,height:844};const view=new OrderFeedback({canvas:{getBoundingClientRect:()=>rect},pointerKind:kind});view.ready=true;view.assets.attack={width:24,height:24,url:'native-attack.png'};
+   const camera={map:1,left:100,top:200,scale:2,scaleY:2};view.observe({special:{armed:true},lastOrder:{seq:0}},{now:0});view.render(0,camera);
+   assert.equal(view.lastPointer,null);assert.equal(view.specialImage.hidden,false,'arming never waits for a hover on a touch screen');assert.equal(view.specialImage.style.left,'205px');assert.equal(view.specialImage.style.top,'442px');
+   view.aimAt(25,720);view.panAim();view.render(1,{...camera,left:800,top:900,scale:1,scaleY:1});assert.equal(view.specialImage.hidden,false);assert.equal(view.specialImage.style.left,'205px');assert.equal(view.specialImage.style.top,'442px');
+   view.releaseAim(100,200);view.render(2,camera);assert.equal(view.specialImage.style.left,'205px');assert.equal(view.specialImage.style.top,'442px');assert.equal(view.acceptedIntents,0,'moving the visual marker does not commit an order');
+   rect={left:0,top:0,width:844,height:390};view.render(3,camera);assert.equal(view.specialImage.style.left,'422px');assert.equal(view.specialImage.style.top,'195px');
+   view.observe({special:{armed:false},lastOrder:{seq:0}},{now:4});view.render(4,camera);assert.equal(view.specialImage.hidden,true);assert.equal(view.element.hidden,true);assert.equal(view.active,false);
+  }
+ }finally{globalThis.document=oldDocument;}
+});
+
+test('actual pointer kind overrides coarse-device default without changing native world-target confirmation',()=>{
+ const oldDocument=globalThis.document,oldMatch=globalThis.matchMedia;globalThis.document={createElement:()=>({style:{},hidden:true,setAttribute(){},append(){}}),body:{append(){}}};
+ try{
+  globalThis.matchMedia=query=>({matches:query==='(pointer: coarse)'});assert.equal(initialFeedbackPointerKind(),'touch');
+  const view=new OrderFeedback({canvas:{getBoundingClientRect:()=>({left:0,top:0,width:800,height:600})}});view.ready=true;view.assets.attack={width:24,height:24,url:'native-attack.png'};const camera={map:1,left:100,top:200,scale:2,scaleY:2};
+  view.observe({special:{armed:true},lastOrder:{seq:0}},{now:0});view.aimAt(120,150);view.render(0,camera);assert.equal(view.specialImage.style.left,'400px');
+  assert.equal(view.setPointerKind('mouse'),true);view.render(1,camera);assert.equal(view.specialImage.style.left,'120px');assert.equal(view.specialImage.style.top,'150px');
+  assert.equal(view.setPointerKind('unknown'),false);assert.equal(view.pointerKind,'mouse');view.setPointerKind('touch');view.render(2,camera);assert.equal(view.specialImage.style.left,'400px');
+  const actual={seq:1,kind:'special',worldX:180,worldY:340};view.observe({special:{armed:false},lastOrder:actual},{now:3});view.render(3,camera);
+  assert.deepEqual(actual,{seq:1,kind:'special',worldX:180,worldY:340});assert.deepEqual(view.lastWorld,{x:180,y:340});assert.equal(view.lastProjection.x+view.lastProjection.width/2,160);assert.equal(view.lastProjection.y+view.lastProjection.height/2,280);assert.equal(view.specialImage.hidden,true);
+  globalThis.matchMedia=()=>({matches:false});assert.equal(initialFeedbackPointerKind(),'mouse');
+ }finally{globalThis.document=oldDocument;if(oldMatch===undefined)delete globalThis.matchMedia;else globalThis.matchMedia=oldMatch;}
 });

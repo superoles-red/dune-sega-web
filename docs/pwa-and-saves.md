@@ -7,9 +7,9 @@
 
 ## Полный экран и значок
 
-Для полного экрана нажмите маленький значок справа сверху. Это единственная
-кнопка полного экрана; внутри здания она скрыта, чтобы
-не перекрывать денежный счётчик. Полноэкранный режим включается по нажатию
+Для полного экрана нажмите маленький значок слева сверху. Это единственная
+кнопка полного экрана, доступная и внутри зданий. Кнопка игровой паузы `MENU`
+на карте расположена сразу справа от этого значка. Полноэкранный режим включается по нажатию
 пользователя, если браузер поддерживает его для игр. Выход —
 той же кнопкой или системным жестом/Escape. Масштаб камеры внутри игры — отдельная
 функция и не заменяет полный экран браузера.
@@ -21,7 +21,7 @@
   на iPhone не обязана поддерживать полноэкранную кнопку для canvas.
 - **Android:** откройте `OPTIONS`/паузу → `FILES & OFFLINE` → `INSTALL GAME`, если браузер предложит установку,
   или меню браузера → «Установить приложение» / «На главный экран».
-- **ПК:** можно играть во вкладке и включить полный экран из Options. Chrome/Edge
+- **ПК:** можно играть во вкладке и включить полный экран значком слева сверху. Chrome/Edge
   также могут предложить установку. В Safari на Mac доступно «Добавить в Dock».
 
 Наличие значка и готовность офлайн-копии — разные вещи. Для игры без сети
@@ -100,7 +100,9 @@
 
 ## English quick guide
 
-Use the single upper-right icon for fullscreen. Open **Options/Pause →
+Use the single upper-left icon for fullscreen; the map's **Menu** button is
+immediately to its right. The fullscreen icon remains available inside buildings.
+Open **Options/Pause →
 Files & Offline** for **Download Save**, **Load Save File**, **Install
 Game**, **Prepare Offline**, and **Source Code**. On iPhone, use Safari → Share → Add to Home Screen → Open as Web
 App, then launch the icon. On Android/desktop, use the browser's supported

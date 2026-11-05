@@ -22,7 +22,7 @@ export function bindMapInput(canvas,{begin,move,end,cancel,hover=()=>{},position
       if(active.get(e.pointerId)==='mouse'&&e.buttons===0)return;
       const p=position(e);
       if(active.has(e.pointerId))move(e.pointerId,p);
-      else if(e.pointerType==='mouse'||e.pointerType==='pen')hover(p);
+      else if(e.pointerType==='mouse'||e.pointerType==='pen')hover(p,e.pointerType);
     });
     listen('pointerup',e=>{
       stop(e);if(!active.has(e.pointerId))return;
@@ -38,7 +38,7 @@ export function bindMapInput(canvas,{begin,move,end,cancel,hover=()=>{},position
       stop(e);if(e.button!==0||active.has('mouse'))return;active.set('mouse','mouse');
       if(begin('mouse',position(e),'mouse')===false)active.delete('mouse');
     });
-    listen('mousemove',e=>{stop(e);const p=position(e);if(active.has('mouse'))move('mouse',p);else hover(p);});
+    listen('mousemove',e=>{stop(e);const p=position(e);if(active.has('mouse'))move('mouse',p);else hover(p,'mouse');});
     listen('mouseup',e=>{stop(e);if(e.button!==0||!active.has('mouse'))return;active.delete('mouse');end('mouse',position(e));});
   }
   for(const name of ['click','dblclick','auxclick','contextmenu','touchstart','touchmove','touchend','touchcancel'])listen(name,stop);

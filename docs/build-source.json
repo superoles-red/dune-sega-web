@@ -5,7 +5,7 @@
   "adapterHeaders": {
     "em_web_building_ui.h": "5955801d6443705cd18219ba2377b7972852da6e7abc7dcccfbc6949eae1a3b5",
     "em_web_camera.h": "cecd85a1370e6218308edd70d50b101ccbac8b089f675ffe72c51b2579e11726",
-    "em_web_campaign.h": "6591c91bd62a5958910901fad5f35c84131a7574cb1caa52fd21d5975c969741",
+    "em_web_campaign.h": "d67ad7a0fa7e95e2e0fc967f42482b478a8eb99a48c9ab6726cb6a408ad7cd3c",
     "em_web_frame.h": "78f8e0eb045edce055cdf485ac897110cf5dda88ab90e0430185f1308356ca13",
     "em_web_host.h": "2258b5a1ff82a13c94eb06ab02c92ece4a3ff7b6cc921d907eb035df062fba8d",
     "em_web_menu_select.h": "f6417f9c5b96701d086056916b15eb6bbb723a76051c4de50fee3590ce1aecfc",
@@ -16,7 +16,7 @@
     "em_web_ready.h": "441f375e3f10c0dc0aae3000eb3be03a5c016d43fefd5afae5b7e879191fd413",
     "em_web_selection.h": "a3590d1c29279781f84284d42cc58b5805721c562dc2f4d4b6b54bba7afd5603",
     "em_web_training.h": "c5f02bb242bfee1e8f2198dd6968dbcd2ba21a183c00f51621e67205e7ca2d7d",
-    "em_web_world_intent.h": "e9b3b4b6d2eefc1c1577ece2fd2510f5578b5217efefda81e4e4ce3e36044304"
+    "em_web_world_intent.h": "d1cfb7da4165bfd1168a8332b81c608934527a051204ad85b5e4795e8d4af836"
   },
   "patchScope": [
     "browser clock and pause",

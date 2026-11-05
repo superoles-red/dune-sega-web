@@ -26,9 +26,9 @@
       "sha256": "5c51106d6ee86ec6ebe07f60495b1315d9092cce6eadbe53dc79b1c2565faaa0"
     },
     "README.md": {
-      "bytes": 51596,
+      "bytes": 53946,
       "mode": "0o644",
-      "sha256": "53138c17ea2359ffd97485bebfa11a4347b6b3137eb99507b6d2b498e42594c1"
+      "sha256": "7ad5997c66a99fc7d057c5175701f4898cf75372b9407e9cfa0a7bf4149632cf"
     },
     "THIRD_PARTY_NOTICES.md": {
       "bytes": 3653,
@@ -554,6 +554,11 @@
       "bytes": 3780,
       "mode": "0o644",
       "sha256": "85d26d56621ed4ec0e0c45d4fd26c497388cb4d52b9825cf8a8750b5e3e85227"
+    },
+    "data/language-assets/research/translator-credits.json": {
+      "bytes": 6219,
+      "mode": "0o644",
+      "sha256": "9cfa512e542be7946a033a4f8a6c0baa58c556cdcca9c2720a92f1328a8542ac"
     },
     "data/language-assets/research/tutorial-corrected/card-06-mcv.png": {
       "bytes": 9813,
@@ -3483,7 +3488,7 @@
     "docs/build-source.json": {
       "bytes": 1978,
       "mode": "0o644",
-      "sha256": "644b73c28d4f2b447ce1dd346d0c732e42c4b28b95b6167e32f1eccb39b01a37"
+      "sha256": "b03aa2e7e96b485f382c2e6e80a8779ec98a5739739a9cf490beead4d8a3531b"
     },
     "docs/controls-assets.json": {
       "bytes": 431,
@@ -3506,9 +3511,9 @@
       "sha256": "448ecc8f82cc771976e6e04aa97e59ee8f44bc372145065ae185156add6a8899"
     },
     "docs/controls.md": {
-      "bytes": 27129,
+      "bytes": 32937,
       "mode": "0o644",
-      "sha256": "0975abba4a758ec549928e9355e6673148bfe64b0f32ba3f0ce69c747a7d2a9e"
+      "sha256": "521d9b9dc582f2cae866d86350d6949320f2417951e3b05fb087e18e509b17cd"
     },
     "docs/full-adaptation-browser-qa.md": {
       "bytes": 7609,
@@ -3595,6 +3600,11 @@
       "mode": "0o644",
       "sha256": "ab98826e5af0ddd48cc917cb95a7a4db6d9535c56dd7b50d408583456a6d2b02"
     },
+    "docs/native-tap-latency.md": {
+      "bytes": 4247,
+      "mode": "0o644",
+      "sha256": "e7e1fb0ef652656125de083d4a6309e011e62ac26e889922f905f18016e08fb1"
+    },
     "docs/native-training-schedule.md": {
       "bytes": 3490,
       "mode": "0o644",
@@ -3606,9 +3616,9 @@
       "sha256": "032ce6de4666dfaf070a00d0b04eae90afb1de8f60a7d841728d61bde3780901"
     },
     "docs/native-world-input-qa.md": {
-      "bytes": 3977,
+      "bytes": 4340,
       "mode": "0o644",
-      "sha256": "20bce8a50e6e198911c4c0faae5afd3934854b0ef7db38c9710a5e9b36ceb1cd"
+      "sha256": "01007620bff54660cfbc0bcb305ff0fedb761252b9839dce6634c94bd83e9fd5"
     },
     "docs/original-building-menu.jpg": {
       "bytes": 124145,
@@ -3631,9 +3641,14 @@
       "sha256": "d6827c9e07f2729088d3369aa15334ce24b43decca75b8307293ec0cc24765ad"
     },
     "docs/pwa-and-saves.md": {
-      "bytes": 9967,
+      "bytes": 10170,
       "mode": "0o644",
-      "sha256": "0c681268baca66a03707247f1413ef26840d4fd659149b3795f08e4584b7af9b"
+      "sha256": "ba7deceacf5a6b2ffa81a5b54f0892a416be462e88c4676e5ebfbeea303b4163"
+    },
+    "docs/release-20261105.md": {
+      "bytes": 2847,
+      "mode": "0o644",
+      "sha256": "c1fa6f6ffc7e2836b13c472629dd48d5ae71cbfc7ecdd72d427a61d5088981d7"
     },
     "docs/source-identity.json": {
       "bytes": 502,
@@ -3668,7 +3683,7 @@
     "docs/wasm-build.json": {
       "bytes": 3780,
       "mode": "0o644",
-      "sha256": "010bb241717be6a91e38a8e907130a125ee7cbba8eff211f9aeaf2b59f9a8165"
+      "sha256": "bb5eb63e9600471d147fb423cf3f532829a7ab37bc8dbde4686072673a92695f"
     },
     "tests/asset-loader.test.mjs": {
       "bytes": 9287,
@@ -3731,9 +3746,9 @@
       "sha256": "32e7b95bc30e07525c58ce0f1c5c3f1c7bb233c98ae9e7c2cfd7c14912a9055a"
     },
     "tests/map-input.test.mjs": {
-      "bytes": 9397,
+      "bytes": 10040,
       "mode": "0o644",
-      "sha256": "47a31d7ecc391507ce3bd381cd4a9a7a684fd4a5a0e23d0b0dc1d848cc56a5bd"
+      "sha256": "995dd1e3e5c790df62472f0bc6edcde20c8ed8cbedf759fa91bae76d9b85aa03"
     },
     "tests/native-button-layout.test.mjs": {
       "bytes": 3441,
@@ -3756,9 +3771,9 @@
       "sha256": "56d518ffec3d56c065caf80eed397487f42f1b06b70a3700fe4108f58484af2e"
     },
     "tests/order-feedback.test.mjs": {
-      "bytes": 7915,
+      "bytes": 11647,
       "mode": "0o644",
-      "sha256": "16cfb8f0ece846f78e7de022a7d4acc2324e97ed8b5f2db6411965afe2be1972"
+      "sha256": "c87b1923e8e291dcb9b18037ba1b2ea9af4d18d940a7c3817d49723647de2dec"
     },
     "tests/platform-navigation.test.mjs": {
       "bytes": 14200,
@@ -3771,9 +3786,9 @@
       "sha256": "b041dcb551ef4bb6f53c96690ef46ab93779fb2516e4ef02b8260311346b91bf"
     },
     "tests/save-files.test.mjs": {
-      "bytes": 10717,
+      "bytes": 12247,
       "mode": "0o644",
-      "sha256": "a226150e0c3c78d10fa0846453e819da0b7eb077100df06b6b6e80ac3a49499b"
+      "sha256": "7a3bec3e544721e0ca90c6b27ce8b42ab4d396ba55621373f304af3a8cb82824"
     },
     "tests/scene-flow.test.mjs": {
       "bytes": 9616,
@@ -3786,9 +3801,9 @@
       "sha256": "97618669bfc2f6af8f2adf276689465def0518afa3ede779c66b18d8ee75921e"
     },
     "tests/user-navigation.test.mjs": {
-      "bytes": 20403,
+      "bytes": 31870,
       "mode": "0o644",
-      "sha256": "0d0aa9669c5c4da81c41297dab4217e0eff6073212affb703c5610ae60c21448"
+      "sha256": "6172c5948717f97642c0181206598fdb172450ac95a588ae566db54db50230e6"
     },
     "tools/bootstrap_core_source.py": {
       "bytes": 2672,
@@ -3911,9 +3926,9 @@
       "sha256": "cecd85a1370e6218308edd70d50b101ccbac8b089f675ffe72c51b2579e11726"
     },
     "tools/em_web_campaign.h": {
-      "bytes": 58516,
+      "bytes": 59910,
       "mode": "0o644",
-      "sha256": "6591c91bd62a5958910901fad5f35c84131a7574cb1caa52fd21d5975c969741"
+      "sha256": "d67ad7a0fa7e95e2e0fc967f42482b478a8eb99a48c9ab6726cb6a408ad7cd3c"
     },
     "tools/em_web_frame.h": {
       "bytes": 11494,
@@ -3966,9 +3981,9 @@
       "sha256": "c5f02bb242bfee1e8f2198dd6968dbcd2ba21a183c00f51621e67205e7ca2d7d"
     },
     "tools/em_web_world_intent.h": {
-      "bytes": 2145,
+      "bytes": 3306,
       "mode": "0o644",
-      "sha256": "e9b3b4b6d2eefc1c1577ece2fd2510f5578b5217efefda81e4e4ce3e36044304"
+      "sha256": "d1cfb7da4165bfd1168a8332b81c608934527a051204ad85b5e4795e8d4af836"
     },
     "tools/export_menu_animations.py": {
       "bytes": 8571,
@@ -4245,6 +4260,11 @@
       "mode": "0o644",
       "sha256": "f56b7a636e52f76f78d76fcf8ac580d9b281c807664774eca315cfcea78f96b0"
     },
+    "tools/test_em_web_cold_options_snapshot.c": {
+      "bytes": 4418,
+      "mode": "0o644",
+      "sha256": "42a7d752367ed00add576a4cc3c5df6c1f7ff6b0bf49df69125d0aab9a2741ea"
+    },
     "tools/test_em_web_cold_route.c": {
       "bytes": 6159,
       "mode": "0o644",
@@ -4276,9 +4296,9 @@
       "sha256": "187d7b09735e556b9153c271a9c06db96a8616716128fff58ecbd5aac65330a1"
     },
     "tools/test_em_web_generic_world_intent.c": {
-      "bytes": 6307,
+      "bytes": 6479,
       "mode": "0o644",
-      "sha256": "f74babfb6af302dea21e72fe9023797396f233d9052b815cadb5983b1f278b81"
+      "sha256": "27485a69f72cbd3efe07307e319c172ea6088b282077cb86a87f06926de01087"
     },
     "tools/test_em_web_host_audio.c": {
       "bytes": 7299,
@@ -4304,6 +4324,11 @@
       "bytes": 1076,
       "mode": "0o644",
       "sha256": "0efb6643056fa98fb2fe200d3f394524d4246c1d01a77e93254af45c2de886c1"
+    },
+    "tools/test_em_web_options_latency.c": {
+      "bytes": 7499,
+      "mode": "0o644",
+      "sha256": "760b749cb584929cb6fe2f5f85a367388a5365336470b13604c7524e996ee83e"
     },
     "tools/test_em_web_order_feedback.c": {
       "bytes": 7375,
@@ -4354,6 +4379,11 @@
       "bytes": 3078,
       "mode": "0o644",
       "sha256": "68804fd5226036738f109c51f3cc39b7d55ee93862ced85f10a5c79ff22fe3e3"
+    },
+    "tools/test_em_web_tap_latency.c": {
+      "bytes": 10028,
+      "mode": "0o644",
+      "sha256": "ba841725da17dbf53e21a1f263c1950e2c247e58f939a5e3bc126290256e5147"
     },
     "tools/test_em_web_terminal_replay.c": {
       "bytes": 1708,
@@ -4721,9 +4751,9 @@
       "sha256": "d13d4f95f9711e0392d72f41c67d7b3687e9573c13f77f2b608fa19c13e565c2"
     },
     "web/CREDITS.txt": {
-      "bytes": 492,
+      "bytes": 1413,
       "mode": "0o644",
-      "sha256": "c4a3c50bfebb3bc82eeaaecf42e3b62da820cefb031947eaac96dff173771555"
+      "sha256": "6c8a813a8f99f3712aa451975b346d2fe42259ada25ddc0e68e26ece9697a446"
     },
     "web/app.webmanifest": {
       "bytes": 573,
@@ -6326,9 +6356,9 @@
       "sha256": "8732e16da51048e1bd4a0b49686aaa0b9ddc4f4d88e7dd57aafbe26d4711860c"
     },
     "web/building-ui.mjs": {
-      "bytes": 14104,
+      "bytes": 14109,
       "mode": "0o644",
-      "sha256": "5a4709181093775ba89f8aaec25c4f91a57cd598dcf9c49b719c779a8772acd5"
+      "sha256": "0d63b8963393b7962a8e510714cf5fd84d289ea82a8896d1797ebc6c0ff7c046"
     },
     "web/campaign-names.mjs": {
       "bytes": 318,
@@ -6366,9 +6396,9 @@
       "sha256": "90657e68456e331e555485b54b21434df03f7e1a35738757386e2b1a1358b17c"
     },
     "web/engine/dune_web.wasm": {
-      "bytes": 5256213,
+      "bytes": 5257121,
       "mode": "0o755",
-      "sha256": "4f3a8c75663e87b0f7dbcad2aff11ee36fa434d9d0a82d87a74318700ee64c22"
+      "sha256": "777d313a36f86b7c46bc5994b1c43507a2ef2a9006bd80648cf4f73c7b534add"
     },
     "web/frontend.state.bin": {
       "bytes": 140921,
@@ -6376,9 +6406,9 @@
       "sha256": "6bfd6cb318ba28ced014c1a318a430ee5899025fdc2975d98a880e4abd2d7955"
     },
     "web/game-ui.mjs": {
-      "bytes": 54382,
+      "bytes": 56377,
       "mode": "0o644",
-      "sha256": "76aae78d45ae1039645ba30976206188192ddc1c3e9f02892df537ec548b2181"
+      "sha256": "e6bfd3175b69625ce4c1a7e62e0a8072616a617125481e6257de48d902931fc4"
     },
     "web/gestures.mjs": {
       "bytes": 3532,
@@ -6386,9 +6416,9 @@
       "sha256": "73b113e9bde9cb4f167b3803a3cc2dc29fc92aa64d1bab34857d27d652801021"
     },
     "web/i18n.mjs": {
-      "bytes": 3920,
+      "bytes": 3925,
       "mode": "0o644",
-      "sha256": "9a2d2fa41ec522b93697e6f178b6a2fe1ce3e957f9f8b008041ff6c975ae9aac"
+      "sha256": "aab9eb4034bdd4b2b5b477e7195ab277d737f0fe4b8a40617d086dc160127554"
     },
     "web/icons/dune-180.png": {
       "bytes": 3759,
@@ -6411,9 +6441,9 @@
       "sha256": "dbd03cfbd26ebe17b7fbe15bea937acad3eb4e9f57ab7a6a293ce330dd2557d5"
     },
     "web/index.html": {
-      "bytes": 4978,
+      "bytes": 5121,
       "mode": "0o644",
-      "sha256": "1e22f8cda20802cdc8f8f23c60de3ae3eda6fa9483bfaa1351a2f8c3c72e5386"
+      "sha256": "9880306fc1d10a38f3ffc34c362f3bd24cc03cdfbe0f3a065114873c11a01efd"
     },
     "web/input-check.mjs": {
       "bytes": 2725,
@@ -6581,9 +6611,9 @@
       "sha256": "89497186d8237913302241df49a44de8de6f03e276b3390f5440669a31b164e4"
     },
     "web/map-input.mjs": {
-      "bytes": 2915,
+      "bytes": 2937,
       "mode": "0o644",
-      "sha256": "e58fb0da82f7328353d1d666ff4780095b983aa05df33a165ee05ff26f39d79b"
+      "sha256": "d1f35e2b153847b425108853ff7fecc70a6802d567b3f5e8fce0dac5bc8348e4"
     },
     "web/modern-ui.css": {
       "bytes": 15655,
@@ -6601,9 +6631,9 @@
       "sha256": "bca9922f1f9de41a3e1f02fe7daab2bed389f671536223e717842c2c74b269e9"
     },
     "web/native-ui.mjs": {
-      "bytes": 16012,
+      "bytes": 16022,
       "mode": "0o644",
-      "sha256": "dcd9cf766b13285a64cb6dcc7288a94850a99264168507d4fa3442bf84a358f0"
+      "sha256": "582ae1b5e7b3f8c1e8726bf4d891cc6fba9df4f81eeaa390d88de74d9c1a0034"
     },
     "web/options-layout.mjs": {
       "bytes": 1418,
@@ -6611,9 +6641,9 @@
       "sha256": "c1cb0579662dd80dcea72eb6ad4c13a45fcb65c190a23e86ce15e55961cdf330"
     },
     "web/order-feedback.mjs": {
-      "bytes": 7040,
+      "bytes": 8059,
       "mode": "0o644",
-      "sha256": "1e0d28e2ab518fae8a05d2b4c37080395c6a9ba75504a864a6f9e2a7ab549733"
+      "sha256": "44df854a01f61a9a69ee9f00422ba42ebe1b253aff885a2e86a453fadbeedb38"
     },
     "web/qa-audio-worklet.html": {
       "bytes": 2554,
@@ -6636,14 +6666,14 @@
       "sha256": "f430201485822c35129d386905b5ecdeb3c1a58e77af844911b46fff6d57e704"
     },
     "web/save-files.mjs": {
-      "bytes": 10720,
+      "bytes": 11329,
       "mode": "0o644",
-      "sha256": "3569402a123ea85f34ef5f6ebce9c685e3193f1aa02a8180916a2cdb0037d632"
+      "sha256": "435cf2b377747c217367b77d994d3fac6e4a59193dad23a61ce08351d3a3ffc4"
     },
     "web/scene-flow.css": {
-      "bytes": 14890,
+      "bytes": 15290,
       "mode": "0o644",
-      "sha256": "75e18ecf270ada9e064d6b97d375050cf050d26272263acd7164f371fa9e2b80"
+      "sha256": "b16f2a0047607d92821665772f0d0c235aa70f1a94fba17a32a48d342838058c"
     },
     "web/screen-transition.mjs": {
       "bytes": 2297,
@@ -6656,9 +6686,9 @@
       "sha256": "5cfe7c18a9a4bcf76835f1f79826bc98ab5e8dff467c1ebcd0f3e9c2acc14db1"
     },
     "web/shell.js": {
-      "bytes": 19347,
+      "bytes": 19932,
       "mode": "0o644",
-      "sha256": "8c89b055293ef0979cd0c24c5bfad12401caa286093a57972a4239c8607a3d7e"
+      "sha256": "b5028b80e71eda8f6c803f9cd1551baf2d839f403341cc16f0f9dc26078c10ab"
     },
     "web/training-manifest.json": {
       "bytes": 9463,

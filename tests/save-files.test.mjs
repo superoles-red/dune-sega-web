@@ -19,6 +19,8 @@ function signed(archive,mutate){const value=JSON.parse(JSON.stringify(archive));
 async function rejects(text,code){await assert.rejects(parseSaveFile(text),error=>error instanceof SaveFileError&&error.code===code);}
 
 test('actual shipped native fixtures match DSAV v2 ABI, including original mission RAM',()=>{
+ const build=JSON.parse(readFileSync(new URL('../docs/wasm-build.json',import.meta.url),'utf8'));
+ assert.equal(SAVE_COMPATIBILITY.engineSha256,build.sha256,'new exports identify the actual shipped core');
  for(const name of ['demo','demo-harkonnen']){
   const bytes=readFileSync(new URL('../web/'+name+'.state.bin',import.meta.url)),result=validateNativeSave(bytes.toString('base64'));
   assert.equal(result.bytes,bytes.length);assert.equal(result.house,bytes.readUInt16BE(94+0xc274));assert.equal(result.mission,bytes.readUInt16BE(94+0xc050)+1);
@@ -38,6 +40,21 @@ test('progress-only backup creates a Continue tombstone and never resurrects leg
  const {text}=await createSaveFile({store:original}),archive=await parseSaveFile(text);assert.equal(archive.continue,null);
  const storage=memory();storage.setItem(LEGACY_SAVE_KEY,'old');storage.setItem(slotKey(1),JSON.stringify({version:1,house:1,mission:1,state:'AQID',savedAt:100}));const store=new CampaignStore(storage);
  commitSaveFile({store,archive});assert.equal(store.resumable(),null);assert.equal(new CampaignStore(storage).resumable(),null);assert.equal(store.legacy(),null);assert.equal(storage.getItem(LEGACY_SAVE_KEY),'old');assert(storage.getItem(slotKey(1)));assert.equal(store.progress.houses[0].unlocked,2);
+});
+test('previous published core exports import unchanged and re-export with the current ABI-compatible core',async()=>{
+ const oldHash='4f3a8c75663e87b0f7dbcad2aff11ee36fa434d9d0a82d87a74318700ee64c22';
+ const {store}=source(),{archive}=await createSaveFile({store,language:'ru'});
+ const oldText=signed(archive,v=>v.compatibility.engineSha256=oldHash),old=await parseSaveFile(oldText);
+ assert.equal(old.compatibility.engineSha256,oldHash);assert.equal(old.checksum,JSON.parse(oldText).checksum);
+ const reparsed=await parseSaveFile(JSON.stringify(old));assert.deepEqual(reparsed,old,'verified imported archive retains a valid checksum');
+ const target=new CampaignStore(memory());commitSaveFile({store:target,archive:old});
+ assert.equal(target.resumable().state,payload);assert.deepEqual(target.progress,store.progress);
+ const current=await createSaveFile({store:target,language:'ru'});
+ assert.equal(current.archive.compatibility.engineSha256,SAVE_COMPATIBILITY.engineSha256);
+ assert.equal(current.archive.continue.state,payload);assert.deepEqual(current.archive.progress,old.progress);
+ for(const mutate of [v=>v.compatibility.nativeVersion=3,v=>v.compatibility.nativeBaseBytes++,v=>v.compatibility.game='dune-sega-eur',v=>v.compatibility.extra=true]){
+  await rejects(signed(old,mutate),'incompatible-engine');
+ }
 });
 test('invalid JSON, unrelated data, unknown envelope fields, oversize and checksum corruption are rejected',async()=>{
  const {store}=source(),{text,archive}=await createSaveFile({store});
