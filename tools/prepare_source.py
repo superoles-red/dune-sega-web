@@ -7,11 +7,17 @@ base=(ROOT/'.local/source/build/dune-base.c').read_text()
 identity=json.loads((ROOT/'docs/source-identity.json').read_text())
 assert hashlib.sha256(base.encode()).hexdigest()==identity['generatedSourceSha256']
 s=base
+# Keep the original per-pixel compositor as an oracle and wide-call fallback.
+# The browser fast path only reuses immutable scanline/tile/palette values;
+# VDP timing, state, sprites and every translated game instruction stay intact.
+needle='static void vdp_render_pixels(VDP *v,unsigned width,unsigned height,const uint8_t *sprites,uint8_t *frame) {'
+assert s.count(needle)==1
+s=s.replace(needle,needle.replace('vdp_render_pixels(', 'vdp_render_pixels_reference('),1)
 # Keep a read-only VDP snapshot at the exact completed-frame boundary. Native
 # instructions, the live VDP, the frame and all game state remain untouched.
 needle='static void vdp_render(CPU *c) {'
 assert s.count(needle)==1
-s=s.replace(needle,'#include "em_web_frame.h"\n'+needle,1)
+s=s.replace(needle,'#include "em_web_raster.h"\n#include "em_web_frame.h"\n'+needle,1)
 needle='    ++v->rendered_frames;'
 assert s.count(needle)==1
 s=s.replace(needle,needle+'\n    em_web_frame_capture(c);',1)
@@ -216,6 +222,6 @@ marker='static const uint8_t rom_data[] = {'
 assert s.split(marker,1)[1]==base.split(marker,1)[1]
 (ROOT/'.local/source/build/dune-web.c').write_text(s)
 headers={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted((ROOT/'tools').glob('em_web_*.h'))}
-report={'baseSourceSha256':identity['generatedSourceSha256'],'patchedSourceSha256':hashlib.sha256(s.encode()).hexdigest(),'originalRomAndInstructionHandlersUnchanged':True,'adapterHeaders':headers,'patchScope':['browser clock and pause','drag camera; no edge hover','CSS pointer and pinch projection','single native selection, pure clear and contextual B; original building placement','preview then confirm native purchases; direct commands; original active menu focus; hidden ordinary map cursor and three-part portrait menu','bounded v2 save validation and renderer reset']}
+report={'baseSourceSha256':identity['generatedSourceSha256'],'patchedSourceSha256':hashlib.sha256(s.encode()).hexdigest(),'originalRomAndInstructionHandlersUnchanged':True,'adapterHeaders':headers,'patchScope':['browser clock and pause','map-only single presentation per browser callback','exact-pixel scanline VDP raster; original oracle/fallback retained','drag camera; no edge hover','CSS pointer and pinch projection','single native selection, pure clear and contextual B; original building placement','preview then confirm native purchases; direct commands; original active menu focus; hidden ordinary map cursor and three-part portrait menu','bounded v2 save validation and renderer reset']}
 (ROOT/'docs/build-source.json').write_text(json.dumps(report,indent=2)+'\n')
 print('Prepared host/input patches; original translated instructions and ROM unchanged.')

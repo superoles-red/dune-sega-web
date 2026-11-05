@@ -13,9 +13,12 @@
 #include "em_web_frame.h"
 static CPU em_cpu,reference;static SDLHost em_host;static int em_window=1,em_web_original_video;
 static double now_ms;static unsigned queued_frames,services,presents;static uint64_t pcm_hash,pcm_frames;
+static int em_web_canvas_presentable(void);
+static int (*test_present_hook)(SDLHost*,CPU*);
+static void (*test_service_hook)(SDLHost*,CPU*);
 static double emscripten_get_now(void){return now_ms;}
 static void emscripten_cancel_main_loop(void){}
-static int em_test_service(SDLHost*h,CPU*c){++services;if(h->last_frame!=c->vdp.rendered_frames){h->last_frame=c->vdp.rendered_frames;++presents;}h->next_service=c->master_cycles+vdp_master_frequency(&c->vdp)/1000;return 1;}
+static int em_test_service(SDLHost*h,CPU*c){++services;if(test_service_hook)test_service_hook(h,c);if(em_web_canvas_presentable()&&h->last_frame!=c->vdp.rendered_frames){if(test_present_hook&&!test_present_hook(h,c))return 0;h->last_frame=c->vdp.rendered_frames;++presents;}h->next_service=c->master_cycles+vdp_master_frequency(&c->vdp)/1000;return 1;}
 Uint32 em_test_queued_size(SDL_AudioDeviceID d){(void)d;return queued_frames*4;}
 int em_test_queue(SDL_AudioDeviceID d,const void*p,Uint32 bytes){(void)d;const uint8_t*b=p;for(unsigned i=0;i<bytes;i++)pcm_hash=(pcm_hash^b[i])*1099511628211ull;queued_frames+=bytes/4;pcm_frames+=bytes/4;return 0;}
 void em_test_clear(SDL_AudioDeviceID d){(void)d;queued_frames=0;}

@@ -26,6 +26,11 @@ jobs:
         run: |
           python3 tools/bootstrap_core_source.py --check
           python3 tools/test_bootstrap_core_source.py
+      - name: Exact original VDP raster pixels
+        run: |
+          mkdir -p .local
+          clang -std=c11 -O1 tools/test_em_web_raster.c -o .local/test-web-raster -lm
+          .local/test-web-raster
       - name: Publication guards
         run: |
           python3 tools/build_runtime_atlas.py --check

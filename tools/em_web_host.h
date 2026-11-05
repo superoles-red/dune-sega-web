@@ -58,7 +58,8 @@ static void em_web_clock_consume(EmWebClock *clock,uint64_t executed) {
 static EmWebClock em_web_clock;
 static int em_web_hidden;
 static int em_web_canvas_visible_flag=1;
-static int em_web_canvas_presentable(void){return em_web_canvas_visible_flag;}
+static int em_web_canvas_deferred;
+static int em_web_canvas_presentable(void){return em_web_canvas_visible_flag&&!em_web_canvas_deferred;}
 EMSCRIPTEN_KEEPALIVE void dune_web_canvas_visible(int visible){int was=em_web_canvas_visible_flag;em_web_canvas_visible_flag=!!visible;if(em_window&&!was&&visible)em_host.last_frame=UINT64_MAX;}
 static uint64_t em_web_callbacks,em_web_advanced_callbacks;
 static uint64_t em_web_service_calls,em_web_presentations,em_web_host_audio_discarded,em_web_host_audio_resets;
@@ -284,8 +285,18 @@ static void em_web_main_loop_work(void) {
     }
     /* Poll even with no due cycles: manual pause can always be released and
        120 Hz input is not gated on the next native VBlank. */
-    if(!em_web_service())return;
+    /* A camera change invalidates the expanded map before this callback.
+     * Its pre-step raster would be overwritten by the post-step raster in
+     * the same synchronous WASM call, before the browser can display it.
+     * Keep SDL input/audio polling here; draw that map only once at the end.
+     * Non-map native fades/animations retain their existing presentation. */
+    int defer_map=!em_host.paused&&!em_host.stopped&&!em_cpu.fault&&dune_view_map(&em_cpu);
+    em_web_canvas_deferred=defer_map;
+    int live=em_web_service();
+    em_web_canvas_deferred=0;
+    if(!live)return;
     if(em_cpu.fault || (em_cpu.halted && !machine_can_wake(&em_cpu))) {
+        if(defer_map&&!em_web_service())return;
         sdl_host_stop(&em_host,&em_cpu);
         em_web_clock_reset(&em_web_clock,now);
         /* Keep RAF alive so restoring a known good save can recover. */
@@ -293,7 +304,7 @@ static void em_web_main_loop_work(void) {
     }
     uint32_t hz=vdp_master_frequency(&em_cpu.vdp);
     uint64_t due=em_web_clock_due(&em_web_clock,now,hz,em_host.paused);
-    if(em_host.paused || !due)return;
+    if(em_host.paused || !due){if(defer_map)em_web_service();return;}
     /* Bound one callback's catch-up work to about four native frames. Any
        unfinished cycle debt stays queued; no game-state steps are skipped. */
     uint64_t budget=hz/15u;

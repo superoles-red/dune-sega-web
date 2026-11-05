@@ -1,8 +1,10 @@
-# Web app loading, installation and controls — 2026-11-05
+# Web app loading, installation, controls and rendering — 2026-11-05
 
-Runtime build: `a9d02910bc4f2925c6bd849ead4113ce523d62b5aa5b46a5b23f2a0d7302e1fb`.
-Browser module/cache version: `20261105-webapp1`.
-Runtime package: 438 manifest entries, 8,668,045 bytes before HTTP compression.
+Browser module/cache version: `20261105-webapp2`.
+Runtime build: `5b435ab679350aeb9f344d731c994d5d1313a1f4c695f3cf712c29886f6bb91d`.
+Runtime package: 438 manifest entries, 8,669,535 bytes before HTTP compression.
+Core: `319b76fc26e77cbbe2d0eed808ae72587b4ec1d5fe88ed473561c287610c81d5`.
+Loader: `68fb1ad2cae3e188f3cdea405c744d6ed99cc23ae4add7f86b118abe7f451f9a`.
 
 The first HTML response now contains a visible loading screen, the exact
 original English/Russian bitmap font PNGs, and its small controller. It does
@@ -51,6 +53,45 @@ the condition for publishing its screen; original in-game fades and clocks
 are unchanged. The loading-caption canvas also avoids painting identical
 frames repeatedly.
 
+## Display work while moving the map
+
+Panning invalidated the expanded-world picture. The previous host could rebuild
+and upload it both before and after simulation in one synchronous WASM callback,
+although the browser cannot display the first picture between those calls.
+The host now defers that first map presentation and draws the current camera
+once after simulation. Input/audio service still runs before and after; no-due,
+pause, stop, fault, hidden and non-map paths retain their required handling.
+The native differential test reduces expanded-world rasters from 239 to 120
+over 120 camera-invalidated callbacks, while retaining 240 services, identical
+normalized CPU/device state, all 96,000 PCM frames and the complete real YMFM state.
+
+Every final world/HUD picture matches an original-renderer invocation on the
+same final snapshot. When a native VBlank completes, old/new displayed pixels
+also match. One tested callback advances instructions without another VBlank:
+the old path displayed its earlier pre-step snapshot, while the new path shows
+the final current snapshot. This changes a display sampling boundary, not
+native game state or animation clocks. See [native-map-presentation.md](native-map-presentation.md).
+
+The pure VDP compositor also reuses a name-table entry within each tile run,
+splitting at both scrolled 8px tiles and screen-space 16px VSRAM columns.
+Window regions, original tile decoding, priority and shadow/highlight semantics
+stay the same. RGB channel values come from a small per-call table calculated
+by the original function. No graphics state is cached across frames or added
+to VDP/CPU or saves. The unchanged original compositor remains the oracle and
+wide-call fallback. Tests pass 274 synthetic RGB comparisons and 95 additional
+genuine completed frames, with every input VDP/CPU byte unchanged. The public
+CI oracle requires no private fixture. See [native-raster.md](native-raster.md).
+
+On the same physical Galaxy A07 / Android 16 / Chrome154, short unprofiled
+drag samples improved from 14.6 browser callbacks/s to 48.2, with a second
+optimized sample at 47.6. Pan p95 intervals fell from 81.4ms to 22.3ms; neither
+optimized pan sample had an interval over 50ms. Optimized idle samples measured
+47.2/48.0 callbacks/s. Native simulation still advanced 242 frames in about four
+seconds, approximately 60.4 native frames/s, with one presentation per callback.
+These are short same-device demo-map measurements, not a promised frame rate
+for every map, browser or thermal condition; hardware audio listening was not
+part of the comparison.
+
 ## Preservation and validation
 
 The native browser adapter now separates selection from the original contextual
@@ -75,9 +116,7 @@ does not edit the original ROM or translated instruction handlers: release
 checks compare those sections with the pinned baseline. Selection, restoration
 and orders enter the existing original handlers; unit logic, economics, AI,
 combat and ability countdowns remain in that code. The native DSAV v2 ABI,
-storage keys and exported-save format remain unchanged. The final core is
-`d464dfb2ba1407c2a36ad9d2e01c311953db49bdb0d5d7765a10944d69dba953`;
-the loader is `68fb1ad2cae3e188f3cdea405c744d6ed99cc23ae4add7f86b118abe7f451f9a`.
+storage keys and exported-save format remain unchanged.
 The host maximum WASM heap is 512 MiB; initial memory remains 64 MiB and stack
 16 MiB. This is a host allocation limit, not a change to game clocks or logic.
 
@@ -87,24 +126,29 @@ English-first/Russian-later decode order, stylesheet readiness and error/retry
 lifecycle. Atlas tests compare every crop to its source pixels and verify the
 fallback. Typed-input native tests check original selection/command dispatch,
 retained-actor restoration, Palace target confirmation, Devastator self-A/B and
-no-input preservation. Local checks pass: 268 JavaScript tests, 33 descriptive
-tutorial checks, seven independent atlas tests, four source-bootstrap tests,
-six publication tests, embedded-startup/atlas freshness, and all 55 pinned
-native source inputs. Eleven typed-input native proof groups and eleven prior
-selection/placement proof groups also pass on the rebuilt adapter.
+no-input preservation. The frozen build passes 268 JavaScript tests, 33
+descriptive-tutorial checks, seven independent atlas tests, four source-bootstrap
+tests, six publication tests, startup/atlas freshness, all 55 pinned native
+source inputs, the public 274-case raster oracle, and all 438 package entries.
+Its 16 adapter header hashes match the recorded WASM build. Native clock,
+host-audio and worklet proofs retain the original clocks and exact state/PCM
+comparisons; typed input remains 11/11.
 
-On physical Samsung Galaxy A07 / SM-A075F (Android 16/API36), Chrome
-154.0.8037.126 passed final touch selection, separated singles without self-arm,
+Before the performance changes, physical Samsung Galaxy A07 / SM-A075F
+(Android 16/API36), Chrome 154.0.8037.126 passed touch selection, separated singles without self-arm,
 double-self Devastator arming with original B, one-tap Palace clear, drag without
 order, and double-tap Palace activation at native tile1618 / original `$027EA6`.
 The final marker fix also hides its DOM indicator after a single selection
-switch. Fullscreen covers the 720×1600 portrait canvas. Desktop browser checks
-with this core passed single-left selection, right-click original movement,
+switch. Fullscreen covered the 720×1600 portrait canvas. Desktop browser checks
+with that input build passed single-left selection, right-click original movement,
 single-clear Palace, no cast on one right click, and original cast on double left.
+Those input traces are not relabelled as a final performance-build/device test;
+the new core has its separate physical pan/idle comparison above.
 
-Samsung Internet 30.0.5.24 on that phone crashes its renderer before the game
-interface. The previous published build, an isolated core-only launch and the
-512 MiB maximum do the same; atlas-specific causation is not established. This
+Samsung Internet 30.0.5.24 on that phone crashed its renderer before the game
+interface in the pre-performance checks. The previous published build, an
+isolated core-only launch and the 512 MiB maximum did the same; atlas-specific
+causation is not established. This
 tested browser/device combination is unsupported for now; use Chrome on Samsung.
 Public HTTPS installation and offline relaunch are checked separately after
 deployment. Physical iPhone portrait geometry still needs the user's retest.
