@@ -11,7 +11,7 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 ARCHIVED_ROOT = {'qa.mjs', 'qa-modern.mjs', 'tutorial-training.mjs', 'results-ui.mjs'}
 RUNTIME_DIRS = ('engine', 'ui-assets', 'input-feedback', 'licenses', 'icons')
-ROOT_ASSETS = ('index.html', 'CREDITS.txt', 'frontend.state.bin', 'demo-harkonnen.state.bin', 'app.webmanifest')
+ROOT_ASSETS = ('index.html', 'update.html', 'CREDITS.txt', 'frontend.state.bin', 'demo-harkonnen.state.bin', 'app.webmanifest')
 
 
 def sha(data):
@@ -35,7 +35,7 @@ def add_offline_worker(payload):
     if template.count(b'__DUNE_CACHE_VERSION__') != 1 or template.count(b'/*__DUNE_PRECACHE__*/ []') != 1:
         raise ValueError('Invalid offline worker template')
     precache = [{'path': name, 'bytes': len(data), 'sha256': sha(data)}
-                for name, data in sorted(payload.items()) if name not in ('service-worker.js', '.nojekyll', 'release.json')]
+                for name, data in sorted(payload.items()) if name not in ('service-worker.js', '.nojekyll', 'release.json', 'update.html', 'update-game.mjs')]
     cache_version = sha(template + encode(precache))
     payload['service-worker.js'] = template.replace(b'__DUNE_CACHE_VERSION__', cache_version.encode()).replace(
         b'/*__DUNE_PRECACHE__*/ []', json.dumps(precache, ensure_ascii=False, separators=(',', ':')).encode())

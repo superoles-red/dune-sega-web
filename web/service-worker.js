@@ -12,6 +12,12 @@ const MAX_DOWNLOAD_ATTEMPTS = 3;
 const DOWNLOAD_TIMEOUT_MS = 30000;
 const canonical = path => new URL(path, SCOPE).href;
 const READY_URL = canonical('__offline_ready__');
+const UPDATE_PAGE = new URL('update.html', SCOPE).pathname;
+const UPDATE_SCRIPT = new URL('update-game.mjs', SCOPE).pathname;
+const isGameWindow = client => {
+  try { const url = new URL(client.url); return url.origin === SCOPE.origin && url.pathname.startsWith(SCOPE.pathname) && url.pathname !== UPDATE_PAGE; }
+  catch { return false; }
+};
 const summary = (status, extra = {}) => ({type: 'DUNE_OFFLINE_PROGRESS', status, version: VERSION,
   loaded: PRECACHE.length, total: PRECACHE.length, bytes: TOTAL_BYTES, totalBytes: TOTAL_BYTES, ...extra});
 async function broadcast(message) {
@@ -56,6 +62,35 @@ async function downloadVerified(asset) {
   }
   throw Error('Offline download failed after ' + MAX_DOWNLOAD_ATTEMPTS + ' attempts: ' + asset.path + ' (' + (lastError?.message || String(lastError)) + ')');
 }
+async function completedPreviousCaches() {
+  // Discover candidates once. A markerless partial install and another game's
+  // cache are never sources; no preceding package is changed by this lookup.
+  const previous = [];
+  let names; try { names = await caches.keys(); } catch { return previous; }
+  for (const name of names) {
+    if (!name.startsWith(CACHE_PREFIX) || name === CACHE_NAME) continue;
+    try {
+      const cache = await caches.open(name), marker = await cache.match(READY_URL);
+      if (!marker) continue;
+      const ready = await marker.json();
+      if (ready.version === name.slice(CACHE_PREFIX.length) && Number.isSafeInteger(ready.files) && ready.files > 0) previous.push(cache);
+    } catch { /* An unreadable old package is not trusted or removed. */ }
+  }
+  return previous;
+}
+async function reuseVerified(asset, previous) {
+  for (const cache of previous) {
+    try {
+      const response = await cache.match(canonical(asset.path));
+      if (!response?.ok || response.type === 'opaque') continue;
+      const data = await response.clone().arrayBuffer();
+      // A complete old package alone is not sufficient: the actual bytes must
+      // match this new release, including its expected length and SHA-256.
+      if (data.byteLength === asset.bytes && await digest(data) === asset.sha256) return response;
+    } catch { /* Missing, damaged or unreadable entries use the network path. */ }
+  }
+  return null;
+}
 let installErrorReported = false;
 async function reportInstallFailure(error, extra = {}) {
   const detail = [error?.name, error?.message || String(error)].filter(Boolean).join(': ');
@@ -71,13 +106,14 @@ async function installPackage() {
   // A failed candidate never deletes the preceding, still-active version.
   const cache = await caches.open(CACHE_NAME);
   const alreadyReady = !!(await cache.match(READY_URL));
+  const previous = await completedPreviousCaches();
   let next = 0, loaded = 0, bytes = 0, failure = null;
   await broadcast(summary('downloading', {loaded, bytes}));
   const download = async () => {
     while (!failure && next < PRECACHE.length) {
      try {
       const asset = PRECACHE[next++];
-      const response = await downloadVerified(asset);
+      const response = await reuseVerified(asset, previous) || await downloadVerified(asset);
       await cache.put(canonical(asset.path), response);
       ++loaded; bytes += asset.bytes;
       await broadcast(summary('downloading', {loaded, bytes}));
@@ -109,13 +145,35 @@ self.addEventListener('install', event => event.waitUntil(installPackage().catch
 })));
 self.addEventListener('activate', event => event.waitUntil((async () => {
   if (!await (await caches.open(CACHE_NAME)).match(READY_URL)) throw Error('Incomplete offline package');
-  for (const name of await caches.keys()) {
-    if (name.startsWith(CACHE_PREFIX) && name !== CACHE_NAME) await caches.delete(name);
+  // Normal activation follows the browser's waiting lifecycle. Explicit update
+  // activation is accepted only from the recovery page with no game windows.
+  // Recheck before collecting old packages in case a window opened meanwhile.
+  if (!(await self.clients.matchAll({type: 'window', includeUncontrolled: true})).some(isGameWindow)) {
+    for (const name of await caches.keys()) {
+      if (name.startsWith(CACHE_PREFIX) && name !== CACHE_NAME) await caches.delete(name);
+    }
   }
-  // No skipWaiting/claim: an update never swaps assets under a running mission.
+  // Never claim or reload an existing game window.
   await broadcast(summary('ready'));
 })()));
 self.addEventListener('message', event => {
+  if (event.data?.type === 'DUNE_APPLY_UPDATE') {
+    event.waitUntil((async () => {
+      const reply = value => event.ports?.[0]?.postMessage({type: 'DUNE_UPDATE_RESULT', version: VERSION, ...value});
+      const windows = await self.clients.matchAll({type: 'window', includeUncontrolled: true});
+      const source = windows.find(client => client.id === event.source?.id);
+      let url; try { url = new URL(source?.url); } catch {}
+      if (!source || url?.origin !== SCOPE.origin || url.pathname !== UPDATE_PAGE) return reply({status: 'denied'});
+      const count = windows.filter(isGameWindow).length;
+      if (count) return reply({status: 'blocked', count});
+      if (!await (await caches.open(CACHE_NAME)).match(READY_URL)) return reply({status: 'incomplete'});
+      // The recovery document runs no game. All playable windows must be closed
+      // first; this opt-in action is never sent by the normal game host.
+      await self.skipWaiting();
+      reply({status: 'applying'});
+    })());
+    return;
+  }
   if (event.data?.type !== 'DUNE_OFFLINE_STATUS') return;
   event.waitUntil((async () => {
     const ready = !!await (await caches.open(CACHE_NAME)).match(READY_URL);
@@ -127,6 +185,9 @@ self.addEventListener('message', event => {
 self.addEventListener('fetch', event => {
   const request = event.request, url = new URL(request.url);
   if (request.method !== 'GET' || url.origin !== SCOPE.origin) return;
+  // A stable recovery URL must escape even an obsolete coherent package.
+  // These two small files are intentionally network-only and never precached.
+  if (url.pathname === UPDATE_PAGE || url.pathname === UPDATE_SCRIPT) return;
   let asset = ASSETS.get(url.pathname);
   if (request.mode === 'navigate' && (url.pathname === SCOPE.pathname || url.pathname === SCOPE.pathname + 'index.html')) {
     asset = ASSETS.get(new URL('index.html', SCOPE).pathname);

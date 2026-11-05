@@ -12,24 +12,48 @@ export function installationKind(nav=globalThis.navigator){
 export class BrowserFeatures {
  constructor({win=globalThis.window,doc=globalThis.document,nav=globalThis.navigator}={}){
   Object.assign(this,{win,doc,nav});this.listeners=new Set();this.state={status:'idle',loaded:0,total:0,installed:!!nav?.standalone,preparing:false,persistent:false};
-  this.installPrompt=null;
+  this.installPrompt=null;this.observedRegistrations=new WeakSet();this.observedWorkers=new WeakSet();
   win?.addEventListener('beforeinstallprompt',e=>{e.preventDefault();this.installPrompt=e;this.emit();});
   win?.addEventListener('appinstalled',()=>{this.installPrompt=null;this.state.installed=true;this.emit();});
   doc?.addEventListener('fullscreenchange',()=>this.emit());doc?.addEventListener('webkitfullscreenchange',()=>this.emit());
   nav?.serviceWorker?.addEventListener('message',e=>{
    if(e.data?.type==='DUNE_OFFLINE_PROGRESS'&&e.data.status==='error'){this.lastWorkerError=e.data.message;console.warn('Dune offline worker:',e.data.message);}
    if(e.data?.type!=='DUNE_OFFLINE_PROGRESS'||this.pending&&this.targetWorker&&e.source&&e.source!==this.targetWorker)return;
+   // A background candidate is separate from the complete copy still running.
+   // In particular, a failed update must not mark that older copy unusable.
+   if(!this.pending&&e.source&&this.registration?.active&&e.source!==this.registration.active){this.emit();return;}
    let {status,loaded,total,bytes,totalBytes,version}=e.data;
    if(this.state.preparing&&status==='ready'&&this.targetWorker?.state==='installing')status='downloading';
    Object.assign(this.state,{status,loaded,total,bytes,totalBytes,version,preparing:status==='downloading'});this.emit();
   });
   this.state.installed ||= !!win?.matchMedia?.('(display-mode: standalone)').matches||!!win?.matchMedia?.('(display-mode: fullscreen)').matches;
-  // Inspect an existing registration without starting downloads on every visit.
-  nav?.serviceWorker?.getRegistration?.('./').then(r=>{this.registration=r;(r?.waiting||r?.active)?.postMessage({type:'DUNE_OFFLINE_STATUS'});}).catch(()=>{});
+  // Only players who already opted into offline use receive update checks.
+  // An unchanged worker does not redownload the package; a changed package
+  // waits safely until the player chooses to update outside the game.
+  this.inspection=nav?.serviceWorker?.getRegistration?.('./').then(async r=>{if(!r)return;this.observeRegistration(r);(r.active||r.waiting)?.postMessage({type:'DUNE_OFFLINE_STATUS'});if(!this.pending)await this.checkForUpdates();}).catch(()=>{});
+  win?.addEventListener('online',()=>this.checkForUpdates());
  }
  subscribe(fn){this.listeners.add(fn);return()=>this.listeners.delete(fn);}
  emit(){for(const fn of this.listeners)fn(this.snapshot());}
- snapshot(){const r=this.registration;return {...this.state,fullscreen:!!(this.doc?.fullscreenElement||this.doc?.webkitFullscreenElement),canFullscreen:!!(this.doc?.documentElement?.requestFullscreen||this.doc?.documentElement?.webkitRequestFullscreen),canInstall:!!this.installPrompt,appleMobile:isAppleMobile(this.nav),installationKind:installationKind(this.nav),restartRequired:this.state.status==='ready'&&!!r&&!!(r.waiting||r.installing||r.active!==this.nav?.serviceWorker?.controller)};}
+ snapshot(){const r=this.registration;return {...this.state,fullscreen:!!(this.doc?.fullscreenElement||this.doc?.webkitFullscreenElement),canFullscreen:!!(this.doc?.documentElement?.requestFullscreen||this.doc?.documentElement?.webkitRequestFullscreen),canInstall:!!this.installPrompt,appleMobile:isAppleMobile(this.nav),installationKind:installationKind(this.nav),updateAvailable:!!r?.waiting&&r.waiting.state==='installed',restartRequired:this.state.status==='ready'&&!!r&&!!(r.waiting||r.installing||r.active!==this.nav?.serviceWorker?.controller)};}
+ observeRegistration(registration){
+  this.registration=registration;
+  const watch=()=>{
+   const worker=registration.installing;if(!worker||this.observedWorkers.has(worker))return;
+   this.observedWorkers.add(worker);
+   const changed=()=>{this.emit();if(['installed','redundant'].includes(worker.state))worker.removeEventListener('statechange',changed);};
+   worker.addEventListener('statechange',changed);
+  };
+  if(!this.observedRegistrations.has(registration)){this.observedRegistrations.add(registration);registration.addEventListener?.('updatefound',watch);}
+  watch();this.emit();
+ }
+ async checkForUpdates(){
+  const r=this.registration;if(!r||this.nav?.onLine===false||typeof r.update!=='function')return;
+  if(this.updateCheck)return this.updateCheck;
+  this.updateCheck=Promise.resolve().then(()=>r.update()).catch(()=>{/* Keep the verified offline copy when the network fails. */}).finally(()=>{this.updateCheck=null;this.emit();});
+  return this.updateCheck;
+ }
+ updateGame(){this.win.location.assign('./update.html');}
  async fullscreen(){
   // Invoke the actual API synchronously in the click's user activation.
   if(this.doc.fullscreenElement||this.doc.webkitFullscreenElement){const exit=this.doc.exitFullscreen||this.doc.webkitExitFullscreen;await exit?.call(this.doc);return 'exited';}
@@ -52,9 +76,9 @@ export class BrowserFeatures {
  async prepare(){
   if(!this.nav.serviceWorker)throw Error('offline-unsupported');
   await this.persist();
-  const r=await this.nav.serviceWorker.register('./service-worker.js',{scope:'./',updateViaCache:'none'});this.registration=r;
+  const r=await this.nav.serviceWorker.register('./service-worker.js',{scope:'./',updateViaCache:'none'});this.observeRegistration(r);
   // An explicit offline/install action also checks for an updated package.
-  // No update is activated over a running game and no visit auto-downloads it.
+  // No update is activated over a running game.
   if(r.update)try{await r.update();}catch(error){if(!r.active)throw error;}
   const worker=r.installing||r.waiting||r.active;if(!worker)throw Error('offline-unavailable');this.targetWorker=worker;
   if(worker.state==='installing')await new Promise((resolve,reject)=>{

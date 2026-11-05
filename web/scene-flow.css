@@ -17,8 +17,8 @@
 @media(max-width:559px){#demo-launch{top:max(52px,env(safe-area-inset-top));bottom:auto}}
 @media(prefers-reduced-motion:reduce){#screen-transition{transition:none}}
 
-#native-confirmation{position:fixed;inset:0;z-index:85;display:flex;align-items:flex-start;justify-content:center;padding:max(56px,10dvh) 12px 16px;background:#000b;overflow:auto;overscroll-behavior:contain}
-.confirmation-panel{position:relative;isolation:isolate;width:min(480px,100%);max-height:calc(90dvh - 32px);padding:8px 12px 16px;overflow:auto;background:#000;animation:confirmation-in 160ms steps(4,end)}
+#native-confirmation{position:fixed;inset:0;z-index:85;display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top),env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left),env(safe-area-inset-right));background:#000b;overflow:auto;overscroll-behavior:contain}
+.confirmation-panel{position:relative;isolation:isolate;width:min(480px,100%);max-height:100%;min-height:0;flex-shrink:0;padding:8px 12px 16px;overflow:auto;background:#000;animation:confirmation-in 160ms steps(4,end)}
 .confirmation-background{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
 .confirmation-text{display:block;width:100%;image-rendering:pixelated;pointer-events:none}
 .confirmation-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:8px}
@@ -101,6 +101,7 @@ body[data-fullscreen-control="hidden"] #native-menu.native-button{left:max(10px,
 .scene-head{padding-left:56px;padding-right:56px}
 .native-screen[data-view="native"] #open-platform{grid-column:1/-1}
 #demo-launch{top:max(10px,env(safe-area-inset-top))}
+#demo-launch.native-button{width:208px;max-width:calc(100vw - 88px);height:48px;min-height:48px;padding:0;border:0;border-radius:0;background:transparent}
 
 /* Browser settings use the same original bitmap buttons and dialog frame.
    The status stays readable while the native mission remains paused. */
@@ -147,10 +148,10 @@ html,body{height:var(--app-viewport-height);min-height:0}
 
 /* Static input reference: original dialog frame, menu arrow and bitmap font.
    Both input modes remain reachable on touch/mouse hybrid devices. */
-.native-screen[data-view="controls"] .scene-shell{grid-template-areas:"head" "actions" "hero" "footer";grid-template-columns:minmax(0,1fr);grid-template-rows:40px 64px minmax(0,1fr) auto;gap:8px}
+.native-screen[data-view="controls"] .scene-shell{grid-template-areas:"head" "hero" "footer";grid-template-columns:minmax(0,1fr);grid-template-rows:40px minmax(0,1fr) auto;gap:8px}
 .native-screen[data-view="controls"] .scene-message{display:none}
 .native-screen[data-view="controls"] .scene-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:56px;max-height:none;width:100%;max-width:720px;justify-self:center}
 .native-screen[data-view="controls"] .scene-hero{align-items:flex-start;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;width:100%;max-width:720px;justify-self:center}
 .native-screen[data-view="controls"] .scene-art{width:100%;height:auto;max-height:none;object-fit:contain;flex:none}
-.native-screen[data-view="controls"] .scene-footer{justify-content:flex-start;background:transparent}
-@media(orientation:landscape) and (max-height:519px){.native-screen[data-view="controls"] .scene-shell{grid-template-rows:28px 56px minmax(0,1fr) auto;gap:4px}.native-screen[data-view="controls"] .scene-actions{grid-auto-rows:48px}}
+.native-screen[data-view="controls"] .scene-footer{justify-content:space-between;background:transparent}
+@media(orientation:landscape) and (max-height:519px){.native-screen[data-view="controls"] .scene-shell{grid-template-rows:28px minmax(0,1fr) auto;gap:4px}}

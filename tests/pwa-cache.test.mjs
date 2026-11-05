@@ -10,7 +10,7 @@ const template=await readFile(new URL('../web/service-worker.js',import.meta.url
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const fixtures=new Map([['index.html','<html>game</html>'],['shell.js','game();'],['engine/dune_web.wasm','wasm'],['native-audio-worklet.js','audio();']]);
 const entries=[...fixtures].map(([path,data])=>({path,bytes:Buffer.byteLength(data),sha256:hash(data)}));
-function host({version='new',corrupt=null,fail=null,old=true,transient=null,timeoutPath=null,noAbortController=false}={}){
+function host({version='new',corrupt=null,fail=null,old=true,transient=null,timeoutPath=null,noAbortController=false,windows=[],packageFiles=fixtures}={}){
  const listeners={},messages=[],network=[],data=new Map(),attempts=new Map(),scope='https://example.test/dune-sega-web/';
  // The timeout test advances only the hung resource's clock. Accelerating
  // every real30s deadline to1ms also races legitimate Response/crypto work
@@ -34,8 +34,13 @@ function host({version='new',corrupt=null,fail=null,old=true,transient=null,time
  if(old)data.set(prefix+'old',new Map([['preserved',new Response('old')]]));
  data.set('unrelated-site-cache',new Map());
  const cacheFor=name=>({async put(key,response){if(fail==='put')throw Error('quota');data.get(name).set(String(key),response.clone());},async match(key){if(fail==='match')throw Error('cache match denied');return data.get(name).get(String(key))?.clone();}});
- const caches={async keys(){return [...data.keys()];},async open(name){if(fail==='open')throw Error('cache open denied');if(!data.has(name))data.set(name,new Map());return cacheFor(name);},async delete(name){return data.delete(name);}};
- const self={registration:{scope},clients:{async matchAll(){return [{postMessage:m=>messages.push(m)}];}},addEventListener:(name,fn)=>listeners[name]=fn};
+ let cacheEnumerations=0;
+ const caches={async keys(){cacheEnumerations++;return [...data.keys()];},async open(name){if(fail==='open')throw Error('cache open denied');if(!data.has(name))data.set(name,new Map());return cacheFor(name);},async delete(name){return data.delete(name);}};
+ let activations=0;
+ const self={registration:{scope},skipWaiting:async()=>{activations++;},clients:{async matchAll(){return windows;}},addEventListener:(name,fn)=>listeners[name]=fn};
+ windows.forEach(client=>client.postMessage??=(m=>messages.push(m)));
+ // Progress listeners need not be a game window.
+ if(!windows.length)windows.push({id:'observer',url:scope+'update.html',postMessage:m=>messages.push(m)});
  const fetch=async (request,options)=>{
   const url=typeof request==='string'?request:request.url;network.push({url,options});
   const path=new URL(url).pathname.replace('/dune-sega-web/','');
@@ -48,10 +53,11 @@ function host({version='new',corrupt=null,fail=null,old=true,transient=null,time
    if(transient.kind==='corrupt')return new Response('stale cached bytes');
   }
   if(path===fail)throw TypeError('Load failed');
-  if(!fixtures.has(path))throw Error('not allowed '+path);
-  return new Response(path===corrupt?'tampered':fixtures.get(path));
+  if(!packageFiles.has(path))throw Error('not allowed '+path);
+  return new Response(path===corrupt?'tampered':packageFiles.get(path));
  };
- const script=template.replace('__DUNE_CACHE_VERSION__',version).replace('/*__DUNE_PRECACHE__*/ []',JSON.stringify(entries));
+ const packageEntries=[...packageFiles].map(([path,data])=>({path,bytes:Buffer.byteLength(data),sha256:hash(data)}));
+ const script=template.replace('__DUNE_CACHE_VERSION__',version).replace('/*__DUNE_PRECACHE__*/ []',JSON.stringify(packageEntries));
  runInNewContext(script,{self,caches,fetch,crypto:webcrypto,URL,Response,Uint8Array,console,
   AbortController:noAbortController?undefined:AbortController,
   setTimeout:timeoutPath?scheduleDeadline:setTimeout,
@@ -60,7 +66,12 @@ function host({version='new',corrupt=null,fail=null,old=true,transient=null,time
   let promise;listeners[name]({...values,waitUntil:p=>promise=p,respondWith:p=>promise=p});
   return promise?await promise:undefined;
  };
- return {event,data,messages,network,attempts,scope,prefix,cacheName:prefix+version,deadlineClock,abortedPaths};
+ return {event,data,messages,network,attempts,scope,prefix,cacheName:prefix+version,deadlineClock,abortedPaths,windows,get activations(){return activations;},get cacheEnumerations(){return cacheEnumerations;}};
+}
+function seedPrevious(h,{name='old',files=fixtures,complete=true,prefix=h.prefix,markerVersion=name}={}){
+ const contents=new Map([...files].map(([path,data])=>[h.scope+path,new Response(data,{headers:{'Content-Type':path.endsWith('.wasm')?'application/wasm':'application/octet-stream'}})]));
+ if(complete)contents.set(h.scope+'__offline_ready__',new Response(JSON.stringify({version:markerVersion,files:files.size})));
+ h.data.set(prefix+name,contents);return contents;
 }
 
 test('complete verified package installs without replacing a running worker',async()=>{
@@ -70,9 +81,52 @@ test('complete verified package installs without replacing a running worker',asy
  assert.equal(h.messages.at(-1).status,'ready');
  assert.equal(h.messages.at(-1).bytes,entries.reduce((n,e)=>n+e.bytes,0));
  assert.ok(h.data.has(h.prefix+'old'),'old worker cache survives install');
- assert.ok(!template.includes('self.skipWaiting('));assert.ok(!template.includes('self.clients.claim('));
+ assert.equal(h.activations,0,'installation cannot take over a running game');assert.ok(!template.includes('self.clients.claim('));
  await h.event('activate');
  assert.ok(!h.data.has(h.prefix+'old'));assert.ok(h.data.has('unrelated-site-cache'));
+});
+
+test('unchanged assets, including a large WASM response, are verified and copied without network downloads',async()=>{
+ const packageFiles=new Map(fixtures);packageFiles.set('engine/dune_web.wasm',Buffer.alloc(128*1024,0x5a));
+ const h=host({packageFiles}),old=seedPrevious(h,{files:packageFiles});await h.event('install');
+ assert.equal(h.network.length,0,'all new-release hashes match the preceding complete package');
+ assert.equal(h.cacheEnumerations,1,'candidate caches are discovered once per install');
+ assert.equal(h.data.get(h.cacheName).size,packageFiles.size+1);assert.equal(h.messages.at(-1).status,'ready');
+ assert.equal(h.messages.at(-1).loaded,packageFiles.size);assert.equal(h.messages.at(-1).bytes,[...packageFiles.values()].reduce((n,b)=>n+Buffer.byteLength(b),0));
+ for(const [path,bytes] of packageFiles){
+  const copied=h.data.get(h.cacheName).get(h.scope+path),preceding=old.get(h.scope+path);
+  assert.equal(hash(Buffer.from(await copied.clone().arrayBuffer())),hash(bytes));
+  assert.equal(hash(Buffer.from(await preceding.clone().arrayBuffer())),hash(bytes),'copying leaves old bytes intact');
+ }
+ assert.equal(h.data.get(h.cacheName).get(h.scope+'engine/dune_web.wasm').headers.get('Content-Type'),'application/wasm');
+ assert.ok(h.data.has(h.prefix+'old'));assert.equal(h.activations,0);
+});
+
+test('changed or corrupt cached bytes fall back to verified network downloads even with a complete marker',async()=>{
+ const oldFiles=new Map(fixtures);oldFiles.set('index.html','old');oldFiles.set('engine/dune_web.wasm','xxxx');
+ const h=host(),old=seedPrevious(h,{files:oldFiles});await h.event('install');
+ assert.deepEqual(h.network.map(({url})=>new URL(url).pathname.replace('/dune-sega-web/','')).sort(),['engine/dune_web.wasm','index.html']);
+ for(const path of ['engine/dune_web.wasm','index.html'])assert.equal(await h.data.get(h.cacheName).get(h.scope+path).clone().text(),fixtures.get(path));
+ assert.equal(await old.get(h.scope+'engine/dune_web.wasm').clone().text(),'xxxx','rejected old bytes are never repaired in place');
+ assert.equal(h.messages.at(-1).status,'ready');
+});
+
+test('markerless, mismatched-marker and foreign-scope caches cannot supply reusable assets',async()=>{
+ const h=host({old:false}),incomplete=seedPrevious(h,{name:'partial',complete:false}),mismatched=seedPrevious(h,{name:'mismatch',markerVersion:'different'}),foreign=seedPrevious(h,{name:'foreign',prefix:'dune-sega-offline:/another-game/:'});
+ await h.event('install');assert.equal(h.network.length,entries.length);assert.equal(h.cacheEnumerations,1);
+ for(const [name,contents]of [[h.prefix+'partial',incomplete],[h.prefix+'mismatch',mismatched],['dune-sega-offline:/another-game/:foreign',foreign]]){
+  assert.equal(h.data.get(name),contents,'unusable/foreign packages remain untouched');
+  assert.equal(await contents.get(h.scope+'engine/dune_web.wasm').clone().text(),'wasm');
+ }
+ assert.equal(h.messages.at(-1).status,'ready');
+});
+
+test('a failed changed download removes only its new candidate after reusing old verified assets',async()=>{
+ const h=host({fail:'shell.js'}),oldFiles=new Map(fixtures);oldFiles.set('shell.js','preceding shell');const old=seedPrevious(h,{files:oldFiles});
+ await assert.rejects(()=>h.event('install'),/after 3 attempts: shell.js/);
+ assert.equal(h.attempts.get('shell.js'),3);assert.equal(h.network.length,3,'other unchanged files were copied from the complete cache');
+ assert.ok(!h.data.has(h.cacheName));assert.equal(h.data.get(h.prefix+'old'),old);assert.ok(old.has(h.scope+'__offline_ready__'));
+ assert.equal(await old.get(h.scope+'shell.js').clone().text(),'preceding shell');assert.equal(h.messages.at(-1).status,'error');assert.equal(h.activations,0);
 });
 
 test('corrupt bytes or failed download never replace last working offline package',async()=>{
@@ -162,6 +216,43 @@ test('offline ready status is false until all files and completion marker exist'
  assert.equal(replies.at(-1).total,entries.length);
  const incomplete=host();await assert.rejects(()=>incomplete.event('activate'));
  assert.ok(incomplete.data.has(incomplete.prefix+'old'),'incomplete candidate cannot evict working version');
+});
+
+test('only the standalone updater can apply a verified package, with all game windows closed',async()=>{
+ const h=host();await h.event('install');const replies=[];
+ const apply=source=>h.event('message',{data:{type:'DUNE_APPLY_UPDATE'},source,ports:[{postMessage:value=>replies.push(value)}]});
+ await apply({id:'unknown'});assert.equal(replies.at(-1).status,'denied');assert.equal(h.activations,0);
+ h.windows.push({id:'playing',url:h.scope+'?v=old',postMessage(){}});
+ await apply({id:'playing'});assert.equal(replies.at(-1).status,'denied');
+ await apply({id:'observer'});assert.equal(replies.at(-1).status,'blocked');assert.equal(replies.at(-1).count,1);assert.equal(h.activations,0);
+ // A navigation or hidden/uncontrolled game tab also blocks activation.
+ h.windows.push({id:'other',url:h.scope+'index.html',postMessage(){}});
+ await apply({id:'observer'});assert.equal(replies.at(-1).count,2);
+ h.windows.splice(1);await apply({id:'observer'});assert.equal(replies.at(-1).status,'applying');assert.equal(h.activations,1);
+ assert.ok(h.data.has(h.prefix+'old'),'applying never deletes the preceding cache before activation');
+ const incomplete=host(),out=[];await incomplete.event('message',{data:{type:'DUNE_APPLY_UPDATE'},source:{id:'observer'},ports:[{postMessage:value=>out.push(value)}]});
+ assert.equal(out.at(-1).status,'incomplete');assert.equal(incomplete.activations,0);
+});
+
+test('activation retains older packages if a game window appeared after the update check',async()=>{
+ const h=host();await h.event('install');h.windows.push({id:'race',url:h.scope+'?v=old',postMessage(){}});await h.event('activate');
+ assert.ok(h.data.has(h.prefix+'old'));assert.ok(h.data.has(h.cacheName));
+});
+
+test('recovery page and script always escape the cache, even if present in a prior manifest',async()=>{
+ const h=host();await h.event('install');
+ for(const name of ['update.html','update-game.mjs'])assert.equal(await h.event('fetch',{request:{url:h.scope+name,method:'GET',mode:'navigate'}}),undefined);
+ const root=fileURLToPath(new URL('..',import.meta.url));
+ const output=execFileSync('python3',['-c',String.raw`
+import json,sys
+from pathlib import Path
+sys.path.insert(0,'tools')
+from build_publication import add_offline_worker
+p={'service-worker.js':Path('web/service-worker.js').read_bytes(),'index.html':b'game','update.html':b'updater','update-game.mjs':b'update script'}
+add_offline_worker(p)
+print(p['service-worker.js'].decode())
+`],{cwd:root,encoding:'utf8'});
+ assert.deepEqual(JSON.parse(output.match(/const PRECACHE = (.*);/)[1]).map(x=>x.path),['index.html']);
 });
 
 test('builder pins every runtime file without worker/release cycle and changes version with bytes',()=>{

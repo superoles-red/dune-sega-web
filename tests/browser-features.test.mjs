@@ -10,17 +10,44 @@ function environment(){
  const messages=[],opens=[],win=events({MessageChannel:Channel,matchMedia:()=>({matches:false}),open:(...args)=>opens.push(args)}),doc=events({documentElement:{}}),nav={userAgent:'Desktop browser',platform:'MacIntel',maxTouchPoints:0};
  const worker=events({state:'activated',postMessage(message,ports){messages.push(message);ports?.[0]?.postMessage(this.statusResponse||{type:'DUNE_OFFLINE_PROGRESS',status:'ready',loaded:429,total:429,bytes:8000000,totalBytes:8000000,version:'verified-version'});}});
  let registrations=0,lookups=0,updates=0;
- const registration={active:worker,async update(){updates++;}};
+ const registration=events({active:worker,async update(){updates++;}});
  nav.serviceWorker=events({async getRegistration(){lookups++;return registration;},async register(){registrations++;return registration;}});
  const feature=new BrowserFeatures({win,doc,nav});
  return {feature,win,doc,nav,worker,registration,messages,opens,get registrations(){return registrations;},get lookups(){return lookups;},get updates(){return updates;}};
 }
 const tick=async()=>{for(let i=0;i<8;i++)await Promise.resolve();};
 
-test('constructor only inspects an existing offline registration; it never registers, persists, or downloads',async()=>{
+test('constructor checks updates only for an existing offline registration, without registering or persisting',async()=>{
  const e=environment();let persisted=0;e.nav.storage={persist:async()=>{persisted++;return true;}};
  assert.equal(e.registrations,0);assert.equal(e.lookups,1);assert.equal(persisted,0);await tick();
- assert.equal(e.registrations,0);assert.equal(persisted,0);assert.deepEqual(e.messages,[{type:'DUNE_OFFLINE_STATUS'}]);
+ assert.equal(e.registrations,0);assert.equal(persisted,0);assert.equal(e.updates,1);assert.deepEqual(e.messages,[{type:'DUNE_OFFLINE_STATUS'}]);
+});
+test('offline startup skips the network check and retries when the browser comes online',async()=>{
+ const e=environment();e.nav.onLine=false;await e.feature.inspection;assert.equal(e.updates,0);assert.equal(e.registrations,0);
+ e.nav.onLine=true;e.win.dispatch('online');await tick();assert.equal(e.updates,1);assert.equal(e.registrations,0);
+});
+test('first-time online visitors are not enrolled in offline mode by an update check',async()=>{
+ let registrations=0,updates=0;const nav={onLine:true,serviceWorker:events({getRegistration:async()=>null,register:async()=>{registrations++;}})},win=events();
+ const feature=new BrowserFeatures({win,doc:events(),nav});await feature.inspection;win.dispatch('online');await tick();
+ assert.equal(registrations,0);assert.equal(updates,0);assert.equal(feature.snapshot().status,'idle');assert.equal(feature.snapshot().updateAvailable,false);
+});
+test('failed background network checks leave the confirmed offline copy usable',async()=>{
+ const e=environment();e.feature.state.status='ready';e.feature.state.version='current';e.registration.update=async()=>{throw Error('offline');};
+ await e.feature.inspection;assert.equal(e.feature.snapshot().status,'ready');assert.equal(e.feature.snapshot().version,'current');assert.equal(e.registrations,0);
+ const candidate=events({state:'installing'});e.nav.serviceWorker.dispatch('message',{source:candidate,data:{type:'DUNE_OFFLINE_PROGRESS',status:'error',message:'download unavailable'}});
+ assert.equal(e.feature.snapshot().status,'ready');assert.equal(e.feature.snapshot().version,'current');
+});
+test('a completed waiting update is advertised without activating it or reloading the game',async()=>{
+ const e=environment(),states=[],navigations=[];e.win.location={assign:url=>navigations.push(url)};e.feature.subscribe(s=>states.push(s));await e.feature.inspection;
+ const candidate=events({state:'installing'});e.registration.installing=candidate;e.registration.dispatch('updatefound');
+ assert.equal(e.feature.snapshot().updateAvailable,false);
+ e.nav.serviceWorker.controller=e.worker;e.registration.installing=null;e.registration.waiting=candidate;candidate.state='installed';candidate.dispatch('statechange');
+ assert.equal(states.at(-1).updateAvailable,true);assert.equal(e.nav.serviceWorker.controller,e.worker);assert.deepEqual(navigations,[]);assert.equal(candidate.listeners.get('statechange').size,0);
+ e.registration.waiting=null;assert.equal(e.feature.snapshot().updateAvailable,false);
+});
+test('the explicit update action navigates to recovery without touching browser saves or caches',()=>{
+ const e=environment(),navigations=[];e.win.location={assign:url=>navigations.push(url)};e.win.localStorage={clear(){throw Error('must not clear saves');}};e.win.caches={delete(){throw Error('must not delete caches');}};
+ e.feature.updateGame();assert.deepEqual(navigations,['./update.html']);
 });
 test('fullscreen request and exit reach native API synchronously during the initiating click',async()=>{
  const e=environment(),calls=[];e.doc.documentElement.requestFullscreen=function(){assert.equal(this,e.doc.documentElement);calls.push('enter');return Promise.resolve();};
@@ -84,7 +111,7 @@ test('offline status handshake failure is bounded and never reports a successful
 test('offline installing worker waits until cache installation finishes; failure never announces ready',async t=>{
  const timeouts=[];t.mock.method(globalThis,'setTimeout',(fn)=>{timeouts.push(fn);return 1;});t.mock.method(globalThis,'clearTimeout',()=>{});
  const e=environment();e.worker.state='installing';e.registration.installing=e.worker;e.registration.active=null;
- const operation=e.feature.prepareOffline();await tick();assert.equal(e.feature.snapshot().status,'downloading');assert.equal(e.worker.listeners.get('statechange').size,1);
+ const operation=e.feature.prepareOffline();await tick();assert.equal(e.feature.snapshot().status,'downloading');assert.equal(e.worker.listeners.get('statechange').size,2);
  e.worker.state='installed';e.worker.dispatch('statechange');await operation;assert.equal(e.feature.snapshot().status,'ready');assert.equal(e.worker.listeners.get('statechange').size,0);
  const bad=environment();bad.worker.state='installing';bad.registration.installing=bad.worker;bad.registration.active=null;const failed=bad.feature.prepareOffline();const rejected=assert.rejects(failed,/offline-download-failed/);await tick();bad.worker.state='redundant';bad.worker.dispatch('statechange');await rejected;assert.equal(bad.feature.snapshot().status,'error');
 });

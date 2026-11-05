@@ -10,6 +10,13 @@ import {CampaignStore,CONTINUE_KEY,CAMPAIGN_KEY} from '../web/campaign-state.mjs
 import {LANGUAGE_KEY} from '../web/i18n.mjs';
 import {createSaveFile,validateNativeSave,MAX_SAVE_FILE_BYTES} from '../web/save-files.mjs';
 
+test('updating cannot leave a live campaign when its current save fails',()=>{
+ const calls=[],ui=Object.create(GameInterface.prototype);
+ Object.assign(ui,{state:{activeRunArmed:1},art:{displayText:value=>value},saveCurrent:()=>false,tell:value=>calls.push(value),platform:{updateGame:()=>calls.push('navigate')}});
+ ui.updateGame();assert.deepEqual(calls,['COULD NOT SAVE. UPDATE CANCELLED.']);
+ ui.saveCurrent=()=>true;ui.updateGame();assert.equal(calls.at(-1),'navigate');
+});
+
 // Exercise production import/navigation/confirmation/store methods. Browser
 // painting and the existing native serializer/loader are explicit boundaries.
 class Element {
@@ -48,6 +55,24 @@ function installFixture({result='accepted',kind='android-chrome',failure=false}=
  f.ui.installButton=new Element();f.ui.installButton._nativeArtView={update:(label,options)=>updates.push({label,...options})};
  return {...f,order,updates,platformState:state};
 }
+test('200 identical Options or Pause polls refresh browser capabilities once while native sound labels stay live',async()=>dom(async()=>{
+ for(const scene of ['options','pause']){
+  const f=installFixture(),labels=new Map(),homeLabels=[],originalButton=f.ui.button.bind(f.ui),refresh=f.ui.refreshPlatform.bind(f.ui);let refreshes=0;
+  f.ui.homeInstallButton=new Element();f.ui.homeInstallView={update:label=>homeLabels.push(label)};
+  f.ui.refreshPlatform=()=>{refreshes++;refresh();};
+  f.ui.button=(label,action,options,parent)=>{const result=originalButton(label,action,options,parent);result.view.update=value=>labels.set(options?.id,value);return result;};
+  const state=snapshot({scene,houseId:scene==='pause'?0:-1,optionsInGame:scene==='pause'});
+  for(let i=0;i<200;i++)f.ui.showNative({...state});
+  assert.equal(refreshes,1);assert.equal(labels.get('option-0'),'MUSIC: ON');assert.equal(labels.get('option-1'),'SOUND: ON');
+  f.ui.showNative({...state,music:0,sound:0});assert.equal(refreshes,1,'native audio values do not trigger browser-capability work');
+  assert.equal(labels.get('option-0'),'MUSIC: OFF');assert.equal(labels.get('option-1'),'SOUND: OFF');
+  // Platform subscription/language actions still call the same refresh method
+  // independently of the unchanged native scene key.
+  f.platformState.installed=true;f.ui.refreshPlatform();assert.equal(refreshes,2);assert.equal(f.ui.homeInstallButton.disabled,true);assert.equal(homeLabels.at(-1),'INSTALLED');
+  f.ui.showNative({...state,inputReady:false});assert.equal(refreshes,3,'a rebuilt options screen refreshes its new controls');
+  assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);
+ }
+}));
 test('Install Game invokes the prompt before downloading, but accepted is not yet an installed application',async()=>dom(async()=>{
  const f=installFixture(),before=[...f.storage.values],operation=f.ui.installGame();assert.deepEqual(f.order,['prompt']);assert.equal(f.ui.installButton.disabled,true);
  await operation;assert.deepEqual(f.order,['prompt','offline']);assert.equal(f.ui.platformNotice,'INSTALLATION REQUESTED.');assert(!f.ui.messageText.includes('INSTALLED ON THIS DEVICE.'));assert(f.ui.messageText.includes('OFFLINE GAME READY.'));assert(f.ui.messageText.includes('ANDROID CHROME:'));
@@ -69,6 +94,53 @@ test('in-flight installation coalesces clicks and a waiting complete package ask
  const f=installFixture();let choose;f.ui.platform.install=()=>{f.order.push('prompt');return new Promise(resolve=>{choose=resolve;});};
  const first=f.ui.installGame();await f.ui.installGame();assert.deepEqual(f.order,['prompt']);choose('accepted');await first;
  f.platformState.restartRequired=true;f.ui.refreshPlatform();assert(f.ui.messageText.includes('CLOSE ALL GAME WINDOWS AND REOPEN TO USE THE DOWNLOADED COPY.'));assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);
+}));
+test('Home installation invokes the real prompt synchronously before opening its status screen',async()=>dom(async()=>{
+ const f=installFixture(),order=[];f.ui.view='home';f.ui.platform.install=()=>{order.push('prompt');return Promise.resolve('accepted');};f.ui.openPlatform=()=>order.push('files');
+ const operation=f.ui.installFromHome();assert.deepEqual(order,['prompt','files']);await operation;assert.deepEqual(f.order,['offline']);
+ assert.equal(f.ui.platformNotice,'INSTALLATION REQUESTED.');assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);
+}));
+test('Home installation without a native prompt shows device instructions in Files and Back returns Home',async()=>dom(async()=>{
+ const f=installFixture({result:'apple-help',kind:'apple'});f.ui.view='home';f.ui.prepareSaveFile=()=>{};
+ const operation=f.ui.installFromHome();assert.deepEqual(f.order,['prompt']);await operation;await Promise.resolve();
+ assert.equal(f.ui.view,'platform');assert.equal(f.ui.platformOrigin,'home');assert(f.ui.messageText.includes('ON IPHONE: SHARE > ADD TO HOME SCREEN'));
+ assert(!f.ui.buttons.some(button=>button.options.id==='install-game'),'the primary install action is on Home');await f.ui.closePlatform();assert.equal(f.ui.view,'home');assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);
+}));
+
+test('Files and Offline always offers an original-art update button that saves before leaving',async()=>dom(async()=>{
+ const f=installFixture(),order=[],before=[...f.storage.values];
+ f.ui.prepareSaveFile=()=>{};f.ui.saveCurrent=force=>order.push(['save',force]);f.ui.platform.updateGame=()=>order.push(['update']);
+ f.ui.showPlatform();const update=f.ui.buttons.find(button=>button.options.id==='update-game');
+ assert(update);assert.equal(update.label,'UPDATE GAME');assert.equal(update.options.disabled,undefined);
+ update.action();assert.deepEqual(order,[['save',true],['update']]);
+ assert.deepEqual([...f.storage.values],before);assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);
+}));
+test('update navigation cannot interrupt an import, pending native route, or busy action',async()=>dom(async()=>{
+ for(const flag of ['fileBusy','fileImportInProgress','pendingScreen','busy']){
+  const f=installFixture();let navigation=0;f.ui.platform.updateGame=()=>navigation++;f.ui[flag]=true;
+  f.ui.updateGame();assert.equal(navigation,0);assert.deepEqual(f.calls.saves,[]);
+ }
+}));
+test('a ready update is visible on Files and Offline without navigating or changing the running game',async()=>dom(async()=>{
+ const f=installFixture(),before=[...f.storage.values];f.platformState.updateAvailable=true;
+ f.ui.refreshPlatform();f.ui.refreshPlatform();
+ assert(f.ui.messageText.includes('NEW VERSION READY. UPDATE WHEN YOU FINISH PLAYING.'));
+ assert.equal(f.ui.messageText.split('NEW VERSION READY.').length,2);assert.equal(f.ui.view,'platform');
+ assert.deepEqual(f.calls.messages,[]);assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);assert.deepEqual([...f.storage.values],before);
+}));
+test('the update toast waits for Home and is shown only once without rebuilding the screen',async()=>dom(async()=>{
+ const f=installFixture();f.platformState.updateAvailable=true;f.ui.view='native';f.ui.state.scene='map';
+ f.ui.refreshPlatform();assert.deepEqual(f.calls.messages,[]);assert.equal(f.ui.view,'native');
+ f.ui.view='home';f.ui.refreshPlatform();f.ui.refreshPlatform();
+ assert.deepEqual(f.calls.messages,['NEW VERSION READY. UPDATE WHEN YOU FINISH PLAYING.']);
+ assert.equal(f.calls.homes,0);assert.equal(f.ui.view,'home');assert.deepEqual(f.calls.saves,[]);assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);
+}));
+test('opening Home surfaces a previously deferred ready-update notice without altering its buttons',async()=>dom(async()=>{
+ const f=installFixture();f.platformState.updateAvailable=true;
+ GameInterface.prototype.showHome.call(f.ui);
+ assert.deepEqual(f.calls.messages,['NEW VERSION READY. UPDATE WHEN YOU FINISH PLAYING.']);
+ assert(f.ui.buttons.some(button=>button.options.id==='new-campaign'));assert(f.ui.buttons.some(button=>button.options.id==='open-options'));
+ assert.equal(f.ui.view,'home');assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);
 }));
 
 test('import asks confirmation before changing any existing browser save, and CANCEL preserves it exactly',async()=>dom(async parents=>{

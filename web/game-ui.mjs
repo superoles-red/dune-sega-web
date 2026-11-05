@@ -1,15 +1,15 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261105-webapp5';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261105-webapp5';
-import {ScreenTransition} from './screen-transition.mjs?v=20261105-webapp5';
-import {NativeConfirmation} from './confirm-dialog.mjs?v=20261105-webapp5';
+import {BuildingInterface} from './building-ui.mjs?v=20261105-webapp6';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261105-webapp6';
+import {ScreenTransition} from './screen-transition.mjs?v=20261105-webapp6';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261105-webapp6';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261105-webapp5';
+import {LANGUAGES} from './i18n.mjs?v=20261105-webapp6';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
-import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261105-webapp5';
-import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261105-webapp5';
-import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261105-webapp5';
+import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261105-webapp6';
+import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261105-webapp6';
+import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261105-webapp6';
 
 const STORY=new Set(['house_briefing','briefing','victory','defeat']);
 const SEQUENCE=new Set([...STORY,'tutorial','loading','campaign','victory_movie','defeat_movie','results','ending','credits']);
@@ -32,7 +32,9 @@ export class GameInterface {
   this.hero=document.createElement('div');this.hero.className='scene-hero';this.heroCanvas=document.createElement('canvas');this.heroCanvas.className='scene-art';this.heroCanvas.setAttribute('role','img');this.hero.append(this.heroCanvas);
   this.message=document.createElement('div');this.message.className='scene-message';this.message.setAttribute('role','article');this.textCanvas=document.createElement('canvas');this.textCanvas.className='scene-text';this.textCanvas.setAttribute('aria-hidden','true');this.message.append(this.textCanvas);
   this.actions=document.createElement('div');this.actions.className='scene-actions';this.footer=document.createElement('nav');this.footer.className='scene-footer';this.footer.setAttribute('aria-label','Навигация');this.shell.append(head,this.hero,this.message,this.actions,this.footer);this.element.append(this.backdrop,this.shell);document.body.append(this.element);
-  this.demoButton=document.createElement('button');this.demoButton.id='demo-launch';this.demoButton.type='button';this.demoButton.textContent=this.art.displayText?.('LAUNCH DEMONSTRATION')||'Launch demonstration';this.demoButton.addEventListener('click',()=>this.beginDemo());document.body.append(this.demoButton);
+  // Reuse the accepted corner location for installation. The technical demo
+  // remains available to QA through beginDemo(), not as a player-facing button.
+  this.demoButton=document.createElement('button');this.demoButton.id='demo-launch';this.demoButton.type='button';this.demoButton.textContent=this.art.displayText?.('INSTALL GAME')||'Install game';document.body.append(this.demoButton);this.homeInstallButton=this.demoButton;this.homeInstallView=this.art.decorate(this.homeInstallButton,'INSTALL GAME');this.homeInstallButton.addEventListener('click',()=>this.installFromHome());
   dragScroll(this.actions);dragScroll(this.message);this.bindDialogTap();
   this.observer=new ResizeObserver(()=>{this.paintKey='';this.heroPaintKey='';if(this.hero)this.hero.style.cssText='';this.element.dataset.artLocked='false';this.drawCaption();this.drawMessage();this.resizeLockedArt();});this.observer.observe(this.element);this.observer.observe(this.message);this.removeLanguageListener=this.art.language?.onChange(()=>this.languageChanged());this.removePlatformListener=platform?.subscribe(()=>this.refreshPlatform());this.showHome();
  }
@@ -45,7 +47,7 @@ export class GameInterface {
  languageChanged(){
   this.lastText='';this.paintKey='';this.heroPaintKey='';this.frameReadKey='';this.building.paintDirty=true;
   this.element.dataset.language=this.art.language.code;
-  this.demoButton.textContent=this.art.displayText('LAUNCH DEMONSTRATION');
+  this.refreshPlatform();
   this.caption.setAttribute('aria-label',this.art.displayText(this.title||'DUNE'));
   this.drawCaption();this.drawMessage();this.dialog.draw();
   if(this.tutorial?.active){this.tutorial.syncControls();this.tutorial.invalidate();}
@@ -59,28 +61,33 @@ export class GameInterface {
  }
  openPlatform(){
   if(this.busy||this.pendingScreen||this.curtain.active)return;
-  this.platformOrigin=this.state.scene==='pause'?'pause':'options';this.saveCurrent(true);this.platformNotice='';return this.front(()=>this.showPlatform());
+  this.platformOrigin=this.view==='home'?'home':this.state.scene==='pause'?'pause':'options';this.saveCurrent(true);this.platformNotice='';return this.front(()=>this.showPlatform());
  }
  showPlatform(){
   this.clear('platform','FILES & OFFLINE');this.displayed='platform';this.actions.classList.add('platform-grid');
   this.downloadButton=this.button('DOWNLOAD SAVE',()=>this.exportFile(),{id:'download-save',disabled:true}).button;
   this.button('LOAD SAVE FILE',()=>pickSaveFile(file=>this.importFile(file)),{id:'upload-save'});
-  this.installButton=this.button('INSTALL GAME',()=>this.installGame(),{id:'install-game'}).button;
   this.offlineButton=this.button('PREPARE OFFLINE',()=>this.prepareOffline(),{id:'prepare-offline'}).button;
+  this.button('UPDATE GAME',()=>this.updateGame(),{id:'update-game'});
   this.button('SOURCE CODE',()=>this.platform.openSource(),{id:'source-code'});
   this.backButton(()=>this.closePlatform());this.refreshPlatform();this.prepareSaveFile();
  }
- closePlatform(){return this.front(()=>{this.platformNotice='';const scene=this.platformOrigin||'options';this.lastNativeKey='';if(this.state.scene===scene){this.showNative(this.state);this.displayed=scene;}else this.requestRoute(scene);});}
+ closePlatform(){return this.front(()=>{this.platformNotice='';const scene=this.platformOrigin||'options';this.lastNativeKey='';if(scene==='home')this.showHome();else if(this.state.scene===scene){this.showNative(this.state);this.displayed=scene;}else this.requestRoute(scene);});}
  refreshPlatform(){
   if(!this.platform)return;
   const s=this.platform.snapshot();this.optionViews.get('fullscreen')?.update(s.fullscreen?'EXIT FULL SCREEN':'FULL SCREEN');
+  if(this.homeInstallButton){const label=s.installed?'INSTALLED':'INSTALL GAME',disabled=!!s.installed||!!this.installBusy;this.homeInstallButton.disabled=disabled;this.homeInstallView?.update(label,{disabled});}
+  // A completed candidate can wait while a mission is running. Announce it
+  // once at Home, without changing its scene, intro or current controls.
+  if(this.view==='home'&&s.updateAvailable&&!this.updateNoticeShown){this.updateNoticeShown=true;this.tell(this.art.displayText('NEW VERSION READY. UPDATE WHEN YOU FINISH PLAYING.'));}
   if(this.view!=='platform')return;
   if(s.installed&&this.platformNotice===this.art.displayText('INSTALLATION REQUESTED.'))this.platformNotice='';
   let status=s.status==='ready'?'OFFLINE GAME READY.':s.status==='downloading'?'DOWNLOADING OFFLINE GAME...':s.status==='error'?'OFFLINE DOWNLOAD FAILED. TRY AGAIN.':'PREPARE OFFLINE ONCE WHILE CONNECTED.';
   status=this.art.displayText(status)+(s.status==='downloading'&&s.total?' '+s.loaded+' / '+s.total:'');
   const hint=this.art.displayText(s.installed?'INSTALLED ON THIS DEVICE.':this.installHelp(s));
   const restart=s.restartRequired?this.art.displayText('CLOSE ALL GAME WINDOWS AND REOPEN TO USE THE DOWNLOADED COPY.'):'';
-  this.liveText=false;this.messageText=[this.platformNotice,status,hint,restart].filter((text,index,all)=>text&&all.indexOf(text)===index).join('\n\n');this.message.hidden=false;this.element.dataset.hasMessage='true';this.drawMessage();if(this.offlineButton){this.offlineButton.disabled=!!s.preparing;this.offlineButton._nativeArtView?.update('PREPARE OFFLINE',{disabled:!!s.preparing});}
+  const update=s.updateAvailable?this.art.displayText('NEW VERSION READY. UPDATE WHEN YOU FINISH PLAYING.'):'';
+  this.liveText=false;this.messageText=[this.platformNotice,update,status,hint,restart].filter((text,index,all)=>text&&all.indexOf(text)===index).join('\n\n');this.message.hidden=false;this.element.dataset.hasMessage='true';this.drawMessage();if(this.offlineButton){this.offlineButton.disabled=!!s.preparing;this.offlineButton._nativeArtView?.update('PREPARE OFFLINE',{disabled:!!s.preparing});}
   if(this.installButton){const label=s.installed?'INSTALLED':'INSTALL GAME',disabled=!!s.installed||!!this.installBusy;this.installButton.disabled=disabled;this.installButton._nativeArtView?.update(label,{disabled});}
  }
  installHelp(s=this.platform.snapshot()){
@@ -90,6 +97,13 @@ export class GameInterface {
   if(s.installationKind==='android')return 'ANDROID: BROWSER MENU > INSTALL APP / ADD TO HOME SCREEN.';
   if(s.installationKind==='mac-safari')return 'MAC SAFARI: FILE > ADD TO DOCK.';
   return 'INSTALL THE GAME FROM YOUR BROWSER MENU.';
+ }
+ installFromHome(){
+  if(!this.platform||this.installBusy||this.busy||this.pendingScreen||this.curtain.active)return;
+  this.homeInstallView?.pulse();this.uiSound();
+  // The actual prompt starts in the click's activation. Opening its status
+  // screen may fade asynchronously, so it must follow this synchronous call.
+  const operation=this.installGame();this.openPlatform();return operation;
  }
  async installGame(){
   if(this.installBusy)return;this.installBusy=true;
@@ -106,6 +120,12 @@ export class GameInterface {
   finally{this.installBusy=false;this.refreshPlatform();}
  }
  async prepareOffline(){try{await this.platform.prepareOffline();this.refreshPlatform();}catch{this.tell(this.art.displayText('OFFLINE DOWNLOAD FAILED. TRY AGAIN.'));}}
+ updateGame(){
+  if(this.busy||this.pendingScreen||this.fileBusy||this.fileImportInProgress)return;
+  const saved=this.saveCurrent(true);
+  if(!this.demoMode&&!this.trainingMode&&this.state?.activeRunArmed&&!saved){this.tell(this.art.displayText('COULD NOT SAVE. UPDATE CANCELLED.'));return;}
+  return this.platform.updateGame();
+ }
  async prepareSaveFile(){
   const token=this.preparingSaveToken=(this.preparingSaveToken||0)+1;this.preparedSave=null;
   try{const file=await createSaveFile({store:this.store,language:this.art.language?.code||'en'});if(token!==this.preparingSaveToken)return;this.preparedSave=file;if(this.downloadButton){this.downloadButton.disabled=false;this.downloadButton._nativeArtView?.update('DOWNLOAD SAVE',{disabled:false});}}
@@ -146,11 +166,9 @@ export class GameInterface {
   if(this.busy||this.pendingScreen||this.curtain.active)return;
   this.controlsOrigin=this.state.scene==='pause'?'pause':'options';this.cancelGesture();return this.front(()=>this.showControls());
  }
- showControls(mode=this.controlsMode||defaultControlsMode()){
-  this.controlsMode=mode==='touch'?'touch':'mouse';this.controlsPaper=null;this.controlsPaintKey='';this.clear('controls','CONTROLS');this.displayed='controls';
-  this.button('TOUCH SCREEN',()=>this.showControls('touch'),{id:'controls-touch',subtitle:this.controlsMode==='touch'?'SELECTED':''});
-  this.button('MOUSE',()=>this.showControls('mouse'),{id:'controls-mouse',subtitle:this.controlsMode==='mouse'?'SELECTED':''});
-  this.backButton(()=>this.closeControls());if(this.hero)this.hero.scrollTop=0;
+ showControls(mode=defaultControlsMode()){
+  this.controlsMode=mode==='touch'?'touch':'mouse';this.controlsPaper=null;this.controlsPaintKey='';this.clear('controls','HOW TO PLAY?');this.displayed='controls';
+  this.backButton(()=>this.closeControls());this.button('TUTORIAL',()=>this.openTutorial(),{id:'open-tutorial',ariaLabel:'Пояснения об Арракисе' },this.footer);this.actions.hidden=true;if(this.hero)this.hero.scrollTop=0;
  }
  closeControls(){return this.front(()=>{const scene=this.controlsOrigin||'options';this.lastNativeKey='';if(this.state.scene===scene){this.showNative(this.state);this.displayed=scene;}else this.requestRoute(scene);});}
  get capturesInput(){return this.state?.battlePresentation&&this.state?.inputReady===false||this.tutorial?.capturesInput||this.dialog?.active||this.curtain.active||this.building.active||!this.element.hidden;}
@@ -177,18 +195,25 @@ export class GameInterface {
   if(slot||this.store.legacy())this.button('CONTINUE',()=>this.confirmContinue(slot),{id:'continue-campaign',ariaLabel:'Продолжить игру'});
   this.button('NEW CAMPAIGN',()=>this.front(()=>this.showHouses()),{id:'new-campaign',ariaLabel:'Выбрать фракцию и миссию'});
   this.button('OPTIONS',()=>this.openOptions(),{id:'open-options',ariaLabel:'Настройки'});
+  this.refreshPlatform();
  }
  async openTutorial(){
   if(this.busy||this.pendingScreen||this.curtain.active)return;
-  this.tutorialOrigin=this.state.scene==='pause'?'pause':'options';
+  this.tutorialReturn=this.view==='controls'?{view:'controls',mode:this.controlsMode,scene:this.controlsOrigin||'options'}:null;
+  this.tutorialOrigin=this.tutorialReturn?.scene||(this.state.scene==='pause'?'pause':'options');
   const token=++this.sequence;this.busy=true;this.coldHomeVideo=false;this.cancelGesture();
   try{
    await Promise.all([this.curtain.cover(),this.startEngine(),this.prepareTutorial()]);
    if(token!==this.sequence)return;
    this.view='tutorial-guide';this.element.hidden=true;this.demoButton.hidden=true;this.building.update({active:false});this.tutorial.show(0);this.busy=false;this.curtain.reveal();
-  }catch(e){if(token!==this.sequence)return;this.tell('Не удалось открыть обучение: '+e.message);this.busy=false;this.showHome();this.curtain.reveal();}
+  }catch(e){if(token!==this.sequence)return;this.tell('Не удалось открыть обучение: '+e.message);this.busy=false;if(this.tutorialReturn)this.restoreTutorialOrigin();else this.showHome();this.curtain.reveal();}
  }
- closeTutorial(){return this.front(()=>{this.tutorial?.hide();const scene=this.tutorialOrigin||'options';if(this.state.scene===scene){this.lastNativeKey='';this.showNative(this.state);this.displayed=scene;}else this.requestRoute(scene);});}
+ restoreTutorialOrigin(){
+  this.tutorial?.hide();const origin=this.tutorialReturn;this.tutorialReturn=null;
+  if(origin?.view==='controls'){this.controlsOrigin=origin.scene;this.showControls(origin.mode);return;}
+  const scene=this.tutorialOrigin||'options';if(this.state.scene===scene){this.lastNativeKey='';this.showNative(this.state);this.displayed=scene;}else this.requestRoute(scene);
+ }
+ closeTutorial(){return this.front(()=>this.restoreTutorialOrigin());}
  getTrainingState(){
   const read=name=>{try{const at=this.Module[name]?.();return at?JSON.parse(this.Module.UTF8ToString(at)):{};}catch{return {};}};
   return {native:read('_dune_web_training_json'),actions:read('_dune_web_actions_debug'),building:read('_dune_web_building_ui_json'),camera:read('_dune_web_camera_debug')};
@@ -428,11 +453,13 @@ export class GameInterface {
    if(scene==='options'||scene==='pause'){
     for(const row of [0,1]){const v=this.button('',()=>this.input(2,row),{...opts,id:'option-'+row});this.optionViews.set(row,v.view);}
     this.button('LANGUAGES',()=>this.openLanguages(),{...opts,id:'open-languages',feedback:true});
-    this.button('CONTROLS',()=>this.openControls(),{...opts,id:'open-controls',feedback:true});
-    this.button('TUTORIAL',()=>this.openTutorial(),{...opts,id:'open-tutorial',ariaLabel:'Пояснения об Арракисе',feedback:true});
+    this.button('HOW TO PLAY?',()=>this.openControls(),{...opts,id:'open-controls',feedback:true});
     if(this.platform)this.button('FILES & OFFLINE',()=>this.openPlatform(),{...opts,id:'open-platform',feedback:true});
     if(scene==='pause'){this.button('RESTART',()=>this.restartMission(),{...opts,id:'restart-mission',ariaLabel:'Начать текущую миссию заново'});this.button('MAIN MENU',()=>this.confirmMainMenu(),{...opts,id:'main-menu',ariaLabel:'Главное меню'});}
     this.backButton(()=>scene==='pause'?this.requestRoute('map'):this.mainMenu(),{feedback:true,disabled:pending});
+    // Browser capabilities change through their own events, not native polls.
+    // Refresh once for the newly built options, leaving sound labels live.
+    this.refreshPlatform();
    }else if(terminal(s)){
     const h=validHouse(s.terminalHouseId)?s.terminalHouseId:validHouse(s.outcomeHouse)?s.outcomeHouse:s.houseId,m=validMission(s.terminalMission)?s.terminalMission:validMission(s.outcomeMission)?s.outcomeMission:s.mission;
     if(validHouse(h)&&validMission(m))this.button('REPLAY',()=>this.startMission(h,m),{id:'replay-outcome',ariaLabel:'Начать миссию заново'});
@@ -444,7 +471,7 @@ export class GameInterface {
   }
   this.applyArtLock(s);this.nativeBusy=pending;this.visibleNative={...s};this.element.hidden=false;this.element.dataset.scene=scene;this.element.dataset.phase=s.presentationPhase||scene;this.element.dataset.ready=String(!pending);this.element.dataset.optionsLayout=String(scene==='pause'||scene==='options');this.element.dataset.timeline=String(SEQUENCE.has(scene));this.element.dataset.story=String(STORY.has(scene)&&(!s.presentationFullFrame||s.presentationPhase==='briefing_exit'));this.element.dataset.terminal=String(terminal(s));this.element.dataset.dialog=String(SEQUENCE.has(scene)&&!terminal(s));
   this.footer.hidden=!this.footer.childElementCount;this.actions.hidden=!this.actions.childElementCount;
-  if(scene==='options'||scene==='pause'){this.optionViews.get(0)?.update('MUSIC: '+(s.music?'ON':'OFF'));this.optionViews.get(1)?.update('SOUND: '+(s.sound?'ON':'OFF'));this.refreshPlatform();}
+  if(scene==='options'||scene==='pause'){this.optionViews.get(0)?.update('MUSIC: '+(s.music?'ON':'OFF'));this.optionViews.get(1)?.update('SOUND: '+(s.sound?'ON':'OFF'));}
   const dialogue=STORY.has(scene)&&!s.presentationFullFrame,hasText=typeof s.visibleMessageText==='string';this.liveText=dialogue&&!hasText;this.messageText=cleanText(dialogue&&hasText?s.visibleMessageText:scene==='confirm'?(s.promptText||'ARE YOU SURE?'):'');this.message.hidden=!(this.messageText||this.liveText);this.element.dataset.hasMessage=String(!this.message.hidden);this.message.setAttribute('aria-label',this.messageText||'Оригинальный текст игры');this.drawMessage();
  }
  drawCaption(){const box=this.caption.getBoundingClientRect();if(!this.art.ready||box.width<1)return;const text=value=>this.art.displayText?.(value)||value,label=text(this.title||'DUNE'),sub=this.view==='native'&&this.visibleNative?.scene==='pause'&&this.state.house?text(this.state.house.toUpperCase()+' - MISSION '+this.state.mission):'',d=Math.min(devicePixelRatio||1,3),h=sub?64:40;this.caption.width=Math.ceil(box.width*d);this.caption.height=h*d;this.caption.style.height=h+'px';this.caption.setAttribute('aria-label',label);const c=this.caption.getContext('2d');c.scale(d,d);c.imageSmoothingEnabled=false;const scale=Math.min(2,Math.max(1,(box.width-16)/(Math.max(1,label.length)*8)));this.art.text(c,label,box.width/2,(40-8*scale)/2,{scale,align:'center',shadow:true,translate:false});if(sub)this.art.text(c,sub,box.width/2,44,{scale:Math.min(1.25,(box.width-24)/(sub.length*8)),align:'center',shadow:true,translate:false});}
@@ -460,7 +487,7 @@ export class GameInterface {
  homePicture(source,{cache=false}={}){
   if(!source)return null;
   if(cache){this.homeFrame.width=source.width;this.homeFrame.height=source.height;this.homeFrame.getContext('2d').drawImage(source,0,0);this.homeFrameValid=true;}
-  const can=this.titleFrame;can.width=320;can.height=255;const c=can.getContext('2d');c.imageSmoothingEnabled=false;c.fillStyle='#000';c.fillRect(0,0,320,255);c.drawImage(source,0,0,320,224);
+  const can=this.titleFrame;if(can.width!==320)can.width=320;if(can.height!==255)can.height=255;const c=can.getContext('2d');c.imageSmoothingEnabled=false;c.fillStyle='#000';c.fillRect(0,0,320,255);c.drawImage(source,0,0,320,224);
   if(this.creditsUnlocked){this.art.text(c,'ENGINE: REARRAKIS - OPEN SOURCE (MIT)',160,228,{scale:.65,align:'center',shadow:true});this.art.text(c,'KRUZEMAN / RROP / REARRAKIS CONTRIBUTORS',160,237,{scale:.65,align:'center',shadow:true});this.art.text(c,'RU FONT / UI: SHEDEVR (2003)',160,246,{scale:.65,align:'center',shadow:true});}return can;
  }
  updateFrame({textless=false,resultLabels=false,sceneLabels=false}={}){

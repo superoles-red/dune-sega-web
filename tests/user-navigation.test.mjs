@@ -237,14 +237,14 @@ test('a boot that reaches Title during the snapshot download follows the ordinar
  }finally{globalThis.fetch=previousFetch;}
 });
 
-test('Tutorial and Languages are available in both Options and Pause, with no Home shortcut',()=>{
+test('Options and Pause offer How to Play and Languages, with Tutorial inside the guide only',()=>{
  const {ui}=fixture();
  ui.showHome();assert(!ui.buttons.some(button=>button.options.id==='open-tutorial'||button.label==='TUTORIAL'));
  ui.state=snapshot({scene:'options',houseId:-1,optionsInGame:false});ui.showNative(ui.state);
- assert.equal(ui.buttons.filter(button=>button.options.id==='open-tutorial').length,1);assert.equal(ui.buttons.find(button=>button.options.id==='open-tutorial').options.disabled,false);
+ assert.equal(ui.buttons.filter(button=>button.options.id==='open-tutorial').length,0);assert.equal(ui.buttons.find(button=>button.options.id==='open-controls').label,'HOW TO PLAY?');
  assert.equal(ui.buttons.filter(button=>button.options.id==='open-languages').length,1);
  for(const state of [snapshot({scene:'pause',houseId:0,optionsInGame:true}),snapshot({scene:'options',houseId:0,optionsInGame:true})]){
-  ui.state=state;ui.showNative(state);assert.equal(ui.buttons.filter(button=>button.options.id==='open-tutorial').length,1);assert.equal(ui.buttons.filter(button=>button.options.id==='open-languages').length,1);
+  ui.state=state;ui.showNative(state);assert.equal(ui.buttons.filter(button=>button.options.id==='open-tutorial').length,0);assert.equal(ui.buttons.filter(button=>button.options.id==='open-controls').length,1);assert.equal(ui.buttons.filter(button=>button.options.id==='open-languages').length,1);
  }
 });
 
@@ -314,4 +314,12 @@ test('Home credits retain the legal-credit gate and extend below the complete or
  assert.ok(credits.every(line=>line.y>=224&&line.y+8*line.options.scale<=final.height),'all acknowledgements occupy added rows below the original image');
  assert.ok(images.every(args=>args[0]===source&&args.slice(1).join(',')==='0,0,320,224'),'the source frame and its original legal text are never cropped or resized internally');
  assert.deepEqual(fills.at(-1),[0,0,final.width,final.height]);
+});
+
+test('animated Home artwork reuses its canvas backing without retaining old pixels',()=>{
+ let width=300,height=150,resets=0,fills=0,images=0;
+ const context={fillRect(x,y,w,h){assert.deepEqual([x,y,w,h],[0,0,320,255]);fills++;},drawImage(){images++;}};
+ const ui=Object.create(GameInterface.prototype);ui.titleFrame={get width(){return width;},set width(value){width=value;resets++;},get height(){return height;},set height(value){height=value;resets++;},getContext:()=>context};
+ for(let i=0;i<120;i++)ui.homePicture({width:320,height:224});
+ assert.equal(resets,2,'allocate once rather than resetting twice for each animated frame');assert.equal(fills,120,'each frame still completely replaces the prior picture');assert.equal(images,120);
 });

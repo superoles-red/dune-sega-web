@@ -1,8 +1,11 @@
 // Host UI text only. Native prices, orders and campaign data remain unchanged.
 export const UI_RU={
  'FULL SCREEN':'ПОЛНЫЙ ЭКРАН','EXIT FULL SCREEN':'ОКОННЫЙ РЕЖИМ','FILES & OFFLINE':'ФАЙЛЫ И ОФЛАЙН',
+ 'COULD NOT SAVE. UPDATE CANCELLED.':'НЕ УДАЛОСЬ СОХРАНИТЬ ИГРУ. ОБНОВЛЕНИЕ ОТМЕНЕНО.',
  'DOWNLOAD SAVE':'СКАЧАТЬ СЕЙВ','LOAD SAVE FILE':'ЗАГРУЗИТЬ СЕЙВ','LOAD SAVE FILE?':'ЗАГРУЗИТЬ СЕЙВ?','LOAD':'ЗАГРУЗИТЬ',
  'INSTALL GAME':'УСТАНОВИТЬ ИГРУ','PREPARE OFFLINE':'СКАЧАТЬ ДЛЯ ОФЛАЙН','SOURCE CODE':'ИСХОДНЫЙ КОД',
+ 'UPDATE GAME':'ОБНОВИТЬ ИГРУ',
+ 'NEW VERSION READY. UPDATE WHEN YOU FINISH PLAYING.':'НОВАЯ ВЕРСИЯ ГОТОВА. ЗАВЕРШИВ ИГРУ, ВЫБЕРИТЕ ОБНОВЛЕНИЕ В НАСТРОЙКАХ.',
  'OFFLINE GAME READY.':'ИГРА ГОТОВА К РАБОТЕ БЕЗ ИНТЕРНЕТА.',
  'DOWNLOADING OFFLINE GAME...':'ЗАГРУЗКА ИГРЫ ДЛЯ ОФЛАЙН...',
  'OFFLINE DOWNLOAD FAILED. TRY AGAIN.':'НЕ УДАЛОСЬ СКАЧАТЬ ИГРУ. ПОВТОРИТЕ ПОПЫТКУ.',
@@ -32,6 +35,11 @@ export const UI_RU={
  'CONTINUE':'ПРОДОЛЖИТЬ','NEW CAMPAIGN':'НОВАЯ КАМПАНИЯ','OPTIONS':'НАСТРОЙКИ',
  'LANGUAGES':'ЯЗЫКИ','LANGUAGE':'ЯЗЫК','TUTORIAL':'СПРАВОЧНИК','BACK':'НАЗАД',
  'CONTROLS':'УПРАВЛЕНИЕ','TOUCH SCREEN':'СЕНСОР','MOUSE':'МЫШЬ',
+ 'HOW TO PLAY?':'КАК ИГРАТЬ?',
+ 'SINGLE TAP':'ОДНО КАСАНИЕ','DOUBLE TAP':'ДВА КАСАНИЯ','DRAG':'ПЕРЕТАСКИВАНИЕ','PINCH':'ДВА ПАЛЬЦА',
+ 'LEFT CLICK':'ЛЕВАЯ КНОПКА','RIGHT CLICK':'ПРАВАЯ КНОПКА','LEFT DRAG':'ТЯНИТЕ ЛЕВОЙ КНОПКОЙ','WHEEL OR TRACKPAD':'КОЛЕСО ИЛИ ТРЕКПАД',
+ 'SELECT. EMPTY GROUND CLEARS.':'ВЫБОР. НА ПУСТОМ МЕСТЕ: СБРОС.',
+ 'GIVE AN ORDER.':'ОТДАТЬ ПРИКАЗ.','MOVE THE MAP.':'ДВИГАТЬ КАРТУ.','ZOOM THE MAP.':'МЕНЯТЬ МАСШТАБ.',
  'SELECT':'ВЫБОР','CLEAR SELECTION':'СНЯТЬ ВЫДЕЛЕНИЕ','GIVE AN ORDER':'ПРИКАЗ',
  'MOVE THE MAP':'ДВИЖЕНИЕ КАРТЫ','ZOOM':'МАСШТАБ','BUILD':'ПОСТРОЙКА','EXTRA ACTION':'ОСОБОЕ ДЕЙСТВИЕ',
  'SINGLE TAP AN OBJECT.':'ОДИН РАЗ КОСНИТЕСЬ ОБЪЕКТА.',
