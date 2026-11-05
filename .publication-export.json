@@ -3661,9 +3661,9 @@
       "sha256": "cb7a6af25ac35cadbdd00ef951100a34077283390ead2aba838929c8d51c37df"
     },
     "docs/release-20261105-webapp.md": {
-      "bytes": 13140,
+      "bytes": 14213,
       "mode": "0o644",
-      "sha256": "562843000799e8634a765c7b583b74c5da44c2fd7ad93c0460165d53c456ea66"
+      "sha256": "5f25a457a64ea5e6fd538642bd0142f3d29184015ed361c7418b1004fbab68c3"
     },
     "docs/release-20261105.md": {
       "bytes": 2847,
@@ -6453,7 +6453,7 @@
     "web/building-ui.mjs": {
       "bytes": 14107,
       "mode": "0o644",
-      "sha256": "399bd70218837f61e35479bfd6c105e53734f0484e5ccab65304720d99c8a858"
+      "sha256": "9a9cebb759ba4b9be123799cc609eecc1aa464bea7521b99c781d836c72fec27"
     },
     "web/campaign-names.mjs": {
       "bytes": 318,
@@ -6508,7 +6508,7 @@
     "web/game-ui.mjs": {
       "bytes": 61056,
       "mode": "0o644",
-      "sha256": "bd2fc85981a01237a4f75fe30f3840fb1db130a3198fbc4b10913dfcf3cddf11"
+      "sha256": "2206a20d8c902f292ea2444ac92ac3746bd15695e715e212cf91e6358f835c34"
     },
     "web/gestures.mjs": {
       "bytes": 3633,
@@ -6518,7 +6518,7 @@
     "web/i18n.mjs": {
       "bytes": 3923,
       "mode": "0o644",
-      "sha256": "66cefb4af68dacee16d8ea66f5b60cf3ac53a2b33660da8ccf2887fa89b7c328"
+      "sha256": "de7374ce72bd7347fbed37659d79543be82e4155e6b4dffdc3ab878488300502"
     },
     "web/icons/dune-180.png": {
       "bytes": 3759,
@@ -6541,9 +6541,9 @@
       "sha256": "dbd03cfbd26ebe17b7fbe15bea937acad3eb4e9f57ab7a6a293ce330dd2557d5"
     },
     "web/index.html": {
-      "bytes": 23559,
+      "bytes": 23651,
       "mode": "0o644",
-      "sha256": "4508e6c042844ac1ae6f3bf5b337c1cbe50b0f2e8f8a077412ef00015e9fa24e"
+      "sha256": "b8d387faa09863b08d37f02743678849ab623315fbd91e1e9d69a4396be325d9"
     },
     "web/input-check.mjs": {
       "bytes": 2725,
@@ -6733,7 +6733,7 @@
     "web/native-ui.mjs": {
       "bytes": 16632,
       "mode": "0o644",
-      "sha256": "4c2d5dfdff41898d1fe64edf5f18858a7125761a3066efb4c39debcfe0399fd8"
+      "sha256": "a48b149f0b82fbd9877033e3b44a2b61e5321871d5e8e54ea67da8ff05c313eb"
     },
     "web/options-layout.mjs": {
       "bytes": 1418,
@@ -6778,7 +6778,7 @@
     "web/runtime-atlas.mjs": {
       "bytes": 2328,
       "mode": "0o644",
-      "sha256": "9e1f27315bb376409b3d857bfa5713f46f5df954613a263af853898d1ecec9f6"
+      "sha256": "5da291731057300409420acef4736b864f42d995ab142f75607d833952b4daa0"
     },
     "web/save-files.mjs": {
       "bytes": 11530,
@@ -6803,7 +6803,7 @@
     "web/shell.js": {
       "bytes": 23203,
       "mode": "0o644",
-      "sha256": "31557fe005d2fb0a887e7ede5f21666fdc618f7cb409f072bff1ea9e35c11d50"
+      "sha256": "020d3ac9f105b49d48fd040e015d6cb3abd47613e138417f80ed4d2937831337"
     },
     "web/startup.js": {
       "bytes": 5035,

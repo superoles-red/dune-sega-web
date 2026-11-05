@@ -1,8 +1,8 @@
 # Web app loading, installation, controls and rendering — 2026-11-05
 
-Browser module/cache version: `20261105-webapp4`.
-Runtime build: `8c4c19846587cb549e8c6dae75e8d1b948fc052a0bf0cc3dc304fa9c324f119a`.
-Runtime package: 439 manifest entries, 8,677,059 bytes before HTTP compression.
+Browser module/cache version: `20261105-webapp5`.
+Runtime build: `f3d433a1fc5e88fb8319136842e11f786ad13ea383d2fadec00fd549b0438c1e`.
+Runtime package: 439 manifest entries, 8,677,151 bytes before HTTP compression.
 Accepted host rendering, raster optimization and inertia remain unchanged.
 Physical touch inertia passes on the tested Samsung; public installation/offline
 checks are performed separately after deployment.
@@ -34,6 +34,20 @@ the short-viewport/status-bar case on iPhone standalone apps; it is excluded
 for ordinary browser tabs, Android, landscape, page zoom and focused text
 inputs. **The reported bottom strip still requires a retest on a physical
 iPhone; desktop geometry tests cannot prove what an iOS webview paints.**
+
+A later Samsung cropped-screen report showed browser scale 1.26275: the visual
+viewport was about 304 CSSpx wide while innerWidth stayed 384. Native map zoom 50
+was separate. The user reopened the app and browser scale returned to 1 before
+this prevention change; that recovery is not attributed to the new CSS.
+The viewport now requests scale 1 limits, document touch-action permits panning
+without browser pinch, and the loading cover has touch-action none. Map canvas
+none still owns custom game pinch; menu/message/building/reference pan-y rules
+remain available for scrolling. This prevents accidental page gestures rather
+than forcibly resetting an existing browser zoom. Browser accessibility policy
+can override viewport limits; document/UI pinch enlargement is also restricted.
+These limits follow [Pointer Events](https://www.w3.org/TR/pointerevents3/#the-touch-action-css-property)
+and [WebKit's viewport-zoom policy](https://webkit.org/blog/7367/new-interaction-behaviors-in-ios-10/).
+Physical webapp5 page-scale/game-pinch/menu-scroll checks remain separate.
 
 The fullscreen button is hidden on iPhone. The map Menu button takes its left
 corner without an empty space. On other devices, the control follows actual
@@ -188,7 +202,7 @@ causation is not established. This
 tested browser/device combination is unsupported for now; use Chrome on Samsung.
 The preceding webapp3 release passed actual WebAPK installation, Home-icon
 launch and installed offline reload/gameplay on the Samsung, with scoped network
-conditions restored afterward. The final webapp4 cached update and Palace
+conditions restored afterward. The final webapp5 cached update and Palace
 interaction are checked separately after deployment. Physical iPhone portrait
 geometry still needs the user's retest.
 
