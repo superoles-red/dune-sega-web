@@ -18,11 +18,27 @@ export class OrderInput {
     this.pair=null;this.lastAction='idle';
   }
   cancel(){this.pair=null;this.lastAction='cancelled';}
-  snapshot(){return {pending:!!this.pair,pointerKind:this.pair?.kind??null,button:this.pair?.button??null,power:!!this.pair?.power,lastAction:this.lastAction};}
+  snapshot(){return {pending:!!this.pair,pointerKind:this.pair?.kind??null,button:this.pair?.button??null,power:!!this.pair?.power,deferredSelection:!!this.pair?.deferredSelection,lastAction:this.lastAction};}
+  /** Called by the owner's existing RAF. Inclusive double-click boundary wins;
+   * no timer or delayed action survives cancel/pan/UI interruption. */
+  flush(time=this.now()){
+    const pending=this.pair;
+    if(!pending?.deferredSelection)return 0;
+    if(!Number.isFinite(time)||time<pending.time){this.cancel();return 0;}
+    if(time-pending.time<=this.doubleTapMs)return 0;
+    this.pair=null;
+    if(!world(this.readState(pending.x,pending.y))){this.lastAction='ignored';return 0;}
+    this.lastAction='select';return +accepted(this.select(pending.x,pending.y));
+  }
   rightTap(x,y,kind='mouse'){return this.tap(x,y,kind,2);}
   tap(x,y,kind='touch',button=0){
-    const state=this.readState(x,y),time=this.now();
-    if(!world(state)||!Number.isFinite(x)||!Number.isFinite(y)||!Number.isFinite(time)||!['touch','pen','mouse'].includes(kind)||(button!==0&&!(kind==='mouse'&&button===2))){this.cancel();this.lastAction='ignored';return 0;}
+    const time=this.now();
+    if(!Number.isFinite(x)||!Number.isFinite(y)||!Number.isFinite(time)||!['touch','pen','mouse'].includes(kind)||(button!==0&&!(kind==='mouse'&&button===2))){this.cancel();this.lastAction='ignored';return 0;}
+    // A late tap must first commit an expired single selection, then obtain
+    // its fresh native pending-actor snapshot rather than reuse the Palace.
+    this.flush(time);
+    const state=this.readState(x,y);
+    if(!world(state)){this.cancel();this.lastAction='ignored';return 0;}
     const previous=this.pair;
     const match=previous&&previous.kind===kind&&previous.button===button&&time>=previous.time&&time-previous.time<=this.doubleTapMs&&Math.hypot(x-previous.x,y-previous.y)<=this.slop;
     // Only mobile input and explicitly armed Palace pairs can issue a paired
@@ -42,6 +58,12 @@ export class OrderInput {
     const power=!!state.powerArmed,pairAllowed=kind!=='mouse'||power;
     const hadSource=source(state);
     const before=pairAllowed&&hadSource?this.captureActor():null;
+    if(power&&before&&state.target?.own&&state.target.kind==='building'){
+      // Armed weapon targeting has priority over opening an own building.
+      // A lone tap still selects it once the double-command window expires.
+      this.pair={x,y,time,kind,button,token:before,power:true,deferredSelection:true};
+      this.lastAction='power-wait';return 0;
+    }
     this.lastAction='select';
     const result=+accepted(this.select(x,y));
     // Native selection can be queued until the next frame. Its capture API

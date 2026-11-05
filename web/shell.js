@@ -1,15 +1,15 @@
-import {MapGestures,placementEdgeVelocity} from './gestures.mjs?v=20261105-webapp3';
-import {bindMapInput} from './map-input.mjs?v=20261105-webapp3';
-import {OrderInput} from './order-input.mjs?v=20261105-webapp3';
-import {PanInertia} from './pan-inertia.mjs?v=20261105-webapp3';
-import {NativeArt} from './native-ui.mjs?v=20261105-webapp3';
-import {GameInterface} from './game-ui.mjs?v=20261105-webapp3';
+import {MapGestures,placementEdgeVelocity} from './gestures.mjs?v=20261105-webapp4';
+import {bindMapInput} from './map-input.mjs?v=20261105-webapp4';
+import {OrderInput} from './order-input.mjs?v=20261105-webapp4';
+import {PanInertia} from './pan-inertia.mjs?v=20261105-webapp4';
+import {NativeArt} from './native-ui.mjs?v=20261105-webapp4';
+import {GameInterface} from './game-ui.mjs?v=20261105-webapp4';
 import {validHouse,validMission} from './campaign-state.mjs';
-import {contextAction} from './context-action.mjs?v=20261105-webapp3';
-import {OrderFeedback} from './order-feedback.mjs?v=20261105-webapp3-palace';
+import {contextAction} from './context-action.mjs?v=20261105-webapp4';
+import {OrderFeedback} from './order-feedback.mjs?v=20261105-webapp4-palace';
 import {NativeAudioBridge} from './native-audio.mjs';
-import {BrowserFeatures} from './browser-features.mjs?v=20261105-webapp3';
-import {bindAppViewport,showFullscreenControl} from './viewport.mjs?v=20261105-webapp3';
+import {BrowserFeatures} from './browser-features.mjs?v=20261105-webapp4';
+import {bindAppViewport,showFullscreenControl} from './viewport.mjs?v=20261105-webapp4';
 
 // Input and presentation only. The original Sega handlers decide every game action.
 const canvas=document.getElementById('canvas');
@@ -47,7 +47,7 @@ function nativeAction(){if(!ready)return;const action=contextAction(latestAction
 function beginPointer(id,p,kind){if(!ready||gameUI?.capturesInput)return false;stopPanMotion();panMayCoast=!gestures.points.size&&['touch','pen'].includes(kind);if(panMayCoast)panInertia.begin(kind,performance.now());orderFeedback.setPointerKind(kind);resumeAudio();if(query(p.x,p.y)===1)orderFeedback.aimAt(p.x,p.y);canvas.focus({preventScroll:true});if(!gestures.points.size)Module._dune_web_begin?.(p.x,p.y);gestures.down({id,...p,kind});return true;}
 function endPointer(id,p){gestures.up({id,...p});if(query(p.x,p.y)===1)orderFeedback.releaseAim(p.x,p.y);else orderFeedback.releaseAim();if(!gestures.points.size&&!inertialCameraHeld)Module._dune_web_end?.();}
 const orders=new OrderInput({
- readState:(x,y)=>{const hit=nativeJSON('_dune_web_target_screen',x,y);return {...hit.inputActor,context:hit.context,capturesInput:!ready||!!gameUI?.capturesInput};},
+ readState:(x,y)=>{const hit=nativeJSON('_dune_web_target_screen',x,y);return {...hit.inputActor,target:hit.target,context:hit.context,capturesInput:!ready||!!gameUI?.capturesInput};},
  captureActor:()=>ready?(Module._dune_web_actor_capture?.()??0):0,
  select:(x,y)=>{counters.selectRequests++;return Module._dune_web_select_screen?.(x,y)??0;},
  command:(x,y,token)=>{counters.commandRequests++;return Module._dune_web_command_screen?.(x,y,token)??0;},
@@ -126,7 +126,7 @@ function loadGame(silent=false){
   const ok=loadPayload(value,silent);if(ok&&gameUI){gameUI.demoMode=false;gameUI.resuming=true;gameUI.view='native';gameUI.lastNativeKey='';gameUI.bootTarget=null;pollState();}return ok;
 }
 const Module=window.Module={
-  canvas,locateFile:name=>'engine/'+name+(name.endsWith('.wasm')?'?v=319b76fc26e77cbb':'?v=20261105-webapp3'),
+  canvas,locateFile:name=>'engine/'+name+(name.endsWith('.wasm')?'?v=f4a8cb4fc34845f1':'?v=20261105-webapp4'),
   print:(...args)=>console.log(...args),printErr:(...args)=>console.warn(...args),
   setStatus:text=>{status.textContent=text;if(text)startup?.engine();},
   onRuntimeInitialized:()=>{},
@@ -138,7 +138,7 @@ function startEngine(){
  if(ready)return Promise.resolve();if(enginePromise)return enginePromise;
  enginePromise=new Promise((resolve,reject)=>{resolveEngine=resolve;rejectEngine=reject;});started=true;
  status.textContent='Подготовка оригинальной игры…';document.getElementById('start').disabled=true;
- const script=document.createElement('script');script.src='engine/dune_web.js?v=20261105-webapp3';script.onerror=()=>{status.textContent='Не удалось загрузить сборку.';rejectEngine?.(Error(status.textContent));};document.body.appendChild(script);return enginePromise;
+ const script=document.createElement('script');script.src='engine/dune_web.js?v=20261105-webapp4';script.onerror=()=>{status.textContent='Не удалось загрузить сборку.';rejectEngine?.(Error(status.textContent));};document.body.appendChild(script);return enginePromise;
 }
 try{if(localStorage.getItem(SAVE_KEY))document.getElementById('start').textContent='Продолжить игру';}catch{}
 document.getElementById('start').onclick=()=>startEngine().catch(e=>tell(e.message));
@@ -185,6 +185,7 @@ function pollState(){
 }
 function placementFrame(now){
   requestAnimationFrame(placementFrame);
+  if(ready)orders.flush?.(performance.now());
   if(panInertia.active){if(!ready||gameUI?.capturesInput||gestures.points.size)stopPanMotion();else{const delta=panInertia.step(performance.now());if(delta){orders.cancel();orderFeedback.panAim();if(Module._dune_web_pan?.(delta.dx,delta.dy)!==1)stopPanMotion();}if(!panInertia.active)stopPanMotion();}}
   gameUI?.render(now);
   if(orderFeedback.active){const camera=nativeJSON('_dune_web_camera_debug');orderFeedback.render(now,camera,{blocked:!ready||!!gameUI?.capturesInput});}
@@ -195,7 +196,7 @@ function placementFrame(now){
   if(dt&&(vx||vy)){Module._dune_web_pan?.(-vx*dt,-vy*dt);counters.edgePans++;}
   Module._dune_web_placement_move?.(p.x,p.y);
 }
-if(inputCheckMode)import('./input-check.mjs?v=20261105-webapp3').then(({mountInputCheck})=>{
+if(inputCheckMode)import('./input-check.mjs?v=20261105-webapp4').then(({mountInputCheck})=>{
  inputCheck=mountInputCheck({canvas,read:()=>({taps:counters.taps,selectRequests:counters.selectRequests,commandRequests:counters.commandRequests,pan:counters.panEvents,inertia:panInertia.active,mode:gestures.mode,lastTap:lastMapTap,lastOrder:latestActions.lastOrder,special:latestActions.special,unitSpecial:latestActions.unitSpecial,bAvailable:latestActions.bAvailable,bKind:latestActions.bKind,orders:orders.snapshot(),selected:{kind:latestActions.selected?.kind||'none',id:latestActions.selected?.id,type:latestActions.selected?.type},ready,capturesInput:!!gameUI?.capturesInput,camera:{map:latestCamera.map,css:[latestCamera.cssWidth,latestCamera.cssHeight],output:[latestCamera.outputWidth,latestCamera.outputHeight],left:latestCamera.left,top:latestCamera.top,scale:latestCamera.scale,queued:latestCamera.queuedClicks}})});
 }).catch(e=>console.warn('Input diagnostic unavailable:',e.message));
 setInterval(pollState,50);if(!qaMode)setInterval(()=>saveGame(true),30000);

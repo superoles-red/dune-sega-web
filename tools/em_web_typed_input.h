@@ -120,9 +120,9 @@ static int em_web_select_world(double wx,double wy){
     EmWebActionContext target=em_web_target_world(wx,wy),current=em_web_action_context();
     if(target.kind&&target.pointer==current.pointer){
         if(target.kind==1||target.ready)return 1; /* no self order or paid placement */
-        /* A second single on a selected building enters its original screen,
-         * or arms a ready Palace. An already armed Palace stays armed. */
-        if(em_web_palace_ready(current)&&dune_word(&em_cpu,0xdc4c))return 1;
+        /* A repeated single enters the original screen or arms a ready Palace.
+         * The JS command-pair window defers an armed own-building SINGLE, so
+         * an explicit double COMMAND can take priority over this info entry. */
     }
     em_web_selection_drop_mouse_queue();
     em_web_typed=(EmWebTypedIntent){EM_TYPED_SELECT,EM_TYPED_WAIT,0,{0},target,wx,wy,
@@ -162,6 +162,19 @@ static void em_web_typed_dispatch(unsigned tile,unsigned phase){
 static void em_web_typed_observe(void){
     em_web_typed_validate();EmWebTypedIntent*t=&em_web_typed;if(!t->kind)return;
     if(t->phase){
+        /* Original A gives an armed Palace priority over another building,
+         * but a same-Palace hit chooses its info screen at $27BCE instead.
+         * Explicit COMMAND identifies a target, including that same footprint:
+         * choose the EXISTING $27BEC input-classification instruction. Every
+         * original selected/type/ready/cooldown/disabled/armed guard then runs
+         * at $27D60..$27E96, followed by unchanged house/resource/weapon code.
+         * SELECT and unarmed A retain their complete original routing. */
+        if(t->kind==EM_TYPED_COMMAND&&t->phase==EM_TYPED_EXECUTING&&t->armed&&
+           t->actor.kind==2&&t->actor.type==2&&em_cpu.pc==0x27bce&&
+           em_cpu.a[3]==t->actor.pointer&&em_cpu.a[0]==t->actor.pointer&&
+           dune_long(&em_cpu,0xc578)==t->actor.pointer&&!dune_long(&em_cpu,0xc25c)){
+            em_cpu.pc=0x27bec;return;
+        }
         if(em_cpu.pc!=0xe57a)return;
         unsigned phase=t->phase;t->phase=EM_TYPED_WAIT;
         if(phase==EM_TYPED_EXECUTING||t->kind==EM_TYPED_SELECT){memset(t,0,sizeof *t);return;}

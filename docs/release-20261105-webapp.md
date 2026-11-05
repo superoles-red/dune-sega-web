@@ -1,11 +1,12 @@
 # Web app loading, installation, controls and rendering — 2026-11-05
 
-Browser module/cache version: `20261105-webapp3`.
-Runtime build: `3fcd1065884c3a92893a03716f23e3ae8c9b444d4c18818acf8162fb4266f20e`.
-Runtime package: 439 manifest entries, 8,675,631 bytes before HTTP compression.
+Browser module/cache version: `20261105-webapp4`.
+Runtime build: `8c4c19846587cb549e8c6dae75e8d1b948fc052a0bf0cc3dc304fa9c324f119a`.
+Runtime package: 439 manifest entries, 8,677,059 bytes before HTTP compression.
+Accepted host rendering, raster optimization and inertia remain unchanged.
 Physical touch inertia passes on the tested Samsung; public installation/offline
 checks are performed separately after deployment.
-Core: `319b76fc26e77cbbe2d0eed808ae72587b4ec1d5fe88ed473561c287610c81d5`.
+Core: `f4a8cb4fc34845f17652b449e11401c34cfeba6900d76fa16e926f63c0337938`.
 Loader: `68fb1ad2cae3e188f3cdea405c744d6ed99cc23ae4add7f86b118abe7f451f9a`.
 
 The first HTML response now contains a visible loading screen, the exact
@@ -80,7 +81,7 @@ placement, minimap, menus, resize, blur and page suspension cancel it. Mouse
 dragging stays direct. The existing host camera remains held until this display
 motion stops; the tail sends only camera deltas, with no A/B or unit command.
 It uses the existing browser animation loop and no additional timer or native
-simulation step. The accepted native core above is unchanged by this overlay.
+simulation step. The inertia overlay itself changes only browser camera intent.
 On the physical Galaxy A07, a 260ms swipe released at cameraLeft432 and coasted
 through458 after100ms,490 after350ms, then settled499. A fresh pointer-down
 stopped another coast at651 throughout a287ms hold; a subsequent deliberate
@@ -115,6 +116,25 @@ the command. Desktop left click selects and right click commands. Repeating a
 single tap/left click on a selected building opens its original menu or action;
 repeating it on a selected unit does not issue a self order. An already aimed
 Palace requires a double tap or a pair of left clicks/right clicks to fire.
+While that Palace is armed, a first left click/touch on an own building waits
+up to300ms before ordinary selection. A matching second click/tap has command
+priority: it casts directly with the captured Palace, without selecting the
+target building or disarming/rearming the weapon. This includes the source
+Palace: modern COMMAND has weapon-target priority, while SELECT retains the
+original self-information action. A lone click selects/opens that information
+after the small wait. Ground clear remains immediate; other ordinary
+selection and the existing paired right-click path retain their timing. This
+is browser gesture disambiguation, not a native weapon or balance change.
+For an explicit armed self-Palace COMMAND, the native adapter chooses the
+existing weapon-target branch at the same-object information/target UI fork.
+It does not enter activation directly: the seven original eligibility checks
+and the original house/resource, allocation, RNG/scatter, damage and cooldown
+procedures still execute. SELECT retains the original information action.
+The dedicated native proof passes all three house powers on self/other-own
+targets, one native A, original guard/resource rejections and original single
+INFO. At the common guarded entry, all 391,624 CPU/device bytes match an
+independent original-branch execution through its activation-return boundary.
+This is a matched-entry branch proof; old same-building A chose information.
 Retained actors are opaque, expiring native tickets, invalidated by reset and
 entity identity changes. Pan, pinch, placement, minimap, layout changes, UI
 routes and page suspension cancel the browser's retained tap pair.
@@ -141,11 +161,12 @@ English-first/Russian-later decode order, stylesheet readiness and error/retry
 lifecycle. Atlas tests compare every crop to its source pixels and verify the
 fallback. Typed-input native tests check original selection/command dispatch,
 retained-actor restoration, Palace target confirmation, Devastator self-A/B and
-no-input preservation. The final overlay passes 281 JavaScript tests, 33
-descriptive-tutorial checks, seven independent atlas tests, four source-bootstrap
-tests, six publication tests, startup/atlas freshness, all 55 pinned native
-source inputs, the public 274-case raster oracle and all 439 package entries.
-Its 16 adapter header hashes match the recorded WASM build. Native clock,
+no-input preservation. The final build passes 288 JavaScript tests, 33 descriptive
+tutorial checks, seven atlas tests, four source-bootstrap tests, six publication
+tests, all 55 pinned native inputs, embedded startup/atlas freshness, the public
+274-case raster oracle and all 439 package entries. All 16 adapter hashes match
+its recorded native build. The dedicated Palace proof passes 12 groups and the
+prior typed-input proof passes 11. Native clock,
 host-audio and worklet proofs retain the original clocks and exact state/PCM
 comparisons; typed input remains 11/11.
 
@@ -165,8 +186,11 @@ interface in the pre-performance checks. The previous published build, an
 isolated core-only launch and the 512 MiB maximum did the same; atlas-specific
 causation is not established. This
 tested browser/device combination is unsupported for now; use Chrome on Samsung.
-Public HTTPS installation and offline relaunch are checked separately after
-deployment. Physical iPhone portrait geometry still needs the user's retest.
+The preceding webapp3 release passed actual WebAPK installation, Home-icon
+launch and installed offline reload/gameplay on the Samsung, with scoped network
+conditions restored afterward. The final webapp4 cached update and Palace
+interaction are checked separately after deployment. Physical iPhone portrait
+geometry still needs the user's retest.
 
 Browser, device, CI/artifact and served-file checks are separate evidence.
 This note does not claim a complete earned campaign playthrough or verified

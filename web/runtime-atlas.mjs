@@ -1,5 +1,5 @@
 // Lossless transport only: each canvas contains the unchanged original PNG crop.
-import {loadAssetImage,loadAssetJSON} from './asset-loader.mjs?v=20261105-webapp3';
+import {loadAssetImage,loadAssetJSON} from './asset-loader.mjs?v=20261105-webapp4';
 
 export function atlasEntries(manifest,expected,width,height){
  if(manifest?.version!==1||manifest.path!=='runtime-atlas.png'||manifest.width!==width||manifest.height!==height||width<1||height<1||width>2048||height>2048)throw Error('Native graphics atlas dimensions differ');
@@ -15,8 +15,8 @@ export function atlasEntries(manifest,expected,width,height){
 
 export async function loadRuntimeAtlas(expected,{onProgress=()=>{},doc=globalThis.document,bitmapFactory=globalThis.createImageBitmap}={}){
  const base=new URL('./ui-assets/',import.meta.url),[manifest,image]=await Promise.all([
-  loadAssetJSON(new URL('runtime-atlas.json?v=20261105-webapp3',base)),
-  loadAssetImage(new URL('runtime-atlas.png?v=20261105-webapp3',base)),
+  loadAssetJSON(new URL('runtime-atlas.json?v=20261105-webapp4',base)),
+  loadAssetImage(new URL('runtime-atlas.png?v=20261105-webapp4',base)),
  ]);
  const entries=atlasEntries(manifest,expected,image.naturalWidth,image.naturalHeight),images=new Map();
  try{for(const [key,path,[x,y,w,h]]of entries){
