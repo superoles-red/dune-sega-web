@@ -48,3 +48,13 @@ Installation is the original-art corner button on Home. Confirmation panels
 are centered in the measured viewport, with safe-area padding and scrolling.
 The native WASM remains SHA-256
 `f4a8cb4fc34845f17652b449e11401c34cfeba6900d76fa16e926f63c0337938`.
+
+Starting with webapp7, an existing offline registration also checks on visible
+focus, pageshow and return from the background. Once a complete newer package
+is waiting, a settled Home screen opens `update.html?auto=1`; that standalone
+page verifies it and applies/returns automatically when no other game window
+is open. A playing mission, campaign click/transition, dialog, import or
+installation prompt blocks automatic navigation. Other game windows require
+closing first rather than a forced takeover. No background registration is
+created for a player who has never opted into offline installation. A legacy
+installation without this bootstrap needs the stable recovery link once.

@@ -12,6 +12,7 @@
 <a id="play" href="./index.html" hidden>OPEN GAME</a><p id="version"></p>
 </main><script type="module">
 import {OfflineUpdater} from './update-game.mjs';
+const automatic=new URL(location.href).searchParams.get('auto')==='1';
 let ru=false;try{ru=localStorage.getItem('dune-sega-language-v1')==='ru';}catch{}
 const words=ru?{title:'ОБНОВЛЕНИЕ ИГРЫ',checking:'ПРОВЕРКА ОБНОВЛЕНИЯ…',downloading:'ЗАГРУЗКА ОБНОВЛЕНИЯ',ready:'НОВАЯ ВЕРСИЯ СКАЧАНА И ПРОВЕРЕНА.',applying:'ПРИМЕНЯЕМ ОБНОВЛЕНИЕ…',blocked:'Закройте остальные вкладки Dune и установленную игру. Затем нажмите «Применить обновление». Открытых окон: ',done:'ОБНОВЛЕНИЕ ГОТОВО.',failed:'Не удалось загрузить обновление. Проверьте интернет и повторите попытку. Прежняя офлайн-копия сохранена.',help:'Перед применением закройте другие вкладки Dune и установленную игру. Эту страницу оставьте открытой.',saves:'Сейвы и прогресс кампаний останутся на этом устройстве.',apply:'ПРИМЕНИТЬ ОБНОВЛЕНИЕ',retry:'ПОВТОРИТЬ',play:'ОТКРЫТЬ ИГРУ'}:{title:'UPDATE GAME',checking:'CHECKING FOR UPDATES…',downloading:'DOWNLOADING UPDATE',ready:'NEW VERSION DOWNLOADED AND VERIFIED.',applying:'APPLYING UPDATE…',blocked:'Close other Dune tabs and the installed game, then press Apply update. Open windows: ',done:'UPDATE READY.',failed:'Could not download the update. Check your connection and try again. Your previous offline copy is preserved.',help:'Close other Dune tabs and the installed game before applying the update. Keep this page open.',saves:'Your saves and campaign progress stay on this device.',apply:'APPLY UPDATE',retry:'TRY AGAIN',play:'OPEN GAME'};
 document.documentElement.lang=ru?'ru':'en';
@@ -22,9 +23,9 @@ const updater=new OfflineUpdater({onState:s=>{
  const busy=['checking','downloading','applying'].includes(s.status);bar.hidden=!busy;apply.disabled=busy;apply.hidden=!['ready','blocked','applying'].includes(s.status);retry.hidden=true;play.hidden=s.status!=='done';
  if(s.status==='downloading'&&s.total){bar.max=s.total;bar.value=s.loaded;}else bar.removeAttribute('value');
  if(s.version)$('version').textContent=s.version.slice(0,12);
- if(s.status==='done'){$('help').hidden=true;play.href='./index.html?updated='+encodeURIComponent(s.version.slice(0,12));}
+ if(s.status==='done'){$('help').hidden=true;play.href='./index.html?updated='+encodeURIComponent(s.version.slice(0,12));if(automatic)location.replace(play.href);}
 }});
 const failed=()=>{status.textContent=words.failed;bar.hidden=true;apply.hidden=true;retry.hidden=false;play.hidden=false;};
-const prepare=()=>{apply.hidden=true;retry.hidden=true;play.hidden=true;updater.prepare().catch(failed);};
+const prepare=()=>{apply.hidden=true;retry.hidden=true;play.hidden=true;updater.start({automatic}).catch(failed);};
 apply.addEventListener('click',()=>updater.apply().catch(failed));retry.addEventListener('click',prepare);prepare();
 </script></body></html>

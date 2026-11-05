@@ -142,6 +142,29 @@ test('opening Home surfaces a previously deferred ready-update notice without al
  assert(f.ui.buttons.some(button=>button.options.id==='new-campaign'));assert(f.ui.buttons.some(button=>button.options.id==='open-options'));
  assert.equal(f.ui.view,'home');assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);
 }));
+test('a fully waiting offline update applies once from settled Home, without saving or calling native routes',async()=>dom(async()=>{
+ const f=installFixture(),updates=[],before=[...f.storage.values];f.ui.platform.updateGame=options=>updates.push(options);f.platformState.updateAvailable=true;
+ f.ui.view='native';f.ui.state.scene='map';f.ui.refreshPlatform();assert.equal(f.ui.pendingGameUpdate,true);
+ assert.equal(f.ui.applyHomeUpdate(),false);assert.deepEqual(updates,[]);
+ f.ui.view='home';GameInterface.prototype.render.call(f.ui,100);assert.deepEqual(updates,[{automatic:true}]);assert.equal(f.ui.pendingGameUpdate,false);
+ f.ui.refreshPlatform();assert.equal(f.ui.applyHomeUpdate(),false,'a second platform event cannot repeat navigation');
+ assert.deepEqual(updates,[{automatic:true}]);assert.deepEqual(f.calls.saves,[]);assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);assert.deepEqual([...f.storage.values],before);
+}));
+test('automatic updates wait for transitions and leave an already clicked campaign or other screen alone',async()=>dom(async()=>{
+ const f=installFixture(),updates=[];f.ui.platform.updateGame=options=>updates.push(options);f.platformState.updateAvailable=true;f.ui.refreshPlatform();
+ f.ui.view='home';f.ui.curtain.active=true;assert.equal(f.ui.applyHomeUpdate(),false);
+ f.ui.view='houses';f.ui.curtain.active=false;assert.equal(f.ui.applyHomeUpdate(),false,'the campaign click wins when its fade finishes');
+ for(const view of ['native','controls','tutorial-guide','platform','languages','missions']){f.ui.view=view;assert.equal(f.ui.applyHomeUpdate(),false);}
+ f.ui.view='home';for(const flag of ['busy','pendingScreen','fileBusy','fileImportInProgress','installBusy']){f.ui[flag]=true;assert.equal(f.ui.applyHomeUpdate(),false);f.ui[flag]=false;}
+ f.ui.dialog.active=true;assert.equal(f.ui.applyHomeUpdate(),false);assert.deepEqual(updates,[]);f.ui.dialog.active=false;
+ assert.equal(f.ui.applyHomeUpdate(),true);assert.deepEqual(updates,[{automatic:true}]);
+}));
+test('an ordinary visitor or a platform without a waiting update never starts automatic installation',async()=>dom(async()=>{
+ const f=installFixture(),updates=[];f.ui.view='home';f.ui.platform.updateGame=options=>updates.push(options);
+ f.ui.refreshPlatform();assert.equal(f.ui.applyHomeUpdate(),false);assert.deepEqual(f.order,[]);assert.deepEqual(updates,[]);
+ delete f.ui.platform;f.ui.pendingGameUpdate=true;assert.equal(f.ui.applyHomeUpdate(),false,'older platform fakes and unsupported browsers remain usable');
+ assert.deepEqual(f.calls.saves,[]);assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);
+}));
 
 test('import asks confirmation before changing any existing browser save, and CANCEL preserves it exactly',async()=>dom(async parents=>{
  const f=fixture(),file=await archiveFile(),before=[...f.storage.values],operation=f.ui.importFile(file);await waitFor(()=>f.ui.dialog.active);

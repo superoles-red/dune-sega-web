@@ -26,9 +26,21 @@ test('offline startup skips the network check and retries when the browser comes
  const e=environment();e.nav.onLine=false;await e.feature.inspection;assert.equal(e.updates,0);assert.equal(e.registrations,0);
  e.nav.onLine=true;e.win.dispatch('online');await tick();assert.equal(e.updates,1);assert.equal(e.registrations,0);
 });
+test('existing offline registration checks again on visible focus, pageshow and visibility resume',async()=>{
+ const e=environment(),navigations=[];e.win.location={assign:url=>navigations.push(url)};await e.feature.inspection;assert.equal(e.updates,1);
+ for(const event of ['focus','pageshow']){e.win.dispatch(event);await tick();}assert.equal(e.updates,3);
+ e.doc.hidden=true;e.doc.visibilityState='hidden';e.win.dispatch('focus');e.win.dispatch('pageshow');e.doc.dispatch('visibilitychange');await tick();assert.equal(e.updates,3,'hidden documents do not perform resume checks');
+ e.doc.hidden=false;e.doc.visibilityState='visible';e.doc.dispatch('visibilitychange');await tick();assert.equal(e.updates,4);
+ assert.equal(e.registrations,0);assert.deepEqual(navigations,[],'resume checks never navigate or reload');
+});
+test('overlapping resume notifications coalesce into the one in-flight worker update',async()=>{
+ const e=environment();await e.feature.inspection;let checks=0,finish;e.registration.update=()=>{checks++;return new Promise(resolve=>{finish=resolve;});};
+ e.win.dispatch('focus');e.win.dispatch('pageshow');e.doc.visibilityState='visible';e.doc.dispatch('visibilitychange');await tick();assert.equal(checks,1);
+ finish();await tick();e.win.dispatch('focus');await tick();assert.equal(checks,2);finish();await tick();
+});
 test('first-time online visitors are not enrolled in offline mode by an update check',async()=>{
- let registrations=0,updates=0;const nav={onLine:true,serviceWorker:events({getRegistration:async()=>null,register:async()=>{registrations++;}})},win=events();
- const feature=new BrowserFeatures({win,doc:events(),nav});await feature.inspection;win.dispatch('online');await tick();
+ let registrations=0,updates=0;const nav={onLine:true,serviceWorker:events({getRegistration:async()=>null,register:async()=>{registrations++;}})},win=events(),doc=events({visibilityState:'visible'});
+ const feature=new BrowserFeatures({win,doc,nav});await feature.inspection;for(const event of ['online','focus','pageshow'])win.dispatch(event);doc.dispatch('visibilitychange');await tick();
  assert.equal(registrations,0);assert.equal(updates,0);assert.equal(feature.snapshot().status,'idle');assert.equal(feature.snapshot().updateAvailable,false);
 });
 test('failed background network checks leave the confirmed offline copy usable',async()=>{
@@ -47,7 +59,7 @@ test('a completed waiting update is advertised without activating it or reloadin
 });
 test('the explicit update action navigates to recovery without touching browser saves or caches',()=>{
  const e=environment(),navigations=[];e.win.location={assign:url=>navigations.push(url)};e.win.localStorage={clear(){throw Error('must not clear saves');}};e.win.caches={delete(){throw Error('must not delete caches');}};
- e.feature.updateGame();assert.deepEqual(navigations,['./update.html']);
+ e.feature.updateGame();e.feature.updateGame({automatic:false});e.feature.updateGame({automatic:true});assert.deepEqual(navigations,['./update.html','./update.html','./update.html?auto=1']);
 });
 test('fullscreen request and exit reach native API synchronously during the initiating click',async()=>{
  const e=environment(),calls=[];e.doc.documentElement.requestFullscreen=function(){assert.equal(this,e.doc.documentElement);calls.push('enter');return Promise.resolve();};

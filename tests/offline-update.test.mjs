@@ -25,6 +25,11 @@ test('reopening recovery after successful activation also works with only the ac
  const f=fixture();f.worker.state='activated';f.registration.active=f.worker;f.registration.waiting=null;
  assert.equal(await f.updater.prepare(),'latest');assert.equal(await f.updater.apply(),true);assert.equal(f.states.at(-1).status,'done');
 });
+test('automatic recovery applies after verification, but defers safely if another game is open',async()=>{
+ const f=fixture();assert.equal(await f.updater.start({automatic:true}),true);assert.deepEqual(f.calls.slice(-2),['DUNE_OFFLINE_STATUS','DUNE_APPLY_UPDATE']);assert.equal(f.states.at(-1).status,'done');
+ const blocked=fixture();blocked.worker.reply='blocked';assert.equal(await blocked.updater.start({automatic:true}),false);assert.equal(blocked.states.at(-1).status,'blocked');assert.equal(blocked.worker.state,'installed');
+ const manual=fixture();await manual.updater.start();assert(!manual.calls.includes('DUNE_APPLY_UPDATE'));
+});
 test('network update failure cannot pass off the old active package as current',async()=>{
  const f=fixture();f.registration.update=async()=>{throw Error('offline');};await assert.rejects(f.updater.prepare(),/offline/);assert(!f.calls.includes('DUNE_OFFLINE_STATUS'));assert(!f.states.some(s=>s.status==='ready'));
 });

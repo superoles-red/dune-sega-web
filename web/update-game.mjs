@@ -55,4 +55,8 @@ export class OfflineUpdater {
   });
   this.state('done',{version:this.version});return true;
  }
+ async start({automatic=false}={}){
+  await this.prepare();
+  return automatic?this.apply():false;
+ }
 }

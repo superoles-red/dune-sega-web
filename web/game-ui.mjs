@@ -1,15 +1,15 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261105-webapp6';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261105-webapp6';
-import {ScreenTransition} from './screen-transition.mjs?v=20261105-webapp6';
-import {NativeConfirmation} from './confirm-dialog.mjs?v=20261105-webapp6';
+import {BuildingInterface} from './building-ui.mjs?v=20261105-webapp7';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261105-webapp7';
+import {ScreenTransition} from './screen-transition.mjs?v=20261105-webapp7';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261105-webapp7';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261105-webapp6';
+import {LANGUAGES} from './i18n.mjs?v=20261105-webapp7';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
-import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261105-webapp6';
-import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261105-webapp6';
-import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261105-webapp6';
+import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261105-webapp7';
+import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261105-webapp7';
+import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261105-webapp7';
 
 const STORY=new Set(['house_briefing','briefing','victory','defeat']);
 const SEQUENCE=new Set([...STORY,'tutorial','loading','campaign','victory_movie','defeat_movie','results','ending','credits']);
@@ -76,6 +76,7 @@ export class GameInterface {
  refreshPlatform(){
   if(!this.platform)return;
   const s=this.platform.snapshot();this.optionViews.get('fullscreen')?.update(s.fullscreen?'EXIT FULL SCREEN':'FULL SCREEN');
+  this.pendingGameUpdate=!!s.updateAvailable;
   if(this.homeInstallButton){const label=s.installed?'INSTALLED':'INSTALL GAME',disabled=!!s.installed||!!this.installBusy;this.homeInstallButton.disabled=disabled;this.homeInstallView?.update(label,{disabled});}
   // A completed candidate can wait while a mission is running. Announce it
   // once at Home, without changing its scene, intro or current controls.
@@ -516,7 +517,16 @@ export class GameInterface {
   // and publisher/title fades remain part of the unmodified original video.
   return {source:this.homeFrameValid?this.homeFrame:this.art.part('title-complete-without-choices','screen'),sourceKey:'home-static',cacheHome:false};
  }
+ applyHomeUpdate(){
+  if(!this.pendingGameUpdate||this.homeUpdateStarted||this.view!=='home'||this.busy||this.pendingScreen||this.curtain?.active||this.dialog?.active||this.installBusy||this.fileBusy||this.fileImportInProgress||typeof this.platform?.updateGame!=='function')return false;
+  // Only a completely downloaded waiting worker sets this flag. A settled
+  // Home screen has no live mission to interrupt; every other view defers it.
+  this.homeUpdateStarted=true;this.pendingGameUpdate=false;
+  try{this.platform.updateGame({automatic:true});return true;}
+  catch(error){console.warn('Dune automatic update:',error);return false;}
+ }
  render(now){
+  if(this.applyHomeUpdate())return;
   this.curtain.paint(now);this.building.render(now);this.tutorial?.render?.(now);
   if(!this.element.hidden){
    const a=this.art,s=this.visibleNative||{},scene=s.scene;let source=null,sourceKey='',home=false,cacheHome=false;

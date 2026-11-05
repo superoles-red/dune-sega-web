@@ -32,6 +32,8 @@ export class BrowserFeatures {
   // waits safely until the player chooses to update outside the game.
   this.inspection=nav?.serviceWorker?.getRegistration?.('./').then(async r=>{if(!r)return;this.observeRegistration(r);(r.active||r.waiting)?.postMessage({type:'DUNE_OFFLINE_STATUS'});if(!this.pending)await this.checkForUpdates();}).catch(()=>{});
   win?.addEventListener('online',()=>this.checkForUpdates());
+  const checkOnResume=()=>{if(doc?.hidden||doc?.visibilityState&&doc.visibilityState!=='visible')return;this.checkForUpdates();};
+  win?.addEventListener('focus',checkOnResume);win?.addEventListener('pageshow',checkOnResume);doc?.addEventListener('visibilitychange',checkOnResume);
  }
  subscribe(fn){this.listeners.add(fn);return()=>this.listeners.delete(fn);}
  emit(){for(const fn of this.listeners)fn(this.snapshot());}
@@ -53,7 +55,7 @@ export class BrowserFeatures {
   this.updateCheck=Promise.resolve().then(()=>r.update()).catch(()=>{/* Keep the verified offline copy when the network fails. */}).finally(()=>{this.updateCheck=null;this.emit();});
   return this.updateCheck;
  }
- updateGame(){this.win.location.assign('./update.html');}
+ updateGame({automatic=false}={}){this.win.location.assign(automatic?'./update.html?auto=1':'./update.html');}
  async fullscreen(){
   // Invoke the actual API synchronously in the click's user activation.
   if(this.doc.fullscreenElement||this.doc.webkitFullscreenElement){const exit=this.doc.exitFullscreen||this.doc.webkitExitFullscreen;await exit?.call(this.doc);return 'exited';}
