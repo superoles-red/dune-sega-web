@@ -1,8 +1,10 @@
 # Web app loading, installation, controls and rendering — 2026-11-05
 
-Browser module/cache version: `20261105-webapp2`.
-Runtime build: `5b435ab679350aeb9f344d731c994d5d1313a1f4c695f3cf712c29886f6bb91d`.
-Runtime package: 438 manifest entries, 8,669,535 bytes before HTTP compression.
+Browser module/cache version: `20261105-webapp3`.
+Runtime build: `3fcd1065884c3a92893a03716f23e3ae8c9b444d4c18818acf8162fb4266f20e`.
+Runtime package: 439 manifest entries, 8,675,631 bytes before HTTP compression.
+Physical touch inertia passes on the tested Samsung; public installation/offline
+checks are performed separately after deployment.
 Core: `319b76fc26e77cbbe2d0eed808ae72587b4ec1d5fe88ed473561c287610c81d5`.
 Loader: `68fb1ad2cae3e188f3cdea405c744d6ed99cc23ae4add7f86b118abe7f451f9a`.
 
@@ -72,6 +74,19 @@ the old path displayed its earlier pre-step snapshot, while the new path shows
 the final current snapshot. This changes a display sampling boundary, not
 native game state or animation clocks. See [native-map-presentation.md](native-map-presentation.md).
 
+Touch/pen map drags now end with a short, bounded camera coast after a fresh
+swipe. A new pointer stops it before ordinary tap/target resolution. Pinch,
+placement, minimap, menus, resize, blur and page suspension cancel it. Mouse
+dragging stays direct. The existing host camera remains held until this display
+motion stops; the tail sends only camera deltas, with no A/B or unit command.
+It uses the existing browser animation loop and no additional timer or native
+simulation step. The accepted native core above is unchanged by this overlay.
+On the physical Galaxy A07, a 260ms swipe released at cameraLeft432 and coasted
+through458 after100ms,490 after350ms, then settled499. A fresh pointer-down
+stopped another coast at651 throughout a287ms hold; a subsequent deliberate
+40px drag moved the map normally. Both runs kept native lastOrder.seq0→0;
+the coast issued no A/B or unit order.
+
 The pure VDP compositor also reuses a name-table entry within each tile run,
 splitting at both scrolled 8px tiles and screen-space 16px VSRAM columns.
 Window regions, original tile decoding, priority and shadow/highlight semantics
@@ -126,10 +141,10 @@ English-first/Russian-later decode order, stylesheet readiness and error/retry
 lifecycle. Atlas tests compare every crop to its source pixels and verify the
 fallback. Typed-input native tests check original selection/command dispatch,
 retained-actor restoration, Palace target confirmation, Devastator self-A/B and
-no-input preservation. The frozen build passes 268 JavaScript tests, 33
+no-input preservation. The final overlay passes 281 JavaScript tests, 33
 descriptive-tutorial checks, seven independent atlas tests, four source-bootstrap
 tests, six publication tests, startup/atlas freshness, all 55 pinned native
-source inputs, the public 274-case raster oracle, and all 438 package entries.
+source inputs, the public 274-case raster oracle and all 439 package entries.
 Its 16 adapter header hashes match the recorded WASM build. Native clock,
 host-audio and worklet proofs retain the original clocks and exact state/PCM
 comparisons; typed input remains 11/11.

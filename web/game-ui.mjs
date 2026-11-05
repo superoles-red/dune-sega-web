@@ -1,15 +1,15 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261105-webapp2';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261105-webapp2';
-import {ScreenTransition} from './screen-transition.mjs?v=20261105-webapp2';
-import {NativeConfirmation} from './confirm-dialog.mjs?v=20261105-webapp2';
+import {BuildingInterface} from './building-ui.mjs?v=20261105-webapp3';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261105-webapp3';
+import {ScreenTransition} from './screen-transition.mjs?v=20261105-webapp3';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261105-webapp3';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261105-webapp2';
+import {LANGUAGES} from './i18n.mjs?v=20261105-webapp3';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
-import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261105-webapp2';
-import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261105-webapp2';
-import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261105-webapp2';
+import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261105-webapp3';
+import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261105-webapp3';
+import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261105-webapp3';
 
 const STORY=new Set(['house_briefing','briefing','victory','defeat']);
 const SEQUENCE=new Set([...STORY,'tutorial','loading','campaign','victory_movie','defeat_movie','results','ending','credits']);

@@ -20,6 +20,8 @@ test('touch and mouse instructions separate selection from the original command 
  for(const rows of [touch,mouse]){const special=rows.find(([title])=>title==='DEVASTATOR')[1];assert(special.includes('ITSELF TO ARM'));assert(special.includes('DETONATE APPEARS BELOW'));assert(!special.includes('INSTANT'));}
  assert(touch.find(([title])=>title==='PALACE')[1].includes('WHILE AIMING, DOUBLE TAP THE TARGET'));
  const palaceMouse=mouse.find(([title])=>title==='PALACE')[1];assert(palaceMouse.includes('WHILE AIMING, DOUBLE CLICK'));assert(palaceMouse.includes('LEFT OR RIGHT BUTTON'));
+ assert(touch.find(([title])=>title==='MOVE THE MAP')[1].includes('SWIPE TO COAST, TOUCH TO STOP'));
+ assert.equal(mouse.find(([title])=>title==='MOVE THE MAP')[1],'DRAG WITH THE LEFT BUTTON.');
 });
 test('coarse input selects the touch explanation while the mouse explanation remains available on hybrid devices',()=>{
  assert.equal(defaultControlsMode({matchMedia:query=>({matches:query==='(pointer: coarse)'})}),'touch');assert.equal(defaultControlsMode({matchMedia:()=>({matches:false})}),'mouse');assert.equal(defaultControlsMode({matchMedia(){throw Error('unsupported');}}),'mouse');assert.equal(defaultControlsMode(null),'mouse');

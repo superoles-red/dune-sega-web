@@ -41,6 +41,7 @@ export class MapGestures {
     if(!primary){if(!this.points.size)this.finish();return;}
     if(mode==='pending')this.callbacks.tap(point.x,point.y,kind);
     if(mode==='place')this.callbacks.placementEnd?.(point.x,point.y);
+    if(mode==='pan')this.callbacks.panEnd?.(kind);
     this.finish();
   }
   finish(){this.points.clear();this.origin=this.last=this.pinch=null;this.change('idle');}

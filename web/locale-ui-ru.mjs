@@ -38,6 +38,7 @@ export const UI_RU={
  'SINGLE TAP EMPTY GROUND.':'ОДИН РАЗ КОСНИТЕСЬ ПУСТОГО МЕСТА.',
  'DOUBLE TAP THE TARGET.':'ДВАЖДЫ КОСНИТЕСЬ ЦЕЛИ.',
  'DRAG WITH ONE FINGER.':'ПЕРЕМЕЩАЙТЕ КАРТУ ОДНИМ ПАЛЬЦЕМ.',
+ 'DRAG WITH ONE FINGER. SWIPE TO COAST, TOUCH TO STOP.':'ТЯНИТЕ КАРТУ ПАЛЬЦЕМ. БЫСТРЫЙ ЖЕСТ ДАЁТ ИНЕРЦИЮ. КАСАНИЕ ОСТАНАВЛИВАЕТ.',
  'PINCH WITH TWO FINGERS.':'СВОДИТЕ И РАЗВОДИТЕ ДВА ПАЛЬЦА.',
  'LEFT CLICK AN OBJECT.':'НАЖМИТЕ НА ОБЪЕКТ ЛЕВОЙ КНОПКОЙ.',
  'LEFT CLICK EMPTY GROUND.':'НАЖМИТЕ НА ПУСТОЕ МЕСТО ЛЕВОЙ КНОПКОЙ.',

@@ -14,3 +14,15 @@ test('cancellation loses pending clicks',()=>{const{g,calls}=setup();g.down(p(1,
 test('edge scrolling is bounded and points toward the requested map edge',()=>{assert.equal(placementEdgeVelocity(100,400),0);assert.equal(placementEdgeVelocity(0,400),-155);assert.equal(placementEdgeVelocity(400,400),155);assert.equal(placementEdgeVelocity(20,400),-placementEdgeVelocity(380,400));assert.equal(placementEdgeVelocity(-500,400),-155);assert.equal(placementEdgeVelocity(NaN,400),0);});
 test('minimap tap and drag change only camera and never emit A or world pan',()=>{const calls=[];const g=new MapGestures({canPanAt:()=>false,minimapStart:()=>true,minimapMove:(x,y)=>calls.push(['mini',x,y]),tap:()=>calls.push(['A']),pan:()=>calls.push(['pan'])});g.down(p(1,20,30));assert.equal(g.mode,'minimap');g.move(p(1,50,80));g.up(p(1,60,90));assert.deepEqual(calls,[['mini',50,80],['mini',60,90]]);});
 test('tap uses its stored primary pointer kind when final release has no kind or a different kind',()=>{for(const kind of ['touch','pen','mouse']){const{g,calls}=setup();g.down({...p(1,10,10),kind});g.up({...p(1,10,10),kind:'other'});assert.deepEqual(calls,[['tap',10,10,kind]]);}});
+test('pan release reports stored pointer kind once before idle, with no remaining owned pointer',()=>{
+ const events=[];let g;g=new MapGestures({canPanAt:()=>true,pan:()=>{},state:mode=>events.push(mode),panEnd:kind=>events.push({kind,points:g.points.size})});
+ g.down({...p(1,10,10),kind:'touch'});g.move(p(1,30,10));g.up(p(1,45,10));g.up(p(1,45,10));
+ assert.deepEqual(events,['pending','pan',{kind:'touch',points:0},'idle']);
+});
+test('tap, cancelled pan, building drop and minimap never launch a pan release',()=>{
+ for(const scenario of ['tap','cancel','place','minimap']){
+  const events=[],g=new MapGestures({canPanAt:()=>true,pan:()=>{},tap:()=>{},placementStart:()=>scenario==='place',minimapStart:()=>scenario==='minimap',panEnd:()=>events.push('coast')});
+  g.down({...p(1,10,10),kind:'touch'});if(scenario!=='tap')g.move(p(1,40,10));if(scenario==='cancel')g.cancel();g.up(p(1,scenario==='tap'?10:40,10));
+  assert.deepEqual(events,[],scenario);
+ }
+});
