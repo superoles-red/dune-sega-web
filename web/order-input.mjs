@@ -1,4 +1,5 @@
-export const DOUBLE_TAP_MS=100;
+export const DOUBLE_TAP_MS=300;
+export const SELECTION_WAIT_MS=100;
 export const DOUBLE_TAP_SLOP=24;
 
 const accepted=value=>value===true||(typeof value==='number'&&Number.isFinite(value)&&value>0);
@@ -14,8 +15,8 @@ const objectTarget=state=>['unit','building'].includes(state.target?.kind);
  * interrupts input. Pending/idle gesture notifications do not interrupt pairs.
  */
 export class OrderInput {
-  constructor({readState,captureActor,select,command,now=()=>performance.now(),doubleTapMs=DOUBLE_TAP_MS,slop=DOUBLE_TAP_SLOP}){
-    Object.assign(this,{readState,captureActor,select,command,now,doubleTapMs,slop});
+  constructor({readState,captureActor,select,command,now=()=>performance.now(),doubleTapMs=DOUBLE_TAP_MS,selectionWaitMs=SELECTION_WAIT_MS,slop=DOUBLE_TAP_SLOP}){
+    Object.assign(this,{readState,captureActor,select,command,now,doubleTapMs,selectionWaitMs,slop});
     this.pair=null;this.lastAction='idle';
   }
   cancel(){this.pair=null;this.lastAction='cancelled';}
@@ -24,21 +25,23 @@ export class OrderInput {
    * no timer or delayed action survives cancel/pan/UI interruption. */
   flush(time=this.now()){
     const pending=this.pair;
-    if(!pending?.deferredSelection)return 0;
+    if(!pending)return 0;
     if(!Number.isFinite(time)||time<pending.time){this.cancel();return 0;}
-    if(time-pending.time<=this.doubleTapMs)return 0;
-    this.pair=null;
-    if(!world(this.readState(pending.x,pending.y))){this.lastAction='ignored';return 0;}
+    const age=time-pending.time;
+    if(age>this.doubleTapMs)this.pair=null;
+    if(!pending.deferredSelection||age<=(pending.power?this.doubleTapMs:this.selectionWaitMs))return 0;
+    // Ordinary selection is prompt, but the original actor remains available
+    // to a second tap through the longer pair window. Palace selection waits
+    // for that whole window so a first tap cannot open its building early.
+    pending.deferredSelection=false;
+    if(!world(this.readState(pending.x,pending.y))){this.cancel();this.lastAction='ignored';return 0;}
     this.lastAction='select';return +accepted(this.select(pending.x,pending.y));
   }
   rightTap(x,y,kind='mouse'){return this.tap(x,y,kind,2);}
   tap(x,y,kind='touch',button=0){
     const time=this.now();
     if(!Number.isFinite(x)||!Number.isFinite(y)||!Number.isFinite(time)||!['touch','pen','mouse'].includes(kind)||(button!==0&&!(kind==='mouse'&&button===2))){this.cancel();this.lastAction='ignored';return 0;}
-    // A late tap must first commit an expired single selection, then obtain
-    // its fresh native pending-actor snapshot rather than reuse the Palace.
-    this.flush(time);
-    const state=this.readState(x,y);
+    let state=this.readState(x,y);
     if(!world(state)){this.cancel();this.lastAction='ignored';return 0;}
     const previous=this.pair;
     const match=previous&&previous.kind===kind&&previous.button===button&&time>=previous.time&&time-previous.time<=this.doubleTapMs&&Math.hypot(x-previous.x,y-previous.y)<=this.slop;
@@ -47,6 +50,12 @@ export class OrderInput {
     if(match&&(kind!=='mouse'||previous.power)){
       this.pair=null;this.lastAction='command';return +accepted(this.command(x,y,previous.token));
     }
+    // Pair recognition wins before an overdue RAF selection. A nonmatching
+    // or expired tap instead commits its single first, then reads the fresh
+    // native actor created by that selection rather than reusing old state.
+    const commitsSelection=previous?.deferredSelection&&time-previous.time>(previous.power?this.doubleTapMs:this.selectionWaitMs);
+    this.flush(time);
+    if(commitsSelection){state=this.readState(x,y);if(!world(state)){this.cancel();this.lastAction='ignored';return 0;}}
     this.pair=null;
     if(kind==='mouse'&&button===2){
       const token=this.captureActor();
@@ -61,8 +70,9 @@ export class OrderInput {
     const before=pairAllowed&&hadSource?this.captureActor():null;
     if(before&&objectTarget(state)){
       // A possible mobile order (or armed Palace double click) takes priority
-      // over selecting its target. A lone tap selects once the pair window
-      // expires; a paired order never sends an intermediate SELECT at all.
+      // over selecting its target. Ordinary lone selection waits only 100ms;
+      // an armed Palace waits for the full pair window. Both retain the same
+      // original source for a matching command through that window.
       this.pair={x,y,time,kind,button,token:before,power,deferredSelection:true};
       this.lastAction=power?'power-wait':'command-wait';return 0;
     }

@@ -1,5 +1,19 @@
 # Portrait iPhone safe area and expanded-map performance
 
+## Follow-up: 20261106-mobile6
+
+Separate the ordinary mobile object-selection wait (100ms) from double-tap
+recognition (300ms). Retain the first unit's opaque native actor token even
+when the short single-selection deadline has passed. A matching second tap
+still commands that original unit, without changing native targeting rules.
+A pair arriving before the selection is committed prevents that selection;
+a slower pair can briefly show its target selected, then issues the original
+source's command. This is the necessary tradeoff for responsive single taps
+and a usable, longer double-tap window. Do not delay a matching second tap just
+to flush its first selection. Armed Palace object taps retain the full 300ms
+selection wait so targeting the Palace itself cannot open its menu first.
+The original game, native core and saves are unchanged.
+
 ## Follow-up: 20261106-mobile5
 
 The double-tap matching window and deferred object-selection deadline are now

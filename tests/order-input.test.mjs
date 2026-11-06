@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {OrderInput,DOUBLE_TAP_MS,DOUBLE_TAP_SLOP} from '../web/order-input.mjs';
+import {OrderInput,DOUBLE_TAP_MS,SELECTION_WAIT_MS,DOUBLE_TAP_SLOP} from '../web/order-input.mjs';
 
 function setup(initial={},options={}){
  let time=1000,state={own:true,kind:'unit',powerArmed:false,capturesInput:false,context:1,...initial},actor={unit:37},afterActor;
  const calls=[];
- const input=new OrderInput({readState:()=>state,captureActor:()=>{calls.push(['capture',actor]);return actor;},select:(x,y)=>{calls.push(['select',x,y]);options.onSelect?.(state);if(afterActor!==undefined)actor=afterActor;return options.selectResult??1;},command:(x,y,token)=>{calls.push(['command',x,y,token]);return options.commandResult??1;},now:()=>time});
+ const input=new OrderInput({readState:()=>({...state,target:state.target?{...state.target}:undefined}),captureActor:()=>{calls.push(['capture',actor]);return actor;},select:(x,y)=>{calls.push(['select',x,y]);options.onSelect?.(state);if(afterActor!==undefined)actor=afterActor;return options.selectResult??1;},command:(x,y,token)=>{calls.push(['command',x,y,token]);return options.commandResult??1;},now:()=>time});
  return {input,calls,state,get actor(){return actor;},set actor(value){actor=value;},set afterActor(value){afterActor=value;},advance:n=>time+=n};
 }
 const actions=calls=>calls.filter(c=>c[0]!=='capture');
@@ -41,9 +41,9 @@ test('triple tap issues at most one command and the third tap begins a fresh imm
  const s=setup();for(let i=0;i<3;i++){s.input.tap(10,10,'touch');s.advance(20);}
  assert.deepEqual(actions(s.calls).map(c=>c[0]),['select','command','select']);assert.equal(s.input.snapshot().pending,true);
 });
-test('100ms and 24 CSS pixels are inclusive boundaries; slower/further/different-pointer taps select afresh',()=>{
- assert.equal(DOUBLE_TAP_MS,100);assert.equal(DOUBLE_TAP_SLOP,24);
- for(const [time,distance,kind,pair] of [[100,24,'touch',true],[101,0,'touch',false],[50,24.01,'touch',false],[10,0,'pen',false]]){
+test('300ms and 24 CSS pixels are inclusive pair boundaries, independent of the100ms selection wait',()=>{
+ assert.equal(DOUBLE_TAP_MS,300);assert.equal(SELECTION_WAIT_MS,100);assert.equal(DOUBLE_TAP_SLOP,24);
+ for(const [time,distance,kind,pair] of [[300,24,'touch',true],[301,0,'touch',false],[50,24.01,'touch',false],[10,0,'pen',false]]){
   const s=setup();s.input.tap(0,0,'touch');s.advance(time);s.input.tap(distance,0,kind);assert.equal(actions(s.calls)[1][0],pair?'command':'select');
  }
 });
@@ -109,14 +109,15 @@ test('armed Palace double command on an own building never sends its first selec
 
 test('a lone armed-Palace tap on an own building selects exactly once after the inclusive window',()=>{
  const s=setup({kind:'building',powerArmed:true,target:{kind:'building',own:true}});
- s.input.tap(100,110,'touch');s.advance(100);assert.equal(s.input.flush(),0);assert.deepEqual(actions(s.calls),[]);
+ s.input.tap(100,110,'touch');s.advance(101);assert.equal(s.input.flush(),0);assert.deepEqual(actions(s.calls),[]);
+ s.advance(199);assert.equal(s.input.flush(),0);assert.deepEqual(actions(s.calls),[]);
  s.advance(1);assert.equal(s.input.flush(),1);assert.deepEqual(actions(s.calls),[['select',100,110]]);
  s.advance(1000);assert.equal(s.input.flush(),0);assert.deepEqual(actions(s.calls),[['select',100,110]]);assert.equal(s.input.snapshot().pending,false);
 });
 
-test('an own-building Palace pair at exactly100ms still commands even if RAF flush runs first',()=>{
+test('an own-building Palace pair at exactly300ms still commands even if RAF flush runs first',()=>{
  const s=setup({kind:'building',powerArmed:true,target:{kind:'building',own:true}}),token=s.actor;
- s.input.tap(10,20,'mouse');s.advance(100);s.input.flush();s.input.tap(10,20,'mouse');
+ s.input.tap(10,20,'mouse');s.advance(300);s.input.flush();s.input.tap(10,20,'mouse');
  assert.deepEqual(actions(s.calls),[['command',10,20,token]]);
 });
 
@@ -127,13 +128,13 @@ test('cancelled own-building selection cannot appear after pan/pinch/placement/m
  }
  for(const update of [{capturesInput:true},{context:'building'},{context:0}]){
   const s=setup({kind:'building',powerArmed:true,target:{kind:'building',own:true}});
-  s.input.tap(10,20,'touch');Object.assign(s.state,update);s.advance(101);assert.equal(s.input.flush(),0);assert.deepEqual(actions(s.calls),[]);assert.equal(s.input.snapshot().pending,false);
+  s.input.tap(10,20,'touch');Object.assign(s.state,update);s.advance(301);assert.equal(s.input.flush(),0);assert.deepEqual(actions(s.calls),[]);assert.equal(s.input.snapshot().pending,false);
  }
 });
 
 test('a late tap flushes the first single before reading/capturing its fresh intended actor',()=>{
  const s=setup({kind:'building',powerArmed:true,target:{kind:'building',own:true}},{onSelect:state=>{state.powerArmed=false;state.kind='building';}});
- const newActor={building:9};s.afterActor=newActor;s.input.tap(10,20,'touch');s.advance(101);s.input.tap(10,20,'touch');
+ const newActor={building:9};s.afterActor=newActor;s.input.tap(10,20,'touch');s.advance(301);s.input.tap(10,20,'touch');
  assert.deepEqual(actions(s.calls),[['select',10,20],['select',10,20]]);
  assert.equal(s.calls.at(-1)[0],'capture');assert.equal(s.calls.at(-1)[1],newActor);assert.equal(s.input.snapshot().power,false);
  s.advance(100);s.input.tap(10,20,'touch');assert.deepEqual(actions(s.calls).at(-1),['command',10,20,newActor]);
@@ -157,12 +158,15 @@ test('mobile double orders on every object target never select the target before
  }
 });
 
-test('a lone object tap with an active mobile unit selects exactly once after the double-tap window',()=>{
+test('a lone object tap with an active mobile unit selects once at101ms while retaining its300ms pair',()=>{
  for(const kind of ['touch','pen'])for(const targetKind of ['unit','building'])for(const own of [false,true]){
   const s=setup({target:{kind:targetKind,own}});
   s.input.tap(30,40,kind);s.advance(100);assert.equal(s.input.flush(),0);assert.deepEqual(actions(s.calls),[]);
   s.advance(1);assert.equal(s.input.flush(),1);assert.deepEqual(actions(s.calls),[['select',30,40]]);
+  assert.equal(s.input.snapshot().pending,true);assert.equal(s.input.snapshot().deferredSelection,false);
+  s.advance(199);assert.equal(s.input.flush(),0);assert.deepEqual(actions(s.calls),[['select',30,40]]);assert.equal(s.input.snapshot().pending,true);
   s.advance(1000);s.input.flush();assert.deepEqual(actions(s.calls),[['select',30,40]]);
+  assert.equal(s.input.snapshot().pending,false);
  }
 });
 
@@ -201,5 +205,48 @@ test('deferred selection uses no timer, invalid/rewound input cancels it, and re
   const s=setup({kind:'building',powerArmed:true,target:{kind:'building',own:true}});s.input.tap(10,20,'touch');assert.equal(s.input.flush(time),0);s.advance(1000);s.input.flush();assert.deepEqual(actions(s.calls),[]);
  }
  const invalid=setup({kind:'building',powerArmed:true,target:{kind:'building',own:true}});invalid.input.tap(10,20,'touch');invalid.advance(101);invalid.input.tap(NaN,20,'touch');invalid.input.flush();assert.deepEqual(actions(invalid.calls),[]);
- const rejected=setup({kind:'building',powerArmed:true,target:{kind:'building',own:true}},{selectResult:0});rejected.input.tap(10,20,'touch');rejected.advance(101);assert.equal(rejected.input.flush(),0);rejected.input.flush();assert.deepEqual(actions(rejected.calls),[['select',10,20]]);
+ const rejected=setup({kind:'building',powerArmed:true,target:{kind:'building',own:true}},{selectResult:0});rejected.input.tap(10,20,'touch');rejected.advance(301);assert.equal(rejected.input.flush(),0);rejected.input.flush();assert.deepEqual(actions(rejected.calls),[['select',10,20]]);
+});
+
+test('matching object taps at80/150/299/300ms command before an overdue single RAF can select the target',()=>{
+ for(const kind of ['touch','pen'])for(const gap of [80,150,250,299,300]){
+  const s=setup({target:{kind:'unit',own:false}}),token=s.actor;s.afterActor={unit:99};
+  s.input.tap(30,40,kind);s.advance(gap);s.input.tap(31,40,kind);
+  assert.deepEqual(actions(s.calls),[['command',31,40,token]]);assert.equal(s.input.snapshot().pending,false);
+ }
+});
+
+test('late matching object taps still command the original unit after its101ms single has selected another actor',()=>{
+ for(const gap of [150,250,299,300])for(const kind of ['touch','pen']){
+  const s=setup({target:{kind:'unit',own:true}}),token=s.actor,next={unit:99};s.afterActor=next;
+  s.input.tap(30,40,kind);s.advance(101);s.input.flush();assert.equal(s.actor,next);
+  s.input.flush();s.advance(gap-101);s.input.flush();s.input.tap(31,40,kind);
+  assert.deepEqual(actions(s.calls),[['select',30,40],['command',31,40,token]]);
+  assert.equal(s.calls.filter(c=>c[0]==='capture').length,1,'selection must not replace the retained command source');
+ }
+});
+
+test('after300ms or a missed target, new pairs capture the actor created by the prompt single selection',()=>{
+ for(const [gap,x] of [[301,30],[150,100]]){
+  const s=setup({target:{kind:'unit',own:true}}),next={unit:99};s.afterActor=next;
+  s.input.tap(30,40,'touch');s.advance(gap);s.input.tap(x,40,'touch');
+  assert.deepEqual(actions(s.calls),[['select',30,40]]);assert.equal(s.calls.at(-1)[0],'capture');assert.equal(s.calls.at(-1)[1],next);
+  s.advance(80);s.input.tap(x,40,'touch');assert.deepEqual(actions(s.calls).at(-1),['command',x,40,next]);
+ }
+});
+
+test('Palace object selection stays deferred through300ms and quick/ordinary pairs never open the target',()=>{
+ for(const kind of ['mouse','touch','pen'])for(const gap of [80,150,299,300]){
+  const s=setup({kind:'building',powerArmed:true,target:{kind:'building',own:true}}),token=s.actor;
+  s.input.tap(30,40,kind);s.advance(Math.min(gap,101));s.input.flush();assert.deepEqual(actions(s.calls),[]);
+  if(gap>101)s.advance(gap-101);s.input.flush();s.input.tap(30,40,kind);
+  assert.deepEqual(actions(s.calls),[['command',30,40,token]]);
+ }
+});
+
+test('pan cancellation after a prompt single selection discards its retained original command source',()=>{
+ const s=setup({target:{kind:'unit',own:true}});s.afterActor={unit:99};
+ s.input.tap(30,40,'touch');s.advance(101);s.input.flush();s.input.cancel('pan');
+ s.advance(49);s.input.tap(30,40,'touch');s.advance(1000);s.input.flush();
+ assert.deepEqual(actions(s.calls).map(c=>c[0]),['select','select']);assert.equal(s.input.snapshot().pending,false);
 });
