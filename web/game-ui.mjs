@@ -1,15 +1,15 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261106-mobile6';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261106-mobile6';
-import {ScreenTransition} from './screen-transition.mjs?v=20261106-mobile6';
-import {NativeConfirmation} from './confirm-dialog.mjs?v=20261106-mobile6';
+import {BuildingInterface} from './building-ui.mjs?v=20261106-mobile7';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261106-mobile7';
+import {ScreenTransition} from './screen-transition.mjs?v=20261106-mobile7';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261106-mobile7';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261106-mobile6';
+import {LANGUAGES} from './i18n.mjs?v=20261106-mobile7';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
-import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261106-mobile6';
-import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261106-mobile6';
-import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261106-mobile6';
+import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261106-mobile7';
+import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261106-mobile7';
+import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261106-mobile7';
 
 // Original Results loader $26C68 selects ROM table $26C5C by mission % 3.
 // The replacement for the password screen retains that same background.

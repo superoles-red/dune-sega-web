@@ -1,5 +1,12 @@
 # Portrait iPhone safe area and expanded-map performance
 
+## Follow-up: 20261106-mobile7
+
+Reduce only SELECTION_WAIT_MS from 100 to 50ms, at the user's request. Keep
+DOUBLE_TAP_MS at 300ms, retain the original command actor after the fast single
+selection, and preserve the armed Palace's full 300ms guard. All other input
+logic, the native core, simulation, audio and save formats are unchanged.
+
 ## Follow-up: 20261106-mobile6
 
 Separate the ordinary mobile object-selection wait (100ms) from double-tap

@@ -1,5 +1,5 @@
 export const DOUBLE_TAP_MS=300;
-export const SELECTION_WAIT_MS=100;
+export const SELECTION_WAIT_MS=50;
 export const DOUBLE_TAP_SLOP=24;
 
 const accepted=value=>value===true||(typeof value==='number'&&Number.isFinite(value)&&value>0);
@@ -70,7 +70,7 @@ export class OrderInput {
     const before=pairAllowed&&hadSource?this.captureActor():null;
     if(before&&objectTarget(state)){
       // A possible mobile order (or armed Palace double click) takes priority
-      // over selecting its target. Ordinary lone selection waits only 100ms;
+      // over selecting its target. Ordinary lone selection waits only 50ms;
       // an armed Palace waits for the full pair window. Both retain the same
       // original source for a matching command through that window.
       this.pair={x,y,time,kind,button,token:before,power,deferredSelection:true};
