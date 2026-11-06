@@ -11,14 +11,14 @@ export class OfflineUpdater {
    const timer=setTimeout(()=>finish(Error('download-timeout')),timeoutMs);worker.addEventListener('statechange',check);check();
   });
  }
- request(worker,type){
+ request(worker,type,extra={}){
   const Channel=this.win?.MessageChannel;if(!Channel)return Promise.reject(Error('unsupported'));
   return new Promise((resolve,reject)=>{
    const channel=new Channel();let done=false;
    const finish=(error,value)=>{if(done)return;done=true;clearTimeout(timer);channel.port1.close?.();channel.port2.close?.();error?reject(error):resolve(value);};
    const timer=setTimeout(()=>finish(Error('response-timeout')),12000);
    channel.port1.onmessage=({data})=>finish(null,data);
-   try{worker.postMessage({type},[channel.port2]);}catch(error){finish(error);}
+   try{worker.postMessage({type,...extra},[channel.port2]);}catch(error){finish(error);}
   });
  }
  async prepare(){
@@ -41,10 +41,22 @@ export class OfflineUpdater {
    this.version=ready.version;this.state('ready',{version:this.version});return this.version;
   }finally{this.nav.serviceWorker.removeEventListener('message',listener);}
  }
- async apply(){
+ async apply({restart=false}={}){
   if(!this.worker||!this.version)throw Error('incomplete');
   this.state('applying');
-  const reply=await this.request(this.worker,'DUNE_APPLY_UPDATE');
+  const options={};
+  if(restart)options.restart=true;
+  const active=this.registration?.active;
+  if(active){
+    // Existing game windows keep the exact package they were opened with.
+    // The worker pins only their assets; neither this page nor the updater
+    // reads their game state, closes their tabs, or reloads their missions.
+    const previous=await this.request(active,'DUNE_OFFLINE_STATUS');
+    if(previous?.type!=='DUNE_OFFLINE_PROGRESS'||previous.status!=='ready'||typeof previous.version!=='string'||!previous.version)throw Error('incomplete');
+    options.previousVersion=previous.version;
+    options.clientVersions=previous.clientVersions||{};
+  }
+  const reply=await this.request(this.worker,'DUNE_APPLY_UPDATE',options);
   if(reply?.type!=='DUNE_UPDATE_RESULT'||reply.version!==this.version)throw Error('invalid-response');
   if(reply.status==='blocked'){this.state('blocked',{count:reply.count});return false;}
   if(reply.status!=='applying')throw Error(reply.status||'denied');

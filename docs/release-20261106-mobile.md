@@ -1,5 +1,33 @@
 # Portrait iPhone safe area and expanded-map performance
 
+## Follow-up: 20261106-mobile3
+
+The updater has one short status, a progress bar during preparation and one
+Restart Game button when ready. A tap applies the verified package and opens
+the game automatically, with no second confirmation or close-tab instructions.
+Russian uses the same single-screen layout. A failed download reuses the same
+button for Retry. Home no longer adds a separate update notice.
+
+An explicit Restart preserves other open game windows with persistent client
+package pins. Their lazy resources continue to come from their exact old cache;
+new document navigations use the new complete cache. Automatic checks still do
+not interrupt a running mission. The physical Samsung two-tab test preserved
+the old campaign's document identity, native state and complete save values
+while opening the updated Home with one tap. Browser checks on Mac also return
+directly from the single updater to Home. All 343 frontend checks pass; the
+native e43b2826 WASM is unchanged.
+
+Outcome movies and live statistics were checked against the original USA
+branches and three native Results tilemaps. Statistics select the soldier for
+missions 1/4/7, the ornithopter for 2/5/8 and tanks for 3/6/9, independently of
+victory or defeat. The shipping native/localized statistics already preserve
+those backgrounds. The modern replacement for the password screen now keeps
+the same mission-specific art instead of always showing the soldier.
+Its missing ornithopter crop is 3,842 bytes and retains every original non-sky
+pixel. See [original-art proof and reproduction](../data/native-results-art/README.md).
+The 294-image transport atlas passes exact original-RGBA verification. These
+controlled source-art decodes do not claim a naturally completed campaign.
+
 ## Follow-up: 20261106-mobile2
 
 The installed portrait iPhone canvas now reserves six additional CSS pixels

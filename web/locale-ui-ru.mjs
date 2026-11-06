@@ -5,6 +5,7 @@ export const UI_RU={
  'DOWNLOAD SAVE':'СКАЧАТЬ СЕЙВ','LOAD SAVE FILE':'ЗАГРУЗИТЬ СЕЙВ','LOAD SAVE FILE?':'ЗАГРУЗИТЬ СЕЙВ?','LOAD':'ЗАГРУЗИТЬ',
  'INSTALL GAME':'УСТАНОВИТЬ ИГРУ','PREPARE OFFLINE':'СКАЧАТЬ ДЛЯ ОФЛАЙН','SOURCE CODE':'ИСХОДНЫЙ КОД',
  'UPDATE GAME':'ОБНОВИТЬ ИГРУ',
+ 'UPDATE READY.':'ОБНОВЛЕНИЕ ГОТОВО.',
  'NEW VERSION READY. UPDATE WHEN YOU FINISH PLAYING.':'НОВАЯ ВЕРСИЯ ГОТОВА. ЗАВЕРШИВ ИГРУ, ВЫБЕРИТЕ ОБНОВЛЕНИЕ В НАСТРОЙКАХ.',
  'OFFLINE GAME READY.':'ИГРА ГОТОВА К РАБОТЕ БЕЗ ИНТЕРНЕТА.',
  'DOWNLOADING OFFLINE GAME...':'ЗАГРУЗКА ИГРЫ ДЛЯ ОФЛАЙН...',

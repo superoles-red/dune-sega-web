@@ -67,8 +67,8 @@ Internet 30.0.5.24 на том же аппарате закрывает вкла
 2. Дождитесь сообщения о завершении загрузки всех файлов. Оно подтверждается
    ответом выбранного Service Worker о готовом проверенном кеше; одной регистрации
    или наличия активного worker недостаточно. До него загрузка может быть неполной.
-3. Закройте игру и запустите её со значка или той же ссылки. При следующем
-   запуске готовая офлайн-копия получит управление; после этого можно играть без сети.
+3. Если показано готовое обновление, нажмите «Перезапустить игру». Проверенная
+   офлайн-копия откроется автоматически; после этого можно играть без сети.
 
 Локально сохраняются необходимые файлы этой версии: интерфейс, native-движок,
 графика, звуковой вывод, оба языка и справочник. Встроенные в ядро сценарии
@@ -78,8 +78,9 @@ Internet 30.0.5.24 на том же аппарате закрывает вкла
 Офлайн-обновление устанавливается целиком; неуспешная загрузка новой версии
 не должна удалять предыдущую готовую копию. Работающая миссия не переключается
 на другой набор файлов посреди игры. `PREPARE OFFLINE` явно проверяет обновление
-при доступной сети. Когда новая копия ждёт активации, экран просит закрыть все
-окна игры и открыть её снова; принудительной перезагрузки миссии нет.
+при доступной сети. Когда новая копия ждёт активации, достаточно одной кнопки
+«Перезапустить игру». Другие открытые игровые окна продолжают использовать свои
+прежние файлы; их миссии не перезагружаются.
 Защищённое браузерное хранение запрашивается там,
 где доступно; окончательное решение остаётся за браузером.
 
@@ -149,7 +150,7 @@ within the tap, then prepares offline after acceptance; without a prompt it show
 browser-specific instructions and prepares the copy. A dismissed prompt does not
 download it. A requested installation is not labelled installed until the browser
 confirms it. A Home Screen icon alone does not guarantee offline readiness: wait
-until offline preparation finishes, then close all game windows and relaunch the game.
+until offline preparation finishes, then use Restart Game when offered.
 Subsequent icon launches can use the verified cached game without entering a link
 or connecting to the internet. This does not package a separate APK.
 

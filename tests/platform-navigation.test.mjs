@@ -90,10 +90,10 @@ test('manual install instructions fit the actual browser and an explicit install
 test('failed offline preparation stays separate from an accepted install request and can be retried',async()=>dom(async()=>{
  const f=installFixture({failure:true});await f.ui.installGame();assert.equal(f.ui.installBusy,false);assert.equal(f.ui.installButton.disabled,false);assert.equal(f.ui.platformNotice,'INSTALLATION REQUESTED.');assert(f.ui.messageText.includes('OFFLINE DOWNLOAD FAILED. TRY AGAIN.'));assert(f.calls.messages.includes('OFFLINE DOWNLOAD FAILED. TRY AGAIN.'));assert(!f.ui.messageText.includes('OFFLINE GAME READY.'));
 }));
-test('in-flight installation coalesces clicks and a waiting complete package asks for a clean relaunch',async()=>dom(async()=>{
+test('in-flight installation coalesces clicks and a waiting package shows a short update status',async()=>dom(async()=>{
  const f=installFixture();let choose;f.ui.platform.install=()=>{f.order.push('prompt');return new Promise(resolve=>{choose=resolve;});};
  const first=f.ui.installGame();await f.ui.installGame();assert.deepEqual(f.order,['prompt']);choose('accepted');await first;
- f.platformState.restartRequired=true;f.ui.refreshPlatform();assert(f.ui.messageText.includes('CLOSE ALL GAME WINDOWS AND REOPEN TO USE THE DOWNLOADED COPY.'));assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);
+ f.platformState.restartRequired=true;f.ui.refreshPlatform();assert(f.ui.messageText.includes('UPDATE READY.'));assert(!f.ui.messageText.includes('CLOSE ALL'));assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);
 }));
 test('Home installation invokes the real prompt synchronously before opening its status screen',async()=>dom(async()=>{
  const f=installFixture(),order=[];f.ui.view='home';f.ui.platform.install=()=>{order.push('prompt');return Promise.resolve('accepted');};f.ui.openPlatform=()=>order.push('files');
@@ -124,21 +124,21 @@ test('update navigation cannot interrupt an import, pending native route, or bus
 test('a ready update is visible on Files and Offline without navigating or changing the running game',async()=>dom(async()=>{
  const f=installFixture(),before=[...f.storage.values];f.platformState.updateAvailable=true;
  f.ui.refreshPlatform();f.ui.refreshPlatform();
- assert(f.ui.messageText.includes('NEW VERSION READY. UPDATE WHEN YOU FINISH PLAYING.'));
- assert.equal(f.ui.messageText.split('NEW VERSION READY.').length,2);assert.equal(f.ui.view,'platform');
+ assert(f.ui.messageText.includes('UPDATE READY.'));
+ assert.equal(f.ui.messageText.split('UPDATE READY.').length,2);assert.equal(f.ui.view,'platform');
  assert.deepEqual(f.calls.messages,[]);assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);assert.deepEqual([...f.storage.values],before);
 }));
-test('the update toast waits for Home and is shown only once without rebuilding the screen',async()=>dom(async()=>{
+test('a pending update adds no extra Home toast or screen before the single updater',async()=>dom(async()=>{
  const f=installFixture();f.platformState.updateAvailable=true;f.ui.view='native';f.ui.state.scene='map';
  f.ui.refreshPlatform();assert.deepEqual(f.calls.messages,[]);assert.equal(f.ui.view,'native');
  f.ui.view='home';f.ui.refreshPlatform();f.ui.refreshPlatform();
- assert.deepEqual(f.calls.messages,['NEW VERSION READY. UPDATE WHEN YOU FINISH PLAYING.']);
+ assert.deepEqual(f.calls.messages,[]);
  assert.equal(f.calls.homes,0);assert.equal(f.ui.view,'home');assert.deepEqual(f.calls.saves,[]);assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);
 }));
-test('opening Home surfaces a previously deferred ready-update notice without altering its buttons',async()=>dom(async()=>{
+test('opening Home keeps its buttons and emits no separate update notice',async()=>dom(async()=>{
  const f=installFixture();f.platformState.updateAvailable=true;
  GameInterface.prototype.showHome.call(f.ui);
- assert.deepEqual(f.calls.messages,['NEW VERSION READY. UPDATE WHEN YOU FINISH PLAYING.']);
+ assert.deepEqual(f.calls.messages,[]);
  assert(f.ui.buttons.some(button=>button.options.id==='new-campaign'));assert(f.ui.buttons.some(button=>button.options.id==='open-options'));
  assert.equal(f.ui.view,'home');assert.deepEqual(f.calls.routes,[]);assert.deepEqual(f.calls.loads,[]);
 }));

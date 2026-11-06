@@ -41,9 +41,9 @@ class AtlasTests(unittest.TestCase):
     def write_manifest(self, manifest):
         self.manifest_path.write_text(json.dumps(manifest, sort_keys=True) + '\n')
 
-    def test_all_293_original_crops_are_exact_rgba_with_complete_sources(self):
+    def test_all_294_original_crops_are_exact_rgba_with_complete_sources(self):
         result = verify(self.root)
-        self.assertEqual(result['imagesVerified'], 293)
+        self.assertEqual(result['imagesVerified'], 294)
         manifest = self.manifest()
         expected = sources(self.root)
         self.assertEqual(set(manifest['assets']), set(expected))

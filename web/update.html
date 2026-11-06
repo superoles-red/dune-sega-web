@@ -1,31 +1,29 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#000000"><meta name="robots" content="noindex"><title>Dune - The Battle for Arrakis</title>
 <style>
-*{box-sizing:border-box}html{background:#000;color:#fff;font:16px/1.6 monospace}body{margin:0;min-height:100dvh;padding:max(24px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left));display:grid;place-items:center}main{width:min(100%,540px);text-align:center}img{width:min(288px,80%);height:auto;image-rendering:pixelated}h1{font-size:20px;margin:24px 0 12px}p{overflow-wrap:anywhere}#status{min-height:3.2em}progress{width:100%;height:16px;accent-color:#00b600}button,a{font:inherit;min-height:52px;padding:12px 20px}button{display:block;width:100%;border:3px outset #ddd;background:#9393b6;color:#000;cursor:pointer;margin:16px 0}button:active{border-style:inset}button:disabled{opacity:.6;cursor:wait}a{display:inline-block;color:#ddd}small{display:block;color:#aaa}#version{font-size:12px}button[hidden],a[hidden],progress[hidden]{display:none}
+*{box-sizing:border-box}html{background:#000;color:#fff;font:16px/1.6 monospace}body{margin:0;min-height:100dvh;padding:max(24px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left));display:grid;place-items:center}main{width:min(100%,420px);text-align:center}img{width:min(288px,80%);height:auto;image-rendering:pixelated}h1{font-size:20px;margin:24px 0;min-height:1.6em}progress{width:100%;height:12px;accent-color:#00b600}button{font:inherit;min-height:56px;padding:12px 20px;display:block;width:100%;border:3px outset #ddd;background:#9393b6;color:#000;cursor:pointer;margin:20px 0 0;touch-action:manipulation}button:active{border-style:inset}button:disabled{opacity:.6;cursor:wait}[hidden]{display:none!important}
 </style></head><body><main>
 <img src="./ui-assets/screen-assets/art/title-logo.png" width="192" height="56" alt="Dune — The Battle for Arrakis">
-<h1 id="heading">UPDATE GAME</h1><p id="status" role="status" aria-live="polite">CHECKING FOR UPDATES…</p>
+<h1 id="status" role="status" aria-live="polite">UPDATING…</h1>
 <progress id="progress" aria-label="Download progress"></progress>
-<p id="help">Close other Dune tabs and the installed game before applying the update. Keep this page open.</p>
-<small id="saves">Your saves and campaign progress stay on this device.</small>
-<button id="apply" hidden>APPLY UPDATE</button><button id="retry" hidden>TRY AGAIN</button>
-<a id="play" href="./index.html" hidden>OPEN GAME</a><p id="version"></p>
+<button id="restart" hidden>RESTART GAME</button>
 </main><script type="module">
-import {OfflineUpdater} from './update-game.mjs?v=20261106-mobile2';
+import {OfflineUpdater} from './update-game.mjs?v=20261106-mobile3';
 const automatic=new URL(location.href).searchParams.get('auto')==='1';
 let ru=false;try{ru=localStorage.getItem('dune-sega-language-v1')==='ru';}catch{}
-const words=ru?{title:'ОБНОВЛЕНИЕ ИГРЫ',checking:'ПРОВЕРКА ОБНОВЛЕНИЯ…',downloading:'ЗАГРУЗКА ОБНОВЛЕНИЯ',ready:'НОВАЯ ВЕРСИЯ СКАЧАНА И ПРОВЕРЕНА.',applying:'ПРИМЕНЯЕМ ОБНОВЛЕНИЕ…',blocked:'Закройте остальные вкладки Dune и установленную игру. Затем нажмите «Применить обновление». Открытых окон: ',done:'ОБНОВЛЕНИЕ ГОТОВО.',failed:'Не удалось загрузить обновление. Проверьте интернет и повторите попытку. Прежняя офлайн-копия сохранена.',help:'Перед применением закройте другие вкладки Dune и установленную игру. Эту страницу оставьте открытой.',saves:'Сейвы и прогресс кампаний останутся на этом устройстве.',apply:'ПРИМЕНИТЬ ОБНОВЛЕНИЕ',retry:'ПОВТОРИТЬ',play:'ОТКРЫТЬ ИГРУ'}:{title:'UPDATE GAME',checking:'CHECKING FOR UPDATES…',downloading:'DOWNLOADING UPDATE',ready:'NEW VERSION DOWNLOADED AND VERIFIED.',applying:'APPLYING UPDATE…',blocked:'Close other Dune tabs and the installed game, then press Apply update. Open windows: ',done:'UPDATE READY.',failed:'Could not download the update. Check your connection and try again. Your previous offline copy is preserved.',help:'Close other Dune tabs and the installed game before applying the update. Keep this page open.',saves:'Your saves and campaign progress stay on this device.',apply:'APPLY UPDATE',retry:'TRY AGAIN',play:'OPEN GAME'};
+const words=ru?{updating:'ОБНОВЛЕНИЕ…',ready:'ОБНОВЛЕНИЕ ГОТОВО',applying:'ПЕРЕЗАПУСК…',failed:'НЕ УДАЛОСЬ ОБНОВИТЬ. ПОПРОБУЙТЕ ЕЩЁ РАЗ.',restart:'ПЕРЕЗАПУСТИТЬ ИГРУ',retry:'ПОВТОРИТЬ'}:{updating:'UPDATING…',ready:'UPDATE READY',applying:'RESTARTING…',failed:'COULD NOT UPDATE. PLEASE TRY AGAIN.',restart:'RESTART GAME',retry:'TRY AGAIN'};
 document.documentElement.lang=ru?'ru':'en';
-const $=id=>document.getElementById(id),status=$('status'),bar=$('progress'),apply=$('apply'),retry=$('retry'),play=$('play');
-for(const [id,text]of Object.entries({heading:words.title,help:words.help,saves:words.saves,apply:words.apply,retry:words.retry,play:words.play}))$(id).textContent=text;
+const status=document.getElementById('status'),bar=document.getElementById('progress'),button=document.getElementById('restart');
+let failed=false;
 const updater=new OfflineUpdater({onState:s=>{
- status.textContent=s.status==='blocked'?words.blocked+s.count:s.status==='downloading'?words.downloading+(s.total?' '+s.loaded+' / '+s.total:''):words[s.status]||words.checking;
- const busy=['checking','downloading','applying'].includes(s.status);bar.hidden=!busy;apply.disabled=busy;apply.hidden=!['ready','blocked','applying'].includes(s.status);retry.hidden=true;play.hidden=s.status!=='done';
+ const busy=['checking','downloading','applying'].includes(s.status);
+ status.textContent=['ready','blocked','done'].includes(s.status)?words.ready:s.status==='applying'?words.applying:words.updating;
+ bar.hidden=!busy;button.disabled=busy;button.hidden=busy||s.status==='done';button.textContent=words.restart;
  if(s.status==='downloading'&&s.total){bar.max=s.total;bar.value=s.loaded;}else bar.removeAttribute('value');
- if(s.version)$('version').textContent=s.version.slice(0,12);
- if(s.status==='done'){$('help').hidden=true;play.href='./index.html?updated='+encodeURIComponent(s.version.slice(0,12));if(automatic)location.replace(play.href);}
+ if(s.status==='done')location.replace('./index.html?updated='+encodeURIComponent(s.version.slice(0,12)));
 }});
-const failed=()=>{status.textContent=words.failed;bar.hidden=true;apply.hidden=true;retry.hidden=false;play.hidden=false;};
-const prepare=()=>{apply.hidden=true;retry.hidden=true;play.hidden=true;updater.start({automatic}).catch(failed);};
-apply.addEventListener('click',()=>updater.apply().catch(failed));retry.addEventListener('click',prepare);prepare();
+const showFailure=()=>{failed=true;status.textContent=words.failed;bar.hidden=true;button.hidden=false;button.disabled=false;button.textContent=words.retry;};
+const prepare=()=>{failed=false;button.hidden=true;updater.start({automatic}).catch(showFailure);};
+button.addEventListener('click',()=>failed?prepare():updater.apply({restart:true}).catch(showFailure));
+prepare();
 </script></body></html>

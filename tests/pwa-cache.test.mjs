@@ -10,8 +10,8 @@ const template=await readFile(new URL('../web/service-worker.js',import.meta.url
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const fixtures=new Map([['index.html','<html>game</html>'],['shell.js','game();'],['engine/dune_web.wasm','wasm'],['native-audio-worklet.js','audio();']]);
 const entries=[...fixtures].map(([path,data])=>({path,bytes:Buffer.byteLength(data),sha256:hash(data)}));
-function host({version='new',corrupt=null,fail=null,old=true,transient=null,timeoutPath=null,noAbortController=false,windows=[],packageFiles=fixtures}={}){
- const listeners={},messages=[],network=[],data=new Map(),attempts=new Map(),scope='https://example.test/dune-sega-web/';
+function host({version='new',corrupt=null,fail=null,old=true,transient=null,timeoutPath=null,noAbortController=false,windows=[],packageFiles=fixtures,storage=null}={}){
+ const listeners={},messages=[],network=[],data=storage||new Map(),attempts=new Map(),scope='https://example.test/dune-sega-web/';
  // The timeout test advances only the hung resource's clock. Accelerating
  // every real30s deadline to1ms also races legitimate Response/crypto work
  // under parallel suite load, which says nothing about the worker's deadline.
@@ -31,8 +31,8 @@ function host({version='new',corrupt=null,fail=null,old=true,transient=null,time
   return timer.id;
  };
  const prefix='dune-sega-offline:/dune-sega-web/:';
- if(old)data.set(prefix+'old',new Map([['preserved',new Response('old')]]));
- data.set('unrelated-site-cache',new Map());
+ if(old&&!data.has(prefix+'old'))data.set(prefix+'old',new Map([['preserved',new Response('old')]]));
+ if(!data.has('unrelated-site-cache'))data.set('unrelated-site-cache',new Map());
  const cacheFor=name=>({async put(key,response){if(fail==='put')throw Error('quota');data.get(name).set(String(key),response.clone());},async match(key){if(fail==='match')throw Error('cache match denied');return data.get(name).get(String(key))?.clone();}});
  let cacheEnumerations=0;
  const caches={async keys(){cacheEnumerations++;return [...data.keys()];},async open(name){if(fail==='open')throw Error('cache open denied');if(!data.has(name))data.set(name,new Map());return cacheFor(name);},async delete(name){return data.delete(name);}};
@@ -58,15 +58,16 @@ function host({version='new',corrupt=null,fail=null,old=true,transient=null,time
  };
  const packageEntries=[...packageFiles].map(([path,data])=>({path,bytes:Buffer.byteLength(data),sha256:hash(data)}));
  const script=template.replace('__DUNE_CACHE_VERSION__',version).replace('/*__DUNE_PRECACHE__*/ []',JSON.stringify(packageEntries));
- runInNewContext(script,{self,caches,fetch,crypto:webcrypto,URL,Response,Uint8Array,console,
+ const restartWorker=()=>runInNewContext(script,{self,caches,fetch,crypto:webcrypto,URL,Response,Uint8Array,console,
   AbortController:noAbortController?undefined:AbortController,
   setTimeout:timeoutPath?scheduleDeadline:setTimeout,
   clearTimeout:timeoutPath?id=>timers.delete(id):clearTimeout});
+ restartWorker();
  const event=async(name,values={})=>{
   let promise;listeners[name]({...values,waitUntil:p=>promise=p,respondWith:p=>promise=p});
   return promise?await promise:undefined;
  };
- return {event,data,messages,network,attempts,scope,prefix,cacheName:prefix+version,deadlineClock,abortedPaths,windows,get activations(){return activations;},get cacheEnumerations(){return cacheEnumerations;}};
+ return {event,data,messages,network,attempts,scope,prefix,cacheName:prefix+version,deadlineClock,abortedPaths,windows,restartWorker,get activations(){return activations;},get cacheEnumerations(){return cacheEnumerations;}};
 }
 function seedPrevious(h,{name='old',files=fixtures,complete=true,prefix=h.prefix,markerVersion=name}={}){
  const contents=new Map([...files].map(([path,data])=>[h.scope+path,new Response(data,{headers:{'Content-Type':path.endsWith('.wasm')?'application/wasm':'application/octet-stream'}})]));
@@ -237,6 +238,87 @@ test('only the standalone updater can apply a verified package, with all game wi
 test('activation retains older packages if a game window appeared after the update check',async()=>{
  const h=host();await h.event('install');h.windows.push({id:'race',url:h.scope+'?v=old',postMessage(){}});await h.event('activate');
  assert.ok(h.data.has(h.prefix+'old'));assert.ok(h.data.has(h.cacheName));
+});
+
+async function applyPackage(h,data={},source='observer'){
+ const replies=[];await h.event('message',{data:{type:'DUNE_APPLY_UPDATE',...data},source:{id:source},ports:[{postMessage:value=>replies.push(value)}]});return replies.at(-1);
+}
+async function packageStatus(h){
+ const replies=[];await h.event('message',{data:{type:'DUNE_OFFLINE_STATUS'},ports:[{postMessage:value=>replies.push(value)}]});return replies.at(-1);
+}
+async function cachedFetch(h,path,{clientId,mode='cors',resultingClientId}={}){
+ const response=await h.event('fetch',{clientId,resultingClientId,request:{url:h.scope+path,method:'GET',mode}});return response?.text();
+}
+test('explicit restart activates with other windows and pins their old lazy assets without claiming or reloading them',async()=>{
+ const h=host(),oldFiles=new Map(fixtures);oldFiles.set('shell.js','old shell');oldFiles.set('removed-from-new.js','old lazy chunk');
+ oldFiles.set('icons/old-only.png','old icon pixels');
+ const old=seedPrevious(h,{files:oldFiles});await h.event('install');
+ const sent=[];h.windows.push({id:'playing',url:h.scope+'?v=old',postMessage:m=>sent.push(m)});
+ assert.equal((await applyPackage(h)).status,'blocked');assert.equal(h.activations,0,'background automatic apply still waits');
+ assert.equal((await applyPackage(h,{restart:true,previousVersion:'old',clientVersions:{}})).status,'applying');
+ assert.equal(h.activations,1);await h.event('activate');
+ assert.equal(h.data.get(h.prefix+'old'),old,'the preceding complete cache survives');
+ assert.equal(await cachedFetch(h,'shell.js?v=old',{clientId:'playing'}),'old shell');
+ assert.equal(await cachedFetch(h,'removed-from-new.js?v=old',{clientId:'playing'}),'old lazy chunk','old-only lazy paths do not fall through to the new manifest');
+ assert.equal(await cachedFetch(h,'icons/old-only.png?v=old',{clientId:'playing'}),'old icon pixels','old-only graphical assets stay in the same pinned package');
+ assert(!sent.some(m=>/reload|close|navigate/i.test(m.type)),'other windows only receive offline progress');
+ const status=await packageStatus(h);assert.equal(status.clientVersions.playing,'old');
+ assert(!template.includes('self.clients.claim('));
+});
+test('explicit activation without visible games keeps the reserved-document fallback across worker restart',async()=>{
+ const h=host(),oldFiles=new Map(fixtures);oldFiles.set('shell.js','preceding shell');oldFiles.set('icons/old-only.png','preceding icon');
+ seedPrevious(h,{files:oldFiles});seedPrevious(h,{name:'unreferenced'});await h.event('install');
+ assert.equal((await applyPackage(h,{restart:true,previousVersion:'old',clientVersions:{}})).status,'applying');
+ await h.event('activate');
+ assert(h.data.has(h.prefix+'old'),'the preceding fallback survives even with no visible game windows');
+ assert(!h.data.has(h.prefix+'unreferenced'),'unreferenced owned caches can still be collected');
+ h.restartWorker();h.windows.push({id:'reserved-old',url:h.scope,postMessage(){}});
+ assert.equal(await cachedFetch(h,'shell.js?v=old',{clientId:'reserved-old'}),'preceding shell');
+ assert.equal(await cachedFetch(h,'icons/old-only.png?v=old',{clientId:'reserved-old'}),'preceding icon');
+ const status=await packageStatus(h);assert.equal(status.clientVersions['reserved-old'],'old');
+ assert(h.data.has('unrelated-site-cache'),'another site cache is never collected');
+});
+test('new navigations use the new package while old-client pins survive worker termination',async()=>{
+ const h=host(),oldFiles=new Map(fixtures);oldFiles.set('shell.js','old shell');seedPrevious(h,{files:oldFiles});await h.event('install');
+ h.windows.push({id:'playing',url:h.scope+'index.html',postMessage(){}});
+ await applyPackage(h,{restart:true,previousVersion:'old',clientVersions:{playing:'old'}});await h.event('activate');
+ assert.equal(await cachedFetch(h,'index.html?updated=new',{mode:'navigate',clientId:'observer',resultingClientId:'fresh'}),fixtures.get('index.html'));
+ h.windows.push({id:'fresh',url:h.scope+'index.html?updated=new',postMessage(){}});
+ assert.equal(await cachedFetch(h,'shell.js?v=new',{clientId:'fresh'}),'game();');
+ h.restartWorker();
+ assert.equal(await cachedFetch(h,'shell.js?v=old',{clientId:'playing'}),'old shell');
+ assert.equal(await cachedFetch(h,'shell.js?v=new',{clientId:'fresh'}),'game();');
+ const status=await packageStatus(h);assert.equal(status.clientVersions.playing,'old');assert.equal(status.clientVersions.fresh,'new');
+});
+test('activation resnapshots racing windows, and previous package status supports legacy first upgrades',async()=>{
+ const h=host(),oldFiles=new Map(fixtures);oldFiles.set('shell.js','legacy shell');seedPrevious(h,{files:oldFiles});await h.event('install');
+ // A legacy worker returns only version, so the updater supplies an empty map.
+ await applyPackage(h,{restart:true,previousVersion:'old',clientVersions:{}});
+ h.windows.push({id:'race',url:h.scope+'index.html',postMessage(){}});await h.event('activate');
+ assert.equal(await cachedFetch(h,'shell.js?v=old',{clientId:'race'}),'legacy shell');
+ assert.equal(await cachedFetch(h,'shell.js?v=old',{clientId:'reserved-old-document'}),'legacy shell','a document completing around activation uses the preceding package');
+ assert(h.data.has(h.prefix+'old'));
+});
+test('multiple update generations retain each live client package and new navigation advances only that client',async()=>{
+ const first=host({version:'middle'}),oldFiles=new Map(fixtures);oldFiles.set('shell.js','first generation');seedPrevious(first,{files:oldFiles});await first.event('install');
+ first.windows.push({id:'oldest',url:first.scope,postMessage(){}});
+ await applyPackage(first,{restart:true,previousVersion:'old',clientVersions:{}});await first.event('activate');
+ await cachedFetch(first,'index.html',{mode:'navigate',resultingClientId:'middle-tab'});first.windows.push({id:'middle-tab',url:first.scope,postMessage(){}});
+ const before=await packageStatus(first),newFiles=new Map(fixtures);newFiles.set('shell.js','latest generation');
+ const latest=host({version:'latest',storage:first.data,windows:first.windows,packageFiles:newFiles});await latest.event('install');
+ await applyPackage(latest,{restart:true,previousVersion:before.version,clientVersions:before.clientVersions});await latest.event('activate');latest.restartWorker();
+ assert.equal(await cachedFetch(latest,'shell.js',{clientId:'oldest'}),'first generation');
+ assert.equal(await cachedFetch(latest,'shell.js',{clientId:'middle-tab'}),'game();');
+ await cachedFetch(latest,'index.html',{mode:'navigate',clientId:'oldest',resultingClientId:'restarted-tab'});latest.windows.push({id:'restarted-tab',url:latest.scope,postMessage(){}});
+ assert.equal(await cachedFetch(latest,'shell.js',{clientId:'restarted-tab'}),'latest generation');
+ assert(latest.data.has(latest.prefix+'old'));assert(latest.data.has(latest.prefix+'middle'));
+});
+test('explicit restart refuses untrusted sources, incomplete packages and invalid previous-client pins',async()=>{
+ const h=host();seedPrevious(h);await h.event('install');h.windows.push({id:'playing',url:h.scope,postMessage(){}});
+ for(const source of ['unknown','playing'])assert.equal((await applyPackage(h,{restart:true,previousVersion:'old',clientVersions:{}},source)).status,'denied');
+ for(const data of [{restart:true},{restart:true,previousVersion:'missing',clientVersions:{}},{restart:true,previousVersion:'old',clientVersions:{playing:'missing'}},{restart:true,previousVersion:'../foreign',clientVersions:{}}])assert.equal((await applyPackage(h,data)).status,'incomplete');
+ assert.equal(h.activations,0);assert(h.data.has(h.prefix+'old'));
+ const incomplete=host();assert.equal((await applyPackage(incomplete,{restart:true,previousVersion:'old',clientVersions:{}})).status,'incomplete');assert.equal(incomplete.activations,0);
 });
 
 test('recovery page and script always escape the cache, even if present in a prior manifest',async()=>{

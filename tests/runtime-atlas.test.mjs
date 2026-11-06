@@ -54,7 +54,7 @@ async function browserFixture(f,options,run){
 test('the shipped atlas contains exactly the independent current shop/screen/locale catalogue',()=>{
  const manifest=read('ui-assets/runtime-atlas.json'),expected=expectedSources(read('ui-assets/shop-layout-kit/manifest.json'),read('ui-assets/screen-assets/manifest.json'),read('language-assets/manifest.json'));
  const entries=atlasEntries(manifest,expected,manifest.width,manifest.height);
- assert.equal(entries.length,293);assert.equal(expected.size,293);assert.equal(new Set(entries.map(e=>e[0])).size,expected.size);
+ assert.equal(entries.length,294);assert.equal(expected.size,294);assert.equal(new Set(entries.map(e=>e[0])).size,expected.size);
  for(const [key,source,rect]of entries){assert.equal(source,expected.get(key));assert.deepEqual(rect,manifest.assets[key].rect);}
 });
 

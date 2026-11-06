@@ -1,15 +1,21 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261106-mobile2';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261106-mobile2';
-import {ScreenTransition} from './screen-transition.mjs?v=20261106-mobile2';
-import {NativeConfirmation} from './confirm-dialog.mjs?v=20261106-mobile2';
+import {BuildingInterface} from './building-ui.mjs?v=20261106-mobile3';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261106-mobile3';
+import {ScreenTransition} from './screen-transition.mjs?v=20261106-mobile3';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261106-mobile3';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261106-mobile2';
+import {LANGUAGES} from './i18n.mjs?v=20261106-mobile3';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
-import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261106-mobile2';
-import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261106-mobile2';
-import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261106-mobile2';
+import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261106-mobile3';
+import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261106-mobile3';
+import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261106-mobile3';
+
+// Original Results loader $26C68 selects ROM table $26C5C by mission % 3.
+// The replacement for the password screen retains that same background.
+export function nativeResultsDecor(mission){
+ return ['results-final-tanks-scene','results-soldier-scene','results-aircraft-scene'][(validMission(mission)?mission:1)%3];
+}
 
 const STORY=new Set(['house_briefing','briefing','victory','defeat']);
 const SEQUENCE=new Set([...STORY,'tutorial','loading','campaign','victory_movie','defeat_movie','results','ending','credits']);
@@ -78,17 +84,14 @@ export class GameInterface {
   const s=this.platform.snapshot();this.optionViews.get('fullscreen')?.update(s.fullscreen?'EXIT FULL SCREEN':'FULL SCREEN');
   this.pendingGameUpdate=!!s.updateAvailable;
   if(this.homeInstallButton){const label=s.installed?'INSTALLED':'INSTALL GAME',disabled=!!s.installed||!!this.installBusy;this.homeInstallButton.disabled=disabled;this.homeInstallView?.update(label,{disabled});}
-  // A completed candidate can wait while a mission is running. Announce it
-  // once at Home, without changing its scene, intro or current controls.
-  if(this.view==='home'&&s.updateAvailable&&!this.updateNoticeShown){this.updateNoticeShown=true;this.tell(this.art.displayText('NEW VERSION READY. UPDATE WHEN YOU FINISH PLAYING.'));}
+  // The settled Home route opens the single update page without an extra toast.
   if(this.view!=='platform')return;
   if(s.installed&&this.platformNotice===this.art.displayText('INSTALLATION REQUESTED.'))this.platformNotice='';
   let status=s.status==='ready'?'OFFLINE GAME READY.':s.status==='downloading'?'DOWNLOADING OFFLINE GAME...':s.status==='error'?'OFFLINE DOWNLOAD FAILED. TRY AGAIN.':'PREPARE OFFLINE ONCE WHILE CONNECTED.';
   status=this.art.displayText(status)+(s.status==='downloading'&&s.total?' '+s.loaded+' / '+s.total:'');
   const hint=this.art.displayText(s.installed?'INSTALLED ON THIS DEVICE.':this.installHelp(s));
-  const restart=s.restartRequired?this.art.displayText('CLOSE ALL GAME WINDOWS AND REOPEN TO USE THE DOWNLOADED COPY.'):'';
-  const update=s.updateAvailable?this.art.displayText('NEW VERSION READY. UPDATE WHEN YOU FINISH PLAYING.'):'';
-  this.liveText=false;this.messageText=[this.platformNotice,update,status,hint,restart].filter((text,index,all)=>text&&all.indexOf(text)===index).join('\n\n');this.message.hidden=false;this.element.dataset.hasMessage='true';this.drawMessage();if(this.offlineButton){this.offlineButton.disabled=!!s.preparing;this.offlineButton._nativeArtView?.update('PREPARE OFFLINE',{disabled:!!s.preparing});}
+  const update=s.updateAvailable||s.restartRequired?this.art.displayText('UPDATE READY.'):'';
+  this.liveText=false;this.messageText=[this.platformNotice,update,status,hint].filter((text,index,all)=>text&&all.indexOf(text)===index).join('\n\n');this.message.hidden=false;this.element.dataset.hasMessage='true';this.drawMessage();if(this.offlineButton){this.offlineButton.disabled=!!s.preparing;this.offlineButton._nativeArtView?.update('PREPARE OFFLINE',{disabled:!!s.preparing});}
   if(this.installButton){const label=s.installed?'INSTALLED':'INSTALL GAME',disabled=!!s.installed||!!this.installBusy;this.installButton.disabled=disabled;this.installButton._nativeArtView?.update(label,{disabled});}
  }
  installHelp(s=this.platform.snapshot()){
@@ -241,6 +244,7 @@ export class GameInterface {
  }
  showCompletion(house,mission){
   this.selectedHouse=house;this.clear('completion','MISSION COMPLETE');this.displayed='completion';this.element.dataset.scene='completion';
+  this.completionDecor=nativeResultsDecor(mission);
   const next=mission+1;
   if(validHouse(house)&&validMission(next)&&canStart(this.store.progress,house,next))this.button('NEXT MISSION',()=>this.startMission(house,next),{id:'next-mission',subtitle:this.missionName(house,next),ariaLabel:'Продолжить: '+HOUSE_NAMES[house]+', миссия '+next+', '+this.missionName(house,next),feedback:false});
   this.button('MAIN MENU',()=>this.mainMenu(),{id:'completed-main-menu',ariaLabel:'Главное меню'});
@@ -538,7 +542,7 @@ export class GameInterface {
     ({source,sourceKey,cacheHome}=this.homeSource());home=true;
    }else if(this.view==='houses'){source=a.part('title-logo','screen');sourceKey='house-logo';}
    else if(this.view==='missions'||this.view==='replay'){const h=a.skin.houses?.[this.selectedHouse];source=a.part(h?.crestPart||h?.part,'screen');sourceKey='crest:'+this.selectedHouse;}
-   else if(this.view==='completion'){source=a.part('results-soldier-scene','screen');sourceKey='completion';}
+   else if(this.view==='completion'){const decor=this.completionDecor||nativeResultsDecor(this.state.outcomeMission);source=a.part(decor,'screen');sourceKey='completion:'+decor;}
    else if(scene==='confirm'){source=a.part('options-clean-background','screen');sourceKey='confirm';}
    else if(scene!=='pause'&&scene!=='options'){
     const serial=this.isReady()?this.Module._dune_web_frame_serial?.():undefined;if(this.state.nativeDisplayEnabled===false){this.nativeBlankSerial=serial;sourceKey='native-blank';}else if(serial!==undefined&&serial===this.nativeBlankSerial){sourceKey='native-blank';}else{this.nativeBlankSerial=undefined;

@@ -4793,6 +4793,35 @@
       "transparent": false,
       "sha256": "33b37bffa56454715647379e9a05a6d3dfa8b8c01247a6304aa527676889cd6f",
       "role": "original-Starport-native-chrome"
+    },
+    "results-aircraft-scene": {
+      "path": "art/results-aircraft-scene.png",
+      "width": 320,
+      "height": 128,
+      "channels": 3,
+      "transparent": false,
+      "pixelSha256": "e100000d3f99300541edb453a031098e6c878661463b676c90b4db9b389570c9",
+      "sha256": "c8ccf3fb0d366bc71d2c02806dcd720f616d80b902a2c7b7d5d68ff547488008",
+      "sourceRect": [
+        0,
+        96,
+        320,
+        128
+      ],
+      "sourceLayer": "Original native Results plane B",
+      "firstNativeNonSkyRow": 99,
+      "completeNativeNonSkyArtworkRetained": true,
+      "sourceRgbSha256": "14ddadacd2661f060ec9afa79f5a66b6cc51bff717aa5dcd48c0025ba91cc342",
+      "sourceRomMapPointer": 681370,
+      "nativeFunction": 158824,
+      "nativeMapTable": 158812,
+      "missionNumbers": [
+        2,
+        5,
+        8
+      ],
+      "sourceScope": "Controlled offline original-art decode on a copied native Results fixture. Original palette, pattern banks and renderer; no repaint, rescale or colour replacement.",
+      "reproduction": "tools/audit_native_results_art.c then tools/extract_native_results_art.py"
     }
   },
   "modules": {
@@ -13585,8 +13614,8 @@
   },
   "extractorSha256": "62c962d616ebcc85b1430630a1a627b916654d2e5c1932599ddb6e0ca975c4b2",
   "nativeExtractorSha256": "bfc634f3abe8fe863c2fb714febf9798f4f59372b7bf2e7146f0afd000da9efa",
-  "pngCount": 214,
-  "pngBytes": 409195,
+  "pngCount": 215,
+  "pngBytes": 413037,
   "presentationRecipes": {
     "main": {
       "liveRect": [
@@ -14030,5 +14059,40 @@
     "reconstructionManifest": "data/options-native-reconstruction/manifest.json",
     "reconstructionPolicy": "Every changed RGB pixel is copied from an explicitly recorded clean tile in this same original Options bitmap, with declared optional H/V flips. Geometry, dimensions, all uncovered pixels and palette are preserved. Candidate selection is a context heuristic, not a claim of authentic concealed pixels. No AI image, painting, interpolation or new color.",
     "status": "Native-piece reconstruction; not recovered original hidden artwork"
+  },
+  "resultsMissionArt": {
+    "selector": "Original missionNumber modulo3, independent of victory/defeat",
+    "nativeFunction": 158824,
+    "nativeMapTable": 158812,
+    "byRemainder": {
+      "0": {
+        "missions": [
+          3,
+          6,
+          9
+        ],
+        "part": "results-final-tanks-scene",
+        "nativeMapPointer": 679652
+      },
+      "1": {
+        "missions": [
+          1,
+          4,
+          7
+        ],
+        "part": "results-soldier-scene",
+        "nativeMapPointer": 680592
+      },
+      "2": {
+        "missions": [
+          2,
+          5,
+          8
+        ],
+        "part": "results-aircraft-scene",
+        "nativeMapPointer": 681370
+      }
+    },
+    "presentationScope": "Static modern completion/password ornament only. Live original Results and outcome movies keep their native framebuffers."
   }
 }

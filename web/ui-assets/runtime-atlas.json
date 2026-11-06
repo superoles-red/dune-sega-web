@@ -3,7 +3,7 @@
     "locale:commands/en-exit-enabled.png": {
       "rect": [
         1951,
-        1608,
+        1632,
         32,
         24
       ],
@@ -14,7 +14,7 @@
     "locale:commands/en-fix-disabled.png": {
       "rect": [
         1983,
-        1608,
+        1632,
         32,
         24
       ],
@@ -25,7 +25,7 @@
     "locale:commands/en-fix-enabled.png": {
       "rect": [
         2015,
-        1608,
+        1632,
         32,
         24
       ],
@@ -36,7 +36,7 @@
     "locale:commands/en-send-order-enabled.png": {
       "rect": [
         0,
-        1644,
+        1668,
         32,
         24
       ],
@@ -47,7 +47,7 @@
     "locale:commands/en-stop-disabled.png": {
       "rect": [
         32,
-        1644,
+        1668,
         32,
         24
       ],
@@ -58,7 +58,7 @@
     "locale:commands/en-stop-enabled.png": {
       "rect": [
         64,
-        1644,
+        1668,
         32,
         24
       ],
@@ -69,7 +69,7 @@
     "locale:commands/ru-exit-enabled.png": {
       "rect": [
         96,
-        1644,
+        1668,
         32,
         24
       ],
@@ -80,7 +80,7 @@
     "locale:commands/ru-fix-disabled.png": {
       "rect": [
         128,
-        1644,
+        1668,
         32,
         24
       ],
@@ -91,7 +91,7 @@
     "locale:commands/ru-fix-enabled.png": {
       "rect": [
         160,
-        1644,
+        1668,
         32,
         24
       ],
@@ -102,7 +102,7 @@
     "locale:commands/ru-send-order-enabled.png": {
       "rect": [
         192,
-        1644,
+        1668,
         32,
         24
       ],
@@ -113,7 +113,7 @@
     "locale:commands/ru-stop-disabled.png": {
       "rect": [
         224,
-        1644,
+        1668,
         32,
         24
       ],
@@ -124,7 +124,7 @@
     "locale:commands/ru-stop-enabled.png": {
       "rect": [
         256,
-        1644,
+        1668,
         32,
         24
       ],
@@ -134,8 +134,8 @@
     },
     "locale:fonts/en-mask.png": {
       "rect": [
-        816,
-        1560,
+        896,
+        1576,
         128,
         48
       ],
@@ -145,8 +145,8 @@
     },
     "locale:fonts/en-shadow.png": {
       "rect": [
-        944,
-        1560,
+        1024,
+        1576,
         128,
         48
       ],
@@ -157,7 +157,7 @@
     "locale:fonts/ru-mask.png": {
       "rect": [
         1503,
-        1608,
+        1632,
         128,
         24
       ],
@@ -168,7 +168,7 @@
     "locale:fonts/ru-shadow.png": {
       "rect": [
         1631,
-        1608,
+        1632,
         128,
         24
       ],
@@ -222,7 +222,7 @@
     },
     "screen:art/campaign-final-map-house-0.png": {
       "rect": [
-        928,
+        1248,
         1344,
         248,
         104
@@ -233,7 +233,7 @@
     },
     "screen:art/campaign-final-map-house-1.png": {
       "rect": [
-        1176,
+        1496,
         1344,
         248,
         104
@@ -244,7 +244,7 @@
     },
     "screen:art/campaign-final-map-house-2.png": {
       "rect": [
-        1424,
+        1744,
         1344,
         248,
         104
@@ -255,8 +255,8 @@
     },
     "screen:art/campaign-map-native.png": {
       "rect": [
-        1672,
-        1344,
+        0,
+        1472,
         248,
         104
       ],
@@ -267,7 +267,7 @@
     "screen:art/confirmation-dialog-native.png": {
       "rect": [
         1071,
-        1608,
+        1632,
         112,
         32
       ],
@@ -277,7 +277,7 @@
     },
     "screen:art/defeat_movie-preview.png": {
       "rect": [
-        320,
+        640,
         1344,
         304,
         120
@@ -289,7 +289,7 @@
     "screen:art/ending-label-house-0.png": {
       "rect": [
         1274,
-        1668,
+        1692,
         56,
         8
       ],
@@ -300,7 +300,7 @@
     "screen:art/ending-label-house-1.png": {
       "rect": [
         1330,
-        1668,
+        1692,
         56,
         8
       ],
@@ -311,7 +311,7 @@
     "screen:art/ending-label-house-2.png": {
       "rect": [
         1386,
-        1668,
+        1692,
         56,
         8
       ],
@@ -355,7 +355,7 @@
     "screen:art/house-0-caption.png": {
       "rect": [
         1355,
-        1644,
+        1668,
         80,
         16
       ],
@@ -365,8 +365,8 @@
     },
     "screen:art/house-0-crest.png": {
       "rect": [
-        1456,
-        1560,
+        1536,
+        1576,
         64,
         48
       ],
@@ -376,8 +376,8 @@
     },
     "screen:art/house-0-emblem.png": {
       "rect": [
-        1513,
-        1464,
+        1761,
+        1472,
         80,
         64
       ],
@@ -388,7 +388,7 @@
     "screen:art/house-1-caption.png": {
       "rect": [
         1435,
-        1644,
+        1668,
         80,
         16
       ],
@@ -398,8 +398,8 @@
     },
     "screen:art/house-1-crest.png": {
       "rect": [
-        1520,
-        1560,
+        1600,
+        1576,
         64,
         48
       ],
@@ -409,8 +409,8 @@
     },
     "screen:art/house-1-emblem.png": {
       "rect": [
-        1593,
-        1464,
+        1841,
+        1472,
         80,
         64
       ],
@@ -421,7 +421,7 @@
     "screen:art/house-2-caption.png": {
       "rect": [
         1515,
-        1644,
+        1668,
         80,
         16
       ],
@@ -431,8 +431,8 @@
     },
     "screen:art/house-2-crest.png": {
       "rect": [
-        1584,
-        1560,
+        1664,
+        1576,
         64,
         48
       ],
@@ -442,8 +442,8 @@
     },
     "screen:art/house-2-emblem.png": {
       "rect": [
-        1673,
-        1464,
+        1921,
+        1472,
         80,
         64
       ],
@@ -454,7 +454,7 @@
     "screen:art/house-choice-heading.png": {
       "rect": [
         1131,
-        1644,
+        1668,
         136,
         16
       ],
@@ -465,7 +465,7 @@
     "screen:art/menu-arrow-native.png": {
       "rect": [
         80,
-        1668,
+        1692,
         16,
         16
       ],
@@ -476,7 +476,7 @@
     "screen:art/native-gold-sky.png": {
       "rect": [
         1585,
-        1668,
+        1692,
         8,
         8
       ],
@@ -486,8 +486,8 @@
     },
     "screen:art/options-desert-panorama.png": {
       "rect": [
-        0,
-        1560,
+        80,
+        1576,
         320,
         48
       ],
@@ -497,8 +497,8 @@
     },
     "screen:art/options-helmet-and-launcher.png": {
       "rect": [
-        708,
-        1464,
+        956,
+        1472,
         208,
         88
       ],
@@ -508,8 +508,8 @@
     },
     "screen:art/options-helmet-face.png": {
       "rect": [
-        1377,
-        1464,
+        1625,
+        1472,
         64,
         80
       ],
@@ -519,8 +519,8 @@
     },
     "screen:art/options-helmet-lower.png": {
       "rect": [
-        640,
-        1560,
+        720,
+        1576,
         176,
         48
       ],
@@ -530,8 +530,8 @@
     },
     "screen:art/options-landscape-right.png": {
       "rect": [
-        1233,
-        1464,
+        1481,
+        1472,
         144,
         80
       ],
@@ -542,7 +542,7 @@
     "screen:art/options-native-bottom-terrain.png": {
       "rect": [
         1183,
-        1608,
+        1632,
         320,
         24
       ],
@@ -607,8 +607,8 @@
     },
     "screen:art/options-native-left-shoulder.png": {
       "rect": [
-        640,
-        1464,
+        888,
+        1472,
         32,
         96
       ],
@@ -618,8 +618,8 @@
     },
     "screen:art/options-native-lower-body.png": {
       "rect": [
-        320,
-        1560,
+        400,
+        1576,
         320,
         48
       ],
@@ -685,7 +685,7 @@
     "screen:art/password-sky-sample.png": {
       "rect": [
         1593,
-        1668,
+        1692,
         8,
         8
       ],
@@ -695,8 +695,8 @@
     },
     "screen:art/password-soldier-landscape.png": {
       "rect": [
-        0,
-        1464,
+        248,
+        1472,
         320,
         96
       ],
@@ -707,7 +707,7 @@
     "screen:art/pause-options-helmet-lower.png": {
       "rect": [
         255,
-        1608,
+        1632,
         160,
         36
       ],
@@ -729,7 +729,7 @@
     "screen:art/pause-options-sky-sample.png": {
       "rect": [
         1601,
-        1668,
+        1692,
         8,
         8
       ],
@@ -739,8 +739,8 @@
     },
     "screen:art/pause-options-terrain-right.png": {
       "rect": [
-        1441,
-        1464,
+        1689,
+        1472,
         72,
         72
       ],
@@ -751,7 +751,7 @@
     "screen:art/publisher-and.png": {
       "rect": [
         1525,
-        1668,
+        1692,
         24,
         8
       ],
@@ -762,7 +762,7 @@
     "screen:art/publisher-copyright-virgin.png": {
       "rect": [
         940,
-        1644,
+        1668,
         191,
         16
       ],
@@ -773,7 +773,7 @@
     "screen:art/publisher-copyright-westwood.png": {
       "rect": [
         813,
-        1668,
+        1692,
         221,
         8
       ],
@@ -784,7 +784,7 @@
     "screen:art/publisher-present.png": {
       "rect": [
         1442,
-        1668,
+        1692,
         55,
         8
       ],
@@ -794,8 +794,8 @@
     },
     "screen:art/publisher-virgin.png": {
       "rect": [
-        1140,
-        1464,
+        1388,
+        1472,
         93,
         83
       ],
@@ -805,14 +805,25 @@
     },
     "screen:art/publisher-westwood.png": {
       "rect": [
-        1664,
-        1560,
+        1744,
+        1576,
         200,
         43
       ],
       "rgbaSha256": "fdef00907fb89e6f56a3f0d8bf62fc0197e3eaaf2bdecfe4cebaa15eacdd0849",
       "sha256": "a1e69f3d29f6105f40fde1df52d665e36191fc6e359a067dcb53562094fd850a",
       "source": "ui-assets/screen-assets/art/publisher-westwood.png"
+    },
+    "screen:art/results-aircraft-scene.png": {
+      "rect": [
+        0,
+        1344,
+        320,
+        128
+      ],
+      "rgbaSha256": "fe18bad9116a1b02a8d792f6c8ffe193ea4acf0c5f1ff3358b4ddb9784f50bc7",
+      "sha256": "c8ccf3fb0d366bc71d2c02806dcd720f616d80b902a2c7b7d5d68ff547488008",
+      "source": "ui-assets/screen-assets/art/results-aircraft-scene.png"
     },
     "screen:art/results-desert-background.png": {
       "rect": [
@@ -838,7 +849,7 @@
     },
     "screen:art/results-final-tanks-scene.png": {
       "rect": [
-        0,
+        320,
         1344,
         320,
         120
@@ -849,8 +860,8 @@
     },
     "screen:art/results-soldier-scene.png": {
       "rect": [
-        320,
-        1464,
+        568,
+        1472,
         320,
         96
       ],
@@ -861,7 +872,7 @@
     "screen:art/story-button-advice.png": {
       "rect": [
         1595,
-        1644,
+        1668,
         80,
         16
       ],
@@ -872,7 +883,7 @@
     "screen:art/story-button-no.png": {
       "rect": [
         1675,
-        1644,
+        1668,
         80,
         16
       ],
@@ -883,7 +894,7 @@
     "screen:art/story-button-proceed.png": {
       "rect": [
         1755,
-        1644,
+        1668,
         80,
         16
       ],
@@ -894,7 +905,7 @@
     "screen:art/story-button-yes.png": {
       "rect": [
         1835,
-        1644,
+        1668,
         80,
         16
       ],
@@ -916,7 +927,7 @@
     "screen:art/title-choice-underlay.png": {
       "rect": [
         415,
-        1608,
+        1632,
         144,
         32
       ],
@@ -938,7 +949,7 @@
     "screen:art/title-label-options.png": {
       "rect": [
         1034,
-        1668,
+        1692,
         80,
         8
       ],
@@ -949,7 +960,7 @@
     "screen:art/title-label-start-game.png": {
       "rect": [
         1114,
-        1668,
+        1692,
         80,
         8
       ],
@@ -960,7 +971,7 @@
     "screen:art/title-label-tutorial.png": {
       "rect": [
         1194,
-        1668,
+        1692,
         80,
         8
       ],
@@ -971,7 +982,7 @@
     "screen:art/title-license.png": {
       "rect": [
         1763,
-        1668,
+        1692,
         128,
         6
       ],
@@ -982,7 +993,7 @@
     "screen:art/title-logo.png": {
       "rect": [
         0,
-        1608,
+        1632,
         255,
         36
       ],
@@ -993,7 +1004,7 @@
     "screen:art/title-native-cursor.png": {
       "rect": [
         96,
-        1668,
+        1692,
         16,
         16
       ],
@@ -1015,7 +1026,7 @@
     "screen:art/title-subtitle.png": {
       "rect": [
         520,
-        1668,
+        1692,
         215,
         15
       ],
@@ -1025,7 +1036,7 @@
     },
     "screen:art/victory_movie-preview.png": {
       "rect": [
-        624,
+        944,
         1344,
         304,
         120
@@ -1037,7 +1048,7 @@
     "screen:chrome/dialog-frame-bl.png": {
       "rect": [
         1891,
-        1668,
+        1692,
         4,
         4
       ],
@@ -1048,7 +1059,7 @@
     "screen:chrome/dialog-frame-bottom.png": {
       "rect": [
         1907,
-        1668,
+        1692,
         1,
         4
       ],
@@ -1059,7 +1070,7 @@
     "screen:chrome/dialog-frame-br.png": {
       "rect": [
         1895,
-        1668,
+        1692,
         4,
         4
       ],
@@ -1070,7 +1081,7 @@
     "screen:chrome/dialog-frame-fill.png": {
       "rect": [
         6,
-        1684,
+        1708,
         1,
         1
       ],
@@ -1081,7 +1092,7 @@
     "screen:chrome/dialog-frame-left.png": {
       "rect": [
         2029,
-        1668,
+        1692,
         4,
         1
       ],
@@ -1092,7 +1103,7 @@
     "screen:chrome/dialog-frame-right.png": {
       "rect": [
         2033,
-        1668,
+        1692,
         4,
         1
       ],
@@ -1103,7 +1114,7 @@
     "screen:chrome/dialog-frame-tl.png": {
       "rect": [
         1899,
-        1668,
+        1692,
         4,
         4
       ],
@@ -1114,7 +1125,7 @@
     "screen:chrome/dialog-frame-top.png": {
       "rect": [
         1908,
-        1668,
+        1692,
         1,
         4
       ],
@@ -1125,7 +1136,7 @@
     "screen:chrome/dialog-frame-tr.png": {
       "rect": [
         1903,
-        1668,
+        1692,
         4,
         4
       ],
@@ -1135,8 +1146,8 @@
     },
     "screen:chrome/starport-bar-bank-native.png": {
       "rect": [
-        1648,
-        1560,
+        1728,
+        1576,
         16,
         48
       ],
@@ -1147,7 +1158,7 @@
     "screen:chrome/starport-radar-native.png": {
       "rect": [
         1267,
-        1644,
+        1668,
         88,
         16
       ],
@@ -1334,7 +1345,7 @@
     "screen:starport/starport-body-fill.png": {
       "rect": [
         1609,
-        1668,
+        1692,
         8,
         8
       ],
@@ -1345,7 +1356,7 @@
     "screen:starport/starport-cabinet-brace.png": {
       "rect": [
         1971,
-        1644,
+        1668,
         48,
         16
       ],
@@ -1356,7 +1367,7 @@
     "screen:starport/starport-cash-window-clean-left.png": {
       "rect": [
         771,
-        1668,
+        1692,
         8,
         12
       ],
@@ -1367,7 +1378,7 @@
     "screen:starport/starport-cash-window-clean-middle.png": {
       "rect": [
         811,
-        1668,
+        1692,
         1,
         12
       ],
@@ -1378,7 +1389,7 @@
     "screen:starport/starport-cash-window-clean-right.png": {
       "rect": [
         779,
-        1668,
+        1692,
         8,
         12
       ],
@@ -1389,7 +1400,7 @@
     "screen:starport/starport-command-cabinet-bl.png": {
       "rect": [
         896,
-        1644,
+        1668,
         20,
         20
       ],
@@ -1400,7 +1411,7 @@
     "screen:starport/starport-command-cabinet-bottom.png": {
       "rect": [
         932,
-        1644,
+        1668,
         8,
         20
       ],
@@ -1411,7 +1422,7 @@
     "screen:starport/starport-command-cabinet-br.png": {
       "rect": [
         916,
-        1644,
+        1668,
         16,
         20
       ],
@@ -1422,7 +1433,7 @@
     "screen:starport/starport-command-cabinet-left-middle.png": {
       "rect": [
         1549,
-        1668,
+        1692,
         20,
         8
       ],
@@ -1432,8 +1443,8 @@
     },
     "screen:starport/starport-command-cabinet-left.png": {
       "rect": [
-        672,
-        1464,
+        920,
+        1472,
         20,
         96
       ],
@@ -1444,7 +1455,7 @@
     "screen:starport/starport-command-cabinet-right-middle.png": {
       "rect": [
         1569,
-        1668,
+        1692,
         16,
         8
       ],
@@ -1454,8 +1465,8 @@
     },
     "screen:starport/starport-command-cabinet-right.png": {
       "rect": [
-        692,
-        1464,
+        940,
+        1472,
         16,
         96
       ],
@@ -1466,7 +1477,7 @@
     "screen:starport/starport-command-cabinet-tl.png": {
       "rect": [
         735,
-        1668,
+        1692,
         20,
         12
       ],
@@ -1477,7 +1488,7 @@
     "screen:starport/starport-command-cabinet-top.png": {
       "rect": [
         787,
-        1668,
+        1692,
         8,
         12
       ],
@@ -1488,7 +1499,7 @@
     "screen:starport/starport-command-cabinet-tr.png": {
       "rect": [
         755,
-        1668,
+        1692,
         16,
         12
       ],
@@ -1499,7 +1510,7 @@
     "screen:starport/starport-meter-window-left.png": {
       "rect": [
         448,
-        1668,
+        1692,
         8,
         16
       ],
@@ -1510,7 +1521,7 @@
     "screen:starport/starport-meter-window-middle.png": {
       "rect": [
         512,
-        1668,
+        1692,
         1,
         16
       ],
@@ -1521,7 +1532,7 @@
     "screen:starport/starport-meter-window-right.png": {
       "rect": [
         456,
-        1668,
+        1692,
         8,
         16
       ],
@@ -1531,8 +1542,8 @@
     },
     "screen:starport/starport-monitor-stack.png": {
       "rect": [
-        1028,
-        1464,
+        1276,
+        1472,
         112,
         84
       ],
@@ -1543,7 +1554,7 @@
     "screen:starport/starport-resource-armor.png": {
       "rect": [
         704,
-        1644,
+        1668,
         24,
         24
       ],
@@ -1554,7 +1565,7 @@
     "screen:starport/starport-resource-dollar.png": {
       "rect": [
         728,
-        1644,
+        1668,
         24,
         24
       ],
@@ -1565,7 +1576,7 @@
     "screen:starport/starport-resource-power.png": {
       "rect": [
         752,
-        1644,
+        1668,
         24,
         24
       ],
@@ -1575,8 +1586,8 @@
     },
     "screen:starport/starport-resource-vent.png": {
       "rect": [
-        1753,
-        1464,
+        2001,
+        1472,
         40,
         64
       ],
@@ -1587,7 +1598,7 @@
     "screen:ui/arrow-up-glyph-native.png": {
       "rect": [
         112,
-        1668,
+        1692,
         16,
         16
       ],
@@ -1598,7 +1609,7 @@
     "screen:ui/arrow-up-native.png": {
       "rect": [
         128,
-        1668,
+        1692,
         16,
         16
       ],
@@ -1609,7 +1620,7 @@
     "screen:ui/back-button-native.png": {
       "rect": [
         144,
-        1668,
+        1692,
         16,
         16
       ],
@@ -1620,7 +1631,7 @@
     "screen:ui/back-glyph-native.png": {
       "rect": [
         160,
-        1668,
+        1692,
         16,
         16
       ],
@@ -1631,7 +1642,7 @@
     "screen:ui/back-menu-arrow-native.png": {
       "rect": [
         176,
-        1668,
+        1692,
         16,
         16
       ],
@@ -1642,7 +1653,7 @@
     "screen:ui/command-cabinet-bl.png": {
       "rect": [
         192,
-        1668,
+        1692,
         16,
         16
       ],
@@ -1653,7 +1664,7 @@
     "screen:ui/command-cabinet-bottom.png": {
       "rect": [
         513,
-        1668,
+        1692,
         1,
         16
       ],
@@ -1664,7 +1675,7 @@
     "screen:ui/command-cabinet-br.png": {
       "rect": [
         208,
-        1668,
+        1692,
         16,
         16
       ],
@@ -1675,7 +1686,7 @@
     "screen:ui/command-cabinet-fill.png": {
       "rect": [
         1617,
-        1668,
+        1692,
         8,
         8
       ],
@@ -1686,7 +1697,7 @@
     "screen:ui/command-cabinet-left.png": {
       "rect": [
         1949,
-        1668,
+        1692,
         16,
         1
       ],
@@ -1697,7 +1708,7 @@
     "screen:ui/command-cabinet-right.png": {
       "rect": [
         1965,
-        1668,
+        1692,
         16,
         1
       ],
@@ -1708,7 +1719,7 @@
     "screen:ui/command-cabinet-tl.png": {
       "rect": [
         224,
-        1668,
+        1692,
         16,
         16
       ],
@@ -1719,7 +1730,7 @@
     "screen:ui/command-cabinet-top.png": {
       "rect": [
         514,
-        1668,
+        1692,
         1,
         16
       ],
@@ -1730,7 +1741,7 @@
     "screen:ui/command-cabinet-tr.png": {
       "rect": [
         240,
-        1668,
+        1692,
         16,
         16
       ],
@@ -1741,7 +1752,7 @@
     "screen:ui/command-focus-0-bl.png": {
       "rect": [
         1909,
-        1668,
+        1692,
         2,
         2
       ],
@@ -1752,7 +1763,7 @@
     "screen:ui/command-focus-0-bottom.png": {
       "rect": [
         1941,
-        1668,
+        1692,
         1,
         2
       ],
@@ -1763,7 +1774,7 @@
     "screen:ui/command-focus-0-br.png": {
       "rect": [
         1911,
-        1668,
+        1692,
         2,
         2
       ],
@@ -1774,7 +1785,7 @@
     "screen:ui/command-focus-0-left.png": {
       "rect": [
         2037,
-        1668,
+        1692,
         2,
         1
       ],
@@ -1785,7 +1796,7 @@
     "screen:ui/command-focus-0-right.png": {
       "rect": [
         2039,
-        1668,
+        1692,
         2,
         1
       ],
@@ -1796,7 +1807,7 @@
     "screen:ui/command-focus-0-tl.png": {
       "rect": [
         1913,
-        1668,
+        1692,
         2,
         2
       ],
@@ -1807,7 +1818,7 @@
     "screen:ui/command-focus-0-top.png": {
       "rect": [
         1942,
-        1668,
+        1692,
         1,
         2
       ],
@@ -1818,7 +1829,7 @@
     "screen:ui/command-focus-0-tr.png": {
       "rect": [
         1915,
-        1668,
+        1692,
         2,
         2
       ],
@@ -1829,7 +1840,7 @@
     "screen:ui/command-focus-0.png": {
       "rect": [
         288,
-        1644,
+        1668,
         32,
         24
       ],
@@ -1840,7 +1851,7 @@
     "screen:ui/command-focus-1-bl.png": {
       "rect": [
         1917,
-        1668,
+        1692,
         2,
         2
       ],
@@ -1851,7 +1862,7 @@
     "screen:ui/command-focus-1-bottom.png": {
       "rect": [
         1943,
-        1668,
+        1692,
         1,
         2
       ],
@@ -1862,7 +1873,7 @@
     "screen:ui/command-focus-1-br.png": {
       "rect": [
         1919,
-        1668,
+        1692,
         2,
         2
       ],
@@ -1873,7 +1884,7 @@
     "screen:ui/command-focus-1-left.png": {
       "rect": [
         2041,
-        1668,
+        1692,
         2,
         1
       ],
@@ -1884,7 +1895,7 @@
     "screen:ui/command-focus-1-right.png": {
       "rect": [
         2043,
-        1668,
+        1692,
         2,
         1
       ],
@@ -1895,7 +1906,7 @@
     "screen:ui/command-focus-1-tl.png": {
       "rect": [
         1921,
-        1668,
+        1692,
         2,
         2
       ],
@@ -1906,7 +1917,7 @@
     "screen:ui/command-focus-1-top.png": {
       "rect": [
         1944,
-        1668,
+        1692,
         1,
         2
       ],
@@ -1917,7 +1928,7 @@
     "screen:ui/command-focus-1-tr.png": {
       "rect": [
         1923,
-        1668,
+        1692,
         2,
         2
       ],
@@ -1928,7 +1939,7 @@
     "screen:ui/command-focus-1.png": {
       "rect": [
         320,
-        1644,
+        1668,
         32,
         24
       ],
@@ -1939,7 +1950,7 @@
     "screen:ui/command-focus-2-bl.png": {
       "rect": [
         1925,
-        1668,
+        1692,
         2,
         2
       ],
@@ -1950,7 +1961,7 @@
     "screen:ui/command-focus-2-bottom.png": {
       "rect": [
         1945,
-        1668,
+        1692,
         1,
         2
       ],
@@ -1961,7 +1972,7 @@
     "screen:ui/command-focus-2-br.png": {
       "rect": [
         1927,
-        1668,
+        1692,
         2,
         2
       ],
@@ -1972,7 +1983,7 @@
     "screen:ui/command-focus-2-left.png": {
       "rect": [
         2045,
-        1668,
+        1692,
         2,
         1
       ],
@@ -1983,7 +1994,7 @@
     "screen:ui/command-focus-2-right.png": {
       "rect": [
         0,
-        1684,
+        1708,
         2,
         1
       ],
@@ -1994,7 +2005,7 @@
     "screen:ui/command-focus-2-tl.png": {
       "rect": [
         1929,
-        1668,
+        1692,
         2,
         2
       ],
@@ -2005,7 +2016,7 @@
     "screen:ui/command-focus-2-top.png": {
       "rect": [
         1946,
-        1668,
+        1692,
         1,
         2
       ],
@@ -2016,7 +2027,7 @@
     "screen:ui/command-focus-2-tr.png": {
       "rect": [
         1931,
-        1668,
+        1692,
         2,
         2
       ],
@@ -2027,7 +2038,7 @@
     "screen:ui/command-focus-2.png": {
       "rect": [
         352,
-        1644,
+        1668,
         32,
         24
       ],
@@ -2038,7 +2049,7 @@
     "screen:ui/command-focus-3-bl.png": {
       "rect": [
         1933,
-        1668,
+        1692,
         2,
         2
       ],
@@ -2049,7 +2060,7 @@
     "screen:ui/command-focus-3-bottom.png": {
       "rect": [
         1947,
-        1668,
+        1692,
         1,
         2
       ],
@@ -2060,7 +2071,7 @@
     "screen:ui/command-focus-3-br.png": {
       "rect": [
         1935,
-        1668,
+        1692,
         2,
         2
       ],
@@ -2071,7 +2082,7 @@
     "screen:ui/command-focus-3-left.png": {
       "rect": [
         2,
-        1684,
+        1708,
         2,
         1
       ],
@@ -2082,7 +2093,7 @@
     "screen:ui/command-focus-3-right.png": {
       "rect": [
         4,
-        1684,
+        1708,
         2,
         1
       ],
@@ -2093,7 +2104,7 @@
     "screen:ui/command-focus-3-tl.png": {
       "rect": [
         1937,
-        1668,
+        1692,
         2,
         2
       ],
@@ -2104,7 +2115,7 @@
     "screen:ui/command-focus-3-top.png": {
       "rect": [
         1948,
-        1668,
+        1692,
         1,
         2
       ],
@@ -2115,7 +2126,7 @@
     "screen:ui/command-focus-3-tr.png": {
       "rect": [
         1939,
-        1668,
+        1692,
         2,
         2
       ],
@@ -2126,7 +2137,7 @@
     "screen:ui/command-focus-3.png": {
       "rect": [
         384,
-        1644,
+        1668,
         32,
         24
       ],
@@ -2137,7 +2148,7 @@
     "screen:ui/command-skin-disabled-bl.png": {
       "rect": [
         7,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2148,7 +2159,7 @@
     "screen:ui/command-skin-disabled-bottom.png": {
       "rect": [
         8,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2159,7 +2170,7 @@
     "screen:ui/command-skin-disabled-br.png": {
       "rect": [
         9,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2170,7 +2181,7 @@
     "screen:ui/command-skin-disabled-fill.png": {
       "rect": [
         10,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2181,7 +2192,7 @@
     "screen:ui/command-skin-disabled-left.png": {
       "rect": [
         11,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2192,7 +2203,7 @@
     "screen:ui/command-skin-disabled-right.png": {
       "rect": [
         12,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2203,7 +2214,7 @@
     "screen:ui/command-skin-disabled-tl.png": {
       "rect": [
         13,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2214,7 +2225,7 @@
     "screen:ui/command-skin-disabled-top.png": {
       "rect": [
         14,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2225,7 +2236,7 @@
     "screen:ui/command-skin-disabled-tr.png": {
       "rect": [
         15,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2236,7 +2247,7 @@
     "screen:ui/command-skin-disabled.png": {
       "rect": [
         416,
-        1644,
+        1668,
         32,
         24
       ],
@@ -2247,7 +2258,7 @@
     "screen:ui/command-skin-normal-bl.png": {
       "rect": [
         16,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2258,7 +2269,7 @@
     "screen:ui/command-skin-normal-bottom.png": {
       "rect": [
         17,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2269,7 +2280,7 @@
     "screen:ui/command-skin-normal-br.png": {
       "rect": [
         18,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2280,7 +2291,7 @@
     "screen:ui/command-skin-normal-fill.png": {
       "rect": [
         19,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2291,7 +2302,7 @@
     "screen:ui/command-skin-normal-left.png": {
       "rect": [
         20,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2302,7 +2313,7 @@
     "screen:ui/command-skin-normal-right.png": {
       "rect": [
         21,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2313,7 +2324,7 @@
     "screen:ui/command-skin-normal-tl.png": {
       "rect": [
         22,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2324,7 +2335,7 @@
     "screen:ui/command-skin-normal-top.png": {
       "rect": [
         23,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2335,7 +2346,7 @@
     "screen:ui/command-skin-normal-tr.png": {
       "rect": [
         24,
-        1684,
+        1708,
         1,
         1
       ],
@@ -2346,7 +2357,7 @@
     "screen:ui/command-skin-normal.png": {
       "rect": [
         448,
-        1644,
+        1668,
         32,
         24
       ],
@@ -2357,7 +2368,7 @@
     "screen:ui/command-skin-pressed.png": {
       "rect": [
         480,
-        1644,
+        1668,
         32,
         24
       ],
@@ -2368,7 +2379,7 @@
     "screen:ui/exit-enabled.png": {
       "rect": [
         512,
-        1644,
+        1668,
         32,
         24
       ],
@@ -2378,8 +2389,8 @@
     },
     "screen:ui/font-statistics-native.png": {
       "rect": [
-        1072,
-        1560,
+        1152,
+        1576,
         128,
         48
       ],
@@ -2389,8 +2400,8 @@
     },
     "screen:ui/font-textmask-native.png": {
       "rect": [
-        1200,
-        1560,
+        1280,
+        1576,
         128,
         48
       ],
@@ -2400,8 +2411,8 @@
     },
     "screen:ui/font-textshadow-native.png": {
       "rect": [
-        1328,
-        1560,
+        1408,
+        1576,
         128,
         48
       ],
@@ -2412,7 +2423,7 @@
     "screen:ui/font-ui-native-mask.png": {
       "rect": [
         559,
-        1608,
+        1632,
         128,
         32
       ],
@@ -2423,7 +2434,7 @@
     "screen:ui/font-ui-native.png": {
       "rect": [
         687,
-        1608,
+        1632,
         128,
         32
       ],
@@ -2434,7 +2445,7 @@
     "screen:ui/font-ui-shadow-native.png": {
       "rect": [
         815,
-        1608,
+        1632,
         128,
         32
       ],
@@ -2445,7 +2456,7 @@
     "screen:ui/native-black.png": {
       "rect": [
         1625,
-        1668,
+        1692,
         8,
         8
       ],
@@ -2456,7 +2467,7 @@
     "screen:ui/repair-disabled.png": {
       "rect": [
         544,
-        1644,
+        1668,
         32,
         24
       ],
@@ -2467,7 +2478,7 @@
     "screen:ui/repair-enabled.png": {
       "rect": [
         576,
-        1644,
+        1668,
         32,
         24
       ],
@@ -2478,7 +2489,7 @@
     "screen:ui/steel-light.png": {
       "rect": [
         1633,
-        1668,
+        1692,
         8,
         8
       ],
@@ -2489,7 +2500,7 @@
     "screen:ui/steel-medium.png": {
       "rect": [
         1641,
-        1668,
+        1692,
         8,
         8
       ],
@@ -2500,7 +2511,7 @@
     "screen:ui/stop-disabled.png": {
       "rect": [
         608,
-        1644,
+        1668,
         32,
         24
       ],
@@ -2511,7 +2522,7 @@
     "screen:ui/stop-enabled.png": {
       "rect": [
         640,
-        1644,
+        1668,
         32,
         24
       ],
@@ -2522,7 +2533,7 @@
     "screen:ui/upgrade-enabled.png": {
       "rect": [
         672,
-        1644,
+        1668,
         32,
         24
       ],
@@ -2533,7 +2544,7 @@
     "shop:animations/green-fixture/state-0.png": {
       "rect": [
         256,
-        1668,
+        1692,
         16,
         16
       ],
@@ -2544,7 +2555,7 @@
     "shop:animations/green-fixture/state-1.png": {
       "rect": [
         272,
-        1668,
+        1692,
         16,
         16
       ],
@@ -2555,7 +2566,7 @@
     "shop:animations/green-indicator/state-0.png": {
       "rect": [
         288,
-        1668,
+        1692,
         16,
         16
       ],
@@ -2566,7 +2577,7 @@
     "shop:animations/green-indicator/state-1.png": {
       "rect": [
         304,
-        1668,
+        1692,
         16,
         16
       ],
@@ -2577,7 +2588,7 @@
     "shop:animations/green-indicator/state-2.png": {
       "rect": [
         320,
-        1668,
+        1692,
         16,
         16
       ],
@@ -2588,7 +2599,7 @@
     "shop:animations/green-indicator/state-3.png": {
       "rect": [
         336,
-        1668,
+        1692,
         16,
         16
       ],
@@ -2599,7 +2610,7 @@
     "shop:animations/radar-display/state-0.png": {
       "rect": [
         1759,
-        1608,
+        1632,
         72,
         24
       ],
@@ -2610,7 +2621,7 @@
     "shop:animations/red-fixture/state-0.png": {
       "rect": [
         352,
-        1668,
+        1692,
         16,
         16
       ],
@@ -2621,7 +2632,7 @@
     "shop:animations/red-fixture/state-1.png": {
       "rect": [
         368,
-        1668,
+        1692,
         16,
         16
       ],
@@ -2632,7 +2643,7 @@
     "shop:animations/red-indicator/state-0.png": {
       "rect": [
         848,
-        1644,
+        1668,
         16,
         24
       ],
@@ -2643,7 +2654,7 @@
     "shop:animations/red-indicator/state-1.png": {
       "rect": [
         864,
-        1644,
+        1668,
         16,
         24
       ],
@@ -2653,8 +2664,8 @@
     },
     "shop:animations/vent/state-0.png": {
       "rect": [
-        1793,
-        1464,
+        0,
+        1576,
         40,
         56
       ],
@@ -2665,7 +2676,7 @@
     "shop:chrome/cash-window-clean-left.png": {
       "rect": [
         795,
-        1668,
+        1692,
         8,
         12
       ],
@@ -2676,7 +2687,7 @@
     "shop:chrome/cash-window-clean-middle.png": {
       "rect": [
         812,
-        1668,
+        1692,
         1,
         12
       ],
@@ -2687,7 +2698,7 @@
     "shop:chrome/cash-window-clean-right.png": {
       "rect": [
         803,
-        1668,
+        1692,
         8,
         12
       ],
@@ -2698,7 +2709,7 @@
     "shop:chrome/cash-window-left.png": {
       "rect": [
         464,
-        1668,
+        1692,
         8,
         16
       ],
@@ -2709,7 +2720,7 @@
     "shop:chrome/cash-window-middle.png": {
       "rect": [
         515,
-        1668,
+        1692,
         1,
         16
       ],
@@ -2720,7 +2731,7 @@
     "shop:chrome/cash-window-right.png": {
       "rect": [
         472,
-        1668,
+        1692,
         8,
         16
       ],
@@ -2731,7 +2742,7 @@
     "shop:chrome/command-bottom-texture8.png": {
       "rect": [
         1649,
-        1668,
+        1692,
         8,
         8
       ],
@@ -2742,7 +2753,7 @@
     "shop:chrome/command-cabinet-bl.png": {
       "rect": [
         384,
-        1668,
+        1692,
         16,
         16
       ],
@@ -2753,7 +2764,7 @@
     "shop:chrome/command-cabinet-bottom.png": {
       "rect": [
         516,
-        1668,
+        1692,
         1,
         16
       ],
@@ -2764,7 +2775,7 @@
     "shop:chrome/command-cabinet-br.png": {
       "rect": [
         400,
-        1668,
+        1692,
         16,
         16
       ],
@@ -2775,7 +2786,7 @@
     "shop:chrome/command-cabinet-fill.png": {
       "rect": [
         1657,
-        1668,
+        1692,
         8,
         8
       ],
@@ -2786,7 +2797,7 @@
     "shop:chrome/command-cabinet-left.png": {
       "rect": [
         1981,
-        1668,
+        1692,
         16,
         1
       ],
@@ -2797,7 +2808,7 @@
     "shop:chrome/command-cabinet-right.png": {
       "rect": [
         1997,
-        1668,
+        1692,
         16,
         1
       ],
@@ -2808,7 +2819,7 @@
     "shop:chrome/command-cabinet-tl.png": {
       "rect": [
         416,
-        1668,
+        1692,
         16,
         16
       ],
@@ -2819,7 +2830,7 @@
     "shop:chrome/command-cabinet-top.png": {
       "rect": [
         517,
-        1668,
+        1692,
         1,
         16
       ],
@@ -2830,7 +2841,7 @@
     "shop:chrome/command-cabinet-tr.png": {
       "rect": [
         432,
-        1668,
+        1692,
         16,
         16
       ],
@@ -2841,7 +2852,7 @@
     "shop:chrome/command-left-texture8.png": {
       "rect": [
         1665,
-        1668,
+        1692,
         8,
         8
       ],
@@ -2852,7 +2863,7 @@
     "shop:chrome/command-right-texture8.png": {
       "rect": [
         1673,
-        1668,
+        1692,
         8,
         8
       ],
@@ -2863,7 +2874,7 @@
     "shop:chrome/command-top-texture8.png": {
       "rect": [
         1681,
-        1668,
+        1692,
         8,
         8
       ],
@@ -2874,7 +2885,7 @@
     "shop:chrome/header-vents.png": {
       "rect": [
         1497,
-        1668,
+        1692,
         28,
         8
       ],
@@ -2885,7 +2896,7 @@
     "shop:chrome/meter-window-left.png": {
       "rect": [
         480,
-        1668,
+        1692,
         8,
         16
       ],
@@ -2896,7 +2907,7 @@
     "shop:chrome/meter-window-middle.png": {
       "rect": [
         518,
-        1668,
+        1692,
         1,
         16
       ],
@@ -2907,7 +2918,7 @@
     "shop:chrome/meter-window-right.png": {
       "rect": [
         488,
-        1668,
+        1692,
         8,
         16
       ],
@@ -2918,7 +2929,7 @@
     "shop:chrome/monitor-bl.png": {
       "rect": [
         1689,
-        1668,
+        1692,
         8,
         8
       ],
@@ -2929,7 +2940,7 @@
     "shop:chrome/monitor-bottom.png": {
       "rect": [
         1761,
-        1668,
+        1692,
         1,
         8
       ],
@@ -2940,7 +2951,7 @@
     "shop:chrome/monitor-br.png": {
       "rect": [
         1697,
-        1668,
+        1692,
         8,
         8
       ],
@@ -2951,7 +2962,7 @@
     "shop:chrome/monitor-fill.png": {
       "rect": [
         1705,
-        1668,
+        1692,
         8,
         8
       ],
@@ -2962,7 +2973,7 @@
     "shop:chrome/monitor-left.png": {
       "rect": [
         2013,
-        1668,
+        1692,
         8,
         1
       ],
@@ -2973,7 +2984,7 @@
     "shop:chrome/monitor-right.png": {
       "rect": [
         2021,
-        1668,
+        1692,
         8,
         1
       ],
@@ -2983,8 +2994,8 @@
     },
     "shop:chrome/monitor-stack.png": {
       "rect": [
-        916,
-        1464,
+        1164,
+        1472,
         112,
         88
       ],
@@ -2995,7 +3006,7 @@
     "shop:chrome/monitor-tl.png": {
       "rect": [
         1713,
-        1668,
+        1692,
         8,
         8
       ],
@@ -3006,7 +3017,7 @@
     "shop:chrome/monitor-top.png": {
       "rect": [
         1762,
-        1668,
+        1692,
         1,
         8
       ],
@@ -3017,7 +3028,7 @@
     "shop:chrome/monitor-tr.png": {
       "rect": [
         1721,
-        1668,
+        1692,
         8,
         8
       ],
@@ -3028,7 +3039,7 @@
     "shop:chrome/native-black.png": {
       "rect": [
         1729,
-        1668,
+        1692,
         8,
         8
       ],
@@ -3039,7 +3050,7 @@
     "shop:chrome/radar-cabinet72.png": {
       "rect": [
         1831,
-        1608,
+        1632,
         72,
         24
       ],
@@ -3050,7 +3061,7 @@
     "shop:chrome/radar-center32.png": {
       "rect": [
         48,
-        1668,
+        1692,
         32,
         16
       ],
@@ -3061,7 +3072,7 @@
     "shop:chrome/radar-center48.png": {
       "rect": [
         0,
-        1668,
+        1692,
         48,
         16
       ],
@@ -3072,7 +3083,7 @@
     "shop:chrome/radar-clean.png": {
       "rect": [
         1903,
-        1608,
+        1632,
         48,
         24
       ],
@@ -3083,7 +3094,7 @@
     "shop:chrome/radar-window56.png": {
       "rect": [
         1915,
-        1644,
+        1668,
         56,
         16
       ],
@@ -3094,7 +3105,7 @@
     "shop:chrome/resource-armor.png": {
       "rect": [
         776,
-        1644,
+        1668,
         24,
         24
       ],
@@ -3105,7 +3116,7 @@
     "shop:chrome/resource-dollar.png": {
       "rect": [
         800,
-        1644,
+        1668,
         24,
         24
       ],
@@ -3116,7 +3127,7 @@
     "shop:chrome/resource-knob.png": {
       "rect": [
         880,
-        1644,
+        1668,
         16,
         24
       ],
@@ -3127,7 +3138,7 @@
     "shop:chrome/resource-power.png": {
       "rect": [
         824,
-        1644,
+        1668,
         24,
         24
       ],
@@ -3137,8 +3148,8 @@
     },
     "shop:chrome/resource-vent.png": {
       "rect": [
-        1833,
-        1464,
+        40,
+        1576,
         40,
         56
       ],
@@ -3149,7 +3160,7 @@
     "shop:chrome/steel-grain.png": {
       "rect": [
         1737,
-        1668,
+        1692,
         8,
         8
       ],
@@ -3160,7 +3171,7 @@
     "shop:chrome/steel-light.png": {
       "rect": [
         1745,
-        1668,
+        1692,
         8,
         8
       ],
@@ -3171,7 +3182,7 @@
     "shop:chrome/steel-medium.png": {
       "rect": [
         1753,
-        1668,
+        1692,
         8,
         8
       ],
@@ -3182,7 +3193,7 @@
     "shop:chrome/title-window-left.png": {
       "rect": [
         496,
-        1668,
+        1692,
         8,
         16
       ],
@@ -3193,7 +3204,7 @@
     "shop:chrome/title-window-middle.png": {
       "rect": [
         519,
-        1668,
+        1692,
         1,
         16
       ],
@@ -3204,7 +3215,7 @@
     "shop:chrome/title-window-right.png": {
       "rect": [
         504,
-        1668,
+        1692,
         8,
         16
       ],
@@ -3215,7 +3226,7 @@
     "shop:font/ui-ascii-32-95.png": {
       "rect": [
         943,
-        1608,
+        1632,
         128,
         32
       ],
@@ -3224,15 +3235,15 @@
       "source": "ui-assets/shop-layout-kit/font/ui-ascii-32-95.png"
     }
   },
-  "height": 1685,
+  "height": 1709,
   "inputs": {
     "language-assets/manifest.json": "0edec901218a992b4166bef89d908b8fa2426d010843c026a459e86541ca8001",
-    "ui-assets/screen-assets/manifest.json": "67b01884afef341cfc9f6bcf60d3f55eee20779a5ec66a35ff97a4ca642a2b37",
+    "ui-assets/screen-assets/manifest.json": "eb3273b0d00ccf5c0a86fb6bdf86c63696718134686bf3750af90198cd476b3f",
     "ui-assets/shop-layout-kit/manifest.json": "d2c18faaaadbcd48c18d573a28638a2bb996d269d08d7d234c3045ad3d3d0390"
   },
   "path": "runtime-atlas.png",
-  "rgbaSha256": "91c4acd7c478ee5a4127b3abb3372d61baac9a275b6e4deb7e9609c8a4bd09e3",
-  "sha256": "35a19f7e9e9aa25b0b7bb676cde53021b3f53a0b85a0d544e84ed9141e14b209",
+  "rgbaSha256": "6787a22b5768304343a497f330fdb2fbcfde0083cb348d84b13f4e9e0760d1d9",
+  "sha256": "76096cb6e485a9ff7674318f4471ee0c70fa525919e4a3bc3389da2dc1c7ede6",
   "version": 1,
   "width": 2048
 }

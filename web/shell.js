@@ -1,15 +1,15 @@
-import {MapGestures,placementEdgeVelocity} from './gestures.mjs?v=20261106-mobile2';
-import {bindMapInput} from './map-input.mjs?v=20261106-mobile2';
-import {OrderInput} from './order-input.mjs?v=20261106-mobile2';
-import {PanInertia} from './pan-inertia.mjs?v=20261106-mobile2';
-import {NativeArt} from './native-ui.mjs?v=20261106-mobile2';
-import {GameInterface} from './game-ui.mjs?v=20261106-mobile2';
+import {MapGestures,placementEdgeVelocity} from './gestures.mjs?v=20261106-mobile3';
+import {bindMapInput} from './map-input.mjs?v=20261106-mobile3';
+import {OrderInput} from './order-input.mjs?v=20261106-mobile3';
+import {PanInertia} from './pan-inertia.mjs?v=20261106-mobile3';
+import {NativeArt} from './native-ui.mjs?v=20261106-mobile3';
+import {GameInterface} from './game-ui.mjs?v=20261106-mobile3';
 import {validHouse,validMission} from './campaign-state.mjs';
-import {contextAction} from './context-action.mjs?v=20261106-mobile2';
-import {OrderFeedback} from './order-feedback.mjs?v=20261106-mobile2-palace';
+import {contextAction} from './context-action.mjs?v=20261106-mobile3';
+import {OrderFeedback} from './order-feedback.mjs?v=20261106-mobile3-palace';
 import {NativeAudioBridge} from './native-audio.mjs';
-import {BrowserFeatures} from './browser-features.mjs?v=20261106-mobile2';
-import {bindAppViewport,showFullscreenControl} from './viewport.mjs?v=20261106-mobile2';
+import {BrowserFeatures} from './browser-features.mjs?v=20261106-mobile3';
+import {bindAppViewport,showFullscreenControl} from './viewport.mjs?v=20261106-mobile3';
 
 // The original SDL host names its engine. Keep the game's public page title
 // independent of that host metadata, including later pause/stop title writes.
@@ -133,7 +133,7 @@ function loadGame(silent=false){
   const ok=loadPayload(value,silent);if(ok&&gameUI){gameUI.demoMode=false;gameUI.resuming=true;gameUI.view='native';gameUI.lastNativeKey='';gameUI.bootTarget=null;pollState();}return ok;
 }
 const Module=window.Module={
-  canvas,locateFile:name=>'engine/'+name+(name.endsWith('.wasm')?'?v=e43b28261eb6b9f0':'?v=20261106-mobile2'),
+  canvas,locateFile:name=>'engine/'+name+(name.endsWith('.wasm')?'?v=e43b28261eb6b9f0':'?v=20261106-mobile3'),
   print:(...args)=>console.log(...args),printErr:(...args)=>console.warn(...args),
   setStatus:text=>{status.textContent=text;if(text)startup?.engine();},
   onRuntimeInitialized:()=>{},
@@ -145,7 +145,7 @@ function startEngine(){
  if(ready)return Promise.resolve();if(enginePromise)return enginePromise;
  enginePromise=new Promise((resolve,reject)=>{resolveEngine=resolve;rejectEngine=reject;});started=true;
  status.textContent='Подготовка оригинальной игры…';document.getElementById('start').disabled=true;
- const script=document.createElement('script');script.src='engine/dune_web.js?v=20261106-mobile2';script.onerror=()=>{status.textContent='Не удалось загрузить сборку.';rejectEngine?.(Error(status.textContent));};document.body.appendChild(script);return enginePromise;
+ const script=document.createElement('script');script.src='engine/dune_web.js?v=20261106-mobile3';script.onerror=()=>{status.textContent='Не удалось загрузить сборку.';rejectEngine?.(Error(status.textContent));};document.body.appendChild(script);return enginePromise;
 }
 try{if(localStorage.getItem(SAVE_KEY))document.getElementById('start').textContent='Продолжить игру';}catch{}
 document.getElementById('start').onclick=()=>startEngine().catch(e=>tell(e.message));
@@ -203,7 +203,7 @@ function placementFrame(now){
   if(dt&&(vx||vy)){Module._dune_web_pan?.(-vx*dt,-vy*dt);counters.edgePans++;}
   Module._dune_web_placement_move?.(p.x,p.y);
 }
-if(inputCheckMode)import('./input-check.mjs?v=20261106-mobile2').then(({mountInputCheck})=>{
+if(inputCheckMode)import('./input-check.mjs?v=20261106-mobile3').then(({mountInputCheck})=>{
  inputCheck=mountInputCheck({canvas,read:()=>({taps:counters.taps,selectRequests:counters.selectRequests,commandRequests:counters.commandRequests,pan:counters.panEvents,inertia:panInertia.active,mode:gestures.mode,lastTap:lastMapTap,lastOrder:latestActions.lastOrder,special:latestActions.special,unitSpecial:latestActions.unitSpecial,bAvailable:latestActions.bAvailable,bKind:latestActions.bKind,orders:orders.snapshot(),selected:{kind:latestActions.selected?.kind||'none',id:latestActions.selected?.id,type:latestActions.selected?.type},ready,capturesInput:!!gameUI?.capturesInput,camera:{map:latestCamera.map,css:[latestCamera.cssWidth,latestCamera.cssHeight],output:[latestCamera.outputWidth,latestCamera.outputHeight],left:latestCamera.left,top:latestCamera.top,scale:latestCamera.scale,queued:latestCamera.queuedClicks}})});
 }).catch(e=>console.warn('Input diagnostic unavailable:',e.message));
 setInterval(pollState,50);if(!qaMode)setInterval(()=>saveGame(true),30000);
