@@ -213,9 +213,9 @@ static void em_web_typed_observe(void){
 static const char*em_web_target_report(int context,double wx,double wy){
     static char json[1000];
     EmWebActionContext t=context==1?em_web_target_world(wx,wy):(EmWebActionContext){0},c=em_web_action_context(),actor=em_web_input_actor();
-    snprintf(json,sizeof json,"{\"context\":%d,\"worldX\":%.3f,\"worldY\":%.3f,\"tile\":%u,\"busy\":%s,\"target\":{\"kind\":\"%s\",\"pointer\":%u,\"id\":%u,\"type\":%u,\"owner\":%u,\"own\":%s},\"selected\":{\"kind\":\"%s\",\"pointer\":%u,\"id\":%u,\"type\":%u,\"owner\":%u,\"own\":%s},\"inputActor\":{\"kind\":\"%s\",\"pointer\":%u,\"id\":%u,\"type\":%u,\"own\":%s,\"powerArmed\":%s}}",context,wx,wy,context==1?(unsigned)wy/32*64+(unsigned)wx/32:0,
+    snprintf(json,sizeof json,"{\"context\":%d,\"worldX\":%.3f,\"worldY\":%.3f,\"tile\":%u,\"busy\":%s,\"target\":{\"kind\":\"%s\",\"pointer\":%u,\"id\":%u,\"type\":%u,\"owner\":%u,\"own\":%s,\"ready\":%s},\"selected\":{\"kind\":\"%s\",\"pointer\":%u,\"id\":%u,\"type\":%u,\"owner\":%u,\"own\":%s},\"inputActor\":{\"kind\":\"%s\",\"pointer\":%u,\"id\":%u,\"type\":%u,\"own\":%s,\"powerArmed\":%s}}",context,wx,wy,context==1?(unsigned)wy/32*64+(unsigned)wx/32:0,
         em_web_typed.kind||em_web_selection.operation||em_web_selection.phase?"true":"false",
-        t.kind==1?"unit":t.kind==2?"building":"none",t.pointer,t.id,t.type,t.owner,t.kind&&t.owner==dune_word(&em_cpu,0xc274)?"true":"false",
+        t.kind==1?"unit":t.kind==2?"building":"none",t.pointer,t.id,t.type,t.owner,t.kind&&t.owner==dune_word(&em_cpu,0xc274)?"true":"false",t.ready?"true":"false",
         c.kind==1?"unit":c.kind==2?"building":"none",c.pointer,c.id,c.type,c.owner,c.kind&&c.owner==dune_word(&em_cpu,0xc274)?"true":"false",
         actor.kind==1?"unit":actor.kind==2?"building":"none",actor.pointer,actor.id,actor.type,actor.kind&&actor.owner==dune_word(&em_cpu,0xc274)?"true":"false",em_web_input_actor_armed(actor,c)?"true":"false");return json;
 }

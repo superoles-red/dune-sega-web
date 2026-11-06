@@ -45,6 +45,15 @@ One unit remains selected at a time.
   cooldown. The choice is restricted to COMMAND's `EXECUTING` phase and matching
   native A3/A0/C578 identity, with no selected unit. SELECT, original A, and
   COMMAND's actor-restoration/arming phases retain their original routing.
+- `dune_web_command_world(worldX, worldY, ticket)` calls that same command
+  handler with a saved world target, avoiding screen/HUD projection after a
+  pan or zoom. Native mission bounds, one-use tickets, identity and original
+  Palace guards remain identical. A persistent browser targeting marker must
+  not retain a ticket indefinitely: validate the same armed Palace and capture
+  a fresh ticket at confirmation. A regression waits 180 native frames, rejects
+  the expired ticket and uses a fresh one to reach the original Palace activation
+  exactly once at the saved cell. Invalid coordinates write no native bytes and
+  do not consume the valid ticket.
 
 The shell owns mouse/touch recognition and captures the actor before the first
 immediate single SELECT. A later matching double command can therefore restore

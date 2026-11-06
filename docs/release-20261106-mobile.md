@@ -1,5 +1,16 @@
 # Portrait iPhone safe area and expanded-map performance
 
+## Follow-up: 20261106-target1
+
+Mobile construction and Palace now use an explicit world-point preview with
+Clear on the left and Place/Confirm on the right. Desktop previews follow the
+pointer and confirm on left click, with only Clear below. Place uses a subtly
+green native button palette. The original native handlers still decide every
+commit; ordinary selection remains 100ms and double-tap matching 300ms.
+Browser audio output discards background PCM and starts a fresh epoch on return,
+including interrupted and stalled-resume recovery. Physical iPhone audio
+revalidation remains outstanding. Details and proof: [target confirmation](native-target-confirm.md).
+
 ## Follow-up: 20261106-mobile9
 
 Restore the user's final ordinary selection wait to 100ms. Double-tap

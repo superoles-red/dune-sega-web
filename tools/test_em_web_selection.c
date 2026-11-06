@@ -119,6 +119,49 @@ int main(int argc,char **argv){
     require(valid_tile!=0,"native placement oracle finds a legal release cell");
     unsigned vx=(valid_tile%64)*32+16,vy=(valid_tile/64)*32+16;
     printf("native legal placement tile=%u,%u\n",valid_tile%64,valid_tile/64);
+    /* The sticky browser mode retains only the already-existing world point.
+     * No held pointer or repeated move call is required while it is waiting.
+     * The final button uses the same original release handler, exactly once. */
+    require(dune_web_clear_selection()==1,"clear ready yard before sticky placement");idle(120);
+    scratch=em_cpu;
+    require(!dune_web_placement_begin_world(NAN,1136) && !dune_web_placement_begin_world(-1,1136) &&
+            !dune_web_placement_begin_world(2048,1136) && !memcmp(&scratch,&em_cpu,sizeof em_cpu),
+            "world placement rejects invalid coordinates without native writes");
+    require(dune_web_placement_begin_world(784,1136)==1 && !memcmp(&scratch,&em_cpu,sizeof em_cpu),
+            "world begin queues original Yard selection without native writes");
+    require(dune_web_placement_begin_world(784,1136)==0,"duplicate world begin is ignored");
+    require(em_web_placement_move_world(vx,vy)==1,"sticky preview accepts a world candidate");
+    frames(180);
+    require(dune_web_placement_active() && dune_web_placement_preview_active() &&
+            em_web_selection.world_x==vx && em_web_selection.world_y==vy &&
+            em_web_selection.placement_attempts==0 && em_web_selection.order_seq==0 &&
+            em_cpu.ram[0x4eb8+3]==paid && (dune_word(&em_cpu,0x4ebe)&0x2000),
+            "released sticky preview keeps original grid/world cell and paid product across180 frames");
+    scratch=em_cpu;
+    const char *target=em_web_target_report(1,784,1136),*actions=dune_web_actions_debug();
+    require(strstr(target,"\"own\":true,\"ready\":true") &&
+            strstr(actions,"\"placement\":{\"active\":true,\"preview\":true,") &&
+            strstr(actions,"\"identityValid\":true") && !memcmp(&scratch,&em_cpu,sizeof em_cpu),
+            "target readiness and placement identity JSON are native read-only");
+    require(dune_web_placement_confirm()==1 && !memcmp(&scratch,&em_cpu,sizeof em_cpu) &&
+            dune_web_placement_confirm()==0,"confirm queues original saved-world release exactly once");idle(180);
+    require(em_web_selection.outcome==EM_PLACE_PLACED && em_web_selection.placement_attempts==1 &&
+            em_web_selection.placement_successes==1 && em_cpu.ram[pending+2]==9 &&
+            dune_word(&em_cpu,pending+10)==(valid_tile/64)*256 &&
+            dune_word(&em_cpu,pending+12)==(valid_tile%64)*256,
+            "sticky confirm places the original paid Windtrap at the unchanged saved world cell");
+    puts("PASS sticky world preview waits without placement and confirms original saved cell once");
+
+    restore(&ready);require(dune_web_placement_begin_world(784,1136)==1 &&
+            em_web_placement_move_world(vx,vy)==1,"sticky cancellation starts from real paid Yard");frames(120);
+    require(dune_web_placement_cancel()==1 && !dune_web_placement_preview_active(),"sticky cancel hides original footprint immediately");idle(120);
+    require(em_web_selection.outcome==EM_PLACE_CANCELLED && !dune_web_placement_active() &&
+            em_web_selection.placement_attempts==0 && em_cpu.ram[0x4eb8+3]==paid &&
+            (dune_word(&em_cpu,0x4ebe)&0x2000) && !dune_web_placement_confirm(),
+            "sticky cancellation keeps paid product ready and prevents a later confirm");
+    puts("PASS sticky cancel preserves original ready product without a construction attempt");
+
+    restore(&ready);
     require(dune_web_clear_selection()==1,"clear ready yard before held drag");idle(120);
     require(em_web_placement_begin_world(784,1136)==1 && !dune_web_placement_preview_active(),"unselected held drag hides old cursor until native selection/preview");
     require(em_web_placement_move_world(vx,vy)==1,"held drag supplies current native footprint position");

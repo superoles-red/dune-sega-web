@@ -154,3 +154,17 @@ test('actual pointer kind overrides coarse-device default without changing nativ
   globalThis.matchMedia=()=>({matches:false});assert.equal(initialFeedbackPointerKind(),'mouse');
  }finally{globalThis.document=oldDocument;if(oldMatch===undefined)delete globalThis.matchMedia;else globalThis.matchMedia=oldMatch;}
 });
+
+test('explicit Palace target is a world point on touch and mouse, independent of hovering or viewport centre',()=>{
+ const previous=globalThis.document;globalThis.document={createElement:()=>({style:{},hidden:true,setAttribute(){},append(){}}),body:{append(){}}};
+ try{
+  const rect={left:10,top:20,width:390,height:844},camera={map:1,left:100,top:200,scale:1,scaleY:1};
+  const view=new OrderFeedback({canvas:{getBoundingClientRect:()=>rect},pointerKind:'touch',anchoredSpecial:true});view.ready=true;view.assets.attack={width:24,height:24,url:'original-target.png'};
+  view.observe({special:{armed:true},lastOrder:{seq:0}},{now:0});view.render(0,camera);assert(view.specialImage.hidden,'no invented screen-centred target');
+  view.setTargetPreview({x:200,y:400});view.render(0,camera);assert.equal(view.specialImage.style.left,'110px');assert.equal(view.specialImage.style.top,'220px');
+  view.setPointerKind('mouse');view.aimAt(320,500);view.panAim();view.render(1,{...camera,left:150,top:250});
+  assert.equal(view.specialImage.hidden,false);assert.equal(view.specialImage.style.left,'60px');assert.equal(view.specialImage.style.top,'170px');assert.equal(view.debug().specialDisplayMode,'world');
+  view.render(2,{...camera,scale:2,scaleY:2});assert.equal(view.specialImage.style.left,'210px');assert.equal(view.specialImage.style.top,'420px');
+  view.setTargetPreview(null);view.render(3,camera);assert(view.specialImage.hidden,'confirmation/reset removes preview despite a stale armed snapshot');
+ }finally{globalThis.document=previous;}
+});

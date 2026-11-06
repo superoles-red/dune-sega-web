@@ -390,6 +390,19 @@ static int em_web_ready_yard_unit_tap(double wx,double wy){
     em_web_selection_request_clear();s->select_unit_after_clear=1;s->select_unit_x=wx;s->select_unit_y=wy;return 1;
 }
 #include "em_web_typed_input.h"
+/* Persistent browser placement/targeting uses the same original handlers as
+ * drag release and screen commands. World coordinates avoid re-projecting a
+ * saved cell after the player has panned it offscreen or behind the HUD. No
+ * new native action, selection, paid-product or actor-ticket state is added. */
+EMSCRIPTEN_KEEPALIVE int dune_web_placement_begin_world(double wx,double wy){
+    return em_web_placement_begin_world(wx,wy);
+}
+EMSCRIPTEN_KEEPALIVE int dune_web_placement_confirm(void){
+    return em_web_placement_end_world(em_web_selection.world_x,em_web_selection.world_y);
+}
+EMSCRIPTEN_KEEPALIVE int dune_web_command_world(double wx,double wy,unsigned token){
+    return em_web_command_world(wx,wy,token);
+}
 #ifndef EM_WEB_SELECTION_NO_SCREEN
 EMSCRIPTEN_KEEPALIVE int dune_web_placement_begin(double x,double y){
     double wx,wy;return em_web_camera_screen_world(x,y,&wx,&wy)?em_web_placement_begin_world(wx,wy):0;
@@ -426,6 +439,9 @@ EMSCRIPTEN_KEEPALIVE const char *dune_web_actions_debug(void){
     int unit_special=c.kind==1&&(c.type==11||c.type==17),armed=c.kind==1&&(dune_word(&em_cpu,(c.pointer&65535)+6)&0x80);
     const char*self_kind=em_web_unit_self_available(c)?c.type==11?"devastator":"mcv":"none";
     snprintf(report+n,sizeof report-n,",\"selfAvailable\":%s,\"selfKind\":\"%s\",\"selfPending\":%s,\"selfPointer\":%u,\"selfRequests\":%llu,\"nativeSelfCount\":%llu,\"nativeSelfSelections\":%llu,\"selfResult\":\"%s\",\"unitSpecial\":{\"kind\":\"%s\",\"armed\":%s,\"countdownRaw\":%u,\"selfAction\":\"%s\",\"bAction\":\"%s\"}}",self_available?"true":"false",self_kind,(s->operation==EM_ACTION_SELF||s->operation==EM_ACTION_RESELECT||s->self_followup||s->phase==EM_PHASE_SELF||s->phase==EM_PHASE_RESELECT)?"true":"false",s->self_pointer,(unsigned long long)s->self_requests,(unsigned long long)s->native_selfs,(unsigned long long)s->self_selections,s->self_result==1?"armed":s->self_result==2?"cancelled":s->self_result==3?"native-rejected":"none",unit_special?c.type==11?"devastator":"mcv":"none",armed?"true":"false",c.kind==1?em_cpu.ram[(c.pointer&65535)+15]:0,unit_special?(armed?"cancel-countdown":"arm-countdown"):"none",armed?"complete-countdown":"deselect");
+    n=strlen(report);if(n&&report[n-1]=='}')report[--n]=0;
+    unsigned tile=(unsigned)s->world_y/32*64+(unsigned)s->world_x/32;
+    snprintf(report+n,sizeof report-n,",\"placement\":{\"active\":%s,\"preview\":%s,\"worldX\":%.3f,\"worldY\":%.3f,\"tile\":%u,\"yard\":%u,\"yardId\":%u,\"product\":%u,\"paidIndex\":%u,\"house\":%u,\"campaign\":%u,\"identityValid\":%s}}",dune_web_placement_active()?"true":"false",dune_web_placement_preview_active()?"true":"false",s->world_x,s->world_y,tile,s->yard,s->yard_id,s->product,s->paid_index,s->house,s->campaign,em_web_placement_identity()?"true":"false");
     return report;
 }
 /* Read-only compatibility for save/debug tooling; no group API remains. */

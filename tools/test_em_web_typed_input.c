@@ -36,5 +36,18 @@ int main(void){FILE*f=fopen(".local/demo-fixture-harkonnen/demo.cpu.bin","rb");c
  reset();select_at(560,944);token=dune_web_actor_capture();unsigned ua=0x1000+37*140;write_mem(&em_cpu,0xff0000+ua+18,2,0);step();write_mem(&em_cpu,0xff0000+ua+18,2,100);check(!em_web_command_world(1200,1200,token),"dead then reused slot cannot resurrect a stale actor ticket");
  reset();select_at(560,944);token=dune_web_actor_capture();dune_web_selection_reset();check(!em_web_command_world(1200,1200,token),"state reset invalidates old browser token");
  reset();select_at(560,944);token=dune_web_actor_capture();frames(91);check(!em_web_command_world(1200,1200,token),"expired ticket cannot issue late orders");puts("PASS actor death/reuse, reset and expiry safety guards");
+ reset();select_at(424,1032);select_at(424,1032);
+ check(dune_word(&em_cpu,0xdc4c)&&em_web_palace_ready(em_web_action_context()),"world-confirm Palace uses original armed state");
+ p=em_web_action_context().pointer;token=dune_web_actor_capture();frames(180);
+ before=em_cpu;
+ check(!dune_web_command_world(589,826,token)&&!memcmp(&before,&em_cpu,sizeof em_cpu),"long targeting wait cannot revive expired native ticket");
+ token=dune_web_actor_capture();check(token&&em_web_actor_tickets[token%8].armed,"confirm obtains a fresh token from the still-armed same Palace");
+ check(!dune_web_command_world(NAN,826,token)&&!dune_web_command_world(2048,826,token)&&
+       !memcmp(&before,&em_cpu,sizeof em_cpu),"world command rejects invalid coordinates without consuming token or native writes");
+ check(dune_web_command_world(589,826,token)&&!memcmp(&before,&em_cpu,sizeof em_cpu),"world command queues only original contextual A at saved target");
+ check(!dune_web_command_world(589,826,token),"world command token remains one-use");settle();
+ check(em_web_selection.order_kind==3&&em_web_selection.order_actor==p&&em_web_selection.order_tile==1618&&
+       em_web_selection.order_source==0x27ea6&&!dune_word(&em_cpu,0xdc4c),"fresh world-confirm reaches one original Palace activation at exact saved cell");
+ puts("PASS Palace world confirmation after long wait preserves native ticket expiry and original activation");
  reset();frames(120);before=em_cpu;reset();{uint64_t end=em_cpu.vdp.frames+120;while(em_cpu.vdp.frames<end){dune_mouse_observe(&em_host.dune_mouse,&em_cpu);machine_step(&em_cpu);check(!em_cpu.fault,"unmodified no-input original reference remains healthy");}}check(!memcmp(&before,&em_cpu,sizeof em_cpu),"all CPU/device bytes identical over120 no-input native frames");puts("PASS no-input120frames whole CPU/device state byte-identical to original execution");
  reset();select_at(104,840);check(em_web_action_context().kind==2,"first building tap selects");select_at(104,840);check(dune_mouse_context(&em_cpu)!=1,"repeated single enters original building menu");puts("PASS repeated single enters original building interface");return 0;}

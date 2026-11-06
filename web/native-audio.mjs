@@ -1,11 +1,11 @@
 /* AudioWorklet is an optional output consumer, never a second synthesizer.
  * SDL remains untouched until setup succeeds and is restored on failure. */
 export class NativeAudioBridge {
-  constructor({Module,workletUrl=new URL('./native-audio-worklet.js',import.meta.url),prerollMs=120,maxQueueMs=320,now=()=>performance.now()}={}){
-    this.Module=Module;this.url=workletUrl;this.prerollMs=prerollMs;this.maxQueueMs=maxQueueMs;this.now=now;
+  constructor({Module,workletUrl=new URL('./native-audio-worklet.js',import.meta.url),prerollMs=120,maxQueueMs=320,resumeTimeoutMs=1000,resumeRetryMs=250,now=()=>performance.now()}={}){
+    this.Module=Module;this.url=workletUrl;this.prerollMs=prerollMs;this.maxQueueMs=maxQueueMs;this.resumeTimeoutMs=resumeTimeoutMs;this.resumeRetryMs=resumeRetryMs;this.now=now;
     this.backend='sdl';this.ready=false;this.epoch=0;this.playing=true;this.startPromise=null;this.resumePromise=null;this.context=null;this.node=null;this.script=null;
-    this.needsFreshEpoch=false;this.suspendedObserved=false;this.outputPlaying=null;
-    this.metrics={suspendedDiscardedFrames:0,suspendedPackets:0,resumeEpochFlushes:0,packets:0,sentFrames:0,maxProducerGapMs:0,producerGapsOver80ms:0,flushes:0,resumeCalls:0};this.processor={};this.lastPush=null;this.error=null;
+    this.needsFreshEpoch=false;this.suspendedObserved=false;this.outputPlaying=null;this.pageActive=true;this.resumeRequest=null;
+    this.metrics={suspendedDiscardedFrames:0,suspendedPackets:0,hiddenDiscardedFrames:0,hiddenPackets:0,resumeEpochFlushes:0,resumeTimeouts:0,resumeSuperseded:0,packets:0,sentFrames:0,maxProducerGapMs:0,producerGapsOver80ms:0,flushes:0,resumeCalls:0};this.processor={};this.lastPush=null;this.error=null;
   }
   start(){
     if(this.startPromise)return this.startPromise;
@@ -20,8 +20,8 @@ export class NativeAudioBridge {
     await context.audioWorklet.addModule(this.url);
     const node=new AudioWorkletNode(context,'dune-native-pcm',{numberOfInputs:0,numberOfOutputs:1,outputChannelCount:[2],processorOptions:{sourceRate:48000,prerollMs:this.prerollMs,maxQueueMs:this.maxQueueMs}});
     this.node=node;
-    node.port.onmessage=({data})=>{if(data?.type==='metrics')this.processor=data;};
-    node.onprocessorerror=()=>this.fallback(new Error('native PCM AudioWorklet processor error'));
+    node.port.onmessage=({data})=>{if(this.node===node&&data?.type==='metrics')this.processor=data;};
+    node.onprocessorerror=()=>{if(this.node===node&&this.ready)this.fallback(new Error('native PCM AudioWorklet processor error'));};
     M.nativeAudioBridge=this;
     node.connect(context.destination);
     // Do not leave SDL's main-thread callback connected alongside the worklet.
@@ -36,6 +36,7 @@ export class NativeAudioBridge {
   }
   fallback(error){
     this.error=String(error?.message??error??'');
+    this.settleResume(this.resumeRequest,false);this.startPromise=null;
     this.context?.removeEventListener?.('statechange',this.contextChanged);
     const was=this.ready;this.ready=false;this.backend='sdl';
     try{this.Module?._dune_web_audio_worklet?.(0);}catch{}
@@ -45,6 +46,11 @@ export class NativeAudioBridge {
   }
   pushPCM(pointer,frames){
     if(!this.ready||!this.node||frames<1)return false;
+    if(!this.pageActive){
+      // A background AudioContext can still report running. Page lifecycle,
+      // rather than that state alone, owns whether output may enter its port.
+      this.observeSuspended();this.metrics.hiddenDiscardedFrames+=frames;++this.metrics.hiddenPackets;return true;
+    }
     if(this.context.state!=='running'){
       this.observeSuspended();
       // Consume native output but do not enqueue history in a suspended port.
@@ -63,13 +69,14 @@ export class NativeAudioBridge {
     ++this.metrics.packets;this.metrics.sentFrames+=frames;return true;
   }
   flush(epoch){
-    this.epoch=epoch>>>0;this.lastPush=null;++this.metrics.flushes;
+    this.epoch=epoch>>>0;this.lastPush=null;this.outputPlaying=null;++this.metrics.flushes;
     this.node?.port.postMessage({type:'flush',epoch:this.epoch});
+    if(!this.pageActive||this.context?.state!=='running'||!this.playing)this.publishPlaying(false);
   }
   publishPlaying(playing){
     if(this.outputPlaying===!!playing)return;
     this.outputPlaying=!!playing;
-    this.node?.port.postMessage({type:'playing',playing:this.outputPlaying});
+    this.node?.port.postMessage({type:'playing',playing:this.outputPlaying,epoch:this.epoch});
   }
   observeSuspended(){
     if(!this.suspendedObserved){this.suspendedObserved=true;this.needsFreshEpoch=true;this.lastPush=null;this.publishPlaying(false);}
@@ -85,29 +92,66 @@ export class NativeAudioBridge {
   }
   syncContext(){
     if(!this.ready)return;
-    if(this.context.state!=='running'){this.observeSuspended();return;}
+    if(!this.pageActive||this.context.state!=='running'){this.observeSuspended();return;}
     if(!this.freshOutputEpoch())return;
-    this.suspendedObserved=false;this.publishPlaying(this.playing);
+    this.suspendedObserved=false;this.error=null;this.publishPlaying(this.playing);
+    // Safari can emit running without resolving an older resume() promise.
+    // Actual context state is sufficient; that promise must not latch unlock.
+    this.settleResume(this.resumeRequest,true);
     const audio=this.sdl?.audio;
     if(audio?.silenceTimer!==undefined){clearInterval(audio.silenceTimer);audio.silenceTimer=undefined;audio.silenceBuffer=undefined;}
   }
   setPlaying(playing){
     this.playing=!!playing;
     if(!this.playing)this.publishPlaying(false);
-    else if(this.context?.state==='running'&&!this.needsFreshEpoch)this.publishPlaying(true);
+    else if(this.pageActive&&this.context?.state==='running'&&!this.needsFreshEpoch)this.publishPlaying(true);
   }
-  resume(){
+  /** Shell calls this for visibility/pagehide/pageshow/focus, independently of
+   * native hidden/pause. It changes output only and never resumes the world. */
+  setPageActive(active){
+    this.pageActive=!!active;
+    if(!this.pageActive){this.observeSuspended();this.settleResume(this.resumeRequest,false);return Promise.resolve(false);}
+    return this.resume();
+  }
+  settleResume(request,result){
+    if(!request||this.resumeRequest!==request)return;
+    clearTimeout(request.timer);this.resumeRequest=null;this.resumePromise=null;request.resolve(!!result);
+  }
+  /** A real pointer/key gesture passes trusted:true. It must call the browser
+   * synchronously, even if an earlier automatic resume() never settled. */
+  resume({trusted=false}={}){
+    if(!this.pageActive)return Promise.resolve(false);
     if(!this.ready&&!this.startPromise)this.start();
     const context=this.context??this.Module?.SDL2?.audioContext;
-    if(!context||context.state!=='suspended')return Promise.resolve();
-    if(this.resumePromise)return this.resumePromise;
+    if(!context)return Promise.resolve(false);
+    if(context.state==='running'){this.syncContext();return Promise.resolve(true);}
+    if(!['suspended','interrupted'].includes(context.state))return Promise.resolve(false);
+    const pending=this.resumeRequest;
+    if(pending){
+      if(!trusted||pending.trusted&&this.now()-pending.started<this.resumeRetryMs)return pending.promise;
+      ++this.metrics.resumeSuperseded;this.settleResume(pending,false);
+    }
     if(this.ready){this.observeSuspended();this.freshOutputEpoch();}
     ++this.metrics.resumeCalls;
-    this.resumePromise=Promise.resolve(context.resume()).then(()=>this.syncContext()).catch(e=>{this.error=String(e?.message??e);}).finally(()=>{this.resumePromise=null;});
-    return this.resumePromise;
+    const request={trusted:!!trusted,started:this.now()};
+    request.promise=new Promise(resolve=>{request.resolve=resolve;});this.resumeRequest=request;this.resumePromise=request.promise;
+    request.timer=setTimeout(()=>{
+      if(this.resumeRequest!==request)return;
+      if(this.pageActive&&context.state==='running'){this.syncContext();this.settleResume(request,true);return;}
+      ++this.metrics.resumeTimeouts;this.settleResume(request,false);
+    },this.resumeTimeoutMs);
+    try{
+      // Do not await setup, another Promise, a timer or an animation frame
+      // before this call: iOS requires the original trusted event turn.
+      Promise.resolve(context.resume()).then(()=>{
+        if(this.resumeRequest!==request)return;
+        this.syncContext();this.settleResume(request,this.pageActive&&context.state==='running');
+      },error=>{if(this.resumeRequest!==request)return;this.error=String(error?.message??error);this.settleResume(request,false);});
+    }catch(error){this.error=String(error?.message??error);this.settleResume(request,false);}
+    return request.promise;
   }
   snapshot(){
     const c=this.context??this.Module?.SDL2?.audioContext;
-    return {backend:this.backend,ready:this.ready,contextState:c?.state??'unavailable',outputSampleRate:c?.sampleRate??0,baseLatencyMs:c?.baseLatency?c.baseLatency*1000:0,outputLatencyMs:c?.outputLatency?c.outputLatency*1000:0,epoch:this.epoch,playing:this.playing,...this.metrics,processor:{...this.processor},error:this.error};
+    return {backend:this.backend,ready:this.ready,contextState:c?.state??'unavailable',outputSampleRate:c?.sampleRate??0,baseLatencyMs:c?.baseLatency?c.baseLatency*1000:0,outputLatencyMs:c?.outputLatency?c.outputLatency*1000:0,epoch:this.epoch,playing:this.playing,pageActive:this.pageActive,needsFreshEpoch:this.needsFreshEpoch,resumePending:!!this.resumeRequest,...this.metrics,processor:{...this.processor},error:this.error};
   }
 }

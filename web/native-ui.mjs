@@ -1,7 +1,7 @@
 // Native PNG composition only. Game actions stay in the original runtime.
-import {GameLanguage} from './i18n.mjs?v=20261106-mobile8';
-import {loadAssetImage,loadAssetJSON,runAssetPool} from './asset-loader.mjs?v=20261106-mobile8';
-import {loadRuntimeAtlas} from './runtime-atlas.mjs?v=20261106-mobile8';
+import {GameLanguage} from './i18n.mjs?v=20261106-target1';
+import {loadAssetImage,loadAssetJSON,runAssetPool} from './asset-loader.mjs?v=20261106-target1';
+import {loadRuntimeAtlas} from './runtime-atlas.mjs?v=20261106-target1';
 export class NativeArt {
  constructor({storage}={}){this.images=new Map();this.alpha=new Map();this.inkAtlases=new Map();this.flags=new Map();this.buttonViews=new Set();this.pressedViews=new Set();this.language=new GameLanguage({storage});this.ready=false;this.language.onChange(()=>{for(const v of this.buttonViews)v.draw();});for(const ev of ['pointerup','pointercancel'])window.addEventListener(ev,()=>{for(const v of [...this.pressedViews])v.release();},true);}
  async load({onProgress=()=>{},atlas=true}={}){
@@ -53,8 +53,16 @@ export class NativeArt {
   else for(let yy=y;yy<y+h;yy+=img.height*unit)for(let xx=x;xx<x+w;xx+=img.width*unit)this.blit(c,img,xx,yy,unit);
   c.restore();
  }
- frame(c,name,x,y,w,h,{group='shop',unit=1,fill=true}={}){
-  const m=(group==='shop'?this.kit:this.skin).modules[name];if(!m)return;const p=m.pieces,[ll,tt,rr,bb]=m.insets,[l,t,r,b]=[ll,tt,rr,bb].map(v=>v*unit),pic=k=>this.part(p[k],group);
+ toneImage(image,tone){
+  if(!image||tone!=='confirm')return image;this.tonedParts??=new WeakMap();if(this.tonedParts.has(image))return this.tonedParts.get(image);
+  const can=document.createElement('canvas');can.width=image.width;can.height=image.height;const c=can.getContext('2d',{willReadFrequently:true});c.drawImage(image,0,0);const data=c.getImageData(0,0,can.width,can.height);
+  // Move the native violet shades to green using the same channel values.
+  // Neutral highlights, black shadows and every original edge pixel stay intact.
+  for(let i=0;i<data.data.length;i+=4){const d=data.data;if(d[i]===d[i+1]&&d[i+2]>d[i+1]){const g=d[i+1];d[i+1]=d[i+2];d[i+2]=g;}}
+  c.putImageData(data,0,0);this.tonedParts.set(image,can);return can;
+ }
+ frame(c,name,x,y,w,h,{group='shop',unit=1,fill=true,tone=null}={}){
+  const m=(group==='shop'?this.kit:this.skin).modules[name];if(!m)return;const p=m.pieces,[ll,tt,rr,bb]=m.insets,[l,t,r,b]=[ll,tt,rr,bb].map(v=>v*unit),pic=k=>this.toneImage(this.part(p[k],group),tone);
   if(fill&&!m.frameOnly&&p.fill)this.repeat(c,pic('fill'),x+l,y+t,w-l-r,h-t-b,unit);
   this.repeat(c,pic('top'),x+l,y,w-l-r,t,unit);this.repeat(c,pic('bottom'),x+l,y+h-b,w-l-r,b,unit);this.repeat(c,pic('left'),x,y+t,l,h-t-b,unit);this.repeat(c,pic('right'),x+w-r,y+t,r,h-t-b,unit);
   this.blit(c,pic('tl'),x,y,unit);this.blit(c,pic('tr'),x+w-r,y,unit);this.blit(c,pic('bl'),x,y+h-b,unit);this.blit(c,pic('br'),x+w-r,y+h-b,unit);
@@ -78,9 +86,9 @@ export class NativeArt {
   button._nativeArtView?.dispose();
   button.classList.add('native-button');const can=document.createElement('canvas');can.setAttribute('aria-hidden','true');button.replaceChildren(can);let pressed=false,disposed=false,current=label,opts={...options},pulsePhase=null,pulseStart=0,pulseRaf=0,lastPaint='';
   button.setAttribute('aria-label',this.displayText(options.ariaLabel||String(label)));
-  const draw=()=>{if(disposed||!this.ready)return;const box=button.getBoundingClientRect();if(box.width<1||box.height<1)return;const dpr=Math.min(devicePixelRatio||1,3),phase=pressed?0:pulsePhase,focus=button.matches(':focus-visible'),paint=JSON.stringify([box.width,box.height,dpr,String(current),opts.disabled,opts.back,opts.image,opts.subtitle,opts.large,phase,focus]);
+  const draw=()=>{if(disposed||!this.ready)return;const box=button.getBoundingClientRect();if(box.width<1||box.height<1)return;const dpr=Math.min(devicePixelRatio||1,3),phase=pressed?0:pulsePhase,focus=button.matches(':focus-visible'),paint=JSON.stringify([box.width,box.height,dpr,String(current),opts.disabled,opts.back,opts.image,opts.subtitle,opts.large,opts.tone,phase,focus]);
    const localPaint=paint+':'+this.language?.revision;if(localPaint===lastPaint)return;lastPaint=localPaint;button.setAttribute('aria-label',this.displayText(opts.ariaLabel||String(current)));const pw=Math.round(box.width*dpr),ph=Math.round(box.height*dpr);if(can.width!==pw)can.width=pw;if(can.height!==ph)can.height=ph;const c=can.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,box.width,box.height);c.imageSmoothingEnabled=false;const w=box.width,h=box.height,u=Math.min(2,h/24);
-   this.frame(c,opts.disabled?'command-skin-disabled':'command-skin-normal',0,0,w,h,{group:'screen',unit:u});
+   this.frame(c,opts.disabled?'command-skin-disabled':'command-skin-normal',0,0,w,h,{group:'screen',unit:u,tone:opts.disabled?null:opts.tone});
    let left=12;if(opts.back){const img=this.part('back-menu-arrow-native','screen')||this.part('back-glyph-native','screen');if(img){const s=Math.min(1.6,(h-12)/16);this.blit(c,img,10,(h-16*s)/2,s);left=10+16*s+6;}}else if(opts.image||opts.flag){const img=opts.flag?this.flag(opts.flag):this.part(opts.image,'screen');if(img){const s=Math.min((h-12)/img.height,w*.28/img.width);this.blit(c,img,12,(h-img.height*s)/2,s);left=24+img.width*s;}}
    const subtitleWidth=opts.back||opts.image||opts.flag?w-left-8:w-12;
    const subtitle=this.displayText(opts.subtitle||''),ss=Math.max(.8,Math.min(1.5,Math.min(w-16,subtitleWidth)/(Math.max(1,subtitle.length)*8))),gap=subtitle?4:0,subHeight=subtitle?8*ss:0,label=opts.translate===false?String(current):this.displayText(current);

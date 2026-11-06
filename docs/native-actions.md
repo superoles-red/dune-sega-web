@@ -37,6 +37,18 @@ this clears host intent, without changing native selection pointers.
 - `dune_web_placement_cancel()` / `dune_web_placement_active()` control the drag
   lifetime. Native menus own their own stack; a canceled Yard preview is cleared
   after returning to the map if its original identity is still current.
+- `dune_web_placement_begin_world(worldX,worldY)` queues exactly the same begin
+  handler without projecting a remembered source through the current viewport.
+  The existing preview point is world-anchored: releasing the finger, panning
+  or zooming does not itself change that point. Only another placement move
+  changes it. `dune_web_placement_confirm()` submits the saved point through
+  the existing release handler, even when it is now offscreen or under the HUD.
+  It neither adds a second validation route nor bypasses the source-Yard cancel
+  rule. A repeated confirmation is ignored.
+- The read-only target JSON includes `target.ready`; actions JSON includes
+  `placement` with `active`, `preview`, `worldX`, `worldY`, `tile`, `yard`,
+  `yardId`, `product`, `paidIndex`, `house`, `campaign` and `identityValid`.
+  These describe existing host intent/native identity; they add no save state.
 
 The adapter observes native return `$00E57A` before requesting pure clear after
 both success and rejection. The original `$00F100` validator owns legality; the
@@ -82,6 +94,13 @@ chooses a legal test cell; release independently validates it again.
 The test writes actual CPU snapshots to ignored local paths:
 `.local/qa-baseline.cpu.bin` and `.local/qa-ready-yard.cpu.bin`. These are local QA
 fixtures, not public game assets or release evidence.
+
+The sticky-preview regression keeps the real paid Yard's world candidate for
+180 native frames without a held finger or repeated move calls, then confirms
+one original placement at that cell. A separate cancel preserves the paid
+product with zero construction attempts. New world API queueing and JSON
+queries are checked against all native CPU/device bytes for zero immediate
+mutation. Actual camera/gesture integration remains browser QA.
 
 `tools/test_em_web_actions_special.c` verifies original self-A arming,
 countdown-preserving clear, contextual B unit priority, Devastator native Die10,

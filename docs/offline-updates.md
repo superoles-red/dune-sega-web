@@ -54,8 +54,9 @@ current input device, with the original descriptive tutorial nested underneath.
 Installation is the original-art corner button on Home. Confirmation panels
 are centered in the measured viewport, with safe-area padding and scrolling.
 The current native WASM is SHA-256
-`5156b9ee619e6a2c864d908f712f37e912cab713971d67f7fa34303a55e2e03f`;
-the rendering-only upgrade preserves the DSAV v2 ABI and previous save imports.
+`3dbc9ad2ab046948add849cfae6ddf9d84cc31d9a7212b406fe5bd08de42f765`;
+the targeting bridge preserves the DSAV v2 ABI and previous save imports.
+See [target confirmation](native-target-confirm.md) for input and audio changes.
 
 Starting with webapp7, an existing offline registration also checks on visible
 focus, pageshow and return from the background. Once a complete newer package

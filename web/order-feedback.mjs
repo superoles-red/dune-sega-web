@@ -18,8 +18,8 @@ export function projectOrderFeedback(world,camera,rect,width=26,height=26){
 }
 
 export class OrderFeedback {
- constructor({canvas,pointerKind:kind=initialFeedbackPointerKind()}){
-  this.canvas=canvas;this.pointerKind=pointerKind(kind)||'mouse';this.ready=false;this.assets={};this.current=null;this.special=null;this.specialPoint=null;this.lastPointer=null;this.specialDragging=false;this.lastSequence=0;this.acceptedIntents=0;this.displayedPulses=0;this.lastWorld=null;this.lastPulse=0;this.lastProjection=null;
+ constructor({canvas,pointerKind:kind=initialFeedbackPointerKind(),anchoredSpecial=false}){
+  this.anchoredSpecial=anchoredSpecial;this.targetPreview=null;this.canvas=canvas;this.pointerKind=pointerKind(kind)||'mouse';this.ready=false;this.assets={};this.current=null;this.special=null;this.specialPoint=null;this.lastPointer=null;this.specialDragging=false;this.lastSequence=0;this.acceptedIntents=0;this.displayedPulses=0;this.lastWorld=null;this.lastPulse=0;this.lastProjection=null;
   this.element=document.createElement('div');this.element.id='order-feedback';this.element.className='order-feedback';this.element.hidden=true;this.element.setAttribute('aria-hidden','true');this.element.style.cssText='position:fixed;inset:0;z-index:9;overflow:hidden;pointer-events:none';
   this.image=document.createElement('img');this.image.className='order-feedback-reticle';this.image.alt='';this.image.draggable=false;this.image.hidden=true;this.image.style.cssText='position:absolute;display:block;pointer-events:none;image-rendering:pixelated';
   this.specialImage=document.createElement('img');this.specialImage.className='special-target-indicator';this.specialImage.alt='';this.specialImage.draggable=false;this.specialImage.hidden=true;this.specialImage.style.cssText='position:absolute;left:0;top:0;transform:translate(-50%,-50%);width:clamp(128px,44vmin,256px);height:clamp(128px,44vmin,256px);opacity:.55;object-fit:contain;pointer-events:none;image-rendering:pixelated';this.element.append(this.image,this.specialImage);document.body.append(this.element);
@@ -29,6 +29,7 @@ export class OrderFeedback {
   this.loading=(async()=>{for(const [kind,path,id] of [['move','manifest.json','ordinary-map-cursor-BF18'],['attack','attack-manifest.json','native-map-target-cursor-5']]){const manifestURL=new URL('./input-feedback/'+path,import.meta.url),response=await fetch(manifestURL);if(!response.ok)throw Error('Original reticle manifest HTTP '+response.status);const m=await response.json();if(m.id!==id||!Number.isInteger(m.width)||!Number.isInteger(m.height)||m.width<1||m.height<1||m.width>64||m.height>64)throw Error('Original reticle manifest is invalid');const probe=document.createElement('img'),url=new URL(m.path,manifestURL).href;probe.src=url;await probe.decode();if(probe.naturalWidth!==m.width||probe.naturalHeight!==m.height)throw Error('Original reticle dimensions differ from manifest');this.assets[kind]={...m,url};if(kind==='move'){this.manifest=m;this.image.src=url;this.ready=true;}}return this;})();return this.loading;
  }
  get active(){return !!this.current||!!this.special?.armed;}
+ setTargetPreview(world){this.targetPreview=world&&Number.isFinite(world.x)&&Number.isFinite(world.y)?{x:world.x,y:world.y}:null;if(this.anchoredSpecial&&!this.targetPreview){this.specialImage.hidden=true;if(!this.current)this.element.hidden=true;}}
  setPointerKind(kind){
   const next=pointerKind(kind);if(!next||next===this.pointerKind)return false;
   this.pointerKind=next;
@@ -52,14 +53,14 @@ export class OrderFeedback {
  aimAt(x,y){if(![x,y].every(Number.isFinite))return;this.lastPointer={x,y};if(this.special?.armed){this.specialPoint={x,y};this.specialDragging=false;}}
  panAim(){if(this.special?.armed){this.specialDragging=true;this.specialPoint=null;}}
  releaseAim(x,y){this.specialDragging=false;if([x,y].every(Number.isFinite))this.aimAt(x,y);}
- clear({reset=false}={}){this.current=null;this.special=null;this.specialPoint=null;this.specialDragging=false;this.lastPulse=0;this.lastProjection=null;this.image.hidden=true;this.specialImage.hidden=true;this.element.hidden=true;if(reset){this.lastSequence=0;this.lastPointer=null;}}
+ clear({reset=false}={}){this.targetPreview=null;this.current=null;this.special=null;this.specialPoint=null;this.specialDragging=false;this.lastPulse=0;this.lastProjection=null;this.image.hidden=true;this.specialImage.hidden=true;this.element.hidden=true;if(reset){this.lastSequence=0;this.lastPointer=null;}}
  render(now,camera,{blocked=false}={}){
   if(blocked||!camera?.map){this.clear();return;}
-  const attack=this.assets.attack,fixed=this.pointerKind!=='mouse',r=this.canvas.getBoundingClientRect(),point=fixed?(r.width>0&&r.height>0?{x:r.width/2,y:r.height/2}:null):this.specialPoint;
+  const attack=this.assets.attack,fixed=this.pointerKind!=='mouse',r=this.canvas.getBoundingClientRect(),worldProjection=this.targetPreview?projectOrderFeedback(this.targetPreview,camera,r,0,0):null,point=this.anchoredSpecial?(worldProjection?{x:worldProjection.x-r.left,y:worldProjection.y-r.top}:null):fixed?(r.width>0&&r.height>0?{x:r.width/2,y:r.height/2}:null):this.specialPoint;
   // A touch/pen has no permanent hovering cursor. This screen-centred marker
   // only announces the armed original Palace; the native tap still supplies
   // the exact target. Panning/pinching move the map underneath the marker.
-  this.specialImage.hidden=!(this.special?.armed&&attack&&point)||(!fixed&&this.specialDragging);if(!this.specialImage.hidden){this.specialImage.src=attack.url;Object.assign(this.specialImage.style,{left:(r.left+point.x)+'px',top:(r.top+point.y)+'px',opacity:'.65'});}
+  this.specialImage.hidden=!(this.special?.armed&&attack&&point)||(!this.anchoredSpecial&&!fixed&&this.specialDragging);if(!this.specialImage.hidden){this.specialImage.src=attack.url;Object.assign(this.specialImage.style,{left:(r.left+point.x)+'px',top:(r.top+point.y)+'px',opacity:'.65'});}
   this.element.hidden=this.specialImage.hidden;this.image.hidden=true;
   if(!this.current)return;
   // RAF timestamps describe the beginning of a frame. A native-order poll can
@@ -73,5 +74,5 @@ export class OrderFeedback {
   if(this.lastPulse!==pulse){this.lastPulse=pulse;this.displayedPulses++;}
   if(asset.url)this.image.src=asset.url;Object.assign(this.image.style,{left:p.x+'px',top:p.y+'px',width:p.width+'px',height:p.height+'px'});this.lastProjection=p;this.element.hidden=false;this.image.hidden=false;
  }
- debug(){return {active:this.active,assetReady:this.ready,attackAssetReady:!!this.assets.attack,special:this.special,pointerKind:this.pointerKind,specialDisplayMode:this.pointerKind==='mouse'?'pointer':'screen-centre',lastSequence:this.lastSequence,kind:this.current?.kind,acceptedIntents:this.acceptedIntents,displayedPulses:this.displayedPulses,pulse:this.lastPulse,world:this.lastWorld,projection:this.lastProjection,meaning:'original contextual-A action committed; native combat/pathfinding still decide its result'};}
+ debug(){return {active:this.active,assetReady:this.ready,attackAssetReady:!!this.assets.attack,special:this.special,pointerKind:this.pointerKind,specialDisplayMode:this.anchoredSpecial?'world':this.pointerKind==='mouse'?'pointer':'screen-centre',lastSequence:this.lastSequence,kind:this.current?.kind,acceptedIntents:this.acceptedIntents,displayedPulses:this.displayedPulses,pulse:this.lastPulse,world:this.lastWorld,projection:this.lastProjection,meaning:'original contextual-A action committed; native combat/pathfinding still decide its result'};}
 }

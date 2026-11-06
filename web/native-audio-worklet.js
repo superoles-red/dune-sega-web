@@ -14,16 +14,22 @@ class DuneNativePCM extends AudioWorkletProcessor {
     this.epoch=0;this.playing=true;this.primed=false;this.rebuffering=false;
     this.fade=0;this.fadeFrames=32;this.lastL=0;this.lastR=0;this.tail=0;
     this.reportClock=0;
-    this.metrics={receivedFrames:0,consumedFrames:0,outputFrames:0,prerollFrames:0,underrunFrames:0,underrunEvents:0,discardedFrames:0,overflowEvents:0,flushes:0,peakFrames:0,minFrames:null};
+    this.metrics={receivedFrames:0,consumedFrames:0,outputFrames:0,prerollFrames:0,underrunFrames:0,underrunEvents:0,discardedFrames:0,inactiveDiscardedFrames:0,staleDiscardedFrames:0,overflowEvents:0,flushes:0,peakFrames:0,minFrames:null};
     this.port.onmessage=({data:d})=>{
       if(d.type==='flush'){
         this.epoch=d.epoch>>>0;this.read=this.count=this.fraction=0;this.primed=false;this.rebuffering=false;this.fade=0;this.tail=0;this.lastL=this.lastR=0;++this.metrics.flushes;
       }else if(d.type==='playing'){
+        if(d.epoch!==undefined&&(d.epoch>>>0)!==this.epoch)return;
         this.playing=!!d.playing;
-        if(!this.playing){this.read=this.count=this.fraction=0;this.primed=false;this.rebuffering=false;this.fade=0;this.tail=0;}
-      }else if(d.type==='pcm'&&(d.epoch>>>0)===this.epoch){
+        if(!this.playing){this.read=this.count=this.fraction=0;this.primed=false;this.rebuffering=false;this.fade=0;this.tail=0;this.lastL=this.lastR=0;}
+      }else if(d.type==='pcm'){
         const pcm=new Int16Array(d.samples),n=Math.min(d.frames>>>0,pcm.length>>>1);
         if(!n)return;
+        // Queued port messages can arrive after pagehide while the renderer is
+        // frozen. Muted output must not quietly refill its ring for a future
+        // resume; packets and play controls from an old native epoch are inert.
+        if((d.epoch>>>0)!==this.epoch){this.metrics.staleDiscardedFrames+=n;return;}
+        if(!this.playing){this.metrics.inactiveDiscardedFrames+=n;return;}
         this.metrics.receivedFrames+=n;
         // A suspended/throttled producer must not leave seconds of old clicks.
         // Overflow trims output only, never chip clocks, world state or events.
