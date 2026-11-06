@@ -1,6 +1,6 @@
 {
   "baseSourceSha256": "e3055a76cd0eeb151591984a2c12312dcea49754afa0edee9f84889814ad1578",
-  "patchedSourceSha256": "05b98865a4c9f28440788e1646b2f07a4ea8bf7dce04b255ca8b9b500beb2297",
+  "patchedSourceSha256": "be5186a2e6fbce43fc8b3fa082cdafcba2155c14a3e8213072c5582354bed020",
   "originalRomAndInstructionHandlersUnchanged": true,
   "adapterHeaders": {
     "em_web_building_ui.h": "5955801d6443705cd18219ba2377b7972852da6e7abc7dcccfbc6949eae1a3b5",
@@ -18,7 +18,8 @@
     "em_web_selection.h": "3e16e6b03a2dada2750c1cb4980f26aac340b63a06009e9f30375ed1dac0b888",
     "em_web_training.h": "c5f02bb242bfee1e8f2198dd6968dbcd2ba21a183c00f51621e67205e7ca2d7d",
     "em_web_typed_input.h": "4b0dd3375f1428da9001a2c95f70554a9176044f959bda590523b7b3112d74f4",
-    "em_web_world_intent.h": "d1cfb7da4165bfd1168a8332b81c608934527a051204ad85b5e4795e8d4af836"
+    "em_web_world_intent.h": "d1cfb7da4165bfd1168a8332b81c608934527a051204ad85b5e4795e8d4af836",
+    "em_web_world_raster.h": "b699d0e98e0f7271e45c8c02b4b6285c9f54d1547c60f1859f32bffe48799bdf"
   },
   "patchScope": [
     "browser clock and pause",

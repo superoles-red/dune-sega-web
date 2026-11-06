@@ -1,9 +1,9 @@
 {
   "files": {
     ".github/workflows/pages.yml": {
-      "bytes": 2315,
+      "bytes": 2516,
       "mode": "0o644",
-      "sha256": "5111470101eb670b041541a939eb444e5c2cf9d742fc0204ae562a16ff4f713a"
+      "sha256": "1c1a70b41ae3fe9f9cf8ec74a5dd47f34d8864c4667a217062890b47b0e9f57b"
     },
     ".gitignore": {
       "bytes": 61,
@@ -3486,9 +3486,9 @@
       "sha256": "df938adccb4e2be25a5933874811a59e88126e9d448fd02567a8c2be55dce9c8"
     },
     "docs/build-source.json": {
-      "bytes": 2296,
+      "bytes": 2393,
       "mode": "0o644",
-      "sha256": "02b78b3fb6ea4596c61ef10cfdf8607341519c0303f8107c36d4c828b61cdbbc"
+      "sha256": "39e8b1acac3e2ef79b71ab09e91e8f6aee96d0d98fa075732fb8e7aeac6bb5e0"
     },
     "docs/controls-assets.json": {
       "bytes": 431,
@@ -3635,6 +3635,11 @@
       "mode": "0o644",
       "sha256": "01007620bff54660cfbc0bcb305ff0fedb761252b9839dce6634c94bd83e9fd5"
     },
+    "docs/native-world-raster.md": {
+      "bytes": 2783,
+      "mode": "0o644",
+      "sha256": "917eab4d20e9a41de812ed6aacd962c8ed1884513d42aed79fd2e37eb15df667"
+    },
     "docs/offline-updates.md": {
       "bytes": 3569,
       "mode": "0o644",
@@ -3675,6 +3680,11 @@
       "mode": "0o644",
       "sha256": "c1fa6f6ffc7e2836b13c472629dd48d5ae71cbfc7ecdd72d427a61d5088981d7"
     },
+    "docs/release-20261106-mobile.md": {
+      "bytes": 3478,
+      "mode": "0o644",
+      "sha256": "d54b728d29e091dcd8a2dffd9471ac4df03f7867ee0b70a01edbeb531b069fc9"
+    },
     "docs/source-identity.json": {
       "bytes": 502,
       "mode": "0o644",
@@ -3706,9 +3716,9 @@
       "sha256": "28d5b6fc5c1f9063292c564f8f8f75fa88c52b5cb9cf9b997f847493a24476eb"
     },
     "docs/wasm-build.json": {
-      "bytes": 4088,
+      "bytes": 4185,
       "mode": "0o644",
-      "sha256": "55f9819d814fa136637cade0a12a20754803f4d21cf8f57be8032f1d6b79976a"
+      "sha256": "90016b6c674bfbecebdc41730c15162fe29965b5e2ea0d2037dc43589885f4d6"
     },
     "tests/asset-loader.test.mjs": {
       "bytes": 9295,
@@ -3723,7 +3733,7 @@
     "tests/browser-features.test.mjs": {
       "bytes": 20968,
       "mode": "0o644",
-      "sha256": "e50f615d8308c24b9de7c83912f565f86c2761bcbe7b4eb7d2c3eafe9f8bec4e"
+      "sha256": "254a040ca453e7ce669aa170b262e5875f92abd1e982a026e50a3fe7dcc956ae"
     },
     "tests/building-layout.test.mjs": {
       "bytes": 3060,
@@ -3861,9 +3871,9 @@
       "sha256": "dbc11398c030ea145fd872dd9bf80c56ee01d9c104c632070d9e7a7b38137b48"
     },
     "tests/viewport.test.mjs": {
-      "bytes": 8727,
+      "bytes": 11369,
       "mode": "0o644",
-      "sha256": "f53913016bb66ddb3668bcb1193fa02c08b8528930987cf24197500dc8bf526a"
+      "sha256": "6e43ebc25ad95b01cd9cb4d60f7a07613567454f6f9d584554dd3fc71f9cd645"
     },
     "tools/bootstrap_core_source.py": {
       "bytes": 2672,
@@ -4065,6 +4075,11 @@
       "mode": "0o644",
       "sha256": "d1cfb7da4165bfd1168a8332b81c608934527a051204ad85b5e4795e8d4af836"
     },
+    "tools/em_web_world_raster.h": {
+      "bytes": 3495,
+      "mode": "0o644",
+      "sha256": "b699d0e98e0f7271e45c8c02b4b6285c9f54d1547c60f1859f32bffe48799bdf"
+    },
     "tools/export_menu_animations.py": {
       "bytes": 8571,
       "mode": "0o644",
@@ -4211,9 +4226,9 @@
       "sha256": "439971441d6653883845df06c14cd4b27d6832d01fd57e313f7d01d2b31f5a14"
     },
     "tools/prepare_source.py": {
-      "bytes": 15194,
+      "bytes": 16104,
       "mode": "0o644",
-      "sha256": "a6fbfbbb69909e67611beb5cb313aa85c5d5b58bfd2d2082503fea913a10405a"
+      "sha256": "4bdb8bd75db2b1f049fbfc78bb646fb127be6d0a5325681f6204c1f38f272031"
     },
     "tools/probe_training_return.c": {
       "bytes": 3729,
@@ -4504,6 +4519,11 @@
       "bytes": 3096,
       "mode": "0o644",
       "sha256": "2afefbf3c517553077a78b31c8880f3788049f27dc7ff0b4a19643e0d117eb18"
+    },
+    "tools/test_em_web_world_raster.c": {
+      "bytes": 9157,
+      "mode": "0o644",
+      "sha256": "d2d25e58d8bc59143bd0e3f150fb063cadccbffd2e94fd9f20e6b1f7a0cb768e"
     },
     "tools/test_localized_results_native.c": {
       "bytes": 9556,
@@ -6453,7 +6473,7 @@
     "web/browser-features.mjs": {
       "bytes": 10327,
       "mode": "0o644",
-      "sha256": "a7df84bb6cf87f5ca3cbf5d22688e500803f9e21d76bca96bbeaa4043c28f814"
+      "sha256": "74353ca59acb1f58c6db2eb57bd37c4890c77a005e252f9dc8f210e329240329"
     },
     "web/building-layout.mjs": {
       "bytes": 1785,
@@ -6463,7 +6483,7 @@
     "web/building-ui.mjs": {
       "bytes": 14107,
       "mode": "0o644",
-      "sha256": "bbe769f920bf569802d33a1f38d2fd0f7974e2231832546988332c0de5b80009"
+      "sha256": "b18f1dc4094fb9429c8cb1a1d3409b3649f24f1cb329013978f36b5aeb272651"
     },
     "web/campaign-names.mjs": {
       "bytes": 318,
@@ -6506,9 +6526,9 @@
       "sha256": "68fb1ad2cae3e188f3cdea405c744d6ed99cc23ae4add7f86b118abe7f451f9a"
     },
     "web/engine/dune_web.wasm": {
-      "bytes": 5267555,
+      "bytes": 5267956,
       "mode": "0o755",
-      "sha256": "f4a8cb4fc34845f17652b449e11401c34cfeba6900d76fa16e926f63c0337938"
+      "sha256": "e43b28261eb6b9f05c29641cd44b752755e9ef0ffd44c5387e6adbc92ff6ef2e"
     },
     "web/frontend.state.bin": {
       "bytes": 140921,
@@ -6518,7 +6538,7 @@
     "web/game-ui.mjs": {
       "bytes": 63839,
       "mode": "0o644",
-      "sha256": "1591f974d8e43b29f30a9947f03a6f0ff742f6e9aa0ab26cb62a94b0649a65db"
+      "sha256": "5d5a428db90f8fd53a49d566aca0061e1646b783dcbef2f9af2e6392405d7ea4"
     },
     "web/gestures.mjs": {
       "bytes": 3633,
@@ -6528,7 +6548,7 @@
     "web/i18n.mjs": {
       "bytes": 3923,
       "mode": "0o644",
-      "sha256": "50fa3d3393e4c0f545373508af72553f0c0c95e163db904b27508079531948e5"
+      "sha256": "4a1f677e4f2f99032f57159a74348fc494dd726abb412b574ba86d058d117ee6"
     },
     "web/icons/dune-180.png": {
       "bytes": 3759,
@@ -6553,7 +6573,7 @@
     "web/index.html": {
       "bytes": 23688,
       "mode": "0o644",
-      "sha256": "3c8eb08bd34f043bde7d52bd3cf1751b9b94568f8961b572969f1bdde3a6c7be"
+      "sha256": "15fbbea2fb6e8e614b4128619661fad8678e4e9690cec38f7bd0c053416ecd26"
     },
     "web/input-check.mjs": {
       "bytes": 2725,
@@ -6743,7 +6763,7 @@
     "web/native-ui.mjs": {
       "bytes": 16632,
       "mode": "0o644",
-      "sha256": "85a4e1fe2fc7f7b31ca2c7459a38fff0b1e3acbb7ea09e66b4e921fc8ad22c87"
+      "sha256": "7c6b3e9873869bdd4c28e41fef0bb93f9215b8f406bf63b65bb7d40bfecd6d58"
     },
     "web/options-layout.mjs": {
       "bytes": 1418,
@@ -6788,17 +6808,17 @@
     "web/runtime-atlas.mjs": {
       "bytes": 2328,
       "mode": "0o644",
-      "sha256": "fed5d0fc5659a9eb9ba5ccb81766d648550d7a1b016f7035b92f44d616d70df2"
+      "sha256": "b2e8754bb6c96f9de12d16367b06104a8bd1bddc71c0a83ae500b8df5fc1df72"
     },
     "web/save-files.mjs": {
-      "bytes": 11530,
+      "bytes": 11599,
       "mode": "0o644",
-      "sha256": "1bfbb4c2596a106506fbdae8b5ba5b4668da88441ff77d0397ecfb3be743db55"
+      "sha256": "ad2582e5b6f63c125e20f133519b0faad5af5b2ae24b3a30a33fc4f26a5a6004"
     },
     "web/scene-flow.css": {
-      "bytes": 17788,
+      "bytes": 18330,
       "mode": "0o644",
-      "sha256": "5185e05d12009ac3a74f0025c4d47fbd4cd8ea62f423293f325d1b027e6ea855"
+      "sha256": "0106a2a66461b3219bbd2dcca4d948b5ac528f35acab3462a5b28ea1385ed737"
     },
     "web/screen-transition.mjs": {
       "bytes": 2878,
@@ -6813,7 +6833,7 @@
     "web/shell.js": {
       "bytes": 23675,
       "mode": "0o644",
-      "sha256": "5344de919159ebfb9b8bfa9fbe65dde8af3b57732d65ab67ed188a999e82f15c"
+      "sha256": "57f52d1ec4f0d1a3ec969ddbaa8607ead57c8cd931a9a172bc87895c52166414"
     },
     "web/startup.js": {
       "bytes": 5035,
@@ -8708,12 +8728,12 @@
     "web/update.html": {
       "bytes": 5413,
       "mode": "0o644",
-      "sha256": "59426bd3b00b97be4dea395146090877ec1c106dacc55e7bef6d8b2cedda2818"
+      "sha256": "2d05f37c36fe69d652c60228a161d68a4b77cad3073b8ba1423f6830d7e676ff"
     },
     "web/viewport.mjs": {
-      "bytes": 4968,
+      "bytes": 5574,
       "mode": "0o644",
-      "sha256": "76c6e9f17dc22e0148c56e94cb21677e12369c985b91f31edf95fb19a01c113c"
+      "sha256": "0fc5ef17767f0fb18982f19ef23d72ae0dd22c84efd60f8fcb7294270eecdae8"
     }
   },
   "purpose": "Isolated source export; no Git or remote mutation performed",

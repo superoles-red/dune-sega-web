@@ -150,12 +150,28 @@ s=s.replace(needle,'int hide_cursor=!em_web_cursor_preview(c);',1)
 # ahead of the last displayed sprite list.
 needle='static int dune_view_build(DuneView *v,const CPU *c,const DuneLayout *p){'
 assert s.count(needle)==1
-helper="""static const uint8_t *em_web_menu_frame(DuneView *v,const CPU *c){
+helper="""#include "em_web_world_raster.h"
+static const uint8_t *em_web_menu_frame(DuneView *v,const CPU *c){
     (void)v;
     return c->vdp.frame;
 }
 """
 s=s.replace(needle,helper+needle,1)
+# Only the chunk's immutable pixel conversion changes. The original chunk
+# bounds, shadow CPU copy/sprite traversal, HUD and completed-frame overlays
+# retain their preceding execution and inputs.
+needle='''        for(unsigned y=0;y<bh;++y)for(unsigned x=0;x<bw;++x){
+            unsigned a,b;int wx=p->left+bx+x,wy=p->top+by+y;
+            dune_view_terrain(c,wx,wy,&a,&b);
+            unsigned s=sprites[(y+16)*320+x+32];
+            uint8_t *out=v->pixels+((by+y)*v->width+bx+x)*3;
+            if(wx<0 || wy<0 || wx>=2048 || wy>=2048)memset(out,0,3);
+            else dune_view_rgb(&v->shadow->vdp,a,b,s,out);
+        }'''
+assert s.count(needle)==1
+s=s.replace(needle,'''        em_web_world_raster_chunk(c,&v->shadow->vdp,
+            p->left+(int)bx,p->top+(int)by,bw,bh,
+            sprites+16*320+32,320,v->pixels+((size_t)by*v->width+bx)*3,(size_t)v->width*3);''',1)
 needle='SDL_UpdateTexture(h->texture,NULL,v->frame,v->frame_width*3)'
 assert s.count(needle)==1
 s=s.replace(needle,'SDL_UpdateTexture(h->texture,NULL,em_web_menu_frame(&h->dune_view,c),v->frame_width*3)',1)

@@ -139,9 +139,14 @@ body[data-fullscreen-control="hidden"] #native-menu.native-button{left:max(10px,
 /* One browser-measured rectangle owns the map and every HTML screen. It can
    follow visualViewport-only bar changes and the guarded iPhone standalone
    status/home-indicator gap without changing original artwork or simulation. */
-:root{--app-viewport-width:100vw;--app-viewport-height:100vh;--app-viewport-bottom-offset:0px;--app-safe-top:env(safe-area-inset-top,0px);--app-safe-bottom:env(safe-area-inset-bottom,0px)}
+:root{--app-viewport-width:100vw;--app-viewport-height:100vh;--app-viewport-bottom-offset:0px;--app-canvas-top:0px;--app-canvas-height:var(--app-viewport-height);--app-safe-top:env(safe-area-inset-top,0px);--app-safe-bottom:env(safe-area-inset-bottom,0px)}
 html,body{height:var(--app-viewport-height);min-height:0}
 #canvas{width:var(--app-viewport-width)!important;height:var(--app-viewport-height)!important}
+/* Only installed portrait iPhones reserve the status-bar strip. The canvas
+   still ends at the app bottom; its measured rectangle drives native resizing,
+   hit testing and feedback. HTML screens retain their existing safe padding. */
+:root[data-iphone-portrait-inset="true"] #canvas{position:absolute;left:0;top:var(--app-canvas-top);height:var(--app-canvas-height)!important}
+:root[data-iphone-portrait-inset="true"] #native-menu{top:calc(var(--app-canvas-top) + 10px)}
 .native-screen,.building-screen,#screen-transition,#native-confirmation,#launch,#order-feedback{width:var(--app-viewport-width);height:var(--app-viewport-height)}
 #context-actions{bottom:calc(max(10px,env(safe-area-inset-bottom)) + var(--app-viewport-bottom-offset))}
 #message{bottom:calc(max(68px,calc(env(safe-area-inset-bottom) + 68px)) + var(--app-viewport-bottom-offset))}

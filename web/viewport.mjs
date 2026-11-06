@@ -26,6 +26,7 @@ export function measureAppViewport({win=globalThis.window,doc=globalThis.documen
  }
  if(!width||!height)return null;
  const standalone=!!nav?.standalone||media(win,'(display-mode: standalone)')||media(win,'(display-mode: fullscreen)');
+ let topInset=0;
  if(isIPhone(nav)&&standalone&&unzoomed&&width<height&&!editable(doc?.activeElement)){
   const screen=win?.screen,sw=dimension(screen?.width),sh=dimension(screen?.height);
   let top=0,bottom=0;
@@ -35,9 +36,14 @@ export function measureAppViewport({win=globalThis.window,doc=globalThis.documen
   // narrowly bounded case: no address bars, keyboard, zoom or rotated/stale width.
   const allowance=Math.min(128,Math.max(64,top+bottom+2)),gap=sh-height;
   if(sw&&sh>sw&&close(width,sw)&&sh>=layoutHeight&&gap>0&&gap<=allowance){height=sh;source='iphone-standalone-screen';}
+  // black-translucent standalone windows draw beneath the iPhone status bar.
+  // Reserve that strip in the native canvas only: HTML screens already own
+  // their safe-area padding. A bounded fallback covers startup env() settling.
+  const fallback=Math.max(height,sh)>=812?47:20;
+  topInset=Math.min(96,height-1,top>0?top:fallback);
  }
  return {width:Math.round(width*100)/100,height:Math.round(height*100)/100,
-  bottomOffset:Math.round((layoutHeight-height)*100)/100,source,standalone};
+  topInset:Math.round(topInset*100)/100,bottomOffset:Math.round((layoutHeight-height)*100)/100,source,standalone};
 }
 
 export function bindAppViewport({win=globalThis.window,doc=globalThis.document,nav=globalThis.navigator,onResize=()=>{}}={}){
@@ -46,9 +52,10 @@ export function bindAppViewport({win=globalThis.window,doc=globalThis.document,n
  const refresh=()=>{
   queued=null;if(stopped)return;
   const size=measureAppViewport({win,doc,nav});if(!size)return;
-  const key=[size.width,size.height,size.bottomOffset,size.source,size.standalone].join(':');if(key===last)return;last=key;
+  const key=[size.width,size.height,size.topInset,size.bottomOffset,size.source,size.standalone].join(':');if(key===last)return;last=key;
   root.style.setProperty('--app-viewport-width',size.width+'px');root.style.setProperty('--app-viewport-height',size.height+'px');root.style.setProperty('--app-viewport-bottom-offset',size.bottomOffset+'px');
-  root.dataset.viewportSource=size.source;root.dataset.appStandalone=String(size.standalone);onResize(size);
+  root.style.setProperty('--app-canvas-top',size.topInset+'px');root.style.setProperty('--app-canvas-height',(size.height-size.topInset)+'px');
+  root.dataset.viewportSource=size.source;root.dataset.appStandalone=String(size.standalone);root.dataset.iphonePortraitInset=String(size.topInset>0);onResize(size);
  };
  const schedule=()=>{if(!stopped&&queued===null)queued=raf(refresh);};
  const settled=()=>{schedule();if(settle!==null)win.clearTimeout(settle);settle=win.setTimeout(()=>{settle=null;schedule();},250);};

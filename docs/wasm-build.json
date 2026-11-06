@@ -1,8 +1,8 @@
 {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "sdk": "Emscripten 3.1.74",
-  "wasmBytes": 5267555,
-  "sha256": "f4a8cb4fc34845f17652b449e11401c34cfeba6900d76fa16e926f63c0337938",
+  "wasmBytes": 5267956,
+  "sha256": "e43b28261eb6b9f05c29641cd44b752755e9ef0ffd44c5387e6adbc92ff6ef2e",
   "loaderSha256": "68fb1ad2cae3e188f3cdea405c744d6ed99cc23ae4add7f86b118abe7f451f9a",
   "noGroupExports": true,
   "audioLoaderBridgeProof": {
@@ -102,6 +102,7 @@
     "em_web_selection.h": "3e16e6b03a2dada2750c1cb4980f26aac340b63a06009e9f30375ed1dac0b888",
     "em_web_training.h": "c5f02bb242bfee1e8f2198dd6968dbcd2ba21a183c00f51621e67205e7ca2d7d",
     "em_web_typed_input.h": "4b0dd3375f1428da9001a2c95f70554a9176044f959bda590523b7b3112d74f4",
-    "em_web_world_intent.h": "d1cfb7da4165bfd1168a8332b81c608934527a051204ad85b5e4795e8d4af836"
+    "em_web_world_intent.h": "d1cfb7da4165bfd1168a8332b81c608934527a051204ad85b5e4795e8d4af836",
+    "em_web_world_raster.h": "b699d0e98e0f7271e45c8c02b4b6285c9f54d1547c60f1859f32bffe48799bdf"
   }
 }

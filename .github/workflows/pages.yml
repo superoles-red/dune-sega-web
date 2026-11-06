@@ -31,6 +31,10 @@ jobs:
           mkdir -p .local
           clang -std=c11 -O1 tools/test_em_web_raster.c -o .local/test-web-raster -lm
           .local/test-web-raster
+      - name: Exact original expanded map pixels
+        run: |
+          clang -std=c11 -O1 tools/test_em_web_world_raster.c -o .local/test-web-world-raster -lm
+          .local/test-web-world-raster
       - name: Publication guards
         run: |
           python3 tools/build_runtime_atlas.py --check
