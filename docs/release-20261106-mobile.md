@@ -1,5 +1,14 @@
 # Portrait iPhone safe area and expanded-map performance
 
+## Follow-up: 20261106-mobile8
+
+Set the ordinary single-selection wait to the user's chosen 75ms compromise.
+Double-tap recognition remains 300ms with the original actor retained; the
+armed Palace guard remains 300ms. This changes only the selection constant.
+The verified mobile7 physical late-pair behavior, native core, game rules,
+rendering and save formats remain unchanged. Physical mobile7 measured the
+preceding 50ms setting; do not describe that measurement as a 75ms result.
+
 ## Follow-up: 20261106-mobile7
 
 Reduce only SELECTION_WAIT_MS from 100 to 50ms, at the user's request. Keep
