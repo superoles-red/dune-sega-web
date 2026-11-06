@@ -1,5 +1,73 @@
 # Portrait iPhone safe area and expanded-map performance
 
+## Follow-up: 20261106-mobile4
+
+An own unit's mobile double-tap command now retains its source without first
+selecting the target. A possible pair over a unit/building waits up to 300ms:
+two taps issue the original contextual command; one selects after that window.
+Initial selection, empty-ground Clear and ordinary desktop left/right clicks
+remain immediate. The physical Samsung check covered own buildings, own units,
+one-tap selection and ground Clear. Native friendly-unit targeting still gives
+the original move command; no extra attack rule was added.
+
+Installed portrait iPhones reserve another three CSS pixels above the canvas:
+the extra clearance is now nine pixels (47 to 56px, or 59 to 68px). Other devices
+and modes retain their geometry. A physical iPhone recheck is still needed.
+
+Mission start now covers the original black battle-loading interval once,
+before the native map fade-in, then reveals the ready map. It no longer starts
+a second delayed darkening over a map that has just appeared. A missed loader
+poll cannot start that delayed fade either. Paired browser recordings preserve
+the original strategic-map animation and show one final reveal.
+
+The native core is now `5156b9ee619e6a2c864d908f712f37e912cab713971d67f7fa34303a55e2e03f`.
+Exact tile-row decoding, a bounded validated terrain-color cache and direct
+RGBA world texture upload remove repeated pixel work and SDL RGB conversion.
+Native RGB exports and the separate menu/HUD textures retain their formats.
+No resolution reduction, frame skipping, clock, original instruction/ROM,
+balance, AI or sound-driver change was made. The loader is unchanged. DSAV v2
+and previous published save envelopes, including e43b2826, remain compatible.
+
+### Same-device CPU comparison
+
+Galaxy A07 (SM-A075F), Android 16, Chrome 154, actual 720x1430 canvas,
+audio running, warmed matching 30-second samples against published e43b2826:
+
+| Measurement | Before | After | Change |
+| --- | ---: | ---: | ---: |
+| Idle rendering service | 14.714s | 10.027s | -31.9% |
+| Panning rendering service | 15.508s | 10.969s | -29.3% |
+| Idle main-thread CPU | 26.588s | 22.210s | -16.5% |
+| Panning main-thread CPU | 27.476s | 23.364s | -15.0% |
+| Idle process CPU | 37.07s | 32.72s | -11.7% |
+| Panning process CPU | 37.18s | 33.09s | -11.0% |
+
+Original simulation remains approximately 60 native frames/s. These are short
+CPU timings, not measured battery/watt savings or an iPhone temperature result.
+The native pixel oracles compare 3,284 guarded world chunks and 15 genuine
+full-world images, plus 346 native frames and 2,070 plane rows. RGB, opaque
+world alpha, HUD and source CPU/device state match the original reference.
+
+### Audio and automatic updates
+
+The reported smooth music slowdown was not reproduced in the real six-unit
+Samsung battle: native time matched wall time, music IRQs matched native
+frames, and the running worklet lost no samples. A stronger original-limit
+13-extra-unit Samsung battle also remained healthy for 30 seconds: native time
+was 1.00004 times wall time, all native frames had their music IRQ, tempo stayed
+187, and worklet underrun/overflow/discard counters did not increase. All
+samples remained in the battle, without an outcome or music-track transition.
+Its independent native test also retains the original tempo and IRQs.
+No tempo/resampling workaround was introduced; longer iPhone combat still
+requires a device recheck after the CPU reduction.
+
+Existing offline installations check on launch and visible resume. A verified
+new package applies automatically at settled Home, including when another open
+window has already activated it and this document is pinned to an older one.
+Other running missions retain their exact old package and save data. Offline
+Home remains usable. Browser end-to-end tests cover both a waiting worker and
+an already-active newer worker, without extra confirmations or window closing.
+
 ## Follow-up: 20261106-mobile3
 
 The updater has one short status, a progress bar during preparation and one

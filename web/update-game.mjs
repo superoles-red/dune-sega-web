@@ -44,6 +44,11 @@ export class OfflineUpdater {
  async apply({restart=false}={}){
   if(!this.worker||!this.version)throw Error('incomplete');
   this.state('applying');
+  // Another window may already have activated this verified package. Reload
+  // only this recovery document, without rewriting that worker's client pins.
+  if(this.registration?.active===this.worker&&this.worker.state==='activated'){
+   this.state('done',{version:this.version});return true;
+  }
   const options={};
   if(restart)options.restart=true;
   const active=this.registration?.active;
@@ -69,6 +74,8 @@ export class OfflineUpdater {
  }
  async start({automatic=false}={}){
   await this.prepare();
-  return automatic?this.apply():false;
+  // Automatic entry is requested only by settled Home, after the mission has
+  // been left. The same pinned-package path keeps other live windows intact.
+  return automatic?this.apply({restart:true}):false;
  }
 }

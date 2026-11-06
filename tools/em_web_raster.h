@@ -4,6 +4,7 @@
  * Original machine instructions, VDP timing and sprite traversal are intact. */
 #ifndef DUNE_EM_WEB_RASTER_H
 #define DUNE_EM_WEB_RASTER_H
+#include "em_web_tile_row.h"
 typedef struct {
     unsigned columns,x_mask,y_mask,base,scroll_base,scroll_mode,column_scroll;
 } EmWebRasterPlane;
@@ -32,8 +33,9 @@ static void em_web_raster_plane_row(const VDP*v,const EmWebRasterPlane*p,
         unsigned entry=vdp_word(v,at),run=8-(sx&7);
         if(p->column_scroll&&run>16-(x&15))run=16-(x&15);
         if(run>end-x)run=end-x;
+        EmWebTileRow tile=em_web_tile_row(v,entry,sy&7);
         for(unsigned i=0;i<run;++i)
-            out[x+i]=(uint8_t)vdp_tile_pixel(v,entry,(sx+i)&7,sy&7);
+            out[x+i]=(uint8_t)em_web_row_pixel(&tile,(sx+i)&7);
         x+=run;
     }
 }
@@ -44,8 +46,9 @@ static void em_web_raster_window_row(const VDP*v,unsigned y,unsigned first,
     for(unsigned x=first;x<end;){
         unsigned entry=vdp_word(v,base+(row+x/8)*2),run=8-(x&7);
         if(run>end-x)run=end-x;
+        EmWebTileRow tile=em_web_tile_row(v,entry,y&7);
         for(unsigned i=0;i<run;++i)
-            out[x+i]=(uint8_t)vdp_tile_pixel(v,entry,(x+i)&7,y&7);
+            out[x+i]=(uint8_t)em_web_row_pixel(&tile,(x+i)&7);
         x+=run;
     }
 }

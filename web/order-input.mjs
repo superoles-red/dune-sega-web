@@ -4,8 +4,9 @@ export const DOUBLE_TAP_SLOP=24;
 const accepted=value=>value===true||(typeof value==='number'&&Number.isFinite(value)&&value>0);
 const world=state=>!!state&&!state.capturesInput&&[1,'map','world'].includes(state.context);
 const source=state=>!!state.powerArmed||(!!state.own&&state.kind==='unit');
+const objectTarget=state=>['unit','building'].includes(state.target?.kind);
 
-/** Immediate selection and retained-source orders, independent of the simulation.
+/** Selection and retained-source orders, independent of the simulation.
  * captureActor returns an opaque, truthy native token (0 means no actor).
  * readState is a neutral UI snapshot: own, kind ('unit'/'building'), powerArmed,
  * capturesInput and context (1/'map'/'world'). The caller cancels pending pairs
@@ -58,11 +59,12 @@ export class OrderInput {
     const power=!!state.powerArmed,pairAllowed=kind!=='mouse'||power;
     const hadSource=source(state);
     const before=pairAllowed&&hadSource?this.captureActor():null;
-    if(power&&before&&state.target?.own&&state.target.kind==='building'){
-      // Armed weapon targeting has priority over opening an own building.
-      // A lone tap still selects it once the double-command window expires.
-      this.pair={x,y,time,kind,button,token:before,power:true,deferredSelection:true};
-      this.lastAction='power-wait';return 0;
+    if(before&&objectTarget(state)){
+      // A possible mobile order (or armed Palace double click) takes priority
+      // over selecting its target. A lone tap selects once the pair window
+      // expires; a paired order never sends an intermediate SELECT at all.
+      this.pair={x,y,time,kind,button,token:before,power,deferredSelection:true};
+      this.lastAction=power?'power-wait':'command-wait';return 0;
     }
     this.lastAction='select';
     const result=+accepted(this.select(x,y));

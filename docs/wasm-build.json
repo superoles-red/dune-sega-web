@@ -1,8 +1,8 @@
 {
   "date": "2026-11-06",
   "sdk": "Emscripten 3.1.74",
-  "wasmBytes": 5267956,
-  "sha256": "e43b28261eb6b9f05c29641cd44b752755e9ef0ffd44c5387e6adbc92ff6ef2e",
+  "wasmBytes": 5269742,
+  "sha256": "5156b9ee619e6a2c864d908f712f37e912cab713971d67f7fa34303a55e2e03f",
   "loaderSha256": "68fb1ad2cae3e188f3cdea405c744d6ed99cc23ae4add7f86b118abe7f451f9a",
   "noGroupExports": true,
   "audioLoaderBridgeProof": {
@@ -97,12 +97,13 @@
     "em_web_minimap.h": "d322748bc863799d226278900ff90f8e2fa5dc5257f98ed4a29a893346d22441",
     "em_web_portrait.h": "440c6607eacec540ec6f9ac34cd29ec244d482d36f2757133056b69a9b1bf6e7",
     "em_web_present.h": "84c2bb57fb6a26e3f31f784684ffaff32aa0f674603efe534a6e35a693178306",
-    "em_web_raster.h": "b3cb5d65090fda9750a2255e8bb6eeb4e54e162a4ec687374bd045a1da4fcb2c",
+    "em_web_raster.h": "e2307d7841483e03f975803afe92ee0577834520b7bb77685b3491d881cd10ff",
     "em_web_ready.h": "441f375e3f10c0dc0aae3000eb3be03a5c016d43fefd5afae5b7e879191fd413",
     "em_web_selection.h": "3e16e6b03a2dada2750c1cb4980f26aac340b63a06009e9f30375ed1dac0b888",
+    "em_web_tile_row.h": "4c3c34036c03ab58f870d58608a228ddd8989e62e8965f3d3a159c7672af0530",
     "em_web_training.h": "c5f02bb242bfee1e8f2198dd6968dbcd2ba21a183c00f51621e67205e7ca2d7d",
     "em_web_typed_input.h": "4b0dd3375f1428da9001a2c95f70554a9176044f959bda590523b7b3112d74f4",
     "em_web_world_intent.h": "d1cfb7da4165bfd1168a8332b81c608934527a051204ad85b5e4795e8d4af836",
-    "em_web_world_raster.h": "b699d0e98e0f7271e45c8c02b4b6285c9f54d1547c60f1859f32bffe48799bdf"
+    "em_web_world_raster.h": "720db65464186dba97994c07b70b0f5b73708f5f247ee9c7b5551567847bf795"
   }
 }

@@ -39,9 +39,9 @@ export function measureAppViewport({win=globalThis.window,doc=globalThis.documen
   // black-translucent standalone windows draw beneath the iPhone status bar.
   // Reserve that strip in the native canvas only: HTML screens already own
   // their safe-area padding. A bounded fallback covers startup env() settling;
-  // six extra CSS pixels keep the native HUD below the status bar's lower fade.
+  // nine extra CSS pixels keep the native HUD below the status bar's lower fade.
   const fallback=Math.max(height,sh)>=812?47:20;
-  topInset=Math.min(96,height-1,(top>0?top:fallback)+6);
+  topInset=Math.min(96,height-1,(top>0?top:fallback)+9);
  }
  return {width:Math.round(width*100)/100,height:Math.round(height*100)/100,
   topInset:Math.round(topInset*100)/100,bottomOffset:Math.round((layoutHeight-height)*100)/100,source,standalone};

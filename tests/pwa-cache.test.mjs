@@ -243,8 +243,8 @@ test('activation retains older packages if a game window appeared after the upda
 async function applyPackage(h,data={},source='observer'){
  const replies=[];await h.event('message',{data:{type:'DUNE_APPLY_UPDATE',...data},source:{id:source},ports:[{postMessage:value=>replies.push(value)}]});return replies.at(-1);
 }
-async function packageStatus(h){
- const replies=[];await h.event('message',{data:{type:'DUNE_OFFLINE_STATUS'},ports:[{postMessage:value=>replies.push(value)}]});return replies.at(-1);
+async function packageStatus(h,clientId){
+ const replies=[];await h.event('message',{data:{type:'DUNE_OFFLINE_STATUS'},...(clientId?{source:{id:clientId}}:{}),ports:[{postMessage:value=>replies.push(value)}]});return replies.at(-1);
 }
 async function cachedFetch(h,path,{clientId,mode='cors',resultingClientId}={}){
  const response=await h.event('fetch',{clientId,resultingClientId,request:{url:h.scope+path,method:'GET',mode}});return response?.text();
@@ -289,6 +289,8 @@ test('new navigations use the new package while old-client pins survive worker t
  assert.equal(await cachedFetch(h,'shell.js?v=old',{clientId:'playing'}),'old shell');
  assert.equal(await cachedFetch(h,'shell.js?v=new',{clientId:'fresh'}),'game();');
  const status=await packageStatus(h);assert.equal(status.clientVersions.playing,'old');assert.equal(status.clientVersions.fresh,'new');
+ assert.equal((await packageStatus(h,'playing')).clientVersion,'old','a running old document can discover its safe Home update');
+ assert.equal((await packageStatus(h,'fresh')).clientVersion,'new');
 });
 test('activation resnapshots racing windows, and previous package status supports legacy first upgrades',async()=>{
  const h=host(),oldFiles=new Map(fixtures);oldFiles.set('shell.js','legacy shell');seedPrevious(h,{files:oldFiles});await h.event('install');

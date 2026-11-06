@@ -34,7 +34,7 @@ test('browser bars resize the application to the visual viewport and lift its fi
 });
 test('iPhone standalone portrait fills one bounded status/home-indicator gap',()=>{
  const e=environment({height:785,visualHeight:785,iphone:true,standalone:true});
- assert.deepEqual(measureAppViewport(e),{width:390,height:844,topInset:65,bottomOffset:-59,source:'iphone-standalone-screen',standalone:true});
+ assert.deepEqual(measureAppViewport(e),{width:390,height:844,topInset:68,bottomOffset:-59,source:'iphone-standalone-screen',standalone:true});
  e.win.getComputedStyle=()=>({getPropertyValue:()=>''});assert.equal(measureAppViewport(e).height,844,'ordinary status-bar delta is bounded even while env values settle');
  e.win.innerHeight=e.win.visualViewport.height=844;assert.equal(measureAppViewport(e).source,'visual-viewport');
 });
@@ -42,26 +42,26 @@ test('standalone display-mode detection also covers iOS when navigator.standalon
  const e=environment({height:810,iphone:true});delete e.nav.standalone;e.win.matchMedia('(display-mode: standalone)').matches=true;
  assert.equal(measureAppViewport(e).height,844);assert.equal(measureAppViewport(e).standalone,true);
 });
-test('installed portrait iPhone canvas adds six pixels below the measured status bar without shortening the app or adding a bottom gap',()=>{
+test('installed portrait iPhone canvas adds nine pixels below the measured status bar without shortening the app or adding a bottom gap',()=>{
  for(const [width,height,top]of [[428,926,47],[390,844,59]]){
   const e=environment({width,height,screenWidth:width,screenHeight:height,iphone:true,standalone:true,safeTop:top}),sizes=[];
   const binding=bindAppViewport({...e,onResize:size=>sizes.push(size)});e.frame();
-  const size=sizes[0];assert.equal(size.height,height);assert.equal(size.topInset,top+6,'small clearance keeps credits below the status bar fade');
+  const size=sizes[0];assert.equal(size.height,height);assert.equal(size.topInset,top+9,'small clearance keeps credits below the status bar fade');
   assert.equal(e.styles.get('--app-viewport-height'),height+'px','HTML screens retain their existing whole-app rectangle');
-  assert.equal(e.styles.get('--app-canvas-top'),(top+6)+'px');assert.equal(e.styles.get('--app-canvas-height'),(height-top-6)+'px');
+  assert.equal(e.styles.get('--app-canvas-top'),(top+9)+'px');assert.equal(e.styles.get('--app-canvas-height'),(height-top-9)+'px');
   assert.equal(parseFloat(e.styles.get('--app-canvas-top'))+parseFloat(e.styles.get('--app-canvas-height')),height,'native canvas ends at the physical app bottom');
   assert.equal(e.root.dataset.iphonePortraitInset,'true');binding.dispose();
  }
 });
 test('only installed portrait iPhones use the bounded status-bar fallback while env values settle',()=>{
- const modern=environment({width:428,height:926,screenWidth:428,screenHeight:926,iphone:true,standalone:true,safeTop:0});assert.equal(measureAppViewport(modern).topInset,53);
- const classic=environment({width:375,height:667,screenWidth:375,screenHeight:667,iphone:true,standalone:true,safeTop:0});assert.equal(measureAppViewport(classic).topInset,26);
+ const modern=environment({width:428,height:926,screenWidth:428,screenHeight:926,iphone:true,standalone:true,safeTop:0});assert.equal(measureAppViewport(modern).topInset,56);
+ const classic=environment({width:375,height:667,screenWidth:375,screenHeight:667,iphone:true,standalone:true,safeTop:0});assert.equal(measureAppViewport(classic).topInset,29);
  for(const e of [environment({iphone:true}),environment({standalone:true}),environment({width:844,height:390,iphone:true,standalone:true})])assert.equal(measureAppViewport(e).topInset,0);
 });
 test('safe-area settling changes native canvas size once even if the app size stays the same',()=>{
  const e=environment({iphone:true,standalone:true,safeTop:47}),sizes=[],binding=bindAppViewport({...e,onResize:size=>sizes.push(size)});e.frame();
  e.win.getComputedStyle=()=>({getPropertyValue:key=>key==='--app-safe-top'?'59px':key==='--app-safe-bottom'?'34px':''});binding.refresh();e.frame();
- assert.equal(sizes.length,2);assert.equal(sizes[0].height,sizes[1].height);assert.equal(e.styles.get('--app-canvas-height'),'779px');
+ assert.equal(sizes.length,2);assert.equal(sizes[0].height,sizes[1].height);assert.equal(e.styles.get('--app-canvas-height'),'776px');
  binding.refresh();e.frame();assert.equal(sizes.length,2,'unchanged status inset does not trigger another native resize');binding.dispose();
 });
 test('regular iPhone browsers, Android, iPad, mismatched width and landscape do not get a screen-height correction',()=>{

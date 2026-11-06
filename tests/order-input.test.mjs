@@ -10,7 +10,7 @@ function setup(initial={},options={}){
 }
 const actions=calls=>calls.filter(c=>c[0]!=='capture');
 
-test('first touch/pen selects synchronously; second orders retained original actor without selecting twice',()=>{
+test('a terrain touch/pen tap clears synchronously; its pair orders the retained original actor',()=>{
  for(const kind of ['touch','pen']){
   const s=setup(),token=s.actor;s.afterActor={unit:99};
   assert.equal(s.input.tap(30,40,kind),1);assert.deepEqual(actions(s.calls),[['select',30,40]]);
@@ -139,11 +139,61 @@ test('a late tap flushes the first single before reading/capturing its fresh int
  s.advance(100);s.input.tap(10,20,'touch');assert.deepEqual(actions(s.calls).at(-1),['command',10,20,newActor]);
 });
 
-test('ground/unit/enemy targets and non-armed own buildings retain immediate single selection',()=>{
- for(const target of [{kind:'none',own:false},{kind:'unit',own:true},{kind:'unit',own:false},{kind:'building',own:false}]){
-  const s=setup({kind:'building',powerArmed:true,target});s.input.tap(10,20,'touch');assert.deepEqual(actions(s.calls),[['select',10,20]]);assert.equal(s.input.snapshot().deferredSelection,false);
+test('ground targets and non-armed own buildings retain immediate single selection',()=>{
+ for(const kind of ['mouse','touch','pen']){
+  const s=setup({kind:'building',powerArmed:true,target:{kind:'none',own:false}});s.input.tap(10,20,kind);assert.deepEqual(actions(s.calls),[['select',10,20]]);assert.equal(s.input.snapshot().deferredSelection,false);
  }
  const normal=setup({kind:'building',powerArmed:false,target:{kind:'building',own:true}});normal.input.tap(10,20,'touch');assert.deepEqual(actions(normal.calls),[['select',10,20]]);
+});
+
+test('mobile double orders on every object target never select the target before commanding the retained unit',()=>{
+ for(const kind of ['touch','pen'])for(const targetKind of ['unit','building'])for(const own of [false,true]){
+  const s=setup({target:{kind:targetKind,own}}),token=s.actor;
+  s.afterActor={unit:99};assert.equal(s.input.tap(30,40,kind),0);
+  assert.deepEqual(actions(s.calls),[]);assert.equal(s.input.snapshot().deferredSelection,true);assert.equal(s.input.snapshot().lastAction,'command-wait');
+  s.advance(150);s.input.flush();assert.deepEqual(actions(s.calls),[]);
+  assert.equal(s.input.tap(32,41,kind),1);assert.deepEqual(actions(s.calls),[['command',32,41,token]]);
+  assert.equal(s.input.snapshot().pending,false);s.advance(1000);s.input.flush();assert.deepEqual(actions(s.calls),[['command',32,41,token]]);
+ }
+});
+
+test('a lone object tap with an active mobile unit selects exactly once after the double-tap window',()=>{
+ for(const kind of ['touch','pen'])for(const targetKind of ['unit','building'])for(const own of [false,true]){
+  const s=setup({target:{kind:targetKind,own}});
+  s.input.tap(30,40,kind);s.advance(300);assert.equal(s.input.flush(),0);assert.deepEqual(actions(s.calls),[]);
+  s.advance(.1);assert.equal(s.input.flush(),1);assert.deepEqual(actions(s.calls),[['select',30,40]]);
+  s.advance(1000);s.input.flush();assert.deepEqual(actions(s.calls),[['select',30,40]]);
+ }
+});
+
+test('Palace object commands have the same priority for own/enemy units and buildings',()=>{
+ for(const kind of ['mouse','touch','pen'])for(const targetKind of ['unit','building'])for(const own of [false,true]){
+  const s=setup({kind:'building',powerArmed:true,target:{kind:targetKind,own}}),token=s.actor;
+  s.input.tap(30,40,kind);assert.deepEqual(actions(s.calls),[]);assert.equal(s.input.snapshot().power,true);
+  s.advance(100);s.input.tap(30,40,kind);assert.deepEqual(actions(s.calls),[['command',30,40,token]]);
+ }
+});
+
+test('first selection, normal PC selection and failed captures never gain the mobile object delay',()=>{
+ for(const targetKind of ['unit','building']){
+  const first=setup({own:false,kind:'none',target:{kind:targetKind,own:true}});first.actor=0;first.afterActor={unit:44};first.input.tap(30,40,'touch');assert.deepEqual(actions(first.calls),[['select',30,40]]);assert.equal(first.input.snapshot().deferredSelection,false);
+  const pc=setup({target:{kind:targetKind,own:false}});pc.input.tap(30,40,'mouse');assert.deepEqual(actions(pc.calls),[['select',30,40]]);assert.equal(pc.input.snapshot().pending,false);
+  const failed=setup({target:{kind:targetKind,own:false}});failed.actor=0;failed.input.tap(30,40,'touch');assert.deepEqual(actions(failed.calls),[['select',30,40]]);assert.equal(failed.input.snapshot().pending,false);
+ }
+});
+
+test('a same-unit Devastator-style pair sends only the original self command',()=>{
+ const s=setup({kind:'unit',type:11,target:{kind:'unit',own:true,type:11}}),token=s.actor;
+ s.input.tap(30,40,'touch');assert.deepEqual(actions(s.calls),[]);s.advance(180);s.input.tap(30,40,'touch');
+ assert.deepEqual(actions(s.calls),[['command',30,40,token]]);
+});
+
+test('a pan or empty-ground tap cancels a pending object selection without a later phantom select',()=>{
+ for(const cancel of ['pan','pinch','place','minimap','route','Clear','visibility']){
+  const s=setup({target:{kind:'unit',own:false}});s.input.tap(30,40,'touch');s.input.cancel(cancel);s.advance(1000);s.input.flush();assert.deepEqual(actions(s.calls),[]);
+ }
+ const s=setup({target:{kind:'building',own:true}});s.input.tap(30,40,'touch');s.state.target={kind:'none',own:false};s.advance(100);s.input.tap(200,200,'touch');
+ assert.deepEqual(actions(s.calls),[['select',200,200]]);s.advance(1000);s.input.flush();assert.deepEqual(actions(s.calls),[['select',200,200]]);
 });
 
 test('deferred selection uses no timer, invalid/rewound input cancels it, and rejection cannot retry it',()=>{

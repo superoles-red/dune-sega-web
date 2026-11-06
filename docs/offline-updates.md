@@ -18,9 +18,9 @@ The recovery document starts no game and imports no versioned game modules.
 3. Press it once. The verified update activates and the game opens automatically.
 
 Only the actual recovery client can request activation. The worker verifies
-the client's origin/path/identity. Automatic activation still defers while
-another game window exists. An explicit Restart can activate without closing
-those windows: their original complete packages are pinned by client ID, including
+the client's origin/path/identity. A settled Home update and an explicit Restart
+can activate without closing other windows: their original complete packages
+are pinned by client ID, including
 old-only lazy assets. Pins survive worker termination and successive updates.
 New document navigations receive the latest package. Other game windows are
 not closed or reloaded. Activation retains their caches and the preceding-package
@@ -53,16 +53,21 @@ The compact How to play screen uses only four gesture/action pairs for the
 current input device, with the original descriptive tutorial nested underneath.
 Installation is the original-art corner button on Home. Confirmation panels
 are centered in the measured viewport, with safe-area padding and scrolling.
-The native WASM remains SHA-256
-`e43b28261eb6b9f05c29641cd44b752755e9ef0ffd44c5387e6adbc92ff6ef2e`.
+The current native WASM is SHA-256
+`5156b9ee619e6a2c864d908f712f37e912cab713971d67f7fa34303a55e2e03f`;
+the rendering-only upgrade preserves the DSAV v2 ABI and previous save imports.
 
 Starting with webapp7, an existing offline registration also checks on visible
 focus, pageshow and return from the background. Once a complete newer package
 is waiting, a settled Home screen opens `update.html?auto=1`; that standalone
-page verifies it and applies/returns automatically when no other game window
-is open. A playing mission, campaign click/transition, dialog, import or
-installation prompt blocks automatic navigation. With another game window open,
-the same page offers one explicit Restart, with no extra confirmation or
-close-window instructions. No background registration is
+page verifies it and applies/returns automatically. A playing mission,
+campaign click/transition, dialog, import or installation prompt blocks automatic
+navigation. Starting with mobile4, the same automatic path retains other open
+missions with persistent client pins. It also detects when the active worker
+already has the latest package but the current document still uses an older
+pin. Returning that document to settled online Home reloads only that document
+through the recovery page. Offline Home does not navigate to a network-only
+updater. There are no extra confirmations or close-window instructions.
+No background registration is
 created for a player who has never opted into offline installation. A legacy
 installation without this bootstrap needs the stable recovery link once.

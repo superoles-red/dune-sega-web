@@ -127,6 +127,39 @@ test('building entry keeps one cover until the unfaded building raster is ready'
  assert.equal(covers,1,'the destination must not briefly publish map and cover a second time');
 });
 
+test('mission map loading owns one black cover before native fade-in, then reveals the ready world once',()=>{
+ const {ui,published}=uiHarness(),covers=[];
+ ui.displayed='campaign';ui.curtain.cover=options=>{covers.push(options);ui.curtain.active=true;return Promise.resolve();};
+ ui.update(snapshot({scene:'campaign',sceneReady:false,inputReady:false,presentationReady:true,presentationPhase:'strategic_map',presentationFullFrame:true}),null,{});
+ assert.deepEqual(published,['campaign'],'the original strategic-map animation remains visible');assert.equal(covers.length,0);
+ const loading={scene:'loading',sceneReady:false,inputReady:false,presentationPhase:'battle_loading',presentationFullFrame:true,nativeDisplayEnabled:false};
+ for(let i=0;i<3;i++)ui.update(snapshot(loading),null,{});
+ assert.deepEqual(covers,[{instant:true,loading:false}],'cover the native black loader, without an outgoing fade over new map pixels');
+ assert.equal(ui.waitingForFrame,true);assert.equal(ui.curtain.reveals,0);assert.deepEqual(published,['campaign']);
+ for(const nativeFadeDirection of ['in','none'])ui.update(snapshot({sceneReady:false,inputReady:false,presentationReady:false,nativeFadeActive:nativeFadeDirection==='in',nativeFadeDirection}),{map:0},{});
+ assert.equal(covers.length,1,'the first unready map cannot start a second cover');assert.equal(ui.curtain.reveals,0);assert.equal(ui.element.hidden,false);
+ ui.update(snapshot({battlePresentation:true}),{map:1},{});
+ assert.equal(ui.element.hidden,true);assert.equal(ui.displayed,'map');assert.equal(ui.revealAfterPaint,true);assert.equal(covers.length,1);
+ ui.applyHomeUpdate=()=>false;ui.curtain.paint=()=>{};ui.building.render=()=>{};
+ GameInterface.prototype.render.call(ui,0);
+ assert.equal(ui.curtain.reveals,1);assert.equal(ui.revealAfterPaint,false);
+ ui.update(snapshot({battlePresentation:true}),{map:1},{});GameInterface.prototype.render.call(ui,1);
+ assert.equal(ui.curtain.reveals,1,'later native polls cannot add another reveal');
+});
+
+test('a missed battle-loader poll never starts a late fade-out over the first native map',()=>{
+ const {ui}=uiHarness(),covers=[];ui.displayed='campaign';
+ ui.curtain.cover=options=>{covers.push(options);ui.curtain.active=true;return Promise.resolve();};
+ const unready={sceneReady:false,inputReady:false,presentationReady:false,nativeFadeActive:true,nativeFadeDirection:'in'};
+ for(let i=0;i<3;i++)ui.update(snapshot(unready),{map:0},{});
+ assert.deepEqual(covers,[{instant:true,loading:false}]);assert.equal(ui.curtain.reveals,0);assert.equal(ui.waitingForFrame,true);
+ ui.update(snapshot({battlePresentation:true}),{map:1},{});
+ assert.equal(covers.length,1);assert.equal(ui.revealAfterPaint,true);
+ const fast=uiHarness().ui;fast.displayed='campaign';let unexpected=0;fast.curtain.cover=()=>unexpected++;
+ fast.update(snapshot({battlePresentation:true}),{map:1},{});
+ assert.equal(unexpected,0,'a first poll with an already ready world is published without another black flash');assert.equal(fast.element.hidden,true);assert.equal(fast.displayed,'map');
+});
+
 test('leaving demo for a new mission cannot record demo victory before native acceptance',()=>{
  const {ui}=uiHarness();capturePreparation(ui);ui.demoMode=true;let accepted=false;
  ui.Module._dune_web_campaign_start=()=>accepted?1:0;

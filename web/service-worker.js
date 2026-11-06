@@ -238,7 +238,8 @@ self.addEventListener('message', event => {
   event.waitUntil((async () => {
     const ready = !!await (await caches.open(CACHE_NAME)).match(READY_URL);
     const versions = ready ? await liveClientVersions(await self.clients.matchAll({type: 'window', includeUncontrolled: true})) : {};
-    const message = summary(ready ? 'ready' : 'downloading', ready ? {clientVersions: versions} : {loaded: 0, bytes: 0});
+    const clientVersion = event.source?.id ? versions[event.source.id] : undefined;
+    const message = summary(ready ? 'ready' : 'downloading', ready ? {clientVersions: versions, ...(clientVersion ? {clientVersion} : {})} : {loaded: 0, bytes: 0});
     if (event.ports?.[0]) event.ports[0].postMessage(message);
     else event.source?.postMessage(message);
   })());

@@ -159,6 +159,12 @@ test('automatic updates wait for transitions and leave an already clicked campai
  f.ui.dialog.active=true;assert.equal(f.ui.applyHomeUpdate(),false);assert.deepEqual(updates,[]);f.ui.dialog.active=false;
  assert.equal(f.ui.applyHomeUpdate(),true);assert.deepEqual(updates,[{automatic:true}]);
 }));
+test('offline Home keeps its complete cached game rather than opening the network-only updater',async()=>dom(async()=>{
+ const f=installFixture(),updates=[];f.ui.platform.updateGame=options=>updates.push(options);f.platformState.updateAvailable=true;f.platformState.online=false;f.ui.view='home';
+ f.ui.refreshPlatform();assert.equal(f.ui.applyHomeUpdate(),false);assert.deepEqual(updates,[]);
+ f.platformState.online=true;f.ui.refreshPlatform();assert.equal(f.ui.applyHomeUpdate(),true);assert.deepEqual(updates,[{automatic:true}]);
+ assert.deepEqual(f.calls.loads,[]);assert.deepEqual(f.calls.saves,[]);
+}));
 test('an ordinary visitor or a platform without a waiting update never starts automatic installation',async()=>dom(async()=>{
  const f=installFixture(),updates=[];f.ui.view='home';f.ui.platform.updateGame=options=>updates.push(options);
  f.ui.refreshPlatform();assert.equal(f.ui.applyHomeUpdate(),false);assert.deepEqual(f.order,[]);assert.deepEqual(updates,[]);

@@ -57,9 +57,23 @@ test('a completed waiting update is advertised without activating it or reloadin
  assert.equal(states.at(-1).updateAvailable,true);assert.equal(e.nav.serviceWorker.controller,e.worker);assert.deepEqual(navigations,[]);assert.equal(candidate.listeners.get('statechange').size,0);
  e.registration.waiting=null;assert.equal(e.feature.snapshot().updateAvailable,false);
 });
+test('a document pinned to an older package detects an already activated update without reloading a mission',async()=>{
+ const e=environment(),sent=[],navigations=[];e.win.location={assign:url=>navigations.push(url)};await e.feature.inspection;
+ const active=events({state:'activated',postMessage(message){sent.push(message);e.nav.serviceWorker.dispatch('message',{source:this,data:{type:'DUNE_OFFLINE_PROGRESS',status:'ready',version:'new-package',clientVersion:'old-package',loaded:438,total:438}});}});
+ e.registration.active=active;e.nav.serviceWorker.controller=active;e.registration.waiting=null;
+ e.nav.serviceWorker.dispatch('controllerchange');assert.deepEqual(sent,[{type:'DUNE_OFFLINE_STATUS'}]);
+ assert.equal(e.feature.snapshot().updateAvailable,true);assert.equal(e.feature.snapshot().restartRequired,true);assert.deepEqual(navigations,[],'the UI still chooses settled Home as the safe boundary');
+ e.nav.serviceWorker.dispatch('message',{source:active,data:{type:'DUNE_OFFLINE_PROGRESS',status:'ready',version:'new-package',clientVersion:'new-package'}});
+ assert.equal(e.feature.snapshot().updateAvailable,false);assert.equal(e.feature.snapshot().restartRequired,false);
+});
+test('an incomplete pinned-package status cannot advertise an update before all files are verified',async()=>{
+ const e=environment();await e.feature.inspection;e.nav.serviceWorker.controller=e.worker;
+ e.nav.serviceWorker.dispatch('message',{source:e.worker,data:{type:'DUNE_OFFLINE_PROGRESS',status:'downloading',version:'new-package',clientVersion:'old-package',loaded:4,total:438}});
+ assert.equal(e.feature.snapshot().updateAvailable,false);assert.equal(e.feature.snapshot().restartRequired,false);
+});
 test('the explicit update action navigates to recovery without touching browser saves or caches',()=>{
  const e=environment(),navigations=[];e.win.location={assign:url=>navigations.push(url)};e.win.localStorage={clear(){throw Error('must not clear saves');}};e.win.caches={delete(){throw Error('must not delete caches');}};
- e.feature.updateGame();e.feature.updateGame({automatic:false});e.feature.updateGame({automatic:true});assert.deepEqual(navigations,['./update.html','./update.html','./update.html?auto=1&v=20261106-mobile3']);
+ e.feature.updateGame();e.feature.updateGame({automatic:false});e.feature.updateGame({automatic:true});assert.deepEqual(navigations,['./update.html','./update.html','./update.html?auto=1&v=20261106-mobile4']);
 });
 test('fullscreen request and exit reach native API synchronously during the initiating click',async()=>{
  const e=environment(),calls=[];e.doc.documentElement.requestFullscreen=function(){assert.equal(this,e.doc.documentElement);calls.push('enter');return Promise.resolve();};

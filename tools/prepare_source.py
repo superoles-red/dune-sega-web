@@ -157,9 +157,15 @@ static const uint8_t *em_web_menu_frame(DuneView *v,const CPU *c){
 }
 """
 s=s.replace(needle,helper+needle,1)
-# Only the chunk's immutable pixel conversion changes. The original chunk
-# bounds, shadow CPU copy/sprite traversal, HUD and completed-frame overlays
-# retain their preceding execution and inputs.
+# Widen only the expanded-world presentation buffer to opaque RGBA. The native
+# VDP frame/exports and separate native-menu texture remain their original RGB.
+# Every replacement names the exact world allocation, coordinate or texture;
+# no global pixel-stride substitution can touch an original frame or HUD.
+needle='size_t size=(size_t)p->world_width*p->world_height*3;'
+assert s.count(needle)==1
+s=s.replace(needle,'size_t size=(size_t)p->world_width*p->world_height*4;',1)
+# The original chunk bounds, shadow CPU copy/sprite traversal and all source
+# RGB values are unchanged; the new fourth byte is always opaque255.
 needle='''        for(unsigned y=0;y<bh;++y)for(unsigned x=0;x<bw;++x){
             unsigned a,b;int wx=p->left+bx+x,wy=p->top+by+y;
             dune_view_terrain(c,wx,wy,&a,&b);
@@ -171,7 +177,19 @@ needle='''        for(unsigned y=0;y<bh;++y)for(unsigned x=0;x<bw;++x){
 assert s.count(needle)==1
 s=s.replace(needle,'''        em_web_world_raster_chunk(c,&v->shadow->vdp,
             p->left+(int)bx,p->top+(int)by,bw,bh,
-            sprites+16*320+32,320,v->pixels+((size_t)by*v->width+bx)*3,(size_t)v->width*3);''',1)
+            sprites+16*320+32,320,v->pixels+((size_t)by*v->width+bx)*4,(size_t)v->width*4);''',1)
+needle='memcpy(v->pixels+((unsigned)yy*v->width+(unsigned)xx)*3,c->vdp.frame+at*3,3);'
+assert s.count(needle)==1
+s=s.replace(needle,'{uint8_t *out=v->pixels+((unsigned)yy*v->width+(unsigned)xx)*4;memcpy(out,c->vdp.frame+at*3,3);out[3]=255;}',1)
+needle='SDL_CreateTexture(h->renderer,SDL_PIXELFORMAT_RGB24,SDL_TEXTUREACCESS_STREAMING,d->width,d->height)'
+assert s.count(needle)==1
+s=s.replace(needle,'SDL_CreateTexture(h->renderer,SDL_PIXELFORMAT_RGBA32,SDL_TEXTUREACCESS_STREAMING,d->width,d->height)',1)
+needle='if(!h->dune_world)return sdl_host_error(h,"Dune world texture failed");'
+assert s.count(needle)==1
+s=s.replace(needle,'if(!h->dune_world || SDL_SetTextureBlendMode(h->dune_world,SDL_BLENDMODE_NONE))return sdl_host_error(h,"Dune world texture failed");',1)
+needle='SDL_UpdateTexture(h->dune_world,NULL,d->pixels,d->width*3)'
+assert s.count(needle)==1
+s=s.replace(needle,'SDL_UpdateTexture(h->dune_world,NULL,d->pixels,d->width*4)',1)
 needle='SDL_UpdateTexture(h->texture,NULL,v->frame,v->frame_width*3)'
 assert s.count(needle)==1
 s=s.replace(needle,'SDL_UpdateTexture(h->texture,NULL,em_web_menu_frame(&h->dune_view,c),v->frame_width*3)',1)

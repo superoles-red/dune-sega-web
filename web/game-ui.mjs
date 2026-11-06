@@ -1,15 +1,15 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261106-mobile3';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261106-mobile3';
-import {ScreenTransition} from './screen-transition.mjs?v=20261106-mobile3';
-import {NativeConfirmation} from './confirm-dialog.mjs?v=20261106-mobile3';
+import {BuildingInterface} from './building-ui.mjs?v=20261106-mobile4';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261106-mobile4';
+import {ScreenTransition} from './screen-transition.mjs?v=20261106-mobile4';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261106-mobile4';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261106-mobile3';
+import {LANGUAGES} from './i18n.mjs?v=20261106-mobile4';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
-import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261106-mobile3';
-import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261106-mobile3';
-import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261106-mobile3';
+import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261106-mobile4';
+import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261106-mobile4';
+import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261106-mobile4';
 
 // Original Results loader $26C68 selects ROM table $26C5C by mission % 3.
 // The replacement for the password screen retains that same background.
@@ -428,9 +428,21 @@ export class GameInterface {
    if(s.scene==='building'&&building?.frame?.ready)this.building.update(building);
   }
   if(s.passwordPresentation){this.showCompletedTransition(s);return;}
+  // The original strategic map has already fallen away when its battle
+  // loader begins. Cover that native black interval once, before the first
+  // map palette fade-in; covering only the later unready map would darken
+  // pixels that have just appeared and produce a second visible flash.
+  if(s.scene==='loading'&&s.presentationPhase==='battle_loading'){
+   if(!this.curtain.active){this.cancelGesture();this.curtain.cover({instant:true,loading:false});}
+   this.waitingForFrame=true;return;
+  }
   if(s.battlePresentation){this.artLock=null;this.element.hidden=true;this.demoButton.hidden=true;this.displayed='map';this.waitingForFrame=false;if(this.curtain.active)this.revealAfterPaint=true;return;}
   if(s.scene==='building'&&!this.building.active){if(!this.waitingForFrame&&!this.curtain.active)this.curtain.cover({instant:this.element.hidden});this.waitingForFrame=true;return;}
-  if(!presentationReady(s)&&!SEQUENCE.has(s.scene)){if(!this.waitingForFrame){this.waitingForFrame=true;this.curtain.cover({instant:this.element.hidden,loading:false});}return;}
+  // A fast native loader may finish between polls. If its first observed map
+  // is still unready, mask it immediately rather than fading out map pixels
+  // that have already begun their original fade-in. A ready world above needs
+  // no additional cover at all.
+  if(!presentationReady(s)&&!SEQUENCE.has(s.scene)){if(!this.waitingForFrame){this.waitingForFrame=true;this.curtain.cover({instant:this.element.hidden||s.scene==='map',loading:false});}return;}
   if(s.scene==='password_display'){
    const h=validHouse(s.outcomeHouse)?s.outcomeHouse:validHouse(s.houseId)?s.houseId:this.selectedHouse;
    const m=validMission(s.outcomeMission)?s.outcomeMission:validMission(s.terminalMission)?s.terminalMission:this.store.progress.lastRun?.mission;
@@ -523,8 +535,9 @@ export class GameInterface {
  }
  applyHomeUpdate(){
   if(!this.pendingGameUpdate||this.homeUpdateStarted||this.view!=='home'||this.busy||this.pendingScreen||this.curtain?.active||this.dialog?.active||this.installBusy||this.fileBusy||this.fileImportInProgress||typeof this.platform?.updateGame!=='function')return false;
-  // Only a completely downloaded waiting worker sets this flag. A settled
-  // Home screen has no live mission to interrupt; every other view defers it.
+  if(this.platform.snapshot?.().online===false)return false;
+  // A verified waiting package or an older pinned document sets this flag.
+  // Settled Home has no live mission to interrupt; every other view defers it.
   this.homeUpdateStarted=true;this.pendingGameUpdate=false;
   try{this.platform.updateGame({automatic:true});return true;}
   catch(error){console.warn('Dune automatic update:',error);return false;}
