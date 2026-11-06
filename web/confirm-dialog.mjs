@@ -7,13 +7,14 @@ export class NativeConfirmation {
   this.panel=document.createElement('div');this.panel.className='confirmation-panel';
   this.background=document.createElement('canvas');this.background.className='confirmation-background';this.background.setAttribute('aria-hidden','true');
   this.text=document.createElement('canvas');this.text.className='confirmation-text';this.text.setAttribute('role','heading');this.text.setAttribute('aria-level','2');
+  this.preview=document.createElement('canvas');this.preview.className='confirmation-preview';this.preview.hidden=true;this.preview.setAttribute('role','img');
   this.actions=document.createElement('div');this.actions.className='confirmation-actions';
-  this.panel.append(this.background,this.text,this.actions);this.element.append(this.panel);document.body.append(this.element);
+  this.panel.append(this.background,this.text,this.preview,this.actions);this.element.append(this.panel);document.body.append(this.element);
   this.resize=new ResizeObserver(()=>this.draw());this.resize.observe(this.panel);
  }
- ask({title,lines=[],confirm='CONTINUE',cancel='CANCEL',danger=false,confirmFeedback=true}){
+ ask({title,lines=[],confirm='CONTINUE',cancel='CANCEL',danger=false,confirmFeedback=true,compact=false,preview=null}){
   if(this.active)this.close(false);this.active=true;this.deciding=false;this.choiceVersion=(this.choiceVersion||0)+1;this.element.classList?.remove?.('accepting','cancelling');this.title=title;this.lines=lines;const local=value=>this.art.displayText?.(value)||value;this.text.setAttribute('aria-label',local(title));this.element.setAttribute('aria-label',[title,...lines].map(local).join('. '));
-  this.previousFocus=document.activeElement;this.inert=[];
+  this.compact=compact;this.previewSource=preview;if(this.preview){this.preview.hidden=!preview;this.preview.setAttribute('aria-label',local(title));}this.previousFocus=document.activeElement;this.inert=[];
   for(const id of ['scene-ui','building-screen','native-menu','global-fullscreen','context-actions','demo-launch']){const e=document.getElementById(id);if(e){this.inert.push([e,e.inert]);e.inert=true;}}
   this.actions.replaceChildren();this.views=[];
   for(const [label,value] of [[confirm,true],[cancel,false]]){
@@ -26,7 +27,7 @@ export class NativeConfirmation {
   return new Promise(resolve=>{this.resolve=resolve;});
  }
  close(value=false){
-  if(!this.active)return;this.active=false;this.choiceVersion=(this.choiceVersion||0)+1;this.element.hidden=true;
+  if(!this.active)return;this.active=false;this.choiceVersion=(this.choiceVersion||0)+1;this.element.hidden=true;this.previewSource=null;if(this.preview)this.preview.hidden=true;
   for(const [e,was] of this.inert||[])e.inert=was;for(const v of this.views)v.dispose();this.views=[];
   if(this.previousFocus?.isConnected)this.previousFocus.focus?.({preventScroll:true});
   const resolve=this.resolve;this.resolve=null;resolve?.(value);
@@ -35,9 +36,10 @@ export class NativeConfirmation {
   if(!this.active||!this.art.ready)return;
   const width=Math.max(180,Math.floor(this.panel.clientWidth)),d=Math.min(devicePixelRatio||1,3),scale=width<360?1.5:2,cols=Math.floor((width-40)/(8*scale));
   const rows=[];
-  for(const source of [this.title,'',...this.lines]){const paragraph=this.art.displayText?.(source)||source;let row='';for(const word of paragraph.split(/\s+/)){if(row&&(row.length+1+word.length)>cols){rows.push(row);row='';}row+=(row?' ':'')+word;}rows.push(row);}
+  for(const source of this.compact&&!this.lines.length?[this.title]:[this.title,'',...this.lines]){const paragraph=this.art.displayText?.(source)||source;let row='';for(const word of paragraph.split(/\s+/)){if(row&&(row.length+1+word.length)>cols){rows.push(row);row='';}row+=(row?' ':'')+word;}rows.push(row);}
   const height=32+rows.length*(8*scale+6);this.text.width=width*d;this.text.height=height*d;this.text.style.height=height+'px';
   const ctx=this.text.getContext('2d');ctx.scale(d,d);ctx.imageSmoothingEnabled=false;rows.forEach((line,i)=>this.art.text(ctx,line,width/2,16+i*(8*scale+6),{scale,align:'center',shadow:true}));
+  if(this.previewSource&&this.preview){const source=this.previewSource,vh=this.element.clientHeight||globalThis.innerHeight||600,u=Math.max(1,Math.min(4,Math.floor((width-40)/source.width),Math.floor((vh-height-120)/source.height)));this.preview.width=source.width;this.preview.height=source.height;this.preview.style.width=source.width*u+'px';this.preview.style.height=source.height*u+'px';const image=this.preview.getContext('2d');image.imageSmoothingEnabled=false;image.drawImage(source,0,0);}
   const box=this.panel.getBoundingClientRect();this.background.width=Math.ceil(width*d);this.background.height=Math.ceil(box.height*d);const bg=this.background.getContext('2d');bg.scale(d,d);bg.imageSmoothingEnabled=false;this.art.frame(bg,'dialog-frame',0,0,width,box.height,{group:'screen',unit:2,fill:true});
  }
 }

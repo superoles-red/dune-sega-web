@@ -8,7 +8,7 @@
 <progress id="progress" aria-label="Download progress"></progress>
 <button id="restart" hidden>RESTART GAME</button>
 </main><script type="module">
-import {OfflineUpdater} from './update-game.mjs?v=20261106-target2';
+import {OfflineUpdater} from './update-game.mjs?v=20261106-shop1';
 const automatic=new URL(location.href).searchParams.get('auto')==='1';
 let ru=false;try{ru=localStorage.getItem('dune-sega-language-v1')==='ru';}catch{}
 const words=ru?{updating:'ОБНОВЛЕНИЕ…',ready:'ОБНОВЛЕНИЕ ГОТОВО',applying:'ПЕРЕЗАПУСК…',failed:'НЕ УДАЛОСЬ ОБНОВИТЬ. ПОПРОБУЙТЕ ЕЩЁ РАЗ.',restart:'ПЕРЕЗАПУСТИТЬ ИГРУ',retry:'ПОВТОРИТЬ'}:{updating:'UPDATING…',ready:'UPDATE READY',applying:'RESTARTING…',failed:'COULD NOT UPDATE. PLEASE TRY AGAIN.',restart:'RESTART GAME',retry:'TRY AGAIN'};

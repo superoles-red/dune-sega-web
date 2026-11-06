@@ -1,15 +1,15 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261106-target2';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261106-target2';
-import {ScreenTransition} from './screen-transition.mjs?v=20261106-target2';
-import {NativeConfirmation} from './confirm-dialog.mjs?v=20261106-target2';
+import {BuildingInterface} from './building-ui.mjs?v=20261106-shop1';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261106-shop1';
+import {ScreenTransition} from './screen-transition.mjs?v=20261106-shop1';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261106-shop1';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261106-target2';
+import {LANGUAGES} from './i18n.mjs?v=20261106-shop1';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
-import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261106-target2';
-import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261106-target2';
-import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261106-target2';
+import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261106-shop1';
+import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261106-shop1';
+import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261106-shop1';
 
 // Original Results loader $26C68 selects ROM table $26C5C by mission % 3.
 // The replacement for the password screen retains that same background.
@@ -27,11 +27,11 @@ const ROUTE={main:0,options:1,tutorial:2,pause:3,map:4};
 const ready=s=>s?.sceneReady===true;
 
 export class GameInterface {
- constructor({art,Module,storage,startEngine,isReady,resumeAudio,saveCurrent,loadPayload,tell,platform,cancelGesture=()=>{}}){
+ constructor({art,Module,storage,startEngine,isReady,resumeAudio,saveCurrent,loadPayload,tell,platform,cancelGesture=()=>{},resolvePointerKind=kind=>kind}){
   Object.assign(this,{art,Module,startEngine,isReady,resumeAudio,saveCurrent,loadPayload,tell,platform,cancelGesture});
   this.store=new CampaignStore(storage);this.frame=new LiveNativeFrame();this.textFrame=new LiveNativeFrame();this.titleFrame=document.createElement('canvas');this.homeFrame=document.createElement('canvas');this.homeFrameValid=false;this.creditsUnlocked=false;this.state={};this.visibleNative={};this.view='home';this.selectedHouse=this.store.progress.lastHouse;
   this.bound=[];this.lastOutcome=0;this.activeRun=null;this.lastNativeKey='';this.lastText='';this.paintKey='';this.busy=false;this.nativeBusy=false;this.frontOrigin=null;this.sequence=0;this.optionViews=new Map();this.pendingScreen=null;this.demoMode=false;this.trainingMode=false;this.coldHomeVideo=true;this.homeVideoStarted=false;this.homeVideoProbeRevision=-1;this.displayed='home';this.waitingForFrame=false;this.updateEpoch=0;
-  this.curtain=new ScreenTransition(art);this.dialog=new NativeConfirmation({art,feedback:()=>this.uiSound()});this.building=new BuildingInterface({art,Module,resumeAudio});
+  this.curtain=new ScreenTransition(art);this.dialog=new NativeConfirmation({art,feedback:()=>this.uiSound()});this.building=new BuildingInterface({art,Module,resumeAudio,confirmation:this.dialog,resolvePointerKind});
   this.element=document.createElement('section');this.element.id='scene-ui';this.element.className='native-screen';this.element.setAttribute('aria-label','Dune — меню');
   this.backdrop=document.createElement('canvas');this.backdrop.className='scene-backdrop';this.backdrop.setAttribute('aria-hidden','true');this.shell=document.createElement('div');this.shell.className='scene-shell';
   const head=document.createElement('header');head.className='scene-head';this.caption=document.createElement('canvas');this.caption.className='scene-caption';this.caption.setAttribute('role','heading');this.caption.setAttribute('aria-level','1');head.append(this.caption);
@@ -417,7 +417,8 @@ export class GameInterface {
   if(!this.demoMode&&!this.trainingMode&&s.activeRunArmed&&validHouse(s.activeRunHouse)&&validMission(s.activeRunMission)){const h=s.activeRunHouse,m=s.activeRunMission;if(this.resuming){this.store.adoptResume(h,m);this.resuming=false;}if(canStart(this.store.progress,h,m))this.activeRun={house:h,mission:m};}
   const buildingReady=this.view==='native'&&s.scene==='building'&&ready(s)&&!this.pendingScreen&&!!building?.frame?.ready;
   if(this.handleBuildingTransition(s,building))return;
-  this.building.update(buildingReady?building:{active:false});
+  const buildingRefresh=this.view==='native'&&s.scene==='building'&&!this.pendingScreen&&this.building.active&&building?.active;
+  this.building.update(buildingReady?building:buildingRefresh?{...building,frame:{...building.frame,ready:false}}:{active:false});
   if(this.view!=='native'){this.demoButton.hidden=this.view!=='home';return;}
   const p=this.pendingScreen;if(p){try{this.tryPending();}catch(e){p.reject?.(e);if(p.training)this.trainingMode=false;if(p.demo)this.demoMode=p.previousDemo;this.tell(e.message);this.pendingScreen=null;this.busy=false;this.nativeBusy=false;this.showHome();this.curtain.reveal();return;}
    if(p.kind==='frontend'&&!this.syncFrontendPreferences(p,s))return;
@@ -442,7 +443,7 @@ export class GameInterface {
   // is still unready, mask it immediately rather than fading out map pixels
   // that have already begun their original fade-in. A ready world above needs
   // no additional cover at all.
-  if(!presentationReady(s)&&!SEQUENCE.has(s.scene)){if(!this.waitingForFrame){this.waitingForFrame=true;this.curtain.cover({instant:this.element.hidden||s.scene==='map',loading:false});}return;}
+  if(!presentationReady(s)&&!SEQUENCE.has(s.scene)&&!(s.scene==='building'&&this.building.active)){if(!this.waitingForFrame){this.waitingForFrame=true;this.curtain.cover({instant:this.element.hidden||s.scene==='map',loading:false});}return;}
   if(s.scene==='password_display'){
    const h=validHouse(s.outcomeHouse)?s.outcomeHouse:validHouse(s.houseId)?s.houseId:this.selectedHouse;
    const m=validMission(s.outcomeMission)?s.outcomeMission:validMission(s.terminalMission)?s.terminalMission:this.store.progress.lastRun?.mission;

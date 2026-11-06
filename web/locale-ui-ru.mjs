@@ -66,7 +66,7 @@ export const UI_RU={
  'ARRAKIS DESCRIPTIONS':'СПРАВОЧНИК АРРАКИСА','ARRAKIS REFERENCE':'СПРАВОЧНИК АРРАКИСА',
  'NEXT PAGE':'СЛЕДУЮЩАЯ СТРАНИЦА','PREVIOUS PAGE':'ПРЕДЫДУЩАЯ СТРАНИЦА',
  'PREV':'НАЗАД','NEXT':'ДАЛЕЕ','CANCEL':'ОТМЕНА','START':'НАЧАТЬ',
- 'PLACE':'ПОСТАВИТЬ','ATTACK':'АТАКА',
+ 'PLACE':'ПОСТАВИТЬ','ATTACK':'АТАКА','BUY':'КУПИТЬ',
  'MENU':'МЕНЮ','CLEAR':'СБРОС','ACTION':'ДЕЙСТВИЕ','CONFIRM':'ПОДТВЕРДИТЬ',
  'ARM':'ВЗВЕСТИ','DETONATE':'ПОДОРВАТЬ','DEPLOY':'РАЗВЕРНУТЬ','REPEAT':'ПОВТОРИТЬ',
  'CHOOSE YOUR HOUSE':'ВЫБЕРИТЕ ДОМ','YOUR HOUSE':'ВАШ ДОМ',

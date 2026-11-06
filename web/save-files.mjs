@@ -10,11 +10,12 @@ export const MAX_NATIVE_SAVE_BYTES=256*1024;
 export const NATIVE_SAVE_BASE_BYTES=140056;
 export const SAVE_COMPATIBILITY=Object.freeze({
  game:'dune-sega-usa',nativeFormat:'DSAV',nativeVersion:2,nativeBaseBytes:NATIVE_SAVE_BASE_BYTES,
- engineSha256:'3dbc9ad2ab046948add849cfae6ddf9d84cc31d9a7212b406fe5bd08de42f765',
+ engineSha256:'b1f1e88198c7d4e7b3a1d444227fdc380e928da749f51f7ddc45d38b332437fa',
 });
 // Verified builds share the exact DSAV v2 ABI. Browser input adapters and
 // presentation are outside the native save payload; old exports remain valid.
 const compatibleEngineHashes=new Set([SAVE_COMPATIBILITY.engineSha256,
+ '3dbc9ad2ab046948add849cfae6ddf9d84cc31d9a7212b406fe5bd08de42f765',
  '5156b9ee619e6a2c864d908f712f37e912cab713971d67f7fa34303a55e2e03f',
  'e43b28261eb6b9f05c29641cd44b752755e9ef0ffd44c5387e6adbc92ff6ef2e',
  'f4a8cb4fc34845f17652b449e11401c34cfeba6900d76fa16e926f63c0337938',

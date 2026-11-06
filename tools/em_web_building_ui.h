@@ -107,21 +107,49 @@ static unsigned em_bui_upgrade_monitor_record(const CPU *c){
     unsigned record=em_bui_rom_long(c,(building?0x882a4:0x8f1d0)+id*4);
     return record&&record!=0x95cd8&&record+202<c->rom_size?record:0;
 }
+/* The original $8306/$905E loaders choose the monitor resource independently
+ * of its uploaded VRAM scratch bytes. Mirror only that read-only choice: the
+ * product boundary previews the actual next Upgrade ID, EXIT/FIX show the
+ * producer and STOP shows the producer's existing product. BFA1 is the native
+ * displayed item, so a queued browser selection cannot change this early. */
+static unsigned em_bui_monitor_record(const CPU *c){
+    int context=dune_mouse_context(c),building=0,id;
+    if(context==2){
+        building=!!c->ram[0xc614];id=(int8_t)c->ram[0xbfa1];
+        if(id>=0&&dune_long(c,0xc61c)&&id==(int)c->ram[0xc618])id=c->ram[0xbfa0];
+        if(id<=-4)id+=2;
+        if(id<0){building=1;if(id>=-2)id=c->ram[0xbf85];else{id=c->ram[0xbfb3];building=!!c->ram[0xc614];}}
+    }else if(context==3){
+        unsigned col=dune_word(c,0xbfc8),row=dune_word(c,0xbfca);if(col>=3||row>=4)return 0;
+        id=em_web_menu_select_item(c,3,(int)col,(int)row);
+    }else return 0;
+    /* Starport28..32 have original monitor records after the unit table. */
+    if(id<0||id>=(building?19:33))return 0;
+    unsigned record=em_bui_rom_long(c,(building?0x882a4:0x8f1d0)+(unsigned)id*4);
+    return record&&record!=0x95cd8&&record+202<c->rom_size?record:0;
+}
 static const uint8_t *em_bui_frame_rgb_for(const CPU *c){
-    static uint8_t frame[320*224*3],patterns[4096];static unsigned cached_record,cached_length;
+    static uint8_t frame[320*224*3],patterns[4096],monitor[96*56*3];static uint16_t cached_cram[16];static unsigned cached_record,cached_length;static const uint8_t*cached_rom;static int monitor_valid;
     if(!em_bui_presentation_ready(c))return NULL;
-    unsigned record=em_bui_upgrade_monitor_record(c);if(!record)return c->vdp.frame;
-    if(record!=cached_record){cached_length=em_bui_monitor_patterns(c,record,patterns);cached_record=record;}if(!cached_length)return c->vdp.frame;
-    /* The native Upgrade/Infantry frame contains 180 stale leading VRAM bytes
-     * in the captured original runtime. Reassemble only its monitor rectangle
-     * from its actual ROM patterns/map and CURRENT native CRAM0. Every other
-     * frame pixel, sprite phase and gameplay byte remains unchanged. */
+    unsigned record=em_bui_monitor_record(c);if(!record)return c->vdp.frame;
+    if(record!=cached_record||cached_rom!=c->rom){cached_length=em_bui_monitor_patterns(c,record,patterns);cached_record=record;cached_rom=c->rom;monitor_valid=0;}if(!cached_length)return c->vdp.frame;
+    /* Shared menu scratch uploads can leave stale leading portrait patterns;
+     * Refinery also declares2700 upload bytes for its2720-byte LCW resource.
+     * Reassemble only a proven original monitor map from its complete actual
+     * ROM resource and CURRENT native CRAM0. Every other frame pixel, sprite
+     * phase and gameplay byte remains unchanged. A correct completed picture
+     * needs no copy; checking VRAM alone misses transparent-color0 chrome bleed. */
     for(unsigned ty=0;ty<7;++ty)for(unsigned tx=0;tx<12;++tx){unsigned expected=(em_bui_rom_word(c,record+32+(ty*12+tx)*2)+0x380)&0x9fff,sx,sy,x=160+tx*8,y=40+ty*8,at=vdp_plane_address(&c->vdp,0,x,y,&sx,&sy);if(vdp_window_at(&c->vdp,x,y))at=((c->vdp.registers[3]&0x3c)<<10)+((y/8)*64+x/8)*2;if(vdp_word(&c->vdp,at)!=expected)return c->vdp.frame;}
-    memcpy(frame,c->vdp.frame,sizeof frame);
-    for(unsigned y=0;y<56;++y)for(unsigned x=0;x<96;++x){unsigned entry=em_bui_rom_word(c,record+32+((y/8)*12+x/8)*2),xx=entry&0x800?7-(x&7):x&7,yy=entry&0x1000?7-(y&7):y&7,at=(entry&2047)*32+yy*4+xx/2;if(at>=cached_length)return c->vdp.frame;
-        unsigned byte=patterns[at],index=xx&1?byte&15:byte>>4,color=c->vdp.cram[index],to=((y+40)*320+x+160)*3;
-        frame[to]=vdp_channel((color>>1)&7,1);frame[to+1]=vdp_channel((color>>5)&7,1);frame[to+2]=vdp_channel((color>>9)&7,1);
-    }return frame;
+    if(!monitor_valid||memcmp(cached_cram,c->vdp.cram,sizeof cached_cram)){
+        for(unsigned y=0;y<56;++y)for(unsigned x=0;x<96;++x){unsigned entry=em_bui_rom_word(c,record+32+((y/8)*12+x/8)*2),xx=entry&0x800?7-(x&7):x&7,yy=entry&0x1000?7-(y&7):y&7,at=(entry&2047)*32+yy*4+xx/2;if(at>=cached_length)return c->vdp.frame;
+            unsigned byte=patterns[at],index=xx&1?byte&15:byte>>4,color=c->vdp.cram[index],to=(y*96+x)*3;
+            monitor[to]=vdp_channel((color>>1)&7,1);monitor[to+1]=vdp_channel((color>>5)&7,1);monitor[to+2]=vdp_channel((color>>9)&7,1);
+        }memcpy(cached_cram,c->vdp.cram,sizeof cached_cram);monitor_valid=1;
+    }
+    int different=0;for(unsigned y=0;y<56&&!different;++y)different=memcmp(c->vdp.frame+((y+40)*320+160)*3,monitor+y*96*3,96*3)!=0;
+    if(!different)return c->vdp.frame;
+    memcpy(frame,c->vdp.frame,sizeof frame);for(unsigned y=0;y<56;++y)memcpy(frame+((y+40)*320+160)*3,monitor+y*96*3,96*3);
+    return frame;
 }
 /* The outer transition may freeze after the native callback has left its
  * building context. Preserve the actually published corrected monitor frame,

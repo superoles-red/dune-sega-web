@@ -1,8 +1,8 @@
 {
   "date": "2026-11-06",
   "sdk": "Emscripten 3.1.74",
-  "wasmBytes": 5270671,
-  "sha256": "3dbc9ad2ab046948add849cfae6ddf9d84cc31d9a7212b406fe5bd08de42f765",
+  "wasmBytes": 5271072,
+  "sha256": "b1f1e88198c7d4e7b3a1d444227fdc380e928da749f51f7ddc45d38b332437fa",
   "loaderSha256": "dc5faa08a60a1eb4298bf05fdb6465a1a8cc16c2eed7a9ded84ebb4e3cb535f6",
   "noGroupExports": true,
   "audioLoaderBridgeProof": {
@@ -90,7 +90,7 @@
     "dune_save_state_to_buffer"
   ],
   "adapterSha256": {
-    "em_web_building_ui.h": "5955801d6443705cd18219ba2377b7972852da6e7abc7dcccfbc6949eae1a3b5",
+    "em_web_building_ui.h": "75a225de14d65df73a1ffd6a91f336573e249a4dba86b4f0a871003f370a9819",
     "em_web_camera.h": "cecd85a1370e6218308edd70d50b101ccbac8b089f675ffe72c51b2579e11726",
     "em_web_campaign.h": "d67ad7a0fa7e95e2e0fc967f42482b478a8eb99a48c9ab6726cb6a408ad7cd3c",
     "em_web_frame.h": "78f8e0eb045edce055cdf485ac897110cf5dda88ab90e0430185f1308356ca13",

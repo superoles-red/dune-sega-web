@@ -114,3 +114,18 @@ patterns, tile mappings, flips, transparent color0 and source CRAM palettes.
 Every real portrait's decoded bytes were compared with original routine$0C32.
 Selected/state/house palettes and console effects belong to the live frame;
 the PNG inventory does not replace them with approximations.
+
+## Complete original monitor presentation
+
+Since 20261106-shop1, the read-only RGB getter reconstructs the displayed 96x56
+monitor from the complete original ROM resource when shared VRAM or color0
+transparency leaves stale pixels. Original $8306/$905E resource choice, current
+CRAM0 and a matching live name-table guard determine the result. Only the
+monitor pixels may differ; all CPU/RAM/VRAM state remains byte-identical.
+The cached resource and converted picture avoid repeated decoding.
+
+Modern product cells now open a shared native-art BUY/CANCEL dialog with name and live native item icon
+on a second phone press after the original first preview; desktop hover previews
+and a click opens it. Buy on the left revalidates the current
+producer and preview before submitting one original second checked tap; Cancel
+on the right spends nothing. See [release details](release-20261106-shop.md).
