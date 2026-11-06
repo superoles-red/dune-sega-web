@@ -3,7 +3,8 @@
 export class OfflineUpdater {
  constructor({nav=globalThis.navigator,win=globalThis.window,onState=()=>{}}={}){Object.assign(this,{nav,win,onState});}
  state(status,extra={}){this.onState({status,...extra});}
- async waitForWorker(worker,timeoutMs=180000){
+ // Three bounded large-asset attempts may take 120s each on a slow connection.
+ async waitForWorker(worker,timeoutMs=450000){
   if(['installed','activating','activated'].includes(worker.state))return;
   return new Promise((resolve,reject)=>{
    const finish=error=>{clearTimeout(timer);worker.removeEventListener('statechange',check);error?reject(error):resolve();};

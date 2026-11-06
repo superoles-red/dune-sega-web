@@ -61,3 +61,19 @@ test('an installing candidate is awaited without claiming an early ready broadca
  const operation=f.updater.prepare();await Promise.resolve();await Promise.resolve();assert(!f.states.some(s=>s.status==='ready'));
  f.worker.state='installed';f.worker.dispatch('statechange');await operation;assert.equal(f.states.at(-1).status,'ready');
 });
+
+test('recovery allows a slow large-file retry beyond the old three-minute host limit and still has a finite deadline',async t=>{
+ let now=0,id=0;const timers=new Map();
+ t.mock.method(globalThis,'setTimeout',(fn,delay)=>{const key=++id;timers.set(key,{fn,due:now+delay,delay});return key;});
+ t.mock.method(globalThis,'clearTimeout',key=>timers.delete(key));
+ const advance=ms=>{now+=ms;for(const [key,timer]of [...timers])if(timer.due<=now){timers.delete(key);timer.fn();}};
+ const slow=fixture();slow.worker.state='installing';let settled=false;
+ const waiting=slow.updater.waitForWorker(slow.worker);waiting.then(()=>settled=true,()=>settled=true);
+ assert.equal([...timers.values()][0].delay,450000);
+ advance(180001);await Promise.resolve();assert.equal(settled,false,'a valid large-file retry is not cancelled by the former180s host deadline');
+ assert(!slow.states.some(s=>s.status==='ready'));
+ slow.worker.state='installed';slow.worker.dispatch('statechange');await waiting;assert.equal(settled,true);assert.equal(timers.size,0);
+ const hung=fixture();hung.worker.state='installing';const pending=hung.updater.waitForWorker(hung.worker),rejected=assert.rejects(pending,/download-timeout/);
+ advance(449999);await Promise.resolve();assert.equal(timers.size,1);advance(1);await rejected;assert.equal(timers.size,0);
+ assert(!hung.states.some(s=>s.status==='ready'),'a timed-out worker is never announced as a ready package');
+});

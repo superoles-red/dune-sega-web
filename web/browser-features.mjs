@@ -59,7 +59,7 @@ export class BrowserFeatures {
   this.updateCheck=Promise.resolve().then(()=>r.update()).catch(()=>{/* Keep the verified offline copy when the network fails. */}).finally(()=>{this.updateCheck=null;this.emit();});
   return this.updateCheck;
  }
- updateGame({automatic=false}={}){this.win.location.assign(automatic?'./update.html?auto=1&v=20261106-shop1':'./update.html');}
+ updateGame({automatic=false}={}){this.win.location.assign(automatic?'./update.html?auto=1&v=20261106-shop2':'./update.html');}
  async fullscreen(){
   // Invoke the actual API synchronously in the click's user activation.
   if(this.doc.fullscreenElement||this.doc.webkitFullscreenElement){const exit=this.doc.exitFullscreen||this.doc.webkitExitFullscreen;await exit?.call(this.doc);return 'exited';}
@@ -88,7 +88,8 @@ export class BrowserFeatures {
   if(r.update)try{await r.update();}catch(error){if(!r.active)throw error;}
   const worker=r.installing||r.waiting||r.active;if(!worker)throw Error('offline-unavailable');this.targetWorker=worker;
   if(worker.state==='installing')await new Promise((resolve,reject)=>{
-   const timeout=setTimeout(()=>{worker.removeEventListener('statechange',check);reject(Error('offline-timeout'));},180000);
+   // Leave room for all three 120s large-file attempts plus package overhead.
+   const timeout=setTimeout(()=>{worker.removeEventListener('statechange',check);reject(Error('offline-timeout'));},450000);
    const check=()=>{if(worker.state==='redundant'){clearTimeout(timeout);worker.removeEventListener('statechange',check);reject(Error('offline-download-failed'));}else if(['installed','activating','activated'].includes(worker.state)){clearTimeout(timeout);worker.removeEventListener('statechange',check);resolve();}};
    worker.addEventListener('statechange',check);check();
   });

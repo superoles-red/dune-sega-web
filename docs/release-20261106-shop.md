@@ -1,6 +1,6 @@
 # Original monitor artwork, purchase confirmation and phone panning
 
-Runtime cache version: `20261106-shop1`.
+Runtime cache version: `20261106-shop2`.
 
 Building and unit monitor illustrations now use the complete original ROM
 patterns, tile mapping, flips and current native CRAM0 palette. Shared VRAM
@@ -62,3 +62,21 @@ viewport: Cancel retains credits/product and zero purchase confirmations;
 Buy produces exactly one original Windtrap confirmation and 300-credit payment.
 A simulated-touch 130 px swipe produced an active native-held coast, finite stop
 and no selection/orders. Physical phone feel still needs a user recheck.
+
+## iPhone input follow-up
+
+A real pointer/touch activation owns the following grid click. Its touch or
+pen type must take priority over Safari's compatibility click metadata,
+including detail 0, absent pointerType or a mouse-labelled compatibility click.
+A trusted click with unknown input defaults to the two-press phone workflow;
+keyboard activation is treated separately. This leaves desktop mouse hovering
+and its one-click confirmation intact. No native core rebuild or gameplay
+change is involved.
+
+Offline downloads retain the 30-second deadline for small files and allow up to
+120 seconds per attempt for files of at least 1 MiB, including the 5.27 MB engine.
+The existing three-attempt limit, SHA-256/length verification and complete-
+package activation remain intact; host update waits allow 450 seconds so they
+do not abort a still-valid large-file retry. A failed download retains the
+previous complete package and saved data. These are failure deadlines, not
+added waits on successful downloads.

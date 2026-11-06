@@ -161,3 +161,39 @@ test('the modal waits for fresh native icon RGB and never crops a stale or diffe
  h.setNative(selected);h.ui.update(selected);assert.equal(h.dialog.active,true);assert.equal(h.calls.raster.at(-1),17);assert.deepEqual(h.calls.icons.at(-1).rect,{x:32,y:72,w:32,h:24});assert.deepEqual(h.calls.icons.at(-1).destination,[0,0,32,24]);assert.notEqual(h.dialog.previewSource,h.ui.frame.canvas,'the original32x24 grid crop is an independent snapshot');
  h.dialog.close(false);await Promise.resolve();const image=h.dialog.preview;h.dialog.ask({title:'RETURN TO MAIN MENU?',confirm:'MAIN MENU'});assert.equal(image.hidden,true);assert.equal(h.dialog.previewSource,null,'ordinary confirmations retain their prior title/actions-only layout');
 }));
+
+for(const variant of [
+ {name:'iPhone trusted MouseEvent detail0',start:'pointerdown',kind:'touch',click:{detail:0,isTrusted:true}},
+ {name:'iPhone compatibility pointerTypeMouse/detail0',start:'pointerdown',kind:'touch',click:{detail:0,pointerType:'mouse',isTrusted:true}},
+ {name:'iPhone compatibility pointerTypeMouse/detail1',start:'pointerdown',kind:'touch',click:{detail:1,pointerType:'mouse',isTrusted:true}},
+ {name:'Safari touchstart fallback without PointerEvents',start:'touchstart',click:{detail:0,isTrusted:true}},
+ {name:'Safari touchstart plus compatibility mouse events',start:'touchstart',click:{detail:1,pointerType:'mouse',isTrusted:true},compatibility:true},
+ {name:'pen activation plus compatibility MouseEvent',start:'pointerdown',kind:'pen',click:{detail:0,pointerType:'mouse',isTrusted:true},compatibility:true},
+])test(variant.name+' browses on first physical press and opens on the next physical press only',()=>dom(async()=>{
+ const h=fixture(),button=h.ui.cells[3].button;
+ const press=()=>{button.listeners.get(variant.start)({pointerType:variant.kind});if(variant.compatibility){button.listeners.get('pointerenter')({pointerType:'mouse'});button.listeners.get('pointerdown')({pointerType:'mouse'});button.listeners.get('mousedown')({});}button.click({button:0,...variant.click});};
+ press();assert.equal(h.calls.tap.length,1);assert.equal(h.ui.purchaseRequest.confirmRequested,false);h.preview();assert.equal(h.dialog.active,false,'detail0/compatibility metadata cannot turn a tap into keyboard confirmation');
+ button.listeners.get('mousedown')({});button.click({button:0,pointerType:'mouse',detail:1,isTrusted:true});
+ button.listeners.get('mousedown')({sourceCapabilities:{firesTouchEvents:true}});button.click({button:0,detail:0,isTrusted:false});
+ assert.equal(h.dialog.active,false,'compatibility and synthetic duplicate clicks without a new real touch are ignored');assert.equal(h.ui.purchaseRequest.confirmRequested,false);assert.equal(h.calls.tap.length,1);
+ press();assert.equal(h.dialog.active,true,'a genuine second touch/start opens immediately, with no extra timing wait');assert.equal(h.calls.tap.length,1,'the popup itself still does not pay');
+}));
+
+test('unknown trusted detail0 clicks are safely mobile, whereas synthetic keyboard activation opens once',()=>dom(async()=>{
+ const h=fixture();h.ui.cells[3].button.click({detail:0,isTrusted:true});h.preview();assert.equal(h.dialog.active,false);
+ h.ui.cells[3].button.click({detail:0,isTrusted:true});assert.equal(h.dialog.active,true);h.dialog.close(false);await Promise.resolve();
+ const keyboard=fixture();keyboard.ui.cells[3].button.click({detail:0,isTrusted:false});keyboard.preview();assert.equal(keyboard.dialog.active,true);assert.equal(keyboard.calls.tap.length,1);
+}));
+
+test('a physical mouse owns a detail0 MouseEvent on desktop and activation records stay local to each cell',()=>dom(async()=>{
+ const h=fixture(withSecondProduct());h.ui.cells[3].button.listeners.get('pointerdown')({pointerType:'touch'});
+ const mouse=h.ui.cells[4].button;mouse.listeners.get('pointerdown')({pointerType:'mouse'});mouse.click({button:0,detail:0,isTrusted:true});h.preview(4);
+ assert.equal(h.dialog.active,true);assert.equal(h.dialog.title,'REFINERY');assert.deepEqual(h.calls.tap,[[2,0xff4eb8,1,1]]);
+ const hybrid=fixture(),same=hybrid.ui.cells[3].button;same.listeners.get('touchstart')({});same.click({detail:0,isTrusted:true});hybrid.preview();assert.equal(hybrid.dialog.active,false);
+ same.listeners.get('pointerdown')({pointerType:'mouse'});same.click({button:0,detail:0,isTrusted:true});assert.equal(hybrid.dialog.active,true,'a genuine new mouse pointerdown is not a compatibility duplicate');
+}));
+
+test('cancelled touch activation cannot misclassify a later unknown trusted click as keyboard input',()=>dom(async()=>{
+ const h=fixture(),button=h.ui.cells[3].button;button.listeners.get('pointerdown')({pointerType:'touch'});button.listeners.get('pointercancel')({});button.click({detail:0,isTrusted:true});h.preview();assert.equal(h.dialog.active,false);
+ button.listeners.get('touchstart')({});button.click({detail:0,isTrusted:true});assert.equal(h.dialog.active,true);
+}));

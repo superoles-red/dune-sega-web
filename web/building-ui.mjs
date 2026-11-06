@@ -1,6 +1,6 @@
 import {nativeSizeForRatio} from './base-prototype/layout.mjs';
 import {buildingLayoutFor,occupiedBuildingRows} from './building-layout.mjs';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261106-shop1';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261106-shop2';
 
 export class BuildingInterface {
  constructor({art,Module,resumeAudio,confirmation=null,resolvePointerKind=kind=>kind}){
@@ -32,7 +32,28 @@ export class BuildingInterface {
  }
  buildCells(){
   this.grid.replaceChildren();this.cells=[];const expectedContext=this.state.context,expectedProducer=this.state.producer.pointer;
-  for(const c of this.state.cells.slice(0,occupiedBuildingRows(this.state)*3)){const element=document.createElement(c.clickable?'button':'div');element.className='building-cell'+(c.clickable?'':' empty-cell');element.dataset.cell=String(c.index);if(c.clickable){element.type='button';const can=document.createElement('canvas');can.setAttribute('aria-hidden','true');element.append(can);element.addEventListener('pointerdown',e=>{this.lastPointerKind=this.resolvePointerKind?.(e.pointerType||'touch')||e.pointerType||'touch';});for(const entered of [true,false])element.addEventListener(entered?'pointerenter':'pointerleave',e=>{const kind=this.resolvePointerKind?.(e.pointerType)||e.pointerType;if(kind==='mouse')this.hoverCell(c.index,expectedContext,expectedProducer,c.raw,entered);});element.addEventListener('click',e=>{e.stopPropagation();if(e.button!==undefined&&e.button!==0)return;const kind=e.detail===0&&!e.pointerType?'keyboard':this.resolvePointerKind?.(e.pointerType||this.lastPointerKind||'touch')||e.pointerType||this.lastPointerKind||'touch';this.activateCell(c.index,expectedContext,expectedProducer,c.raw,kind);});this.cells.push({element,button:element,canvas:can,context:can.getContext('2d')});}else{element.setAttribute('aria-hidden','true');this.cells.push({element});}this.grid.append(element);}
+  for(const c of this.state.cells.slice(0,occupiedBuildingRows(this.state)*3)){const element=document.createElement(c.clickable?'button':'div');element.className='building-cell'+(c.clickable?'':' empty-cell');element.dataset.cell=String(c.index);if(c.clickable){element.type='button';const can=document.createElement('canvas');can.setAttribute('aria-hidden','true');element.append(can);this.bindCellInput(element,c,expectedContext,expectedProducer);this.cells.push({element,button:element,canvas:can,context:can.getContext('2d')});}else{element.setAttribute('aria-hidden','true');this.cells.push({element});}this.grid.append(element);}
+ }
+ bindCellInput(element,cell,context,producer){
+  let activation=null,consumedTouch=null;const now=()=>this.previewNow?.()??performance.now(),resolve=kind=>this.resolvePointerKind?.(kind)||kind;
+  const remember=(kind,pointer=false)=>{const time=now();kind=resolve(kind);if(kind==='mouse'&&(activation&&activation.kind!=='mouse'&&time-activation.time<=2000||!pointer&&consumedTouch&&time-consumedTouch.time<=1000))return;if(pointer&&kind==='mouse')consumedTouch=null;activation={kind,time};};
+  element.addEventListener('pointerdown',e=>remember(e.pointerType||'touch',true));
+  element.addEventListener('touchstart',()=>remember('touch'),{passive:true});
+  element.addEventListener('mousedown',e=>{if(e.sourceCapabilities?.firesTouchEvents){if(!consumedTouch||now()-consumedTouch.time>1000)remember('touch');}else remember('mouse');});
+  for(const name of ['pointercancel','touchcancel'])element.addEventListener(name,()=>{activation=null;});
+  for(const entered of [true,false])element.addEventListener(entered?'pointerenter':'pointerleave',e=>{const physicalMobile=activation&&activation.kind!=='mouse'&&now()-activation.time<=2000;if(resolve(e.pointerType)==='mouse'&&!physicalMobile)this.hoverCell(cell.index,context,producer,cell.raw,entered);});
+  element.addEventListener('click',e=>{
+   e.stopPropagation();const time=now(),physical=activation&&time-activation.time<=2000?activation.kind:null;activation=null;if(e.button!==undefined&&e.button!==0)return;
+   // Ignore a compatibility/synthetic repeat of an already consumed touch.
+   // A new real down/start bypasses this guard immediately; taps are not delayed.
+   if(!physical&&consumedTouch&&time-consumedTouch.time<=1000)return;
+   // iOS may emit a trusted MouseEvent with detail0 or pointerType=mouse for
+   // a real tap. Its preceding touch/pointer activation owns this click.
+   // detail0 alone is never evidence that the player used the keyboard.
+   const kind=physical||(e.isTrusted===false?'keyboard':resolve(e.pointerType||'touch'));
+   if(physical&&physical!=='mouse'&&physical!=='keyboard')consumedTouch={time};else if(physical==='mouse')consumedTouch=null;
+   this.activateCell(cell.index,context,producer,cell.raw,kind);
+  });
  }
  purchaseIdentity(state,cell){return {context:state.context,producer:state.producer.pointer,producerId:state.producer.id,producerType:state.producer.type,producerHouse:state.producer.house,index:cell.index,col:cell.col,row:cell.row,raw:cell.raw,kind:cell.kind,key:cell.key};}
  purchaseCell(request,state=this.state,armed=false){
@@ -85,7 +106,7 @@ export class BuildingInterface {
   const request=this.purchaseIdentity(s,c);
   // The first press browses native information; a second same-item press
   // requests the popup, never the payment A (even before preview publication).
-  if(this.purchaseRequest&&this.purchaseCell(this.purchaseRequest,s)&&this.purchaseRequest.index===index&&!(kind==='touch'&&this.purchaseRequest.fromHover)){this.purchaseRequest.confirmRequested=true;this.purchaseRequest.fromHover=false;this.syncPurchase();return;}
+  if(this.purchaseRequest&&this.purchaseCell(this.purchaseRequest,s)&&this.purchaseRequest.index===index&&!(!['mouse','keyboard'].includes(kind)&&this.purchaseRequest.fromHover)){this.purchaseRequest.confirmRequested=true;this.purchaseRequest.fromHover=false;this.syncPurchase();return;}
   this.cancelPurchase();request.confirmRequested=kind==='mouse'||kind==='keyboard';this.purchaseRequest=request;this.syncPurchase();
  }
  syncPurchase(){

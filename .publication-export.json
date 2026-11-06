@@ -3706,9 +3706,9 @@
       "sha256": "f40b583b75ec5c6ee481b8157ac4657a36119c04debed5b3be6bf3e3c42aa817"
     },
     "docs/release-20261106-shop.md": {
-      "bytes": 3801,
+      "bytes": 4811,
       "mode": "0o644",
-      "sha256": "1f76ce994b8a5627f516868974c02ae080415f4afb4aedc86e26a0208abf0b05"
+      "sha256": "1ee6ad60da6b4b0beb5d3bf88ed4626449a3917fa64a8a64beaab0554f16a6cd"
     },
     "docs/source-identity.json": {
       "bytes": 502,
@@ -3761,9 +3761,9 @@
       "sha256": "9a1714c8cd5180faed96815d4ea9b6b1dc3ca2338991f62eb8b5b1a5b08d46b0"
     },
     "tests/browser-features.test.mjs": {
-      "bytes": 22665,
+      "bytes": 24230,
       "mode": "0o644",
-      "sha256": "7abb4d37af180f89702a70a4708e8da561b336d31ed47f3d8c21b5fe2fb24834"
+      "sha256": "1a1b5321ddc55fb64fa48dcab4be74ad32a4ec6feb5ba40205236eab3cd70d06"
     },
     "tests/building-layout.test.mjs": {
       "bytes": 3060,
@@ -3776,9 +3776,9 @@
       "sha256": "f74118c6a4156e004912cba3b0c282b4445486b5ab52b0e6f01d062f8048b170"
     },
     "tests/building-purchase.test.mjs": {
-      "bytes": 17943,
+      "bytes": 22128,
       "mode": "0o644",
-      "sha256": "57017c8942268e2856eabcd7e7e36e84d5869397342ef44201a3fbaa0115cf4f"
+      "sha256": "4c3a5800d7826df67ee6cb88b373f538a68a3ad227ec349d7da15cf22c0bd574"
     },
     "tests/campaign-names.test.mjs": {
       "bytes": 1145,
@@ -3841,9 +3841,9 @@
       "sha256": "9329b663de10d4a071affece605ffec2bffdf2b35335046f246237103e3a9d96"
     },
     "tests/offline-update.test.mjs": {
-      "bytes": 6522,
+      "bytes": 7960,
       "mode": "0o644",
-      "sha256": "09a29a90fbd4de788ca1e437c1af628ca005f51620fa8b54a05e84d225329047"
+      "sha256": "9d9e53a3a07ff05fa200e3a3a187314b013ee64f291922aa09a85434d6c7cc18"
     },
     "tests/options-layout.test.mjs": {
       "bytes": 629,
@@ -3881,9 +3881,9 @@
       "sha256": "4e5738dc7c8c510279e4747828f42b8cd0f3c3c1daedd6454f9be6d12abeb507"
     },
     "tests/pwa-cache.test.mjs": {
-      "bytes": 27927,
+      "bytes": 31665,
       "mode": "0o644",
-      "sha256": "f1a264cb39d78de5fa710fd2a8e0fa03cbe875a219528f5342eef1f2ad2b6f71"
+      "sha256": "3b4739175bdfc816a23b1121abc4b3234da3066f37fbcdf6bc4bffd9d9a641bf"
     },
     "tests/results-art.test.mjs": {
       "bytes": 3269,
@@ -6546,9 +6546,9 @@
       "sha256": "25fa8ee1b53d5bb0985067e6f63702e82e43edf92cb51ea46b9fcbfd305fcbe5"
     },
     "web/browser-features.mjs": {
-      "bytes": 10923,
+      "bytes": 11002,
       "mode": "0o644",
-      "sha256": "c6c14764bed9192e7d11c41636f4eef3d979f07a8871e9c88a4ed2e64b69818c"
+      "sha256": "f32f68bb228363839536a1e0b9ae19a0832d43621afb2b854d741d2fec3c92b9"
     },
     "web/building-layout.mjs": {
       "bytes": 1785,
@@ -6556,9 +6556,9 @@
       "sha256": "8732e16da51048e1bd4a0b49686aaa0b9ddc4f4d88e7dd57aafbe26d4711860c"
     },
     "web/building-ui.mjs": {
-      "bytes": 22796,
+      "bytes": 24342,
       "mode": "0o644",
-      "sha256": "d4cfc63946b2daca54378507415d761afae48fdb42e20b8eca537905a21322cd"
+      "sha256": "140522307efdc18b81d058ca5f0a30967e7fa0a8863157eb6f3f9f721975ec2b"
     },
     "web/campaign-names.mjs": {
       "bytes": 318,
@@ -6613,7 +6613,7 @@
     "web/game-ui.mjs": {
       "bytes": 65029,
       "mode": "0o644",
-      "sha256": "c6812c7c9c55047eb4e631d1d74e9d3511e380f831b582644b38b017c9025def"
+      "sha256": "f17ec276813a3f8bf3d2b19670cb2e4e96157c1c8f9b04f076f44ef4aa7287af"
     },
     "web/gestures.mjs": {
       "bytes": 3633,
@@ -6623,7 +6623,7 @@
     "web/i18n.mjs": {
       "bytes": 3921,
       "mode": "0o644",
-      "sha256": "65caf0c116901534da0ba347508bbe2ae056367ec6a9c780d0e39adb5583f334"
+      "sha256": "b9c649ef1b8b2d7974029ed5e130cc4387f6f362b1864e1ef0e6b40f4cb3e257"
     },
     "web/icons/dune-180.png": {
       "bytes": 3759,
@@ -6648,7 +6648,7 @@
     "web/index.html": {
       "bytes": 23955,
       "mode": "0o644",
-      "sha256": "ae8dbc53ebf283dbd1f07e15302d6373bacdf6fd0773d8e2e588211c57ca8e9f"
+      "sha256": "27686e354b5536c5124469436bcb46b5f1e2a256aa7979ea4a404e9c6a7908f2"
     },
     "web/input-check.mjs": {
       "bytes": 2725,
@@ -6838,7 +6838,7 @@
     "web/native-ui.mjs": {
       "bytes": 17596,
       "mode": "0o644",
-      "sha256": "c52606cf7c9caecb5f40f1e995d3b6b1e1d4a181e0ecc87aa82b8ea168d5aeed"
+      "sha256": "6de06b45123c1de2e1c1ff919bd59ee401f0dec0824e8ebf8e519313901c1d2c"
     },
     "web/options-layout.mjs": {
       "bytes": 1418,
@@ -6888,7 +6888,7 @@
     "web/runtime-atlas.mjs": {
       "bytes": 2322,
       "mode": "0o644",
-      "sha256": "60592abfc312fe7505f3e38b9b4e4e88363c2da3c2a21b87d2318c9db39d1617"
+      "sha256": "0c8b2886a514ce10bd37d184573e16328b89135195212f1cce67590a26c632da"
     },
     "web/save-files.mjs": {
       "bytes": 11806,
@@ -6906,14 +6906,14 @@
       "sha256": "ed9406dcd9f6c9fc28c7c625ff9020d262c488ec16458d6ff007e5b9f59e6746"
     },
     "web/service-worker.js": {
-      "bytes": 15204,
+      "bytes": 15551,
       "mode": "0o644",
-      "sha256": "c9c517a1e3dd9f5cd35d00e1bcaec17ec6c931ab53c70631a0cd8297346547ff"
+      "sha256": "189012e3a0d61ef79dc694558b764240def17136eb35d1dfdf6ceaaa54311d2c"
     },
     "web/shell.js": {
       "bytes": 30216,
       "mode": "0o644",
-      "sha256": "fa2d77d4e5b3fd14d7924cf966a1f01a63de73ba659444ac7b31bb54845e9805"
+      "sha256": "ee98fa489e699742eddef53752cdc55d4ee20f1f0be380f5e09454860790e3fb"
     },
     "web/startup.js": {
       "bytes": 5035,
@@ -8806,14 +8806,14 @@
       "sha256": "b8832a9a737e0d31c550499457f3fe502f3707c96268b193833f1b04183d355d"
     },
     "web/update-game.mjs": {
-      "bytes": 5066,
+      "bytes": 5146,
       "mode": "0o644",
-      "sha256": "89564913da980733dfb41ce3c6acf3eb08eee85e6d1fc868ffaa47949f1f7fc7"
+      "sha256": "11ed77fbdf6121cf446c523a178bc5b882939250db0b8215e1a11f7f6e6f5217"
     },
     "web/update.html": {
       "bytes": 3276,
       "mode": "0o644",
-      "sha256": "64705df783662b54cc9192dfc55f0f012190bf67311d9673ef0d43a68019c1df"
+      "sha256": "c15f14421c0c974cf8d4d5ae4068d2a8a7a531a2db1cce0ecba13f96c48aede1"
     },
     "web/viewport.mjs": {
       "bytes": 5660,

@@ -10,26 +10,30 @@ const template=await readFile(new URL('../web/service-worker.js',import.meta.url
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const fixtures=new Map([['index.html','<html>game</html>'],['shell.js','game();'],['engine/dune_web.wasm','wasm'],['native-audio-worklet.js','audio();']]);
 const entries=[...fixtures].map(([path,data])=>({path,bytes:Buffer.byteLength(data),sha256:hash(data)}));
-function host({version='new',corrupt=null,fail=null,old=true,transient=null,timeoutPath=null,noAbortController=false,windows=[],packageFiles=fixtures,storage=null}={}){
+function host({version='new',corrupt=null,fail=null,old=true,transient=null,timeoutPath=null,slowBody=null,noAbortController=false,windows=[],packageFiles=fixtures,storage=null}={}){
  const listeners={},messages=[],network=[],data=storage||new Map(),attempts=new Map(),scope='https://example.test/dune-sega-web/';
  // The timeout test advances only the hung resource's clock. Accelerating
  // every real30s deadline to1ms also races legitimate Response/crypto work
  // under parallel suite load, which says nothing about the worker's deadline.
  let fetchingPath,timerId=0;
- const timers=new Map(),timerWaiters=new Map(),firedDeadlines=[],abortedPaths=[];
+ const timers=new Map(),timerWaiters=new Map(),clockTimes=new Map(),firedDeadlines=[],abortedPaths=[];
+ const nextTimer=(path,kind)=>{
+  const timer=[...timers.values()].find(timer=>timer.path===path&&timer.kind===kind);
+  return timer?Promise.resolve(timer):new Promise(resolve=>timerWaiters.set(kind+':'+path,resolve));
+ };
  const deadlineClock={
-  next(path){
-   const timer=[...timers.values()].find(timer=>timer.path===path);
-   return timer?Promise.resolve(timer):new Promise(resolve=>timerWaiters.set(path,resolve));
-  },
-  fire(timer){assert.ok(timers.delete(timer.id),'deadline is active and fires only once');firedDeadlines.push(timer);timer.callback();},
+  next:path=>nextTimer(path,'deadline'),
+  nextBody:path=>nextTimer(path,'body'),
+  fire(timer){assert.ok(timers.delete(timer.id),'deadline is active and fires only once');clockTimes.set(timer.path,timer.at);if(timer.kind==='deadline')firedDeadlines.push(timer);timer.callback();},
+  advance(path,ms){const end=(clockTimes.get(path)||0)+ms;let timer;while((timer=[...timers.values()].filter(t=>t.path===path&&t.at<=end).sort((a,b)=>a.at-b.at)[0]))this.fire(timer);clockTimes.set(path,end);},
   fired:firedDeadlines,
  };
- const scheduleDeadline=(callback,ms)=>{
-  const timer={id:++timerId,path:fetchingPath,ms,callback};timers.set(timer.id,timer);
-  const resolve=timerWaiters.get(timer.path);if(resolve){timerWaiters.delete(timer.path);resolve(timer);}
+ const scheduleFor=(path,callback,ms,kind='deadline')=>{
+  const timer={id:++timerId,path,ms,at:(clockTimes.get(path)||0)+ms,kind,callback};timers.set(timer.id,timer);
+  const key=kind+':'+path,resolve=timerWaiters.get(key);if(resolve){timerWaiters.delete(key);resolve(timer);}
   return timer.id;
  };
+ const scheduleDeadline=(callback,ms)=>scheduleFor(fetchingPath,callback,ms);
  const prefix='dune-sega-offline:/dune-sega-web/:';
  if(old&&!data.has(prefix+'old'))data.set(prefix+'old',new Map([['preserved',new Response('old')]]));
  if(!data.has('unrelated-site-cache'))data.set('unrelated-site-cache',new Map());
@@ -54,14 +58,26 @@ function host({version='new',corrupt=null,fail=null,old=true,transient=null,time
   }
   if(path===fail)throw TypeError('Load failed');
   if(!packageFiles.has(path))throw Error('not allowed '+path);
-  return new Response(path===corrupt?'tampered':packageFiles.get(path));
+  const response=new Response(path===corrupt?'tampered':packageFiles.get(path));
+  if(path===slowBody?.path){
+   const clone=response.clone.bind(response);let first=true;
+   response.clone=()=>{const copy=clone();if(first){first=false;const read=copy.arrayBuffer.bind(copy);copy.arrayBuffer=async()=>{
+    await new Promise((resolve,reject)=>{
+     if(options.signal?.aborted){reject(Error('aborted'));return;}
+     const abort=()=>{timers.delete(id);abortedPaths.push(path);reject(Error('aborted'));};
+     const id=scheduleFor(path,()=>{options.signal?.removeEventListener('abort',abort);resolve();},slowBody.ms,'body');
+     options.signal?.addEventListener('abort',abort,{once:true});
+    });return read();
+   };}return copy;};
+  }
+  return response;
  };
  const packageEntries=[...packageFiles].map(([path,data])=>({path,bytes:Buffer.byteLength(data),sha256:hash(data)}));
  const script=template.replace('__DUNE_CACHE_VERSION__',version).replace('/*__DUNE_PRECACHE__*/ []',JSON.stringify(packageEntries));
  const restartWorker=()=>runInNewContext(script,{self,caches,fetch,crypto:webcrypto,URL,Response,Uint8Array,console,
   AbortController:noAbortController?undefined:AbortController,
-  setTimeout:timeoutPath?scheduleDeadline:setTimeout,
-  clearTimeout:timeoutPath?id=>timers.delete(id):clearTimeout});
+  setTimeout:timeoutPath||slowBody?scheduleDeadline:setTimeout,
+  clearTimeout:timeoutPath||slowBody?id=>timers.delete(id):clearTimeout});
  restartWorker();
  const event=async(name,values={})=>{
   let promise;listeners[name]({...values,waitUntil:p=>promise=p,respondWith:p=>promise=p});
@@ -184,6 +200,36 @@ test('hung fetches have a finite deadline and three attempts with or without Abo
   assert.deepEqual(h.deadlineClock.fired.map(timer=>timer.path),['shell.js','shell.js','shell.js']);
   assert.deepEqual(h.abortedPaths,noAbortController?[]:['shell.js','shell.js','shell.js']);
   for(const path of fixtures.keys())if(path!=='shell.js')assert.equal(h.attempts.get(path),1,'successful resources never time out or retry');
+ }
+});
+
+test('a genuine multi-MiB WASM body can finish after the old30s deadline and still requires exact verified bytes',{timeout:10000},async()=>{
+ const path='engine/dune_web.wasm',wasm='w'.repeat(5271072),packageFiles=new Map(fixtures);packageFiles.set(path,wasm);
+ const h=host({packageFiles,slowBody:{path,ms:45000}}),old=h.data.get(h.prefix+'old');
+ const installation=h.event('install'),deadline=await h.deadlineClock.next(path),body=await h.deadlineClock.nextBody(path);
+ assert.equal(deadline.ms,120000,'the whole large response/body/integrity operation remains bounded');
+ assert.equal(body.ms,45000);h.deadlineClock.advance(path,30001);
+ assert.equal(h.deadlineClock.fired.length,0,'the old deadline cannot cancel a valid in-progress large body');
+ assert.ok(!h.data.get(h.cacheName).has(h.scope+'__offline_ready__'),'body bytes are not yet received or verified');
+ assert.notEqual(h.messages.at(-1).status,'ready');
+ h.deadlineClock.advance(path,14999);await installation;
+ assert.equal(h.attempts.get(path),1,'a completed slow body needs no retry');assert.deepEqual(h.abortedPaths,[]);
+ const saved=await h.data.get(h.cacheName).get(h.scope+path).clone().arrayBuffer();
+ assert.equal(saved.byteLength,5271072);assert.equal(hash(new Uint8Array(saved)),hash(wasm));
+ assert.equal(h.messages.at(-1).status,'ready');assert.equal(h.data.get(h.prefix+'old'),old,'successful install does not evict the still-active old package');
+ assert.equal(h.activations,0);
+});
+
+test('a hung large WASM request still aborts after three120s budgets and preserves the complete prior package',{timeout:10000},async()=>{
+ const path='engine/dune_web.wasm',packageFiles=new Map(fixtures);packageFiles.set(path,'w'.repeat(5271072));
+ for(const noAbortController of [false,true]){
+  const h=host({packageFiles,timeoutPath:path,noAbortController}),old=seedPrevious(h),rejected=assert.rejects(()=>h.event('install'),/after 3 attempts: engine\/dune_web.wasm/);
+  for(let attempt=1;attempt<=3;attempt++){
+   const timer=await h.deadlineClock.next(path);assert.equal(timer.ms,120000);assert.equal(h.attempts.get(path),attempt);h.deadlineClock.fire(timer);
+  }
+  await rejected;assert.equal(h.attempts.get(path),3);assert.equal(h.data.get(h.prefix+'old'),old);assert.ok(old.has(h.scope+'__offline_ready__'));
+  assert.ok(!h.data.has(h.cacheName));assert.equal(h.activations,0);assert.equal(h.messages.at(-1).status,'error');
+  assert.deepEqual(h.abortedPaths,noAbortController?[]:[path,path,path]);
  }
 });
 

@@ -10,6 +10,11 @@ const ASSETS = new Map(PRECACHE.map(asset => [new URL(asset.path, SCOPE).pathnam
 const TOTAL_BYTES = PRECACHE.reduce((sum, asset) => sum + asset.bytes, 0);
 const MAX_DOWNLOAD_ATTEMPTS = 3;
 const DOWNLOAD_TIMEOUT_MS = 30000;
+const LARGE_DOWNLOAD_TIMEOUT_MS = 120000;
+// The native WASM is several MiB. Its response body may legitimately take
+// longer on a phone or VPN; small assets keep their shorter failure budget.
+const downloadTimeout = asset => Number.isSafeInteger(asset.bytes) && asset.bytes >= 1024 * 1024
+  ? LARGE_DOWNLOAD_TIMEOUT_MS : DOWNLOAD_TIMEOUT_MS;
 const canonical = path => new URL(path, SCOPE).href;
 const READY_URL = canonical('__offline_ready__');
 const CLIENT_VERSIONS_URL = canonical('__offline_client_versions__');
@@ -91,7 +96,7 @@ async function downloadVerified(asset) {
         timeout = setTimeout(() => {
           controller?.abort();
           reject(Error('Download timed out: ' + asset.path));
-        }, DOWNLOAD_TIMEOUT_MS);
+        }, downloadTimeout(asset));
       });
       return await Promise.race([operation, deadline]);
     } catch (error) { controller?.abort(); lastError = error; }

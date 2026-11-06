@@ -73,7 +73,7 @@ test('an incomplete pinned-package status cannot advertise an update before all 
 });
 test('the explicit update action navigates to recovery without touching browser saves or caches',()=>{
  const e=environment(),navigations=[];e.win.location={assign:url=>navigations.push(url)};e.win.localStorage={clear(){throw Error('must not clear saves');}};e.win.caches={delete(){throw Error('must not delete caches');}};
- e.feature.updateGame();e.feature.updateGame({automatic:false});e.feature.updateGame({automatic:true});assert.deepEqual(navigations,['./update.html','./update.html','./update.html?auto=1&v=20261106-shop1']);
+ e.feature.updateGame();e.feature.updateGame({automatic:false});e.feature.updateGame({automatic:true});assert.deepEqual(navigations,['./update.html','./update.html','./update.html?auto=1&v=20261106-shop2']);
 });
 test('fullscreen request and exit reach native API synchronously during the initiating click',async()=>{
  const e=environment(),calls=[];e.doc.documentElement.requestFullscreen=function(){assert.equal(this,e.doc.documentElement);calls.push('enter');return Promise.resolve();};
@@ -145,6 +145,21 @@ test('offline timeout resets pending/preparing and can be retried',async t=>{
  let timeout;t.mock.method(globalThis,'setTimeout',fn=>(timeout=fn,1));t.mock.method(globalThis,'clearTimeout',()=>{});
  const e=environment();e.worker.state='installing';e.registration.installing=e.worker;e.registration.active=null;const operation=e.feature.prepareOffline(),rejected=assert.rejects(operation,/offline-timeout/);await tick();timeout();await rejected;assert.equal(e.feature.pending,null);assert.equal(e.feature.snapshot().preparing,false);
  e.worker.state='activated';e.registration.installing=null;e.registration.active=e.worker;await e.feature.prepareOffline();assert.equal(e.feature.snapshot().status,'ready');
+});
+
+test('offline installation outlives one slow large-file retry but remains bounded without an early ready claim',async t=>{
+ let now=0,id=0;const timers=new Map();
+ t.mock.method(globalThis,'setTimeout',(fn,delay)=>{const key=++id;timers.set(key,{fn,due:now+delay,delay});return key;});
+ t.mock.method(globalThis,'clearTimeout',key=>timers.delete(key));
+ const advance=ms=>{now+=ms;for(const [key,timer]of [...timers])if(timer.due<=now){timers.delete(key);timer.fn();}};
+ const slow=environment();slow.worker.state='installing';slow.registration.installing=slow.worker;slow.registration.active=null;
+ const waiting=slow.feature.prepareOffline();let settled=false;waiting.then(()=>settled=true,()=>settled=true);await tick();
+ assert.equal([...timers.values()][0].delay,450000);
+ advance(180001);await tick();assert.equal(settled,false);assert.equal(slow.feature.snapshot().status,'downloading');
+ slow.worker.state='installed';slow.worker.dispatch('statechange');await waiting;assert.equal(slow.feature.snapshot().status,'ready');assert.equal(timers.size,0);
+ const hung=environment();hung.worker.state='installing';hung.registration.installing=hung.worker;hung.registration.active=null;
+ const pending=hung.feature.prepareOffline(),rejected=assert.rejects(pending,/offline-timeout/);await tick();advance(449999);await tick();assert.equal(hung.feature.snapshot().status,'downloading');advance(1);await rejected;
+ assert.equal(hung.feature.snapshot().status,'error');assert.equal(hung.feature.snapshot().preparing,false);assert.equal(hung.feature.pending,null);
 });
 test('only offline progress messages update status; ready cache reports are reflected to UI',()=>{
  const e=environment();e.nav.serviceWorker.dispatch('message',{data:{type:'other',status:'ready'}});assert.equal(e.feature.snapshot().status,'idle');
