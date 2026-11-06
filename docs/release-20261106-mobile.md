@@ -1,5 +1,12 @@
 # Portrait iPhone safe area and expanded-map performance
 
+## Follow-up: 20261106-mobile9
+
+Restore the user's final ordinary selection wait to 100ms. Double-tap
+recognition and the armed Palace guard stay at 300ms; retained-source logic,
+native core, game rules and saves are unchanged. Only the affected module and
+its entry point receive new cache URLs.
+
 ## Follow-up: 20261106-mobile8
 
 Set the ordinary single-selection wait to the user's chosen 75ms compromise.

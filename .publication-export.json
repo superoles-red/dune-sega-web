@@ -3696,9 +3696,9 @@
       "sha256": "c1fa6f6ffc7e2836b13c472629dd48d5ae71cbfc7ecdd72d427a61d5088981d7"
     },
     "docs/release-20261106-mobile.md": {
-      "bytes": 12613,
+      "bytes": 12911,
       "mode": "0o644",
-      "sha256": "ad210da4f687b6e68be1875e25ccb9cee95b435869f1840d8ff17128f56bdb12"
+      "sha256": "08d2dbfbf26b84ecdfa8ac2d3988f495581faf72b135a32f5d6fa62a902cd680"
     },
     "docs/source-identity.json": {
       "bytes": 502,
@@ -3836,9 +3836,9 @@
       "sha256": "525823a02635a9356009c3e28011d5dd827ec8f4975bf2d5de828f893f2f03d0"
     },
     "tests/order-input.test.mjs": {
-      "bytes": 19509,
+      "bytes": 19516,
       "mode": "0o644",
-      "sha256": "ec8752e13df9f191cd9f22240e01abec02dddefc1c22dfd3bd7e2f601752bdaa"
+      "sha256": "ff1c38f323ec335a30b9086ee784d60d8a68b421a8fa53d268c294e170b4b0e7"
     },
     "tests/pan-inertia.test.mjs": {
       "bytes": 6402,
@@ -6613,7 +6613,7 @@
     "web/index.html": {
       "bytes": 23688,
       "mode": "0o644",
-      "sha256": "6549e3ab0d13912a302dc276302072cc2f40d971b1c5c4087fa0eb8513e521cd"
+      "sha256": "e0a4e64249d31e0f4720ef570a77a0d5e8ce54161611b40064ca86c6fc5b0846"
     },
     "web/input-check.mjs": {
       "bytes": 2725,
@@ -6816,9 +6816,9 @@
       "sha256": "797c33f00413b2e288e50aed032d21819a4aea50e97fdaa82c9a79839f37b8c0"
     },
     "web/order-input.mjs": {
-      "bytes": 5339,
+      "bytes": 5341,
       "mode": "0o644",
-      "sha256": "c701e1a96442a4df18018c72f01abde95c75351b46fcc4f9d4c249154f03c289"
+      "sha256": "a4f2b7e1e09be1894cd51d9c52048ab15cd1ee78803c87143ad1b0da10b8cf8d"
     },
     "web/pan-inertia.mjs": {
       "bytes": 4450,
@@ -6873,7 +6873,7 @@
     "web/shell.js": {
       "bytes": 23689,
       "mode": "0o644",
-      "sha256": "5a3990d44e0dce40ba15385abd1d601e79ca6663184f551f3b90faa879ab33ac"
+      "sha256": "ca8b3e3a0bb726d012524dfd3bd534b7b273ee9db23d3d7fa8e67b97d2713fbd"
     },
     "web/startup.js": {
       "bytes": 5035,

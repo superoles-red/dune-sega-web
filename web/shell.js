@@ -1,6 +1,6 @@
 import {MapGestures,placementEdgeVelocity} from './gestures.mjs?v=20261106-mobile8';
 import {bindMapInput} from './map-input.mjs?v=20261106-mobile8';
-import {OrderInput} from './order-input.mjs?v=20261106-mobile8';
+import {OrderInput} from './order-input.mjs?v=20261106-mobile9';
 import {PanInertia} from './pan-inertia.mjs?v=20261106-mobile8';
 import {NativeArt} from './native-ui.mjs?v=20261106-mobile8';
 import {GameInterface} from './game-ui.mjs?v=20261106-mobile8';

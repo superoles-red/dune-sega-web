@@ -41,8 +41,8 @@ test('triple tap issues at most one command and the third tap begins a fresh imm
  const s=setup();for(let i=0;i<3;i++){s.input.tap(10,10,'touch');s.advance(20);}
  assert.deepEqual(actions(s.calls).map(c=>c[0]),['select','command','select']);assert.equal(s.input.snapshot().pending,true);
 });
-test('300ms and 24 CSS pixels are inclusive pair boundaries, independent of the75ms selection wait',()=>{
- assert.equal(DOUBLE_TAP_MS,300);assert.equal(SELECTION_WAIT_MS,75);assert.equal(DOUBLE_TAP_SLOP,24);
+test('300ms and 24 CSS pixels are inclusive pair boundaries, independent of the100ms selection wait',()=>{
+ assert.equal(DOUBLE_TAP_MS,300);assert.equal(SELECTION_WAIT_MS,100);assert.equal(DOUBLE_TAP_SLOP,24);
  for(const [time,distance,kind,pair] of [[300,24,'touch',true],[301,0,'touch',false],[50,24.01,'touch',false],[10,0,'pen',false]]){
   const s=setup();s.input.tap(0,0,'touch');s.advance(time);s.input.tap(distance,0,kind);assert.equal(actions(s.calls)[1][0],pair?'command':'select');
  }
@@ -158,13 +158,13 @@ test('mobile double orders on every object target never select the target before
  }
 });
 
-test('a lone object tap with an active mobile unit selects once at76ms while retaining its300ms pair',()=>{
+test('a lone object tap with an active mobile unit selects once at101ms while retaining its300ms pair',()=>{
  for(const kind of ['touch','pen'])for(const targetKind of ['unit','building'])for(const own of [false,true]){
   const s=setup({target:{kind:targetKind,own}});
-  s.input.tap(30,40,kind);s.advance(75);assert.equal(s.input.flush(),0);assert.deepEqual(actions(s.calls),[]);
+  s.input.tap(30,40,kind);s.advance(100);assert.equal(s.input.flush(),0);assert.deepEqual(actions(s.calls),[]);
   s.advance(1);assert.equal(s.input.flush(),1);assert.deepEqual(actions(s.calls),[['select',30,40]]);
   assert.equal(s.input.snapshot().pending,true);assert.equal(s.input.snapshot().deferredSelection,false);
-  s.advance(224);assert.equal(s.input.flush(),0);assert.deepEqual(actions(s.calls),[['select',30,40]]);assert.equal(s.input.snapshot().pending,true);
+  s.advance(199);assert.equal(s.input.flush(),0);assert.deepEqual(actions(s.calls),[['select',30,40]]);assert.equal(s.input.snapshot().pending,true);
   s.advance(1000);s.input.flush();assert.deepEqual(actions(s.calls),[['select',30,40]]);
   assert.equal(s.input.snapshot().pending,false);
  }
@@ -196,7 +196,7 @@ test('a pan or empty-ground tap cancels a pending object selection without a lat
  for(const cancel of ['pan','pinch','place','minimap','route','Clear','visibility']){
   const s=setup({target:{kind:'unit',own:false}});s.input.tap(30,40,'touch');s.input.cancel(cancel);s.advance(1000);s.input.flush();assert.deepEqual(actions(s.calls),[]);
  }
- const s=setup({target:{kind:'building',own:true}});s.input.tap(30,40,'touch');s.state.target={kind:'none',own:false};s.advance(75);s.input.tap(200,200,'touch');
+ const s=setup({target:{kind:'building',own:true}});s.input.tap(30,40,'touch');s.state.target={kind:'none',own:false};s.advance(100);s.input.tap(200,200,'touch');
  assert.deepEqual(actions(s.calls),[['select',200,200]]);s.advance(1000);s.input.flush();assert.deepEqual(actions(s.calls),[['select',200,200]]);
 });
 
@@ -216,11 +216,11 @@ test('matching object taps at80/150/299/300ms command before an overdue single R
  }
 });
 
-test('late matching object taps still command the original unit after its76ms single has selected another actor',()=>{
- for(const gap of [80,150,250,299,300])for(const kind of ['touch','pen']){
+test('late matching object taps still command the original unit after its101ms single has selected another actor',()=>{
+ for(const gap of [150,250,299,300])for(const kind of ['touch','pen']){
   const s=setup({target:{kind:'unit',own:true}}),token=s.actor,next={unit:99};s.afterActor=next;
-  s.input.tap(30,40,kind);s.advance(76);s.input.flush();assert.equal(s.actor,next);
-  s.input.flush();s.advance(gap-76);s.input.flush();s.input.tap(31,40,kind);
+  s.input.tap(30,40,kind);s.advance(101);s.input.flush();assert.equal(s.actor,next);
+  s.input.flush();s.advance(gap-101);s.input.flush();s.input.tap(31,40,kind);
   assert.deepEqual(actions(s.calls),[['select',30,40],['command',31,40,token]]);
   assert.equal(s.calls.filter(c=>c[0]==='capture').length,1,'selection must not replace the retained command source');
  }
@@ -246,7 +246,7 @@ test('Palace object selection stays deferred through300ms and quick/ordinary pai
 
 test('pan cancellation after a prompt single selection discards its retained original command source',()=>{
  const s=setup({target:{kind:'unit',own:true}});s.afterActor={unit:99};
- s.input.tap(30,40,'touch');s.advance(76);s.input.flush();s.input.cancel('pan');
- s.advance(4);s.input.tap(30,40,'touch');s.advance(1000);s.input.flush();
+ s.input.tap(30,40,'touch');s.advance(101);s.input.flush();s.input.cancel('pan');
+ s.advance(49);s.input.tap(30,40,'touch');s.advance(1000);s.input.flush();
  assert.deepEqual(actions(s.calls).map(c=>c[0]),['select','select']);assert.equal(s.input.snapshot().pending,false);
 });
