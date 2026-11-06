@@ -1,6 +1,6 @@
 import {nativeSizeForRatio} from './base-prototype/layout.mjs';
 import {buildingLayoutFor,occupiedBuildingRows} from './building-layout.mjs';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261106-target1';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261106-target2';
 
 export class BuildingInterface {
  constructor({art,Module,resumeAudio}){

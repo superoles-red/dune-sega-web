@@ -1,13 +1,14 @@
-# Tap-to-position building and Palace targets (20261106-target1)
+# Tap-to-position building and Palace targets (20261106-target2)
 
 The mobile flow is Ready/OK -> choose the world point -> Clear (left) or
-Place/Confirm (right). Native construction preview appears immediately on
+Place/Attack (right). Native construction preview appears immediately on
 entering placement. Ordinary map taps move the preview without committing;
 panning and zooming preserve its world position. Palace targeting uses the
 same workflow with a world-anchored original-game reticle. On desktop the
 preview follows the pointer, a left click commits, and only Clear is shown.
 Place has a subdued green variant of the original command-button palette:
-frame pixels, highlights and font stay native; no new bitmap is shipped.
+Attack has a subdued red variant. Frame pixels, highlights and font stay native;
+no new bitmap is shipped.
 
 Three narrow bridge exports were added: `dune_web_placement_begin_world`,
 `dune_web_placement_confirm`, `dune_web_command_world`. They enter the original

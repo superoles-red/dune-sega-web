@@ -1,7 +1,7 @@
 // Native PNG composition only. Game actions stay in the original runtime.
-import {GameLanguage} from './i18n.mjs?v=20261106-target1';
-import {loadAssetImage,loadAssetJSON,runAssetPool} from './asset-loader.mjs?v=20261106-target1';
-import {loadRuntimeAtlas} from './runtime-atlas.mjs?v=20261106-target1';
+import {GameLanguage} from './i18n.mjs?v=20261106-target2';
+import {loadAssetImage,loadAssetJSON,runAssetPool} from './asset-loader.mjs?v=20261106-target2';
+import {loadRuntimeAtlas} from './runtime-atlas.mjs?v=20261106-target2';
 export class NativeArt {
  constructor({storage}={}){this.images=new Map();this.alpha=new Map();this.inkAtlases=new Map();this.flags=new Map();this.buttonViews=new Set();this.pressedViews=new Set();this.language=new GameLanguage({storage});this.ready=false;this.language.onChange(()=>{for(const v of this.buttonViews)v.draw();});for(const ev of ['pointerup','pointercancel'])window.addEventListener(ev,()=>{for(const v of [...this.pressedViews])v.release();},true);}
  async load({onProgress=()=>{},atlas=true}={}){
@@ -54,12 +54,12 @@ export class NativeArt {
   c.restore();
  }
  toneImage(image,tone){
-  if(!image||tone!=='confirm')return image;this.tonedParts??=new WeakMap();if(this.tonedParts.has(image))return this.tonedParts.get(image);
+  if(!image||!['confirm','attack'].includes(tone))return image;this.tonedParts??=new WeakMap();let tones=this.tonedParts.get(image);if(!tones){tones=new Map();this.tonedParts.set(image,tones);}if(tones.has(tone))return tones.get(tone);
   const can=document.createElement('canvas');can.width=image.width;can.height=image.height;const c=can.getContext('2d',{willReadFrequently:true});c.drawImage(image,0,0);const data=c.getImageData(0,0,can.width,can.height);
-  // Move the native violet shades to green using the same channel values.
+  // Move native violet shades to green/red using the same channel values.
   // Neutral highlights, black shadows and every original edge pixel stay intact.
-  for(let i=0;i<data.data.length;i+=4){const d=data.data;if(d[i]===d[i+1]&&d[i+2]>d[i+1]){const g=d[i+1];d[i+1]=d[i+2];d[i+2]=g;}}
-  c.putImageData(data,0,0);this.tonedParts.set(image,can);return can;
+  const d=data.data;for(let i=0;i<d.length;i+=4)if(d[i]===d[i+1]&&d[i+2]>d[i+1]){const base=d[i],accent=d[i+2];d[i]=tone==='attack'?accent:base;d[i+1]=tone==='confirm'?accent:base;d[i+2]=base;}
+  c.putImageData(data,0,0);tones.set(tone,can);return can;
  }
  frame(c,name,x,y,w,h,{group='shop',unit=1,fill=true,tone=null}={}){
   const m=(group==='shop'?this.kit:this.skin).modules[name];if(!m)return;const p=m.pieces,[ll,tt,rr,bb]=m.insets,[l,t,r,b]=[ll,tt,rr,bb].map(v=>v*unit),pic=k=>this.toneImage(this.part(p[k],group),tone);
