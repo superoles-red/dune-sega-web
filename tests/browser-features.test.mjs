@@ -59,7 +59,7 @@ test('a completed waiting update is advertised without activating it or reloadin
 });
 test('the explicit update action navigates to recovery without touching browser saves or caches',()=>{
  const e=environment(),navigations=[];e.win.location={assign:url=>navigations.push(url)};e.win.localStorage={clear(){throw Error('must not clear saves');}};e.win.caches={delete(){throw Error('must not delete caches');}};
- e.feature.updateGame();e.feature.updateGame({automatic:false});e.feature.updateGame({automatic:true});assert.deepEqual(navigations,['./update.html','./update.html','./update.html?auto=1&v=20261106-mobile1']);
+ e.feature.updateGame();e.feature.updateGame({automatic:false});e.feature.updateGame({automatic:true});assert.deepEqual(navigations,['./update.html','./update.html','./update.html?auto=1&v=20261106-mobile2']);
 });
 test('fullscreen request and exit reach native API synchronously during the initiating click',async()=>{
  const e=environment(),calls=[];e.doc.documentElement.requestFullscreen=function(){assert.equal(this,e.doc.documentElement);calls.push('enter');return Promise.resolve();};

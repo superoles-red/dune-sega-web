@@ -62,7 +62,11 @@ export class OrderFeedback {
   this.specialImage.hidden=!(this.special?.armed&&attack&&point)||(!fixed&&this.specialDragging);if(!this.specialImage.hidden){this.specialImage.src=attack.url;Object.assign(this.specialImage.style,{left:(r.left+point.x)+'px',top:(r.top+point.y)+'px',opacity:'.65'});}
   this.element.hidden=this.specialImage.hidden;this.image.hidden=true;
   if(!this.current)return;
-  const elapsed=now-this.current.start;if(elapsed<0||elapsed>=ORDER_FEEDBACK_DURATION){this.current=null;this.lastPulse=0;this.lastProjection=null;return;}
+  // RAF timestamps describe the beginning of a frame. A native-order poll can
+  // run later within it, especially on a busy phone; that acknowledgement is
+  // still pending, rather than expired, until a subsequent frame catches up.
+  const elapsed=now-this.current.start;if(elapsed<0)return;
+  if(elapsed>=ORDER_FEEDBACK_DURATION){this.current=null;this.lastPulse=0;this.lastProjection=null;return;}
   const asset=this.current.kind==='special'?this.assets.attack:this.assets[this.current.kind]||(this.current.kind==='move'?this.manifest:null),pulse=orderFeedbackPulse(elapsed),rect=this.canvas.getBoundingClientRect(),p=projectOrderFeedback(this.current,camera,rect,asset?.width||26,asset?.height||26);
   if(!this.ready||!asset||!p||!pulse)return;
   if(this.current.kind==='special'){const size=Math.max(128,Math.min(256,Math.min(rect.width,rect.height)*.44)),cx=p.x+p.width/2,cy=p.y+p.height/2;p.x=cx-size/2;p.y=cy-size/2;p.width=p.height=size;}

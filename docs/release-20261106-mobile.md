@@ -1,5 +1,27 @@
 # Portrait iPhone safe area and expanded-map performance
 
+## Follow-up: 20261106-mobile2
+
+The installed portrait iPhone canvas now reserves six additional CSS pixels
+below the measured status bar (47 to 53px, or 59 to 65px). Menu follows the
+same inset. The canvas still ends at the app bottom; other devices and modes
+keep their previous geometry. The measurements below describe the initial
+mobile1 release; the follow-up geometry is covered by the viewport tests.
+
+On the physical Samsung, a native move committed correctly but its first RAF
+callback had timestamp 55102.8 while the acknowledgement started at
+performance.now() 55108.4. The negative 5.6ms interval incorrectly discarded
+both confirmation pulses. The host now paints with the same performance.now()
+clock used to observe the commit; an older timestamp defensively leaves a
+pending acknowledgement intact. The original 100/80/100ms blink intervals,
+native command handling and original PNGs are unchanged. Regression tests cover
+both the pending case and the actual host callback with a stale RAF timestamp.
+
+All 328 frontend checks pass. This follow-up keeps the exact e43b2826 native
+WASM and preceding save formats; it does not rebuild or change the game core.
+
+## Initial mobile1 release
+
 The installed iPhone app in portrait reserves the status-bar safe area above
 its native canvas. The Menu control uses the same inset plus 10 CSS px. The canvas
 height is reduced by that inset, so its bottom remains at the existing app
