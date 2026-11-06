@@ -1,5 +1,15 @@
 # Portrait iPhone safe area and expanded-map performance
 
+## Follow-up: 20261106-mobile5
+
+The double-tap matching window and deferred object-selection deadline are now
+100ms instead of 300ms, at the user's request. A pair within that inclusive
+window still commands the retained original unit without selecting its target.
+An isolated object tap commits on the first existing animation callback after
+100ms. Ordinary desktop left selection/right commands remain immediate; armed
+Palace double clicks use the same shortened matching window. Core 5156b9ee,
+mission-start fade, original game rules and save compatibility are unchanged.
+
 ## Follow-up: 20261106-mobile4
 
 An own unit's mobile double-tap command now retains its source without first

@@ -59,7 +59,7 @@ export class BrowserFeatures {
   this.updateCheck=Promise.resolve().then(()=>r.update()).catch(()=>{/* Keep the verified offline copy when the network fails. */}).finally(()=>{this.updateCheck=null;this.emit();});
   return this.updateCheck;
  }
- updateGame({automatic=false}={}){this.win.location.assign(automatic?'./update.html?auto=1&v=20261106-mobile4':'./update.html');}
+ updateGame({automatic=false}={}){this.win.location.assign(automatic?'./update.html?auto=1&v=20261106-mobile5':'./update.html');}
  async fullscreen(){
   // Invoke the actual API synchronously in the click's user activation.
   if(this.doc.fullscreenElement||this.doc.webkitFullscreenElement){const exit=this.doc.exitFullscreen||this.doc.webkitExitFullscreen;await exit?.call(this.doc);return 'exited';}

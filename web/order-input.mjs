@@ -1,4 +1,4 @@
-export const DOUBLE_TAP_MS=300;
+export const DOUBLE_TAP_MS=100;
 export const DOUBLE_TAP_SLOP=24;
 
 const accepted=value=>value===true||(typeof value==='number'&&Number.isFinite(value)&&value>0);
