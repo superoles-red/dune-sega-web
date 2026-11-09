@@ -7,6 +7,21 @@ base=(ROOT/'.local/source/build/dune-base.c').read_text()
 identity=json.loads((ROOT/'docs/source-identity.json').read_text())
 assert hashlib.sha256(base.encode()).hexdigest()==identity['generatedSourceSha256']
 s=base
+# Music/SFX percentages belong only to host output, never to CPU/save state or
+# original driver commands. GEMS physical-voice flags preserve the source class
+# through voice stealing, logical-channel reuse, DAC playback and release tails.
+needle='static void audio_sync(CPU *c);'
+assert s.count(needle)==2
+s=s.replace(needle,'#include "em_web_audio_levels.h"\n'+needle,1)
+needle='for(unsigned i=0;i<3;++i)output+=(p->polarity&(1u<<i) ? 1:-1)*amplitude[p->volume[i]&15];'
+assert s.count(needle)==1
+s=s.replace(needle,'for(unsigned i=0;i<3;++i)output+=em_web_audio_level_sample((p->polarity&(1u<<i) ? 1:-1)*amplitude[p->volume[i]&15],em_web_audio_psg_levels[i]);',1)
+needle='output+=(p->noise_lfsr&1 ? 1:-1)*amplitude[p->volume[3]&15];'
+assert s.count(needle)==1
+s=s.replace(needle,'output+=em_web_audio_level_sample((p->noise_lfsr&1 ? 1:-1)*amplitude[p->volume[3]&15],em_web_audio_psg_levels[3]);',1)
+needle='if(!a->initialized && !audio_init(c,NULL))return;'
+assert s.count(needle)==1
+s=s.replace(needle,needle+'\n    em_web_audio_levels_sync(c);',1)
 # Keep the original per-pixel compositor as an oracle and wide-call fallback.
 # The browser fast path only reuses immutable scanline/tile/palette values;
 # VDP timing, state, sprites and every translated game instruction stay intact.
@@ -74,6 +89,7 @@ static int em_web_menus_observe(DuneMouse *m,CPU *c);
 static int em_web_menu_select_observe(DuneMouse *m,CPU *c);
 static int em_web_campaign_observe(CPU *c);
 #include "em_web_host.h"
+EMSCRIPTEN_KEEPALIVE int dune_web_audio_levels(int music,int sound){return em_web_audio_levels_set(music,sound);}
 #include "em_web_camera.h"
 #include "em_web_selection.h"
 #include "em_web_menus.h"
@@ -255,7 +271,30 @@ s=s.replace(needle,'em_cpu.audio.sample_index=em_cpu.master_cycles*AUDIO_RATE/vd
 marker='static const uint8_t rom_data[] = {'
 assert s.split(marker,1)[1]==base.split(marker,1)[1]
 (ROOT/'.local/source/build/dune-web.c').write_text(s)
+# Keep pinned source inputs untouched. The build compiles this prepared adapter
+# with the original YMFM include directory, rather than modifying vendor files.
+audio=(ROOT/'.local/source/genesis_recompiler/audio_ymfm.cpp').read_text()
+needle='class GenesisYM final : public ymfm::ymfm_interface {'
+assert audio.count(needle)==1
+audio=audio.replace(needle,(ROOT/'tools/em_web_audio_levels_cpp.h').read_text()+'\n'+needle,1)
+needle='ymfm::ym2612 chip;'
+assert audio.count(needle)==1
+audio=audio.replace(needle,'DuneOutputYM2612 chip;',1)
+needle='int32_t((int64_t(current.data[i])-previous.data[i])*fraction/144);'
+assert audio.count(needle)==1
+audio=audio.replace(needle,needle+'\n        for(unsigned i=0;i<2;++i)stereo[i]=chip.level_output(i,fraction,stereo[i]);',1)
+needle='extern "C" void genesis_ymfm_destroy(void *chip)'
+assert audio.count(needle)==1
+audio=audio.replace(needle,'''extern "C" void genesis_ymfm_output_levels(void *chip,const unsigned levels[6]) {
+    if(!chip||!levels)return;
+    auto &g=*static_cast<GenesisYM*>(chip);
+    bool changed=false;
+    for(unsigned c=0;c<6;++c){unsigned value=levels[c]==50?50:levels[c]==0?0:100;changed|=g.chip.levels[c]!=value;g.chip.levels[c]=value;}
+    if(changed){g.chip.common_level=int(g.chip.levels[0]);for(unsigned c=1;c<6;++c)if(g.chip.levels[c]!=g.chip.levels[0])g.chip.common_level=-1;}
+}
+'''+needle,1)
+(ROOT/'.local/source/build/dune-web-audio.cpp').write_text(audio)
 headers={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted((ROOT/'tools').glob('em_web_*.h'))}
-report={'baseSourceSha256':identity['generatedSourceSha256'],'patchedSourceSha256':hashlib.sha256(s.encode()).hexdigest(),'originalRomAndInstructionHandlersUnchanged':True,'adapterHeaders':headers,'patchScope':['browser clock and pause','map-only single presentation per browser callback','exact-pixel scanline VDP raster; original oracle/fallback retained','drag camera; no edge hover','CSS pointer and pinch projection','single native selection, pure clear and contextual B; original building placement','preview then confirm native purchases; direct commands; original active menu focus; hidden ordinary map cursor and three-part portrait menu','bounded v2 save validation and renderer reset']}
+report={'baseSourceSha256':identity['generatedSourceSha256'],'patchedSourceSha256':hashlib.sha256(s.encode()).hexdigest(),'patchedAudioSourceSha256':hashlib.sha256(audio.encode()).hexdigest(),'originalRomAndInstructionHandlersUnchanged':True,'adapterHeaders':headers,'patchScope':['browser clock and pause','map-only single presentation per browser callback','exact-pixel scanline VDP raster; original oracle/fallback retained','drag camera; no edge hover','CSS pointer and pinch projection','single native selection, pure clear and contextual B; original building placement','preview then confirm native purchases; direct commands; original active menu focus; hidden ordinary map cursor and three-part portrait menu','output-only independent music/SFX levels; original GEMS physical voice ownership, PCM source clocks and save ABI retained','bounded v2 save validation and renderer reset']}
 (ROOT/'docs/build-source.json').write_text(json.dumps(report,indent=2)+'\n')
 print('Prepared host/input patches; original translated instructions and ROM unchanged.')

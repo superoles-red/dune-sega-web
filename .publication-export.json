@@ -26,9 +26,9 @@
       "sha256": "5c51106d6ee86ec6ebe07f60495b1315d9092cce6eadbe53dc79b1c2565faaa0"
     },
     "README.md": {
-      "bytes": 59021,
+      "bytes": 59496,
       "mode": "0o644",
-      "sha256": "1f26f58e4bd54cda7e11864137700097454ec0d98dbf022946c619a73d9574aa"
+      "sha256": "1002efa889cb38f5149d22fb55e2dcc41e2bf435a06860412bdd24ad7043fdb6"
     },
     "THIRD_PARTY_NOTICES.md": {
       "bytes": 3653,
@@ -3495,15 +3495,20 @@
       "mode": "0o644",
       "sha256": "dab16f402878ad4867f3547189ee9b68747575779ebb54df22d896defcca6a88"
     },
+    "docs/audio-levels.md": {
+      "bytes": 4586,
+      "mode": "0o644",
+      "sha256": "aa00b6888fb21f0a14d5eee12606e259f36d30da2982f2f6708e412b0bff63fa"
+    },
     "docs/browser-verification.json": {
       "bytes": 1412,
       "mode": "0o644",
       "sha256": "df938adccb4e2be25a5933874811a59e88126e9d448fd02567a8c2be55dce9c8"
     },
     "docs/build-source.json": {
-      "bytes": 2486,
+      "bytes": 2911,
       "mode": "0o644",
-      "sha256": "9c83d9748f87c872f4344ce943b775ba8c9ed2a57423d00143ec261a6b41cf45"
+      "sha256": "3f10a70cd5013e45b3d730c579b398adf22d300976fbf592997b83309deefd2d"
     },
     "docs/controls-assets.json": {
       "bytes": 431,
@@ -3741,14 +3746,24 @@
       "sha256": "28d5b6fc5c1f9063292c564f8f8f75fa88c52b5cb9cf9b997f847493a24476eb"
     },
     "docs/wasm-build.json": {
-      "bytes": 4380,
+      "bytes": 4607,
       "mode": "0o644",
-      "sha256": "84191c00efb97c8172499e088697e70f756d5b5f1281ec4f12d311b6d8113075"
+      "sha256": "ecea29352cae212c7212b02ebb073d74104b2d54cdc5d2a3b9ddfa19a33b5c9a"
     },
     "tests/asset-loader.test.mjs": {
       "bytes": 9295,
       "mode": "0o644",
       "sha256": "a0e100913f9b78fa94aa44e6b6a07cfe1d026cb57cc929c2e99f165e56f4a75c"
+    },
+    "tests/audio-settings.test.mjs": {
+      "bytes": 9808,
+      "mode": "0o644",
+      "sha256": "712532c241ca7fa8c9d18492b15871cd254ba8c557ada5aa3897b25bc917227c"
+    },
+    "tests/audio-shell-levels.test.mjs": {
+      "bytes": 2706,
+      "mode": "0o644",
+      "sha256": "085cf86f232fe1210777cfe9484b8d2bbfab880747cb51575be9526fa50aa1f1"
     },
     "tests/audio-shell-lifecycle.test.mjs": {
       "bytes": 4218,
@@ -3763,7 +3778,7 @@
     "tests/browser-features.test.mjs": {
       "bytes": 24230,
       "mode": "0o644",
-      "sha256": "1a1b5321ddc55fb64fa48dcab4be74ad32a4ec6feb5ba40205236eab3cd70d06"
+      "sha256": "c47005d976292f95fec1a023085a3a307b4ce11a85a33929cd2585e9bd8842fc"
     },
     "tests/building-layout.test.mjs": {
       "bytes": 3060,
@@ -3896,9 +3911,9 @@
       "sha256": "8dffd41cef77e780313ec44fac5bc678f37ea9b730d300e391fec815a7839145"
     },
     "tests/save-files.test.mjs": {
-      "bytes": 12729,
+      "bytes": 12796,
       "mode": "0o644",
-      "sha256": "8b63e6f7bae19e9a6eb309c75ca2ca9734e9dc598262559d2b0decb3c62fc957"
+      "sha256": "a9b4f635ee58ad3743a7aef4dcf1ea193058b5657c80ee4e201b1e30eaed5e6b"
     },
     "tests/scene-flow.test.mjs": {
       "bytes": 20065,
@@ -3951,9 +3966,9 @@
       "sha256": "c8408ea529261ffc1bf79419ee6803e0646374bac04302e73591278388a0c71a"
     },
     "tools/build.sh": {
-      "bytes": 1320,
+      "bytes": 1346,
       "mode": "0o755",
-      "sha256": "592b145ff548d79dcc165d66bbe69a62bb8579d1f79a1a12fc601bee5d88297a"
+      "sha256": "73952498bd00616a1f24546bc053fba08d8e7467a5a2c3d09d56b6397165081b"
     },
     "tools/build_asset_library.py": {
       "bytes": 13203,
@@ -4059,6 +4074,16 @@
       "bytes": 3315,
       "mode": "0o644",
       "sha256": "361ab51dc2016e3cf657b1f4acff7e50485780814178ed31d0a0cd43b4975759"
+    },
+    "tools/em_web_audio_levels.h": {
+      "bytes": 1865,
+      "mode": "0o644",
+      "sha256": "0c4556d96dd67089b80429ce11206e545cddbb1bc6b8f8a7bcf0f555f874a0dd"
+    },
+    "tools/em_web_audio_levels_cpp.h": {
+      "bytes": 2882,
+      "mode": "0o644",
+      "sha256": "6d84efa466eaa4dfc485596c245050beb8f194b1bd516c5e280e1e4933bdd472"
     },
     "tools/em_web_building_ui.h": {
       "bytes": 23898,
@@ -4301,9 +4326,9 @@
       "sha256": "439971441d6653883845df06c14cd4b27d6832d01fd57e313f7d01d2b31f5a14"
     },
     "tools/prepare_source.py": {
-      "bytes": 17475,
+      "bytes": 20267,
       "mode": "0o644",
-      "sha256": "a0fcafd4fe8b6dedf4877c29aa44a1b1a988201ebb92fd821af32da3762a61dd"
+      "sha256": "2b4ce3ce1842f8bab84c59aa4425078b94b4d451de39b544c5d52661f867adaa"
     },
     "tools/probe_training_return.c": {
       "bytes": 3729,
@@ -4349,6 +4374,21 @@
       "bytes": 4609,
       "mode": "0o644",
       "sha256": "18cdacaf657bda0e562269ec124bf8fb46526ecd5e82db4b4c5ae951f1c0213a"
+    },
+    "tools/test_em_web_audio_levels.c": {
+      "bytes": 4482,
+      "mode": "0o644",
+      "sha256": "23302e66e54fff96dc0428ab952f108bf50241f05d51e27994d75226c2a53af6"
+    },
+    "tools/test_em_web_audio_levels_cpp.cpp": {
+      "bytes": 2157,
+      "mode": "0o644",
+      "sha256": "4f9ae080e05f406a209d79e484a1424def8e86d20f945cedcf9a246744eca77b"
+    },
+    "tools/test_em_web_audio_sequence_classes.py": {
+      "bytes": 1960,
+      "mode": "0o644",
+      "sha256": "51c77010ec7820ef45057a4c2d0e6fe885416d4ec60421aff41fd3833f07e85a"
     },
     "tools/test_em_web_audio_worklet.c": {
       "bytes": 4232,
@@ -5515,6 +5555,11 @@
       "mode": "0o644",
       "sha256": "56b8c1ef97bb65776698218850f7c35150bc4af1ce1f3af30fc9546772712401"
     },
+    "web/audio-settings.mjs": {
+      "bytes": 2427,
+      "mode": "0o644",
+      "sha256": "ef0c7750ef97cf12919a7956a6966ce8ded6f40ed59ec6d8a200053be20face1"
+    },
     "web/base-prototype/app.mjs": {
       "bytes": 13545,
       "mode": "0o644",
@@ -6548,7 +6593,7 @@
     "web/browser-features.mjs": {
       "bytes": 11002,
       "mode": "0o644",
-      "sha256": "f32f68bb228363839536a1e0b9ae19a0832d43621afb2b854d741d2fec3c92b9"
+      "sha256": "41bcb236fd4cb123bb5b8cc7a95697dce7acafef1fdc2d86e14ee03718147ff7"
     },
     "web/building-layout.mjs": {
       "bytes": 1785,
@@ -6558,7 +6603,7 @@
     "web/building-ui.mjs": {
       "bytes": 24342,
       "mode": "0o644",
-      "sha256": "140522307efdc18b81d058ca5f0a30967e7fa0a8863157eb6f3f9f721975ec2b"
+      "sha256": "76bc1859db506159b12bbb6275f1d44be9b9dac286a61214778d69933a35525b"
     },
     "web/campaign-names.mjs": {
       "bytes": 318,
@@ -6596,14 +6641,14 @@
       "sha256": "c246c131d801fcaf5a127f3eb8738635065b73fc9467ba6253dddc2fcdaeabc4"
     },
     "web/engine/dune_web.js": {
-      "bytes": 200989,
+      "bytes": 201160,
       "mode": "0o644",
-      "sha256": "dc5faa08a60a1eb4298bf05fdb6465a1a8cc16c2eed7a9ded84ebb4e3cb535f6"
+      "sha256": "c6e20163bd86b8c6f1bb0ef9ee51a322eacf104ee1a951864703c89dfeeb9df8"
     },
     "web/engine/dune_web.wasm": {
-      "bytes": 5271072,
+      "bytes": 5272837,
       "mode": "0o755",
-      "sha256": "b1f1e88198c7d4e7b3a1d444227fdc380e928da749f51f7ddc45d38b332437fa"
+      "sha256": "6c2de7bd4839b9b3d88c465242ac124a280fd261f631577afcbc0d79f99873bf"
     },
     "web/frontend.state.bin": {
       "bytes": 140921,
@@ -6611,9 +6656,9 @@
       "sha256": "6bfd6cb318ba28ced014c1a318a430ee5899025fdc2975d98a880e4abd2d7955"
     },
     "web/game-ui.mjs": {
-      "bytes": 65029,
+      "bytes": 66011,
       "mode": "0o644",
-      "sha256": "f17ec276813a3f8bf3d2b19670cb2e4e96157c1c8f9b04f076f44ef4aa7287af"
+      "sha256": "dfef1a7c425d6f2bed6cf1b760406d51605c35c92d19d5d0a264b8e4d7e8c31f"
     },
     "web/gestures.mjs": {
       "bytes": 3633,
@@ -6623,7 +6668,7 @@
     "web/i18n.mjs": {
       "bytes": 3921,
       "mode": "0o644",
-      "sha256": "b9c649ef1b8b2d7974029ed5e130cc4387f6f362b1864e1ef0e6b40f4cb3e257"
+      "sha256": "1468c5b32a45384ceffc74df859a6b58e850f3baece824ea119a2b092dd0951b"
     },
     "web/icons/dune-180.png": {
       "bytes": 3759,
@@ -6648,7 +6693,7 @@
     "web/index.html": {
       "bytes": 23955,
       "mode": "0o644",
-      "sha256": "27686e354b5536c5124469436bcb46b5f1e2a256aa7979ea4a404e9c6a7908f2"
+      "sha256": "649fc52d9becc9dbfdb70a89ae03db7e3018fe93db352ca733c1a046d8f631c9"
     },
     "web/input-check.mjs": {
       "bytes": 2725,
@@ -6806,9 +6851,9 @@
       "sha256": "f587061fa9a5366c7e73ab954d54b83e497a77db63ca65c65a570c78b8821494"
     },
     "web/locale-ui-ru.mjs": {
-      "bytes": 19120,
+      "bytes": 19256,
       "mode": "0o644",
-      "sha256": "ae45bb5adfb46e6ec5b1f6936b0140e7f0f56b78721bc96817c85c9c7c1775b7"
+      "sha256": "61e9ac40773e43d860c6e0b890981b77e61ac6bdbd35e47d297b7415c95d41d1"
     },
     "web/localized-results.mjs": {
       "bytes": 3601,
@@ -6838,7 +6883,7 @@
     "web/native-ui.mjs": {
       "bytes": 17596,
       "mode": "0o644",
-      "sha256": "6de06b45123c1de2e1c1ff919bd59ee401f0dec0824e8ebf8e519313901c1d2c"
+      "sha256": "66a9ab2299bddb2aa56f46ee6aa1e1207870fe05adde766e76326663b490b113"
     },
     "web/options-layout.mjs": {
       "bytes": 1418,
@@ -6888,12 +6933,12 @@
     "web/runtime-atlas.mjs": {
       "bytes": 2322,
       "mode": "0o644",
-      "sha256": "0c8b2886a514ce10bd37d184573e16328b89135195212f1cce67590a26c632da"
+      "sha256": "e7a0a0d02c93ac43de0667e056365e172929d3df4201b39d377f81911e3249a2"
     },
     "web/save-files.mjs": {
-      "bytes": 11806,
+      "bytes": 11875,
       "mode": "0o644",
-      "sha256": "8fe26bc0875f427d8329c7ddeabf5f05f14f321de61cd5daf1b6ea0feba78fdc"
+      "sha256": "8afb4bd63fe569475425bcce7853348006857b153c1311e6fbd90677fa797839"
     },
     "web/scene-flow.css": {
       "bytes": 18503,
@@ -6911,9 +6956,9 @@
       "sha256": "189012e3a0d61ef79dc694558b764240def17136eb35d1dfdf6ceaaa54311d2c"
     },
     "web/shell.js": {
-      "bytes": 30216,
+      "bytes": 30807,
       "mode": "0o644",
-      "sha256": "ee98fa489e699742eddef53752cdc55d4ee20f1f0be380f5e09454860790e3fb"
+      "sha256": "70fb7f5a4d93ed81e5146d7a6a8633222436a4e0e8287ccbad295ca84de9bda8"
     },
     "web/startup.js": {
       "bytes": 5035,
@@ -8813,7 +8858,7 @@
     "web/update.html": {
       "bytes": 3276,
       "mode": "0o644",
-      "sha256": "c15f14421c0c974cf8d4d5ae4068d2a8a7a531a2db1cce0ecba13f96c48aede1"
+      "sha256": "db06d61fd4f01c11552e43fdaf1bc83f3dbd9250c313c0337b7c114fa1b542fb"
     },
     "web/viewport.mjs": {
       "bytes": 5660,

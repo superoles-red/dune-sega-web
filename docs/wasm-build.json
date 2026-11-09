@@ -1,9 +1,9 @@
 {
-  "date": "2026-11-06",
+  "date": "2026-11-09",
   "sdk": "Emscripten 3.1.74",
-  "wasmBytes": 5271072,
-  "sha256": "b1f1e88198c7d4e7b3a1d444227fdc380e928da749f51f7ddc45d38b332437fa",
-  "loaderSha256": "dc5faa08a60a1eb4298bf05fdb6465a1a8cc16c2eed7a9ded84ebb4e3cb535f6",
+  "wasmBytes": 5272837,
+  "sha256": "6c2de7bd4839b9b3d88c465242ac124a280fd261f631577afcbc0d79f99873bf",
+  "loaderSha256": "c6e20163bd86b8c6f1bb0ef9ee51a322eacf104ee1a951864703c89dfeeb9df8",
   "noGroupExports": true,
   "audioLoaderBridgeProof": {
     "passed": true,
@@ -17,6 +17,7 @@
     "dune_web_action_self",
     "dune_web_actions_debug",
     "dune_web_actor_capture",
+    "dune_web_audio_levels",
     "dune_web_audio_worklet",
     "dune_web_begin",
     "dune_web_building_ui_frame_rgb",
@@ -90,6 +91,8 @@
     "dune_save_state_to_buffer"
   ],
   "adapterSha256": {
+    "em_web_audio_levels.h": "0c4556d96dd67089b80429ce11206e545cddbb1bc6b8f8a7bcf0f555f874a0dd",
+    "em_web_audio_levels_cpp.h": "6d84efa466eaa4dfc485596c245050beb8f194b1bd516c5e280e1e4933bdd472",
     "em_web_building_ui.h": "75a225de14d65df73a1ffd6a91f336573e249a4dba86b4f0a871003f370a9819",
     "em_web_camera.h": "cecd85a1370e6218308edd70d50b101ccbac8b089f675ffe72c51b2579e11726",
     "em_web_campaign.h": "d67ad7a0fa7e95e2e0fc967f42482b478a8eb99a48c9ab6726cb6a408ad7cd3c",

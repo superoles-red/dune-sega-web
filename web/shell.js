@@ -1,16 +1,17 @@
-import {MapGestures,placementEdgeVelocity} from './gestures.mjs?v=20261106-shop2';
-import {bindMapInput} from './map-input.mjs?v=20261106-shop2';
-import {OrderInput} from './order-input.mjs?v=20261106-shop2';
-import {PlacementMode,placementWorldToScreen} from './placement-mode.mjs?v=20261106-shop2';
-import {PanInertia} from './pan-inertia.mjs?v=20261106-shop2';
-import {NativeArt} from './native-ui.mjs?v=20261106-shop2';
-import {GameInterface} from './game-ui.mjs?v=20261106-shop2';
+import {MapGestures,placementEdgeVelocity} from './gestures.mjs?v=20261109-audio';
+import {bindMapInput} from './map-input.mjs?v=20261109-audio';
+import {OrderInput} from './order-input.mjs?v=20261109-audio';
+import {PlacementMode,placementWorldToScreen} from './placement-mode.mjs?v=20261109-audio';
+import {PanInertia} from './pan-inertia.mjs?v=20261109-audio';
+import {NativeArt} from './native-ui.mjs?v=20261109-audio';
+import {GameInterface} from './game-ui.mjs?v=20261109-audio';
 import {validHouse,validMission} from './campaign-state.mjs';
-import {contextAction} from './context-action.mjs?v=20261106-shop2';
-import {OrderFeedback} from './order-feedback.mjs?v=20261106-shop2';
-import {NativeAudioBridge} from './native-audio.mjs?v=20261106-shop2';
-import {BrowserFeatures} from './browser-features.mjs?v=20261106-shop2';
-import {bindAppViewport,showFullscreenControl} from './viewport.mjs?v=20261106-shop2';
+import {contextAction} from './context-action.mjs?v=20261109-audio';
+import {OrderFeedback} from './order-feedback.mjs?v=20261109-audio';
+import {NativeAudioBridge} from './native-audio.mjs?v=20261109-audio';
+import {AudioSettings} from './audio-settings.mjs?v=20261109-audio';
+import {BrowserFeatures} from './browser-features.mjs?v=20261109-audio';
+import {bindAppViewport,showFullscreenControl} from './viewport.mjs?v=20261109-audio';
 
 // The original SDL host names its engine. Keep the game's public page title
 // independent of that host metadata, including later pause/stop title writes.
@@ -183,7 +184,7 @@ function loadPayload(value,silent=false){
     if(bytes.length>256*1024||bytes.length>Module.HEAPU8.length-ptr)throw new Error('Сохранение повреждено');
     cancelGesture();targetMode.clear('load');orderFeedback.clear({reset:true});Module.HEAPU8.set(bytes,ptr);
     if(!Module._dune_load_state_from_buffer(bytes.length))throw new Error('Сохранение не подходит к этой сборке');
-    Module._dune_web_selection_reset?.();Module._dune_web_menu_select_reset?.();Module._dune_web_rebase?.();if(gameUI){gameUI.frame.valid=false;gameUI.building.frame.valid=false;gameUI.building.key='';}if(!silent)tell('Игра загружена.');return true;
+    Module._dune_web_selection_reset?.();Module._dune_web_menu_select_reset?.();Module._dune_web_rebase?.();if(!legacyMode){audioSettings.restoreNativeMute(nativeJSON('_dune_web_campaign_json'));audioSettings.apply();}if(gameUI){gameUI.frame.valid=false;gameUI.building.frame.valid=false;gameUI.building.key='';}if(!silent)tell('Игра загружена.');return true;
   }catch(e){if(!silent)tell(e.message);return false;}
 }
 function loadGame(silent=false){
@@ -195,20 +196,21 @@ function loadGame(silent=false){
   const ok=loadPayload(value,silent);if(ok&&gameUI){gameUI.demoMode=false;gameUI.resuming=true;gameUI.view='native';gameUI.lastNativeKey='';gameUI.bootTarget=null;pollState();}return ok;
 }
 const Module=window.Module={
-  canvas,locateFile:name=>'engine/'+name+(name.endsWith('.wasm')?'?v=b1f1e88198c7d4e7':'?v=20261106-shop2'),
+  canvas,locateFile:name=>'engine/'+name+(name.endsWith('.wasm')?'?v=6c2de7bd4839b9b3':'?v=20261109-audio'),
   print:(...args)=>console.log(...args),printErr:(...args)=>console.warn(...args),
   setStatus:text=>{status.textContent=text;if(text)startup?.engine();},
   onRuntimeInitialized:()=>{},
-  postRun:[()=>{ready=true;if(!legacyMode&&!gameUI){bootstrapPaused=true;Module._dune_web_set_paused?.(1);}Module._dune_web_native_video?.(legacyMode?1:0);Module._dune_web_set_hidden?.(document.hidden?1:0);if(legacyMode){document.getElementById('launch').hidden=true;loadGame(true);canvas.focus();}resizeGame();Module._dune_web_rebase?.();nativeAudio.start();resolveEngine?.();pollState();}],
+  postRun:[()=>{ready=true;if(!legacyMode&&!gameUI){bootstrapPaused=true;Module._dune_web_set_paused?.(1);}Module._dune_web_native_video?.(legacyMode?1:0);Module._dune_web_set_hidden?.(document.hidden?1:0);if(legacyMode){document.getElementById('launch').hidden=true;loadGame(true);canvas.focus();}resizeGame();Module._dune_web_rebase?.();nativeAudio.start();if(!legacyMode)audioSettings.apply();resolveEngine?.();pollState();}],
   onAbort:reason=>{ready=false;status.textContent=`Не удалось запустить игру: ${reason}`;rejectEngine?.(Error(status.textContent));startup?.fail();if(legacyMode||!gameUI)document.getElementById('launch').hidden=false;else tell(status.textContent);},
 };
-const nativeAudio=new NativeAudioBridge({Module,workletUrl:new URL('./native-audio-worklet.js?v=20261106-shop2',import.meta.url)});
+const audioSettings=new AudioSettings({storage:browserStorage(),apply:(music,sound)=>ready&&!!Module._dune_web_audio_levels?.(music,sound)});
+const nativeAudio=new NativeAudioBridge({Module,workletUrl:new URL('./native-audio-worklet.js?v=20261109-audio',import.meta.url)});
 nativeAudio.setPageActive(!document.hidden);
 function startEngine(){
  if(ready)return Promise.resolve();if(enginePromise)return enginePromise;
  enginePromise=new Promise((resolve,reject)=>{resolveEngine=resolve;rejectEngine=reject;});started=true;
  status.textContent='Подготовка оригинальной игры…';document.getElementById('start').disabled=true;
- const script=document.createElement('script');script.src='engine/dune_web.js?v=20261106-shop2';script.onerror=()=>{status.textContent='Не удалось загрузить сборку.';rejectEngine?.(Error(status.textContent));};document.body.appendChild(script);return enginePromise;
+ const script=document.createElement('script');script.src='engine/dune_web.js?v=20261109-audio';script.onerror=()=>{status.textContent='Не удалось загрузить сборку.';rejectEngine?.(Error(status.textContent));};document.body.appendChild(script);return enginePromise;
 }
 try{if(localStorage.getItem(SAVE_KEY))document.getElementById('start').textContent='Продолжить игру';}catch{}
 document.getElementById('start').onclick=()=>startEngine().catch(e=>tell(e.message));
@@ -232,7 +234,9 @@ const icons={
 const labels={repeat:'Повторить производство', 'confirm-devastator':'Подтвердить самоподрыв — оригинальная B', 'confirm-mcv':'Подтвердить развёртывание — оригинальная B'};
 function pollState(){
   const camera=nativeJSON('_dune_web_camera_debug');if(inputCheckMode)latestCamera=camera;latestActions=nativeJSON('_dune_web_actions_debug');
-  const campaign=nativeJSON('_dune_web_campaign_json'),needsBuilding=campaign.scene==='building'||gameUI?.building.active,
+  const campaign=nativeJSON('_dune_web_campaign_json');
+  if(!legacyMode&&['main','options','pause','map','building'].includes(campaign.scene)&&campaign.sceneReady===true&&campaign.inputReady!==false){if(audioSettings.observeNative(campaign))audioSettings.apply();}
+  const needsBuilding=campaign.scene==='building'||gameUI?.building.active,
    building=needsBuilding?nativeJSON('_dune_web_building_ui_json'):{active:false};
   if(qaMode){
    document.getElementById('native-state').textContent=JSON.stringify({...nativeJSON('_dune_web_debug'),browserAudio:nativeAudio.snapshot()});
@@ -268,7 +272,7 @@ function placementFrame(now){
   if(dt&&(vx||vy)){Module._dune_web_pan?.(-vx*dt,-vy*dt);counters.edgePans++;}
   Module._dune_web_placement_move?.(p.x,p.y);
 }
-if(inputCheckMode)import('./input-check.mjs?v=20261106-shop2').then(({mountInputCheck})=>{
+if(inputCheckMode)import('./input-check.mjs?v=20261109-audio').then(({mountInputCheck})=>{
  inputCheck=mountInputCheck({canvas,read:()=>({taps:counters.taps,selectRequests:counters.selectRequests,commandRequests:counters.commandRequests,pan:counters.panEvents,inertia:panInertia.active,mode:gestures.mode,lastTap:lastMapTap,lastOrder:latestActions.lastOrder,special:latestActions.special,unitSpecial:latestActions.unitSpecial,bAvailable:latestActions.bAvailable,bKind:latestActions.bKind,orders:orders.snapshot(),selected:{kind:latestActions.selected?.kind||'none',id:latestActions.selected?.id,type:latestActions.selected?.type},ready,capturesInput:!!gameUI?.capturesInput,camera:{map:latestCamera.map,css:[latestCamera.cssWidth,latestCamera.cssHeight],output:[latestCamera.outputWidth,latestCamera.outputHeight],left:latestCamera.left,top:latestCamera.top,scale:latestCamera.scale,queued:latestCamera.queuedClicks}})});
 }).catch(e=>console.warn('Input diagnostic unavailable:',e.message));
 setInterval(pollState,50);if(!qaMode)setInterval(()=>saveGame(true),30000);
@@ -281,7 +285,7 @@ else (async()=>{try{
  startEngine().catch(e=>{console.warn('Background engine preload failed:',e);startup?.fail();tell(e.message);});
  art=await new NativeArt({storage:browserStorage()}).load({onProgress:state=>startup?.progress(state)});
  await startup?.stylesReady();
- gameUI=new GameInterface({art,Module,storage:browserStorage(),startEngine,isReady:()=>ready,resumeAudio,saveCurrent:saveGame,loadPayload,tell,platform,resolvePointerKind:effectivePointerKind,cancelGesture:()=>{cancelGesture();targetMode.cancel('screen');}});
+ gameUI=new GameInterface({art,Module,storage:browserStorage(),startEngine,isReady:()=>ready,resumeAudio,saveCurrent:saveGame,loadPayload,tell,platform,audioSettings,resolvePointerKind:effectivePointerKind,cancelGesture:()=>{cancelGesture();targetMode.cancel('screen');}});
  if(bootstrapPaused){bootstrapPaused=false;Module._dune_web_set_paused?.(0);}
  await gameUI.loadCampaign();targetConfirmView=art.decorate(targetConfirm,'PLACE');targetCancelView=art.decorate(targetCancel,'CLEAR',{back:true});art.decorate(menuButton,'MENU',{ariaLabel:'Пауза — меню игры (Start)'});const fullscreenView=art.decorate(fullscreenButton,'',{ariaLabel:'FULL SCREEN'});platform.subscribe(s=>fullscreenView.update('',{ariaLabel:s.fullscreen?'EXIT FULL SCREEN':'FULL SCREEN'}));syncFullscreenControl();actionView=art.decorate(actionButton,'REPEAT',{ariaLabel:'Повторить производство'});
  if(startup)startup.finish();else document.getElementById('launch').hidden=true;pollState();

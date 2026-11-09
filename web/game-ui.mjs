@@ -1,15 +1,15 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261106-shop2';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261106-shop2';
-import {ScreenTransition} from './screen-transition.mjs?v=20261106-shop2';
-import {NativeConfirmation} from './confirm-dialog.mjs?v=20261106-shop2';
+import {BuildingInterface} from './building-ui.mjs?v=20261109-audio';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261109-audio';
+import {ScreenTransition} from './screen-transition.mjs?v=20261109-audio';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261109-audio';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261106-shop2';
+import {LANGUAGES} from './i18n.mjs?v=20261109-audio';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
-import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261106-shop2';
-import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261106-shop2';
-import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261106-shop2';
+import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261109-audio';
+import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261109-audio';
+import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261109-audio';
 
 // Original Results loader $26C68 selects ROM table $26C5C by mission % 3.
 // The replacement for the password screen retains that same background.
@@ -27,8 +27,8 @@ const ROUTE={main:0,options:1,tutorial:2,pause:3,map:4};
 const ready=s=>s?.sceneReady===true;
 
 export class GameInterface {
- constructor({art,Module,storage,startEngine,isReady,resumeAudio,saveCurrent,loadPayload,tell,platform,cancelGesture=()=>{},resolvePointerKind=kind=>kind}){
-  Object.assign(this,{art,Module,startEngine,isReady,resumeAudio,saveCurrent,loadPayload,tell,platform,cancelGesture});
+ constructor({art,Module,storage,startEngine,isReady,resumeAudio,saveCurrent,loadPayload,tell,platform,audioSettings,cancelGesture=()=>{},resolvePointerKind=kind=>kind}){
+  Object.assign(this,{art,Module,startEngine,isReady,resumeAudio,saveCurrent,loadPayload,tell,platform,audioSettings,cancelGesture});
   this.store=new CampaignStore(storage);this.frame=new LiveNativeFrame();this.textFrame=new LiveNativeFrame();this.titleFrame=document.createElement('canvas');this.homeFrame=document.createElement('canvas');this.homeFrameValid=false;this.creditsUnlocked=false;this.state={};this.visibleNative={};this.view='home';this.selectedHouse=this.store.progress.lastHouse;
   this.bound=[];this.lastOutcome=0;this.activeRun=null;this.lastNativeKey='';this.lastText='';this.paintKey='';this.busy=false;this.nativeBusy=false;this.frontOrigin=null;this.sequence=0;this.optionViews=new Map();this.pendingScreen=null;this.demoMode=false;this.trainingMode=false;this.coldHomeVideo=true;this.homeVideoStarted=false;this.homeVideoProbeRevision=-1;this.displayed='home';this.waitingForFrame=false;this.updateEpoch=0;
   this.curtain=new ScreenTransition(art);this.dialog=new NativeConfirmation({art,feedback:()=>this.uiSound()});this.building=new BuildingInterface({art,Module,resumeAudio,confirmation:this.dialog,resolvePointerKind});
@@ -464,12 +464,26 @@ export class GameInterface {
   const active=!!this.artLock&&(force||s.presentationPhase==='briefing_exit'||['campaign','loading'].includes(s.scene));this.element.dataset.artLocked=String(active);
   if(active&&this.hero){const b=this.artLock;Object.assign(this.hero.style,{position:'fixed',left:b.x+'px',top:b.y+'px',width:b.w+'px',height:b.h+'px'});}else if(this.hero)this.hero.style.cssText='';
  }
+ refreshAudioLabels(s=this.state){
+  if(this.audioSettings&&ready(s)&&s.inputReady!==false)this.audioSettings.observeNative(s);
+  for(const [row,kind]of [[0,'music'],[1,'sound']])this.optionViews.get(row)?.update(this.audioSettings?this.audioSettings.label(kind):(kind==='music'?'MUSIC: ':'SOUND: ')+(s[kind]?'ON':'OFF'));
+ }
+ cycleAudio(row){
+  if(!this.audioSettings)return this.input(2,row);
+  if(![0,1].includes(row)||!this.isReady()||!ready(this.state)||this.state.inputReady===false||this.pendingScreen||this.curtain.active)return false;
+  this.resumeAudio();this.audioSettings.observeNative(this.state);const kind=row===0?'music':'sound',level=this.audioSettings.cycle(kind);
+  // A legacy save may have stopped this native driver through its old OFF
+  // handler. Re-enable it once through that same handler; percentages alone
+  // only change playback gain and must not restart an already playing track.
+  if(level>0&&(this.state[kind]===0||this.state[kind]===false))this.input(2,row);
+  this.refreshAudioLabels();this.uiSound();return true;
+ }
  showNative(s,pending=false){
   const scene=s.scene,key=[scene,s.inputKind,s.inputReady,s.presentationFullFrame,s.presentationPhase,s.confirmStyle,s.houseId,s.optionsInGame,(s.choiceLabels||[]).join(','),terminal(s),pending].join(':');
   if(key!==this.lastNativeKey){this.lastNativeKey=key;this.clear('native',TITLE[scene]||'DUNE');this.element.dataset.scene=scene;
    const opts={feedback:false,disabled:pending||s.inputReady===false};
    if(scene==='options'||scene==='pause'){
-    for(const row of [0,1]){const v=this.button('',()=>this.input(2,row),{...opts,id:'option-'+row});this.optionViews.set(row,v.view);}
+    for(const row of [0,1]){const v=this.button('',()=>this.cycleAudio(row),{...opts,id:'option-'+row});this.optionViews.set(row,v.view);}
     this.button('LANGUAGES',()=>this.openLanguages(),{...opts,id:'open-languages',feedback:true});
     this.button('HOW TO PLAY?',()=>this.openControls(),{...opts,id:'open-controls',feedback:true});
     if(this.platform)this.button('FILES & OFFLINE',()=>this.openPlatform(),{...opts,id:'open-platform',feedback:true});
@@ -489,7 +503,7 @@ export class GameInterface {
   }
   this.applyArtLock(s);this.nativeBusy=pending;this.visibleNative={...s};this.element.hidden=false;this.element.dataset.scene=scene;this.element.dataset.phase=s.presentationPhase||scene;this.element.dataset.ready=String(!pending);this.element.dataset.optionsLayout=String(scene==='pause'||scene==='options');this.element.dataset.timeline=String(SEQUENCE.has(scene));this.element.dataset.story=String(STORY.has(scene)&&(!s.presentationFullFrame||s.presentationPhase==='briefing_exit'));this.element.dataset.terminal=String(terminal(s));this.element.dataset.dialog=String(SEQUENCE.has(scene)&&!terminal(s));
   this.footer.hidden=!this.footer.childElementCount;this.actions.hidden=!this.actions.childElementCount;
-  if(scene==='options'||scene==='pause'){this.optionViews.get(0)?.update('MUSIC: '+(s.music?'ON':'OFF'));this.optionViews.get(1)?.update('SOUND: '+(s.sound?'ON':'OFF'));}
+  if(scene==='options'||scene==='pause')this.refreshAudioLabels(s);
   const dialogue=STORY.has(scene)&&!s.presentationFullFrame,hasText=typeof s.visibleMessageText==='string';this.liveText=dialogue&&!hasText;this.messageText=cleanText(dialogue&&hasText?s.visibleMessageText:scene==='confirm'?(s.promptText||'ARE YOU SURE?'):'');this.message.hidden=!(this.messageText||this.liveText);this.element.dataset.hasMessage=String(!this.message.hidden);this.message.setAttribute('aria-label',this.messageText||'Оригинальный текст игры');this.drawMessage();
  }
  drawCaption(){const box=this.caption.getBoundingClientRect();if(!this.art.ready||box.width<1)return;const text=value=>this.art.displayText?.(value)||value,label=text(this.title||'DUNE'),sub=this.view==='native'&&this.visibleNative?.scene==='pause'&&this.state.house?text(this.state.house.toUpperCase()+' - MISSION '+this.state.mission):'',d=Math.min(devicePixelRatio||1,3),h=sub?64:40;this.caption.width=Math.ceil(box.width*d);this.caption.height=h*d;this.caption.style.height=h+'px';this.caption.setAttribute('aria-label',label);const c=this.caption.getContext('2d');c.scale(d,d);c.imageSmoothingEnabled=false;const scale=Math.min(2,Math.max(1,(box.width-16)/(Math.max(1,label.length)*8)));this.art.text(c,label,box.width/2,(40-8*scale)/2,{scale,align:'center',shadow:true,translate:false});if(sub)this.art.text(c,sub,box.width/2,44,{scale:Math.min(1.25,(box.width-24)/(sub.length*8)),align:'center',shadow:true,translate:false});}

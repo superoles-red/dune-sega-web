@@ -1,8 +1,11 @@
 {
   "baseSourceSha256": "e3055a76cd0eeb151591984a2c12312dcea49754afa0edee9f84889814ad1578",
-  "patchedSourceSha256": "cbf56914715f5f93217bd5d60a00081c03a133bd11afdae12e9950a4d34671bf",
+  "patchedSourceSha256": "895436401ca68da7264a20448f1caf7830b1a866135d79c14c8052c6d9b4b847",
+  "patchedAudioSourceSha256": "3fe0c8774bd65594b1e8821edda075f144dbf0a87dd7f3ce0fcb532b0a535518",
   "originalRomAndInstructionHandlersUnchanged": true,
   "adapterHeaders": {
+    "em_web_audio_levels.h": "0c4556d96dd67089b80429ce11206e545cddbb1bc6b8f8a7bcf0f555f874a0dd",
+    "em_web_audio_levels_cpp.h": "6d84efa466eaa4dfc485596c245050beb8f194b1bd516c5e280e1e4933bdd472",
     "em_web_building_ui.h": "75a225de14d65df73a1ffd6a91f336573e249a4dba86b4f0a871003f370a9819",
     "em_web_camera.h": "cecd85a1370e6218308edd70d50b101ccbac8b089f675ffe72c51b2579e11726",
     "em_web_campaign.h": "d67ad7a0fa7e95e2e0fc967f42482b478a8eb99a48c9ab6726cb6a408ad7cd3c",
@@ -30,6 +33,7 @@
     "CSS pointer and pinch projection",
     "single native selection, pure clear and contextual B; original building placement",
     "preview then confirm native purchases; direct commands; original active menu focus; hidden ordinary map cursor and three-part portrait menu",
+    "output-only independent music/SFX levels; original GEMS physical voice ownership, PCM source clocks and save ABI retained",
     "bounded v2 save validation and renderer reset"
   ]
 }

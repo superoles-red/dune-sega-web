@@ -78,6 +78,8 @@ export const UI_RU={
  'PROCEED':'ПРИСТУПИТЬ','ADVICE':'СОВЕТ','YES':'ДА','NO':'НЕТ',
  'MUSIC: ON':'МУЗЫКА: ВКЛ','MUSIC: OFF':'МУЗЫКА: ВЫКЛ',
  'SOUND: ON':'ЗВУКИ: ВКЛ','SOUND: OFF':'ЗВУКИ: ВЫКЛ',
+ 'MUSIC: 100%':'МУЗЫКА: 100%','MUSIC: 50%':'МУЗЫКА: 50%',
+ 'SOUND: 100%':'ЗВУКИ: 100%','SOUND: 50%':'ЗВУКИ: 50%',
  'CONTINUE?':'ПРОДОЛЖИТЬ?','START MISSION?':'НАЧАТЬ МИССИЮ?',
  'RETURN TO MAIN MENU?':'ВЫЙТИ В ГЛАВНОЕ МЕНЮ?',
  'THE CURRENT CONTINUE WILL BE REPLACED.':'ТЕКУЩЕЕ СОХРАНЕНИЕ БУДЕТ ЗАМЕНЕНО.',
