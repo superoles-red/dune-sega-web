@@ -1,10 +1,10 @@
 {
   "baseSourceSha256": "e3055a76cd0eeb151591984a2c12312dcea49754afa0edee9f84889814ad1578",
   "patchedSourceSha256": "895436401ca68da7264a20448f1caf7830b1a866135d79c14c8052c6d9b4b847",
-  "patchedAudioSourceSha256": "3fe0c8774bd65594b1e8821edda075f144dbf0a87dd7f3ce0fcb532b0a535518",
+  "patchedAudioSourceSha256": "ec312e00bde1191e57badd1b3376599cdefebb2816022443c551fef0eacf089c",
   "originalRomAndInstructionHandlersUnchanged": true,
   "adapterHeaders": {
-    "em_web_audio_levels.h": "0c4556d96dd67089b80429ce11206e545cddbb1bc6b8f8a7bcf0f555f874a0dd",
+    "em_web_audio_levels.h": "3ab3aa5790d5e3632ce9d9aff093d6725c6345c4eb80ae50f2d0208c745f4264",
     "em_web_audio_levels_cpp.h": "6d84efa466eaa4dfc485596c245050beb8f194b1bd516c5e280e1e4933bdd472",
     "em_web_building_ui.h": "75a225de14d65df73a1ffd6a91f336573e249a4dba86b4f0a871003f370a9819",
     "em_web_camera.h": "cecd85a1370e6218308edd70d50b101ccbac8b089f675ffe72c51b2579e11726",

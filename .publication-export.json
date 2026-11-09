@@ -26,9 +26,9 @@
       "sha256": "5c51106d6ee86ec6ebe07f60495b1315d9092cce6eadbe53dc79b1c2565faaa0"
     },
     "README.md": {
-      "bytes": 59496,
+      "bytes": 59515,
       "mode": "0o644",
-      "sha256": "1002efa889cb38f5149d22fb55e2dcc41e2bf435a06860412bdd24ad7043fdb6"
+      "sha256": "7c4878dacfe63e9f986e11d87fbea660e356b0f10da638c1e2d1c415c8ee6b2f"
     },
     "THIRD_PARTY_NOTICES.md": {
       "bytes": 3653,
@@ -3496,9 +3496,9 @@
       "sha256": "dab16f402878ad4867f3547189ee9b68747575779ebb54df22d896defcca6a88"
     },
     "docs/audio-levels.md": {
-      "bytes": 4586,
+      "bytes": 4972,
       "mode": "0o644",
-      "sha256": "aa00b6888fb21f0a14d5eee12606e259f36d30da2982f2f6708e412b0bff63fa"
+      "sha256": "456429e644ebab9b197446995633b4938c38ae6068c8220970fba04f3a817deb"
     },
     "docs/browser-verification.json": {
       "bytes": 1412,
@@ -3508,7 +3508,7 @@
     "docs/build-source.json": {
       "bytes": 2911,
       "mode": "0o644",
-      "sha256": "3f10a70cd5013e45b3d730c579b398adf22d300976fbf592997b83309deefd2d"
+      "sha256": "02d419ac41f0272aa7ef0ae14efdbfa074233cc5ed62fe9c5fe0d6a13548e717"
     },
     "docs/controls-assets.json": {
       "bytes": 431,
@@ -3748,7 +3748,7 @@
     "docs/wasm-build.json": {
       "bytes": 4607,
       "mode": "0o644",
-      "sha256": "ecea29352cae212c7212b02ebb073d74104b2d54cdc5d2a3b9ddfa19a33b5c9a"
+      "sha256": "fa9c5f0843bfb5038ebe82e284978b007cefebffb619e952fb974a563faa7691"
     },
     "tests/asset-loader.test.mjs": {
       "bytes": 9295,
@@ -3756,9 +3756,9 @@
       "sha256": "a0e100913f9b78fa94aa44e6b6a07cfe1d026cb57cc929c2e99f165e56f4a75c"
     },
     "tests/audio-settings.test.mjs": {
-      "bytes": 9808,
+      "bytes": 11050,
       "mode": "0o644",
-      "sha256": "712532c241ca7fa8c9d18492b15871cd254ba8c557ada5aa3897b25bc917227c"
+      "sha256": "8f5ec49e5a909635bb599d8cbe2754f27d9108a57bf89852748cf3ee88ad9896"
     },
     "tests/audio-shell-levels.test.mjs": {
       "bytes": 2706,
@@ -3776,9 +3776,9 @@
       "sha256": "9a1714c8cd5180faed96815d4ea9b6b1dc3ca2338991f62eb8b5b1a5b08d46b0"
     },
     "tests/browser-features.test.mjs": {
-      "bytes": 24230,
+      "bytes": 24232,
       "mode": "0o644",
-      "sha256": "c47005d976292f95fec1a023085a3a307b4ce11a85a33929cd2585e9bd8842fc"
+      "sha256": "794b31d38ef0a8e83f065bcae9b15c0d48eb9f9628fd4cde805ac0c47e99ea44"
     },
     "tests/building-layout.test.mjs": {
       "bytes": 3060,
@@ -3911,9 +3911,9 @@
       "sha256": "8dffd41cef77e780313ec44fac5bc678f37ea9b730d300e391fec815a7839145"
     },
     "tests/save-files.test.mjs": {
-      "bytes": 12796,
+      "bytes": 12863,
       "mode": "0o644",
-      "sha256": "a9b4f635ee58ad3743a7aef4dcf1ea193058b5657c80ee4e201b1e30eaed5e6b"
+      "sha256": "8a8f04200b16dd2769e2518a9fa1c91c4ee237f6da4983d2111d431f433fcdad"
     },
     "tests/scene-flow.test.mjs": {
       "bytes": 20065,
@@ -4076,9 +4076,9 @@
       "sha256": "361ab51dc2016e3cf657b1f4acff7e50485780814178ed31d0a0cd43b4975759"
     },
     "tools/em_web_audio_levels.h": {
-      "bytes": 1865,
+      "bytes": 1906,
       "mode": "0o644",
-      "sha256": "0c4556d96dd67089b80429ce11206e545cddbb1bc6b8f8a7bcf0f555f874a0dd"
+      "sha256": "3ab3aa5790d5e3632ce9d9aff093d6725c6345c4eb80ae50f2d0208c745f4264"
     },
     "tools/em_web_audio_levels_cpp.h": {
       "bytes": 2882,
@@ -4326,9 +4326,9 @@
       "sha256": "439971441d6653883845df06c14cd4b27d6832d01fd57e313f7d01d2b31f5a14"
     },
     "tools/prepare_source.py": {
-      "bytes": 20267,
+      "bytes": 20284,
       "mode": "0o644",
-      "sha256": "2b4ce3ce1842f8bab84c59aa4425078b94b4d451de39b544c5d52661f867adaa"
+      "sha256": "8ad7671aadc8c9505a9d2a184faf06e09708cd2321d18c1e8d54181351ac3ad6"
     },
     "tools/probe_training_return.c": {
       "bytes": 3729,
@@ -4378,12 +4378,12 @@
     "tools/test_em_web_audio_levels.c": {
       "bytes": 4482,
       "mode": "0o644",
-      "sha256": "23302e66e54fff96dc0428ab952f108bf50241f05d51e27994d75226c2a53af6"
+      "sha256": "dad928c9a03c5dafecbf226bcc8bb3638f581a149d471bc099ebdd7c25b2d387"
     },
     "tools/test_em_web_audio_levels_cpp.cpp": {
-      "bytes": 2157,
+      "bytes": 2335,
       "mode": "0o644",
-      "sha256": "4f9ae080e05f406a209d79e484a1424def8e86d20f945cedcf9a246744eca77b"
+      "sha256": "cc78af7aa2917e56cd7ef1d1828a588edbf1abb816ef6352b93d5c07851da671"
     },
     "tools/test_em_web_audio_sequence_classes.py": {
       "bytes": 1960,
@@ -5556,9 +5556,9 @@
       "sha256": "56b8c1ef97bb65776698218850f7c35150bc4af1ce1f3af30fc9546772712401"
     },
     "web/audio-settings.mjs": {
-      "bytes": 2427,
+      "bytes": 2437,
       "mode": "0o644",
-      "sha256": "ef0c7750ef97cf12919a7956a6966ce8ded6f40ed59ec6d8a200053be20face1"
+      "sha256": "503142fceae34eb534f05185714a0c3424bf64454eee5909b3a53b0ff25990df"
     },
     "web/base-prototype/app.mjs": {
       "bytes": 13545,
@@ -6591,9 +6591,9 @@
       "sha256": "25fa8ee1b53d5bb0985067e6f63702e82e43edf92cb51ea46b9fcbfd305fcbe5"
     },
     "web/browser-features.mjs": {
-      "bytes": 11002,
+      "bytes": 11004,
       "mode": "0o644",
-      "sha256": "41bcb236fd4cb123bb5b8cc7a95697dce7acafef1fdc2d86e14ee03718147ff7"
+      "sha256": "380de13e6087a33521f73d10861a2037e12a82b15b21cd0055a0f995265d0353"
     },
     "web/building-layout.mjs": {
       "bytes": 1785,
@@ -6601,9 +6601,9 @@
       "sha256": "8732e16da51048e1bd4a0b49686aaa0b9ddc4f4d88e7dd57aafbe26d4711860c"
     },
     "web/building-ui.mjs": {
-      "bytes": 24342,
+      "bytes": 24344,
       "mode": "0o644",
-      "sha256": "76bc1859db506159b12bbb6275f1d44be9b9dac286a61214778d69933a35525b"
+      "sha256": "0c881a2e288b6a7e919bce9a2a4c83fd988dad638a7fb8852d5da2efefb1e88e"
     },
     "web/campaign-names.mjs": {
       "bytes": 318,
@@ -6646,9 +6646,9 @@
       "sha256": "c6e20163bd86b8c6f1bb0ef9ee51a322eacf104ee1a951864703c89dfeeb9df8"
     },
     "web/engine/dune_web.wasm": {
-      "bytes": 5272837,
+      "bytes": 5273022,
       "mode": "0o755",
-      "sha256": "6c2de7bd4839b9b3d88c465242ac124a280fd261f631577afcbc0d79f99873bf"
+      "sha256": "c68bbf96ffa9db8f4472acc500deec0b14e6cd22f64c059e61b6f16daf540f27"
     },
     "web/frontend.state.bin": {
       "bytes": 140921,
@@ -6656,9 +6656,9 @@
       "sha256": "6bfd6cb318ba28ced014c1a318a430ee5899025fdc2975d98a880e4abd2d7955"
     },
     "web/game-ui.mjs": {
-      "bytes": 66011,
+      "bytes": 66027,
       "mode": "0o644",
-      "sha256": "dfef1a7c425d6f2bed6cf1b760406d51605c35c92d19d5d0a264b8e4d7e8c31f"
+      "sha256": "94c402577b26d6697b8a5d5a48beca86197b28e1e83c16b08a23049ce79e42ef"
     },
     "web/gestures.mjs": {
       "bytes": 3633,
@@ -6666,9 +6666,9 @@
       "sha256": "04dd4bc3c84669b7b7f5494532a80c7a088398e2a2d5c79ef840402dca54be63"
     },
     "web/i18n.mjs": {
-      "bytes": 3921,
+      "bytes": 3923,
       "mode": "0o644",
-      "sha256": "1468c5b32a45384ceffc74df859a6b58e850f3baece824ea119a2b092dd0951b"
+      "sha256": "219c5208a6b3e1c0f8e05c612cc87cc358c28cc5c298187241276688e8ac0236"
     },
     "web/icons/dune-180.png": {
       "bytes": 3759,
@@ -6691,9 +6691,9 @@
       "sha256": "dbd03cfbd26ebe17b7fbe15bea937acad3eb4e9f57ab7a6a293ce330dd2557d5"
     },
     "web/index.html": {
-      "bytes": 23955,
+      "bytes": 23963,
       "mode": "0o644",
-      "sha256": "649fc52d9becc9dbfdb70a89ae03db7e3018fe93db352ca733c1a046d8f631c9"
+      "sha256": "cb7316658e8f428bf153fcaa8f8885ae93058b602934fab109e9fd768303f0ce"
     },
     "web/input-check.mjs": {
       "bytes": 2725,
@@ -6851,9 +6851,9 @@
       "sha256": "f587061fa9a5366c7e73ab954d54b83e497a77db63ca65c65a570c78b8821494"
     },
     "web/locale-ui-ru.mjs": {
-      "bytes": 19256,
+      "bytes": 19322,
       "mode": "0o644",
-      "sha256": "61e9ac40773e43d860c6e0b890981b77e61ac6bdbd35e47d297b7415c95d41d1"
+      "sha256": "92da4315d8e4dc09548a5870a69d861d9ba846125400017fc31ffa2a2ded56fa"
     },
     "web/localized-results.mjs": {
       "bytes": 3601,
@@ -6881,9 +6881,9 @@
       "sha256": "d445021b98706723835cfa00751f4486e5271e0da0243d62c9edb672b6c01e29"
     },
     "web/native-ui.mjs": {
-      "bytes": 17596,
+      "bytes": 17602,
       "mode": "0o644",
-      "sha256": "66a9ab2299bddb2aa56f46ee6aa1e1207870fe05adde766e76326663b490b113"
+      "sha256": "b3777b2981258b8f40fdd26209e5f90c7715fc79fbc85003d467f747e3a3a42a"
     },
     "web/options-layout.mjs": {
       "bytes": 1418,
@@ -6931,14 +6931,14 @@
       "sha256": "f430201485822c35129d386905b5ecdeb3c1a58e77af844911b46fff6d57e704"
     },
     "web/runtime-atlas.mjs": {
-      "bytes": 2322,
+      "bytes": 2328,
       "mode": "0o644",
-      "sha256": "e7a0a0d02c93ac43de0667e056365e172929d3df4201b39d377f81911e3249a2"
+      "sha256": "2007bd3b0b994633ab7bcb428d7baf71784a7cd1a98ad83524f1d2243cfd16b2"
     },
     "web/save-files.mjs": {
-      "bytes": 11875,
+      "bytes": 11944,
       "mode": "0o644",
-      "sha256": "8afb4bd63fe569475425bcce7853348006857b153c1311e6fbd90677fa797839"
+      "sha256": "e82fa1f619f1d30ac90faf5e10a2e36d9e5cda04c544a8884851ce3972b8c099"
     },
     "web/scene-flow.css": {
       "bytes": 18503,
@@ -6956,9 +6956,9 @@
       "sha256": "189012e3a0d61ef79dc694558b764240def17136eb35d1dfdf6ceaaa54311d2c"
     },
     "web/shell.js": {
-      "bytes": 30807,
+      "bytes": 30841,
       "mode": "0o644",
-      "sha256": "70fb7f5a4d93ed81e5146d7a6a8633222436a4e0e8287ccbad295ca84de9bda8"
+      "sha256": "967ddd62978f045e24e2ba80c4e073c357585acf8952501e5406d12be6a2711f"
     },
     "web/startup.js": {
       "bytes": 5035,
@@ -8856,9 +8856,9 @@
       "sha256": "11ed77fbdf6121cf446c523a178bc5b882939250db0b8215e1a11f7f6e6f5217"
     },
     "web/update.html": {
-      "bytes": 3276,
+      "bytes": 3278,
       "mode": "0o644",
-      "sha256": "db06d61fd4f01c11552e43fdaf1bc83f3dbd9250c313c0337b7c114fa1b542fb"
+      "sha256": "103e3c9848887d5f9684e3262287437781c61bf945a60543a6b3ff0730eb8efb"
     },
     "web/viewport.mjs": {
       "bytes": 5660,

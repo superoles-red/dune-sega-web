@@ -15,7 +15,7 @@ static void cue(void){unsigned w=c.z80_bus.ram[0x36]&63,r=c.z80_bus.ram[0x37]&63
 int main(int argc,char**argv){
  check(argc==4,"usage music sound output-prefix");int music=atoi(argv[1]),sound=atoi(argv[2]);
 #ifndef EM_WEB_LEVELS_BASELINE
- check(em_web_audio_levels_set(music,sound),"valid levels");check(!em_web_audio_levels_set(25,100)&&em_web_music_level==(unsigned)music&&em_web_sound_level==(unsigned)sound,"invalid values leave current levels intact");
+ check(em_web_audio_levels_set(music,sound),"valid levels");check(!em_web_audio_levels_set(75,100)&&em_web_music_level==(unsigned)music&&em_web_sound_level==(unsigned)sound,"invalid values leave current levels intact");
  /* Source ownership is retained in the physical table independently of a CCB
   * being reused; DAC uses actual physical FM channel 5, not a global mix gain. */
  CPU test={0};test.z80_bus.ram[0x1795]=0x08;test.z80_bus.ram[0x17b1]=0x48;test.z80_bus.ram[0x17c7]=0x88;test.z80_bus.ram[0x17d6]=0x18;

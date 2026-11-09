@@ -12,11 +12,11 @@ static unsigned em_web_audio_psg_levels[4]={100,100,100,100};
 void genesis_ymfm_output_levels(void *chip,const unsigned levels[6]);
 #endif
 static int em_web_audio_levels_set(int music,int sound){
- if((music!=0&&music!=50&&music!=100)||(sound!=0&&sound!=50&&sound!=100))return 0;
+ if((music!=0&&music!=25&&music!=50&&music!=100)||(sound!=0&&sound!=25&&sound!=50&&sound!=100))return 0;
  em_web_music_level=(unsigned)music;em_web_sound_level=(unsigned)sound;return 1;
 }
 static int32_t em_web_audio_level_sample(int32_t sample,unsigned level){
- return level==100?sample:level==50?sample/2:0;
+ return level==100?sample:level==50?sample/2:level==25?sample/4:0;
 }
 static unsigned em_web_audio_voice_level(const CPU*c,unsigned row){
  return c->z80_bus.ram[row]&8?em_web_sound_level:em_web_music_level;

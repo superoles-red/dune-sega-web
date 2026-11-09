@@ -1,6 +1,6 @@
 # Independent music and sound output levels
 
-Modern Options/Pause cycles each category through **100% → 50% → OFF → 100%**.
+Modern Options/Pause cycles each category through **100% → 50% → 25% → OFF → 100%**.
 Browser preferences select output gain; they do not change original music
 tempo, game speed, costs, AI, world state, voice allocation or chip clocks.
 
@@ -55,20 +55,24 @@ or rewritten. A short normal DC-filter tail can remain after selecting OFF.
 `tools/test_em_web_audio_levels.c` runs the genuine cold Main CPU and its real
 YM payload, adding six test-only original GEMS play-sequence12 FIFO cues. It
 observes music, native effects and PSG output over95200 stereo frames per run.
-All nine combinations of0/50/100 preserve the entire391624-byte normalized
-CPU/device snapshot and every original865-byte YM state byte. Only process
-pointers and the output histories listed above are normalized.
+The initial nine combinations of0/50/100 preserve the entire391624-byte
+normalized CPU/device snapshot and every original865-byte YM state byte.
+Adding25% exercises all seven newly possible combinations:25/100,25/50,25/25,
+25/0,100/25,50/25 and0/25, plus the original100/100 control. Each still matches
+the original CPU and YM reference. Only process pointers and the output
+histories listed above are normalized.
 
 An unmodified generated C/original YM backend reference and the prepared
 100/100 path both produce PCM FNV-1a`44729fba0195b267` and absolute sample
 energy91558502. Their complete391624-byte CPU/device snapshots also match,
 including every PCM/filter/PSG integration history (only ASLR process pointers
 are normalized). With effects OFF, music100 has energy86202438 and music50 has
-42565372; with music OFF, effects100 has16484940 and effects50 has8222880.
+42565372 and music25 has20331284; with music OFF, effects100 has16484940,
+effects50 has8222880 and effects25 has4107594.
 The small rounding/filter difference is expected from native integer PCM.
 
 `tools/test_em_web_audio_levels_cpp.cpp` additionally isolates a changing DAC
-signal:15 edges verify independent100/50/OFF amplitude while the original
+signal:15 edges verify independent100/50/25/OFF amplitude while the original
 865-byte YM state remains identical. This is a synthetic output fixture,
 separate from the real Main/effect regression. Neither test claims physical
 iPhone/Android listening or hardware latency/thermal verification.
@@ -77,4 +81,6 @@ For native compilation, use the prepared C++ adapter with
 `-I .local/source/genesis_recompiler`; C harnesses also use `-Itools`.
 Compile the C baseline with `-DEM_WEB_LEVELS_BASELINE` and link the original
 audio adapter; link the normal harness with the prepared adapter. The local
-full results are recorded in `.local/volume-levels-proof.json`.
+initial results are recorded in `.local/volume-levels-proof.json`; the seven
+new25% cases and refreshed100/100 identity control are recorded separately in
+`.local/volume25-levels-proof.json`.

@@ -1,6 +1,6 @@
 // Playback preferences are separate from native saves and campaign progress.
 export const AUDIO_SETTINGS_KEY='dune-sega-audio-v1';
-export const AUDIO_LEVELS=Object.freeze([100,50,0]);
+export const AUDIO_LEVELS=Object.freeze([100,50,25,0]);
 const kinds=['music','sound'];
 const validLevel=value=>AUDIO_LEVELS.includes(value);
 
@@ -15,7 +15,7 @@ export class AudioSettings {
   }catch(error){this.error=error;}
  }
  // The caller supplies a settled original state, never zero-filled boot RAM.
- // Existing ON/OFF choices migrate only when no three-level preference exists.
+ // Existing ON/OFF choices migrate only when no saved level preference exists.
  observeNative(state){
   if(this.observedNative||!kinds.every(kind=>state?.[kind]===0||state?.[kind]===1||typeof state?.[kind]==='boolean'))return false;
   this.observedNative=true;
@@ -23,8 +23,8 @@ export class AudioSettings {
   this.levels={music:state.music?100:0,sound:state.sound?100:0};return true;
  }
  // Successful old DSAV loads may restore a driver that was actually stopped.
- // Respect that OFF choice instead of labelling a silent driver 100%/50%.
- // Native ON never replaces a remembered half-volume or output mute setting.
+ // Respect that OFF choice instead of labelling a silent driver 100%/50%/25%.
+ // Native ON never replaces a remembered playback level or output mute setting.
  restoreNativeMute(state){
   const next={...this.levels};let changed=false;
   for(const kind of kinds)if((state?.[kind]===0||state?.[kind]===false)&&next[kind]>0){next[kind]=0;changed=true;}
