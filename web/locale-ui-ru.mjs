@@ -37,6 +37,7 @@ export const UI_RU={
  'LANGUAGES':'ЯЗЫКИ','LANGUAGE':'ЯЗЫК','TUTORIAL':'СПРАВОЧНИК','BACK':'НАЗАД',
  'CONTROLS':'УПРАВЛЕНИЕ','TOUCH SCREEN':'СЕНСОР','MOUSE':'МЫШЬ',
  'HOW TO PLAY?':'КАК ИГРАТЬ?',
+ 'FEEDBACK':'ОТЗЫВ','LEAVE FEEDBACK':'ОСТАВИТЬ ОТЗЫВ',
  'SINGLE TAP':'ОДНО КАСАНИЕ','DOUBLE TAP':'ДВА КАСАНИЯ','DRAG':'ПЕРЕТАСКИВАНИЕ','PINCH':'ДВА ПАЛЬЦА',
  'LEFT CLICK':'ЛЕВАЯ КНОПКА','RIGHT CLICK':'ПРАВАЯ КНОПКА','LEFT DRAG':'ТЯНИТЕ ЛЕВОЙ КНОПКОЙ','WHEEL OR TRACKPAD':'КОЛЕСО ИЛИ ТРЕКПАД',
  'SELECT. EMPTY GROUND CLEARS.':'ВЫБОР. НА ПУСТОМ МЕСТЕ: СБРОС.',

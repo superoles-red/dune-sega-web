@@ -248,6 +248,20 @@ test('Options and Pause offer How to Play and Languages, with Tutorial inside th
  }
 });
 
+test('Feedback is available from title Options only',()=>{
+ const {ui}=fixture();let opened=0;
+ ui.platform={snapshot:()=>({}),openFeedback(){opened++;}};
+ for(const scene of ['options','pause']){
+  for(const optionsInGame of [false,true]){
+   ui.state=snapshot({scene,optionsInGame});ui.showNative(ui.state);
+   const feedback=ui.buttons.find(button=>button.options.id==='open-feedback');
+   assert.equal(!!feedback,scene==='options'&&!optionsInGame);
+   if(feedback){assert.equal(feedback.label,'FEEDBACK');feedback.action();}
+  }
+ }
+ assert.equal(opened,1);
+});
+
 test('native password continuation becomes an unlocked next-mission button without exposing a password page',()=>{
  const {ui,calls}=fixture();ui.store.complete(1,1);
  ui.update(snapshot({scene:'password_display',outcome:'victory',outcomeHouse:1,outcomeMission:1,houseId:1,mission:2}),null,{});

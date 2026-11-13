@@ -102,6 +102,8 @@ body[data-fullscreen-control="hidden"] #native-menu.native-button{left:max(10px,
 #global-fullscreen::after{content:"";position:absolute;inset:11px 12px;pointer-events:none;--native-ink:url('./ui-assets/screen-assets/ui/command-skin-normal-tl.png');background-image:var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink),var(--native-ink);background-position:top left,top right,bottom left,bottom right,top left,top right,bottom left,bottom right;background-size:10px 3px,10px 3px,10px 3px,10px 3px,3px 10px,3px 10px,3px 10px,3px 10px;background-repeat:no-repeat;image-rendering:pixelated}
 .scene-head{padding-left:56px;padding-right:56px}
 .native-screen[data-view="native"] #open-platform{grid-column:1/-1}
+.native-screen[data-view="native"][data-scene="options"] #open-feedback{position:absolute;top:max(10px,env(safe-area-inset-top));right:max(10px,env(safe-area-inset-right));width:88px;height:44px;min-width:44px;min-height:44px}
+.native-screen[data-view="native"][data-scene="options"] .scene-shell:has(#open-feedback) .scene-head{padding-inline:max(98px,calc(env(safe-area-inset-right,0px) + 88px))}
 #demo-launch{top:max(10px,env(safe-area-inset-top))}
 #demo-launch.native-button{width:208px;max-width:calc(100vw - 88px);height:48px;min-height:48px;padding:0;border:0;border-radius:0;background:transparent}
 

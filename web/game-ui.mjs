@@ -1,15 +1,15 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261113-title-credits';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261113-title-credits';
-import {ScreenTransition} from './screen-transition.mjs?v=20261113-title-credits';
-import {NativeConfirmation} from './confirm-dialog.mjs?v=20261113-title-credits';
+import {BuildingInterface} from './building-ui.mjs?v=20261113-feedback';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261113-feedback';
+import {ScreenTransition} from './screen-transition.mjs?v=20261113-feedback';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261113-feedback';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261113-title-credits';
+import {LANGUAGES} from './i18n.mjs?v=20261113-feedback';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
-import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261113-title-credits';
-import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261113-title-credits';
-import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261113-title-credits';
+import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261113-feedback';
+import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261113-feedback';
+import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261113-feedback';
 
 // Original Results loader $26C68 selects ROM table $26C5C by mission % 3.
 // The replacement for the password screen retains that same background.
@@ -184,6 +184,7 @@ export class GameInterface {
   const view=this.art.decorate(b,label,options);this.bound.push(view);b.addEventListener('click',e=>{e.stopPropagation();if(this.busy||this.dialog?.active||this.curtain.active||this.pendingScreen&&!options.allowPending)return;view.pulse?.();this.resumeAudio();if(options.feedback!==false)this.uiSound();action();});return {button:b,view};
  }
  clear(view,title){
+  this.feedbackButton?.remove();this.feedbackButton=null;
   for(const b of this.bound)b.dispose();this.bound=[];this.optionViews.clear();this.actions.replaceChildren();this.footer.replaceChildren();this.actions.hidden=false;this.footer.hidden=false;this.actions.removeAttribute('style');this.actions.className='scene-actions';this.view=view;if(this.isReady())this.Module._dune_web_frontend_hold?.(view==='native'?0:1);this.element.dataset.view=view;this.element.hidden=false;this.title=title;
   const accessibleTitle=this.art.displayText?.(title||'DUNE')||title||'DUNE';this.heroCanvas.setAttribute('aria-label',accessibleTitle);this.caption.setAttribute('aria-label',accessibleTitle);this.messageText='';this.liveText=false;this.message.hidden=true;this.element.dataset.hasMessage='false';this.element.dataset.dialog='false';this.element.dataset.optionsLayout='false';this.element.dataset.timeline='false';this.element.dataset.story='false';this.element.dataset.terminal='false';this.element.dataset.ready='true';this.demoButton.hidden=view!=='home';this.paintKey='';this.heroPaintKey='';if(this.hero)this.hero.style.cssText='';this.element.dataset.artLocked='false';this.drawCaption();
  }
@@ -487,6 +488,9 @@ export class GameInterface {
     this.button('LANGUAGES',()=>this.openLanguages(),{...opts,id:'open-languages',feedback:true});
     this.button('HOW TO PLAY?',()=>this.openControls(),{...opts,id:'open-controls',feedback:true});
     if(this.platform)this.button('FILES & OFFLINE',()=>this.openPlatform(),{...opts,id:'open-platform',feedback:true});
+    if(scene==='options'&&!s.optionsInGame&&this.platform){
+     this.feedbackButton=this.button('FEEDBACK',()=>this.platform.openFeedback(),{...opts,id:'open-feedback',ariaLabel:'LEAVE FEEDBACK',feedback:true},this.shell).button;
+    }
     if(scene==='pause'){this.button('RESTART',()=>this.restartMission(),{...opts,id:'restart-mission',ariaLabel:'Начать текущую миссию заново'});this.button('MAIN MENU',()=>this.confirmMainMenu(),{...opts,id:'main-menu',ariaLabel:'Главное меню'});}
     this.backButton(()=>scene==='pause'?this.requestRoute('map'):this.mainMenu(),{feedback:true,disabled:pending});
     // Browser capabilities change through their own events, not native polls.

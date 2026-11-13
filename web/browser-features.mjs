@@ -59,7 +59,7 @@ export class BrowserFeatures {
   this.updateCheck=Promise.resolve().then(()=>r.update()).catch(()=>{/* Keep the verified offline copy when the network fails. */}).finally(()=>{this.updateCheck=null;this.emit();});
   return this.updateCheck;
  }
- updateGame({automatic=false}={}){this.win.location.assign(automatic?'./update.html?auto=1&v=20261113-title-credits':'./update.html');}
+ updateGame({automatic=false}={}){this.win.location.assign(automatic?'./update.html?auto=1&v=20261113-feedback':'./update.html');}
  async fullscreen(){
   // Invoke the actual API synchronously in the click's user activation.
   if(this.doc.fullscreenElement||this.doc.webkitFullscreenElement){const exit=this.doc.exitFullscreen||this.doc.webkitExitFullscreen;await exit?.call(this.doc);return 'exited';}
@@ -112,6 +112,7 @@ export class BrowserFeatures {
   });
  }
  openSource(){this.win.open(SOURCE_URL,'_blank','noopener,noreferrer');}
+ openFeedback(){this.win.open(SOURCE_URL+'/discussions/1','_blank','noopener,noreferrer');}
 }
 
 export async function downloadSave({text,filename},{nav=globalThis.navigator,doc=globalThis.document,url=globalThis.URL}={}){

@@ -73,7 +73,7 @@ test('an incomplete pinned-package status cannot advertise an update before all 
 });
 test('the explicit update action navigates to recovery without touching browser saves or caches',()=>{
  const e=environment(),navigations=[];e.win.location={assign:url=>navigations.push(url)};e.win.localStorage={clear(){throw Error('must not clear saves');}};e.win.caches={delete(){throw Error('must not delete caches');}};
- e.feature.updateGame();e.feature.updateGame({automatic:false});e.feature.updateGame({automatic:true});assert.deepEqual(navigations,['./update.html','./update.html','./update.html?auto=1&v=20261113-title-credits']);
+ e.feature.updateGame();e.feature.updateGame({automatic:false});e.feature.updateGame({automatic:true});assert.deepEqual(navigations,['./update.html','./update.html','./update.html?auto=1&v=20261113-feedback']);
 });
 test('fullscreen request and exit reach native API synchronously during the initiating click',async()=>{
  const e=environment(),calls=[];e.doc.documentElement.requestFullscreen=function(){assert.equal(this,e.doc.documentElement);calls.push('enter');return Promise.resolve();};
@@ -167,6 +167,7 @@ test('only offline progress messages update status; ready cache reports are refl
  e.nav.serviceWorker.dispatch('message',{data:{type:'DUNE_OFFLINE_PROGRESS',status:'ready',loaded:100,total:100,version:'v1'}});assert.equal(e.feature.snapshot().preparing,false);assert.equal(e.feature.snapshot().status,'ready');
 });
 test('source action opens the actual public repository without an opener',()=>{const e=environment();e.feature.openSource();assert.deepEqual(e.opens,[[SOURCE_URL,'_blank','noopener,noreferrer']]);});
+test('feedback opens the public discussion without replacing the game',()=>{const e=environment();e.feature.openFeedback();assert.deepEqual(e.opens,[[SOURCE_URL+'/discussions/1','_blank','noopener,noreferrer']]);});
 
 function documentForFiles(){
  const elements=[],removed=[],clicks=[],doc={body:{append:element=>elements.push(element)},createElement(tag){const element=events({tag,style:{},click(){clicks.push(this);},remove(){removed.push(this);}});return element;}};
