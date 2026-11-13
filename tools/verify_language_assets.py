@@ -1,14 +1,21 @@
 #!/usr/bin/env python3
 """Check exact source bitmap/text extraction and the privacy-safe runtime projection."""
 from pathlib import Path
-import hashlib,json,re
+import argparse,hashlib,json,re
 from extract_language_assets import ROOT,EXPECTED,font_mask,CYRILLIC_CODES,u32
 from extract_building_assets import icon_pixels,palette
 from extract_screen_assets import read_png
 
 def main():
+ parser=argparse.ArgumentParser(description=__doc__)
+ parser.add_argument('--source-dir',type=Path,required=True,help='Directory containing the Russian and European ROMs')
+ parser.add_argument('--usa',type=Path,required=True,help='Path to the USA ROM')
+ args=parser.parse_args()
  data=ROOT/'data/language-assets';web=ROOT/'web/language-assets';manifest=json.loads((data/'manifest.json').read_text());runtime=json.loads((web/'manifest.json').read_text());sha=lambda b:hashlib.sha256(b).hexdigest()
- sources={x['id']:Path(x['path']).read_bytes()for x in manifest['sourceFiles']}
+ sources={'usa':args.usa.read_bytes()}
+ for record in manifest['sourceFiles']:
+  if record['id']!='usa':
+   sources[record['id']]=(args.source_dir/Path(record['path']).name).read_bytes()
  for key,b in sources.items():assert len(b)==1048576 and sha(b)==EXPECTED[key]
  assert [x['code']for x in runtime['languages']]==['en','ru'] and not(web/'eu-en.json').exists()
  assert '/Users/'not in(web/'manifest.json').read_text()

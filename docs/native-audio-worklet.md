@@ -112,7 +112,7 @@ A requested250ms block measured267.225ms and exceeded the buffer:6848 output
 frames were missing in one event; subsequent playback was primed again with
 no processor error. This proves finite-stall isolation and recovery for this
 synthetic producer. It is not a native-battle listening or physical-phone
-result. Root stopped the diagnostic and closed its tab. Exact snapshots are
+result. Exact snapshots are
 in `data/audio-worklet-qa/browser-standalone.json`.
 
 The first integrated loader exposed an EM_JS parameter-name parsing error

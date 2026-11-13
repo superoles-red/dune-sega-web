@@ -13,7 +13,7 @@ def main():
  ap.add_argument('--house',type=int,choices=(0,1),default=1,help='0 Harkonnen/red,1 archived Atreides/blue')
  ap.add_argument('--fixture',type=Path)
  ap.add_argument('--ym',type=Path,help='Paired actual AUDIO_ON source chip state; required with --fixture')
- ap.add_argument('--rom',type=Path,default=Path('/Users/oleskarpov/Desktop/TEMP на Mac/SEGA/Dune - The Battle for Arrakis (USA).gen'))
+ ap.add_argument('--rom',type=Path,required=True)
  ap.add_argument('--output',type=Path)
  ap.add_argument('--evidence',type=Path)
  ap.add_argument('--web-save',type=Path)

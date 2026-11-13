@@ -24,7 +24,7 @@ def image_crop(pixels,sw,rect,ch=3):
     x,y,w,h=rect;return b''.join(pixels[((y+yy)*sw+x)*ch:((y+yy)*sw+x+w)*ch] for yy in range(h))
 
 def main():
-    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--raw',type=Path,default=ROOT/'.local/screen-assets-phase-raw');ap.add_argument('--rom',type=Path,default=Path('/Users/oleskarpov/Desktop/TEMP на Mac/SEGA/Dune - The Battle for Arrakis (USA).gen'));ap.add_argument('--scene-raw',type=Path,action='append',default=[]);ap.add_argument('--output',type=Path,default=ROOT/'data/screen-assets');a=ap.parse_args();out=a.output;out.mkdir(parents=True,exist_ok=True)
+    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--raw',type=Path,default=ROOT/'.local/screen-assets-phase-raw');ap.add_argument('--rom',type=Path,default=ROOT/'.local/roms/Dune-USA.gen');ap.add_argument('--scene-raw',type=Path,action='append',default=[]);ap.add_argument('--output',type=Path,default=ROOT/'data/screen-assets');a=ap.parse_args();out=a.output;out.mkdir(parents=True,exist_ok=True)
     identity=json.loads((ROOT/'docs/source-identity.json').read_text());rom=a.rom.read_bytes();assert sha(rom)==identity['romSha256'];kit=ROOT/'data/shop-layout-kit';km=json.loads((kit/'manifest.json').read_text())
     assert sha((ROOT/'.local/source/build/dune-base.c').read_bytes())==identity['generatedSourceSha256']
     m={'version':1,'game':'Dune — The Battle for Arrakis, Sega Genesis USA','source':identity,

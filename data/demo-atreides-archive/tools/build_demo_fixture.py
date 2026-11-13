@@ -11,7 +11,7 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  ap=argparse.ArgumentParser(description=__doc__)
  ap.add_argument('--fixture',type=Path,default=ROOT/'.local/campaign-fixtures/house1-mission09.cpu.bin')
- ap.add_argument('--rom',type=Path,default=Path('/Users/oleskarpov/Desktop/TEMP на Mac/SEGA/Dune - The Battle for Arrakis (USA).gen'))
+ ap.add_argument('--rom',type=Path,required=True)
  ap.add_argument('--output',type=Path,default=ROOT/'data/demo')
  ap.add_argument('--evidence',type=Path,default=ROOT/'.local/demo-fixture')
  ap.add_argument('--web-save',type=Path,default=ROOT/'web/demo.state.bin')

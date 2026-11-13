@@ -7,8 +7,6 @@ import argparse,hashlib,json,re,shutil
 from extract_building_assets import png,palette,icon_pixels
 from extract_campaign_manifest import decode_scenario
 ROOT=Path(__file__).resolve().parents[1]
-US=Path('/Users/oleskarpov/Desktop/TEMP на Mac/SEGA/Dune - The Battle for Arrakis (USA).gen')
-LANG=Path('/Users/oleskarpov/Downloads/Dune lang')
 EXPECTED={'usa':'b1bbe73186e0902fa8b2db0f227bf306e3d6a80fe592f927d1aa9d60c0f335ba','rus':'4d93c48957cc81fc49a6edff6353787e5d32eb5e2c86963182fba918a45e906a','europe':'31979d1d9a5d6fe5c9ae95f3cfc1dd6f9f51e9e075268bb8a9f9ca57da847547'}
 RU_CODES={ord(k):v for k,v in {'A':'А','B':'В','C':'С','E':'Е','H':'Н','K':'К','M':'М','O':'О','P':'Р','T':'Т','X':'Х','a':'Щ','b':'Ь','c':'Ы','d':'Б','e':'Ъ','f':'Г','g':'Д','h':'Э','i':'Ж','j':'З','k':'Ю','l':'И','n':'Й','q':'Л','r':'Я','s':'П','u':'У','v':'Ф','w':'Ц','y':'Ч','z':'Ш'}.items()}
 HOUSES=['harkonnen','atreides','ordos']
@@ -156,7 +154,13 @@ def tutorial_assets(out,raw):
  (review/'index.html').write_text('<!doctype html><meta charset="utf-8"><title>Original Russian tutorial —33cards</title><style>body{background:#111;color:white;font:16px monospace}section{display:inline-block;margin:8px;vertical-align:top}img{width:640px;height:448px;image-rendering:pixelated;display:block}</style>'+''.join(f'<section><p>{i:02d} {card["id"]}</p><img src="card-{i:02d}-{card["id"]}.png"></section>'for i,card in enumerate(cards)))
  return metadata
 def main():
- ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--source-dir',type=Path,default=LANG);ap.add_argument('--usa',type=Path,default=US);ap.add_argument('--output',type=Path,default=ROOT/'data/language-assets');ap.add_argument('--web-output',type=Path,default=ROOT/'web/language-assets');ap.add_argument('--tutorial-raw',type=Path,default=ROOT/'.local/language-tutorial-ru');a=ap.parse_args()
+ ap=argparse.ArgumentParser(description=__doc__)
+ ap.add_argument('--source-dir',type=Path,required=True,help='Directory containing the Russian and European ROMs')
+ ap.add_argument('--usa',type=Path,required=True,help='Path to the USA ROM')
+ ap.add_argument('--output',type=Path,default=ROOT/'data/language-assets')
+ ap.add_argument('--web-output',type=Path,default=ROOT/'web/language-assets')
+ ap.add_argument('--tutorial-raw',type=Path,default=ROOT/'.local/language-tutorial-ru')
+ a=ap.parse_args()
  paths={'usa':a.usa,'rus':next(a.source_dir.glob('*Rus*.gen')),'europe':next(a.source_dir.glob('*Europe*.gen'))}
  roms={k:p.read_bytes()for k,p in paths.items()}
  for key,b in roms.items():assert len(b)==1048576 and sha(b)==EXPECTED[key],f'Unexpected source {key}'
@@ -202,7 +206,7 @@ def main():
   catalogs[code]=cat
  fonts,font_proof=font_assets(out,roms);commands=command_assets(out,roms);inventory=source_inventory(out,roms);review=translation_review(out,catalogs);tutorial=tutorial_assets(out,a.tutorial_raw)
  for code,cat in catalogs.items():(out/(code+'.json')).write_text(json.dumps(cat,ensure_ascii=False,indent=2)+'\n')
- inv={'version':1,'sourceFiles':[{'id':k,'path':str(paths[k]),'bytes':len(v),'sha256':sha(v),'headerRegion':v[0x1f0:0x200].decode('ascii').strip()}for k,v in roms.items()],'sourcesUntouched':True,'stage':'text-font-command-assets','languages':[{'code':code,'catalogPath':code+'.json','label':catalogs[code]['label'],'font':fonts[code],'commands':{x['key']:x['path']for x in commands if x['language']==code}}for code in ['en','ru']],'fontProvenance':font_proof,'commandAssets':commands,'coverage':{k:c['coverage']for k,c in catalogs.items()},'europe':{'canonicalEnglishCampaignEqualUSA':all(catalogs['eu-en']['strings'][k]==v for k,v in catalogs['en']['strings'].items()if k.startswith('campaign.')or k.endswith('.intro')),'shippingLocale':False},'strategy':'Read-only presentation lookup by canonical USA text/pointer. Keep USA native instructions, scenarios, prices, AI, clocks and balance; never replace runtime ROM with the European or fan-translated binary.'}
+ inv={'version':1,'sourceFiles':[{'id':k,'path':paths[k].name,'bytes':len(v),'sha256':sha(v),'headerRegion':v[0x1f0:0x200].decode('ascii').strip()}for k,v in roms.items()],'sourcesUntouched':True,'stage':'text-font-command-assets','languages':[{'code':code,'catalogPath':code+'.json','label':catalogs[code]['label'],'font':fonts[code],'commands':{x['key']:x['path']for x in commands if x['language']==code}}for code in ['en','ru']],'fontProvenance':font_proof,'commandAssets':commands,'coverage':{k:c['coverage']for k,c in catalogs.items()},'europe':{'canonicalEnglishCampaignEqualUSA':all(catalogs['eu-en']['strings'][k]==v for k,v in catalogs['en']['strings'].items()if k.startswith('campaign.')or k.endswith('.intro')),'shippingLocale':False},'strategy':'Read-only presentation lookup by canonical USA text/pointer. Keep USA native instructions, scenarios, prices, AI, clocks and balance; never replace runtime ROM with the European or fan-translated binary.'}
  inv['research']=inventory
  inv['extractorSha256']={name:sha((ROOT/'tools'/name).read_bytes())for name in ['extract_language_assets.py','verify_language_assets.py','capture_language_tutorial_native.c','language_tutorial_annotations_ru.json','recompose_language_tutorial.py']}
  inv['analysisBoundary']={'reaSkillApplied':True,'reaNativeTargetOpened':False,'reason':'Advertised REA raw-binary architecture schema lacks68000; no ROM was opened under a false architecture. Matching pinned original generated consumers and explicit format-aware byte/pixel parsers provide the extraction evidence.','runtimeCodeModified':False,'runtimeRomReplaced':False}

@@ -204,7 +204,7 @@ The preceding webapp3 release passed actual WebAPK installation, Home-icon
 launch and installed offline reload/gameplay on the Samsung, with scoped network
 conditions restored afterward. The final webapp5 cached update and Palace
 interaction are checked separately after deployment. Physical iPhone portrait
-geometry still needs the user's retest.
+geometry still needs a follow-up check on an iPhone.
 
 Browser, device, CI/artifact and served-file checks are separate evidence.
 This note does not claim a complete earned campaign playthrough or verified

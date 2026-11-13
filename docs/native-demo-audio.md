@@ -43,15 +43,15 @@ new YM writes, preserves every payload world-RAM byte at load, and reports no
 new dropped samples or fault. It tests the actual load rather than manually
 recreating a chip configuration.
 
-Root's integrated red browser sample at44.1kHz spans2358 native frames, with
+The Harkonnen browser sample at 44.1 kHz spans 2358 native frames, with
 230426 additional YM writes and no native drops, worklet underruns or overflows;
 maximum reported producer gap is37.785ms. This is a bounded browser sample,
 not physical-phone, thermal or unlimited-battle proof. Exact source identities,
 logs and any copied browser evidence are in
 `data/demo-audio-verification/manifest.json`.
 
-For a rebuild, run `python3 tools/build_demo_fixture.py --house 0` or
-`python3 tools/build_demo_fixture.py --house 1`. The default path creates a genuine
+For a rebuild, run `python3 tools/build_demo_fixture.py --rom /path/to/Dune-USA.gen --house 0`
+for Harkonnen or use `--house 1` for Atreides. The default workflow creates a genuine
 AUDIO_ON source first. A custom `--fixture` requires its matching `--ym` file;
 muted visual fixtures are no longer accepted as demo audio sources. Historical
 visual/analysis QA fixtures retain their recorded identities and are not

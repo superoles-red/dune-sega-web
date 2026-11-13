@@ -14,14 +14,14 @@ revalidation remains outstanding. Details and proof: [target confirmation](nativ
 
 ## Follow-up: 20261106-mobile9
 
-Restore the user's final ordinary selection wait to 100ms. Double-tap
+Restore the ordinary selection wait to 100ms. Double-tap
 recognition and the armed Palace guard stay at 300ms; retained-source logic,
 native core, game rules and saves are unchanged. Only the affected module and
 its entry point receive new cache URLs.
 
 ## Follow-up: 20261106-mobile8
 
-Set the ordinary single-selection wait to the user's chosen 75ms compromise.
+Set the ordinary single-selection wait to 75ms.
 Double-tap recognition remains 300ms with the original actor retained; the
 armed Palace guard remains 300ms. This changes only the selection constant.
 The verified mobile7 physical late-pair behavior, native core, game rules,
@@ -30,7 +30,7 @@ preceding 50ms setting; do not describe that measurement as a 75ms result.
 
 ## Follow-up: 20261106-mobile7
 
-Reduce only SELECTION_WAIT_MS from 100 to 50ms, at the user's request. Keep
+Reduce SELECTION_WAIT_MS from 100 to 50ms. Keep
 DOUBLE_TAP_MS at 300ms, retain the original command actor after the fast single
 selection, and preserve the armed Palace's full 300ms guard. All other input
 logic, the native core, simulation, audio and save formats are unchanged.
@@ -52,7 +52,7 @@ The original game, native core and saves are unchanged.
 ## Follow-up: 20261106-mobile5
 
 The double-tap matching window and deferred object-selection deadline are now
-100ms instead of 300ms, at the user's request. A pair within that inclusive
+100ms. A pair within that inclusive
 window still commands the retained original unit without selecting its target.
 An isolated object tap commits on the first existing animation callback after
 100ms. Ordinary desktop left selection/right commands remain immediate; armed

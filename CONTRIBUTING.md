@@ -29,9 +29,15 @@ python3 tools/verify_publication.py _site
 ```
 
 The native rebuild instructions and source hashes are in
-[`vendor/rearrakis/README.md`](vendor/rearrakis/README.md) and the main README.
+[`vendor/rearrakis/README.md`](vendor/rearrakis/README.md) and the
+[technical notes](docs/implementation-notes.md).
 An installed Emscripten SDK is needed only when changing/rebuilding the native
 core; ordinary frontend work uses the checked-in loader and WASM.
+
+Tools for reproducing research assets use local ROM inputs. For the screen
+extractor, place the USA ROM at `.local/roms/Dune-USA.gen` or pass `--rom`.
+To extract or verify the language assets, pass `--usa /path/to/Dune-USA.gen`
+and `--source-dir /path/to/language-roms` to the respective script.
 
 ## Preserve the game
 

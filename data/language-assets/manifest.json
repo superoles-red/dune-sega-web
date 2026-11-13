@@ -3,21 +3,21 @@
   "sourceFiles": [
     {
       "id": "usa",
-      "path": "/Users/oleskarpov/Desktop/TEMP на Mac/SEGA/Dune - The Battle for Arrakis (USA).gen",
+      "path": "Dune - The Battle for Arrakis (USA).gen",
       "bytes": 1048576,
       "sha256": "b1bbe73186e0902fa8b2db0f227bf306e3d6a80fe592f927d1aa9d60c0f335ba",
       "headerRegion": "U"
     },
     {
       "id": "rus",
-      "path": "/Users/oleskarpov/Downloads/Dune lang/Dune - The Battle for Arrakis (U) [T+Rus Shedevr(NewGame)&Lipetsk (02.08.2011)].gen",
+      "path": "Dune - The Battle for Arrakis (U) [T+Rus Shedevr(NewGame)&Lipetsk (02.08.2011)].gen",
       "bytes": 1048576,
       "sha256": "4d93c48957cc81fc49a6edff6353787e5d32eb5e2c86963182fba918a45e906a",
       "headerRegion": "U"
     },
     {
       "id": "europe",
-      "path": "/Users/oleskarpov/Downloads/Dune lang/Dune II - The Battle for Arrakis (Europe).gen",
+      "path": "Dune II - The Battle for Arrakis (Europe).gen",
       "bytes": 1048576,
       "sha256": "31979d1d9a5d6fe5c9ae95f3cfc1dd6f9f51e9e075268bb8a9f9ca57da847547",
       "headerRegion": "E"

@@ -1,8 +1,8 @@
 # Earlier native presentation pass — 2026-11-03
 
 This record describes the earlier4a22c985 WASM. Its movie fixtures did not cover
-the preceding battlefield flyover or the beginning of statistic counting; the
-user subsequently found those gaps. The continuous-flow fixes and their exact
+the preceding battlefield flyover or the beginning of statistic counting.
+The continuous-flow fixes and their exact
 native proof are now documented in `native-screen-routing.md` and
 `starport-upgrade-ready-unit-qa.md`. Current engine identity is `wasm-build.json`.
 The original checks below are retained as a historical checkpoint, not a claim
@@ -47,9 +47,8 @@ in `wasm-build.json`; no group-selection exports are present.
   Main Menu, and Replay reaches the correct original mission briefing. Native
   harnesses separately verify the three-house Palace flows, attack/move action
   classification, original plane phases, terminal final credits and M9 Replay.
-- UI asset package check passes:322 files,312 PNG,1,105,452 bytes, with canonical
-  campaign mirrors and hashes. Browser evidence is outside the repository at
-  `/Users/oleskarpov/.codex/visualizations/2026/11/02/01a199bd-2da7-7960-86e9-b5ebe7e2488f/dune-native-fidelity/`.
+- The UI asset package check passed for 322 files, including 312 PNGs, totaling
+  1,105,452 bytes. The check covered campaign mirrors and file hashes.
 
 ## Evidence limits
 

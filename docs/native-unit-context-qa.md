@@ -167,7 +167,7 @@ non-map context, disabled/pad input, lost queue, machine rewind or host rebase.
 A second tap before consumption is rejected without replacing the first target;
 subsequent native selection/entry taps remain separate original A commands.
 `dune_web_end` does not cancel an accepted tap, because normal pointer release
-calls that method too. Root's campaign/load/route cancellation is tracked in the
+calls that method too. Campaign, load and route cancellation is tracked in the
 separate build metadata.
 
 `tools/test_em_web_world_intent_state.c` passes queue, overlap, Clear/drop,
