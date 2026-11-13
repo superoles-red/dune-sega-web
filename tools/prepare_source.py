@@ -289,7 +289,15 @@ audio=audio.replace(needle,'''extern "C" void genesis_ymfm_output_levels(void *c
     if(!chip||!levels)return;
     auto &g=*static_cast<GenesisYM*>(chip);
     bool changed=false;
-    for(unsigned c=0;c<6;++c){unsigned value=levels[c]==50?50:levels[c]==25?25:levels[c]==0?0:100;changed|=g.chip.levels[c]!=value;g.chip.levels[c]=value;}
+    for(unsigned c=0;c<6;++c){
+        unsigned value=levels[c];
+        switch(value){
+            case 0:case 10:case 25:case 50:case 100:break;
+            default:value=100;
+        }
+        changed|=g.chip.levels[c]!=value;
+        g.chip.levels[c]=value;
+    }
     if(changed){g.chip.common_level=int(g.chip.levels[0]);for(unsigned c=1;c<6;++c)if(g.chip.levels[c]!=g.chip.levels[0])g.chip.common_level=-1;}
 }
 '''+needle,1)

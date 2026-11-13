@@ -81,6 +81,7 @@ export const UI_RU={
  'MUSIC: 100%':'МУЗЫКА: 100%','MUSIC: 50%':'МУЗЫКА: 50%',
  'SOUND: 100%':'ЗВУКИ: 100%','SOUND: 50%':'ЗВУКИ: 50%',
  'MUSIC: 25%':'МУЗЫКА: 25%','SOUND: 25%':'ЗВУКИ: 25%',
+ 'MUSIC: 10%':'МУЗЫКА: 10%','SOUND: 10%':'ЗВУКИ: 10%',
  'CONTINUE?':'ПРОДОЛЖИТЬ?','START MISSION?':'НАЧАТЬ МИССИЮ?',
  'RETURN TO MAIN MENU?':'ВЫЙТИ В ГЛАВНОЕ МЕНЮ?',
  'THE CURRENT CONTINUE WILL BE REPLACED.':'ТЕКУЩЕЕ СОХРАНЕНИЕ БУДЕТ ЗАМЕНЕНО.',

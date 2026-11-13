@@ -1,6 +1,6 @@
 // Playback preferences are separate from native saves and campaign progress.
 export const AUDIO_SETTINGS_KEY='dune-sega-audio-v1';
-export const AUDIO_LEVELS=Object.freeze([100,50,25,0]);
+export const AUDIO_LEVELS=Object.freeze([100,50,25,10,0]);
 const kinds=['music','sound'];
 const validLevel=value=>AUDIO_LEVELS.includes(value);
 
@@ -23,7 +23,7 @@ export class AudioSettings {
   this.levels={music:state.music?100:0,sound:state.sound?100:0};return true;
  }
  // Successful old DSAV loads may restore a driver that was actually stopped.
- // Respect that OFF choice instead of labelling a silent driver 100%/50%/25%.
+ // An old save with a stopped driver takes precedence over a positive level.
  // Native ON never replaces a remembered playback level or output mute setting.
  restoreNativeMute(state){
   const next={...this.levels};let changed=false;

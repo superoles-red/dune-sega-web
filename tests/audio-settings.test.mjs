@@ -12,30 +12,37 @@ function memory(value){
 }
 test('first visit defaults to full playback without writing preferences or touching native audio',()=>{
  const storage=memory(),calls=[],settings=new AudioSettings({storage,apply:(...levels)=>calls.push(levels)});
- assert.deepEqual(AUDIO_LEVELS,[100,50,25,0]);assert.deepEqual(settings.levels,{music:100,sound:100});assert.equal(settings.hasSaved,false);assert.deepEqual(storage.writes,[]);assert.deepEqual(calls,[]);
+ assert.deepEqual(AUDIO_LEVELS,[100,50,25,10,0]);assert.deepEqual(settings.levels,{music:100,sound:100});assert.equal(settings.hasSaved,false);assert.deepEqual(storage.writes,[]);assert.deepEqual(calls,[]);
  assert.equal(settings.label('music'),'MUSIC: 100%');assert.equal(settings.label('sound'),'SOUND: 100%');
 });
 test('music and sound cycle independently through exact percentages, with one apply and preference write per press',()=>{
  const storage=memory(),calls=[],settings=new AudioSettings({storage,apply:(...levels)=>(calls.push(levels),true)});
  assert.equal(settings.cycle('music'),50);assert.equal(settings.label('music'),'MUSIC: 50%');
- assert.equal(settings.cycle('sound'),50);assert.equal(settings.cycle('music'),25);assert.equal(settings.label('music'),'MUSIC: 25%');assert.equal(settings.cycle('music'),0);assert.equal(settings.label('music'),'MUSIC: OFF');
- assert.equal(settings.cycle('music'),100);assert.equal(settings.cycle('sound'),25);assert.equal(settings.label('sound'),'SOUND: 25%');assert.equal(settings.cycle('sound'),0);assert.equal(settings.cycle('sound'),100);
- assert.deepEqual(calls,[[50,100],[50,50],[25,50],[0,50],[100,50],[100,25],[100,0],[100,100]]);assert.equal(storage.writes.length,8);assert.equal(storage.values.get('unrelated-progress'),'keep');
+ assert.equal(settings.cycle('sound'),50);assert.equal(settings.cycle('music'),25);assert.equal(settings.label('music'),'MUSIC: 25%');
+ assert.equal(settings.cycle('music'),10);assert.equal(settings.label('music'),'MUSIC: 10%');
+ assert.equal(settings.cycle('music'),0);assert.equal(settings.label('music'),'MUSIC: OFF');assert.equal(settings.cycle('music'),100);
+ assert.equal(settings.cycle('sound'),25);assert.equal(settings.label('sound'),'SOUND: 25%');
+ assert.equal(settings.cycle('sound'),10);assert.equal(settings.label('sound'),'SOUND: 10%');
+ assert.equal(settings.cycle('sound'),0);assert.equal(settings.cycle('sound'),100);
+ assert.deepEqual(calls,[[50,100],[50,50],[25,50],[10,50],[0,50],[100,50],[100,25],[100,10],[100,0],[100,100]]);assert.equal(storage.writes.length,10);assert.equal(storage.values.get('unrelated-progress'),'keep');
  assert.deepEqual(JSON.parse(storage.values.get(AUDIO_SETTINGS_KEY)),{version:1,music:100,sound:100});
- assert.equal(settings.cycle('other'),false);assert.equal(storage.writes.length,8);assert.equal(calls.length,8);
+ assert.equal(settings.cycle('other'),false);assert.equal(storage.writes.length,10);assert.equal(calls.length,10);
 });
 test('a browser reload restores both saved percentages and a valid stored choice outranks stale native save flags',()=>{
  const storage=memory(JSON.stringify({version:1,music:50,sound:0})),calls=[],settings=new AudioSettings({storage,apply:(...levels)=>(calls.push(levels),true)});
  assert.equal(settings.hasSaved,true);assert.deepEqual(settings.levels,{music:50,sound:0});assert.equal(settings.observeNative({music:0,sound:1}),false);assert.deepEqual(settings.levels,{music:50,sound:0});
  assert.equal(settings.apply(),true);assert.deepEqual(calls,[[50,0]]);assert.deepEqual(storage.writes,[]);
 });
-test('25 percent persists independently for either channel under the existing version-one preference key',()=>{
+test('25 and 10 percent persist independently for either channel under the existing version-one preference key',()=>{
  assert.equal(AUDIO_SETTINGS_KEY,'dune-sega-audio-v1');
  for(const kind of ['music','sound']){
   const storage=memory(),settings=new AudioSettings({storage});settings.cycle(kind);settings.cycle(kind);
-  const expected={music:100,sound:100,[kind]:25},restored=new AudioSettings({storage});
-  assert.deepEqual(JSON.parse(storage.values.get(AUDIO_SETTINGS_KEY)),{version:1,...expected});assert.deepEqual(restored.levels,expected);assert.equal(restored.hasSaved,true);
-  assert.equal(restored.restoreNativeMute({music:1,sound:1}),false);assert.deepEqual(restored.levels,expected,'loading native ON preserves the quarter-volume choice');
+  for(const level of [25,10]){
+   const expected={music:100,sound:100,[kind]:level},restored=new AudioSettings({storage});
+   assert.deepEqual(JSON.parse(storage.values.get(AUDIO_SETTINGS_KEY)),{version:1,...expected});assert.deepEqual(restored.levels,expected);assert.equal(restored.hasSaved,true);
+   assert.equal(restored.restoreNativeMute({music:1,sound:1}),false);assert.deepEqual(restored.levels,expected,'loading native ON preserves the saved level');
+   settings.cycle(kind);
+  }
  }
 });
 test('an explicit settled old native choice migrates once without guessing from missing boot flags or writing it early',()=>{
@@ -76,8 +83,10 @@ test('actual Options and Pause button handler immediately refreshes its bitmap l
  for(const scene of ['options','pause']){
   const h=options(scene);h.ui.input=()=>assert.fail('50 percent is not a native on/off toggle');h.ui.refreshAudioLabels();assert.equal(h.labels.get(0),'MUSIC: 100%');
   assert.equal(h.ui.cycleAudio(0),true);assert.equal(h.labels.get(0),'MUSIC: 50%');assert.equal(h.labels.get(1),'SOUND: 100%');assert.deepEqual(h.applied,[[50,100]]);
-  assert.equal(h.ui.cycleAudio(0),true);assert.equal(h.labels.get(0),'MUSIC: 25%');assert.equal(h.ui.cycleAudio(0),true);assert.equal(h.labels.get(0),'MUSIC: OFF');assert.equal(h.ui.cycleAudio(1),true);assert.equal(h.labels.get(1),'SOUND: 50%');
-  assert.deepEqual(h.state,{scene,sceneReady:true,inputReady:true,music:1,sound:1},'UI preferences do not mutate native state publications');assert.equal(h.feedback.filter(value=>value==='sound').length,4);
+  assert.equal(h.ui.cycleAudio(0),true);assert.equal(h.labels.get(0),'MUSIC: 25%');
+  assert.equal(h.ui.cycleAudio(0),true);assert.equal(h.labels.get(0),'MUSIC: 10%');assert.deepEqual(h.applied.at(-1),[10,100]);
+  assert.equal(h.ui.cycleAudio(0),true);assert.equal(h.labels.get(0),'MUSIC: OFF');assert.equal(h.ui.cycleAudio(1),true);assert.equal(h.labels.get(1),'SOUND: 50%');
+  assert.deepEqual(h.state,{scene,sceneReady:true,inputReady:true,music:1,sound:1},'UI preferences do not mutate native state publications');assert.equal(h.feedback.filter(value=>value==='sound').length,5);
  }
 });
 test('transient native scenes cannot cycle and a UI without the injected model retains the existing native toggle',()=>{
@@ -91,13 +100,14 @@ test('legacy native OFF to 100 percent restores its original ON handler once; 10
   assert.equal(h.ui.cycleAudio(row),true);assert.equal(h.ui.audioSettings.levels[kind],100);assert.deepEqual(inputs,[[2,row]]);
   h.state[kind]=1;assert.equal(h.ui.cycleAudio(row),true);assert.equal(h.ui.audioSettings.levels[kind],50);assert.deepEqual(inputs,[[2,row]],'half volume never sends a second native toggle');
   assert.equal(h.ui.cycleAudio(row),true);assert.equal(h.ui.audioSettings.levels[kind],25);assert.deepEqual(inputs,[[2,row]],'quarter volume never sends a second native toggle');
+  assert.equal(h.ui.cycleAudio(row),true);assert.equal(h.ui.audioSettings.levels[kind],10);assert.deepEqual(inputs,[[2,row]],'10 percent uses the output mixer');
   assert.equal(h.ui.cycleAudio(row),true);assert.equal(h.ui.audioSettings.levels[kind],0);assert.deepEqual(inputs,[[2,row]],'new OFF is output muting, preserving the native driver timeline');
  }
 });
 test('new percentage and OFF labels translate through the existing original English and Cyrillic glyph sets',()=>{
  const language=new GameLanguage();language.code='ru';for(const [source,target]of Object.entries(UI_RU))language.lookup.set(source,target);
  const manifest=JSON.parse(readFileSync(new URL('../web/language-assets/manifest.json',import.meta.url))),glyphs=manifest.languages.find(value=>value.code==='ru').font.glyphs;
- for(const source of ['MUSIC: 100%','MUSIC: 50%','MUSIC: 25%','MUSIC: OFF','SOUND: 100%','SOUND: 50%','SOUND: 25%','SOUND: OFF']){
+ for(const source of ['MUSIC: 100%','MUSIC: 50%','MUSIC: 25%','MUSIC: 10%','MUSIC: OFF','SOUND: 100%','SOUND: 50%','SOUND: 25%','SOUND: 10%','SOUND: OFF']){
   const text=language.text(source);assert.equal(text,UI_RU[source]);for(const char of text)if(char.charCodeAt(0)>126)assert(glyphs[char.charCodeAt(0)],'missing native Cyrillic glyph '+char);
  }
 });

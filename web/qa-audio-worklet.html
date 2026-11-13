@@ -3,23 +3,27 @@
 <style>body{background:#161616;color:#eee;font:16px system-ui;margin:24px;max-width:900px}button{font:inherit;padding:12px;margin:4px}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style>
 <p>Playback-only diagnostic. A deterministic stereo test signal feeds the same bridge and worklet as the game. No ROM, game state or progress is loaded.</p>
 <button id="start">Start audio</button><button id="stall" disabled>Block producer100ms</button><button id="long" disabled>Block producer250ms</button><button id="stop" disabled>Stop</button>
+<button id="lose-output" disabled>Close audio output</button><button id="recover-output" disabled>Restore audio output</button>
 <pre id="state">Not started.</pre>
 <script type="module">
 import {NativeAudioBridge} from './native-audio.mjs';
 const startButton=document.getElementById('start'),stallButton=document.getElementById('stall'),longButton=document.getElementById('long'),stopButton=document.getElementById('stop'),stateOutput=document.getElementById('state');
+const loseOutput=document.getElementById('lose-output'),recoverOutput=document.getElementById('recover-output');
 let context,script,bridge,timer,frames=0,epoch=0,last=0,credit=0;const samples=960;
 const Module={HEAPU8:new Uint8Array(samples*4),_dune_web_audio_worklet:on=>{if(on){bridge.flush(++epoch);bridge.setPlaying(true);}return 1;}};
 const render=()=>{stateOutput.textContent=JSON.stringify({frames,secureContext:isSecureContext,...bridge?.snapshot()},null,2);};
 startButton.onclick=async()=>{
  if(bridge)return;
- context=new AudioContext({sampleRate:48000});await context.resume();script=context.createScriptProcessor(2048,0,2);script.connect(context.destination);
+ context=new AudioContext({sampleRate:48000});await context.resume();script=context.createScriptProcessor(2048,0,2);script.onaudioprocess=()=>{};script.connect(context.destination);
  Module.SDL2={audioContext:context,audio:{scriptProcessorNode:script}};
- bridge=new NativeAudioBridge({Module});await bridge.start();last=performance.now();
+ bridge=new NativeAudioBridge({Module,recoverInterruptions:true});await bridge.start();last=performance.now();
  timer=setInterval(()=>{const at=performance.now();credit+=(at-last)*48;last=at;while(credit>=samples){const a=new Int16Array(Module.HEAPU8.buffer);for(let i=0;i<samples;i++){const v=Math.round(Math.sin(2*Math.PI*220*(frames+i)/48000)*5000);a[i*2]=v;a[i*2+1]=-v;}bridge.pushPCM(0,samples);frames+=samples;credit-=samples;}},10);
- stallButton.disabled=longButton.disabled=stopButton.disabled=false;render();
+ stallButton.disabled=longButton.disabled=stopButton.disabled=loseOutput.disabled=false;render();
 };
 function block(ms){const until=performance.now()+ms;while(performance.now()<until){}render();}
 stallButton.onclick=()=>block(100);longButton.onclick=()=>block(250);
-stopButton.onclick=async()=>{clearInterval(timer);bridge.setPlaying(false);bridge.flush(++epoch);await context.suspend();stallButton.disabled=longButton.disabled=stopButton.disabled=true;render();};
+loseOutput.onclick=async()=>{loseOutput.disabled=true;await Module.SDL2.audioContext.close();recoverOutput.disabled=false;render();};
+recoverOutput.onclick=async()=>{recoverOutput.disabled=true;const ok=await bridge.resume({trusted:true,repair:true});loseOutput.disabled=!ok;recoverOutput.disabled=ok;render();};
+stopButton.onclick=async()=>{clearInterval(timer);bridge.setPlaying(false);bridge.flush(++epoch);await Module.SDL2.audioContext.suspend();stallButton.disabled=longButton.disabled=stopButton.disabled=loseOutput.disabled=recoverOutput.disabled=true;render();};
 setInterval(render,500);
 </script>

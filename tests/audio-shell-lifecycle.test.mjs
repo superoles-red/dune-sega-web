@@ -48,7 +48,7 @@ test('actual shell initializes output visibility before engine startup, includin
  for(const hidden of [false,true]){
   const calls=[];
   class Audio {constructor(){calls.push(['construct']);}setPageActive(active){calls.push(['active',active]);}}
-  vm.runInNewContext(initialization,{NativeAudioBridge:Audio,Module:{},URL,document:{hidden}});
+  vm.runInNewContext(initialization,{NativeAudioBridge:Audio,Module:{},URL,isAppleMobile:()=>false,document:{hidden}});
   assert.deepEqual(calls,[['construct'],['active',!hidden]]);
  }
 });
@@ -61,4 +61,17 @@ test('actual gesture helper uses current activation when available, with a synch
   vm.createContext(context);vm.runInContext(shell.slice(start,end),context);context.resumeAudio();returned=true;
   assert.deepEqual(calls,[expected]);
  }
+});
+
+test('the iOS touch release wakes audio in capture before map input can stop the event',()=>{
+ const start=shell.indexOf("if(isAppleMobile())for(const event of ['pointerup','touchend'])"),end=shell.indexOf("\ndocument.addEventListener('visibilitychange'",start);
+ assert.ok(start>=0&&end>start);
+ const handlers=new Map(),calls=[],document={hidden:false},navigator={userActivation:{isActive:true}};
+ vm.runInNewContext(shell.slice(start,end),{document,navigator,isAppleMobile:()=>true,window:{addEventListener(name,fn,options){assert.equal(options.capture,true);assert.equal(options.passive,true);handlers.set(name,fn);}},nativeAudio:{resume({trusted,repair}){calls.push([trusted,repair]);}}});
+ handlers.get('pointerup')({isTrusted:false});
+ document.hidden=true;handlers.get('touchend')({isTrusted:true});
+ document.hidden=false;navigator.userActivation.isActive=false;handlers.get('touchend')({isTrusted:true});
+ assert.deepEqual(calls,[]);
+ navigator.userActivation.isActive=true;handlers.get('pointerup')({isTrusted:true});
+ assert.deepEqual(calls,[[true,true]]);
 });
