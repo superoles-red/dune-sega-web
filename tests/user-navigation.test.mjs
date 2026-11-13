@@ -312,6 +312,14 @@ test('Home credits retain the legal-credit gate and extend below the complete or
  const cold=ui.homePicture(source);assert.equal(cold.width,320);assert.equal(credits.length,0,'translator and engine acknowledgements cannot precede the original licensing sequence');
  ui.creditsUnlocked=true;const final=ui.homePicture(source);assert.ok(credits.some(line=>line.label.includes('SHEDEVR')));
  assert.ok(credits.every(line=>line.y>=224&&line.y+8*line.options.scale<=final.height),'all acknowledgements occupy added rows below the original image');
+ const desktopCredits=credits.splice(0);
+ ui.homePicture(source,{compact:true});
+ assert.deepEqual(credits.map(line=>line.label),desktopCredits.map(line=>line.label));
+ for(const {label,x,y,options} of credits){
+  assert.equal(options.scale*8,7,'compact glyphs occupy seven whole pixels');
+  const halfWidth=label.length*4*options.scale;
+  assert.ok(x-halfWidth>=0&&x+halfWidth<=final.width&&y+8*options.scale<=final.height,'all compact credits fit the title canvas');
+ }
  assert.ok(images.every(args=>args[0]===source&&args.slice(1).join(',')==='0,0,320,224'),'the source frame and its original legal text are never cropped or resized internally');
  assert.deepEqual(fills.at(-1),[0,0,final.width,final.height]);
 });

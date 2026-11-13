@@ -1,15 +1,15 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261113-audio-recovery';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261113-audio-recovery';
-import {ScreenTransition} from './screen-transition.mjs?v=20261113-audio-recovery';
-import {NativeConfirmation} from './confirm-dialog.mjs?v=20261113-audio-recovery';
+import {BuildingInterface} from './building-ui.mjs?v=20261113-title-credits';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261113-title-credits';
+import {ScreenTransition} from './screen-transition.mjs?v=20261113-title-credits';
+import {NativeConfirmation} from './confirm-dialog.mjs?v=20261113-title-credits';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261113-audio-recovery';
+import {LANGUAGES} from './i18n.mjs?v=20261113-title-credits';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
-import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261113-audio-recovery';
-import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261113-audio-recovery';
-import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261113-audio-recovery';
+import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261113-title-credits';
+import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261113-title-credits';
+import {composeControlsGuide,defaultControlsMode} from './controls-guide.mjs?v=20261113-title-credits';
 
 // Original Results loader $26C68 selects ROM table $26C5C by mission % 3.
 // The replacement for the password screen retains that same background.
@@ -516,11 +516,17 @@ export class GameInterface {
   const b=this.element.getBoundingClientRect(),w=Math.round(b.width),h=Math.round(b.height),scene=this.element.dataset.scene||'',r=this.art.skin.screens?.[scene];
   const results=this.view==='completion'||this.view==='native'&&scene==='results',shade=results&&this.frame.valid&&this.view==='native'?Array.from(this.frame.data.data.subarray(0,3)).join(' '):'',background=(this.view==='native'&&(scene==='campaign'||this.state.presentationPhase==='briefing_exit'))||['home','missions','replay'].includes(this.view)?'native-black':this.view==='native'?(r?.background||'native-black'):'title-background',key=[this.view,scene,w,h,background,shade].join(':');if(key===this.paintKey)return;this.paintKey=key;const d=Math.min(devicePixelRatio||1,3);this.backdrop.width=w*d;this.backdrop.height=h*d;const c=this.backdrop.getContext('2d');c.scale(d,d);c.imageSmoothingEnabled=false;c.fillStyle='#000';c.fillRect(0,0,w,h);if(this.view==='native'&&['options','pause'].includes(scene)){drawOptionsScene({ctx:c,art:this.art,width:w,height:h,state:this.visibleNative||this.state});this.drawCaption();return;}const sky=results?this.art.part('pause-options-sky-sample','screen'):null;if(sky){if(shade){c.fillStyle='rgb('+shade+')';c.fillRect(0,0,w,h);}else this.art.repeat(c,sky,0,0,w,h);this.drawCaption();return;}const im=this.art.part(background,'screen');if(im){const scale=Math.min(w/im.width,h/im.height);c.drawImage(im,(w-im.width*scale)/2,0,im.width*scale,im.height*scale);}this.drawCaption();
  }
- homePicture(source,{cache=false}={}){
+ homePicture(source,{cache=false,compact=false}={}){
   if(!source)return null;
   if(cache){this.homeFrame.width=source.width;this.homeFrame.height=source.height;this.homeFrame.getContext('2d').drawImage(source,0,0);this.homeFrameValid=true;}
   const can=this.titleFrame;if(can.width!==320)can.width=320;if(can.height!==255)can.height=255;const c=can.getContext('2d');c.imageSmoothingEnabled=false;c.fillStyle='#000';c.fillRect(0,0,320,255);c.drawImage(source,0,0,320,224);
-  if(this.creditsUnlocked){this.art.text(c,'ENGINE: REARRAKIS - OPEN SOURCE (MIT)',160,228,{scale:.65,align:'center',shadow:true});this.art.text(c,'KRUZEMAN / RROP / REARRAKIS CONTRIBUTORS',160,237,{scale:.65,align:'center',shadow:true});this.art.text(c,'RU FONT / UI: SHEDEVR (2003)',160,246,{scale:.65,align:'center',shadow:true});}return can;
+  if(this.creditsUnlocked){
+   const style={scale:compact ? .875 : .65,align:'center',shadow:true};
+   this.art.text(c,'ENGINE: REARRAKIS - OPEN SOURCE (MIT)',160,228,style);
+   this.art.text(c,'KRUZEMAN / RROP / REARRAKIS CONTRIBUTORS',160,237,style);
+   this.art.text(c,'RU FONT / UI: SHEDEVR (2003)',160,246,style);
+  }
+  return can;
  }
  updateFrame({textless=false,resultLabels=false,sceneLabels=false}={}){
   if(!this.isReady())return false;const serial=this.Module._dune_web_frame_serial?.(),key=[serial,textless,resultLabels,sceneLabels,this.liveText,this.state.scene,this.state.presentationPhase].join(':');
@@ -580,7 +586,11 @@ export class GameInterface {
    this.drawBackdrop();
    const box=this.hero.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,3),can=this.heroCanvas,key=[this.view,scene,sourceKey,box.width,box.height,d,this.creditsUnlocked,this.art.language?.revision].join(':');
    if(box.width>0&&box.height>0&&key!==this.heroPaintKey){
-    this.heroPaintKey=key;this.heroPaints=(this.heroPaints||0)+1;if(home&&source)source=this.homePicture(source,{cache:cacheHome});
+    this.heroPaintKey=key;this.heroPaints=(this.heroPaints||0)+1;
+    if(home&&source){
+     const fittedWidth=Math.min(box.width,box.height*320/255);
+     source=this.homePicture(source,{cache:cacheHome,compact:fittedWidth<480});
+    }
     // Keep native pixels in the backing store; CSS object-fit/pixelated does
     // the final display scale without rebuilding a viewport-sized bitmap.
     const pw=source?.width||1,ph=source?.height||1;if(can.width!==pw)can.width=pw;if(can.height!==ph)can.height=ph;

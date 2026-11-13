@@ -1,4 +1,4 @@
-import {UI_RU,ACCESSIBLE_EN} from './locale-ui-ru.mjs?v=20261113-audio-recovery';
+import {UI_RU,ACCESSIBLE_EN} from './locale-ui-ru.mjs?v=20261113-title-credits';
 
 export const LANGUAGE_KEY='dune-sega-language-v1';
 export const LANGUAGES=[{code:'en',label:'English'},{code:'ru',label:'Русский'}];
