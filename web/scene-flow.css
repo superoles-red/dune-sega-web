@@ -161,6 +161,7 @@ html,body{height:var(--app-viewport-height);min-height:0}
 .native-screen[data-view="controls"] .scene-message{display:none}
 .native-screen[data-view="controls"] .scene-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:56px;max-height:none;width:100%;max-width:720px;justify-self:center}
 .native-screen[data-view="controls"] .scene-hero{align-items:flex-start;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;width:100%;max-width:720px;justify-self:center}
-.native-screen[data-view="controls"] .scene-art{width:100%;height:auto;max-height:none;object-fit:contain;flex:none}
+/* Center the guide when it fits and keep its top reachable when it scrolls. */
+.native-screen[data-view="controls"] .scene-art{width:100%;height:auto;max-height:none;object-fit:contain;flex:none;margin-block:auto}
 .native-screen[data-view="controls"] .scene-footer{justify-content:space-between;background:transparent}
 @media(orientation:landscape) and (max-height:519px){.native-screen[data-view="controls"] .scene-shell{grid-template-rows:28px minmax(0,1fr) auto;gap:4px}}

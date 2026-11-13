@@ -6706,9 +6706,9 @@
       "sha256": "dbd03cfbd26ebe17b7fbe15bea937acad3eb4e9f57ab7a6a293ce330dd2557d5"
     },
     "web/index.html": {
-      "bytes": 23967,
+      "bytes": 23976,
       "mode": "0o644",
-      "sha256": "db4d6cf0b87dc7d1d16cf2529a5bed5496f14526f8eb217e9ff1fa92fe0b5b6f"
+      "sha256": "617937d6e2271975d30875627f28a9882bf6ef173f7aa79de693c4a43759c2bd"
     },
     "web/input-check.mjs": {
       "bytes": 2725,
@@ -6956,9 +6956,9 @@
       "sha256": "d4d79c96220c2aebe94c0267af0d74f10aa1adfd70cd79b1dbb0ecd3f9a01bda"
     },
     "web/scene-flow.css": {
-      "bytes": 18902,
+      "bytes": 19000,
       "mode": "0o644",
-      "sha256": "9f0a410bbb468cf9c852c7a2abc643bbc4c3d2e5d836e5a42f442449668ed39e"
+      "sha256": "ebe25ad64484685867ddad278274f024320023807ac93ca8aa1e8b1b653dda35"
     },
     "web/screen-transition.mjs": {
       "bytes": 2878,
