@@ -1,5 +1,5 @@
 // Native PNG composition only. Game actions stay in the original runtime.
-import {GameLanguage} from './i18n.mjs?v=20261113-feedback';
+import {GameLanguage} from './i18n.mjs?v=20261115-offline-menu';
 import {loadAssetImage,loadAssetJSON,runAssetPool} from './asset-loader.mjs?v=20261113-feedback';
 import {loadRuntimeAtlas} from './runtime-atlas.mjs?v=20261113-feedback';
 export class NativeArt {

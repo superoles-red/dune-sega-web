@@ -1,11 +1,11 @@
 import {CampaignStore,HOUSE_NAMES,validHouse,validMission,canStart} from './campaign-state.mjs';
-import {BuildingInterface} from './building-ui.mjs?v=20261113-feedback';
-import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261113-feedback';
+import {BuildingInterface} from './building-ui.mjs?v=20261115-offline-menu';
+import {LiveNativeFrame,dragScroll} from './native-ui.mjs?v=20261115-offline-menu';
 import {ScreenTransition} from './screen-transition.mjs?v=20261113-feedback';
 import {NativeConfirmation} from './confirm-dialog.mjs?v=20261113-feedback';
 import {displayMissionName} from './campaign-names.mjs';
 import {drawOptionsScene} from './options-layout.mjs';
-import {LANGUAGES} from './i18n.mjs?v=20261113-feedback';
+import {LANGUAGES} from './i18n.mjs?v=20261115-offline-menu';
 import {drawLocalizedResults,drawLocalizedSceneLabels} from './localized-results.mjs';
 import {createSaveFile,parseSaveFile,commitSaveFile,MAX_SAVE_FILE_BYTES} from './save-files.mjs?v=20261113-feedback';
 import {downloadSave,pickSaveFile} from './browser-features.mjs?v=20261113-feedback';
@@ -73,7 +73,6 @@ export class GameInterface {
   this.clear('platform','FILES & OFFLINE');this.displayed='platform';this.actions.classList.add('platform-grid');
   this.downloadButton=this.button('DOWNLOAD SAVE',()=>this.exportFile(),{id:'download-save',disabled:true}).button;
   this.button('LOAD SAVE FILE',()=>pickSaveFile(file=>this.importFile(file)),{id:'upload-save'});
-  this.offlineButton=this.button('PREPARE OFFLINE',()=>this.prepareOffline(),{id:'prepare-offline'}).button;
   this.button('UPDATE GAME',()=>this.updateGame(),{id:'update-game'});
   this.button('SOURCE CODE',()=>this.platform.openSource(),{id:'source-code'});
   this.backButton(()=>this.closePlatform());this.refreshPlatform();this.prepareSaveFile();
@@ -87,11 +86,11 @@ export class GameInterface {
   // The settled Home route opens the single update page without an extra toast.
   if(this.view!=='platform')return;
   if(s.installed&&this.platformNotice===this.art.displayText('INSTALLATION REQUESTED.'))this.platformNotice='';
-  let status=s.status==='ready'?'OFFLINE GAME READY.':s.status==='downloading'?'DOWNLOADING OFFLINE GAME...':s.status==='error'?'OFFLINE DOWNLOAD FAILED. TRY AGAIN.':'PREPARE OFFLINE ONCE WHILE CONNECTED.';
+  let status=s.status==='ready'?'OFFLINE GAME READY.':s.status==='downloading'?'DOWNLOADING OFFLINE GAME...':s.status==='error'?'OFFLINE DOWNLOAD FAILED. TRY AGAIN.':'USE UPDATE GAME TO DOWNLOAD THE OFFLINE COPY.';
   status=this.art.displayText(status)+(s.status==='downloading'&&s.total?' '+s.loaded+' / '+s.total:'');
   const hint=this.art.displayText(s.installed?'INSTALLED ON THIS DEVICE.':this.installHelp(s));
   const update=s.updateAvailable||s.restartRequired?this.art.displayText('UPDATE READY.'):'';
-  this.liveText=false;this.messageText=[this.platformNotice,update,status,hint].filter((text,index,all)=>text&&all.indexOf(text)===index).join('\n\n');this.message.hidden=false;this.element.dataset.hasMessage='true';this.drawMessage();if(this.offlineButton){this.offlineButton.disabled=!!s.preparing;this.offlineButton._nativeArtView?.update('PREPARE OFFLINE',{disabled:!!s.preparing});}
+  this.liveText=false;this.messageText=[this.platformNotice,update,status,hint].filter((text,index,all)=>text&&all.indexOf(text)===index).join('\n\n');this.message.hidden=false;this.element.dataset.hasMessage='true';this.drawMessage();
   if(this.installButton){const label=s.installed?'INSTALLED':'INSTALL GAME',disabled=!!s.installed||!!this.installBusy;this.installButton.disabled=disabled;this.installButton._nativeArtView?.update(label,{disabled});}
  }
  installHelp(s=this.platform.snapshot()){
